@@ -1,0 +1,195 @@
+﻿
+@{
+    ViewBag.Title = "ReporteAsistenciaVista";
+}
+@section css
+{
+    <link href="~/Content/assets/js/optional/openlayer/ol.css" rel="stylesheet" />
+}
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-dollar"></span>
+                                <span class="main-text">
+                                    Reporte Visita
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+
+                    <div class="row">
+
+                        <div class="col-md-4 col-sm-6 col-xs-6 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnBuscar" class="btn btn-success btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-book"></span>
+                                        Buscar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-xs-6 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnExcel" class="btn btn-primary btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-file"></span>
+                                        Excel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12 col-sm-12">
+                            <div class="row" id="formfiltro">
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="input-group ">
+                                        <span class="input-group-addon">
+                                            Sala
+                                        </span>
+                                        <select class="form-control input-sm codSalaAuditoria" id="cboSala" name="cboSala"></select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            FECHA DE INICIO
+                                        </span>
+                                        <input type="text" class="form-control input-sm dateOnly_" id="fechaInicio" readonly />
+                                        <span class="input-group-addon input-group-icon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            FECHA DE FIN
+                                        </span>
+                                        <input type="text" class="form-control input-sm dateOnly_" id="fechaFin" readonly />
+                                        <span class="input-group-addon input-group-icon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="contenedor_tabla table-responsive">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section modal
+{
+    <div class="modal fade" tabindex="-1" id="modalreportedetalleVisita" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id=""><span id=""></span> Reporte Visita - <span id="mod_nombreVisita"></span></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="">
+                    <div class="row">
+                        <div class="container-fluid">
+                            <div class="col-md-12">
+                                <div class="row ">
+                                    <div class="col-md-4">
+                                        <div class="row" style="background-color:white; border-radius:5px !important; margin:0 1px; padding:5px">
+                                            <input type="hidden" name="rep_id" id="rep_id" value="0" />
+                                            <div class="col-md-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <label>Fecha</label>
+                                                    <input type="text" name="rep_fecha" id="rep_fecha" readonly class="form-control" placeholder="Fecha" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <label>Titulo</label>
+                                                    <input id="rep_titulo" name="rep_titulo" readonly class="form-control" placeholder="Titulo" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <label>Descripcion</label>
+                                                    <textarea id="rep_descripcion" name="rep_descripcion" readonly class="form-control" rows="4" placeholder="Descripcion"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <label> Descripcion Imagen <span class="badge badge-soft-success" id="spn_nroimagen"></span></label>
+                                                    <textarea id="rep_descripcionImagen" name="rep_descripcionImagen" readonly class="form-control" rows="4" placeholder="Descripcion de Imagen">Presione sobre el nombre de la imagen ......</textarea>
+                                                </div>
+                                            </div>
+                                            @*<div class="col-md.12 col-xs-12">
+                                                <div class="form-group">
+                                                    <button type="button" class="btn btn-flash-border-warning mt-1 mr-1" style="margin-left: 10px;">Enviar a Correo</button>
+                                                </div>
+                                            </div>*@
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="row parent-container list_imagesdetallereporte defaultscroll" id="divContentImages" style="background-color: white; border-radius: 5px !important; margin: 0 1px; padding: 35px 10px;">
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+
+@section js
+{
+
+    <script src="~/Content/assets/viewsjs/AsistenciaEmpleado/ReporteVisita.js"></script>
+}

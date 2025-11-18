@@ -1,0 +1,34 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-12">
+            <form id="formSalaMaestra" role="form">
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Nombre
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm" id="Nombre" name="Nombre" placeholder="Nombre de la Sala Maestra">
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Estado
+                        </span>
+                        <select id="cboEstado" class="form-control input-sm" name="Estado">
+                            <option value="" selected></option>
+                            <option value="1">Activo</option>
+                            <option value="0">Inactivo</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="~/Content/assets/viewsjs/SalaMaestra/InsertarSalaMaestra.js"></script>

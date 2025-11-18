@@ -1,0 +1,161 @@
+﻿@{
+    ViewBag.Title = "Modificar Sala";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using System.Activities.Expressions
+@using System.Web.Script.Serialization
+@using System.Web.UI.WebControls
+
+@{
+    String empresa = new JavaScriptSerializer().Serialize(ViewBag.empresa);
+    String ubigeo = new JavaScriptSerializer().Serialize(ViewBag.ubigeo);
+}
+<script type="text/javascript">
+    empresa = (@Html.Raw(empresa));
+    ubigeo = (@Html.Raw(ubigeo));
+</script>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-shield"></span>
+                                <span class="main-text">
+                                    Modificar Empresa
+                                </span>
+                            </h1>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+
+                        <div class="col-md-4 col-md-offset-4 col-sm-6 col-xs-6">
+                            <button type="button" class="btn btn-success btn-sm col-md-12 col-sm-12 col-xs-12 btnListar"><span class="glyphicon glyphicon-list-alt"></span> Listado </button>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <button type="button" class="btn btn-primary btn-sm col-md-12 col-sm-12 col-xs-12 btnGuardar "><span class="glyphicon glyphicon-floppy-disk"></span> Actualizar </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner ">
+                    <div class="cardMachine" style="margin-bottom:15px;">
+                        <fieldset class="sectionCard" style="padding: 10px 7px; margin-top: 10px;">
+                            <h3 style="margin-bottom:5px;margin-left:10px">Datos de la empresa</h3>
+                            <form id="frmRegistroEmpresa">
+                                <input type="hidden" id="TipoEmpresa" name="TipoEmpresa" value="1" />
+                                <input type="hidden" id="CodConsorcio" name="CodConsorcio" value="1" />
+                                <input type="hidden" id="RutaArchivoLogoAnt" name="RutaArchivoLogoAnt" value="" />
+                                <fieldset>
+                                    <div class="col-md-6">
+                                        <div class="col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Código Empresa
+                                                </span>
+                                                <input type="text" class="form-control input-sm" readonly id="CodEmpresa" name="CodEmpresa" placeholder="Código Empresa">
+                                            </div>
+                                        </div>
+
+                                        <div class=" col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Razon Social
+                                                </span>
+                                                <input type="text" class="form-control input-sm UpperCase" id="RazonSocial" name="RazonSocial" placeholder="Razon Social">
+                                            </div>
+                                        </div>
+                                        <div class=" col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    RUC
+                                                </span>
+                                                <input type="text" class="form-control input-sm soloNumeros" id="Ruc" name="Ruc" placeholder="RUC">
+                                            </div>
+                                        </div>
+                                        <div class=" col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Dirección
+                                                </span>
+                                                <input type="text" class="form-control input-sm UpperCase" id="Direccion" name="Direccion" placeholder="Dirección">
+                                            </div>
+                                        </div>
+                                        <div class=" col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Logo
+                                                </span>
+                                                <input type="file" class="form-control input-sm" id="RutaArchivoLogo" name="RutaArchivoLogo" placeholder="Logo">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class=" col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Departamento
+                                                </span>
+                                                <select id="cboDepartamento" class="form-control input-sm mySelect" name="DepartamentoId"></select>
+                                            </div>
+                                        </div>
+                                        <div class=" col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Provincia
+                                                </span>
+                                                <select id="cboProvincia" class="form-control input-sm mySelect" name="ProvinciaId"></select>
+
+                                            </div>
+                                        </div>
+                                        <div class=" col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Distrito
+                                                </span>
+                                                <select id="cboDistrito" class="form-control input-sm mySelect" name="CodUbigeo"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                   
+                                   
+                                </fieldset>
+                            </form>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+</div>
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/Empresa/EmpresaModificar.js"></script>
+}
+

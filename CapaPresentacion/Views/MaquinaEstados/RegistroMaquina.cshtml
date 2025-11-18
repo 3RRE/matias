@@ -1,0 +1,167 @@
+﻿@using S3k.Utilitario
+@{
+    ViewBag.Title = "Registro Máquina";
+    string fecha_archivo = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+}
+
+@section css{
+    <style>
+        .input-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+            .input-wrapper::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 1;
+                cursor: pointer;
+            }
+    </style>
+
+}
+
+<!-- Título y Botones de Acción -->
+<div class="row">
+    <div class="col-md-4">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon las la-map-signs"></span>
+                                <span class="main-text">
+                                    @ViewBag.Title
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+
+
+                        <div class="col-md-6 col-sm-12 col-xs-12 pull-right">
+                            <button type="button" id="btnAgregarRegistroMaquina" class="btn btn-success btn-sm btn-block">
+                                <span class="fa fa-search"></span>
+                                Agregar
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="contenedor_tabla" class="table-responsive">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+<!-- Filtros de Búsqueda -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <form id="formRegistroTemporal">
+                        <fieldset>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Sala</span>
+                                        <select class="form-control input-sm codSalaAuditoria" id="cboSala" name="CodSala"></select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="input-group form-group">
+                                        <span class="input-group-addon">
+                                            Código Máquina INDECI
+                                        </span>
+                                        <input type="text" class="form-control input-sm soloNumeros" id="cboCodigoMaquinaINDECI" name="CodMaquinaINDECI" placeholder="Código Maquina INDECI">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="input-group form-group">
+                                        <span class="input-group-addon">
+                                            Código Máquina RD
+                                        </span>
+                                        <input type="text" class="form-control input-sm soloNumeros" id="cboCodigoMaquinaRD" name="CodMaquinaRD" placeholder="Código Maquina RD">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="input-group form-group">
+                                        <span class="input-group-addon">
+                                            Total Máquinas
+                                        </span>
+                                        @*<div class="input-wrapper">
+                                            <input type="text" class="form-control input-sm soloNumeros" id="cboTotalMaquina" name="TotalMaquina" disabled>
+                                        </div>*@
+                                        <input type="text" class="form-control input-sm soloNumeros" id="cboTotalMaquina" name="TotalMaquina" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section modal{
+    <div class="modal fade full-modal" id="full-modal_totalmaquina" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="false">
+        <div class="modal-dialog modal-lg" style="max-width: 1100px;">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label_">Total Máquinas</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="table-responsive" id="contenedor_tabla">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+}
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/MaquinaEstados/RegistroMaquinaVista.js?v=@fecha_archivo"></script>
+}

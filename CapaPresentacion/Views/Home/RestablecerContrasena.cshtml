@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Restablecer Contraseña";
+    Layout = "~/Views/Shared/_Login.cshtml";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <h3 class="heading">
+            <span aria-hidden="true" class="icon icon-key"></span>
+            <span class="main-text">
+                Restablecer Contraseña
+            </span>
+        </h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <form role="form" class="login-form" method="post" action="#">
+            <div class="form-group">
+                <label for="usuario">Cuenta</label>
+                <input class="form-control input-sm" id="cuenta" placeholder="Cuenta" type="text" name="cuenta">
+            </div>
+            <div class="form-group">
+                <label for="usuario">Correo Electronico</label>
+                <input class="form-control input-sm" id="email" placeholder="Correo Electronico" type="text" name="email">
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <button type="button" class="btn btn-success btnRestablecerContrasena pull-right">Restablecer Contraseña</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/Home/RestablecerContrasena.js"></script>
+}

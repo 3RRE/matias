@@ -1,0 +1,306 @@
+﻿
+@{
+    ViewBag.Title = "CallCenterRegistroVista";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-block-menu"></span>
+                                <span class="main-text">
+                                    Registro de CallCenter
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnGrabarPozo" class="btn btn-primary btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-file"></span>
+                                        Modificar Pozo
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnGrabar" class="btn btn-success btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-book"></span>
+                                        Grabar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+
+                        <div class="col-xs-12 col-md-6 col-sm-6">
+                            <div class="row">
+                                <input id="hid_cod_cab_prog" type="hidden" />
+                                <input id="hid_cod_det_prog_sup" type="hidden" />
+                                <input id="hid_cod_det_prog_med" type="hidden" />
+                                <input id="hid_cod_det_prog_inf" type="hidden" />
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="input-group ">
+                                        <span class="input-group-addon">
+                                            Sala
+                                        </span>
+                                        <select class="form-control input-sm " id="cboSala" name="cboSala">
+                                            <option value="">--Seleccione--</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="input-group ">
+                                        <span class="input-group-addon">
+                                            Progresivo
+                                        </span>
+                                        <select class="form-control input-sm " id="cboProgresivo" name="cboProgresivo">
+                                            <option value="">--Seleccione--</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="input-group ">
+                                        <span class="input-group-addon">
+                                            Moneda
+                                        </span>
+                                        <input type="text" class="form-control input-sm" name="txtMoneda" id="txtMoneda">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="input-group ">
+                                        <span class="input-group-addon">
+                                            Lugar Pago
+                                        </span>
+                                        <select class="form-control input-sm " id="cboLugarPago" name="cboLugarPago">
+                                            <option value="0">Pagos en maquina</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            Duración pantalla(Segundos)
+                                        </span>
+                                        <input type="text" class="form-control input-sm" name="txtDuracion" id="txtDuracion">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="input-group ">
+                                        <span class="input-group-addon">
+                                            Nro. jugadores
+                                        </span>
+                                        <input type="text" class="form-control input-sm" name="txtNumJugadores" id="txtNumJugadores">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="input-group ">
+                                        <span class="input-group-addon">
+                                            Nro. Pozos
+                                        </span>
+                                        <input type="text" class="form-control input-sm" name="txtNroPozos" disabled="disabled" id="txtNroPozos">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="input-group ">
+                                        <span class="input-group-addon">
+                                            Imagen
+                                        </span>
+                                        <select class="form-control input-sm " id="cboImagen" name="cboImagen">
+                                            <option value="">--Seleccione--</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            Estado
+                                        </span>
+                                        <select class="form-control input-sm " id="cboEstado" name="cboEstado">
+                                            <option value="1">Activo</option>
+                                            <option value="0">Inactivo</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12 .checkbox-form">
+                                    <div class="checkbox-form">
+                                        <div class="icheck-square">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" class="" name="chkPozoOculto" id="chkPozoOculto">
+                                                    Pozo oculto
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="checkbox-form">
+                                        <div class="icheck-square">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" class="" name="chkRegHistorico" id="chkRegHistorico">
+                                                    Registrar Historico
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-sm-6 col-md-6">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            @*<th>
+                                                    <div class="checkbox icheck-line">
+                                                        <input type="checkbox" value="" id="chkPozoSuperior" name="chkPozoSuperior">
+                                                        <label>Pozo Superior</label>
+                                                    </div>
+                                                    //<input type="checkbox" name="chkPozoSuperior" id="chkPozoSuperior" value="" /></span>
+                                                </th>*@
+                                            <th>Pozo Superior <span class=""><input type="checkbox" name="pozocheck" id="chkPozoSuperior" value="" /></span></th>
+                                            <th>Pozo Medio <span class=""><input type="checkbox" name="pozocheck" id="chkPozoMedio" value="" /></span></th>
+                                            <th>Pozo Inferior <span class=""><input type="checkbox" name="pozocheck" id="chkPozoInferior" value="" /></span></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Premio base</td>
+                                            <td><input type="number" step="any" name="txtPSPremioBase" id="txtPSPremioBase" value="" class="form-control input-sm" /></td>
+                                            <td><input type="number" step="any" name="txtPMPremioBase" id="txtPMPremioBase" value="" class="form-control input-sm" /></td>
+                                            <td><input type="number" step="any" name="txtPIPremioBase" id="txtPIPremioBase" value="" class="form-control input-sm" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Premio minimo</td>
+                                            <td><input type="number" step="any" name="txtPSPremioMinimo" id="txtPSPremioMinimo" value="" class="form-control input-sm" /></td>
+                                            <td><input type="number" step="any" name="txtPMPremioMinimo" id="txtPMPremioMinimo" value="" class="form-control input-sm" /></td>
+                                            <td><input type="number" step="any" name="txtPIPremioMinimo" id="txtPIPremioMinimo" value="" class="form-control input-sm" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Premio maximo</td>
+                                            <td><input type="number" step="any" name="txtPSPremioMaximo" id="txtPSPremioMaximo" value="" class="form-control input-sm" /></td>
+                                            <td><input type="number" step="any" name="txtPMPremioMaximo" id="txtPMPremioMaximo" value="" class="form-control input-sm" /></td>
+                                            <td><input type="number" step="any" name="txtPIPremioMaximo" id="txtPIPremioMaximo" value="" class="form-control input-sm" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Inc. pozo (Ej. 0.01 = 1%)</td>
+                                            <td><input type="number" step="any" name="txtPSIncPozoNormal" id="txtPSIncPozoNormal" value="" class="form-control input-sm" /></td>
+                                            <td><input type="number" step="any" name="txtPMIncPozoNormal" id="txtPMIncPozoNormal" value="" class="form-control input-sm" /></td>
+                                            <td><input type="number" step="any" name="txtPIIncPozoNormal" id="txtPIIncPozoNormal" value="" class="form-control input-sm" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Restricción de Apuesta (Créditos)</td>
+                                            <td><input type="number" step="any" name="txtPSRsApuesta" id="txtPSRsApuesta" value="" class="form-control input-sm" /></td>
+                                            <td><input type="number" step="any" name="txtPMRsApuesta" id="txtPMRsApuesta" value="" class="form-control input-sm" /></td>
+                                            <td><input type="number" step="any" name="txtPIRsApuesta" id="txtPIRsApuesta" value="" class="form-control input-sm" /></td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>Nro de Jugadores</td>
+                                            <td><input type="number" name="txtPSRsJugadores" id="txtPSRsJugadores" value="" class="form-control input-sm" /></td>
+                                            <td><input type="number" name="txtPMRsJugadores" id="txtPMRsJugadores" value="" class="form-control input-sm" /></td>
+                                            <td><input type="number" name="txtPIRsJugadores" id="txtPIRsJugadores" value="" class="form-control input-sm" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Monto oculto minimo</td>
+                                            <td><input type="number" step="any" name="txtPSMontoOcultoMin" id="txtPSMontoOcultoMin" value="" class="form-control input-sm" /></td>
+                                            <td><input type="number" step="any" name="txtPMMontoOcultoMin" id="txtPMMontoOcultoMin" value="" class="form-control input-sm" /></td>
+                                            <td><input type="number" step="any" name="txtPIMontoOcultoMin" id="txtPIMontoOcultoMin" value="" class="form-control input-sm" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Monto oculto maximo</td>
+                                            <td><input type="number" step="any" name="txtPSMontoOcultoMax" id="txtPSMontoOcultoMax" value="" class="form-control input-sm" /></td>
+                                            <td><input type="number" step="any" name="txtPMMontoOcultoMax" id="txtPMMontoOcultoMax" value="" class="form-control input-sm" /></td>
+                                            <td><input type="number" step="any" name="txtPIMontoOcultoMax" id="txtPIMontoOcultoMax" value="" class="form-control input-sm" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Inc. pozo oculto (Ej. 0.01 = 1%)</td>
+                                            <td><input type="number" step="any" name="txtPSIncPozoOculto" id="txtPSIncPozoOculto" value="" class="form-control input-sm" /></td>
+                                            <td><input type="number" step="any" name="txtPMIncPozoOculto" id="txtPMIncPozoOculto" value="" class="form-control input-sm" /></td>
+                                            <td><input type="number" step="any" name="txtPIIncPozoOculto" id="txtPIIncPozoOculto" value="" class="form-control input-sm" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Dificultad</td>
+                                            <td>
+                                                <select id="cboPSDificultad" class="form-control input-sm ">
+                                                    <option value="5">Facil</option>
+                                                    <option value="6">Normal</option>
+                                                    <option value="7">Dificil</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select id="cboPMDificultad" class="form-control input-sm ">
+                                                    <option value="5">Facil</option>
+                                                    <option value="6">Normal</option>
+                                                    <option value="7">Dificil</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select id="cboPIDificultad" class="form-control input-sm ">
+                                                    <option value="5">Facil</option>
+                                                    <option value="6">Normal</option>
+                                                    <option value="7">Dificil</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Pozo actual</td>
+                                            <td><input type="number" step="any" name="txtPSPozoActual" id="txtPSPozoActual" value="" class="form-control input-sm" /></td>
+                                            <td><input type="number" step="any" name="txtPMPozoActual" id="txtPMPozoActual" value="" class="form-control input-sm" /></td>
+                                            <td><input type="number" step="any" name="txtPIPozoActual" id="txtPIPozoActual" value="" class="form-control input-sm" /></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/Soporte/CallCenter/CallCenter/CallCenterRegistroVista.js"></script>
+}
+

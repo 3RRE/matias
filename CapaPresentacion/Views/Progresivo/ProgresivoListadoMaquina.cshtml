@@ -1,0 +1,236 @@
+﻿@using S3k.Utilitario;
+@{
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+}
+@{
+    ViewBag.Title = "ProgresivoListadoMaquina";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-block-menu"></span>
+                                <span class="main-text">
+                                    Lista de Máquinas
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnExcel" class="btn btn-primary btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-file"></span>
+                                        Excel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row visible-xs">
+                            <div class="col-xs-12">
+                                <div style="margin-bottom:10px"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnNuevo" class="btn btn-success btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-file"></span>
+                                        Nuevo
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row visible-xs">
+                            <div class="col-xs-12">
+                                <div style="margin-bottom:10px"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnBuscar" class="btn btn-success btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-book"></span>
+                                        Buscar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+
+                        <div class="col-xs-12 col-md-12 col-sm-12" id="formfiltro">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="input-group ">
+                                        <span class="input-group-addon">
+                                            Sala
+                                        </span>
+                                        <select class="form-control input-sm" id="cboSala" name="cboSala">
+                                            <option value="">--Seleccione--</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            PROGRESIVO
+                                        </span>
+                                        <select class="form-control input-sm" id="cboProgresivo" name="cboProgresivo">
+                                            <option value="">--Seleccione--</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <hr style="margin-top: 0px;" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="contenedor_tabla">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section modal
+{
+    <!-- Modal full-modal -->
+    <div class="modal fade full-modal" id="full-modal" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label">Historial</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12 col-md-12 contenedor_tabla_modal" id="contenedor_modaltabla">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal fade full-modal" id="full-modalAumentarCreditos" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label_"> Aumentar Creditos</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <input type="hidden" id="AumentoId" value="0" />
+                        <input type="hidden" id="AumentoCodMaq" value="" />
+                        <input type="hidden" id="AumentoCodSala" value="" />
+                        <input type="hidden" id="AumentoPuertoSignalr" value="" />
+                        <input type="hidden" id="AumentoCantidad" value="" />
+                        <input type="hidden" id="AumentoFechaUltimoAumento" value="" />
+                        <div class="col-md-12 col-sm-12">
+                            <div class="input-group ">
+                                <span class="input-group-addon">
+                                    Ultimo Aumento
+                                </span>
+                                <input type="text" value="" class="form-control input-sm" style="cursor: not-allowed" readonly id="FechaUltimoAumento" />
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="input-group ">
+                                <span class="input-group-addon">
+                                    Contador Aumentos
+                                </span>
+                                <input type="text" value="" class="form-control input-sm" style="cursor: not-allowed" readonly id="CantidadActual" />
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="input-group ">
+                                <span class="input-group-addon">
+                                    Cod. Maquina
+                                </span>
+                                <input type="text" value="" class="form-control input-sm" style="cursor: not-allowed" readonly id="CodMaquinaProgresivo" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12" style="display:none">
+                            <div class="input-group">
+                                <span class="input-group-addon" style="border: 1px solid black;">
+                                    Cantidad
+                                </span>
+                                <input type="number" id="CantidadIngresada" readonly name="" style="cursor:not-allowed" value="1" class="form-control input-sm" />
+                                @*<span class="input-group-addon inputAumentoCredito" data-operacion="suma" style="border: 1px solid black; background: turquoise;cursor:pointer">
+                                        <span>-</span>
+                                    </span>
+                                    <input type="text" style="text-align: center; cursor:not-allowed " value="1" class="form-control input-sm" readonly id="CantidadCreditos" />
+                                    <span class="input-group-addon inputAumentoCredito" data-operacion="suma" style="border: 1px solid black; background: turquoise;cursor: pointer">
+                                        <span>+</span>
+                                    </span>*@
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <a href="" class="btn btn-primary btn-sm btn-block" id="btnAumentar">Aumentar</a>
+                                </div>
+                                <div class="col-md-6">
+                                    <a href="" class="btn btn-danger btn-sm btn-block" id="btnCancelarAumento">Cerrar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@section js
+{
+    @*<script id="signalrScript" src="~/Scripts/jquery.signalR-2.4.3.js"></script>*@
+    <script src="~/Content/assets/viewsjs/Progresivo/Progresivo/ProgresivoListadoMaquina.js?v=@fecha_archivos"></script>
+}
+
+
+

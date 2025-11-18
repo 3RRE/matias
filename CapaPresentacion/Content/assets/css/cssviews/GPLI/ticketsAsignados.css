@@ -1,0 +1,414 @@
+﻿.ticket-header {
+    display: flex;
+    flex-wrap: wrap; /* Permite que se acomode vertical en pantallas chicas */
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: white;
+    margin: auto;
+    padding: 20px 10px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    gap: 10px; /* espacio entre elementos */
+}
+
+    .ticket-header h1 {
+        display: flex;
+        align-items: center;
+        font-size: 1.5rem;
+        margin: 0;
+        flex: 1 1 auto; /* que crezca según espacio */
+    }
+
+    .ticket-header .main-text {
+        margin-left: 10px;
+    }
+
+    .ticket-header button {
+        white-space: nowrap; /* evita que el texto salte */
+        border-radius: 8px;
+    }
+
+.ticket-card {
+    background: white !important;
+    border-radius: 12px !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+    padding: 20px !important;
+    position: relative !important;
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    transition: transform 0.3s ease, background-color 0.3s ease !important;
+    cursor: pointer !important;
+    box-sizing: border-box !important;
+}
+
+    .ticket-card:hover {
+        transform: translateY(-5px) !important;
+        background-color: #eaf4ff !important; /* celestito suave */
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15) !important;
+    }
+
+
+
+
+
+/*@media (min-width: 1200px) {
+    .ticket-card {
+        height: 290px !important;
+    }
+}*/
+
+
+@media (max-width: 765px) {
+    .ticket-card {
+        height: 280px !important;
+    }
+}
+
+
+@media (min-width: 766px) and (max-width: 990px) {
+    .ticket-card {
+        height: 300px !important;
+    }
+}
+
+@media (min-width: 991px) and (max-width: 1115px) {
+    .ticket-card {
+        height: 320px !important;
+    }
+}
+
+@media (min-width: 1116px) and (max-width : 1400px){
+    .ticket-card {
+        height: 340px !important;
+    }
+}
+
+@media (min-width:1660px) {
+    .ticket-card {
+        height: 300px !important;
+    }
+}
+
+.ticket-side-bar {
+    position: absolute;
+    left: -8px !important;
+    top: 15px !important;
+    width: 8px; /* Ancho del rectángulo */
+    height: 47px;
+    background-color: #991b1b; /* Rojo oscuro */
+    border-top-left-radius: 5px !important;
+    border-bottom-left-radius: 12px !important;
+    z-index: 1; /* Debajo del badge */
+}
+
+.ticket-badge {
+    position: absolute !important;
+    top: 15px !important;
+    left: -8px !important; /* Pegado completamente al borde izquierdo */
+    background: #b02e2e !important;
+    color: white !important;
+    font-size: 1.5rem !important;
+    padding: 4px 12px 4px 15px !important; /* Espacio interior para que el texto no se corte */
+    border-top-right-radius: 25px !important; /* Sin redondeo derecho */
+    border-bottom-right-radius: 25px !important;
+    border-top-left-radius: 10px !important; /* Solo lado izquierdo redondeado */
+    border-bottom-left-radius: 0px !important;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3) !important;
+    z-index: 2 !important;
+    position: absolute !important;
+    /*text-transform:uppercase;*/
+}
+
+
+.ticket-priority {
+    position: absolute !important;
+    top: 15px !important;
+    right: 15px !important;
+    font-size: 1.6rem !important;
+    font-weight: bold !important;
+    padding: 4px 10px !important;
+    border-radius: 8px !important;
+    background: none !important;
+}
+
+.ticket-priority-table{
+    font-weight: bold !important;
+    text-align: center;
+}
+
+/* ALTO - Rojo intenso */
+.priority-alto {
+    color: #b02e2e !important;
+}
+
+/* MEDIO - Amarillo cálido */
+.priority-medio {
+    color: #ca8a04 !important;
+}
+
+/* BAJO - Verde suave */
+.priority-bajo {
+    color: #16a34a !important;
+}
+
+/* OTRO / sin coincidencia - Gris oscuro */
+.priority-otro,
+.priority-default {
+    color: #6b7280 !important;
+}
+
+
+.ticket-title {
+    font-size: 16px !important;
+    font-weight: bold !important;
+    margin: 40px 0 10px !important;
+    text-align: left !important;
+}
+
+.ticket-category {
+    font-size: 14px !important;
+    color: #555 !important;
+    margin-bottom: 15px !important;
+}
+
+.ticket-status-bar {
+    display: flex !important;
+    justify-content: space-between !important;
+    margin-bottom: 15px !important;
+    font-size: 13px !important;
+}
+
+.ticket-status-grey {
+    color: grey !important;
+    font-size: 12px !important;
+}
+
+.ticket-user-info {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    margin-top: auto !important; /* empuja hacia abajo si hay espacio */
+}
+
+.ticket-user {
+    display: flex !important;
+    align-items: center !important;
+}
+
+    .ticket-user img {
+        width: 36px !important;
+        height: 36px !important;
+        border-radius: 50% !important;
+        margin-right: 10px !important;
+    }
+
+.ticket-user-name {
+    font-size: 13px !important;
+}
+
+.ticket-number {
+    background: #eee !important;
+    padding: 4px 8px !important;
+    border-radius: 12px !important;
+    font-size: 13px !important;
+    color: #555 !important;
+}
+
+.user-avatar {
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 50% !important;
+    background-color: #eee !important;
+    color: #555 !important;
+    font-size: 16px !important;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    text-transform: uppercase;
+}
+
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 15px;
+    width: 100%;
+    gap: 3px;
+}
+
+/* Botón "Detalle" ocupa el espacio completo */
+.btn-detalle {
+    flex-grow: 1;
+    background-color: #3b82f6;
+}
+
+    .btn-detalle:hover {
+        background-color: #2563eb;
+    }
+
+.icon-buttons {
+    display: flex !important;
+    gap: 6px !important;
+    margin-left: auto !important;
+}
+
+/* Estilo base para todos los botones */
+.custom-btn {
+    font-size: 13px !important;
+    border: none !important;
+    padding: 8px 12px !important;
+    border-radius: 10px !important;
+    color: white !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1) !important;
+    justify-content: center;
+}
+
+.btn-seguimiento {
+    background-color: #6b7280 !important;
+}
+
+    .btn-seguimiento:hover {
+        background-color: #4b5563 !important;
+    }
+
+.btn-eliminar {
+    background-color: #ef4444 !important;
+}
+
+    .btn-eliminar:hover {
+        background-color: #dc2626 !important;
+    }
+
+.btn-editar {
+    background-color: #22c55e !important;
+}
+
+    .btn-editar:hover {
+        background-color: #16a34a !important;
+    }
+
+.btn-cerrar {
+    background-color: #f59e0b !important;
+    color: white !important;
+}
+
+    .btn-cerrar:hover {
+        background-color: #d97706 !important;
+    }
+
+.custom-btn i {
+    font-size: 14px !important;
+}
+
+.text-icon {
+    padding-bottom: 5px;
+}
+
+.sheet-container {
+    z-index: 99;
+}
+
+.btn-nuevo {
+    background-color: #3b82f6;
+    color: white;
+    border-radius: 8px !important;
+    border: none;
+}
+
+.btn-responsive {
+    font-size: 14px;
+    padding: 8px 12px;
+}
+
+.button-container-colum {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* centrado vertical */
+    align-items: center; /* centrado horizontal */
+    min-height: 120px; /* altura mínima para que todos los botones ocupen el mismo espacio, ajústalo a tu gusto */
+}
+    .button-container-colum .row {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+    .button-container-colum .custom-btn {
+        flex: 1; /* que todos ocupen el mismo ancho proporcional */
+        min-width: 100px;
+        padding: 6px 12px;
+        font-size: 14px;
+        border-radius: 6px;
+        border: none;
+        color: #fff;
+        transition: background-color 0.3s ease;
+        white-space: nowrap;
+    }
+
+.button-container-colum-single {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* centrado vertical */
+    align-items: center; /* centrado horizontal */
+    min-height: 60px; /* altura mínima para que todos los botones ocupen el mismo espacio, ajústalo a tu gusto */
+}
+
+    .button-container-colum-single .row {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .button-container-colum-single .custom-btn {
+        flex: 1; /* que todos ocupen el mismo ancho proporcional */
+        min-width: 100px;
+        padding: 6px 12px;
+        font-size: 14px;
+        border-radius: 6px;
+        border: none;
+        color: #fff;
+        transition: background-color 0.3s ease;
+        white-space: nowrap;
+    }
+
+/*nuevo*/
+
+.custom-tabulador {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.6rem 1rem;
+    border: 2px solid #ccc;
+    border-radius: 8px !important;
+    color: #000; /* texto negro */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    margin: 0.3rem;
+    border-color:lightgray;
+}
+
+
+
+.active-tabulador {
+    background-color: #3b82f6; /* celeste bonito */
+    color: #fff; /* texto blanco */
+  
+}
+.fondo-atrasado {
+    background-color: #ffe4e4 !important;
+}

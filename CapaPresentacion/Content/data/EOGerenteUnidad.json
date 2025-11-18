@@ -1,0 +1,401 @@
+[
+  {
+    "Codigo": "0201",
+    "Nombre": "Documentación Municipalidad/Región/Comercialización y Licencias/Salud",
+    "PuntuacionObtenida": 0,
+    "PuntuacionBase": 0,
+    "Porcentaje": 0,
+    "Items": [
+      {
+        "Codigo": "020101",
+        "Nombre": "Carnet de sanidad, certificado de capacitación de higiene y salubridad vigente",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 1,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 2
+      },
+      {
+        "Codigo": "020102",
+        "Nombre": "Certificado INDECI",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 1,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "020103",
+        "Nombre": "Certificado de aplicación de retardante en alfombras",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 1,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 2
+      },
+      {
+        "Codigo": "020104",
+        "Nombre": "Certificado mantenimiento puertas de emergencia",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 1,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 2
+      },
+      {
+        "Codigo": "020105",
+        "Nombre": "Certificado limpieza campana extractora y trampa de grasa",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 1,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 2
+      },
+      {
+        "Codigo": "020106",
+        "Nombre": "Certificado de ductería de Gas",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 1,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 2
+      },
+      {
+        "Codigo": "020107",
+        "Nombre": "Certificado de operatividad de cocina industrial",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 1,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 2
+      },
+      {
+        "Codigo": "020108",
+        "Nombre": "Licencia vigente y corresponde al giro del negocio",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 1,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "020109",
+        "Nombre": "Certificado de pozo a tierra/luces de emergencia vigente",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 1,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "020110",
+        "Nombre": "Certificado operatividad sistema contra incendio/detector de humo/alarma",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 1,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 2
+      },
+      {
+        "Codigo": "020111",
+        "Nombre": "Certificado de capacitación del personal en temas de seguridad (manejo de extintores, primeros auxilios, etc.)",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 1,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "020112",
+        "Nombre": "Certificado de fumigación y desratización",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 1,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "020113",
+        "Nombre": "Plano de Instalaciones eléctricas (redes eléctricas) en file INDECI y tableros",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 1,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "020114",
+        "Nombre": "Planos de Evacuación y señalización actualizado y publicado en sala",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 1,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "020115",
+        "Nombre": "Plan de seguridad que incluya memoria descriptiva y en la parte final los planos de extintores, luces de emergencia, señalética, rutas de evacuación",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 1,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "020116",
+        "Nombre": "Licencia de letreros y/o pantallas",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 1,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 2
+      },
+      {
+        "Codigo": "020117",
+        "Nombre": "Certificado de limpieza de cisterna y reservorios de agua",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 1,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 2
+      },
+      {
+        "Codigo": "020118",
+        "Nombre": "Mapa de riesgos al día. (SUNAFIL)",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 1,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "020119",
+        "Nombre": "Extintores se encuentran vigentes y operativos y con cartillas de chequeo actualizada al mes en curso",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "020120",
+        "Nombre": "Zonas de evacuación de sala se encuentran libres de mobiliario u otros objetos",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "020121",
+        "Nombre": "Los requisitos locales para los clientes con discapacidades están instalados/disponibles",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 2
+      }
+    ]
+  },
+  {
+    "Codigo": "0202",
+    "Nombre": "Documentación Mincetur",
+    "PuntuacionObtenida": 0,
+    "PuntuacionBase": 0,
+    "Porcentaje": 0,
+    "Items": [
+      {
+        "Codigo": "020201",
+        "Nombre": "CCTV operativo (grabación 15 días, calidad, enfoques y audios) y todas las zonas fiscalizables cubiertas",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "020202",
+        "Nombre": "Comunicación de retiro temporal al día (Modelo SUCTR)",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "020203",
+        "Nombre": "Verificación de máquinas conectadas a sistema Online (revisión cada hora)",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      }
+    ]
+  },
+  {
+    "Codigo": "0203",
+    "Nombre": "Limpieza, Seguridad e Instalaciones (Cocina, Barra y Carritos de cortesías)",
+    "PuntuacionObtenida": 0,
+    "PuntuacionBase": 0,
+    "Porcentaje": 0,
+    "Items": [
+      {
+        "Codigo": "020301",
+        "Nombre": "Todas las zonas de barra se encuentran limpias y/o abastecidas, sin servicio sucio sobre los tableros",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "020302",
+        "Nombre": "Limpieza pisos, paredes, anaqueles, ductos, cocina y mesas de trabajo",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 2
+      },
+      {
+        "Codigo": "020303",
+        "Nombre": "Perecibles (salsas, sándwich, etc.) se encuentran correctamente fechados y almacenados",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 2
+      },
+      {
+        "Codigo": "020304",
+        "Nombre": "Exteriores de trampa de grasa se encuentran limpios y bien mantenidos, no emanan olores",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 2
+      },
+      {
+        "Codigo": "020305",
+        "Nombre": "Equipos de frio se encuentran limpios (exteriores, empaquetaduras, bisagras, rejillas libre de hongos u oxido)",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 2
+      },
+      {
+        "Codigo": "020306",
+        "Nombre": "Instalaciones de barra libre de trapos y líquidos de limpieza",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 2
+      },
+      {
+        "Codigo": "020307",
+        "Nombre": "Productos no perecibles dentro de la fecha de vencimiento",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 2
+      },
+      {
+        "Codigo": "020308",
+        "Nombre": "Cumple con estándar de rotulación de fechado",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 2
+      }
+    ]
+  },
+  {
+    "Codigo": "0204",
+    "Nombre": "Almacenes",
+    "PuntuacionObtenida": 0,
+    "PuntuacionBase": 0,
+    "Porcentaje": 0,
+    "Items": [
+      {
+        "Codigo": "020401",
+        "Nombre": "Productos correctamente almacenados y dentro de fecha de vencimiento",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      }
+    ]
+  }
+]

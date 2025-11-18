@@ -1,0 +1,42 @@
+﻿@using CapaEntidad.BUK
+@model BUK_EquivalenciaSedeEntidad
+@{
+    Layout = null;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-12">
+            <input type="hidden" id="IdEquivalenciaEmpresa" value="@Model.IdEquivalenciaEmpresa" />
+            <form id="formEquivalenciaSede" role="form">
+                <input type="hidden" id="IdEquivalenciaSede" name="IdEquivalenciaSede" value="@Model.IdEquivalenciaSede" />
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Empresa
+                        </span>
+                        <select class="form-control input-sm" id="cboEquivalenciaEmpresa" name="IdEquivalenciaEmpresa"></select>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Nombre
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm" id="NombreSede" name="NombreSede" placeholder="Nombre de la sede" value="@Model.NombreSede">
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Cod. OFISIS
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm soloNumeros" id="CodSedeOfisis" name="CodSedeOfisis" placeholder="Código de la sede en OFISIS" value="@Model.CodSedeOfisis" onkeypress="return valideKeyNumber(event)">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="~/Content/assets/viewsjs/Buk/EquivalenciaSede/ActualizarEquivalenciaSede.js"></script>

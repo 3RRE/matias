@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "Listado Tipo Ocurrencia";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-shield"></span>
+                                <span class="main-text">
+                                    Listado Tipo Ocurrencia
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-offset-4 col-md-4 col-sm-4 col-xs-6 pull-right">
+                            <button type="button" id="btnNuevoRegistro" class="btn btn-sm btn-success col-md-12 col-xs-12">
+                                <span class="glyphicon glyphicon-book"></span>
+                                Nuevo
+                            </button>
+                        </div>
+                        <!--
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnExcel" class="btn btn-primary btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-file"></span>
+                                        Excel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <table id="tableTipoOcurrencia" class="table table-condensed table-bordered table-hover" style="width:100%"></table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/Ocurrencias/ListadoTipoOcurrencia.js"></script>
+}

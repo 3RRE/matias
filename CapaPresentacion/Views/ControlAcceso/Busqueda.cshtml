@@ -1,0 +1,250 @@
+﻿@using S3k.Utilitario;
+@{
+    ViewBag.Title = "Busqueda";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+}
+@section css{
+<style>
+    @@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,800&display=swap');
+.divcontenedor {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*min-height: 100vh;*/
+    background: transparent;
+    font-family: 'Poppins', sans-serif;
+}
+
+.contendor {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 900px;
+    height: 450px;
+    background: transparent;
+    margin: 20px;
+}
+
+    .contendor .imgBx {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        height: 100%;
+        background: #212121;
+        border: 2px solid #212121;
+    }
+    .img1 {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+    .img2 {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        z-index: 2;
+    }
+    .api-message {
+        position: absolute;
+        z-index: 3;
+        top:0;
+        padding: 0 5px;
+    }
+
+    .api-message-text {
+        text-align: center;
+        font-weight: 500;
+        font-size: 15px;
+        color: #ff4e08;
+    }
+
+    .contendor .detalles {
+        display: flex;
+        justify-content: center;
+        /*align-items: center;*/
+        width: 50%;
+        height: 100%;
+        box-sizing: border-box;
+        padding: 40px;
+    }
+
+/* .contendor .detalles h2{
+    margin: 0;
+    padding: 0;
+    font-size: 2.4em;
+    line-height: 1em;
+    color: #444;
+}
+
+.contendor .detalles h2 span {
+    font-size: 0.4em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #999;
+}
+
+.contendor .detalles p {
+    max-width: 85%;
+    margin-left: 15%;
+    color: #333;
+    font-size: 15px;
+    margin-bottom: 36px;
+}
+
+.contendor .detalles h3 {
+    margin: 0;
+    padding: 0;
+    font-size: 2.5em;
+    color: #a2a2a2;
+    float: left;
+} */
+
+/* responsive */
+@@media (max-width: 1080px) {
+    .contendor {
+        height: auto;
+    }
+    .contendor .imgBx {
+        padding: 40px;
+        box-sizing: border-box;
+        width: 100% !important;
+        height: auto;
+        text-align: center;
+        overflow: hidden;
+    }
+    .img1 {
+        left: initial;
+        max-width: 100%;
+        transform: rotate(0deg);
+    }
+    .img2 {
+        left: initial;
+        max-width: 100%;
+    }
+    .detalles {
+        width: 100% !important;
+        height: auto;
+        padding: 20px;
+    }
+    /* .contendor .detalles p {
+        margin-left: 0;
+        max-width: 100%;
+    } */
+}
+
+</style>
+    }
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-atom"></span>
+                                <span class="main-text" id="textBusqueda">
+                                    Busqueda
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*<div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-offset-4 col-md-4 col-sm-4 col-xs-6">
+                            <button type="button" id="btnDni" class="btn btn-sm btn-success col-md-12 col-xs-12">
+                                <span class="glyphicon glyphicon-book"></span>
+                                DNI
+                            </button>
+                        </div>
+                        <div class="col-md-4 col-sm-4  col-xs-6 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnFoto" class="btn btn-primary btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-file"></span>
+                                        Foto
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+</div>
+
+<div class="row" id="">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12 col-sm-12">
+                            <div class="row" id="formfiltro">
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            Búsqueda
+                                        </span>
+                                        <input type="text" class="form-control UpperCase" id="dniBusqueda" placeholder="Ingrese Nro. de Documento" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12">
+                                            <button type="button" id="btnBuscar" class="btn btn-success col-md-12 col-xs-12">
+                                                <span class="glyphicon glyphicon-search"></span>
+                                                Buscar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="divDni" style="display:none">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12 col-sm-12">
+                            <div id="RenderData">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/ControlAcceso/Busqueda.js?v=@fecha_archivos"></script>
+}

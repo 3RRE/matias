@@ -1,0 +1,471 @@
+﻿@model System.Collections.Generic.List<CapaEntidad.Administrativo.ADM_MaquinaSalaProgresivoEntidad>
+@{
+    ViewBag.Title = "Progresivos Terceros — Asignar Máquinas";
+    var codSala = ViewBag.CodSala as int? ?? 0;
+}
+
+@section css{
+    <style>
+        .wrap {
+            background: #fff;
+            border-radius: 8px;
+            padding: 16px
+        }
+
+        .headerbar {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            /*justify-content: space-between;
+    margin-bottom: 12px;*/
+            flex-wrap: wrap
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px
+        }
+
+        @@media(min-width:992px) {
+            .grid {
+                grid-template-columns: .4fr 1.3fr 
+            }
+        }
+
+        .panel {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column
+        }
+
+        .panel-hd {
+            background: #0b1f46;
+            color: #fff;
+            padding: 10px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center
+        }
+
+        .panel-bd {
+            padding: 12px
+        }
+
+        .muted {
+            color: #6b7280
+        }
+
+        .machines-toolbar {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            align-items: center;
+            margin-bottom: 8px
+        }
+
+        .machines-grid {
+            display: grid;
+            grid-template-columns: repeat(1,minmax(0,1fr));
+            gap: 8px
+        }
+
+        @@media(min-width:768px) {
+            .machines-grid {
+                grid-template-columns: repeat(3,minmax(0,1fr))
+            }
+        }
+
+        @@media(min-width:1200px) {
+            .machines-grid {
+                grid-template-columns: repeat(6,minmax(0,1fr))
+            }
+        }
+
+        .tile {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 8px 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #fff
+        }
+
+            .tile.disabled {
+                opacity: .6;
+                pointer-events: none
+            }
+
+            .tile.hard-disabled {
+                opacity: .6;
+                pointer-events: none
+            }
+
+            .tile label {
+                margin: 0;
+                font-weight: 600;
+                cursor: pointer
+            }
+
+            .tile.conflict label {
+                color: #b91c1c
+            }
+
+        .badge {
+            font-size: .75em;
+            padding: .15em .45em;
+            border-radius: 9999px;
+            background: #fee2e2;
+            color: #991b1b;
+            margin-left: auto
+        }
+
+        .list {
+            max-height: 62vh;
+            overflow: auto;
+            border: 1px solid #f1f5f9;
+            border-radius: 6px
+        }
+
+        .prog-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            border-bottom: 1px solid #f1f5f9;
+            cursor: pointer
+        }
+
+            .prog-row:hover {
+                background: #f8fafc
+            }
+
+        .prog-name {
+            font-weight: 600
+        }
+
+        .disabled-all {
+            opacity: .6;
+            pointer-events: none
+        }
+    </style>
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <h1 style="margin-top:0;">
+                        <span aria-hidden="true" class="icon icon-block-menu"></span>
+                        <span class="main-text">Asignar Máquinas</span>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="headerbar">
+                        <div class="header-left">
+                            <div class="input-group input-group-sm" style="min-width:280px;max-width:420px;">
+                                <span class="input-group-addon">SALA</span>
+                                @Html.DropDownList("SalaId", (SelectList)ViewBag.Salas, "-- Seleccione sala --", new { @class = "form-control", id = "cboSala" })
+                            </div>
+                        </div>
+                        @*<div class="header-right">
+                            <button type="button" id="btnExcel" class="btn btn-primary btn-sm" disabled title="Exporta Sala → Progresivos (Terceros) → Máquinas">
+                                <span class="glyphicon glyphicon-download-alt"></span> Excel (sala · terceros)
+                            </button>
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="wrap" id="containerGeneral">
+    <div class="grid">
+        <div class="panel">
+            <div class="panel-hd">
+                <span>Progresivos (Terceros)</span>
+                <small class="muted"><span id="badgeProg">0</span> ítems</small>
+            </div>
+            <div class="panel-bd">
+                <input id="txtFiltroProg" class="form-control input-sm" placeholder="Filtrar progresivos…" />
+                <div id="listProg" class="list" style="margin-top:8px;"></div>
+                <div class="muted" id="emptyProg" style="display:none;margin-top:6px;">No hay progresivos de terceros en esta sala.</div>
+                <div class="muted" style="margin-top:6px;">Seleccionado: <b id="lblProgSel">—</b></div>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="panel-hd">
+                <span>Máquinas de la sala (CodAlterno)</span>
+                <small class="muted"><span id="badgeMaq">0</span> ítems</small>
+            </div>
+            <div class="panel-bd">
+                <div class="machines-toolbar">
+                    <label class="checkbox-inline" style="margin:0;">
+                        <input id="chkSelectAll" type="checkbox" disabled />
+                        <span>Marcar todo</span>
+                    </label>
+                    <input id="txtFiltroMaq" class="form-control input-sm" style="max-width:280px;" placeholder="Filtrar por Código de máquina" />
+                </div>
+                <div id="gridMaq" class="machines-grid"></div>
+                <div class="muted" id="emptyMaq" style="display:none;margin-top:6px;">No hay máquinas para la sala seleccionada.</div>
+                <div class="muted" style="margin-top:6px;">Elija primero un progresivo a la derecha.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section js{
+    <script>
+(function(){
+  var $=window.jQuery, base='@Url.Content("~/ProgresivoTerceros")';
+  var currentSala=@codSala, currentProg=null;
+
+  var asigMap={}, maqIndex=[], takenByOther={};
+
+  var $cboSala=$('#cboSala'), $btnExcel=$('#btnExcel');
+  var $gridMaq=$('#gridMaq'), $badgeMaq=$('#badgeMaq'), $emptyMaq=$('#emptyMaq');
+  var $txtFiltroMaq=$('#txtFiltroMaq'), $chkSelectAll=$('#chkSelectAll');
+  var $listProg=$('#listProg'), $badgeProg=$('#badgeProg'), $emptyProg=$('#emptyProg');
+  var $txtFiltroProg=$('#txtFiltroProg'), $lblProgSel=$('#lblProgSel');
+
+  $(function(){
+    if(currentSala){ $cboSala.val(String(currentSala)); cargarProgresivos(currentSala); deshabilitarMaquinas(true); $btnExcel.prop('disabled',false); }
+    else { deshabilitarMaquinas(true); $btnExcel.prop('disabled',true); }
+  });
+
+  $cboSala.on('change', function(){
+    currentSala=parseInt($(this).val(),10)||0;
+    resetProg(); resetMaq();
+    $btnExcel.prop('disabled', !currentSala);
+    if(!currentSala) return;
+    cargarProgresivos(currentSala);
+  });
+
+  $txtFiltroMaq.on('input', renderMaquinas);
+  $txtFiltroProg.on('input', function(){
+    var q=(this.value||'').toLowerCase();
+    $listProg.children('.prog-row').each(function(){
+      $(this).toggle(($(this).attr('data-text')||'').indexOf(q)>=0);
+    });
+  });
+
+  $listProg.on('click','.prog-row',function(){
+    var $row=$(this), id=parseInt($row.data('id'),10)||0; if(!id) return;
+    $listProg.find('input[type=checkbox]').prop('checked',false);
+    $row.find('input[type=checkbox]').prop('checked',true);
+    currentProg=id; var nombre=$row.data('name')||('Prog #'+id); $lblProgSel.text(nombre);
+    cargarPicklist();
+  });
+
+  $gridMaq.on('change','.chk-maq',function(){
+    if(!currentProg){ this.checked=false; toastr.info('Seleccione un progresivo primero.'); return; }
+    var $tile=$(this).closest('.tile'), codM=parseInt($(this).data('id'),10)||0; if(!codM) return;
+    var t=takenByOther[codM];
+    if(this.checked && t && t.progId!==currentProg){
+      this.checked=false; toastr.warning('La máquina ya está asignada al progresivo "'+(t.name||('ID '+t.progId))+'".');
+      $tile.addClass('conflict hard-disabled'); $(this).prop('disabled',true).prop('checked',false); return;
+    }
+    $tile.addClass('disabled');
+    if(this.checked){
+      $.ajax({url:base+'/AsignarMaquinasBulk',method:'POST',contentType:'application/json; charset=utf-8',
+        data:JSON.stringify({codSala:Number(currentSala),codSalaProgresivo:Number(currentProg),codMaquinas:[codM]})
+      }).done(function(){ cargarPicklist().then(refreshMasterCheck); })
+       .fail(function(){ toastr.error('No se pudo asignar la máquina.'); $tile.find('.chk-maq').prop('checked',false); refreshMasterCheck(); })
+       .always(function(){ $tile.removeClass('disabled'); });
+    }else{
+      var asigId=asigMap[codM];
+      if(!asigId){ cargarPicklist().then(refreshMasterCheck).always(function(){ $tile.removeClass('disabled'); }); return; }
+      $.ajax({url:base+'/QuitarMaquinasBulkPorAsignacion',method:'POST',contentType:'application/json; charset=utf-8',
+        data:JSON.stringify({codSala:Number(currentSala),codSalaProgresivo:Number(currentProg),idsAsignacion:[asigId]})
+      }).done(function(){ cargarPicklist().then(refreshMasterCheck); })
+       .fail(function(){ toastr.error('No se pudo desasignar la máquina.'); $tile.find('.chk-maq').prop('checked',true); refreshMasterCheck(); })
+       .always(function(){ $tile.removeClass('disabled'); });
+    }
+  });
+
+  $chkSelectAll.on('change', function(){
+    if($chkSelectAll.prop('disabled')||!currentProg) return;
+    var marcar=this.checked, toAssign=[], toUnassignIds=[], saltadas=0;
+    $gridMaq.find('.tile:visible .chk-maq:not(:disabled)').each(function(){
+      var id=parseInt($(this).data('id'),10)||0; if(!id) return;
+      var t=takenByOther[id];
+      if(marcar){
+        if(!this.checked){ if(t && t.progId!==currentProg){ saltadas++; return; }
+          this.checked=true; if(!asigMap[id]) toAssign.push(id); }
+      }else{
+        if(this.checked){ this.checked=false; var asigId=asigMap[id]; if(asigId) toUnassignIds.push(asigId); }
+      }
+    });
+    if(saltadas>0) toastr.info(saltadas+' máquina(s) ya están asignadas a otro progresivo y se omitieron.');
+    if(!toAssign.length && !toUnassignIds.length){ refreshMasterCheck(); return; }
+    bloquearPanel(true);
+    var p=Promise.resolve();
+    if(toAssign.length){ p=p.then(function(){ return $.ajax({url:base+'/AsignarMaquinasBulk',method:'POST',contentType:'application/json; charset=utf-8',
+      data:JSON.stringify({codSala:Number(currentSala),codSalaProgresivo:Number(currentProg),codMaquinas:toAssign})}); }); }
+    if(toUnassignIds.length){ p=p.then(function(){ return $.ajax({url:base+'/QuitarMaquinasBulkPorAsignacion',method:'POST',contentType:'application/json; charset=utf-8',
+      data:JSON.stringify({codSala:Number(currentSala),codSalaProgresivo:Number(currentProg),idsAsignacion:toUnassignIds})}); }); }
+    p.then(function(){ toastr.success('Cambios aplicados.'); return cargarPicklist(); })
+     .catch(function(){ toastr.error('Ocurrió un problema aplicando cambios.'); return cargarPicklist(); })
+     .finally(function(){ bloquearPanel(false); });
+  });
+
+  $btnExcel.on('click', function(){
+    if(!currentSala){ toastr.info('Seleccione una sala.'); return; }
+
+    $.getJSON(base+'/ProgresivosPorSala',{codSala: currentSala})
+      .done(function(resp){
+        var progs = (resp && resp.value) ? resp.value : [];
+        if(!progs.length){ toastr.info('No hay progresivos de terceros para exportar.'); return; }
+
+        var calls = [];
+        progs.forEach(function(p){
+          calls.push($.getJSON(base+'/MaquinasAsignadas',{codSala: currentSala, codSalaProgresivo: p.id})
+                     .then(function(r){ return { prog:p, rows: (r && r.value) ? r.value : [] }; }));
+        });
+
+        Promise.all(calls).then(function(bundles){
+          var csv=[];
+          csv.push(['SalaId','CodSalaProgresivo','Progresivo','CodMaquina','CodAlterno','Ley','FechaEnlace','Activo','Estado'].join(','));
+
+          bundles.forEach(function(b){
+            var progId = b.prog.id, progName = b.prog.text || ('Prog #'+progId);
+            var rows = b.rows || [];
+            // rows = rows.filter(function(x){ return x.Activo && x.Estado===1; });
+            if(rows.length===0){
+              csv.push([currentSala, progId, csvSafe(progName), '', '', '', '', '', ''].join(','));
+            }else{
+              rows.forEach(function(x){
+                csv.push([
+                  currentSala,
+                  progId,
+                  csvSafe(progName),
+                  x.CodMaquina,
+                  csvSafe(x.alterno),
+                  csvSafe(x.ley),
+                  csvSafe(x.FechaEnlaceStr||''),
+                  x.Activo ? 'Sí' : 'No',
+                  (x.Estado===1 ? 'Habilitado':'Deshabilitado')
+                ].join(','));
+              });
+            }
+          });
+
+          var blob=new Blob([csv.join('\r\n')],{type:'text/csv;charset=utf-8;'});
+          var a=document.createElement('a'), now=new Date();
+          var fn='Asignaciones_Terceros_Sala_'+currentSala+'_'+now.getFullYear()+pad(now.getMonth()+1)+pad(now.getDate())+'_'+pad(now.getHours())+pad(now.getMinutes())+pad(now.getSeconds())+'.csv';
+          a.href=URL.createObjectURL(blob); a.download=fn; document.body.appendChild(a); a.click(); document.body.removeChild(a);
+        }).catch(function(){ toastr.error('No se pudo generar el Excel.'); });
+      })
+      .fail(function(){ toastr.error('No se pudieron obtener los progresivos.'); });
+  });
+
+  function csvSafe(v){ var s=(v==null?'':String(v)); if(s.indexOf(',')>=0||s.indexOf('"')>=0||s.indexOf('\n')>=0){ s='"'+s.replace(/"/g,'""')+'"'; } return s; }
+  function pad(n){ return (n<10?'0':'')+n; }
+
+  function cargarProgresivos(codSala){
+    $listProg.empty(); $badgeProg.text('0'); $emptyProg.hide();
+    $.getJSON(base+'/ProgresivosPorSala',{codSala:codSala})
+      .done(function(r){
+        var items=(r&&r.value)?r.value:[];
+        items.forEach(function(p){
+          var $row=$('<div class="prog-row"/>').attr('data-id',p.id).attr('data-name',p.text).attr('data-text',(p.text||'').toLowerCase())
+            .append('<input type="checkbox" class="chk-prog" />').append($('<span class="prog-name"/>').text(p.text));
+          $listProg.append($row);
+        });
+        $badgeProg.text(items.length);
+        if(!items.length) $emptyProg.show();
+        deshabilitarMaquinas(true);
+      })
+      .fail(function(){ toastr.error('No se pudieron cargar los progresivos.'); deshabilitarMaquinas(true); });
+  }
+
+  function cargarPicklist(){
+    if(!currentSala || !currentProg) return Promise.resolve();
+    bloquearPanel(true);
+    var q1=$.getJSON(base+'/MaquinasPicklist',{codSala:currentSala,codSalaProgresivo:currentProg});
+    var q2=$.getJSON(base+'/MaquinasTercerosPorSala',{codSala:currentSala,soloActivas:true});
+    return $.when(q1,q2).done(function(r1,r2){
+      var pick=r1[0]||{}, all=r2[0]||{};
+      var disp=(pick&&pick.disponibles)?pick.disponibles:[], asig=(pick&&pick.asignadas)?pick.asignadas:[];
+      var map={};
+      disp.forEach(function(m){ var id=m.CodMaquina; map[id]={id:id,alterno:(m.CodAlterno||m.Alterno||''),ley:(m.CodMaquinaLey||m.Ley||'')}; });
+      asig.forEach(function(a){ var id=a.CodMaquina; map[id]={id:id,alterno:(a.CodAlterno||a.Alterno||''),ley:(a.CodMaquinaLey||a.Ley||'')}; });
+      maqIndex=Object.values(map);
+      asigMap={}; asig.forEach(function(a){ asigMap[a.CodMaquina]=a.CodMaquinaSalaProgresivo; });
+      takenByOther={};
+      if(all && all.ok && Array.isArray(all.value)){
+        all.value.forEach(function(row){ var cm=row.codMaquina, pid=row.codSalaProgresivo, name=row.progresivoNombre; if(pid!==currentProg){ takenByOther[cm]={progId:pid,name:name}; } });
+      }
+      renderMaquinas(); deshabilitarMaquinas(false);
+    }).fail(function(){ toastr.error('No se pudo cargar la información de máquinas.'); })
+      .always(function(){ bloquearPanel(false); });
+  }
+
+  function renderMaquinas(){
+    var q=($txtFiltroMaq.val()||'').toLowerCase();
+    var arr=maqIndex.slice().sort(function(a,b){ var A=(a.alterno||'').localeCompare(b.alterno||''); if(A!==0) return A; var L=(a.ley||'').localeCompare(b.ley||''); if(L!==0) return L; return (a.id||0)-(b.id||0); });
+    $gridMaq.empty(); var count=0;
+    arr.forEach(function(m){
+      var codigo=(m.alterno||m.ley||('M-'+m.id)), text=(codigo+' '+(m.alterno||'')+' '+(m.ley||'')).toLowerCase();
+      if(q && text.indexOf(q)<0) return;
+      var id='m_'+m.id, $chk=$('<input type="checkbox" class="chk-maq">').attr('id',id).attr('data-id',m.id);
+      if(asigMap[m.id]) $chk.prop('checked',true);
+      var $tile=$('<div class="tile"/>').attr('data-text',text).append($chk).append($('<label/>',{for:id,text:codigo}));
+      if(takenByOther[m.id]){ $tile.addClass('conflict hard-disabled').append($('<span class="badge">Ocupada</span>')); $chk.prop({disabled:true,checked:false}); }
+      if(!currentProg) $tile.addClass('disabled');
+      $gridMaq.append($tile); count++;
+    });
+    $badgeMaq.text(count); $emptyMaq.toggle(count===0); refreshMasterCheck();
+  }
+
+  function deshabilitarMaquinas(flag){
+    $gridMaq.find('.tile')[flag?'addClass':'removeClass']('disabled');
+    $gridMaq.find('.chk-maq').each(function(){ if(!$(this).closest('.tile').hasClass('hard-disabled')) $(this).prop('disabled',flag); });
+    $chkSelectAll.prop('disabled',flag); $txtFiltroMaq.prop('disabled',flag);
+    if(flag){ $chkSelectAll.prop('checked',false); }
+  }
+
+  function refreshMasterCheck(){
+    if(!currentProg){ $chkSelectAll.prop({checked:false,disabled:true}); return; }
+    var $vis=$gridMaq.find('.tile:visible .chk-maq:not(:disabled)');
+    if($vis.length===0){ $chkSelectAll.prop({checked:false,disabled:false}); return; }
+    var allChecked=true; $vis.each(function(){ if(!this.checked){ allChecked=false; return false; } });
+    $chkSelectAll.prop({checked:allChecked,disabled:false});
+  }
+
+  function resetProg(){ currentProg=null; $listProg.empty(); $badgeProg.text('0'); $emptyProg.hide(); $lblProgSel.text('—'); }
+  function resetMaq(){ asigMap={}; maqIndex=[]; takenByOther={}; $gridMaq.empty(); $badgeMaq.text('0'); $emptyMaq.hide(); $txtFiltroMaq.val(''); $chkSelectAll.prop({checked:false,disabled:true}); }
+  function bloquearPanel(lock){ $('#containerGeneral')[lock?'addClass':'removeClass']('disabled-all'); }
+        })();
+
+        $('#cboSala').select2({
+            placeholder: 'Seleccione una sala',
+            allowClear: true,
+            minimumResultsForSearch: 6,
+            width: '100%' 
+        });
+    </script>
+}

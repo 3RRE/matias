@@ -1,0 +1,140 @@
+﻿
+@{
+    ViewBag.Title = "ReporteFormularioRegistroVista";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-dollar"></span>
+                                <span class="main-text">
+                                    Reporte Tickets AT
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+
+                    <div class="row">
+
+                        <div class="col-md-4 col-sm-6  col-xs-12 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnBuscar" class="btn btn-success btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-book"></span>
+                                        Buscar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>  
+                        <div class="col-md-4 col-sm-6  col-xs-12 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnExcel" class="btn btn-primary btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-file"></span>
+                                        Excel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+
+                        <div class="col-xs-12 col-md-12 col-sm-12">
+                            <div class="row" id="formfiltro">
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="input-group ">
+                                        <span class="input-group-addon">
+                                            Sala
+                                        </span>
+                                        <select class="form-control input-sm codSalaAuditoria" id="cboSala" name="cboSala">
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            FECHA DE INICIO
+                                        </span>
+                                        <input type="text" class="form-control input-sm dateOnly_" id="fechaInicio" readonly />
+                                        <span class="input-group-addon input-group-icon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            FECHA DE FIN
+                                        </span>
+                                        <input type="text" class="form-control input-sm dateOnly_" id="fechaFin" readonly />
+                                        <span class="input-group-addon input-group-icon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <hr style="margin-top: 0px;" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4 style="text-align:center">Total Monto : S/.<strong id="stmonto">0.00</strong></h4>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="contenedor_tabla">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section modal
+{
+
+}
+
+
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/TransferenciasAT/ReporteFormularioRegistro.js"></script>
+}
+
+

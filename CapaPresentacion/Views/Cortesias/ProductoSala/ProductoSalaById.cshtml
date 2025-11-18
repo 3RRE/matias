@@ -1,0 +1,39 @@
+﻿
+@using S3k.Utilitario
+@using CapaEntidad.Cortesias
+@model CRT_ProductoSala
+@{
+    Layout = null;
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12" id="div">
+        <form class="medium bv-form" role="form" method="post" action="#" id="form_registro">
+            <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+            <div class="col-md-12 col-sm-12">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            Cantidad
+                        </span>
+                        <input type="number" class="form-control input-sm noKeyPress" id="cantidad" value="@Model.Cantidad" name="cantidad" placeholder="Cantidad">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            Precio
+                        </span>
+                        <input type="text" class="form-control input-sm noKeyPress" id="precio" value="@Model.Precio" name="precio" placeholder="Precio">
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<script src="~/Content/assets/viewsjs/Cortesias/ProductoSala/ProductoSalaGuardar.js?v=@fecha_archivos"></script>

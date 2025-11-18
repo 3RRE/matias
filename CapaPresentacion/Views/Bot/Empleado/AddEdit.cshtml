@@ -1,0 +1,271 @@
+﻿@using S3k.Utilitario
+@using CapaEntidad.BOT.Entities
+@model BOT_EmpleadoEntidad
+@{
+    Layout = null;
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12" id="div">
+        <form id="form_registro" role="form">
+            @Html.HiddenFor(x => x.Id)
+            @Html.HiddenFor(x => x.IdBuk)
+            @Html.HiddenFor(x => x.IdEmpresaBuk)
+            @Html.HiddenFor(x => x.IdAreaBuk)
+            @Html.HiddenFor(x => x.IdCargoBuk)
+            @Html.HiddenFor(x => x.NombreCompleto)
+
+            <fieldset>
+                <legend>Usuario</legend>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">Número de Documento</span>
+                        @Html.TextBoxFor(x => x.NumeroDocumento, new { @class = "form-control input-sm", placeholder = "12345678", autocomplete = "off" })
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">Cod. País Celular</span>
+                        @Html.TextBoxFor(x => x.CodigoPaisCelular, new { @class = "form-control input-sm", placeholder = "51", autocomplete = "off" })
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">Celular</span>
+                        @Html.TextBoxFor(x => x.TelefonoParticular, new { @class = "form-control input-sm", placeholder = "987987987", autocomplete = "off" })
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">Estado</span>
+                        @Html.DropDownListFor(x => x.Estado,
+                            new List<SelectListItem> {
+                                new SelectListItem { Text = "Activo", Value = "true", Selected = true },
+                                new SelectListItem { Text = "Inactivo", Value = "false" }
+                            },
+                            new { @class = "form-control input-sm" })
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Empleado</legend>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">Tipo Documento</span>
+                        @Html.TextBoxFor(x => x.TipoDocumento, new { @class = "form-control input-sm", placeholder = "dni", autocomplete = "off" })
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">Nombres</span>
+                        @Html.TextBoxFor(x => x.Nombres, new { @class = "form-control input-sm", placeholder = "Juan", autocomplete = "off" })
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">Apellido Paterno</span>
+                        @Html.TextBoxFor(x => x.ApellidoPaterno, new { @class = "form-control input-sm", placeholder = "Perez", autocomplete = "off" })
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">Apellido Materno</span>
+                        @Html.TextBoxFor(x => x.ApellidoMaterno, new { @class = "form-control input-sm", placeholder = "Garcia", autocomplete = "off" })
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">Género</span>
+                        @Html.DropDownListFor(x => x.Genero,
+                            new List<SelectListItem> {
+                                new SelectListItem { Text = "Masculino", Value = "Masculino" },
+                                new SelectListItem { Text = "Femenino", Value = "Femenino" },
+                                new SelectListItem { Text = "Otro", Value = "Otro" }
+                            },
+                            "-- Seleccione --",
+                            new { @class = "form-control input-sm" })
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">Nacionalidad</span>
+                        @Html.TextBoxFor(x => x.Nacionalidad, new { @class = "form-control input-sm", placeholder = "Peruana", autocomplete = "off" })
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">Fecha Nacimiento</span>
+                        @Html.TextBoxFor(x => x.FechaNacimiento, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control input-sm" })
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">Estado Civil</span>
+                        @Html.DropDownListFor(x => x.EstadoCivil,
+                            new List<SelectListItem> {
+                                new SelectListItem { Text = "Viudo", Value = "Viudo" },
+                                new SelectListItem { Text = "Casado", Value = "Casado" },
+                                new SelectListItem { Text = "Divorciado", Value = "Divorciado" },
+                                new SelectListItem { Text = "Conviviente", Value = "Conviviente" },
+                                new SelectListItem { Text = "Soltero", Value = "Soltero" }
+                            },
+                            "-- Seleccione --",
+                            new { @class = "form-control input-sm" })
+                    </div>
+                </div>
+                <div class="col-lg-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">Dirección</span>
+                        @Html.TextBoxFor(x => x.Direccion, new { @class = "form-control input-sm", placeholder = "Avenida Siempreviva 742", autocomplete = "off" })
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">Departamento</span>
+                        @Html.TextBoxFor(x => x.Departamento, new { @class = "form-control input-sm", placeholder = "Tacna", autocomplete = "off" })
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">Provincia</span>
+                        @Html.TextBoxFor(x => x.Provincia, new { @class = "form-control input-sm", placeholder = "Tacna", autocomplete = "off" })
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">Distrito</span>
+                        @Html.TextBoxFor(x => x.Distrito, new { @class = "form-control input-sm", placeholder = "Gregorio Albarracin", autocomplete = "off" })
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">Teléfono Oficina</span>
+                        @Html.TextBoxFor(x => x.TelefonoOficina, new { @class = "form-control input-sm", placeholder = "963963963", autocomplete = "off" })
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">Email Corporativo</span>
+                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control input-sm", @type = "email", placeholder = "email@gladcon.com", autocomplete = "off" })
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">Email Personal</span>
+                        @Html.TextBoxFor(x => x.EmailPersonal, new { @class = "form-control input-sm", @type = "email", placeholder = "email@dominio.com", autocomplete = "off" })
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">Situación Educativa</span>
+                        @Html.TextBoxFor(x => x.SituacionEducativa, new { @class = "form-control input-sm", placeholder = "Universitaria Completa", autocomplete = "off" })
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">Código Ficha</span>
+                        @Html.TextBoxFor(x => x.CodigoFicha, new { @class = "form-control input-sm", placeholder = "F1", autocomplete = "off" })
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">Fecha Incorporación</span>
+                        @Html.TextBoxFor(x => x.FechaIncorporacion, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control input-sm" })
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">Forma de Pago</span>
+                        @Html.TextBoxFor(x => x.FormaPago, new { @class = "form-control input-sm", placeholder = "Transferencia Bancaria", autocomplete = "off" })
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">Banco</span>
+                        @Html.TextBoxFor(x => x.Banco, new { @class = "form-control input-sm", placeholder = "Banco de Crédito del Perú", autocomplete = "off" })
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">Tipo Cuenta</span>
+                        @Html.TextBoxFor(x => x.TipoCuenta, new { @class = "form-control input-sm", placeholder = "Cuenta de Ahorros", autocomplete = "off" })
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">Número Cuenta</span>
+                        @Html.TextBoxFor(x => x.NumeroCuenta, new { @class = "form-control input-sm", placeholder = "11112222333344445555", autocomplete = "off" })
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">Régimen Pensionario</span>
+                        @Html.TextBoxFor(x => x.RegimenPensionario, new { @class = "form-control input-sm", placeholder = "afp", autocomplete = "off" })
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">Moneda CTS</span>
+                        @Html.TextBoxFor(x => x.MonedaCts, new { @class = "form-control input-sm", placeholder = "Soles", autocomplete = "off" })
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Trabajo</legend>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">Fecha Inicio</span>
+                        @Html.TextBoxFor(x => x.FechaInicioTrabajo, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control input-sm" })
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">Tipo Contrato</span>
+                        @Html.TextBoxFor(x => x.TipoContrato, new { @class = "form-control input-sm", placeholder = "Por necesidades de Mercado", autocomplete = "off" })
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">Fecha Fin</span>
+                        @Html.TextBoxFor(x => x.FechaFinTrabajo, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control input-sm" })
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">Plan EPS</span>
+                        @Html.TextBoxFor(x => x.PlanEps, new { @class = "form-control input-sm", placeholder = "Plan EPS", autocomplete = "off" })
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">Empresa</span>
+                        @Html.TextBoxFor(x => x.Empresa, new { @class = "form-control input-sm", placeholder = "CORPORACION EMPRESARIAL HOLDING S.A.C.", autocomplete = "off" })
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">Área</span>
+                        @Html.TextBoxFor(x => x.Area, new { @class = "form-control input-sm", placeholder = "Sistemas", autocomplete = "off" })
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">Cargo</span>
+                        @Html.TextBoxFor(x => x.Cargo, new { @class = "form-control input-sm", placeholder = "Jefe", autocomplete = "off" })
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">Sede</span>
+                        @Html.TextBoxFor(x => x.Sede, new { @class = "form-control input-sm", placeholder = "Damasco", autocomplete = "off" })
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<script src="~/Content/assets/viewsjs/Bot/Empleado/empleadoGuardar.js?v=@fecha_archivos"></script>

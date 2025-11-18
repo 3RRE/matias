@@ -1,0 +1,369 @@
+﻿@using S3k.Utilitario;
+@{
+    ViewBag.Title = "Listado Campañas ";
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+}
+@section css
+{
+    <style>
+        /* .modal-body .select2-dropdown {
+            z-index: 19000;
+        }*/
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-dollar"></span>
+                                <span class="main-text">
+                                    Maquinas no Liberadas
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                @*<div class="col-md-9">
+                                        <input type="hidden" id="txt_sala_id" value="" />
+                                        <div class="form-group" style="margin-bottom:0px!important">
+                                            <div class="input-group" style="margin-bottom:0px!important">
+                                                <span class="input-group-addon">
+                                                    Sala
+                                                </span>
+                                                <select id="cbo_sala_id" class="form-control input-sm select" name="sala_id"></select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-3 col-xs-12" style="padding-left: 0px;">
+                                        <a href="" class="btn btn-sm btn-danger btn-block" id="btnRecargar">Recargar</a>
+                                    </div>*@
+
+                                <input type="hidden" id="txt_sala_id" value="" />
+                                <div class="col-md-8 col-sm-12 col-xs-12">
+                                    <div class="form-group" style="margin-bottom:0px!important">
+                                        <div class="input-group"  style="margin-bottom:0px!important">
+                                            <span class="input-group-addon">
+                                                Sala
+                                            </span>
+                                            <select id="cbo_sala_id" style="width:100%" name="sala_id" class="form-control input-sm select"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12 col-xs-12">
+                                    <button type="button" class="btn btn-danger btn-sm btn-block" id="btnRecargar"><i class="fa fa-refresh"></i> Recargar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="contenedor_tabla">
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section modal
+{
+    <div class="modal fade full-modal" id="full-detalleModal" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="o"> Detalles</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12" id="">
+
+                            <div class="row">
+                                <div class="col-md-1 pull-right" style="padding-bottom:10px;display:block">
+                                    <a class="btn btn-success btn-block btn-sm" id="btnMostrarTodo" data-mostrar="true"> <i class="fa fa-eye" style="font-size:20px"aria-hidden="true"></i></a>
+                                </div>
+                                <div class="col-md-12 ">
+
+                                    <table class="table table-responsive table-bordered table-hover" id="tableDetalleEstado">
+                                        <thead>
+                                            <tr>
+                                                <th> Máquina</th>
+                                                <th> Cod Sala</th>
+                                                <th> CoinOut Ini</th>
+                                                <th> CoinOut Fin</th>
+                                                <th> HandPay</th>
+                                                <th> JackPot</th>
+                                                <th> Current Credits</th>
+                                                <th> Monto</th>
+                                                <th> Token</th>
+                                                <th> CoinOut Parametro</th>
+                                                <th> Cantidad Cupones</th>
+                                                <th> Fecha Registro</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade full-modal" id="full-RegistrosLiberadosModal" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="o"> Información de Registro Editado</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12" id="">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form>
+                                        <fieldset>
+                                            <legend>Datos Cupon</legend>
+                                            <div class="col-md-12 col-sm-12">
+                                                <div class="input-group form-group">
+                                                    <span class="input-group-addon">
+                                                        Id Cupon
+                                                    </span>
+                                                    <input type="text" class="form-control input-sm" id="txt_CgId" placeholder="Id Cupon">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12">
+                                                <div class="input-group form-group">
+                                                    <span class="input-group-addon">
+                                                        Slot
+                                                    </span>
+                                                    <input type="text" class="form-control input-sm" id="txt_SlotId" placeholder="Slot Id">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12">
+                                                <div class="input-group form-group">
+                                                    <span class="input-group-addon">
+                                                        Juego
+                                                    </span>
+                                                    <input type="text" class="form-control input-sm" id="txt_Juego" placeholder="Juego">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12">
+                                                <div class="input-group form-group">
+                                                    <span class="input-group-addon">
+                                                        Marca
+                                                    </span>
+                                                    <input type="text" class="form-control input-sm" id="txt_Marca" placeholder="Marca">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12">
+                                                <div class="input-group form-group">
+                                                    <span class="input-group-addon">
+                                                        Modelo
+                                                    </span>
+                                                    <input type="text" class="form-control input-sm" id="txt_Modelo" placeholder="Modelo">
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Modal Detalle Cupones-->
+    <input id="txtSesionId" type="hidden" />
+    <div class="modal fade full-modal" id="full-modal_detallecupones" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" data-border-top="multi">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label"> Detalle Cupones - <span class="nombre_cliente_cupon_detalle"></span></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row" style="margin-bottom:12px;">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        Impresora
+                                    </span>
+                                    <select id="cbo_impresora3" style="width:100%" name="impresora_id" class="form-control input-sm"><option value="">-Seleccione</option></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-12 col-xs-12" style="margin-bottom:12px">
+                            <button type="button" class="btn btn-danger btn-sm btn-block" id="btnImprimirTodo"><i class="fa fa-print"></i> Imprimir Todo</button>
+                        </div>
+                        <div class="col-md-3 col-sm-12 col-xs-12">
+                            <button type="button" class="btn btn-primary btn-sm btn-block" id="btnImprimirConsolidado"><i class="fa fa-bluetooth"></i> Imprimir Consolidado</button>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-12 col-sm-12 tabladetallecuponesdiv " style="clear:both">
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer footer_g">
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!--End Modal-->
+    <!--Modal Lista Detalle Cupones Generados-->
+    <div class="modal fade full-modal" id="full-modal_cupones_lista" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="o"> Cupones</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <input type="hidden" id="imprimircuponesTodosInput" value="0" />
+                            <div class="row" style="margin-bottom:12px;">
+                                <div class="col-md-8 col-sm-8 col-xs-9">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Impresora
+                                            </span>
+                                            <select id="cbo_impresora2" name="impresora_id" class="form-control input-sm"><option value="">-Seleccione</option></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-3">
+                                    <button type="button" class="btn btn-primary btn-sm col-md-12  imprimircuponesTodos" data-id="0"><i class="fa fa-print"></i> Imprimir</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 ">
+
+                                    <table class="table table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th> ID</th>
+                                                <th> Serie</th>
+                                                <th> Cant. Impr.</th>
+                                                <th class="text-center"><span class="fa fa-print"></span></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbody_listcupones">
+
+                                            <tr>
+                                                <td colspan="4">
+                                                    <div class="alert alert-danger">Sin Registros</div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Modal-->
+    <!--Modal Cantidad Cupones Generados-->
+    <div class="modal fade full-modal" id="full-modal_cantidad_cupones" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="o"> Cantidad de Cupones</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="divCantidadCupones">
+
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Modal-->
+}
+<!--Seccion Impresion Cupones-->
+<div class="row" style="display:none">
+    <div class="col-md-12">
+        <button class="btn btn-danger btn-block" id="ImprimirCupones">Imprimir Cupones</button>
+    </div>
+</div>
+<div style="display:none">
+    <div id="printArea">
+    </div>
+</div>
+
+
+@section js
+{
+    <script src="~/Content/assets/js/jquery-barcode.min.js"></script>
+    <script src="~/Content/assets/js/print.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+    <script src="~/Content/assets/viewsjs/Campania/VisorEstadoMaquinas.js?v=@fecha_archivos"></script>
+}
+

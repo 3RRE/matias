@@ -1,0 +1,460 @@
+﻿@using S3k.Utilitario;
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Reporte Alertas Registro Progresivo";
+
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+}
+
+@section css
+{
+    <style>
+        .table-alertp {
+            width: 100%;
+            position: relative;
+            background-color: #FFFFFF;
+            border-spacing: 0;
+        }
+
+            .table-alertp th, .table-alertp td {
+                padding: 2px 4px;
+            }
+
+            .table-alertp thead th {
+                border: 1px solid rgba(255, 255, 255, 0.25);
+            }
+
+            .table-alertp tbody td {
+                border: 1px solid #DDDDDD;
+            }
+
+            .table-alertp tr th, .table-alertp tr td {
+                text-align: center;
+            }
+
+            .table-alertp tbody td {
+                padding: 4px 4px;
+            }
+
+            .table-alertp tbody tr:nth-child(even) {
+                background-color: #FFFFFF;
+            }
+
+            .table-alertp tbody tr:nth-child(odd) {
+                background-color: #F2F2F2;
+            }
+
+        .bg-white {
+            background-color: #FFFFFF !important;
+        }
+
+        .table-alertp-old thead tr th {
+            background-color: #D60F10;
+            color: #FFFFFF;
+        }
+
+        .table-alertp-current thead tr th {
+            background-color: #00226C;
+            color: #FFFFFF;
+        }
+
+        .table-alertp tbody tr:hover {
+            background-color: #DDDDDD;
+        }
+
+        .alpro-header {
+            width: 100%;
+            position: relative;
+        }
+
+            .alpro-header .alpro-title h3 {
+                color: #242424;
+                font-weight: 700;
+            }
+
+            .alpro-header ul {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+
+        .box-head-info {
+            width: 100%;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .change-current {
+            background-color: #AFF4AA;
+        }
+
+        .change-old {
+            background-color: #F4AFAA;
+        }
+    </style>
+}
+
+<!-- row -->
+<div class="row">
+    <!-- col -->
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-block-menu"></span>
+                                <span class="main-text">
+                                    @ViewBag.Title
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /col -->
+    <!-- col -->
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <!-- row -->
+                    <div class="row">
+                        <!-- col -->
+                        <div class="col-md-4 col-sm-4 col-xs-12 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="button_excel" class="btn btn-primary btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-file"></span>
+                                        Excel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- col -->
+                        <div class="col-md-4 col-sm-4 col-xs-12 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="button_search" class="btn btn-success btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                        Buscar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- col -->
+                        <div class="col-md-4 col-sm-4 col-xs-12 pull-right" style="margin-bottom: -10px;">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Tipo
+                                            </span>
+                                            <select id="cboTipo" class="form-control input-sm select" name="tipo">
+                                                <option value="0">Todas</option>
+                                                <option value="1">Cambios Pozo NWO</option>
+                                                <option value="2">Cambios Pozo IAS</option>
+                                                <option value="3">Alerta Progresivo</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- col -->
+                    </div>
+                    <!-- row -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /col -->
+</div>
+<!-- /row -->
+<!-- row -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <!-- row -->
+                    <div class="row">
+                        <!-- col -->
+                        <div class="col-sm-6 col-md-6 col-lg-4">
+                            <div class="input-group ">
+                                <span class="input-group-addon">
+                                    Salas
+                                </span>
+                                <select class="form-control input-sm" id="cboSala">
+                                    <option value="">--Seleccione--</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- col -->
+                        <!-- col -->
+                        <div class="col-sm-6 col-md-6 col-lg-4">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    Del
+                                </span>
+                                <input type="text" class="form-control input-sm date--only" id="fromDate" readonly />
+                                <span class="input-group-addon input-group-icon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- col -->
+                        <!-- col -->
+                        <div class="col-sm-6 col-md-6 col-lg-4">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    Al
+                                </span>
+                                <input type="text" class="form-control input-sm date--only" id="toDate" readonly />
+                                <span class="input-group-addon input-group-icon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- col -->
+                    </div>
+                    <!-- row -->
+                    <!-- row -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <table id="tableAlertasProgresivo" class="table table-striped table-condensed table-bordered table-hover"></table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- row -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /row -->
+
+@section modal
+{
+    <!-- Modal Alerta Detalle -->
+    <div class="modal fade full-modal" id="modal_pro_alerta_detalle" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Alerta Registro Progresivo</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="AppAlertaProgresivo">
+                        <!-- row -->
+                        <div class="row" v-if="alert">
+                            <!-- col -->
+                            <div class="col-12 col-md-12">
+                                <div class="box-head-info">
+                                    <div>
+                                        <strong>Sala: </strong><span>{{ alert.SalaNombre }}</span>
+                                    </div>
+                                    <div>
+                                        <strong>Progresivo: </strong><span>{{ alert.ProgresivoNombre }}</span>
+                                    </div>
+                                    <div>
+                                        <strong>Descripción: </strong><span>{{ alert.Descripcion }}</span>
+                                    </div>
+                                    <div>
+                                        <strong>Fecha: </strong><span>{{ moment(alert.FechaRegistro).format('DD/MM/YYYY H:mm:ss') }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /col -->
+                            <!-- col -->
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6" v-if="detalleActual != null">
+                                <div class="alpro-header">
+                                    <div class="alpro-title">
+                                        <h3>Progresivo Actual</h3>
+                                    </div>
+                                    <div class="box-head-info">
+                                        <div>
+                                            <strong>Moneda: </strong><span v-bind:class="classChange(true, 'Simbolo')">{{ detalleActual.Simbolo }}</span>
+                                        </div>
+                                        <div>
+                                            <strong>Duración en pantalla: </strong><span v-bind:class="classChange(true, 'DuracionPantalla')">{{ detalleActual.DuracionPantalla }} segundos</span>
+                                        </div>
+                                        <div>
+                                            <strong>Número de jugadores: </strong><span v-bind:class="classChange(true, 'NroJugadores')">{{ detalleActual.NroJugadores }}</span>
+                                        </div>
+                                        <div>
+                                            <strong>Número de pozos: </strong><span v-bind:class="classChange(true, 'NroPozos')">{{ detalleActual.NroPozos }}</span>
+                                        </div>
+                                        <div>
+                                            <strong>Imagen: </strong><span v-bind:class="classChange(true, 'ProgresivoImagenNombre')">{{ detalleActual.ProgresivoImagenNombre }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <!-- table -->
+                                    <table class="table-alertp" v-bind:class="alertClassTable(detalleActual)">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th align="center" v-for="pozo in detalleActual.Pozos">{{ pozoName(pozo) }}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Premio base</td>
+                                                <td align="center" v-for="(pozo, index) in detalleActual.Pozos" v-bind:class="classChangePozo(true, 'MontoBase', index)">{{ pozo.MontoBase }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Premio mínimo</td>
+                                                <td align="center" v-for="(pozo, index) in detalleActual.Pozos" v-bind:class="classChangePozo(true, 'MontoMin', index)">{{ pozo.MontoMin }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Premio máximo</td>
+                                                <td align="center" v-for="(pozo, index) in detalleActual.Pozos" v-bind:class="classChangePozo(true, 'MontoMax', index)">{{ pozo.MontoMax }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Inc. pozo (Ej. 0.01 = 1%)</td>
+                                                <td align="center" v-for="(pozo, index) in detalleActual.Pozos" v-bind:class="classChangePozo(true, 'IncPozo1', index)">{{ pozo.IncPozo1 }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Restricción de Apuesta (Créditos)</td>
+                                                <td align="center" v-for="(pozo, index) in detalleActual.Pozos" v-bind:class="classChangePozo(true, 'RsApuesta', index)">{{ pozo.RsApuesta }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Nro de Jugadores</td>
+                                                <td align="center" v-for="(pozo, index) in detalleActual.Pozos" v-bind:class="classChangePozo(true, 'RsJugadores', index)">{{ pozo.RsJugadores }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Monto oculto mínimo</td>
+                                                <td align="center" v-for="(pozo, index) in detalleActual.Pozos" v-bind:class="classChangePozo(true, 'MontoOcMin', index)">{{ pozo.MontoOcMin }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Monto oculto máximo</td>
+                                                <td align="center" v-for="(pozo, index) in detalleActual.Pozos" v-bind:class="classChangePozo(true, 'MontoOcMax', index)">{{ pozo.MontoOcMax }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Inc. pozo oculto (Ej. 0.01 = 1%)</td>
+                                                <td align="center" v-for="(pozo, index) in detalleActual.Pozos" v-bind:class="classChangePozo(true, 'IncOcPozo1', index)">{{ pozo.IncOcPozo1 }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Dificultad</td>
+                                                <td align="center" v-for="(pozo, index) in detalleActual.Pozos" v-bind:class="classChangePozo(true, 'Dificultad_desc', index)">{{ pozo.Dificultad_desc }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Pozo actual</td>
+                                                <th align="center" v-for="(pozo, index) in detalleActual.Pozos" v-bind:class="classChangePozo(true, 'Actual', index)">{{ pozo.Actual }}</th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- /table -->
+                                </div>
+                            </div>
+                            <!-- col -->
+                            <!-- col -->
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6" v-if="detalleAnterior != null">
+                                <div class="alpro-header">
+                                    <div class="alpro-title">
+                                        <h3>Progresivo Anterior</h3>
+                                    </div>
+                                    <div class="box-head-info">
+                                        <div>
+                                            <strong>Moneda: </strong><span v-bind:class="classChange(false, 'Simbolo')">{{ detalleAnterior.Simbolo }}</span>
+                                        </div>
+                                        <div>
+                                            <strong>Duración en pantalla: </strong><span v-bind:class="classChange(false, 'DuracionPantalla')">{{ detalleAnterior.DuracionPantalla }} segundos</span>
+                                        </div>
+                                        <div>
+                                            <strong>Número de jugadores: </strong><span v-bind:class="classChange(false, 'NroJugadores')">{{ detalleAnterior.NroJugadores }}</span>
+                                        </div>
+                                        <div>
+                                            <strong>Número de pozos: </strong><span v-bind:class="classChange(false, 'NroPozos')">{{ detalleAnterior.NroPozos }}</span>
+                                        </div>
+                                        <div>
+                                            <strong>Imagen: </strong><span v-bind:class="classChange(false, 'ProgresivoImagenNombre')">{{ detalleAnterior.ProgresivoImagenNombre }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <!-- table -->
+                                    <table class="table-alertp" v-bind:class="alertClassTable(detalleAnterior)">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th align="center" v-for="pozo in detalleAnterior.Pozos">{{ pozoName(pozo) }}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Premio base</td>
+                                                <td align="center" v-for="(pozo, index) in detalleAnterior.Pozos" v-bind:class="classChangePozo(false, 'MontoBase', index)">{{ pozo.MontoBase }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Premio mínimo</td>
+                                                <td align="center" v-for="(pozo, index) in detalleAnterior.Pozos" v-bind:class="classChangePozo(false, 'MontoMin', index)">{{ pozo.MontoMin }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Premio máximo</td>
+                                                <td align="center" v-for="(pozo, index) in detalleAnterior.Pozos" v-bind:class="classChangePozo(false, 'MontoMax', index)">{{ pozo.MontoMax }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Inc. pozo (Ej. 0.01 = 1%)</td>
+                                                <td align="center" v-for="(pozo, index) in detalleAnterior.Pozos" v-bind:class="classChangePozo(false, 'IncPozo1', index)">{{ pozo.IncPozo1 }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Restricción de Apuesta (Créditos)</td>
+                                                <td align="center" v-for="(pozo, index) in detalleAnterior.Pozos" v-bind:class="classChangePozo(false, 'RsApuesta', index)">{{ pozo.RsApuesta }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Nro de Jugadores</td>
+                                                <td align="center" v-for="(pozo, index) in detalleAnterior.Pozos" v-bind:class="classChangePozo(false, 'RsJugadores', index)">{{ pozo.RsJugadores }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Monto oculto mínimo</td>
+                                                <td align="center" v-for="(pozo, index) in detalleAnterior.Pozos" v-bind:class="classChangePozo(false, 'MontoOcMin', index)">{{ pozo.MontoOcMin }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Monto oculto máximo</td>
+                                                <td align="center" v-for="(pozo, index) in detalleAnterior.Pozos" v-bind:class="classChangePozo(false, 'MontoOcMax', index)">{{ pozo.MontoOcMax }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Inc. pozo oculto (Ej. 0.01 = 1%)</td>
+                                                <td align="center" v-for="(pozo, index) in detalleAnterior.Pozos" v-bind:class="classChangePozo(false, 'IncOcPozo1', index)">{{ pozo.IncOcPozo1 }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Dificultad</td>
+                                                <td align="center" v-for="(pozo, index) in detalleAnterior.Pozos" v-bind:class="classChangePozo(false, 'Dificultad_desc', index)">{{ pozo.Dificultad_desc }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Pozo actual</td>
+                                                <th align="center" v-for="(pozo, index) in detalleAnterior.Pozos" v-bind:class="classChangePozo(false, 'Actual', index)">{{ pozo.Actual }}</th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- /table -->
+                                </div>
+                            </div>
+                            <!-- col -->
+                        </div>
+                        <!-- /row -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Modal Alerta Detalle -->
+}
+
+@section js
+{
+    <script src="~/Content/assets/js/optional/vue/vue.min.js"></script>
+    <script src="~/Content/assets/viewsjs/Progresivo/Alerta/ReporteAlertasProgresivo.js?v=@fecha_archivos"></script>
+}

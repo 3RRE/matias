@@ -1,0 +1,182 @@
+﻿@using S3k.Utilitario;
+
+@{
+    ViewBag.Title = "Configuración de la Aplicación";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+}
+
+@section css
+{
+    <style>
+        .irequired {
+            color: #D43443;
+        }
+    </style>
+}
+
+<!-- row -->
+<div class="row">
+    <!-- col -->
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon las la-cogs"></span>
+                                <span class="main-text">
+                                    @ViewBag.Title
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /col -->
+    <!-- col -->
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="pull-right col-md-4 col-sm-4 col-xs-6">
+                            <button type="button" class="btn btn-sm btn-success col-md-12 col-xs-12 button_add_setting">
+                                <span class="glyphicon glyphicon-plus"></span>
+                                Nuevo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /col -->
+</div>
+<!-- /row -->
+<!-- row -->
+<div class="row">
+    <!-- col -->
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <table id="tableAppSettings" class="table table-striped table-bordered table-hover table-condensed"></table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /col -->
+</div>
+<!-- /row -->
+
+@section modal
+{
+    <!-- modal add setting -->
+    <div class="modal fade full-modal" id="modal_add_setting" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Agregar Configuración</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- row -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div>Llave <span class="irequired">*</span></div>
+                                <div>
+                                    <input type="text" name="SAS_Key" id="SAS_Key" class="form-control" placeholder="Llave" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div>Valor <span class="irequired">*</span></div>
+                                <div>
+                                    <input type="text" name="SAS_Value" id="SAS_Value" class="form-control" placeholder="Nombre" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div>Descripción <span class="irequired">*</span></div>
+                                <div>
+                                    <input type="text" name="SAS_Description" id="SAS_Description" class="form-control" placeholder="Descripción" required />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /row -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-primary" id="button_store_setting">Guardar</button>
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /modal add setting -->
+    <!-- modal edit setting -->
+    <div class="modal fade full-modal" id="modal_edit_setting" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Editar Configuración</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- row -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div>Llave</div>
+                                <div>
+                                    <input type="text" name="UAS_Key" id="UAS_Key" class="form-control" placeholder="Llave" readonly />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div>Valor <span class="irequired">*</span></div>
+                                <div>
+                                    <input type="text" name="UAS_Value" id="UAS_Value" class="form-control" placeholder="Nombre" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div>Descripción <span class="irequired">*</span></div>
+                                <div>
+                                    <input type="text" name="UAS_Description" id="UAS_Description" class="form-control" placeholder="Descripción" required />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /row -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-primary" id="button_update_setting">Guardar cambios</button>
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /modal edit setting -->
+}
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/Settings/AppSettings.js?v=@fecha_archivos"></script>
+}

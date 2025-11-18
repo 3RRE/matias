@@ -1,0 +1,156 @@
+﻿
+@using S3k.Utilitario;
+@{
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+}
+
+@{
+    ViewBag.Title = "Listado de Bases de Datos SQL";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-block-menu"></span>
+                                <span class="main-text">
+                                    Listado de Bases de Datos SQL
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnExcel" class="btn btn-success btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-file"></span>
+                                        Excel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnBuscar" class="btn btn-primary btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-book"></span>
+                                        Buscar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row ">
+    <div class="col-md-6 ">
+        <button class="btn btn-info" id="btnVerListado">Ver Tabla listado</button>
+        <button class="btn btn-info" id="btnVerGrafico">Ver gráfico</button>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="cardMachine" style="margin-bottom:15px;">
+                        <div class="row">
+
+                            <div class="col-xs-12 col-md-12 col-sm-12" id="formfiltro">
+                                <input type="hidden" class="record" name="totalRecords" id="totalRecords" value="0" />
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="input-group ">
+                                            <span class="input-group-addon">
+                                                Sala
+                                            </span>
+                                            <select class="form-control input-sm codSalaAuditoria" id="cboSala" name="cboSala">
+                                                <option value="">--Seleccione--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div id="container-listadoDisco">
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <hr style="margin-top: 0px;" />
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="">
+                                        <table id="tableDisco" class="table table-striped table-condensed table-responsive table-bordered table-hover"></table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div id="container"></div>
+<style>
+
+    @@keyframes alertaRoja {
+        from {
+            background-color: rgb(221, 51, 51);
+        }
+
+        to {
+            background-color: rgba(221, 51, 51, 0.523);
+        }
+    }
+
+    .emergencia {
+        animation: alternate 1s alertaRoja infinite;
+    }
+
+    .normal {
+        background-color: #69b169;
+    }
+
+    .table-striped > tbody > tr:nth-of-type(odd) {
+        text-align: center;
+    }
+
+    .table-striped > tbody > tr:nth-of-type(even) {
+        text-align: center;
+    }
+</style>
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/Disco/ListadoEspacioDiscoBDs.js?v=@fecha_archivos"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    @*<script src="https://code.highcharts.com/modules/accessibility.js"></script>*@
+}

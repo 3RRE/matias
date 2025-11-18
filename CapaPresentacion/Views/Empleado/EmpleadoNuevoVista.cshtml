@@ -1,0 +1,211 @@
+﻿@{
+    ViewBag.Title = "Nuevo Empleado";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section css
+{
+    <style type="text/css">
+        .help-block {
+            display: none !important;
+        }
+    </style>
+}
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-shield"></span>
+                                <span class="main-text">
+                                    Nuevo Empleado
+                                </span>
+                            </h1>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+
+                        <div class="col-md-4 col-md-offset-4 col-sm-6 col-xs-6">
+                            <button type="button" class="btn btn-success btn-sm col-md-12 col-sm-12 col-xs-12 btnListar"><span class="glyphicon glyphicon-list-alt"></span> Listado </button>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <button type="button" class="btn btn-primary btn-sm col-md-12 col-sm-12 col-xs-12 btnGuardar "><span class="glyphicon glyphicon-floppy-disk"></span> Guardar </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row auditoriaForm">
+    <div class="col-md-12 col-sm-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="cardMachine" style="margin-bottom:15px;">
+
+                        <form class="medium" role="form" id="frmNuevoEmpleado" method="post" action="#">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    <fieldset class="sectionCard" style="padding: 10px 7px; margin-top: 10px;">
+                                        <h3 style="margin-bottom:5px;margin-left:10px">Datos de empleado</h3>
+                                        <div class="form-group cbogroup">
+
+                                            <label for="cboCargo">Cargo</label>
+                                            <div class="input-group ">
+                                                <select class="form-control input-sm" id="cboCargo" name="CargoID">
+                                                    <option value="">--Seleccione--</option>
+                                                </select>
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-warning btn-sm btnModal" type="button" data-nombre="Cargo"><i class="glyphicon glyphicon-plus-sign"></i></button>
+                                                </span>
+                                            </div>
+
+                                        </div>
+                                    </fieldset>
+
+                                    <fieldset class="sectionCard" style="padding: 10px 7px; margin-top: 10px;">
+
+                                        <div class="row">
+                                            <h3 style="margin-bottom:5px;margin-left:10px">Información personal</h3>
+                                            <div class=" col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="txtPaterno">Apellido Paterno</label>
+                                                    <input type="text" class="form-control input-sm " id="txtPaterno" name="ApellidosPaterno" placeholder="Apellido Paterno">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="txtMaterno">Apellido Materno</label>
+                                                    <input type="text" class="form-control input-sm " id="txtMaterno" name="ApellidosMaterno" placeholder="Apellido Materno">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="txtNombre">Nombres</label>
+                                                    <input type="text" class="form-control input-sm " id="txtNombre" name="Nombres" placeholder="Nombres">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="txtNacimiento">Nacimiento</label>
+                                                    <div class="input-group dateOnlyEmpleado">
+                                                        <input type="text" name="FechaNacimiento" class="form-control input-sm " id="txtNacimiento" placeholder="Fecha Nacimiento">
+                                                        <span class="input-group-addon input-group-icon">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="form-group icheck-minimal notlabel">
+                                                    <label>Genero</label>
+                                                    <div class="radio" style="margin-top: 1px;">
+                                                        <label style="margin-right: 18px;">
+                                                            <input id="genMasculino" type="radio" value="M" name="Genero" class="auditoria">
+                                                            Masculino
+                                                        </label>
+                                                        <label>
+                                                            <input id="genFemenino" type="radio" checked="" value="F" name="Genero" class="auditoria">
+                                                            Femenino
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <fieldset class="sectionCard" style="padding: 10px 7px; margin-top: 10px;">
+                                        <h3 style="margin-bottom:5px;margin-left:10px">Información de identificación</h3>
+                                        <div class="form-group cbo">
+                                            <label for="cboCargo">Tipo Documento</label>
+                                            <select class="form-control input-sm " id="cboTipoDocumento" name="DOIID">
+                                                <option value="">--Seleccione--</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txtNro">Nro</label>
+                                            <input type="text" name="DOI" class="form-control input-sm " id="txtNro" placeholder="Nro">
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <fieldset class="sectionCard" style="padding: 10px 7px; margin-top: 10px;">
+                                        <h3 style="margin-bottom:5px;margin-left:10px">Información de contacto</h3>
+
+                                        <div class="form-group">
+                                            <label for="txtTelefono">Telefono</label>
+                                            <input type="text" step="1" name="Telefono" class="form-control input-sm " id="txtTelefono" placeholder="Telefono">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="txtDireccion">Direccion</label>
+                                            <input type="text" class="form-control input-sm " id="txtDireccion" name="Direccion" placeholder="Direccion">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txtCorreo">Correo</label>
+                                            <input type="email" class="form-control input-sm " id="txtCorreo" name="MailJob" placeholder="Correo">
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                 
+
+                                </div>
+
+
+</form>
+                    </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+</div>
+
+@section modal
+{
+    <div class="modal fade full-modal" id="modalGroup" tabindex="-1" role="dialog" aria-labelledby="default-modal-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <input type="hidden" name="hddModal" id="hddmodal" />
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="default-modal-label">Mantenimiento</h4>
+                </div>
+                <div class="modal-body" id="bodyModal">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-warning" id="btnNuevoModal">Nuevo</button>
+                    <button type="button" class="btn btn-primary" id="btnGuardarModal">Guardar</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+}
+
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/Empleado/EmpleadoNuevoVista.js"></script>
+}

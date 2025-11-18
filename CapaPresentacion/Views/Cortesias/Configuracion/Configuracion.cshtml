@@ -1,0 +1,183 @@
+﻿@using S3k.Utilitario
+@{
+    ViewBag.Title = "Configuracion Keys";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+}
+
+@section css{
+    
+    <style>
+        /* The switch - the box around the slider */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+            /* Hide default HTML checkbox */
+            .switch input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+
+        /* The slider */
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+            .slider:before {
+                position: absolute;
+                content: "";
+                height: 26px;
+                width: 26px;
+                left: 4px;
+                bottom: 4px;
+                background-color: white;
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px !important;
+        }
+
+            .slider.round:before {
+                border-radius: 50%;
+            }
+
+
+        input[type=text] {
+            border-radius: 10px !important;
+            border: 1px solid #2d9fd9;
+            width: 250px;
+            height: 30px;
+            padding-left: 10px;
+        }
+
+            input[type=text]:focus {
+                outline: none;
+                border: 1px solid #a0d18c;
+            }
+
+
+
+        .titlecard{
+            display:flex;
+            justify-content:space-between;
+        }
+    </style>
+    
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon las la-bell"></span>
+                                <span class="main-text">
+                                    @ViewBag.Title
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+
+                        <div class="col-sm-12 col-md-6">
+                            <div class="input-group ">
+                                <span class="input-group-addon">
+                                    Sala
+                                </span>
+                                <select class="form-control input-sm codSala" id="cboSala">
+                                </select>
+                            </div>
+                        </div>
+                        @*<div class="col-md-6  col-xs-12">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <button type="button" id="btnBuscar" class="btn btn-sm btn-primary col-md-12 col-xs-12">
+                        <span class="glyphicon glyphicon-trash"></span>
+                        Buscar
+                    </button>
+                </div>
+            </div>
+        </div>*@
+                        @*<div class="col-md-6  col-xs-12">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <button type="button" id="btnNuevo" data-nombre="Nuevo Bar" class="btn btn-sm btn-success col-md-12 col-xs-12">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        Nuevo
+                    </button>
+                </div>
+            </div>
+        </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 tam">
+                            <div id="content" class="row">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/Cortesias/Configuracion.js?v=@fecha_archivos"></script>
+}

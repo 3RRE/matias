@@ -1,0 +1,427 @@
+﻿@{
+    ViewBag.Title = "Ficha";
+}
+<style>
+    fieldset {
+        border: 1px solid #3c3838 !important;
+        border-radius: 4px !important;
+        background-color: #fff;
+    }
+
+    legend {
+        width: auto !important;
+        margin-bottom: 0px;
+        border-bottom: none !important;
+    }
+
+    table > tbody > tr > th, table > tbody > tr > td {
+        border-top: none !important;
+    }
+
+        table > tbody > tr > td > input[type=checkbox].form-control {
+            height: 24px !important;
+            margin: 0px 0 0;
+        }
+
+
+    .form_vacio .has-error .input-group-addon {
+        border: none !important;
+    }
+
+    .form_vacio .input-group-addon {
+        font-size: 12px;
+        text-transform: uppercase;
+        color: #000;
+        background-color: transparent;
+    }
+
+    .form_vacio input.form-control {
+        height: 24px;
+        background-color: #f9f9f9;
+        color: #000;
+        border: none !important;
+        border-bottom: 1px solid #000 !important;
+    }
+    .wrapper {
+        position: relative;
+        /*   width: 400px;
+        height: 200px;*/
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    .signature-pad {
+        position: absolute;
+        left: 0;
+        top: 0;
+        /*  width: 400px;
+        height: 200px;*/
+        background-color: white;
+        border: 1px solid black;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-shield"></span>
+                                <span class="main-text">
+                                    Ficha Salud
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+
+                    <div class="row">
+
+                        <div class="pull-right col-md-4 col-sm-6 col-xs-12">
+                            <button type="button" id="btnSend" class="btn btn-sm btn-danger col-md-12 col-xs-12">
+                                <span class="glyphicon glyphicon-book"></span>
+                                Enviar
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>
+                                <h2 style="font-size: 28px; line-height: 1.618" class="text-center"><b>FICHA DIARIA DE CONDICIONES DE SALUD</b></h2>
+                            </p>
+
+                        </div>
+                        <div class="col-md-12 ">
+                            <p class="text-right fecha_" style="font-size: 18px; line-height: 1.618;padding-right:15px">Fecha : @ViewBag.fecha</p>
+                        </div>
+
+                        <form id="complaintsForm">
+                            <input name="fichaId" id="fichaId" value="" type="hidden" />
+                            <input name="EmpleadoId" id="EmpleadoId" value="" type="hidden" />
+                            <input name="CodSala" id="CodSala" value="" type="hidden" />
+                            <input name="Firma" id="Firma" value="" type="hidden" />
+                            <div class="col-md-8 col-sm-12 col-xs-12">
+
+                                <div class="">
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                DNI/CE*
+                                            </span>
+                                            <input type="text" id="nrodocumento" name="nrodocumento" placeholder="" autocomplete="off" value="" class="form-control">
+                                            <span class="input-group-addon input-group-icon nro_docbuscar" style="cursor:pointer">
+                                                <span class="fa fa-search"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <fieldset class="form_vacio" style="margin: 8px; border: 1px solid silver; padding: 8px; border-radius: 4px;padding-right: 23px;">
+                                    <legend style="padding: 2px; ">
+                                        <b>Datos colaborador(a)</b>
+                                    </legend>
+
+
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        Empresa
+                                                    </span>
+                                                    <input type="text" id="empresa" name="empresa" placeholder="" autocomplete="off" value="" class="form-control">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        RUC
+                                                    </span>
+                                                    <input type="text" id="ruc" name="ruc" placeholder="" autocomplete="off" value="" class="form-control">
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        Nombres
+                                                    </span>
+                                                    <input type="text" id="nombre" name="nombre" placeholder="" autocomplete="off" value="" class="form-control">
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        Apellido Paterno
+                                                    </span>
+                                                    <input type="text" id="apellidoPaterno" name="apellidoPaterno" placeholder="" autocomplete="off" value="" class="form-control">
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        Apellido Materno
+                                                    </span>
+                                                    <input type="text" id="apellidoMaterno" name="apellidoMaterno" placeholder="" autocomplete="off" class="form-control">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        DNI/CE
+                                                    </span>
+                                                    <input type="text" id="DOI" name="DOI" placeholder="" autocomplete="off" value="" class="form-control">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        Celular
+                                                    </span>
+                                                    <input type="text" id="celular" name="celular" placeholder="" autocomplete="off" value="" class="form-control">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        Dirección
+                                                    </span>
+                                                    <input type="text" id="direccion" name="direccion" placeholder="" autocomplete="off" value="" class="form-control">
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        Area de trabajo
+                                                    </span>
+                                                    <input type="text" id="area" name="area" placeholder="" autocomplete="off" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset style="margin: 8px; border: 1px solid silver; padding: 8px; border-radius: 4px;padding-left:10px;padding-right: 10px;">
+                                    <legend style="padding: 2px; ">
+                                        <b>Condiciones de Salud</b>
+                                    </legend>
+                                    <table class="table table-hover" style="margin-bottom:2px">
+                                        <tr>
+                                            <th width="60%"></th>
+                                            <th style="width:57px" class="text-center">INGRESO</th>
+                                            <th style="width:57px" class="text-center">SALIDA</th>
+                                        </tr>
+
+                                        <tr>
+                                            <td><b>Control Temperatura (°C)</b></td>
+                                            <td style="padding:0px" class="form_vacio">
+                                                <div class="form-group" style="margin-bottom:0px;padding-left:6px;padding-right:6px">
+                                                    <input style="min-width:80px;text-align:center" type="text" id="temperaturaIngreso" name="temperaturaIngreso" value="" autocomplete="off" class="form-control decimales">
+                                                </div>
+                                            </td>
+                                            <td style="padding:0px" class="form_vacio">
+                                                <div class="form-group" style="margin-bottom:0px;padding-left:6px;padding-right:6px">
+                                                    <input style="min-width:80px;text-align:center" type="text" id="temperaturaSalida" name="temperaturaSalida" value="" autocomplete="off" class="form-control decimales">
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="3" style="padding-top: 12px;"><b>Signos de alarma por COVID-19</b></th>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-left:15px">Tos o dolor de garganta</td>
+                                            <td>
+                                                <input type="checkbox" id="signo1Ingreso" name="Signo1Ingreso" placeholder="" value="true" class="form-control">
+                                            </td>
+                                            <td>
+                                                <input type="checkbox" id="signo1Salida" name="signo1Salida" placeholder="" value="true" class="form-control">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-left:15px">Malestar general</td>
+                                            <td>
+                                                <input type="checkbox" id="signo2Ingreso" name="Signo2Ingreso" placeholder="" value="true" class="form-control">
+                                            </td>
+                                            <td>
+                                                <input type="checkbox" id="signo2Salida" name="signo2Salida" placeholder="" value="true" class="form-control">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-left:15px">Fiebre</td>
+                                            <td>
+                                                <input type="checkbox" id="signo3Ingreso" name="signo3Ingreso" placeholder="" value="true" class="form-control">
+                                            </td>
+                                            <td>
+                                                <input type="checkbox" id="signo3Salida" name="signo3Salida" placeholder="" value="true" class="form-control">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-left:15px">Cefalea</td>
+                                            <td>
+                                                <input type="checkbox" id="signo4Ingreso" name="signo4Ingreso" placeholder="" value="true" class="form-control">
+                                            </td>
+                                            <td>
+                                                <input type="checkbox" id="signo4Salida" name="signo4Salida" placeholder="" value="true" class="form-control">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-left:15px">Dificultad para respirar</td>
+                                            <td>
+                                                <input type="checkbox" id="signo5Ingreso" name="signo5Ingreso" placeholder="" value="true" class="form-control">
+                                            </td>
+                                            <td>
+                                                <input type="checkbox" id="signo5Salida" name="signo5Salida" placeholder="" value="true" class="form-control">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-left:15px">Congestión nasal</td>
+                                            <td>
+                                                <input type="checkbox" id="signo6Ingreso" name="signo6Ingreso" placeholder="" value="true" class="form-control">
+                                            </td>
+                                            <td>
+                                                <input type="checkbox" id="signo6Salida" name="signo6Salida" placeholder="" value="true" class="form-control">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </fieldset>
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-7 col-sm-6 col-xs-12" style="margin-bottom:26px">
+
+                                            <div class="form-group form-check">
+                                                <input type="checkbox" id="terminos" name="terminos" placeholder="" autocomplete="off" style="zoom: 2;float: left;margin-right:5px">
+                                                <label class="form-check-label checking" for="terminos" style="">
+                                                    <small class="text-justify" style="font-size:11px">
+                                                        <b>Acepto que todos los datos expresados en esta ficha constituyen Declaración Jurada de mi parte.</b>
+                                                    </small>
+                                                </label>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-5 col-sm-6 col-xs-12">
+                                            <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center;flex-direction:column;width:100%;height:140px">
+                                                <div class="wrapper" style="width: 100%;height: 100%;">
+                                                    <canvas id="signature-pad" class="signature-pad" style="width: 100%;height: 100%;"></canvas>
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center;flex-direction:column;padding-top:5px;">
+                                                <a class="btn-warning btn" href="" id="btnLimpiarFirma">Limpiar Firma</a>
+                                            </div>
+                                            @*<div class="form-group" style="padding-left:4px;padding-right:4px">
+            <button type="button" id="btnLimpiar" name="btnLimpiar" class="btn btn-info" style="position:absolute"><span class=reload>&#x21bb;</span></button>
+            <canvas style=" border: 1px solid silver;margin:auto" id="canvas"></canvas>
+        </div>*@
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 col-sm-12 col-xs-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <img src="~/Content/assets/images/fondo_.png" style="width:100%;" />
+                                    </div>
+                                    <div class="col-md-12">
+                                        <fieldset style="margin: 8px; border: 1px solid silver; padding: 8px; border-radius: 4px;margin-top:10px;">
+                                            <p><i class="fa fa-refresh"></i> Proceso: Evaluacion diaria de as condiciones de salud.</p>
+                                            <p class="fa fa-dot-circle-o"> Objetivo: Registrar las condiciones de salud de los trabajadores.</p>
+                                            <p class="fa fa-user-plus"> Alcance: A todo el personal operativo,administrativo u otros que apliquen.</p>
+                                            <p class="fa fa-check-circle"> Frecuencia: Cada vez que se necesite.</p>
+                                        </fieldset>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section js
+{
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+    <script type="text/javascript">
+        logoSala = "@Html.Raw(ViewBag.logoSala)";
+        codsala = "@Html.Raw(ViewBag.idSala)";
+    </script>
+    <script src="~/Content/assets/viewsjs/FichaSintomatologica/FichaNuevoVista.js"></script>
+}

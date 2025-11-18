@@ -1,0 +1,360 @@
+﻿@using S3k.Utilitario
+@{
+    ViewBag.Title = "Acciones Incidentes de Cajas Temporizadas";
+    string fecha_archivo = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+}
+
+
+
+@section css
+{
+    <style>
+        .block-flex {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .icheckbox_bg-white {
+            background-color: #FFFFFF;
+        }
+
+        .check-attach {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            margin: 0;
+            padding: 0;
+            background-color: #3478FC;
+        }
+
+            .check-attach > i {
+                font-size: 1.15em;
+                color: #FFFFFF;
+            }
+
+
+        .highlight-row {
+            background-color: #f0edd8 !important; /* Color de resaltado */
+        }
+        .stld-dropd-custom {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+            .stld-dropd-custom .cuflex-grow {
+                flex-grow: 1;
+            }
+            .stld-dropd-custom .dropdown-menu {
+                position: absolute;
+                right: 0;
+                left: auto;
+            }
+
+            .stld-dropd-custom .dropdown-menu > li > a {
+                color: #FFFFFF;
+            }
+
+                .stld-dropd-custom .dropdown-menu > li > a:hover {
+                    color: #333333;
+                }
+    </style>
+}
+
+
+
+<!-- ENCABEZADO----------------------------------------------------------------------------------------------------->
+
+
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon las la-map-signs"></span>
+                                <span class="main-text">
+                                    @ViewBag.Title
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12 col-xs-12 pull-right mb-3">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="stld-dropd-custom">
+                                        <button type="button" id="btnExcel" class="btn btn-primary btn-sm cuflex-grow" title="EXCEL">
+                                            <span class="fa fa-file-excel-o"></span> Excel
+                                        </button>
+                                        <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="#" id="btnExcel_Plantilla">Descargar plantilla Excel</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" id="btnExcel_Importar">Importar datos de archivo Excel</a>
+                                                <input type="file" id="fileInput" accept=".xlsx, .xls" style="display: none;">
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12 col-xs-12 pull-right">
+                            <button type="button" id="btnNuevo" class="btn btn-warning btn-sm col-md-12 col-xs-12">
+                                <span class="glyphicon glyphicon-book"></span>
+                                Nuevo
+                            </button>
+                        </div>
+                        <div class="col-md-4 col-sm-12 col-xs-12 pull-right">
+                            <button type="button" id="btnBuscar" class="btn btn-success btn-sm btn-block">
+                                <span class="fa fa-search"></span>
+                                Buscar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- FILTROS---------------------------------------------------------------------------------------------------->
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row" id="formfiltro">
+
+                        <div class="col-md-6 col-sm-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">Sala</span>
+                                <select class="form-control input-sm" id="cboSala" name="cboSala"></select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-sm-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">DEL</span>
+                                <input type="text" class="form-control input-sm dateOnly_" id="fechaInicio" name="fechaini" readonly />
+                                <span class="input-group-addon input-group-icon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">AL</span>
+                                <input type="text" class="form-control input-sm dateOnly_" id="fechaFin" name="fechafin" readonly />
+                                <span class="input-group-addon input-group-icon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="row">
+                            <div class="col-md-12">
+                                <hr style="margin-top: 0px; margin-bottom: 10px;" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div id="contenedor_tabla" class="table-responsive">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <hr style="margin-top: 0px; margin-bottom: 10px;" />
+                            </div>
+                        </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="contenedor_tabla" class="table-responsive">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section modal{
+
+    <div class="modal fade full-modal modal-v2" id="full-modal_entradasalidagu" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-md" style="max-width: 850px;">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label_"> <span id="textAccionCajaTemporizada">Nuevo</span> Registro</h4>
+                </div>
+                <div class="modal-body">
+                    <fieldset>
+                        <legend>Acciones Incidentes de Cajas Temporizadas</legend>
+                        <form id="bienMaterialForm">
+                            <input type="hidden" name="IdAccionCajaTemporizada" value="0" id="IdAccionCajaTemporizada" />
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Sala</span>
+                                            <select class="form-control input-sm" id="cboSalaAccionCajaTemporizada" name="CodSala"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Fecha</span>
+                                            <input type="text" class="form-control input-sm" id="Fecha" name="Fecha" readonly />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Dispositivos</span>
+                                            <select id="cboDispositivo" class="form-control input-sm" name="IdDispositivo"></select>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12" id="dispositivoOtros" style="display: none;">
+                                    <div class="form-group" style="position: relative;">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Otro (Dispositivo)</span>
+                                            <textarea name="DescripcionDispositivo" id="DispositivoOtros" class="form-control input-sm" maxlength="300"></textarea>
+                                        </div>
+                                        <small id="charCountDispositivoOtros" class="form-text text-muted" style="position: absolute; bottom: 5px; right: 10px; z-index: 10;">0/300</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Deficiencias</span>
+                                            <select id="cboDeficiencia" class="form-control input-sm" name="IdDeficiencia"></select>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group" style="position: relative;">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Medidas Adoptadas</span>
+                                            <textarea class="form-control input-sm" id="MedidaAdoptada" name="MedidaAdoptada" placeholder="" maxlength="300"></textarea>
+                                        </div>
+                                        <small id="charCountMedidaAdoptada" class="form-text text-muted" style="position: absolute; bottom: 5px; right: 10px; z-index: 10;">0/300</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Autoriza</legend>
+                        <div class="row">
+
+                            <div class="col-md-12" style="margin-bottom: 20px;">
+                                <div class="row">
+                                    <div class="col-md-6 col-md-offset-3">
+                                        <label for="busqueda">Buscar empleado:</label>
+                                        <div class="input-group" style="width: 100%; margin-bottom :0;">
+                                            <input type="text" id="busqueda" class="form-control busqueda-autocomplete" placeholder="Ingrese Nro. Documento o Nombres">
+                                            <span class="input-group-btn">
+                                                <button type="button" id="btnNuevoEmpleado" class="btn btn-warning btn-sm" style="display: none;">
+                                                    <span class="glyphicon glyphicon-plus" data-toggle="tooltip" title="Registrar"></span>
+                                                </button>
+                                            </span>
+                                        </div>
+                                        <div id="AutoCompleteContainer" style="position:relative;"></div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="col-md-12">
+                                <div class="table-responsive" id="contenedorTableEmpleadosSeleccionados">
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-sm btn-danger" id="btnGuardarAccionCajaTemporizada">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade full-modal modal-v2" id="full-modal_confirmacion" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-md" style="max-width: 400px;">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label_">Confirmar Acción</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                            <p id="confirmationMessage" style="font-size: 18px; font-weight: bold;"></p>
+                            <div class="form-group">
+                                <label for="horaInput" style="font-size: 16px;">Hora de Finalización:</label>
+                                <input type="time" id="horaInput" class="form-control" style="display: inline-block; width: auto;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-sm btn-danger" id="confirmFinalizar">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+}
+
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/EntradaSalidaSala/AccionesIncidentesCajasTemporizadas.js?v=@fecha_archivo"></script>
+}
+
+

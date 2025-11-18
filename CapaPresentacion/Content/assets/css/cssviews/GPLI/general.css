@@ -1,0 +1,321 @@
+﻿.historial-encabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f5f5f5;
+    padding: 8px 12px;
+    border-bottom: 1px solid #e0e0e0;
+}
+.sheet-showTop {
+    /*padding: 10px;*/
+    text-align: center;
+}
+
+.sheet-showTop-title {
+    font-size: 28px;
+    font-weight: 600; /* Peso semibold */
+    margin: 0 0 12px 0;
+    letter-spacing: -0.5px;
+}
+
+.sheet-showTop-level {
+    font-size: 18px;  
+    font-weight: 600; 
+    color: #007bff;  
+    margin: 0 0 16px 0;
+}
+
+/* Badge para el nivel de atención */
+/*.sheet-showTop-level {
+    font-size: 14px;*/ /* Tamaño de fuente */
+    /*font-weight: 500;*/ /* Peso medium */
+    /*color: #ffffff;*/ /* Color de texto blanco */
+    /*background-color: #000000;*/ /* Color de fondo azul (puede ser dinámico) */
+    /*padding: 4px 12px;*/ /* Espaciado interno */
+    /*border-radius: 16px !important;*/ /* Esquinas redondeadas (efecto de badge) */
+    /*margin: 0;*/ /* Eliminar margen predeterminado */
+    /*display: inline-block;*/ /* Asegurar que el badge no ocupe toda la línea */
+    /*text-align: center;*/ /* Centrar el texto dentro del badge */
+    /*white-space: nowrap;*/ /* Evitar que el texto se divida en varias líneas */
+/*}*/
+
+/* Detalles adicionales */
+.sheet-showTop-detail {
+    font-size: 16px; /* Tamaño de fuente */
+    font-weight: 600; /* Peso semibold */
+}
+
+/* Contenedor flexible para el nivel de atención */
+.sheet-showTop-header {
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    gap: 12px; /* Espacio entre elementos */
+}
+
+.sheet-showText {
+    margin: 0 auto; /* Centrar en la página */
+}
+
+    .sheet-showText p {
+        margin: 0; /* Eliminar margen predeterminado */
+        padding: 8px 0; /* Espaciado interno */
+        font-size: 14px; /* Tamaño de fuente */
+        border-bottom: 1px solid #e0e0e0; /* Línea divisoria sutil */
+        display: flex; /* Usar flexbox para alinear etiquetas y valores */
+        align-items: center; /* Centrar verticalmente */
+    }
+
+        .sheet-showText p:last-child {
+            border-bottom: none; /* Eliminar línea divisoria del último párrafo */
+        }
+
+    .sheet-showText strong {
+        color: #235ebe; /* Color azul para las etiquetas */
+        font-weight: 600; /* Texto semibold */
+        min-width: 160px; /* Ancho mínimo para alinear las etiquetas */
+        margin-right: 16px; /* Espaciado entre etiqueta y valor */
+    }
+
+
+canvas {
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+/* Estilos minimalistas para el timeline */
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.timeline-item {
+    padding: 10px;
+    width: 50%;
+}
+
+
+.timeline-content {
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para el estado del ticket */
+.estado-ticket {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+/* Estilos para la descripción */
+.descripcion {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Estilos para el mensaje sin historial */
+.sin-historial {
+    text-align: center;
+    font-size: 16px;
+    color: #999;
+    margin-top: 20px;
+}
+
+.header-glpi-container {
+    background-color: white;
+    border-radius: 5px !important;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.header-glpi-title{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:5px;
+}
+
+/*TABS*/
+.container-glpi-section {
+    background-color: white;
+    border-radius: 5px !important;
+    padding: 10px;
+}
+
+.tabs {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px !important;
+}
+
+.tab {
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #f1f1f1;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+    .tab.active {
+        background-color: #215987;
+        color: white;
+        border-radius: 8px !important;
+    }
+
+.tab-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 8px !important;
+}
+
+.tab-content {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px !important;
+    background-color: #fff;
+}
+
+.grid-container button {
+    border-radius: 8px !important;
+}
+
+
+
+/* tickets*/
+.grid-container {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(1, 1fr);
+}
+
+.ticket-container {
+    border: 1px solid;
+    border-radius: 5px !important;
+    padding: 15px;
+    cursor: pointer;
+    transition: all .3s ease;
+    border-color: rgb(219 219 219);
+    box-shadow: 1px 3px 4px #ececec;
+}
+
+    .ticket-container:hover {
+        background-color: #dfe9fa;
+        transform: translateY(-10px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
+    }
+
+/*MODAL HISTORIAL*/
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    animation: overlay-fade-in 0.3s forwards;
+}
+
+.modal-container {
+    background: white;
+    border-radius: 10px !important;
+    max-width: 750px;
+    width: 100%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transform: scale(0.9);
+    max-height: 90vh;
+    overflow: auto;
+}
+
+.modal-container button{
+    border-radius: 8px !important;
+}
+
+.modal-enter {
+    animation: modal-slide-in 0.3s forwards;
+}
+
+.modal-leave {
+    animation: modal-slide-out 0.3s forwards;
+}
+
+
+/* GRID TICKETS RESPONSIVE*/
+@media (min-width: 767px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en pantallas grandes */
+    }
+}
+
+@media (min-width: 1100px) {
+    .grid-container {
+        grid-template-columns: repeat(3, 1fr); /* 2 columnas en pantallas grandes */
+    }
+}
+
+@media (min-width: 1500px) {
+    .grid-container {
+        grid-template-columns: repeat(4, 1fr); /* 2 columnas en pantallas grandes */
+    }
+}
+
+/* Animaciones */
+
+@keyframes overlay-fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes modal-slide-in {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes modal-slide-out {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+}
+
+
+.header-decoration {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #143958;
+    left: 0;
+    z-index: -1;
+}

@@ -1,0 +1,1112 @@
+﻿@{
+    ViewBag.Title = "Ficha Excelencia Operativa de Sala";
+    int isUpdate = (int)ViewBag.isUpdate;
+    long FichaId = (long)ViewBag.FichaId;
+}
+<script>
+    var IS_UPDATE = @isUpdate;
+    var FICHA_ID = @FichaId;
+    const FICHA_DATE = '@ViewBag.fecha'
+</script>
+<style>
+    .panel-oe {
+        width: 100%;
+        position: relative;
+        background-color: #FFFFFF;
+        padding: 0;
+        border-top: 2px solid #143958;
+        border-bottom: 0;
+    }
+
+        .panel-oe .panel-heading {
+            font-weight: 700;
+            color: #212121;
+        }
+
+        .panel-oe .panel-body {
+            padding: 0;
+        }
+
+    .table-oe {
+        width: 100%;
+        background-color: #FFFFFF;
+        margin-bottom: 0;
+    }
+
+        .table-oe th, .table-oe td {
+            vertical-align: middle !important;
+        }
+
+        .table-oe .form-response {
+            padding: 0px;
+            text-align: center;
+            font-weight: 400;
+            color: #212121;
+            width: 125px;
+            min-width: 125px;
+        }
+
+        .table-oe .oe-item-date {
+            width: 100px;
+            min-width: 100px;
+            text-align: center;
+        }
+
+        .table-oe .form-control option:checked {
+            font-weight: 700;
+            background: #EEEEEE;
+        }
+
+        .table-oe .input-group {
+            margin-bottom: 0;
+        }
+
+            .table-oe .input-group .input-group-addon i {
+                color: #FFFFFF;
+            }
+
+        .table-oe td {
+            white-space: normal !important;
+            padding: 5px 5px !important;
+        }
+
+        .table-oe .oe-number {
+            text-align: center;
+            font-weight: 700;
+            color: #000000;
+            background: #f5f5f5;
+            padding: 6px 12px !important;
+        }
+
+        .table-oe .oe-name {
+            font-weight: 500;
+            color: #000000;
+            padding: 6px 12px !important;
+        }
+
+        .table-oe .oe-actions {
+            text-align: center;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+            .table-oe .oe-actions .input-group-date {
+                margin-left: 5px;
+            }
+
+    .table-oe-summary {
+        width: 100%;
+        background-color: #FFFFFF;
+        margin-bottom: 0;
+    }
+
+        .table-oe-summary thead {
+            background-color: #143958;
+            position: relative;
+        }
+
+        .table-oe-summary th, .table-oe-summary td {
+            vertical-align: middle !important;
+        }
+
+        .table-oe-summary th {
+            padding: 10px 15px !important;
+        }
+
+        .table-oe-summary td {
+            padding: 7px 15px !important;
+        }
+
+        .table-oe-summary .oe-total-pointb, .table-oe-summary .oe-total-pointo, .table-oe-summary .oe-total-percentage {
+            position: relative;
+            color: #000000;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .table-oe-summary .oes-name {
+            white-space: normal !important;
+        }
+
+        .table-oe-summary .oes-name, .table-oe-summary .oes-pointb, .table-oe-summary .oes-pointo, .table-oe-summary .oes-percentage {
+            position: relative;
+            font-size: 15px;
+            font-weight: 400;
+            color: #212121;
+        }
+
+        .table-oe-summary .oe-subtotal-point, .table-oe-summary .oe-subtotal-percentage {
+            position: relative;
+            font-size: 15px;
+            font-weight: 400;
+            color: #212121;
+        }
+
+        .table-oe-summary .oe-subtotal-point-text {
+            white-space: normal !important;
+        }
+
+    .fw-700 {
+        font-weight: 700;
+    }
+
+    .fw-400 {
+        font-weight: 400;
+    }
+
+    .addon-success {
+        background: #61A31B;
+    }
+
+    .page-section {
+        width: 100%;
+        position: relative;
+        padding: 15px 0;
+    }
+
+        .page-section .page-section-title {
+            font-size: 24px;
+            color: #000000;
+            margin: 0;
+        }
+
+    .section-date-text {
+        font-size: 18px;
+        color: #143958;
+    }
+
+    @@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+        table .table-oe-responsive, .table-oe-responsive thead, .table-oe-responsive tbody, .table-oe-responsive th, .table-oe-responsive td, .table-oe-responsive tr {
+            display: block;
+        }
+
+            .table-oe-responsive thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+
+        .table-oe-responsive tr {
+            border: 1px solid #ccc;
+        }
+
+        .table-oe-responsive td {
+            border: none;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 50%;
+        }
+
+            .table-oe-responsive td:before {
+                position: absolute;
+                top: 6px;
+                left: 6px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+            }
+
+        .page-section .page-section-title {
+            font-size: 18px;
+        }
+
+        .section-date-text {
+            font-size: 16px;
+        }
+
+        .table-oe-summary .oes-name, .table-oe-summary .oes-pointb, .table-oe-summary .oes-pointo, .table-oe-summary .oes-percentage {
+            font-size: 14px;
+        }
+
+        .table-oe-summary .oe-subtotal-point, .table-oe-summary .oe-subtotal-percentage {
+            font-size: 14px;
+        }
+
+        .table-oe-summary .oe-total-pointb, .table-oe-summary .oe-total-pointo, .table-oe-summary .oe-total-percentage {
+            font-size: 16px;
+        }
+    }
+
+    .d-hidden {
+        display: none;
+    }
+
+    .loaderdata {
+        width: 48px;
+        height: 48px;
+        border: 5px solid #FFF;
+        border-bottom-color: #143958;
+        border-radius: 50% !important;
+        display: inline-block;
+        box-sizing: border-box;
+        animation: rotation 1s linear infinite;
+    }
+
+    .loaderdata-text {
+        margin: 0;
+        font-size: 16px;
+        color: #143958;
+    }
+
+    .d-flex-datebox {
+        display: flex;
+        align-items: center;
+        padding: 15px 0;
+        justify-content: end
+    }
+
+    .color-black {
+        color: #212121;
+    }
+
+    @@keyframes rotation {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+
+<div id="app-oe">
+    <!-- row -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="block">
+                <div class="block-content-outer">
+                    <div class="block-content-inner">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1>
+                                    <span aria-hidden="true" class="icon icon-shield"></span>
+                                    <span class="main-text">
+                                        Ficha Excelencia Operativa de Sala
+                                    </span>
+                                </h1>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 d-hidden" v-bind:class="{ show: loaded }">
+            <div class="block">
+                <div class="block-content-outer">
+                    <div class="block-content-inner">
+                        <!-- row -->
+                        <div class="row">
+                            <div class="pull-left col-md-6 col-sm-6 col-xs-12" style="margin-bottom:0px!important">
+                                <div class="input-group" style="margin-bottom:0px!important">
+                                    <span class="input-group-addon">
+                                        Sala
+                                    </span>
+                                    @if (isUpdate == 0)
+                                    {
+                                        <select class="form-control input-sm" ref="salaselect2" id="cboSala" name="cboSala" v-model="oe.SalaId"></select>
+                                    }
+
+                                    @if (isUpdate == 1)
+                                    {
+                                        <span type="text" class="form-control input-sm">{{ oe.SalaNombre }}</span>
+                                    }
+                                </div>
+                            </div>
+                            <div class="pull-right col-md-6 col-sm-6 col-xs-12" style="margin-bottom:0px!important">
+                                @if (isUpdate == 0)
+                                {
+                                    <button type="button" @@click="sendData()" class="btn btn-sm btn-primary col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-book"></span>
+                                        Enviar
+                                    </button>
+                                }
+
+                                @if (isUpdate == 1)
+                                {
+                                    <button type="button" @@click="updateData()" class="btn btn-sm btn-success col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-book"></span>
+                                        Guardar Cambios
+                                    </button>
+                                }
+                            </div>
+                        </div>
+                        <!-- row -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- row -->
+    <!-- row -->
+    <div class="row" v-if="!loaded">
+        <div class="col-md-12">
+            <div class="block">
+                <div class="block-content-outer">
+                    <div class="text-center" style="margin-bottom: 15px">
+                        <span class="loaderdata"></span>
+                    </div>
+                    <div class="text-center">
+                        <h4 class="loaderdata-text">Cargando datos</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- row -->
+    <!-- row -->
+    <div class="row d-hidden" v-bind:class="{ show: loaded }">
+        <!-- col -->
+        <div class="col-md-12">
+            <!-- block -->
+            <div class="block">
+                <div class="block-content-outer">
+                    <div class="block-content-inner">
+                        <!-- row -->
+                        <div class="row">
+                            <!-- col -->
+                            <div class="col-md-12">
+                                <div class="page-section">
+                                    <h2 class="page-section-title title fw-700 text-center"><b>FICHA DIARIA DE EXCELENCIA OPERATIVA DE SALA - JEFE OPERATIVO</b></h2>
+                                </div>
+
+                            </div>
+                            <!-- col -->
+                            <!-- col -->
+                            <div class="col-md-12">
+                                @if (isUpdate == 0)
+                                {
+                                    <div class="d-flex-datebox">
+                                        <div>
+                                            <p class="section-date-text fw-700 text-right">Fecha :</p>
+                                        </div>
+                                        <div style="margin-left:10px">
+                                            <div class="input-group" v-datetimepicker>
+                                                <input type="text" id="datetimepickerFicha" class="form-control fw-700 color-black" v-model="oe.Fecha" placeholder="@ViewBag.fecha" readonly />
+                                                <span class="input-group-addon" style="cursor:pointer">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                                @if (isUpdate == 1)
+                                {
+                                    <p class="section-date-text fw-700 text-right">Fecha : {{ moment(oe.Fecha).format('DD/MM/YYYY') }}</p>
+                                }
+                            </div>
+                            <!-- col -->
+                            <!-- col -->
+                            <div class="col-xs-12">
+                                <!-- form -->
+                                <form id="operationalExcellenceForm">
+                                    <!-- row -->
+                                    <div class="row oe-items">
+                                        <!-- col -->
+                                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 isotop-grid" v-for="(categoria, key) in oe.Categorias">
+                                            <!-- panel -->
+                                            <div class="panel panel-default panel-oe">
+                                                <div class="panel-heading">{{ categoria.Nombre }}</div>
+                                                <div class="panel-body table-responsive">
+                                                    <table class="table table-hover table-oe">
+                                                        <tbody>
+                                                            <tr v-for="(item, index) in categoria.Items">
+                                                                <td class="oe-number">{{ index + 1 }}</td>
+                                                                <td class="oe-name">{{ item.Nombre }}</td>
+                                                                <td class="oe-actions">
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon" v-bind:class="oe.Categorias[key].Items[index].Observacion ? 'addon-success' : ''" @@click="showModalObservation(key, index)"><i class="fa fa-comment"></i></span>
+                                                                        <select class="form-control form-response" v-if="item.TipoRespuesta == 1" v-model="oe.Categorias[key].Items[index].Respuesta">
+                                                                            <option value="">RESPUESTA</option>
+                                                                            <option value="1">1</option>
+                                                                            <option value="2">2</option>
+                                                                            <option value="3">3</option>
+                                                                            <option value="4">4</option>
+                                                                        </select>
+                                                                        <select class="form-control form-response" v-if="item.TipoRespuesta == 2" v-model="oe.Categorias[key].Items[index].Respuesta">
+                                                                            <option value="">RESPUESTA</option>
+                                                                            <option value="SI">SI</option>
+                                                                            <option value="NO">NO</option>
+                                                                            <option value="NA">NA</option>
+                                                                        </select>
+                                                                        <select class="form-control form-response" v-if="item.TipoRespuesta == 3" v-model="oe.Categorias[key].Items[index].Respuesta">
+                                                                            <option value="">RESPUESTA</option>
+                                                                            <option value="SI">SI</option>
+                                                                            <option value="NO">NO</option>
+                                                                        </select>
+                                                                        <select class="form-control form-response" v-if="item.TipoRespuesta == 4" v-model="oe.Categorias[key].Items[index].Respuesta">
+                                                                            <option value="">RESPUESTA</option>
+                                                                            <option value="1">1</option>
+                                                                            <option value="2">2</option>
+                                                                            <option value="3">3</option>
+                                                                            <option value="4">4</option>
+                                                                            <option value="NA">NA</option>
+                                                                        </select>
+                                                                        <select class="form-control form-response" v-if="item.TipoRespuesta == 5" v-model="oe.Categorias[key].Items[index].Respuesta">
+                                                                            <option value="">RESPUESTA</option>
+                                                                            <option value="1">1</option>
+                                                                            <option value="2">2</option>
+                                                                            <option value="3">3</option>
+                                                                            <option value="4">4</option>
+                                                                            <option value="5">5</option>
+                                                                        </select>
+                                                                        <select class="form-control form-response" v-if="item.TipoRespuesta == 6" v-model="oe.Categorias[key].Items[index].Respuesta">
+                                                                            <option value="">RESPUESTA</option>
+                                                                            <option value="1">1</option>
+                                                                            <option value="2">2</option>
+                                                                            <option value="3">3</option>
+                                                                            <option value="4">4</option>
+                                                                            <option value="5">5</option>
+                                                                            <option value="NA">NA</option>
+                                                                        </select>
+                                                                        <select class="form-control form-response" v-if="item.TipoRespuesta == 7" v-model="oe.Categorias[key].Items[index].Respuesta">
+                                                                            <option value="">Comentario</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <!-- end panel -->
+                                        </div>
+                                        <!-- end col -->
+                                    </div>
+                                    <!-- end row -->
+                                </form>
+                                <!-- end form -->
+                            </div>
+                            <!-- end col -->
+                            <!-- col -->
+                            <div class="col-xs-12">
+                                <!-- panel -->
+                                <div class="panel panel-default panel-oe">
+                                    <div class="panel-body table-responsive">
+                                        <table class="table table-hover table-oe-summary">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-left">Detalle</th>
+                                                    <th class="text-center"><span class="hidden-lg">P. base</span><span class="hidden visible-lg">Puntuación base</span></th>
+                                                    <th class="text-center"><span class="hidden-lg">P. obtenida</span><span class="hidden visible-lg">Puntuación obtenida</span></th>
+                                                    <th class="text-center">%</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="(categoria, key) in oe.Categorias">
+                                                    <td class="oes-name text-left">{{ categoria.Nombre }}</td>
+                                                    <td class="oes-pointb text-center">{{ categoria.PuntuacionBase.toFixed(2) }}</td>
+                                                    <td class="oes-pointo text-center">{{ categoria.PuntuacionObtenida.toFixed(2) }}</td>
+                                                    <td class="oes-percentage text-center">{{ (categoria.Porcentaje * 100).toFixed(1) }}%</td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr class="hidden">
+                                                    <td colspan="2" class="oe-subtotal-point-text text-right"><strong>Puntuación</strong> (Subtotal dividido entre 95)</td>
+                                                    <td class="oe-subtotal-point text-center">{{ oe.PuntuacionObtenida.toFixed(2) }}</td>
+                                                    <td class="oe-subtotal-percentage text-center">{{ ((oe.PuntuacionObtenida / 51) * 100).toFixed(2) }}%</td>
+                                                </tr>
+                                                <tr>
+                                                    <th></th>
+                                                    <th class="oe-total-pointb text-center">{{ oe.PuntuacionBase.toFixed(2) }}</th>
+                                                    <th class="oe-total-pointo text-center">{{ oe.PuntuacionObtenida.toFixed(2) }}</th>
+                                                    <th class="oe-total-percentage text-center">{{ (oe.Porcentaje * 100).toFixed(1) }}%</th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- end panel -->
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+                    </div>
+                </div>
+            </div>
+            <!-- end block -->
+        </div>
+        <!-- end col -->
+    </div>
+    <!-- end row -->
+
+</div>
+
+@section modal
+{
+    <!-- modal -->
+    <div class="modal fade" id="modalObservationOE" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" id="app-oe-modal">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Observación</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <h3 id="oe-title" class="fw-700">{{ oe.Categoria.Nombre }}</h3>
+                        <h5 id="oe-item-title" class="fw-400">{{ oe.Categoria.Item.Nombre }}</h5>
+                    </div>
+                    <div>
+                        <div class="form-group">
+                            <label>Ingrese observación</label>
+                            <textarea name="observation" v-model="oe.Categoria.Item.Observacion" class="form-control"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success" @@click="addObservation()">Agregar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end modal -->
+}
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/ExcelenciaOperativa/FichaNuevoVista.js"></script>
+    <script src="~/Content/assets/js/optional/vue/vue.min.js"></script>
+    <script src="~/Content/assets/js/optional/isotope/isotope.pkgd.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const eventBus = new Vue()
+
+            new Vue({
+                el: '#app-oe',
+                data: {
+                    loaded: false,
+                    oe: {
+                        Codigo: '01',
+                        SalaId: null,
+                        Tipo: 1,
+                        FichaVersion: 1,
+                        Fecha: FICHA_DATE,
+                        PuntuacionObtenida: 0,
+                        PuntuacionBase: 0,
+                        Porcentaje: 0,
+                        Categorias: []
+                    }
+                },
+                methods: {
+                    getDataInitial: async function () {
+                        const self = this
+
+                        self.oe.Categorias = []
+
+                        var fileHash = ((+new Date) + Math.random() * 100).toString(32)
+
+                        await $.ajax({
+                            type: "GET",
+                            url: `${basePath}/Content/data/EOJefeOperativoV5.json?v=${fileHash}`,
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            cache: false,
+                            beforeSend: function () {
+                                $.LoadingOverlay("show")
+                            },
+                            success: function (response) {
+                                self.oe.Categorias = response
+                                self.oe.FichaVersion = 5
+                                //self.oe.FichaVersion = 4
+                                //self.oe.FichaVersion = 3
+                            },
+                            complete: function () {
+                                $.LoadingOverlay("hide")
+                            }
+                        })
+                    },
+                    dateIsValid: function (dateStr) {
+                        s = dateStr.split('/');
+                        d = new Date(+s[2], s[1] - 1, +s[0]);
+                        if (Object.prototype.toString.call(d) === "[object Date]") {
+                            if (!isNaN(d.getTime()) && d.getDate() == s[0] &&
+                                d.getMonth() == (s[1] - 1)) {
+                                return true;
+                            }
+                        }
+
+                        return false;
+                    },
+                    showModalObservation: function (key, index) {
+                        const oe = this.oe
+                        const categoria = oe.Categorias[key]
+                        const item = oe.Categorias[key].Items[index]
+                        const data = {
+                            Tipo: oe.Tipo,
+                            PuntuacionObtenida: oe.PuntuacionObtenida,
+                            PuntuacionBase: oe.PuntuacionBase,
+                            Porcentaje: oe.Porcentaje,
+                            Categoria: {
+                                Nombre: categoria.Nombre,
+                                PuntuacionObtenida: categoria.PuntuacionObtenida,
+                                PuntuacionBase: categoria.PuntuacionBase,
+                                Porcentaje: categoria.Porcentaje,
+                                Item: {
+                                    Nombre: item.Nombre,
+                                    PuntuacionObtenida: item.PuntuacionObtenida,
+                                    PuntuacionBase: item.PuntuacionBase,
+                                    FechaExpiracion: item.FechaExpiracion,
+                                    FechaExpiracionActivo: item.FechaExpiracionActivo,
+                                    Respuesta: item.Respuesta,
+                                    Observacion: item.Observacion,
+                                    TipoRespuesta: item.TipoRespuesta
+                                }
+                            }
+                        }
+                        eventBus.$emit('showModalObservation', key, index, data)
+                    },
+                    sendData: function () {
+                        const data = this.oe
+
+                        if (data.SalaId == null) {
+                            toastr.warning("Seleccione una Sala", "Mensaje Servidor");
+                            return false;
+                        }
+
+                        if (!this.dateIsValid(data.Fecha)) {
+                            toastr.warning("Ingrese una Fecha correcta", "Mensaje Servidor");
+                            return false;
+                        }
+
+                        /** ajax **/
+                        $.ajax({
+                            url: basePath + "ExcelenciaOperativa/FichaNuevoJson",
+                            type: "POST",
+                            contentType: "application/json",
+                            data: JSON.stringify(data),
+                            beforeSend: function () {
+                                $.LoadingOverlay("show");
+                            },
+                            complete: function () {
+                                $.LoadingOverlay("hide");
+                            },
+                            success: function (response) {
+                                if (response.respuesta) {
+                                    toastr.success(response.mensaje, "Mensaje Servidor");
+                                    setTimeout(function () {
+                                        window.location.reload(true);
+                                    }, 1500);
+                                }
+                                else {
+                                    toastr.error(response.mensaje, "Mensaje Servidor");
+                                }
+                            },
+                            error: function (xmlHttpRequest, textStatus, errorThrow) {
+                                toastr.error("Error Servidor", "Mensaje Servidor");
+                            }
+                        });
+                        /** ajax **/
+                    },
+                    getData: async function () {
+                        var id = FICHA_ID
+                        const self = this
+                        const dataOE = self.oe
+
+                        await $.ajax({
+                            type: "POST",
+                            cache: false,
+                            url: basePath + "ExcelenciaOperativa/FichaEOIdObtenerJson",
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            data: JSON.stringify({ id: id }),
+                            beforeSend: function (xhr) {
+                                $.LoadingOverlay("show")
+                            },
+                            success: function (response) {
+                                if (response.respuesta) {
+                                    const dataResponse = response.data
+
+                                    dataOE.Codigo = dataResponse.Codigo;
+                                    dataOE.FichaId = dataResponse.FichaId;
+                                    dataOE.SalaId = dataResponse.SalaId;
+                                    dataOE.UsuarioNombre = dataResponse.UsuarioNombre;
+                                    dataOE.SalaNombre = dataResponse.SalaNombre;
+                                    dataOE.Tipo = dataResponse.Tipo;
+                                    dataOE.FichaVersion = dataResponse.FichaVersion;
+                                    dataOE.Fecha = dataResponse.Fecha;
+                                    dataOE.PuntuacionObtenida = dataResponse.PuntuacionObtenida;
+                                    dataOE.PuntuacionBase = dataResponse.PuntuacionBase;
+                                    dataOE.Porcentaje = dataResponse.Porcentaje;
+                                    dataOE.Categorias = [];
+
+                                    dataResponse.Categorias.map(categoria => {
+                                        dataOE.Categorias.push(categoria)
+                                    })
+                                }
+                                else {
+                                    toast.error(response.mensaje, "Mensaje Servidor")
+                                }
+                            },
+                            complete: function () {
+                                $("#cboSala").select2().select2('val', [dataOE.SalaId])
+                                $.LoadingOverlay("hide")
+                            }
+                        })
+                    },
+                    updateData: function () {
+                        const data = this.oe
+
+                        if (data.SalaId == null) {
+                            toastr.warning("Seleccione una Sala", "Mensaje Servidor");
+                            return false;
+                        }
+
+                        /** ajax **/
+                        $.ajax({
+                            url: basePath + "ExcelenciaOperativa/FichaEditarJson",
+                            type: "POST",
+                            contentType: "application/json",
+                            data: JSON.stringify(data),
+                            beforeSend: function () {
+                                $.LoadingOverlay("show");
+                            },
+                            success: function (response) {
+                                if (response.respuesta) {
+                                    toastr.success(response.mensaje, "Mensaje Servidor");
+                                }
+                                else {
+                                    toastr.error(response.mensaje, "Mensaje Servidor");
+                                }
+                            },
+                            error: function (xmlHttpRequest, textStatus, errorThrow) {
+                                toastr.error("Error Servidor", "Mensaje Servidor");
+                            },
+                            complete: function () {
+                                $.LoadingOverlay("hide");
+                            }
+                        });
+                        /** ajax **/
+                    },
+                    scoreModeA: function (score, answer) {
+
+                        if (answer == 4) {
+                            score = 1
+                        }
+
+                        if (answer == 3) {
+                            score = 0.75
+                        }
+
+                        if (answer == 2) {
+                            score = 0.5
+                        }
+
+                        if (answer == 1) {
+                            score = 0.25
+                        }
+
+                        if (answer == 0) {
+                            score = 0
+                        }
+
+                        if (answer == 'SI') {
+                            score = 1
+                        }
+
+                        if (answer == 'NO') {
+                            score = -1
+                        }
+
+                        if (answer == 'NA') {
+                            score = 0
+                        }
+
+                        if (answer == '') {
+                            score = 0
+                        }
+
+                        return score
+                    },
+                    scoreModeB: function (score, answer) {
+
+                        if (answer == 'SI') {
+                            score = -1
+                        }
+
+                        if (answer == 'NO') {
+                            score = 1
+                        }
+
+                        return score
+                    },
+                    baseScoreMode: function (baseScore, answer) {
+                        if (answer == '') {
+                            baseScore = 0
+                        }
+                        else if (answer == 'NA') {
+                            baseScore = 0
+                        }
+                        else {
+                            baseScore = 1
+                        }
+
+                        return baseScore
+                    },
+                    scoreModeAV3: function (score, answer) {
+                        if (answer == 5) {
+                            score = 1
+                        }
+
+                        if (answer == 4) {
+                            score = 0.8
+                        }
+
+                        if (answer == 3) {
+                            score = 0.6
+                        }
+
+                        if (answer == 2) {
+                            score = 0.4
+                        }
+
+                        if (answer == 1) {
+                            score = 0.2
+                        }
+
+                        if (answer == 0) {
+                            score = 0
+                        }
+
+                        if (answer == 'SI') {
+                            score = 1
+                        }
+
+                        if (answer == 'NO') {
+                            score = 0
+                        }
+
+                        if (answer == 'NA') {
+                            score = 0
+                        }
+
+                        if (answer == '') {
+                            score = 0
+                        }
+
+                        return score
+                    },
+
+                    // Leyenda para la version v5
+                    scoreModeAV4: function (score, answer) {
+                        if (answer == 5) {
+                            score = 1
+                        }
+
+                        if (answer == 4) {
+                            score = 0.7
+                        }
+
+                        if (answer == 3) {
+                            score = 0.4
+                        }
+
+                        if (answer == 2) {
+                            score = 0.3
+                        }
+
+                        if (answer == 1) {
+                            score = 0
+                        }
+
+                        if (answer == 0) {
+                            score = 0
+                        }
+
+                        if (answer == 'SI') {
+                            score = 1
+                        }
+
+                        if (answer == 'NO') {
+                            score = 0
+                        }
+
+                        if (answer == 'NA') {
+                            score = 0
+                        }
+
+                        if (answer == '') {
+                            score = 0
+                        }
+
+                        return score
+                    },
+                    scoreModeBV3: function (score, answer) {
+
+                        if (answer == 'SI') {
+                            score = 0
+                        }
+
+                        if (answer == 'NO') {
+                            score = 1
+                        }
+
+                        return score
+                    },
+                    baseScoreModeV3: function (baseScore, answer) {
+                        if (answer == '') {
+                            baseScore = 0
+                        }
+                        else if (answer == 'NA') {
+                            baseScore = 0
+                        }
+                        else {
+                            baseScore = 1
+                        }
+
+                        return baseScore
+                    }
+                },
+                created: function () {
+                    eventBus.$on('addObservation', function (key, index, observation) {
+                        this.oe.Categorias[key].Items[index].Observacion = observation;
+                    }.bind(this))
+                },
+                watch: {
+                    oe: {
+                        handler: function () {
+                            this.oe.Categorias.map(categoria => {
+                                categoria.Items.map(item => {
+                                    var score = 0
+                                    var baseScore = 0
+
+                                    if (this.oe.FichaVersion == 5) {
+                                        score = this.scoreModeAV4(score, item.Respuesta);
+                                        baseScore = this.baseScoreModeV3(baseScore, item.Respuesta);
+                                    } else if (this.oe.FichaVersion == 4 || this.oe.FichaVersion == 3) {
+                                        score = this.scoreModeAV3(score, item.Respuesta);
+                                        baseScore = this.baseScoreModeV3(baseScore, item.Respuesta);
+                                    } else {
+                                        score = this.scoreModeA(score, item.Respuesta);
+                                        baseScore = this.baseScoreMode(baseScore, item.Respuesta);
+                                    }
+
+                                    // add new mode
+                                    if (item.Codigo) {
+                                        if (item.Codigo == '010204' || item.Codigo == '010703') {
+                                            score = this.scoreModeB(score, item.Respuesta)
+                                        }
+
+                                        if (item.Codigo == '010905-V5' || item.Codigo == '010603-V4') {
+                                            score = this.scoreModeBV3(score, item.Respuesta)
+                                        }
+                                    }
+
+                                    item.PuntuacionBase = baseScore
+                                    item.PuntuacionObtenida = score
+                                })
+
+                                categoria.PuntuacionBase = categoria.Items.reduce((accumulator, item) => accumulator + item.PuntuacionBase, 0)
+                                categoria.PuntuacionObtenida = categoria.Items.reduce((accumulator, item) => accumulator + item.PuntuacionObtenida, 0)
+                                categoria.Porcentaje = categoria.PuntuacionBase == 0 ? 0 : categoria.PuntuacionObtenida / categoria.PuntuacionBase
+                            })
+
+                            this.oe.PuntuacionObtenida = this.oe.Categorias.reduce((accumulator, oe) => accumulator + oe.PuntuacionObtenida, 0)
+                            this.oe.PuntuacionBase = this.oe.Categorias.reduce((accumulator, oe) => accumulator + oe.PuntuacionBase, 0)
+                            this.oe.Porcentaje = this.oe.PuntuacionBase == 0 ? 0 : this.oe.PuntuacionObtenida / this.oe.PuntuacionBase
+                        },
+                        deep: true
+                    }
+                },
+                async mounted() {
+                    const vm = this
+
+                    if (IS_UPDATE == 1) {
+                        await vm.getData()
+                    } else {
+                        await vm.getDataInitial()
+                    }
+
+                    $(this.$refs.salaselect2).select2({
+                        multiple: false, placeholder: "--Seleccione--", allowClear: true
+                    }).on('change', function () {
+                        vm.oe.SalaId = $(this).val()
+                    })
+
+                    vm.loaded = true
+                },
+                directives: {
+                    datetimepicker: {
+                        inserted: function (el, binding, vNode) {
+                            var context = vNode.context
+
+                            $(el).datetimepicker({
+                                pickTime: false, format: 'DD/MM/YYYY'
+                            }).on('dp.change', function () {
+                                context.oe.Fecha = $(this).find('#datetimepickerFicha').val()
+                            })
+                        }
+                    }
+                }
+            })
+
+            new Vue({
+                el: '#app-oe-modal',
+                data: {
+                    element: {
+                        key: null,
+                        index: null,
+                    },
+                    oe: {
+                        Tipo: null,
+                        PuntuacionObtenida: null,
+                        PuntuacionBase: null,
+                        Porcentaje: null,
+                        Categoria: {
+                            Nombre: null,
+                            PuntuacionObtenida: null,
+                            PuntuacionBase: null,
+                            Porcentaje: null,
+                            Item: {
+                                Nombre: null,
+                                PuntuacionObtenida: null,
+                                PuntuacionBase: null,
+                                FechaExpiracion: null,
+                                FechaExpiracionActivo: null,
+                                Respuesta: null,
+                                Observacion: null,
+                                TipoRespuesta: null
+                            }
+                        }
+                    }
+                },
+                methods: {
+                    addObservation: function () {
+                        eventBus.$emit('addObservation', this.element.key, this.element.index, this.oe.Categoria.Item.Observacion)
+                        $('#modalObservationOE').modal('hide')
+                        toastr.success('Se agrego observación', "Mensaje")
+                    }
+                },
+                created: function () {
+                    eventBus.$on('showModalObservation', function (key, index, data) {
+                        this.element.key = key
+                        this.element.index = index
+                        this.oe = data
+                        $('#modalObservationOE').modal('show')
+                    }.bind(this))
+                }
+            })
+        })
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // isotope grid
+            $(".oe-items").isotope({
+                itemSelector: '.isotop-grid',
+                layoutMode: 'masonry',
+            })
+
+            // ajax complete
+            $(document).ajaxComplete(function () {
+                $('.oe-items').isotope('reloadItems').isotope()
+            })
+        })
+    </script>
+}

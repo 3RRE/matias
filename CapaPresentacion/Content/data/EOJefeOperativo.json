@@ -1,0 +1,648 @@
+[
+  {
+    "Codigo": "0101",
+    "Nombre": "Experiencia del Cliente",
+    "PuntuacionObtenida": 0,
+    "PuntuacionBase": 0,
+    "Porcentaje": 0,
+    "Items": [
+      {
+        "Codigo": "010101",
+        "Nombre": "Prevencionista de recepción saluda y da la bienvenida y se despide del cliente",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 1
+      },
+      {
+        "Codigo": "010102",
+        "Nombre": "Solicita DNI (sistema de ludopatía)",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 4
+      },
+      {
+        "Codigo": "010103",
+        "Nombre": "Anfitriones/operadores: Saluda y da la bienvenida con amabilidad y se presenta",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 1
+      },
+      {
+        "Codigo": "010104",
+        "Nombre": "Anfitriones/operadores: Asiste en juego de máquina",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 1
+      },
+      {
+        "Codigo": "010105",
+        "Nombre": "Atención de cajeros: Saluda atentamente y su atención es fluida",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 1
+      },
+      {
+        "Codigo": "010106",
+        "Nombre": "Atención de cajeros: Canta las transacciones",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "010107",
+        "Nombre": "Atención cajeros: Se entrega Ticket TITO por el total de transacción con tarjeta crédito/débito",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "010108",
+        "Nombre": "El personal de mantenimiento es cortés con los clientes y están pendientes de las necesidades de la sala",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 1
+      },
+      {
+        "Codigo": "010109",
+        "Nombre": "El perifoneo de los sorteos y promociones es constante y entendible. (Min 1 vez x hora)",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 1
+      },
+      {
+        "Codigo": "010110",
+        "Nombre": "El personal tiene pleno conocimiento de las promociones y eventos a realizar en sala",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 1
+      },
+      {
+        "Codigo": "010111",
+        "Nombre": "Personal tiene conocimiento de lo que se tiene en A&B y lo ofrece según reglamentación de sala",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "010112",
+        "Nombre": "El personal de sala se encuentra correctamente presentado y uniformado",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 1
+      }
+    ]
+  },
+  {
+    "Codigo": "0102",
+    "Nombre": "Limpieza, Seguridad e Instalaciones (SALA)",
+    "PuntuacionObtenida": 0,
+    "PuntuacionBase": 0,
+    "Porcentaje": 0,
+    "Items": [
+      {
+        "Codigo": "010201",
+        "Nombre": "Fachada, letrero, mampara e iluminación exterior limpios y bien mantenidos",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 1
+      },
+      {
+        "Codigo": "010202",
+        "Nombre": "Área de recepción se encuentra limpia y ordenada",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 1
+      },
+      {
+        "Codigo": "010203",
+        "Nombre": "Sala se encuentra limpia y ordenada",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 1
+      },
+      {
+        "Codigo": "010204",
+        "Nombre": "Hay vasos, platos sucios y papeles en el suelo, colillas de cigarro",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "010205",
+        "Nombre": "Espacio entre máquinas se encuentra limpio y bien mantenido",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 1
+      },
+      {
+        "Codigo": "010206",
+        "Nombre": "Alfombra se encuentra limpia",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "010207",
+        "Nombre": "Sillas se encuentran limpias y bien mantenidas",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 1
+      },
+      {
+        "Codigo": "010208",
+        "Nombre": "Temperatura de sala (está entre 24 y 25°C según corresponda) es uniforme y adecuada para la estación",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 1
+      },
+      {
+        "Codigo": "010209",
+        "Nombre": "Iluminación de sala está en buen estado",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 1
+      },
+      {
+        "Codigo": "010210",
+        "Nombre": "Letreros de seguridad y señalización se encuentran visibles y en buen estado",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "010211",
+        "Nombre": "Zonas de evacuación de sala se encuentran libres de mobiliario u otros objetos",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "010212",
+        "Nombre": "Los requisitos para los clientes con discapacidades están implementados",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "010213",
+        "Nombre": "Los baños se encuentran limpios, abastecidos y chequeados por el jefe de sala",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 1
+      },
+      {
+        "Codigo": "010214",
+        "Nombre": "Los camerinos se encuentran limpios y ordenados",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 1
+      },
+      {
+        "Codigo": "010215",
+        "Nombre": "Carnet de sanidad certificados de higiene y salubridad vigente",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 2
+      },
+      {
+        "Codigo": "010216",
+        "Nombre": "CCTV operativo (grabación 15 días, Calidad, enfoques y audios)",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "010217",
+        "Nombre": "Comunicación de retiro temporal al día (Modelo SUCTR)",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "010218",
+        "Nombre": "Verificación de máquinas conectadas a sistema Online (revisión cada hora)",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      }
+    ]
+  },
+  {
+    "Codigo": "0103",
+    "Nombre": "Limpieza, Seguridad e Instalaciones (Cocinas, Barras y Carritos de cortesías)",
+    "PuntuacionObtenida": 0,
+    "PuntuacionBase": 0,
+    "Porcentaje": 0,
+    "Items": [
+      {
+        "Codigo": "010301",
+        "Nombre": "Todas las zonas de barra se encuentra limpias y abastecidas, sin servicio sucio sobre los tableros",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "010302",
+        "Nombre": "Perecibles (salsas, sándwich, etc.) se encuentran correctamente fechados y almacenados",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 2
+      },
+      {
+        "Codigo": "010303",
+        "Nombre": "Equipos de frio se encuentran limpios (exteriores, empaquetaduras, bisagras, rejillas libres de hongos u oxido)",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "010304",
+        "Nombre": "Instalaciones de barra libre de trapos y líquidos de limpieza",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "010305",
+        "Nombre": "Productos no perecibles dentro de la fecha de vencimiento",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 2
+      },
+      {
+        "Codigo": "010306",
+        "Nombre": "Cumple con estándar de rotulación de fechado",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 2
+      }
+    ]
+  },
+  {
+    "Codigo": "0104",
+    "Nombre": "Fondo de Bóveda y Valorados (CI)",
+    "PuntuacionObtenida": 0,
+    "PuntuacionBase": 0,
+    "Porcentaje": 0,
+    "Items": [
+      {
+        "Codigo": "010401",
+        "Nombre": "Cuadre de bóveda, caja chica, fondo de ferretería, MKT y A&B es el correcto",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "010402",
+        "Nombre": "Cajas temporizadas de seguridad están correctamente cerradas y activadas",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 1
+      },
+      {
+        "Codigo": "010403",
+        "Nombre": "Alertas de billetero y alerta de ludopatía se encuentra activa en caja",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 2
+      },
+      {
+        "Codigo": "010404",
+        "Nombre": "Personal se encuentra capacitado en sistema contra robos y uso de alarmas (verificar correo de ejecución de pruebas)",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 2
+      },
+      {
+        "Codigo": "010405",
+        "Nombre": "Manojo de llaves coincide en cantidad, nombre y ubicación según el formato de control",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "010406",
+        "Nombre": "Realiza los controles de ingresos y salidas de llaves en los formatos correctos",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      }
+    ]
+  },
+  {
+    "Codigo": "0105",
+    "Nombre": "Máquinas",
+    "PuntuacionObtenida": 0,
+    "PuntuacionBase": 0,
+    "Porcentaje": 0,
+    "Items": [
+      {
+        "Codigo": "010501",
+        "Nombre": "Monitores de máquinas operativos",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 1
+      },
+      {
+        "Codigo": "010502",
+        "Nombre": "Máquinas limpias y bien mantenidas, iluminación y teclados",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 1
+      },
+      {
+        "Codigo": "010503",
+        "Nombre": "Toppers y drops limpios y bien mantenidos",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 1
+      },
+      {
+        "Codigo": "010504",
+        "Nombre": "Máquinas en mantenimiento con cartel respectivo",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "010505",
+        "Nombre": "Progresivos se encuentran operativos y en buen estado (estructura y TV)",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 2
+      }
+    ]
+  },
+  {
+    "Codigo": "0106",
+    "Nombre": "Comunicación",
+    "PuntuacionObtenida": 0,
+    "PuntuacionBase": 0,
+    "Porcentaje": 0,
+    "Items": [
+      {
+        "Codigo": "010601",
+        "Nombre": "Radios y hands free se encuentran operativos",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 1
+      },
+      {
+        "Codigo": "010602",
+        "Nombre": "Sistema y listado de ludópatas es el actualizado",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "010603",
+        "Nombre": "Lista de personas no gratas está implementado en periódico mural en área de descanso",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      }
+    ]
+  },
+  {
+    "Codigo": "0107",
+    "Nombre": "Almacenes",
+    "PuntuacionObtenida": 0,
+    "PuntuacionBase": 0,
+    "Porcentaje": 0,
+    "Items": [
+      {
+        "Codigo": "010701",
+        "Nombre": "Productos correctamente almacenados y dentro de fecha de vencimiento",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 2
+      },
+      {
+        "Codigo": "010702",
+        "Nombre": "Se respeta principios de almacenamiento, orden y distribución (productos pesados bajo cintura livianos en la parte superior)",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "010703",
+        "Nombre": "Existe sobre stock",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      }
+    ]
+  }
+]

@@ -1,0 +1,190 @@
+@startuml Secuencia_05_Configurar_Pregunta_Atributo
+
+title Secuencia: Configurar Pregunta Atributo
+
+actor "Administrador" as Admin
+participant "Vista Web" as Vista
+participant "ConfigClienteSatisfaccionController" as Controller
+participant "PreguntasBL" as PreguntasBL
+participant "PreguntasDAL" as PreguntasDAL
+participant "OpcionesBL" as OpcionesBL
+participant "OpcionesDAL" as OpcionesDAL
+database "BD" as DB
+
+== Acceso a Configuración ==
+Admin -> Vista: Acceder a "Configuración de Preguntas"
+Vista -> Controller: ObtenerPreguntas(tipoEncuesta=1)
+Controller -> PreguntasBL: ListadoPreguntas(tipoEncuesta=1)
+PreguntasBL -> PreguntasDAL: ListadoPreguntas(tipoEncuesta=1)
+PreguntasDAL -> DB: SELECT * FROM Pregunta WHERE IdTipoEncuesta = 1
+DB --> PreguntasDAL: Lista de preguntas
+PreguntasDAL --> PreguntasBL: List<PreguntaEntidad>
+
+Controller -> OpcionesBL: ListadoOpciones()
+OpcionesBL -> OpcionesDAL: ListadoOpciones()
+OpcionesDAL -> DB: SELECT * FROM Opcion
+DB --> OpcionesDAL: Lista de opciones
+OpcionesDAL --> OpcionesBL: List<OpcionEntidad>
+
+Controller -> Controller: Mapear preguntas con sus opciones
+Controller --> Vista: JSON { preguntas con opciones anidadas }
+Vista --> Admin: Mostrar tabla de preguntas (CSAT, NPS, Atributos)
+
+== Crear Nueva Pregunta Atributo ==
+Admin -> Vista: Clic en "Nueva Pregunta Atributo"
+Vista --> Admin: Mostrar formulario
+note right of Vista
+    Campos del formulario:
+    - Texto de la pregunta
+    - Nombre del indicador (ej: "LIMPIEZA")
+    - Fecha inicio
+    - Fecha fin
+    - Orden (opcional)
+    - Random (checkbox)
+end note
+
+Admin -> Vista: Completar formulario y guardar
+Vista -> Vista: Validar datos
+note right of Vista
+    Validaciones:
+    - Texto no vacío
+    - Indicador no vacío
+    - Indicador único (no duplicado)
+    - Fechas válidas
+    - fechaInicio <= fechaFin
+end note
+
+Vista -> Controller: CrearPreguntaAtributo(model)
+
+== Validación de Indicador Único ==
+Controller -> Controller: Convertir indicador a MAYÚSCULAS
+Controller -> PreguntasBL: ListadoPreguntas(tipoEncuesta=1)
+PreguntasBL -> PreguntasDAL: ListadoPreguntas(1)
+PreguntasDAL -> DB: SELECT preguntas
+DB --> PreguntasDAL: Preguntas existentes
+PreguntasDAL --> PreguntasBL: List<PreguntaEntidad>
+
+Controller -> Controller: Verificar si indicador ya existe
+alt Indicador duplicado
+    Controller --> Vista: { success: false, mensaje: "El indicador ya existe" }
+    Vista --> Admin: Mostrar error
+else Indicador único
+    
+    == Crear Pregunta ==
+    Controller -> Controller: Establecer valores predeterminados
+    note right of Controller
+        model.Multi = false
+        model.Activo = true
+    end note
+    
+    Controller -> PreguntasBL: CrearPregunta(model)
+    PreguntasBL -> PreguntasDAL: CrearPregunta(model)
+    PreguntasDAL -> DB: INSERT INTO Pregunta
+    note right of DB
+        INSERT INTO Pregunta (
+            IdTipoEncuesta, Texto, Indicador,
+            Orden, Random, Multi, Activo,
+            FechaInicio, FechaFin
+        ) OUTPUT INSERTED.IdPregunta
+        VALUES (...)
+    end note
+    DB --> PreguntasDAL: IdPregunta
+    PreguntasDAL --> PreguntasBL: IdPregunta
+    
+    == Crear Opciones Estándar ==
+    note right of Controller
+        Opciones predefinidas para atributos:
+        1. "Muy insatisfecho" - Valor: 1
+        2. "Insatisfecho" - Valor: 2
+        3. "Neutral" - Valor: 3
+        4. "Satisfecho" - Valor: 4
+        5. "Muy satisfecho" - Valor: 5
+    end note
+    
+    loop Para cada opción estándar (1 a 5)
+        Controller -> OpcionesBL: CrearOpcion(opcion)
+        OpcionesBL -> OpcionesDAL: CrearOpcion(opcion)
+        OpcionesDAL -> DB: INSERT INTO Opcion
+        note right of DB
+            INSERT INTO Opcion (
+                IdPregunta, Texto,
+                TieneComentario, Valor
+            ) OUTPUT INSERTED.IdOpcion
+            VALUES (...)
+        end note
+        DB --> OpcionesDAL: IdOpcion
+        OpcionesDAL --> OpcionesBL: IdOpcion
+    end
+    
+    Controller --> Vista: { success: true, idPregunta }
+    Vista -> Vista: Actualizar tabla de preguntas
+    Vista --> Admin: Mostrar mensaje de éxito
+end
+
+== Activar/Desactivar Pregunta ==
+Admin -> Vista: Toggle switch de pregunta
+Vista -> Controller: TogglePregunta(idPregunta)
+Controller -> PreguntasBL: TogglePregunta(idPregunta)
+PreguntasBL -> PreguntasDAL: TogglePregunta(idPregunta)
+PreguntasDAL -> DB: UPDATE Pregunta SET Activo = NOT Activo WHERE IdPregunta = @id
+DB --> PreguntasDAL: Filas afectadas
+PreguntasDAL --> PreguntasBL: bool success
+PreguntasBL --> Controller: bool success
+Controller --> Vista: { success, mensaje }
+Vista -> Vista: Actualizar estado visual
+Vista --> Admin: Pregunta actualizada
+
+== Editar Pregunta Atributo ==
+Admin -> Vista: Clic en "Editar"
+Vista --> Admin: Mostrar formulario con datos actuales
+Admin -> Vista: Modificar fechas o texto
+Vista -> Controller: EditarPregunta(model)
+Controller -> PreguntasBL: EditarPregunta(model)
+PreguntasBL -> PreguntasDAL: EditarPregunta(model)
+PreguntasDAL -> DB: UPDATE Pregunta
+note right of DB
+    UPDATE Pregunta SET
+        Texto = @texto,
+        FechaInicio = @fechaInicio,
+        FechaFin = @fechaFin,
+        Orden = @orden,
+        Random = @random
+    WHERE IdPregunta = @id
+end note
+DB --> PreguntasDAL: Filas afectadas
+PreguntasDAL --> PreguntasBL: bool success
+PreguntasBL --> Controller: bool success
+Controller --> Vista: { success }
+Vista -> Vista: Actualizar tabla
+Vista --> Admin: Pregunta actualizada
+
+== Eliminar Pregunta Atributo ==
+Admin -> Vista: Clic en "Eliminar"
+Vista --> Admin: Confirmar eliminación
+Admin -> Vista: Confirmar
+Vista -> Controller: EliminarPregunta(idPregunta, tipo="ATRIBUTO")
+
+alt Es pregunta CSAT o NPS
+    Controller --> Vista: { success: false, mensaje: "No se puede eliminar" }
+    Vista --> Admin: Mostrar error
+else Es pregunta Atributo
+    Controller -> PreguntasBL: EliminarPregunta(idPregunta)
+    PreguntasBL -> PreguntasDAL: EliminarPregunta(idPregunta)
+    
+    note right of PreguntasDAL
+        Primero elimina las opciones
+        asociadas, luego la pregunta
+    end note
+    
+    PreguntasDAL -> DB: DELETE FROM Opcion WHERE IdPregunta = @id
+    DB --> PreguntasDAL: OK
+    PreguntasDAL -> DB: DELETE FROM Pregunta WHERE IdPregunta = @id
+    DB --> PreguntasDAL: Filas eliminadas
+    PreguntasDAL --> PreguntasBL: bool success
+    PreguntasBL --> Controller: bool success
+    Controller --> Vista: { success: true }
+    Vista -> Vista: Remover de tabla
+    Vista --> Admin: Pregunta eliminada
+end
+
+@enduml

@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "FLujoPregunta";
+}
+<div class="col-md-12" style="padding:10px 0 !important">
+    <div class="block">
+        <div class="block-content-outer">
+            <div class="block-content-inner">
+                <div class="row">
+                    <div class="col-md-12 col-xs-12 col-sm-12">
+                        <h1>
+                            <span aria-hidden="true" class="icon icon-block-menu"></span>
+                            <span class="main-text">
+                                Flujo pregunta
+                            </span>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="atributoWidget">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <h3>Encuesta</h3>
+                <div id="preguntas-container"></div>
+
+                <button class="btn btn-success" id="btnGuardarOrden">Guardar Orden</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section modal
+{
+
+    <div class="modal fade" id="flujoModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Definir Flujo</h4>
+                </div>
+                <div class="modal-body">
+                    <label>Pregunta siguiente</label>
+                    <select id="flujoPreguntaSiguiente" class="form-control"></select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btnGuardarFlujo" class="btn btn-success">Guardar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+
+
+@section js{
+    <script src="~/Content/assets/viewsjs/ClienteSatisfaccion/flujoPregunta.js"></script>
+}
+
+

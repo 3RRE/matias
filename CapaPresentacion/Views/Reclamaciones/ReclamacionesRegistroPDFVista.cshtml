@@ -1,0 +1,205 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = "";
+}
+@using System.Activities.Expressions
+@using System.Web.Script.Serialization
+@using System.Web.UI.WebControls
+@{
+    ViewBag.Title = "Libro de Reclamaciones";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="~/Content/assets/images/required/logo-default.ico">
+
+    <title>Reclamaciones</title>
+
+    <!-- Required CSS Files -->
+    <link type="text/css" href="~/Content/assets/css/required/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href='~/fonts/fonts.googleapis/css2ca8.css?family=Roboto:400,300&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link type="text/css" href="~/Content/assets/js/required/jquery-ui-1.11.0.custom/jquery-ui.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/js/required/jquery-ui-1.11.0.custom/jquery-ui.structure.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/js/required/jquery-ui-1.11.0.custom/jquery-ui.theme.min.css" rel="stylesheet" />
+
+    <link type="text/css" href="~/Content/assets/css/required/icheck/all.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/fonts/metrize-icons/styles-metrize-icons.css" rel="stylesheet">
+    <link type="text/css" href="~/Content/assets/fonts/font-awesome-4.6.3/css/font-awesome.css" rel="stylesheet" />
+
+
+    <!-- Optional CSS Files -->
+
+    <link type="text/css" href="~/Content/assets/css/optional/fullcalendar/fullcalendar.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/fullcalendar/circloid-fullcalendar.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/fullcalendar/fullcalendar.print.css" rel="stylesheet" media="print" />
+    <link type="text/css" href="~/Content/assets/css/optional/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/select2.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/bootstrapValidator.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/toastr.min.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/optional/jquery-confirm.css" rel="stylesheet" />
+
+    <!-- add CSS files here -->
+    <!-- More Required CSS Files -->
+    <link type="text/css" href="~/Content/assets/css/styles-core.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/styles-core-responsive.css" rel="stylesheet" />
+    <style>
+        .widget-box {
+            margin: 0px !important;
+        }
+    </style>
+</head>
+<body style="background:#ffffff" >
+    
+    <div class="container-fluid">
+        <div id="body-container">
+            <div class="standalone-page" style="max-width:100%;margin-top:0px;">
+                <div class="standalone-page-logo">
+
+                </div>
+                <div class="standalone-page-content" data-border-top="simple">
+                    <div class="standalone-page-block" id="blockLogin">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="col-md-3 col-xs-3 col-lg-3 text-center">
+                                            @if (ViewBag.logoSala == "")
+                                            {
+                                                <img src="~/Content/assets/images/no_image.jpg" class="img-responsive" style="padding-top: 5px;width: 115px;height:110px;margin: auto;" />
+                                            }
+                                            else
+                                            {
+                                                <img src="@ViewBag.logoSala" class="img-responsive" style="padding-top: 5px;width: 115px;height:110px;margin: auto;" />
+                                            }
+                                        </div>
+                                        <div class="col-md-7 col-xs-7 col-lg-7">
+                                            <p>
+                                                <h2><b>Hoja de Reclamación</b></h2>
+                                            </p>
+                                            <div style="line-height: 0.9;">
+                                                <p>Fecha : @ViewBag.reclamacion.fecha.ToShortDateString()</p>
+                                                <p>Codigo : @ViewBag.reclamacion.codigo</p>
+                                                <p><b>@ViewBag.reclamacion.razon_social.ToUpper()</b> - RUC: @ViewBag.rucEmpresa</p>
+                                                <p>@ViewBag.reclamacion.local_direccion</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-xs-2 col-lg-2" style="padding-top: 20px;">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 col-xs-12 bg_white">
+                                        <input name="id" id="id" value="0" type="hidden" />
+                                        <div class="widget-box widget-color-dark">
+                                            <div class="widget-header">
+                                                <h5 class="widget-title bigger lighter"><b>1. IDENTIFICACIÓN DEL CONSUMIDOR RECLAMANTE</b></h5>
+
+                                            </div>
+                                            <div class="widget-body">
+                                                <div class="widget-main">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <p><b>Nombre Completo:</b> <span>@ViewBag.reclamacion.nombre.ToUpper()</span></p>
+                                                            <p><b>Domicilio:</b> <span>@ViewBag.reclamacion.direccion.ToUpper()</span></p>
+                                                            <p><b>DNI/CE:</b> <span>@ViewBag.reclamacion.documento.ToUpper()</span></p>
+                                                            <p><b>Telefono:</b> <span>@ViewBag.reclamacion.telefono.ToUpper()</span></p>
+                                                            <p><b>E-mail:</b> <span>@ViewBag.reclamacion.correo.ToUpper()</span></p>
+                                                            @if (ViewBag.tiposala != 0)
+                                                            {
+                                                                <p><b>Padre ó Madre:</b> <span>@ViewBag.reclamacion.nombrepadre_madre.ToUpper()</span></p>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="widget-box widget-color-dark">
+                                            <div class="widget-header">
+                                                <h5 class="widget-title bigger lighter">
+                                                    <b>2. IDENTIFICACIÓN DEL BIEN CONTRATADO</b>
+                                                </h5>
+                                            </div>
+                                            <div class="widget-body">
+                                                <div class="widget-main">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <p><b>Tipo:</b> <span>@ViewBag.reclamacion.tipo.ToUpper()</span></p>
+                                                            <p><b>Monto Reclamado:</b> <span>@ViewBag.reclamacion.monto</span></p>
+                                                            <p><b>Descripción:</b> <span>@ViewBag.reclamacion.descripcion.ToUpper()</span></p>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="widget-box widget-color-dark">
+                                            <div class="widget-header">
+                                                <h5 class="widget-title bigger lighter">
+                                                    <b>3. DETALLE DE LA RECLAMACIÓN</b>
+                                                </h5>
+                                            </div>
+                                            <div class="widget-body">
+                                                <div class="widget-main">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <p><b>Tipo:</b> <span>@ViewBag.reclamacion.tipo_reclamo.ToUpper()</span></p>
+                                                            <p><b>Local:</b> <span>@ViewBag.reclamacion.local_nombre.ToUpper()</span></p>
+                                                            <p><b>Referencia:</b> <span>
+    @if (!string.IsNullOrEmpty(@ViewBag.reclamacion.referencia))
+    {
+        @ViewBag.reclamacion.referencia.ToUpper()
+    }
+    else
+    {
+        @ViewBag.reclamacion.referencia
+    }
+</span></p>
+                                                            <p><b>Detalle:</b> <span>@ViewBag.reclamacion.detalle.ToUpper()</span></p>
+                                                            <p><b>Pedido:</b> <span>@ViewBag.reclamacion.pedido.ToUpper()</span></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="font-size: 14px; margin-top: 15px; margin-left: 14px; margin-right: 14px;">
+                                            <small class="text-justify">
+                                                <p>
+                                                    <sup>(1)</sup> RECLAMO: Disconformidad relacionada a los productos o servicios.<br> <sup>(2)</sup> QUEJA: Disconformidad no relacionada a los productos o servicios; o, malestar o descontento respecto a la atención al público.<br> <sup>(3)</sup> E-MAIL: Al brindar mi correo electrónico, autorizo recibir la respuesta a través de este medio.
+                                                </p>
+                                                <ul style="margin-left:38px;">
+                                                    <li>
+                                                        La formulación del reclamo no impide acudir a otras vías de solución de controversias ni es requisito previo
+                                                        para interponer una denuncia ante INDECOPI.
+                                                    </li>
+                                                    <li>
+                                                        El proveedor debe dar respuesta al reclamo o queja en un plazo no mayor de quince (15) días hábiles, el cual es improrrogable.
+                                                    </li>
+                                                </ul>
+                                            </small>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.container -->
+
+
+    <script type="text/javascript" src="~/Content/assets/js/required/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/required/jquery-ui-1.11.0.custom/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/required/bootstrap/bootstrap.min.js"></script>
+
+  
+</body>
+</html>

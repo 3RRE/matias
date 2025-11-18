@@ -1,0 +1,504 @@
+﻿@using S3k.Utilitario;
+@{
+    ViewBag.Title = "Listado Reclamaciones";
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+}
+@section css
+{
+    <style>
+        /* .modal-body .select2-dropdown {
+            z-index: 19000;
+        }*/
+
+        .block-flex {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .icheckbox_bg-white {
+            background-color: #FFFFFF;
+        }
+
+        .check-attach {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            margin: 0;
+            padding: 0;
+            background-color: #3478FC;
+        }
+
+        .check-attach > i {
+            font-size: 1.15em;
+            color: #FFFFFF;
+        }
+    </style>
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-shield"></span>
+                                <span class="main-text">
+                                    @ViewBag.Title
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3  col-xs-12 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnExcel" class="btn btn-primary btn-sm col-md-12 col-xs-12">
+                                        <span class="fa fa-file-excel-o"></span>
+                                        Excel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3  col-xs-12 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnDescargaMultiple" class="btn btn-danger btn-sm col-md-12 col-xs-12">
+                                        <span class="fa fa-book"></span>
+                                        Físico
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3  col-xs-12 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnBuscar" class="btn btn-success btn-sm col-md-12 col-xs-12">
+                                        <span class="fa fa-search"></span>
+                                        Buscar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3  col-xs-12 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnlink" class="btn btn-warning btn-sm col-md-12 col-xs-12">
+                                        <span class="fa fa-link"></span>
+                                        link
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+
+                        <div class="col-xs-12 col-md-12 col-sm-12">
+                            <div class="row" id="formfiltro">
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="input-group ">
+                                        <span class="input-group-addon">
+                                            Sala
+                                        </span>
+                                        <select class="form-control input-sm codSalaAuditoria" id="cboSala" name="cboSala"></select>
+                                    </div>
+                                </div>
+                                @*<div class="col-md-4 col-sm-4">
+                                        <div class="input-group form-group">
+                                            <span class="input-group-addon">
+                                                Sala
+                                            </span>
+                                            <select id="cboSala" class="form-control input-sm codSalaAuditoria" name="cboSala" multiple="multiple"></select>
+                                            <span class="input-group-addon">
+                                                <input type="checkbox" name="checkTodoSalas" id="checkTodoSalas" />
+                                                Todo
+                                            </span>
+                                        </div>
+                                    </div>*@
+
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            DEL
+                                        </span>
+                                        <input type="text" class="form-control input-sm dateOnly_" id="fechaInicio" name="fechaini" readonly />
+                                        <span class="input-group-addon input-group-icon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            AL
+                                        </span>
+                                        <input type="text" class="form-control input-sm dateOnly_" id="fechaFin" name="fechafin" readonly />
+                                        <span class="input-group-addon input-group-icon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <hr style="margin-top: 0px;" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="contenedor_tabla">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section modal
+{
+    <div class="modal fade full-modal" id="full-modalRegistroReclamacion" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-md" style="max-width:70% !important">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label_">Registro Reclamacion</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-3 col-xs-3 col-lg-3 text-center">
+
+                                        <img src="~/Content/assets/images/no_image.jpg" class="img-responsive imgreclamacion" style="padding-top: 5px;width: 115px;height:110px;margin: auto;" />
+
+
+                                    </div>
+                                    <div class="col-md-7 col-xs-7 col-lg-7">
+                                        <p>
+                                            <h2><b>Hoja de Reclamación</b></h2>
+                                        </p>
+                                        <div style="line-height: 0.9;">
+                                            <p>Fecha : <span id="spnfecha"></span></p>
+                                            <p>Codigo : <span id="spnCodigo"></span></p>
+                                            <p><b><span id="spnrazonsocial"></span></b></p>
+                                            <p><span id="spndireccionempresa"></span></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-xs-2 col-lg-2" style="padding-top: 20px;">
+                                        <button class="btn btn-app btn-danger btn-block" id="btnPdf" data-doc="">
+                                            <i class="ace-icon glyphicon glyphicon-download bigger-200"></i>
+                                            PDF
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 14px;">
+                                <div class="col-md-12 col-xs-12 bg_white">
+                                    <input name="reclamacionid" id="reclamacionid" value="0" type="hidden" />
+                                    <div class="widget-box widget-color-dark">
+                                        <div class="widget-header" style="background: #000; padding: 1px; padding-left: 10px; color: #fff; padding-right: 10px;">
+                                            <h5 class="widget-title bigger lighter" style="color: #fff;"><b>1. IDENTIFICACIÓN DEL CONSUMIDOR RECLAMANTE</b></h5>
+
+                                        </div>
+                                        <div class="widget-body" style="padding-left: 10px;">
+                                            <div class="widget-main">
+                                                <div class="row">
+                                                    <div class="col-md-12" style="margin-top: 10px;">
+                                                        <p><b style="font-weight:bold;color: #000;">Nombre Completo:</b> <span id="spnnombrecliente"></span></p>
+                                                        <p><b style="font-weight:bold;color: #000;">Domicilio:</b> <span id="spndireccioncliente"></span></p>
+                                                        <p><b style="font-weight:bold;color: #000;">DNI/CE:</b> <span id="spndnicliente"></span></p>
+                                                        <p><b style="font-weight:bold;color: #000;">Telefono:</b> <span id="spntelefonocliente"></span></p>
+                                                        <p><b style="font-weight:bold;color: #000;">E-mail:</b> <span id="spncorreo"></span></p>
+                                                        <p id="mostrarPadreoMadre"><b style="font-weight:bold;color: #000;">Padre ó Madre:</b> <span id="spnpadreomadre"></span></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="widget-box widget-color-dark">
+                                        <div class="widget-header" style="background: #000; padding: 1px; padding-left: 10px; color: #fff; padding-right: 10px;">
+                                            <h5 class="widget-title bigger lighter" style="color: #fff;">
+                                                <b>2. IDENTIFICACIÓN DEL BIEN CONTRATADO</b>
+                                            </h5>
+                                        </div>
+                                        <div class="widget-body" style="padding-left: 10px;">
+                                            <div class="widget-main">
+                                                <div class="row">
+                                                    <div class="col-md-12" style="margin-top: 10px;">
+                                                        <p><b style="font-weight:bold;color: #000;">Tipo:</b> <span id="spntipobien"></span></p>
+                                                        <p><b style="font-weight:bold;color: #000;">Monto Reclamado:</b> <span id="spnmonto"></span></p>
+                                                        <p><b style="font-weight:bold;color: #000;">Descripción:</b> <span id="spndescripcion"></span></p>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="widget-box widget-color-dark">
+                                        <div class="widget-header" style="background: #000; padding: 1px; padding-left: 10px; color: #fff; padding-right: 10px;">
+                                            <h5 class="widget-title bigger lighter" style="color: #fff;">
+                                                <b>3. DETALLE DE LA RECLAMACIÓN</b>
+                                            </h5>
+                                        </div>
+                                        <div class="widget-body" style="padding-left: 10px;">
+                                            <div class="widget-main">
+                                                <div class="row">
+                                                    <div class="col-md-12" style="margin-top: 10px;">
+                                                        <p><b style="font-weight:bold;color: #000;">Tipo:</b> <span id="spntiporeclamo"></span></p>
+                                                        <p><b style="font-weight:bold;color: #000;">Local:</b> <span id="spnlocalnombre"></span></p>
+                                                        <p><b style="font-weight:bold;color: #000;">Referencia:</b> <span id="spnreferencia"></span></p>
+                                                        <p><b style="font-weight:bold;color: #000;">Detalle:</b> <span id="spndetalle"></span></p>
+                                                        <p><b style="font-weight:bold;color: #000;">Pedido:</b> <span id="spnpedido"></span></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="widget-box widget-color-dark">
+                                        <div class="widget-header" style="background: #000; padding: 1px; padding-left: 10px; color: #fff; padding-right: 10px;">
+                                            <h5 class="widget-title bigger lighter" style="color: #fff;">
+                                                <b>4. ACCIONES ADOPTADAS PARA EL CLIENTE</b>
+                                            </h5>
+                                        </div>
+                                        <div class="widget-body" style="padding-left: 10px;padding-right:10px;">
+                                            <div class="widget-main">
+                                                <div class="row">
+                                                    <div class="col-md-12" style="margin-top: 10px;margin-bottom:10px;">
+                                                        <textarea id="salarespuesta" name="salarespuesta" rows="5" autocomplete="off" class="form-control"></textarea>
+                                                        <button class="btn btn-sm btn-block btn-danger btn_salaenviar">ENVIAR</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="widget-box widget-color-dark">
+                                        <div class="widget-header" style="background: #000; padding: 1px; padding-left: 10px; color: #fff; padding-right: 10px;">
+                                            <h5 class="widget-title bigger lighter" style="color: #fff;">
+                                                <b>5. RESPUESTA LEGAL</b>
+                                            </h5>
+                                        </div>
+                                        <div class="widget-body" style="padding-left: 10px;padding-right:10px;">
+                                            <div class="widget-main">
+                                                <div class="row">
+                                                    <div class="col-md-12" style="margin-top: 10px;margin-bottom:10px;">
+                                                        <textarea id="legalrespuesta" name="legalrespuesta" rows="5" autocomplete="off" class="form-control"></textarea>
+                                                        <button class="btn btn-sm btn-block btn-danger btn_legalenviar">ENVIAR</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="widget-box widget-color-dark">
+                                        <div class="widget-header" style="background: #000; padding: 1px; padding-left: 10px; color: #fff; padding-right: 10px;">
+                                            <div class="block-flex">
+                                                <div>
+                                                    <h5 class="widget-title bigger lighter" style="color: #fff;">
+                                                        <b>6. ARCHIVOS ADJUNTOS</b>
+                                                    </h5>
+                                                </div>
+                                                <div id="checkbox_attachament_wrap"></div>
+                                            </div>
+                                        </div>
+                                        <div class="widget-body" style="padding-left: 10px;padding-right:10px;">
+                                            <div class="widget-main">
+                                                <div class="row">
+                                                    <div class="col-md-12 text-center" id="divSubirAdjuntos" style="margin-top: 10px;margin-bottom:10px;">
+                                                        <div class="form-group">
+                                                            <label for="file-upload" style="border: 1px solid #ccc;
+                                                                display: inline-block;
+                                                                padding: 6px 12px;
+                                                                cursor: pointer;
+                                                                font-size:16px;">
+                                                                <i class="fa fa-cloud-upload"></i> Seleccionar Archivos
+                                                            </label>
+                                                            <input id="file-upload" type="file" style="display:none;" multiple="multiple" />
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-12 text-center">
+                                                        <div class="form-group" id="divAdjuntos" style="margin-top: 10px;margin-bottom:10px;"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @* Modal Listado Salas *@
+    <div class="modal fade full-modal" id="full-modalLinksSalas" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-md" style="max-width:70% !important">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label_">Salas</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="contenedor_LinksSalas">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* Modal Cargo Reclamacion *@
+    <div class="modal fade full-modal" id="full-modalCargoReclamacion" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-md" style="max-width:70% !important">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label_">Cargo de Reclamación</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12" id="divCargo">
+                            <input type="hidden" id="idreclamacion" value="0" />
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-12">
+
+                                    </div>
+                                    <div class="col-md-3 col-xs-3 col-lg-3 text-center">
+                                        <img src="~/Content/assets/images/no_image.jpg" class="img-responsive imgreclamacion" style="padding-top: 5px;width: 115px;height:110px;margin: auto;" />
+                                    </div>
+                                    <div class="col-md-7 col-xs-7 col-lg-7 text-center">
+                                        <p>
+                                            <h2><b>Cargo de Respuesta</b></h2>
+                                        </p>
+                                        <div style="line-height: 0.9;">
+                                            <p style="text-align:center"><b><span id="spanrazonsocial"></span></b></p>
+                                            <p style="text-align:center"><span id="spandireccionempresa"></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 14px;">
+                                <div class="col-md-12 col-xs-12 bg_white">
+                                    <div class="widget-box widget-color-dark">
+                                        <div class="widget-body" style="padding-left: 10px;">
+                                            <div class="widget-main">
+                                                <div class="row">
+                                                    <div class="col-md-12" style="margin-top: 10px;">
+                                                        <fieldset>
+                                                            <legend>Información del Local</legend>
+                                                            <div class="col-md-12" style="padding:0;margin:0">
+                                                                <div class="col-md-6" style="padding:0;margin:0">
+                                                                    <p><b style="font-weight:bold;color: #000;">Empresa:</b> <span id="spanempresa"></span></p>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <p><b style="font-weight:bold;color: #000;">RUC:</b> <span id="spanruc"></span></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12" style="padding:0;margin:0">
+                                                                <div class="col-md-6" style="padding:0;margin:0">
+                                                                    <p><b style="font-weight:bold;color: #000;">Direccion:</b> <span id="spandireccion"></span></p>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <p><b style="font-weight:bold;color: #000;">Sala:</b> <span id="spansala"></span></p>
+                                                                </div>
+                                                            </div>
+                                                        </fieldset>
+                                                        <fieldset>
+                                                            <legend>Información de Reclamación</legend>
+                                                            <div class="col-md-12" style="padding:0;margin:0">
+                                                                <div class="col-md-6" style="padding:0;margin:0">
+                                                                    <p><b style="font-weight:bold;color: #000;">Codigo Reclamación:</b> <span id="spancodigo"></span></p>
+
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <p><b style="font-weight:bold;color: #000;">Fecha Registro:</b> <span id="spanfecha"></span></p>
+                                                                </div>
+                                                            </div>
+                                                            <p><b style="font-weight:bold;color: #000;">E-mail Cliente:</b> <span id="spancorreodestino"></span></p>
+                                                            <p style="text-align: unset !important;"><b style="font-weight:bold;color: #000;">Direcciones Adjuntas:</b> <span id="dpancorreoadjuntos"></span></p>
+                                                            <p><b style="font-weight:bold;color: #000;">Fecha Envio Email Cliente:</b> <span id="spanfechaenvio"></span></p>
+                                                            <div class="col-md-12" style="padding:0;margin:0">
+                                                                <div class="col-md-6" style="padding:0;margin:0">
+                                                                    <p><b style="font-weight:bold;color: #000;">Fecha Envio Email Legal:</b> <span id="spanfechaenviolegal"></span></p>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <p><b style="font-weight:bold;color: #000;">Usuario Legal:</b> <span id="spanusuariolegal"></span></p>
+                                                                </div>
+                                                            </div>
+
+                                                        </fieldset>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-primary" id="imprimirCargo">Descargar</button>
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/Reclamaciones/ListadoReclamacionesVista.js?v=@fecha_archivos"></script>
+}

@@ -1,0 +1,2084 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="..\packages\EmguCV.3.1.0.1\build\EmguCV.props" Condition="Exists('..\packages\EmguCV.3.1.0.1\build\EmguCV.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EB93DFDC-0E2C-4C16-ABEB-D2878463C9DC}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CapaPresentacion</RootNamespace>
+    <AssemblyName>CapaPresentacion</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44311</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Aspose.Imaging, Version=24.3.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
+      <HintPath>..\packages\Aspose.Imaging.24.3.0\lib\net40\Aspose.Imaging.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.CV.UI, Version=3.1.0.2282, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
+      <HintPath>..\packages\EmguCV.3.1.0.1\lib\net30\Emgu.CV.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.CV.UI.GL, Version=3.1.0.2282, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
+      <HintPath>..\packages\EmguCV.3.1.0.1\lib\net30\Emgu.CV.UI.GL.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.CV.World, Version=3.1.0.2282, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
+      <HintPath>..\packages\EmguCV.3.1.0.1\lib\net30\Emgu.CV.World.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus, Version=5.7.4.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.5.7.4\lib\net45\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.9.5.4\lib\net461\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis, Version=1.55.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.1.55.0\lib\net45\Google.Apis.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth, Version=1.55.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Auth.1.55.0\lib\net461\Google.Apis.Auth.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth.PlatformServices, Version=1.55.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Auth.1.55.0\lib\net461\Google.Apis.Auth.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Core, Version=1.55.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Core.1.55.0\lib\net45\Google.Apis.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Drive.v3, Version=1.55.0.2481, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Drive.v3.1.55.0.2481\lib\net45\Google.Apis.Drive.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.PlatformServices, Version=1.55.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.1.55.0\lib\net45\Google.Apis.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="ImageResizer, Version=3.4.3.103, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImageResizer.3.4.3\lib\ImageResizer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.4.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.4.3\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.4.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.4.3\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Authentication.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Authentication.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Authentication.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Authentication.Core, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Authentication.Core.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Authentication.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Authorization, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Authorization.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Authorization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Authorization.Policy, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Authorization.Policy.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Authorization.Policy.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Hosting.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Hosting.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Hosting.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Hosting.Server.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Hosting.Server.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Hosting.Server.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Http.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Extensions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.Extensions.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Features, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.Features.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Http.Features.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Mvc.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Mvc.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Mvc.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.ResponseCaching.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.ResponseCaching.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.ResponseCaching.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Routing, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Routing.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Routing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Routing.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Routing.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Routing.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.WebUtilities, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.WebUtilities.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.WebUtilities.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\netstandard2.0\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.DotNet.PlatformAbstractions, Version=2.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.DotNet.PlatformAbstractions.2.1.0\lib\net45\Microsoft.DotNet.PlatformAbstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.2.2.0\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyModel, Version=2.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyModel.2.1.0\lib\net451\Microsoft.Extensions.DependencyModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileProviders.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.FileProviders.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.FileProviders.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Hosting.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Hosting.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Hosting.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.ObjectPool, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.ObjectPool.2.2.0\lib\netstandard2.0\Microsoft.Extensions.ObjectPool.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=1.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.1.4.1\lib\net46\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Net.Http.Headers, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.Headers.2.2.0\lib\netstandard2.0\Microsoft.Net.Http.Headers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.0.0\lib\net451\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.0.0\lib\net451\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Win32.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Win32.Primitives.4.3.0\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenTK.1.1.2225.0\lib\net20\OpenTK.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK.GLControl, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenTK.GLControl.1.1.2225.0\lib\net20\OpenTK.GLControl.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="PasswordHashTool, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PasswordHashTool.1.0.0\lib\PasswordHashTool.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="QRCoder, Version=1.4.3.0, Culture=neutral, PublicKeyToken=c4ed5b9ae8358a28, processorArchitecture=MSIL">
+      <HintPath>..\packages\QRCoder.1.4.3\lib\net40\QRCoder.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=106.11.7.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.106.11.7\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rotativa.1.7.3\lib\net461\Rotativa.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.AppContext, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.AppContext.4.3.0\lib\net46\System.AppContext.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Console, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Console.4.3.0\lib\net46\System.Console.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.5.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Globalization.Calendars, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Globalization.Calendars.4.3.0\lib\net46\System.Globalization.Calendars.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.4.3.0\lib\net46\System.IO.Compression.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.IO.Compression.ZipFile, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.ZipFile.4.3.0\lib\net46\System.IO.Compression.ZipFile.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.4.3.0\lib\net46\System.IO.FileSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.Primitives.4.3.0\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.0\lib\net46\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Sockets, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Sockets.4.3.0\lib\net46\System.Net.Sockets.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.8.0.0\lib\netstandard2.0\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml.ReaderWriter, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Xml.ReaderWriter.4.3.0\lib\net46\System.Xml.ReaderWriter.dll</HintPath>
+    </Reference>
+    <Reference Include="UAParser, Version=3.0.0.0, Culture=neutral, PublicKeyToken=f7377bf021646069, processorArchitecture=MSIL">
+      <HintPath>..\packages\UAParser.3.0.0\lib\netstandard1.3\UAParser.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="ZedGraph, Version=5.1.5.28844, Culture=neutral, PublicKeyToken=02a83cbd123fcd60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZedGraph.5.1.5\lib\ZedGraph.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.ApplicationInsights">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.2.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.2.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.2.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.2.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.2.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.2.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.cs" />
+    <Compile Include="Context\ADM_DetalleContadoresGame.cs" />
+    <Compile Include="Context\ADM_DetalleSalaProgresivo.cs" />
+    <Compile Include="Context\ADM_Ganador.cs" />
+    <Compile Include="Context\ADM_HistorialMaquina.cs" />
+    <Compile Include="Context\ADM_Maquina.cs" />
+    <Compile Include="Context\ADM_MaquinaSalaProgresivo.cs" />
+    <Compile Include="Context\ADM_PozoHistorico.cs" />
+    <Compile Include="Context\ADM_SalaProgresivo.cs" />
+    <Compile Include="Context\SeguridadPJContext.cs" />
+    <Compile Include="Controllers\AlertaBilleteros\AlertaBilleterosController.cs" />
+    <Compile Include="Controllers\AsistenciaCliente\ClienteEmpadronamientoController.cs" />
+    <Compile Include="Controllers\AsistenciaCliente\PermisosClienteController.cs" />
+    <Compile Include="Controllers\AsistenciaEmpleado\AsistenciaEmpleadoController.cs" />
+    <Compile Include="Controllers\AsistenciaEmpleado\ReporteAsistenciaEmpleadoController.cs" />
+    <Compile Include="Controllers\AsistenciaEmpleado\ReporteVisitaController.cs" />
+    <Compile Include="Controllers\AsistenciaEmpleado\TurnoController.cs" />
+    <Compile Include="Controllers\Atm\AtmController.cs" />
+    <Compile Include="Controllers\Base\BaseController.cs" />
+    <Compile Include="Controllers\Bonificaciones\BonificacionesController.cs" />
+    <Compile Include="Controllers\BOT\BotPermisosController.cs" />
+    <Compile Include="Controllers\BOT\BotAreasController.cs" />
+    <Compile Include="Controllers\BOT\BotEmpleadosController.cs" />
+    <Compile Include="Controllers\BOT\BotContactosController.cs" />
+    <Compile Include="Controllers\BOT\BotCargosController.cs" />
+    <Compile Include="Controllers\BUK\BUKEmpleadoController.cs" />
+    <Compile Include="Controllers\BUK\EquivalenciaEmpresaController.cs" />
+    <Compile Include="Controllers\BUK\CreditoController.cs" />
+    <Compile Include="Controllers\BUK\EquivalenciaSedeController.cs" />
+    <Compile Include="Controllers\Campaña\CampaniaClienteController.cs" />
+    <Compile Include="Controllers\Campaña\CampaniaClienteExternoController.cs" />
+    <Compile Include="Controllers\Campaña\CampaniaController.cs" />
+    <Compile Include="Controllers\Campaña\CampaniaCuponesController.cs" />
+    <Compile Include="Controllers\Campaña\CampaniaImpresoraController.cs" />
+    <Compile Include="Controllers\Campaña\CampaniaMaquinaRestringidaController.cs" />
+    <Compile Include="Controllers\Campaña\CampaniaReporteController.cs" />
+    <Compile Include="Controllers\Campaña\CampaniaSorteoController.cs" />
+    <Compile Include="Controllers\Campaña\CampaniaVisorEstadoMaquinasController.cs" />
+    <Compile Include="Controllers\ClienteSatisfaccion\ClienteSatisfaccionController.cs" />
+    <Compile Include="Controllers\ClienteSatisfaccion\ConfigClienteSatisfaccionController.cs" />
+    <Compile Include="Controllers\CompiladoController.cs" />
+    <Compile Include="Controllers\ConfiguracionSeguridadController.cs" />
+    <Compile Include="Controllers\ContadoresBonusIn\ContadoresBonusInController.cs" />
+    <Compile Include="Controllers\ContadoresNegativos\ContadoresNegativosController.cs" />
+    <Compile Include="Controllers\ControlAcceso\CALMenorDeEdadController.cs" />
+    <Compile Include="Controllers\Cortesias\AnfitrionaBarController.cs" />
+    <Compile Include="Controllers\Cortesias\AnfitrionasController.cs" />
+    <Compile Include="Controllers\Cortesias\CortesiasController.cs" />
+    <Compile Include="Controllers\Cortesias\MaquinaAnfitrionaController.cs" />
+    <Compile Include="Controllers\Cortesias\ProductosController.cs" />
+    <Compile Include="Controllers\Cortesias\ReportesCortesiaController.cs" />
+    <Compile Include="Controllers\Cortesias\SubTiposController.cs" />
+    <Compile Include="Controllers\Cortesias\TiposController.cs" />
+    <Compile Include="Controllers\Cortesias\MarcasController.cs" />
+    <Compile Include="Controllers\Cortesias\BaresController.cs" />
+    <Compile Include="Controllers\EntradaSalidaSala\AccionesIncidentesCajasTemporizadasController.cs" />
+    <Compile Include="Controllers\EntradaSalidaSala\AperturaCierreSalaController.cs" />
+    <Compile Include="Controllers\EntradaSalidaSala\BienesMaterialesController.cs" />
+    <Compile Include="Controllers\EntradaSalidaSala\EntesReguladoresController.cs" />
+    <Compile Include="Controllers\EntradaSalidaSala\ESS_DashboardController.cs" />
+    <Compile Include="Controllers\EntradaSalidaSala\IngresosSalidasGUController.cs" />
+    <Compile Include="Controllers\EntradaSalidaSala\LogsOcurrenciasController.cs" />
+    <Compile Include="Controllers\EntradaSalidaSala\RecaudacionesPersonalParticipanteController.cs" />
+    <Compile Include="Controllers\EntradaSalidaSala\ReporteConsolidadoController.cs" />
+    <Compile Include="Controllers\EntradaSalidaSala\VisitasSupervisorController.cs" />
+    <Compile Include="Controllers\EntradaSalidaSala\RecojoRemesasController.cs" />
+    <Compile Include="Controllers\ERP\StatusSincronizadorController.cs" />
+    <Compile Include="Controllers\GLPI\GlpiSelectsController.cs" />
+    <Compile Include="Controllers\GLPI\GlpiTicketController.cs" />
+    <Compile Include="Controllers\GLPI\Mantenedores\GlpiEstadosActualController.cs" />
+    <Compile Include="Controllers\GLPI\Mantenedores\GlpiClasificacionesProblemaController.cs" />
+    <Compile Include="Controllers\GLPI\Mantenedores\GlpiProcesosController.cs" />
+    <Compile Include="Controllers\GLPI\Mantenedores\GlpiIdentificadoresController.cs" />
+    <Compile Include="Controllers\GLPI\Mantenedores\GlpiEstadosTicketController.cs" />
+    <Compile Include="Controllers\GLPI\Mantenedores\GlpiSubCategoriasController.cs" />
+    <Compile Include="Controllers\GLPI\Mantenedores\GlpiCategoriasController.cs" />
+    <Compile Include="Controllers\GLPI\Mantenedores\GlpiTiposOperacionController.cs" />
+    <Compile Include="Controllers\GLPI\Mantenedores\GlpiNivelesAtencionController.cs" />
+    <Compile Include="Controllers\GLPI\Mantenedores\GlpiPartidasController.cs" />
+    <Compile Include="Controllers\MaquinaEstados\EstadoMaquinaController.cs" />
+    <Compile Include="Controllers\MaquinasCentralizadasController.cs" />
+    <Compile Include="Controllers\MaquinasInoperativasV2\MaquinasInoperativasV2Controller.cs" />
+    <Compile Include="Controllers\Migracion\ContadoresOnlineController.cs" />
+    <Compile Include="Controllers\ControlAcceso\CALAuditoriaController.cs" />
+    <Compile Include="Controllers\ControlAcceso\CALBandaController.cs" />
+    <Compile Include="Controllers\ControlAcceso\CALBusquedaController.cs" />
+    <Compile Include="Controllers\ControlAcceso\CALCargoEntidadController.cs" />
+    <Compile Include="Controllers\ControlAcceso\CALCargoPoliticoController.cs" />
+    <Compile Include="Controllers\ControlAcceso\CALCodigoController.cs" />
+    <Compile Include="Controllers\ControlAcceso\CALCodigoPersonaController.cs" />
+    <Compile Include="Controllers\ControlAcceso\CALContactoController.cs" />
+    <Compile Include="Controllers\ControlAcceso\CALEntidadPublicaController.cs" />
+    <Compile Include="Controllers\ControlAcceso\CALLogApiReniecController.cs" />
+    <Compile Include="Controllers\ControlAcceso\CALLudopataController.cs" />
+    <Compile Include="Controllers\ControlAcceso\CALPersonaEntidadPublicaController.cs" />
+    <Compile Include="Controllers\ControlAcceso\CALPoliticoController.cs" />
+    <Compile Include="Controllers\ControlAcceso\CALPersonaProhibidoIngresoController.cs" />
+    <Compile Include="Controllers\ControlAcceso\CALRobaStackersBilleteroController.cs" />
+    <Compile Include="Controllers\ControlAcceso\CALTipoExclusionController.cs" />
+    <Compile Include="Controllers\ControlAcceso\CALTipoTimadorController.cs" />
+    <Compile Include="Controllers\descripcion.cs" />
+    <Compile Include="Controllers\DiscoController.cs" />
+    <Compile Include="Controllers\DispositivoController.cs" />
+    <Compile Include="Controllers\Drive\DriveController.cs" />
+    <Compile Include="Controllers\EmpresaController.cs" />
+    <Compile Include="Controllers\Equipo\EquipoController.cs" />
+    <Compile Include="Controllers\EstadoServiciosController.cs" />
+    <Compile Include="Controllers\ExcelenciaOperativa\ExcelenciaOperativaController.cs" />
+    <Compile Include="Controllers\FichaSintomatologica\FichaSintomatologicaController.cs" />
+    <Compile Include="Controllers\FuncionesController.cs" />
+    <Compile Include="Controllers\GestionCambios\GestionCambiosController.cs" />
+    <Compile Include="Controllers\Imei\ControlImeiController.cs" />
+    <Compile Include="Controllers\Incidencias\IncidenciasController.cs" />
+    <Compile Include="Controllers\LogAlertaBilleterosController.cs" />
+    <Compile Include="Controllers\Ludopatas\LudopatasController.cs" />
+    <Compile Include="Controllers\MantenimientoBD\MantenimientoBDController.cs" />
+    <Compile Include="Controllers\MaquinasInoperativas\MICategoriaPiezaController.cs" />
+    <Compile Include="Controllers\MaquinasInoperativas\MICategoriaProblemaController.cs" />
+    <Compile Include="Controllers\MaquinasInoperativas\MICategoriaRepuestoController.cs" />
+    <Compile Include="Controllers\MaquinasInoperativas\MIAlmacenController.cs" />
+    <Compile Include="Controllers\MaquinasInoperativas\MIMaquinaInoperativaController.cs" />
+    <Compile Include="Controllers\MaquinasInoperativas\MIPiezaController.cs" />
+    <Compile Include="Controllers\MaquinasInoperativas\MIPiezaRepuestoAlmacenController.cs" />
+    <Compile Include="Controllers\MaquinasInoperativas\MIProblemaController.cs" />
+    <Compile Include="Controllers\MaquinasInoperativas\MIRepuestoController.cs" />
+    <Compile Include="Controllers\MaquinasInoperativas\MITraspasoRepuestoAlmacenController.cs" />
+    <Compile Include="Controllers\Migracion\EventosSignificativosController.cs" />
+    <Compile Include="Controllers\Migracion\SunatController.cs" />
+    <Compile Include="Controllers\modulo.cs" />
+    <Compile Include="Controllers\ModuloController.cs" />
+    <Compile Include="Controllers\MobileSecurityController.cs" />
+    <Compile Include="Controllers\Notificaciones\Mantenedores\CredencialCorreoController.cs" />
+    <Compile Include="Controllers\Notificaciones\Mantenedores\CredencialWhatsAppController.cs" />
+    <Compile Include="Controllers\Notificaciones\Mantenedores\SistemaController.cs" />
+    <Compile Include="Controllers\Ocurrencias\OcurrenciasController.cs" />
+    <Compile Include="Controllers\ProgresivoRuleta\ProgresivoRuletaController.cs" />
+    <Compile Include="Controllers\ProgresivoRuleta\PruAlertasController.cs" />
+    <Compile Include="Controllers\ProgresivoRuleta\PruGanadoresController.cs" />
+    <Compile Include="Controllers\ProgresivoRuleta\PruConfiguracionesController.cs" />
+    <Compile Include="Controllers\Progresivo\AlertaProgresivoController.cs" />
+    <Compile Include="Controllers\Progresivo\ControlProgresivoController.cs" />
+    <Compile Include="Controllers\Progresivo\ProgresivoTerceros\ProgresivoTercerosController.cs" />
+    <Compile Include="Controllers\Progresivo\RegistroProgresivoController.cs" />
+    <Compile Include="Controllers\ProyectadoProgresivoController.cs" />
+    <Compile Include="Controllers\RandomString.cs" />
+    <Compile Include="Controllers\Reclamaciones\ReclamacionController.cs" />
+    <Compile Include="Controllers\Reportes\Reporte9050Controller.cs" />
+    <Compile Include="Controllers\Reportes\ReportesController.cs" />
+    <Compile Include="Controllers\Reportes\ReporteSunatController.cs" />
+    <Compile Include="Controllers\Revisiones\RevisionesController.cs" />
+    <Compile Include="Controllers\RolController.cs" />
+    <Compile Include="Controllers\RolUsuarioController.cs" />
+    <Compile Include="Controllers\SalaMaestraController.cs" />
+    <Compile Include="Controllers\Sala\ZonaController.cs" />
+    <Compile Include="Controllers\SatisfaccionCliente\Configuracion\EscConfiguracionesController.cs" />
+    <Compile Include="Controllers\SatisfaccionCliente\EscReportesController.cs" />
+    <Compile Include="Controllers\SatisfaccionCliente\EscRespuestasController.cs" />
+    <Compile Include="Controllers\SatisfaccionCliente\Mantenimiento\EscPreguntasController.cs" />
+    <Compile Include="Controllers\seguridad.cs" />
+    <Compile Include="Controllers\SeguridadController.cs" />
+    <Compile Include="Controllers\AsistenciaCliente\AsistenciaClienteController.cs" />
+    <Compile Include="Controllers\SeguridadProgresivo\SeguridadProgresivoController.cs" />
+    <Compile Include="Controllers\Settings\SettingsController.cs" />
+    <Compile Include="Controllers\SomosCasino\SomosCasinoController.cs" />
+    <Compile Include="Controllers\Soporte\CallCenterCajaBovedaController.cs" />
+    <Compile Include="Controllers\Soporte\CallCenterController.cs" />
+    <Compile Include="Controllers\Soporte\UtilitarioAdministrativoController.cs" />
+    <Compile Include="Controllers\DestinatarioController.cs" />
+    <Compile Include="Controllers\Super\SuperController.cs" />
+    <Compile Include="Controllers\Super\SuperSecurityAttribute.cs" />
+    <Compile Include="Controllers\TecnicoController.cs" />
+    <Compile Include="Controllers\TransaccionTarjetaCliente\TtcTransaccionesController.cs" />
+    <Compile Include="Controllers\TransferenciasAT\TransferenciaATController.cs" />
+    <Compile Include="Controllers\Transferencias\TransferenciasController.cs" />
+    <Compile Include="Controllers\Ubigeo\UbigeoController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Controllers\EmpleadoController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Progresivo\ProgresivoController.cs" />
+    <Compile Include="Controllers\SalaController.cs" />
+    <Compile Include="Controllers\UsuarioEncriptacionController.cs" />
+    <Compile Include="Controllers\UsuarioSalaController.cs" />
+    <Compile Include="Controllers\WhatsApp\ContactoController.cs" />
+    <Compile Include="Controllers\WhatsApp\InstanciaController.cs" />
+    <Compile Include="Controllers\WhatsApp\MensajeriaClienteController.cs" />
+    <Compile Include="Controllers\WhatsApp\MensajeriaController.cs" />
+    <Compile Include="Controllers\WhatsApp\WhatsAppController.cs" />
+    <Compile Include="Filters\SomoCasinoBearerAuthFilter.cs" />
+    <Compile Include="Filters\TokenProgresivoAttribute.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Hubs\progresivoHub.cs" />
+    <Compile Include="Models\ClaseLibre.cs" />
+    <Compile Include="Models\ContadoresNegativosVM.cs" />
+    <Compile Include="Models\ContadoresOnline.cs" />
+    <Compile Include="Models\datatablesparametros.cs" />
+    <Compile Include="Models\funciones.cs" />
+    <Compile Include="Models\Helpers.cs" />
+    <Compile Include="Models\JqueryDatatableParam.cs" />
+    <Compile Include="Models\LinqExtensions.cs" />
+    <Compile Include="Models\Logger.cs" />
+    <Compile Include="Models\Maquina.cs" />
+    <Compile Include="Models\ModificarCaja.cs" />
+    <Compile Include="Models\ParametersTITOCaja.cs" />
+    <Compile Include="Models\SeguridadClases.cs" />
+    <Compile Include="Models\utilitario_nombre.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\AperturaCajaReport.cs" />
+    <Compile Include="Reports\CampaniaReport.cs" />
+    <Compile Include="Reports\LogNominalReport.cs" />
+    <Compile Include="Reports\ProgresivoReporte.cs" />
+    <Compile Include="Reports\PRU_AlertaReport.cs" />
+    <Compile Include="Reports\PRU_GanadorReport.cs" />
+    <Compile Include="Utilitarios\ApiReniec.cs" />
+    <Compile Include="Utilitarios\ApiReniecResponse.cs" />
+    <Compile Include="Utilitarios\AuditoriaTITOPromoHelper.cs" />
+    <Compile Include="Utilitarios\calculosCoordenadas.cs" />
+    <Compile Include="Utilitarios\CheckPortHelper.cs" />
+    <Compile Include="Utilitarios\Correo.cs" />
+    <Compile Include="Utilitarios\CorreoAlertas.cs" />
+    <Compile Include="Utilitarios\ServiceCortesias.cs" />
+    <Compile Include="Utilitarios\ErrorCodeUtil.cs" />
+    <Compile Include="Utilitarios\ExcelenciaOPHelper.cs" />
+    <Compile Include="Utilitarios\funcionesExtra.cs" />
+    <Compile Include="Utilitarios\GoogleDriveAPIHelper.cs" />
+    <Compile Include="Utilitarios\GoogleDriveApiHelperV2.cs" />
+    <Compile Include="Utilitarios\GoogleDriveFile.cs" />
+    <Compile Include="Utilitarios\LogTransac.cs" />
+    <Compile Include="Utilitarios\MyWebClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Utilitarios\MyWebClientInfinite.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Utilitarios\NotificationHelper.cs" />
+    <Compile Include="Utilitarios\ObjectsHelper.cs" />
+    <Compile Include="Utilitarios\RazorViewHelper.cs" />
+    <Compile Include="Utilitarios\ReportesHelper.cs" />
+    <Compile Include="Utilitarios\ReporteTITOCajaHelper.cs" />
+    <Compile Include="Utilitarios\ServiceHelper.cs" />
+    <Compile Include="Utilitarios\ValidationsHelper.cs" />
+    <Compile Include="Validators\SomosCasino\ClienteSomosCasinoValidator.cs" />
+    <Compile Include="Web References\WebServiceUtilitario\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\assets\auditoriatxt\general.txt" />
+    <Content Include="Content\assets\auditoriatxt\registroprogresivo.txt" />
+    <Content Include="Content\assets\auditoriatxt\reporteprogresivo.txt" />
+    <Content Include="Content\assets\css\cssviews\GPLI\asignarTicket.css" />
+    <Content Include="Content\assets\css\cssviews\GPLI\crearTicket.css" />
+    <Content Include="Content\assets\css\cssviews\GPLI\general.css" />
+    <Content Include="Content\assets\css\cssviews\GPLI\ticketsAsignados.css" />
+    <Content Include="Content\assets\css\floatingbutton.css" />
+    <Content Include="Content\assets\css\optional\bootstrap-datetimepicker.min.css" />
+    <Content Include="Content\assets\css\optional\bootstrap-multiselect.min.css" />
+    <Content Include="Content\assets\css\optional\bootstrap-tagsinput.min.css" />
+    <Content Include="Content\assets\css\optional\bootstrap-toggle.min.css" />
+    <Content Include="Content\assets\css\optional\bootstrapValidator.min.css" />
+    <Content Include="Content\assets\css\optional\datatables\css\dataTables.bootstrap.min.css" />
+    <Content Include="Content\assets\css\optional\datatables\css\dataTables.responsive.min.css" />
+    <Content Include="Content\assets\css\optional\datatables\css\dataTables.tableTools.min.css" />
+    <Content Include="Content\assets\css\optional\datatables\css\datatables\images\collection_hover.html" />
+    <Content Include="Content\assets\css\optional\datatables\css\dataTables.min.css" />
+    <Content Include="Content\assets\css\optional\datatables\images\collection.png" />
+    <Content Include="Content\assets\css\optional\datatables\images\sort_asc.png" />
+    <Content Include="Content\assets\css\optional\datatables\images\sort_asc_disabled.png" />
+    <Content Include="Content\assets\css\optional\datatables\images\sort_both.png" />
+    <Content Include="Content\assets\css\optional\datatables\images\sort_desc.png" />
+    <Content Include="Content\assets\css\optional\datatables\images\sort_desc_disabled.png" />
+    <Content Include="Content\assets\css\optional\dropzone\basic.css" />
+    <Content Include="Content\assets\css\optional\dropzone\circloid-dropzone.css" />
+    <Content Include="Content\assets\css\optional\dropzone\dropzone.css" />
+    <Content Include="Content\assets\css\optional\dropzone\images\spritemap%402x.png" />
+    <Content Include="Content\assets\css\optional\dropzone\images\spritemap.png" />
+    <Content Include="Content\assets\css\optional\flip-scroll.min.css" />
+    <Content Include="Content\assets\css\optional\fullcalendar\circloid-fullcalendar.min.css" />
+    <Content Include="Content\assets\css\optional\fullcalendar\fullcalendar.min.css" />
+    <Content Include="Content\assets\css\optional\fullcalendar\fullcalendar.print.min.css" />
+    <Content Include="Content\assets\css\optional\jcrop\images\jcrop.gif" />
+    <Content Include="Content\assets\css\optional\jquery.bootstrap-touchspin.min.css" />
+    <Content Include="Content\assets\css\optional\jquery.Jcrop.min.css" />
+    <Content Include="Content\assets\css\optional\jqvmap\circloid-jqvmap.css" />
+    <Content Include="Content\assets\css\optional\jqvmap\jqvmap.css" />
+    <Content Include="Content\assets\css\optional\misc\prettify-bootstrap.min.css" />
+    <Content Include="Content\assets\css\optional\misc\prettify.css" />
+    <Content Include="Content\assets\css\optional\powerange.min.css" />
+    <Content Include="Content\assets\css\optional\jquery-confirm.min.css" />
+    <Content Include="Content\assets\css\optional\select2.min.css" />
+    <Content Include="Content\assets\css\optional\switchery.min.css" />
+    <Content Include="Content\assets\css\optional\timeline\component.css" />
+    <Content Include="Content\assets\css\optional\timeline\timeline.css" />
+    <Content Include="Content\assets\css\optional\toastr.min.css" />
+    <Content Include="Content\assets\css\print.min.css" />
+    <Content Include="Content\assets\css\required\bootstrap\bootstrap.min.css" />
+    <Content Include="Content\assets\css\required\icheck\all.css" />
+    <Content Include="Content\assets\css\required\icheck\flat\aero%402x.png" />
+    <Content Include="Content\assets\css\required\icheck\flat\aero.png" />
+    <Content Include="Content\assets\css\required\icheck\flat\blue%402x.png" />
+    <Content Include="Content\assets\css\required\icheck\flat\blue.png" />
+    <Content Include="Content\assets\css\required\icheck\flat\flat%402x.png" />
+    <Content Include="Content\assets\css\required\icheck\flat\flat.png" />
+    <Content Include="Content\assets\css\required\icheck\flat\green%402x.png" />
+    <Content Include="Content\assets\css\required\icheck\flat\green.png" />
+    <Content Include="Content\assets\css\required\icheck\flat\grey%402x.png" />
+    <Content Include="Content\assets\css\required\icheck\flat\grey.png" />
+    <Content Include="Content\assets\css\required\icheck\flat\orange%402x.png" />
+    <Content Include="Content\assets\css\required\icheck\flat\orange.png" />
+    <Content Include="Content\assets\css\required\icheck\flat\pink%402x.png" />
+    <Content Include="Content\assets\css\required\icheck\flat\pink.png" />
+    <Content Include="Content\assets\css\required\icheck\flat\purple%402x.png" />
+    <Content Include="Content\assets\css\required\icheck\flat\purple.png" />
+    <Content Include="Content\assets\css\required\icheck\flat\red%402x.png" />
+    <Content Include="Content\assets\css\required\icheck\flat\red.png" />
+    <Content Include="Content\assets\css\required\icheck\flat\yellow%402x.png" />
+    <Content Include="Content\assets\css\required\icheck\flat\yellow.png" />
+    <Content Include="Content\assets\css\required\icheck\flat\_all.css" />
+    <Content Include="Content\assets\css\required\icheck\futurico\futurico%402x.png" />
+    <Content Include="Content\assets\css\required\icheck\futurico\futurico.css" />
+    <Content Include="Content\assets\css\required\icheck\futurico\futurico.png" />
+    <Content Include="Content\assets\css\required\icheck\line\line%402x.png" />
+    <Content Include="Content\assets\css\required\icheck\line\line.png" />
+    <Content Include="Content\assets\css\required\icheck\line\_all.css" />
+    <Content Include="Content\assets\css\required\icheck\minimal\aero%402x.png" />
+    <Content Include="Content\assets\css\required\icheck\minimal\blue%402x.png" />
+    <Content Include="Content\assets\css\required\icheck\minimal\blue.png" />
+    <Content Include="Content\assets\css\required\icheck\minimal\green%402x.png" />
+    <Content Include="Content\assets\css\required\icheck\minimal\green.png" />
+    <Content Include="Content\assets\css\required\icheck\minimal\grey%402x.png" />
+    <Content Include="Content\assets\css\required\icheck\minimal\grey.png" />
+    <Content Include="Content\assets\css\required\icheck\minimal\minimal%402x.png" />
+    <Content Include="Content\assets\css\required\icheck\minimal\minimal.png" />
+    <Content Include="Content\assets\css\required\icheck\minimal\orange%402x.png" />
+    <Content Include="Content\assets\css\required\icheck\minimal\orange.png" />
+    <Content Include="Content\assets\css\required\icheck\minimal\pink%402x.png" />
+    <Content Include="Content\assets\css\required\icheck\minimal\pink.png" />
+    <Content Include="Content\assets\css\required\icheck\minimal\purple%402x.png" />
+    <Content Include="Content\assets\css\required\icheck\minimal\purple.png" />
+    <Content Include="Content\assets\css\required\icheck\minimal\red%402x.png" />
+    <Content Include="Content\assets\css\required\icheck\minimal\red.png" />
+    <Content Include="Content\assets\css\required\icheck\minimal\yellow%402x.png" />
+    <Content Include="Content\assets\css\required\icheck\minimal\yellow.png" />
+    <Content Include="Content\assets\css\required\icheck\minimal\_all.css" />
+    <Content Include="Content\assets\css\required\icheck\polaris\polaris%402x.png" />
+    <Content Include="Content\assets\css\required\icheck\polaris\polaris.css" />
+    <Content Include="Content\assets\css\required\icheck\polaris\polaris.png" />
+    <Content Include="Content\assets\css\required\icheck\square\aero%402x.png" />
+    <Content Include="Content\assets\css\required\icheck\square\aero.png" />
+    <Content Include="Content\assets\css\required\icheck\square\blue%402x.png" />
+    <Content Include="Content\assets\css\required\icheck\square\blue.png" />
+    <Content Include="Content\assets\css\required\icheck\square\green%402x.png" />
+    <Content Include="Content\assets\css\required\icheck\square\green.png" />
+    <Content Include="Content\assets\css\required\icheck\square\grey%402x.png" />
+    <Content Include="Content\assets\css\required\icheck\square\grey.png" />
+    <Content Include="Content\assets\css\required\icheck\square\orange%402x.png" />
+    <Content Include="Content\assets\css\required\icheck\square\orange.png" />
+    <Content Include="Content\assets\css\required\icheck\square\pink%402x.png" />
+    <Content Include="Content\assets\css\required\icheck\square\pink.png" />
+    <Content Include="Content\assets\css\required\icheck\square\purple%402x.png" />
+    <Content Include="Content\assets\css\required\icheck\square\purple.png" />
+    <Content Include="Content\assets\css\required\icheck\square\red%402x.png" />
+    <Content Include="Content\assets\css\required\icheck\square\red.png" />
+    <Content Include="Content\assets\css\required\icheck\square\square%402x.png" />
+    <Content Include="Content\assets\css\required\icheck\square\square.png" />
+    <Content Include="Content\assets\css\required\icheck\square\yellow%402x.png" />
+    <Content Include="Content\assets\css\required\icheck\square\yellow.png" />
+    <Content Include="Content\assets\css\required\icheck\square\_all.css" />
+    <Content Include="Content\assets\css\required\mCustomScrollbar\jquery.mCustomScrollbar.min.css" />
+    <Content Include="Content\assets\css\required\mCustomScrollbar\mCSB_buttons.png" />
+    <Content Include="Content\assets\css\styles-core.min.css" />
+    <Content Include="Content\assets\css\styles-core-responsive.css" />
+    <Content Include="Content\assets\css\styles-core-responsive.min.css" />
+    <Content Include="Content\assets\css\styles-core.css" />
+    <Content Include="Content\assets\css\v2_.css" />
+    <Content Include="Content\assets\fonts\font-awesome-4.6.3\css\font-awesome.css" />
+    <Content Include="Content\assets\fonts\font-awesome-4.6.3\css\font-awesome.min.css" />
+    <Content Include="Content\assets\fonts\font-awesome-4.6.3\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\assets\fonts\font-awesome-4.6.3\HELP-US-OUT.txt" />
+    <Content Include="Content\assets\fonts\glyphicons\glyphicons-halflings-regular.html" />
+    <Content Include="Content\assets\fonts\glyphicons\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\assets\fonts\line-awesome-1.3.0\css\line-awesome.min.css" />
+    <Content Include="Content\assets\fonts\line-awesome-1.3.0\fonts\la-brands-400.svg" />
+    <Content Include="Content\assets\fonts\line-awesome-1.3.0\fonts\la-regular-400.svg" />
+    <Content Include="Content\assets\fonts\line-awesome-1.3.0\fonts\la-solid-900.svg" />
+    <Content Include="Content\assets\fonts\metrize-icons\Metrize-Icons.svg" />
+    <Content Include="Content\assets\fonts\metrize-icons\styles-metrize-icons.min.css" />
+    <Content Include="Content\assets\fonts\weather-icons\weather-icons.css" />
+    <Content Include="Content\assets\fonts\weather-icons\weathericons-regular-webfont.svg" />
+    <Content Include="Content\assets\images\cbimage.jpg" />
+    <Content Include="Content\assets\images\employed.png" />
+    <Content Include="Content\assets\images\finder.png" />
+    <Content Include="Content\assets\images\fondoEncuesta.jpg" />
+    <Content Include="Content\assets\images\fondo_.png" />
+    <Content Include="Content\assets\images\horizontal-bar-chart-linear.png" />
+    <Content Include="Content\assets\images\iconss\Alarm.svg" />
+    <Content Include="Content\assets\images\iconss\camera.svg" />
+    <Content Include="Content\assets\images\iconss\edit.svg" />
+    <Content Include="Content\assets\images\iconss\phone.svg" />
+    <Content Include="Content\assets\images\iconss\Schedule.svg" />
+    <Content Include="Content\assets\images\iconss\setting.svg" />
+    <Content Include="Content\assets\images\iconss\user.svg" />
+    <Content Include="Content\assets\images\no_image.jpg" />
+    <Content Include="Content\assets\images\nps\dislike.gif" />
+    <Content Include="Content\assets\images\nps\dislikeT.gif" />
+    <Content Include="Content\assets\images\nps\emoji-insatisfecho.gif" />
+    <Content Include="Content\assets\images\nps\emoji-muy-insatisfecho.gif" />
+    <Content Include="Content\assets\images\nps\emoji-muy-satisfecho.gif" />
+    <Content Include="Content\assets\images\nps\emoji-satisfecho.gif" />
+    <Content Include="Content\assets\images\nps\insatisfecho.gif" />
+    <Content Include="Content\assets\images\nps\like.gif" />
+    <Content Include="Content\assets\images\nps\muyinsatisfecho.gif" />
+    <Content Include="Content\assets\images\nps\muysatisfecho.gif" />
+    <Content Include="Content\assets\images\nps\neutral-emoji.gif" />
+    <Content Include="Content\assets\images\nps\regular.gif" />
+    <Content Include="Content\assets\images\nps\satisfecho.gif" />
+    <Content Include="Content\assets\images\optional\flags\china.png" />
+    <Content Include="Content\assets\images\optional\flags\germany.png" />
+    <Content Include="Content\assets\images\optional\flags\spain.png" />
+    <Content Include="Content\assets\images\optional\flags\united-kingdom.png" />
+    <Content Include="Content\assets\images\required\bg-transparent.png" />
+    <Content Include="Content\assets\images\required\cruz.svg" />
+    <Content Include="Content\assets\images\required\loading.gif" />
+    <Content Include="Content\assets\images\required\logo-default.ico" />
+    <Content Include="Content\assets\images\required\logo-default.png" />
+    <Content Include="Content\assets\images\required\noFound.svg" />
+    <Content Include="Content\assets\images\required\profile\profile-pic-2.jpg" />
+    <Content Include="Content\assets\images\required\profile\profile-pic-3.jpg" />
+    <Content Include="Content\assets\images\required\profile\profile-pic-4.jpg" />
+    <Content Include="Content\assets\images\required\profile\profile-pic-5.jpg" />
+    <Content Include="Content\assets\images\required\profile\profile-pic-6.jpg" />
+    <Content Include="Content\assets\images\required\searchImg.svg" />
+    <Content Include="Content\assets\images\required\site-bg%402x.png" />
+    <Content Include="Content\assets\images\searchIcon.png" />
+    <Content Include="Content\assets\images\start_service.png" />
+    <Content Include="Content\assets\images\start_service1.png" />
+    <Content Include="Content\assets\js\botonacciones.js" />
+    <Content Include="Content\assets\js\datatablesservidor.js" />
+    <Content Include="Content\assets\js\jquery-barcode.min.js" />
+    <Content Include="Content\assets\js\optional\apexcharts\apexcharts.min.js" />
+    <Content Include="Content\assets\js\optional\bootstrap-datetimepicker.min.js" />
+    <Content Include="Content\assets\js\optional\bootstrap-multiselect.min.js" />
+    <Content Include="Content\assets\js\optional\bootstrap-switch\css\bootstrap2\bootstrap-switch.css" />
+    <Content Include="Content\assets\js\optional\bootstrap-switch\css\bootstrap2\bootstrap-switch.min.css" />
+    <Content Include="Content\assets\js\optional\bootstrap-switch\css\bootstrap3\bootstrap-switch.css" />
+    <Content Include="Content\assets\js\optional\bootstrap-switch\css\bootstrap3\bootstrap-switch.min.css" />
+    <Content Include="Content\assets\js\optional\bootstrap-switch\css\bootstrap4\bootstrap-switch.css" />
+    <Content Include="Content\assets\js\optional\bootstrap-switch\css\bootstrap4\bootstrap-switch.min.css" />
+    <Content Include="Content\assets\js\optional\bootstrap-switch\js\bootstrap-switch.js" />
+    <Content Include="Content\assets\js\optional\bootstrap-switch\js\bootstrap-switch.min.js" />
+    <Content Include="Content\assets\js\optional\conffeti\confetti.browser.min.js" />
+    <Content Include="Content\assets\js\optional\inputTags\js\inputTags.jquery.min.js" />
+    <Content Include="Content\assets\js\optional\inputTags\css\inputTags.min.css" />
+    <Content Include="Content\assets\js\optional\bootstrap-tagsinput.min.js" />
+    <Content Include="Content\assets\js\optional\bootstrap-toggle.min.js" />
+    <Content Include="Content\assets\js\optional\bootstrapValidator.min.js" />
+    <Content Include="Content\assets\js\optional\chart.js\4.3.0\chart.min.js" />
+    <Content Include="Content\assets\js\optional\chart.js\Chart.bundle.js" />
+    <Content Include="Content\assets\js\optional\chart.js\Chart.bundle.min.js" />
+    <Content Include="Content\assets\js\optional\chart.js\Chart.css" />
+    <Content Include="Content\assets\js\optional\chart.js\Chart.js" />
+    <Content Include="Content\assets\js\optional\chart.js\Chart.min.css" />
+    <Content Include="Content\assets\js\optional\chart.js\Chart.min.js" />
+    <Content Include="Content\assets\js\optional\chart.js\plugin\chartjs-plugin-datalabels.min.js" />
+    <Content Include="Content\assets\js\optional\circloid-functions-optional.js" />
+    <Content Include="Content\assets\js\optional\ckeditor\adapters\jquery.js" />
+    <Content Include="Content\assets\js\optional\ckeditor\ckeditor.js" />
+    <Content Include="Content\assets\js\optional\datatables\js\dataTables.bootstrap.min.js" />
+    <Content Include="Content\assets\js\optional\datatables\js\dataTables.responsive.min.js" />
+    <Content Include="Content\assets\js\optional\datatables\js\dataTables.tableTools.min.js" />
+    <Content Include="Content\assets\js\optional\datatables\js\jquery.dataTables.min.js" />
+    <Content Include="Content\assets\js\optional\dropzone.min.js" />
+    <Content Include="Content\assets\js\optional\easy-pie-chart\jquery.easypiechart.min.js" />
+    <Content Include="Content\assets\js\optional\flot\jquery.flot.bubbles.min.js" />
+    <Content Include="Content\assets\js\optional\flot\jquery.flot.JUMlib.min.js" />
+    <Content Include="Content\assets\js\optional\flot\jquery.flot.min.js" />
+    <Content Include="Content\assets\js\optional\flot\jquery.flot.orderBars.js" />
+    <Content Include="Content\assets\js\optional\flot\jquery.flot.pie.min.js" />
+    <Content Include="Content\assets\js\optional\flot\jquery.flot.resize.min.js" />
+    <Content Include="Content\assets\js\optional\flot\jquery.flot.stack.min.js" />
+    <Content Include="Content\assets\js\optional\flot\jquery.flot.time.min.js" />
+    <Content Include="Content\assets\js\optional\flot\jquery.flot.tooltip.min.js" />
+    <Content Include="Content\assets\js\optional\fullcalendar\fullcalendar.min.js" />
+    <Content Include="Content\assets\js\optional\isotope\isotope.pkgd.min.js" />
+    <Content Include="Content\assets\js\optional\jquery.bootstrap-touchspin.min.js" />
+    <Content Include="Content\assets\js\optional\jquery.bootstrap.wizard.min.js" />
+    <Content Include="Content\assets\js\optional\jquery.color.min.js" />
+    <Content Include="Content\assets\js\optional\jquery.easypiechart.min.js" />
+    <Content Include="Content\assets\js\optional\jquery.flot.min.js" />
+    <Content Include="Content\assets\js\optional\jquery.flot.pie.min.js" />
+    <Content Include="Content\assets\js\optional\jquery.Jcrop.min.js" />
+    <Content Include="Content\assets\js\optional\jquery.mask.min.js" />
+    <Content Include="Content\assets\js\optional\jqueryconfirm\jquery-confirm.css" />
+    <Content Include="Content\assets\js\optional\jqueryconfirm\jquery-confirm.js" />
+    <Content Include="Content\assets\js\optional\jqvmap\data\jquery.vmap.sampledata.js" />
+    <Content Include="Content\assets\js\optional\jqvmap\jquery.vmap.min.js" />
+    <Content Include="Content\assets\js\optional\jqvmap\maps\continents\jquery.vmap.africa.js" />
+    <Content Include="Content\assets\js\optional\jqvmap\maps\continents\jquery.vmap.asia.js" />
+    <Content Include="Content\assets\js\optional\jqvmap\maps\continents\jquery.vmap.australia.js" />
+    <Content Include="Content\assets\js\optional\jqvmap\maps\continents\jquery.vmap.europe.js" />
+    <Content Include="Content\assets\js\optional\jqvmap\maps\continents\jquery.vmap.north-america.js" />
+    <Content Include="Content\assets\js\optional\jqvmap\maps\continents\jquery.vmap.south-america.js" />
+    <Content Include="Content\assets\js\optional\jqvmap\maps\jquery.vmap.world.js" />
+    <Content Include="Content\assets\js\optional\loadingoverlay\loading.gif" />
+    <Content Include="Content\assets\js\optional\loadingoverlay\loadingoverlay.js" />
+    <Content Include="Content\assets\js\optional\loadingoverlay\loadingoverlay.min.js" />
+    <Content Include="Content\assets\js\optional\misc\moment.js" />
+    <Content Include="Content\assets\js\optional\misc\prettify.js" />
+    <Content Include="Content\assets\js\optional\misc\typeahead.bundle.min.js" />
+    <Content Include="Content\assets\js\optional\openlayer\ol.css" />
+    <Content Include="Content\assets\js\optional\openlayer\ol.js" />
+    <Content Include="Content\assets\js\optional\powerange.min.js" />
+    <Content Include="Content\assets\js\optional\jquery-confirm.js" />
+    <Content Include="Content\assets\js\optional\qrcode\qrcode.js" />
+    <Content Include="Content\assets\js\optional\qrcode\qrcode.min.js" />
+    <Content Include="Content\assets\js\optional\qrious\qrious.js" />
+    <Content Include="Content\assets\js\optional\qrious\qrious.min.js" />
+    <Content Include="Content\assets\js\optional\select2.full.js" />
+    <Content Include="Content\assets\js\optional\socket.io\socket.io.min.js" />
+    <Content Include="Content\assets\js\optional\switchery.min.js" />
+    <Content Include="Content\assets\js\optional\toastr.min.js" />
+    <Content Include="Content\assets\js\optional\vue\fireworks.min.js" />
+    <Content Include="Content\assets\js\optional\vue\vue.min.js" />
+    <Content Include="Content\assets\js\print.min.js" />
+    <Content Include="Content\assets\js\reportes\ClasesReporte.js" />
+    <Content Include="Content\assets\js\reportes\reporte_botones.js" />
+    <Content Include="Content\assets\js\required\bootstrap\bootstrap.min.js" />
+    <Content Include="Content\assets\js\required\circloid-functions.js" />
+    <Content Include="Content\assets\js\required\icheck.min.js" />
+    <Content Include="Content\assets\js\required\jquery-1.11.1.min.js" />
+    <Content Include="Content\assets\js\required\jquery-3.2.1.min.js" />
+    <Content Include="Content\assets\js\required\jquery-ui-1.11.0.custom\images\animated-overlay.gif" />
+    <Content Include="Content\assets\js\required\jquery-ui-1.11.0.custom\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\assets\js\required\jquery-ui-1.11.0.custom\images\ui-bg_flat_0_eeeeee_40x100.png" />
+    <Content Include="Content\assets\js\required\jquery-ui-1.11.0.custom\images\ui-bg_flat_55_ffffff_40x100.png" />
+    <Content Include="Content\assets\js\required\jquery-ui-1.11.0.custom\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\assets\js\required\jquery-ui-1.11.0.custom\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\assets\js\required\jquery-ui-1.11.0.custom\images\ui-bg_highlight-soft_100_f6f6f6_1x100.png" />
+    <Content Include="Content\assets\js\required\jquery-ui-1.11.0.custom\images\ui-bg_highlight-soft_25_0073ea_1x100.png" />
+    <Content Include="Content\assets\js\required\jquery-ui-1.11.0.custom\images\ui-bg_highlight-soft_50_dddddd_1x100.png" />
+    <Content Include="Content\assets\js\required\jquery-ui-1.11.0.custom\images\ui-icons_0073ea_256x240.png" />
+    <Content Include="Content\assets\js\required\jquery-ui-1.11.0.custom\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\assets\js\required\jquery-ui-1.11.0.custom\images\ui-icons_666666_256x240.png" />
+    <Content Include="Content\assets\js\required\jquery-ui-1.11.0.custom\images\ui-icons_ff0084_256x240.png" />
+    <Content Include="Content\assets\js\required\jquery-ui-1.11.0.custom\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\assets\js\required\jquery-ui-1.11.0.custom\jquery-ui.min.css" />
+    <Content Include="Content\assets\js\required\jquery-ui-1.11.0.custom\jquery-ui.min.js" />
+    <Content Include="Content\assets\js\required\jquery-ui-1.11.0.custom\jquery-ui.structure.min.css" />
+    <Content Include="Content\assets\js\required\jquery-ui-1.11.0.custom\jquery-ui.theme.min.css" />
+    <Content Include="Content\assets\js\required\jquery.easing.1.3-min.js" />
+    <Content Include="Content\assets\js\required\jquery.mCustomScrollbar.min.js" />
+    <Content Include="Content\assets\js\required\misc\ie10-viewport-bug-workaround.js" />
+    <Content Include="Content\assets\js\required\misc\jquery.mousewheel-3.0.6.min.js" />
+    <Content Include="Content\assets\js\required\misc\jquery.ui.touch-punch.min.js" />
+    <Content Include="Content\assets\js\required\misc\retina.min.js" />
+    <Content Include="Content\assets\js\general.js" />
+    <Content Include="Content\assets\js\dual-list-box.min.js" />
+    <Content Include="Content\assets\js\script.js" />
+    <Content Include="Content\assets\viewsjs\AlertaBilleteros\ConfiguracionAlertaCargoVista.js" />
+    <Content Include="Content\assets\viewsjs\AlertaBilleteros\ReporteAlertaBilleterosVista.js" />
+    <Content Include="Content\assets\viewsjs\AsistenciaCliente\EditarCliente.js" />
+    <Content Include="Content\assets\viewsjs\AsistenciaCliente\EditarTipoCliente.js" />
+    <Content Include="Content\assets\viewsjs\AsistenciaCliente\EditarTipoFrecuencia.js" />
+    <Content Include="Content\assets\viewsjs\AsistenciaCliente\EditarTipoJuego.js" />
+    <Content Include="Content\assets\viewsjs\AsistenciaCliente\EmpadronamientoFormulario.js" />
+    <Content Include="Content\assets\viewsjs\AsistenciaCliente\EnvioNotificacion.js" />
+    <Content Include="Content\assets\viewsjs\AsistenciaCliente\ListadoCliente.js" />
+    <Content Include="Content\assets\viewsjs\AsistenciaCliente\ListadoTipoCliente.js" />
+    <Content Include="Content\assets\viewsjs\AsistenciaCliente\ListadoTipoFrecuencia.js" />
+    <Content Include="Content\assets\viewsjs\AsistenciaCliente\ListadoTipoJuego.js" />
+    <Content Include="Content\assets\viewsjs\AsistenciaCliente\RegistroAsistencia.js" />
+    <Content Include="Content\assets\viewsjs\AsistenciaCliente\RegistroCliente.js" />
+    <Content Include="Content\assets\viewsjs\AsistenciaCliente\RegistroEmpadronamiento.js" />
+    <Content Include="Content\assets\viewsjs\AsistenciaCliente\RegistroTipoCliente.js" />
+    <Content Include="Content\assets\viewsjs\AsistenciaCliente\RegistroTipoFrecuencia.js" />
+    <Content Include="Content\assets\viewsjs\AsistenciaCliente\RegistroTipoJuego.js" />
+    <Content Include="Content\assets\viewsjs\AsistenciaCliente\ReporteAsistenciaSala.js" />
+    <Content Include="Content\assets\viewsjs\AsistenciaCliente\ReporteEmpadronamiento.js" />
+    <Content Include="Content\assets\viewsjs\AsistenciaCliente\ReporteListaClienteVista.js" />
+    <Content Include="Content\assets\viewsjs\AsistenciaCliente\SincronizarExcelClientes.js" />
+    <Content Include="Content\assets\viewsjs\AsistenciaEmpleado\AsistenciaEmpleado.js" />
+    <Content Include="Content\assets\viewsjs\AsistenciaEmpleado\ReporteVisita.js" />
+    <Content Include="Content\assets\viewsjs\Atm\UtilitarioAtm.js" />
+    <Content Include="Content\assets\viewsjs\Bonificaciones\FormularioRegistroVista.js" />
+    <Content Include="Content\assets\viewsjs\Bonificaciones\ReporteFormularioRegistro.js" />
+    <Content Include="Content\assets\viewsjs\Bot\Empleado\empleado.js" />
+    <Content Include="Content\assets\viewsjs\Bot\Empleado\empleadoGuardar.js" />
+    <Content Include="Content\assets\viewsjs\Bot\Area\area.js" />
+    <Content Include="Content\assets\viewsjs\Bot\Area\areaGuardar.js" />
+    <Content Include="Content\assets\viewsjs\Bot\Cargo\cargo.js" />
+    <Content Include="Content\assets\viewsjs\Bot\Cargo\cargoGuardar.js" />
+    <Content Include="Content\assets\viewsjs\Bot\Contacto\contacto.js" />
+    <Content Include="Content\assets\viewsjs\Bot\Contacto\contactoGuardar.js" />
+    <Content Include="Content\assets\viewsjs\Bot\Permiso\permisos.js" />
+    <Content Include="Content\assets\viewsjs\Bot\Permiso\index.js" />
+    <Content Include="Content\assets\viewsjs\Buk\Credito\ListadoCredito.js" />
+    <Content Include="Content\assets\viewsjs\Buk\EquivalenciaEmpresa\ActualizarEquivalenciaEmpresa.js" />
+    <Content Include="Content\assets\viewsjs\Buk\EquivalenciaEmpresa\InsertarEquivalenciaEmpresa.js" />
+    <Content Include="Content\assets\viewsjs\Buk\EquivalenciaEmpresa\ListadoEquivalenciaEmpresa.js" />
+    <Content Include="Content\assets\viewsjs\Buk\EquivalenciaSede\ActualizarEquivalenciaSede.js" />
+    <Content Include="Content\assets\viewsjs\Buk\EquivalenciaSede\InsertarEquivalenciaSede.js" />
+    <Content Include="Content\assets\viewsjs\Buk\EquivalenciaSede\ListadoEquivalenciaSede.js" />
+    <Content Include="Content\assets\viewsjs\CallCenter\TicketBolsaVista.js" />
+    <Content Include="Content\assets\viewsjs\CallCenter\TicketEmitidoPorMontoVista.js" />
+    <Content Include="Content\assets\viewsjs\CallCenter\TicketRegistradoVista.js" />
+    <Content Include="Content\assets\viewsjs\CallCenter\VerificarComportamientoMaquinaVista.js" />
+    <Content Include="Content\assets\viewsjs\Campania\AsignarImpresora.js" />
+    <Content Include="Content\assets\viewsjs\Campania\AuditoriaTitoPromoVista.js" />
+    <Content Include="Content\assets\viewsjs\Campania\ClienteConsultaJuego.js" />
+    <Content Include="Content\assets\viewsjs\Campania\ImpresoraInsertar.js" />
+    <Content Include="Content\assets\viewsjs\Campania\ImpresoraModificar.js" />
+    <Content Include="Content\assets\viewsjs\Campania\ListadoCampania.js" />
+    <Content Include="Content\assets\viewsjs\Campania\ListadoImpresora.js" />
+    <Content Include="Content\assets\viewsjs\Campania\ListadoMaquinasRestringidas.js" />
+    <Content Include="Content\assets\viewsjs\Campania\ReporteCampaniaCliente.js" />
+    <Content Include="Content\assets\viewsjs\Campania\ReporteCampaniaPromocionCliente.js" />
+    <Content Include="Content\assets\viewsjs\Campania\ReporteCampaniaSorteoCliente.js" />
+    <Content Include="Content\assets\viewsjs\Campania\SorteoClienteExterno.js" />
+    <Content Include="Content\assets\viewsjs\Campania\VisorEstadoMaquinas.js" />
+    <Content Include="Content\assets\viewsjs\ClienteSatisfaccion\comentarios.js" />
+    <Content Include="Content\assets\viewsjs\ClienteSatisfaccion\configuracionCLienteSatisfaccion.js" />
+    <Content Include="Content\assets\viewsjs\ClienteSatisfaccion\CSAT\csatReporte.js" />
+    <Content Include="Content\assets\viewsjs\ClienteSatisfaccion\CSAT\preguntasCSAT.js" />
+    <Content Include="Content\assets\viewsjs\ClienteSatisfaccion\flujoPregunta.js" />
+    <Content Include="Content\assets\viewsjs\ClienteSatisfaccion\NPS\npsReporte.js" />
+    <Content Include="Content\assets\viewsjs\ClienteSatisfaccion\NPS\preguntas.js" />
+    <Content Include="Content\assets\viewsjs\ClienteSatisfaccion\preguntasConfig.js" />
+    <Content Include="Content\assets\viewsjs\ClienteSatisfaccion\reporteAtributos.js" />
+    <Content Include="Content\assets\viewsjs\ClienteSatisfaccion\reporteEncuesta.js" />
+    <Content Include="Content\assets\viewsjs\ClienteSatisfaccion\tabletConfig.js" />
+    <Content Include="Content\assets\viewsjs\Compilado\Index.js" />
+    <Content Include="Content\assets\viewsjs\ConfiguracionSeguridad\ConfiguracionSeguridadVista.js" />
+    <Content Include="Content\assets\viewsjs\ContadoresNegativos\ConfiguracionContadoresNegativos.js" />
+    <Content Include="Content\assets\viewsjs\ContadoresNegativos\ContadoresReporte.js" />
+    <Content Include="Content\assets\viewsjs\ControlAcceso\Busqueda.js" />
+    <Content Include="Content\assets\viewsjs\ControlAcceso\ListadoAuditoria.js" />
+    <Content Include="Content\assets\viewsjs\ControlAcceso\ListadoBanda.js" />
+    <Content Include="Content\assets\viewsjs\ControlAcceso\ListadoCargoEntidad.js" />
+    <Content Include="Content\assets\viewsjs\ControlAcceso\ListadoCargoPolitico.js" />
+    <Content Include="Content\assets\viewsjs\ControlAcceso\ListadoCodigo.js" />
+    <Content Include="Content\assets\viewsjs\ControlAcceso\ListadoCodigoPersona.js" />
+    <Content Include="Content\assets\viewsjs\ControlAcceso\ListadoEntidadPublica.js" />
+    <Content Include="Content\assets\viewsjs\ControlAcceso\ListadoLogApiReniec.js" />
+    <Content Include="Content\assets\viewsjs\ControlAcceso\ListadoLudopata.js" />
+    <Content Include="Content\assets\viewsjs\ControlAcceso\ListadoMenoresDeEdad.js" />
+    <Content Include="Content\assets\viewsjs\ControlAcceso\ListadoPersonaEntidadPublica.js" />
+    <Content Include="Content\assets\viewsjs\ControlAcceso\ListadoPersonaProhibidoIngreso.js" />
+    <Content Include="Content\assets\viewsjs\ControlAcceso\ListadoPolitico.js" />
+    <Content Include="Content\assets\viewsjs\ControlAcceso\ListadoRobaStackersBilletero.js" />
+    <Content Include="Content\assets\viewsjs\ControlAcceso\ReporteLudopataCliente.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativasV2\ListadoMaquinaInoperativaHistoricoKPI.js" />
+    <Content Include="Content\assets\viewsjs\EntradaSalidaSala\obtenerListaEmpleadosPorEstado.js" />
+    <Content Include="Content\assets\viewsjs\Notificaciones\CredencialCorreo\credencialCorreo.js" />
+    <Content Include="Content\assets\viewsjs\Notificaciones\CredencialCorreo\credencialCorreoGuardar.js" />
+    <Content Include="Content\assets\viewsjs\Notificaciones\CredencialWhatsApp\credencialWhatsApp.js" />
+    <Content Include="Content\assets\viewsjs\Notificaciones\CredencialWhatsApp\credencialWhatsAppGuardar.js" />
+    <Content Include="Content\assets\viewsjs\Notificaciones\Sistema\sistema.js" />
+    <Content Include="Content\assets\viewsjs\Notificaciones\Sistema\sistemaGuardar.js" />
+    <Content Include="Content\assets\viewsjs\ProgresivoRuleta\Configuracion\configuracion.js" />
+    <Content Include="Content\assets\viewsjs\ProgresivoRuleta\Configuracion\actualizar.js" />
+    <Content Include="Content\assets\viewsjs\ProgresivoRuleta\Configuracion\insertar.js" />
+    <Content Include="Content\assets\viewsjs\ProgresivoRuleta\Configuracion\filtros.js" />
+    <Content Include="Content\assets\viewsjs\ProgresivoRuleta\AlertasPRU.js" />
+    <Content Include="Content\assets\viewsjs\ProgresivoRuleta\GanadoresPRU.js" />
+    <Content Include="Content\assets\viewsjs\Progresivo\ProgresivoTerceros\ProgresivoTercerosIndex.js" />
+    <Content Include="Content\assets\viewsjs\Progresivo\ProgresivoTerceros\ProgresivoTercerosSala.js" />
+    <Content Include="Content\assets\viewsjs\Progresivo\ProgresivoTerceros\SalasProgresivoTerceros.js" />
+    <Content Include="Content\assets\viewsjs\SatisfaccionCliente\Configuracion\configuracion.js" />
+    <Content Include="Content\assets\viewsjs\SatisfaccionCliente\Configuracion\configuracionGuardar.js" />
+    <Content Include="Content\assets\viewsjs\SatisfaccionCliente\Preguntas\preguntaGuardar.js" />
+    <Content Include="Content\assets\viewsjs\SatisfaccionCliente\Preguntas\pregunta.js" />
+    <Content Include="Content\assets\viewsjs\SatisfaccionCliente\Reportes\filtros.js" />
+    <Content Include="Content\assets\viewsjs\SatisfaccionCliente\Reportes\respuestas.js" />
+    <Content Include="Content\assets\viewsjs\Cortesias\AnfitrionaBar.js" />
+    <Content Include="Content\assets\viewsjs\Cortesias\Anfitrionas.js" />
+    <Content Include="Content\assets\viewsjs\Cortesias\Bar\bar.js" />
+    <Content Include="Content\assets\viewsjs\Cortesias\Bar\barGuardar.js" />
+    <Content Include="Content\assets\viewsjs\Cortesias\Configuracion.js" />
+    <Content Include="Content\assets\viewsjs\Cortesias\MaquinaAnfitriona.js" />
+    <Content Include="Content\assets\viewsjs\Cortesias\Marca\marca.js" />
+    <Content Include="Content\assets\viewsjs\Cortesias\Marca\marcaGuardar.js" />
+    <Content Include="Content\assets\viewsjs\Cortesias\ProductoSala\ProductoSala.js" />
+    <Content Include="Content\assets\viewsjs\Cortesias\ProductoSala\ProductoSalaGuardar.js" />
+    <Content Include="Content\assets\viewsjs\Cortesias\Producto\producto.js" />
+    <Content Include="Content\assets\viewsjs\Cortesias\Producto\productoGuardar.js" />
+    <Content Include="Content\assets\viewsjs\Cortesias\Reportes\filtros.js" />
+    <Content Include="Content\assets\viewsjs\Cortesias\Reportes\pedidos.js" />
+    <Content Include="Content\assets\viewsjs\Cortesias\Reportes\productos.js" />
+    <Content Include="Content\assets\viewsjs\Cortesias\SubTipo\subTipo.js" />
+    <Content Include="Content\assets\viewsjs\Cortesias\SubTipo\subTipoGuardar.js" />
+    <Content Include="Content\assets\viewsjs\Cortesias\Tipo\tipo.js" />
+    <Content Include="Content\assets\viewsjs\Cortesias\Tipo\tipoGuardar.js" />
+    <Content Include="Content\assets\viewsjs\Destinatario\DestinatarioConfiguracionVista.js" />
+    <Content Include="Content\assets\viewsjs\Destinatario\DestinatarioEditarVista.js" />
+    <Content Include="Content\assets\viewsjs\Destinatario\DestinatarioInsertarVista.js" />
+    <Content Include="Content\assets\viewsjs\Destinatario\DestinatarioListadoVista.js" />
+    <Content Include="Content\assets\viewsjs\Disco\ConfiguracionDisco.js" />
+    <Content Include="Content\assets\viewsjs\Disco\DiscoListadoVista.js" />
+    <Content Include="Content\assets\viewsjs\Disco\ListadoEspacioDiscoBDs.js" />
+    <Content Include="Content\assets\viewsjs\Disco\ListadoEspacioDiscoBDsAzure.js" />
+    <Content Include="Content\assets\viewsjs\Dispositivo\DispositivoEditarVista.js" />
+    <Content Include="Content\assets\viewsjs\Dispositivo\DispositivoInsertarVista.js" />
+    <Content Include="Content\assets\viewsjs\Dispositivo\DispositivoListadoVista.js" />
+    <Content Include="Content\assets\viewsjs\Empleado\EmpleadoListadoVista.js" />
+    <Content Include="Content\assets\viewsjs\Empleado\EmpleadoNuevoVista.js" />
+    <Content Include="Content\assets\viewsjs\Empleado\EmpleadoRegistroVista.js" />
+    <Content Include="Content\assets\viewsjs\Empresa\EmpresaInsertar.js" />
+    <Content Include="Content\assets\viewsjs\Empresa\EmpresaModificar.js" />
+    <Content Include="Content\assets\viewsjs\Empresa\ListadoEmpresa.js" />
+    <Content Include="Content\assets\viewsjs\EntradaSalidaSala\AccionesIncidentesCajasTemporizadas.js" />
+    <Content Include="Content\assets\viewsjs\EntradaSalidaSala\AperturaCierreSala.js" />
+    <Content Include="Content\assets\viewsjs\EntradaSalidaSala\EntesReguladores.js" />
+    <Content Include="Content\assets\viewsjs\EntradaSalidaSala\BienMaterial.js" />
+    <Content Include="Content\assets\viewsjs\EntradaSalidaSala\ESS_Dashboard.js" />
+    <Content Include="Content\assets\viewsjs\EntradaSalidaSala\IngresoSalidaGU.js" />
+    <Content Include="Content\assets\viewsjs\EntradaSalidaSala\LogOcurrencia.js" />
+    <Content Include="Content\assets\viewsjs\EntradaSalidaSala\RecaudacionPersonal.js" />
+    <Content Include="Content\assets\viewsjs\EntradaSalidaSala\RecojoRemesas.js" />
+    <Content Include="Content\assets\viewsjs\EntradaSalidaSala\ReporteConsolidado.js" />
+    <Content Include="Content\assets\viewsjs\EntradaSalidaSala\VisitasSupervisor.js" />
+    <Content Include="Content\assets\viewsjs\Equipo\EquipoListado.js" />
+    <Content Include="Content\assets\viewsjs\ERP\StatusSincronizadorVista.js" />
+    <Content Include="Content\assets\viewsjs\EstadoServicios\EstadoServiciosVista.js" />
+    <Content Include="Content\assets\viewsjs\EventosSignificativos\ListadoEventosSignificativos.js" />
+    <Content Include="Content\assets\viewsjs\ExcelenciaOperativa\FichaNuevoVista.js" />
+    <Content Include="Content\assets\viewsjs\ExcelenciaOperativa\ReporteFichaVista.js" />
+    <Content Include="Content\assets\viewsjs\ExcelenciaOperativa\VistaReporteNominal.js" />
+    <Content Include="Content\assets\viewsjs\ExcelenciaOperativa\VistaReporteNominalPuntuacion.js" />
+    <Content Include="Content\assets\viewsjs\FichaSintomatologica\FichaNuevoVista.js" />
+    <Content Include="Content\assets\viewsjs\FichaSintomatologica\ListadoFichaVista.js" />
+    <Content Include="Content\assets\viewsjs\FichaSintomatologica\ReporteFichaVista.js" />
+    <Content Include="Content\assets\viewsjs\GestionCambios\GestionCambiosComiteCambiosPersonal.js" />
+    <Content Include="Content\assets\viewsjs\GestionCambios\GestionCambiosEditarSolicitudCambio.js" />
+    <Content Include="Content\assets\viewsjs\GestionCambios\GestionCambiosHistorialModal.js" />
+    <Content Include="Content\assets\viewsjs\GestionCambios\GestionCambiosLineaTiempoHistorial.js" />
+    <Content Include="Content\assets\viewsjs\GestionCambios\GestionCambiosNuevoSolicitudCambioVista.js" />
+    <Content Include="Content\assets\viewsjs\GestionCambios\GestionCambiosSistemaEditarVista.js" />
+    <Content Include="Content\assets\viewsjs\GestionCambios\GestionCambiosSistemaInsertarVista.js" />
+    <Content Include="Content\assets\viewsjs\GestionCambios\GestionCambiosSistemaListadoVista.js" />
+    <Content Include="Content\assets\viewsjs\GestionCambios\GestionCambiosSolicitudCambioVista.js" />
+    <Content Include="Content\assets\viewsjs\GestionCambios\UsuarioRegistroVista.js" />
+    <Content Include="Content\assets\viewsjs\GLPImodulo\asignarTickets.js" />
+    <Content Include="Content\assets\viewsjs\GLPImodulo\crearTicket.js" />
+    <Content Include="Content\assets\viewsjs\GLPImodulo\misTickets.js" />
+    <Content Include="Content\assets\viewsjs\GLPImodulo\reportes.js" />
+    <Content Include="Content\assets\viewsjs\GLPImodulo\tikets.js" />
+    <Content Include="Content\assets\viewsjs\Home\CambioContrasena.js" />
+    <Content Include="Content\assets\viewsjs\Home\Home.js" />
+    <Content Include="Content\assets\viewsjs\Home\Login.js" />
+    <Content Include="Content\assets\viewsjs\Home\progresivoseguridad.js" />
+    <Content Include="Content\assets\viewsjs\Home\RestablecerContrasena.js" />
+    <Content Include="Content\assets\viewsjs\Imei\ListadoControlImei.js" />
+    <Content Include="Content\assets\viewsjs\Incidencias\SistemaIncidencia.js" />
+    <Content Include="Content\assets\viewsjs\MaquinaEstados\ListadoEstadoMaquina.js" />
+    <Content Include="Content\assets\viewsjs\MaquinaEstados\RegistroMaquinaVista.js" />
+    <Content Include="Content\assets\viewsjs\MaquinaEstados\ReporteRegistroMaquinaVista.js" />
+    <Content Include="Content\assets\viewsjs\SalaMaestra\ActualizarSalaMaestra.js" />
+    <Content Include="Content\assets\viewsjs\SalaMaestra\InsertarSalaMaestra.js" />
+    <Content Include="Content\assets\viewsjs\SalaMaestra\ListadoSalaMaestra.js" />
+    <Content Include="Content\assets\viewsjs\LogAlertaBilleteros\LogAlertaBilleteros.js" />
+    <Content Include="Content\assets\viewsjs\LogAlertaBilleteros\LogsReporteNominal.js" />
+    <Content Include="Content\assets\viewsjs\MantenimientoBD\Backup.js" />
+    <Content Include="Content\assets\viewsjs\Mantenimiento\Cargo\MantenimientoCargoParcialVista.js" />
+    <Content Include="Content\assets\viewsjs\MaquinaEstados\ListadoEstadoMaquina.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasCentralizadas\ReporteMaquinasCentralizadasVista.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativasV2\AtenderMaquinaInoperativa.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativasV2\AtenderMaquinaInoperativaSinResolver.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativasV2\DetalleMaquinaInoperativaHistorico.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativasV2\ListadoMaquinaInoperativaHistorico.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativasV2\ListadoMaquinasInoperativasCreadas.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativasV2\ListadoMaquinasInoperativasSinResolver.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativasV2\ListadoSalaCorreos.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativasV2\RegistrarMaquinaInoperativa.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativas\ListadoAlmacen.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativas\ListadoAtencionMaquinaInoperativa.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativas\ListadoCategoriaPieza.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativas\ListadoCategoriaProblema.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativas\ListadoCategoriaRepuesto.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativas\ListadoDetalleAtencionMaquinaInoperativa.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativas\ListadoMaquinaInoperativa.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativas\ListadoMaquinaInoperativaAtencion.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativas\ListadoMaquinaInoperativaAtendida.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativas\ListadoMaquinaInoperativaAtendidaInoperativa.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativas\ListadoMaquinaInoperativaAtendidaInoperativaSolicitud.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativas\ListadoMaquinaInoperativaAtendidaOperativa.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativas\ListadoMaquinaInoperativaCreado.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativas\ListadoPieza.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativas\ListadoPiezaRepuestoAlmacen.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativas\ListadoProblema.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativas\ListadoRepuesto.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativas\ListadoSalaCorreos.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativas\ListadoTraspasoRepuestoAlmacen.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativas\MaquinaInoperativaAprobarSolicitudVista.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativas\MaquinaInoperativaAtencionVista.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativas\MaquinaInoperativaAtenderRepuestosAgregadosVista.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativas\MaquinaInoperativaAtenderSolicitudVista.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativas\MaquinaInoperativaAtenderVista.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativas\MaquinaInoperativaDetalleVista.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativas\MaquinaInoperativaEditarVista.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativas\MaquinaInoperativaHistoricoVista.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativas\MaquinaInoperativaInsertarVista.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativas\ReporteCategoriaProblemas.js" />
+    <Content Include="Content\assets\viewsjs\MaquinasInoperativas\UsuarioAlmacen.js" />
+    <Content Include="Content\assets\viewsjs\Modulo\ModuloEditarVista.js" />
+    <Content Include="Content\assets\viewsjs\Modulo\ModuloListadoVista.js" />
+    <Content Include="Content\assets\viewsjs\Modulo\ModuloNuevoVista.js" />
+    <Content Include="Content\assets\viewsjs\Ocurrencias\EditarCorreo.js" />
+    <Content Include="Content\assets\viewsjs\Ocurrencias\EditarTipoOcurrencia.js" />
+    <Content Include="Content\assets\viewsjs\Ocurrencias\ListadoCorreo.js" />
+    <Content Include="Content\assets\viewsjs\Ocurrencias\ListadoTipoOcurrencia.js" />
+    <Content Include="Content\assets\viewsjs\Ocurrencias\RegistroCorreo.js" />
+    <Content Include="Content\assets\viewsjs\Ocurrencias\RegistroOcurrencia.js" />
+    <Content Include="Content\assets\viewsjs\Ocurrencias\RegistroTipoOcurrencia.js" />
+    <Content Include="Content\assets\viewsjs\Ocurrencias\ReporteOcurrencia.js" />
+    <Content Include="Content\assets\viewsjs\Progresivo\Alerta\ConfiguracionAlertaProgresivoCargo.js" />
+    <Content Include="Content\assets\viewsjs\Progresivo\Alerta\ReporteAlertasProgresivo.js" />
+    <Content Include="Content\assets\viewsjs\Progresivo\Progresivo\ConsolidadoControlProgresivos.js" />
+    <Content Include="Content\assets\viewsjs\Progresivo\Progresivo\MantenimientoProgresivoVista.js" />
+    <Content Include="Content\assets\viewsjs\Progresivo\Progresivo\ProgresivoEditarMaquina.js" />
+    <Content Include="Content\assets\viewsjs\Progresivo\Progresivo\ProgresivoEditarMaquina_old.js" />
+    <Content Include="Content\assets\viewsjs\Progresivo\Progresivo\ProgresivoListadoMaquina.js" />
+    <Content Include="Content\assets\viewsjs\Progresivo\Progresivo\ProgresivoListadoMaquina_old.js" />
+    <Content Include="Content\assets\viewsjs\Progresivo\Progresivo\ProgresivoListadoMarcaModelo.js" />
+    <Content Include="Content\assets\viewsjs\Progresivo\Progresivo\ProgresivoNuevaMaquina.js" />
+    <Content Include="Content\assets\viewsjs\Progresivo\Progresivo\ProgresivoNuevaMaquina_old.js" />
+    <Content Include="Content\assets\viewsjs\Progresivo\Progresivo\ProgresivoRegistroVista.js" />
+    <Content Include="Content\assets\viewsjs\Progresivo\Progresivo\ProgresivoRegistroVista_old.js" />
+    <Content Include="Content\assets\viewsjs\Progresivo\Progresivo\ProgresivoVista.js" />
+    <Content Include="Content\assets\viewsjs\Progresivo\Progresivo\ProgresivoVista_old.js" />
+    <Content Include="Content\assets\viewsjs\Progresivo\Progresivo\ReporteControlProgresivos.js" />
+    <Content Include="Content\assets\viewsjs\Progresivo\Progresivo\ReporteProgresivoVista.js" />
+    <Content Include="Content\assets\viewsjs\ProyectadoProgresivo\ProyectadoProgresivoVista.js" />
+    <Content Include="Content\assets\viewsjs\Reclamaciones\ConfiguracionReclamacionesVista.js" />
+    <Content Include="Content\assets\viewsjs\Reclamaciones\ListadoReclamacionesVista.js" />
+    <Content Include="Content\assets\viewsjs\Reclamaciones\ReclamacionesDesistimientoVista.js" />
+    <Content Include="Content\assets\viewsjs\Reclamaciones\ReclamacionesInicioVista.js" />
+    <Content Include="Content\assets\viewsjs\Reclamaciones\ReclamacionesNuevoVista.js" />
+    <Content Include="Content\assets\viewsjs\Reclamaciones\ReclamacionesRegistroVista.js" />
+    <Content Include="Content\assets\viewsjs\Reclamaciones\ReclamacionesRespuestaVista.js" />
+    <Content Include="Content\assets\viewsjs\Reportes\AperturaCaja\AperturaCajas.js" />
+    <Content Include="Content\assets\viewsjs\Reportes\ERP\ConteoCliente\ConteoCliente.js" />
+    <Content Include="Content\assets\viewsjs\Reportes\ERP\ConteoCliente\custom.js" />
+    <Content Include="Content\assets\viewsjs\Reportes\ReporteSunat\ReporteSunat.js" />
+    <Content Include="Content\assets\viewsjs\Reportes\TITOCajas.js" />
+    <Content Include="Content\assets\viewsjs\Reportes\TITOPromocionales.js" />
+    <Content Include="Content\assets\viewsjs\Revisiones\AlertaBilleteroRevision.js" />
+    <Content Include="Content\assets\viewsjs\Rol\RolListadoVista.js" />
+    <Content Include="Content\assets\viewsjs\Rol\RolNuevoVista.js" />
+    <Content Include="Content\assets\viewsjs\Rol\RolRegistroVista.js" />
+    <Content Include="Content\assets\viewsjs\SalaMaestra\ActualizarSalaMaestra.js" />
+    <Content Include="Content\assets\viewsjs\SalaMaestra\InsertarSalaMaestra.js" />
+    <Content Include="Content\assets\viewsjs\SalaMaestra\ListadoSalaMaestra.js" />
+    <Content Include="Content\assets\viewsjs\Sala\CorreoSala.js" />
+    <Content Include="Content\assets\viewsjs\Sala\ListadoSala.js" />
+    <Content Include="Content\assets\viewsjs\Sala\ListadoSalaCamposProgresivo.js" />
+    <Content Include="Content\assets\viewsjs\Sala\ListadoSalaEchoPing.js" />
+    <Content Include="Content\assets\viewsjs\Sala\SalaInsertar.js" />
+    <Content Include="Content\assets\viewsjs\Sala\SalaModificar.js" />
+    <Content Include="Content\assets\viewsjs\SeguridadProgresivo\ListaPeticionesToken.js" />
+    <Content Include="Content\assets\viewsjs\Seguridad\AuditoriaVista.js" />
+    <Content Include="Content\assets\viewsjs\Seguridad\SeguridadVista.js" />
+    <Content Include="Content\assets\viewsjs\Seguridad\SeguridadVistaMenus.js" />
+    <Content Include="Content\assets\viewsjs\Seguridad\SeguridadVistaPermisos.js" />
+    <Content Include="Content\assets\viewsjs\Settings\AppSettings.js" />
+    <Content Include="Content\assets\viewsjs\Soporte\CallCenterBoveda\CallCenterModificarResumenSalaBoveda.js" />
+    <Content Include="Content\assets\viewsjs\Soporte\CallCenterBoveda\CallCenterResumenSalaBoveda.js" />
+    <Content Include="Content\assets\viewsjs\Soporte\CallCenterCajaBoveda\CallCenterCajaBovedaVista.js" />
+    <Content Include="Content\assets\viewsjs\Soporte\CallCenter\CallCenter\CallCenterBloquearDesbloquearUsuario.js" />
+    <Content Include="Content\assets\viewsjs\Soporte\CallCenter\CallCenter\CallCenterConsultaTicketRegistradoXpuntoVenta.js" />
+    <Content Include="Content\assets\viewsjs\Soporte\CallCenter\CallCenter\CallCenterModificarResumenSala.js" />
+    <Content Include="Content\assets\viewsjs\Soporte\CallCenter\CallCenter\CallCenterModificarTickets.js" />
+    <Content Include="Content\assets\viewsjs\Soporte\CallCenter\CallCenter\CallCenterMovimientoAuxiliarCaja.js" />
+    <Content Include="Content\assets\viewsjs\Soporte\CallCenter\CallCenter\CallCenterObtenerCajas.js" />
+    <Content Include="Content\assets\viewsjs\Soporte\CallCenter\CallCenter\CallCenterReducirMemoria.js" />
+    <Content Include="Content\assets\viewsjs\Soporte\CallCenter\CallCenter\CallCenterRegistroVista.js" />
+    <Content Include="Content\assets\viewsjs\Soporte\CallCenter\CallCenter\CallCenterResumenSala.js" />
+    <Content Include="Content\assets\viewsjs\Soporte\CallCenter\CallCenter\CallCenterSoportePlayerTracking.js" />
+    <Content Include="Content\assets\viewsjs\Soporte\CallCenter\CallCenter\CallCenterVista.js" />
+    <Content Include="Content\assets\viewsjs\Soporte\UtilitarioAdministrativo\UtilitarioAdministrativoVista.js" />
+    <Content Include="Content\assets\viewsjs\Sunat\Contadores\ListadoContadores.js" />
+    <Content Include="Content\assets\viewsjs\Sunat\Eventos\ListadoEventos.js" />
+    <Content Include="Content\assets\viewsjs\Super\ContraseniaUsuarios.js" />
+    <Content Include="Content\assets\viewsjs\Super\ControladoresPermisos.js" />
+    <Content Include="Content\assets\viewsjs\Super\Login.js" />
+    <Content Include="Content\assets\viewsjs\Super\Permisos.js" />
+    <Content Include="Content\assets\viewsjs\Tecnico\TecnicoEditarVista.js" />
+    <Content Include="Content\assets\viewsjs\Tecnico\TecnicoListadoVista.js" />
+    <Content Include="Content\assets\viewsjs\Tecnico\TecnicoRegistrarVista.js" />
+    <Content Include="Content\assets\viewsjs\TransaccionTarjetaCliente\transacciones.js" />
+    <Content Include="Content\assets\viewsjs\TransaccionTarjetaCliente\filtros.js" />
+    <Content Include="Content\assets\viewsjs\TransferenciasAT\FormularioRegistroVista.js" />
+    <Content Include="Content\assets\viewsjs\TransferenciasAT\ReporteFormularioRegistro.js" />
+    <Content Include="Content\assets\viewsjs\Transferencias\Cliente.js" />
+    <Content Include="Content\assets\viewsjs\Transferencias\DepositoReporteVista.js" />
+    <Content Include="Content\assets\viewsjs\Transferencias\TransferenciaFormularioVista.js" />
+    <Content Include="Content\assets\viewsjs\Transferencias\TransferenciaReporteVista.js" />
+    <Content Include="Content\assets\viewsjs\UsuarioEncriptacion\UsuarioEncriptacionEditarVista.js" />
+    <Content Include="Content\assets\viewsjs\UsuarioEncriptacion\UsuarioEncriptacionListarVista.js" />
+    <Content Include="Content\assets\viewsjs\UsuarioEncriptacion\UsuarioEncriptacionRegistrarVista.js" />
+    <Content Include="Content\assets\viewsjs\UsuarioSala\UsuarioSala.js" />
+    <Content Include="Content\assets\viewsjs\Usuario\CambiarContraseniaVista.js" />
+    <Content Include="Content\assets\viewsjs\Usuario\UsuarioInsertarVista.js" />
+    <Content Include="Content\assets\viewsjs\Usuario\UsuarioListadoVista.js" />
+    <Content Include="Content\assets\viewsjs\Usuario\UsuarioRegistroVista.js" />
+    <Content Include="Content\assets\viewsjs\WhatsApp\Contacto\ActualizarContacto.js" />
+    <Content Include="Content\assets\viewsjs\WhatsApp\Contacto\InsertarContacto.js" />
+    <Content Include="Content\assets\viewsjs\WhatsApp\Contacto\ListadoContacto.js" />
+    <Content Include="Content\assets\viewsjs\WhatsApp\Instancia\ActualizarInstancia.js" />
+    <Content Include="Content\assets\viewsjs\WhatsApp\Instancia\InsertarInstancia.js" />
+    <Content Include="Content\assets\viewsjs\WhatsApp\Instancia\ListadoInstancia.js" />
+    <Content Include="Content\assets\viewsjs\WhatsApp\MensajeriaClienteOld\ActualizarContactoCliente.js" />
+    <Content Include="Content\assets\viewsjs\WhatsApp\MensajeriaClienteOld\ListadoClientesVista.js" />
+    <Content Include="Content\assets\viewsjs\WhatsApp\MensajeriaClienteOld\Sesion.js" />
+    <Content Include="Content\assets\viewsjs\WhatsApp\MensajeriaCliente\ActualizarContactoCliente.js" />
+    <Content Include="Content\assets\viewsjs\WhatsApp\MensajeriaCliente\ListadoClientesVista.js" />
+    <Content Include="Content\assets\viewsjs\WhatsApp\Mensajeria\Sesion.js" />
+    <Content Include="Content\assets\viewsjs\Zona\ZonaVista.js" />
+    <Content Include="Content\auditoria_formularios.txt" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\controlador.txt" />
+    <Content Include="Content\haarcascades\haarcascade_frontalface_alt_tree.xml" />
+    <Content Include="Content\haarcascades\haarcascade_frontalface_default.xml" />
+    <Content Include="Content\menu-square\assets\bgs\ms-bg.jpg" />
+    <Content Include="Content\menu-square\assets\menu-square.css" />
+    <Content Include="Content\menu-square\assets\menu-square.js" />
+    <Content Include="Content\menu-square\icons\notificaciones-gladcon.png" />
+    <Content Include="Content\menu-square\icons\alertas-billeteros.png" />
+    <Content Include="Content\menu-square\icons\asistencia-cliente.png" />
+    <Content Include="Content\menu-square\icons\asistencia-empleado.png" />
+    <Content Include="Content\menu-square\icons\atm.png" />
+    <Content Include="Content\menu-square\icons\bonificaciones.png" />
+    <Content Include="Content\menu-square\icons\bot-whatsapp.png" />
+    <Content Include="Content\menu-square\icons\buk_logo.jpg" />
+    <Content Include="Content\menu-square\icons\campanias.png" />
+    <Content Include="Content\menu-square\icons\con-warning-svgrepo-com.svg" />
+    <Content Include="Content\menu-square\icons\control-acceso.png" />
+    <Content Include="Content\menu-square\icons\cortesias.png" />
+    <Content Include="Content\menu-square\icons\excelencia-operativa.png" />
+    <Content Include="Content\menu-square\icons\ficha-salud.png" />
+    <Content Include="Content\menu-square\icons\gestion-cambios.png" />
+    <Content Include="Content\menu-square\icons\incidencia.png" />
+    <Content Include="Content\menu-square\icons\inicio.png" />
+    <Content Include="Content\menu-square\icons\maquinas-inoperativas.png" />
+    <Content Include="Content\menu-square\icons\migracion.png" />
+    <Content Include="Content\menu-square\icons\movimientos-sala.png" />
+    <Content Include="Content\menu-square\icons\ocurrencias.png" />
+    <Content Include="Content\menu-square\icons\progresivo.png" />
+    <Content Include="Content\menu-square\icons\proyectado-progresivo.png" />
+    <Content Include="Content\menu-square\icons\qa.svg" />
+    <Content Include="Content\menu-square\icons\reclamaciones.png" />
+    <Content Include="Content\menu-square\icons\reporte-alerta-progresivo.png" />
+    <Content Include="Content\menu-square\icons\reporte_erp.png" />
+    <Content Include="Content\menu-square\icons\salida.png" />
+    <Content Include="Content\menu-square\icons\satisfaccion-cliente.png" />
+    <Content Include="Content\menu-square\icons\seguridad.png" />
+    <Content Include="Content\menu-square\icons\soporte.png" />
+    <Content Include="Content\menu-square\icons\sunat.png" />
+    <Content Include="Content\menu-square\icons\transferencias-at.png" />
+    <Content Include="Content\menu-square\icons\vision.png" />
+    <Content Include="Content\menu-square\icons\whatsapp.png" />
+    <Content Include="Content\menu-square\icons\whatsapp1.png" />
+    <Content Include="Content\menu-square\icons\work-tools.png" />
+    <Content Include="Content\Setup\setup.exe" />
+    <Content Include="Content\token-progresivo\token-progresivo.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\fonts.googleapis\css2ca8.css" />
+    <Content Include="fonts\fonts.googleapis\index.html" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Rotativa\help-wkhtmltoimage.txt" />
+    <Content Include="Rotativa\help-wkhtmltopdf.txt" />
+    <Content Include="Rotativa\wkhtmltoimage.exe" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\assets\css\required\icheck\minimal\aero.148.delayed" />
+    <Content Include="Content\assets\fonts\glyphicons\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\assets\fonts\glyphicons\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\assets\fonts\glyphicons\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\assets\fonts\glyphicons\glyphicons-halflings-regulard41d.eot" />
+    <Content Include="Content\assets\fonts\metrize-icons\Metrize-Icons.eot" />
+    <Content Include="Content\assets\fonts\metrize-icons\Metrize-Icons.ttf" />
+    <Content Include="Content\assets\fonts\metrize-icons\Metrize-Icons.woff" />
+    <Content Include="Content\assets\fonts\metrize-icons\Metrize-Iconsd41d.eot" />
+    <Content Include="Content\assets\fonts\weather-icons\weathericons-regular-webfont.eot" />
+    <Content Include="Content\assets\fonts\weather-icons\weathericons-regular-webfont.ttf" />
+    <Content Include="Content\assets\fonts\weather-icons\weathericons-regular-webfont.woff" />
+    <Content Include="Content\assets\fonts\weather-icons\weathericons-regular-webfontd41d.eot" />
+    <Content Include="Content\assets\fonts\font-awesome-4.6.3\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\assets\fonts\font-awesome-4.6.3\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\assets\fonts\font-awesome-4.6.3\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\assets\fonts\font-awesome-4.6.3\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\assets\fonts\font-awesome-4.6.3\fonts\FontAwesome.otf" />
+    <Content Include="Content\assets\fonts\font-awesome-4.6.3\less\animated.less" />
+    <Content Include="Content\assets\fonts\font-awesome-4.6.3\less\bordered-pulled.less" />
+    <Content Include="Content\assets\fonts\font-awesome-4.6.3\less\core.less" />
+    <Content Include="Content\assets\fonts\font-awesome-4.6.3\less\fixed-width.less" />
+    <Content Include="Content\assets\fonts\font-awesome-4.6.3\less\font-awesome.less" />
+    <Content Include="Content\assets\fonts\font-awesome-4.6.3\less\icons.less" />
+    <Content Include="Content\assets\fonts\font-awesome-4.6.3\less\larger.less" />
+    <Content Include="Content\assets\fonts\font-awesome-4.6.3\less\list.less" />
+    <Content Include="Content\assets\fonts\font-awesome-4.6.3\less\mixins.less" />
+    <Content Include="Content\assets\fonts\font-awesome-4.6.3\less\path.less" />
+    <Content Include="Content\assets\fonts\font-awesome-4.6.3\less\rotated-flipped.less" />
+    <Content Include="Content\assets\fonts\font-awesome-4.6.3\less\screen-reader.less" />
+    <Content Include="Content\assets\fonts\font-awesome-4.6.3\less\stacked.less" />
+    <Content Include="Content\assets\fonts\font-awesome-4.6.3\less\variables.less" />
+    <Content Include="Content\assets\fonts\font-awesome-4.6.3\scss\font-awesome.scss" />
+    <Content Include="Content\assets\fonts\font-awesome-4.6.3\scss\_animated.scss" />
+    <Content Include="Content\assets\fonts\font-awesome-4.6.3\scss\_bordered-pulled.scss" />
+    <Content Include="Content\assets\fonts\font-awesome-4.6.3\scss\_core.scss" />
+    <Content Include="Content\assets\fonts\font-awesome-4.6.3\scss\_fixed-width.scss" />
+    <Content Include="Content\assets\fonts\font-awesome-4.6.3\scss\_icons.scss" />
+    <Content Include="Content\assets\fonts\font-awesome-4.6.3\scss\_larger.scss" />
+    <Content Include="Content\assets\fonts\font-awesome-4.6.3\scss\_list.scss" />
+    <Content Include="Content\assets\fonts\font-awesome-4.6.3\scss\_mixins.scss" />
+    <Content Include="Content\assets\fonts\font-awesome-4.6.3\scss\_path.scss" />
+    <Content Include="Content\assets\fonts\font-awesome-4.6.3\scss\_rotated-flipped.scss" />
+    <Content Include="Content\assets\fonts\font-awesome-4.6.3\scss\_screen-reader.scss" />
+    <Content Include="Content\assets\fonts\font-awesome-4.6.3\scss\_stacked.scss" />
+    <Content Include="Content\assets\fonts\font-awesome-4.6.3\scss\_variables.scss" />
+    <Content Include="Content\Setup\Instalador_IASServiceClient.msi" />
+    <Content Include="App_Browsers\qt.browser" />
+    <Content Include="OpenTK.dll.config" />
+    <Content Include="Content\assets\js\optional\openlayer\ol.css.map" />
+    <Content Include="Content\assets\js\optional\openlayer\ol.js.map" />
+    <Content Include="Content\token.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-user" />
+    <Content Include="Content\client_secret.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\credentials_secret.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\token_secret.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-user" />
+    <Content Include="Content\assets\fonts\line-awesome-1.3.0\fonts\la-brands-400.eot" />
+    <Content Include="Content\assets\fonts\line-awesome-1.3.0\fonts\la-brands-400.ttf" />
+    <Content Include="Content\assets\fonts\line-awesome-1.3.0\fonts\la-brands-400.woff" />
+    <Content Include="Content\assets\fonts\line-awesome-1.3.0\fonts\la-brands-400.woff2" />
+    <Content Include="Content\assets\fonts\line-awesome-1.3.0\fonts\la-regular-400.eot" />
+    <Content Include="Content\assets\fonts\line-awesome-1.3.0\fonts\la-regular-400.ttf" />
+    <Content Include="Content\assets\fonts\line-awesome-1.3.0\fonts\la-regular-400.woff" />
+    <Content Include="Content\assets\fonts\line-awesome-1.3.0\fonts\la-regular-400.woff2" />
+    <Content Include="Content\assets\fonts\line-awesome-1.3.0\fonts\la-solid-900.eot" />
+    <Content Include="Content\assets\fonts\line-awesome-1.3.0\fonts\la-solid-900.ttf" />
+    <Content Include="Content\assets\fonts\line-awesome-1.3.0\fonts\la-solid-900.woff" />
+    <Content Include="Content\assets\fonts\line-awesome-1.3.0\fonts\la-solid-900.woff2" />
+    <Content Include="Content\menu-square\menu.json" />
+    <Content Include="Content\credentials_super.json" />
+    <Content Include="Content\Errors\errors.json" />
+    <Content Include="Content\data\EOJefeOperativo.json" />
+    <Content Include="Content\data\EOGerenteUnidad.json" />
+    <Content Include="Content\data\EOJefeOperativoV3.json" />
+    <Content Include="Content\data\EOJefeOperativoV4.json" />
+    <Content Include="Content\data\EOJefeOperativoV5.json" />
+    <Content Include="Content\ess_excel_plantilla\Plantilla_ESS_LogOcurrencia.xlsx" />
+    <Content Include="Content\ess_excel_plantilla\Plantilla_ESS_AccionesIncidentesCajasTemporizadas.xlsx" />
+    <Content Include="Content\ess_excel_plantilla\Plantilla_ESS_AperturaCierreSala.xlsx" />
+    <Content Include="Content\ess_excel_plantilla\Plantilla_ESS_IngresoSalidaGU.xlsx" />
+    <Content Include="Content\ess_excel_plantilla\Plantilla_ESS_BienMaterial.xlsx" />
+    <Content Include="Content\ess_excel_plantilla\Plantilla_ESS_RecaudacionPersonalParticipante.xlsx" />
+    <Content Include="Content\ess_excel_plantilla\Plantilla_ESS_EntesReguladores.xlsx" />
+    <Content Include="Content\ess_excel_plantilla\Plantilla_ESS_RecojoRemesas.xlsx" />
+    <Content Include="fonts\docu\02_diagrama_clases.puml" />
+    <Content Include="fonts\docu\03_secuencia_responder_encuesta.puml" />
+    <Content Include="fonts\docu\04_secuencia_reporte_nps.puml" />
+    <Content Include="fonts\docu\05_secuencia_reporte_csat.puml" />
+    <Content Include="fonts\docu\06_secuencia_reporte_atributos.puml" />
+    <Content Include="fonts\docu\07_secuencia_configurar_pregunta_atributo.puml" />
+    <Content Include="fonts\docu\08_secuencia_configurar_tablets.puml" />
+    <Content Include="fonts\docu\09_secuencia_exportar_excel.puml" />
+    <Content Include="fonts\docu\README.md" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.signalR-2.4.3.js" />
+    <Content Include="Scripts\jquery.signalR-2.4.3.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Web References\WebServiceUtilitario\DineroSlot.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\WebServiceUtilitario\InfoSlot.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\WebServiceUtilitario\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="Views\CallCenter\CallCenterBloquearDesbloquearUsuario.cshtml" />
+    <Content Include="Views\CallCenter\CallCenterConsultaTicketRegistradoXpuntoVenta.cshtml" />
+    <Content Include="Views\CallCenter\CallCenterModificarResumenSalaVista.cshtml" />
+    <Content Include="Views\CallCenter\CallCenterModificarTickets.cshtml" />
+    <Content Include="Views\CallCenter\CallCenterMovimientoAuxiliarCaja.cshtml" />
+    <Content Include="Views\CallCenter\CallCenterObtenerCajas.cshtml" />
+    <Content Include="Views\CallCenter\CallCenterReducirMemoriaVista.cshtml" />
+    <Content Include="Views\CallCenter\CallCenterRegistroVista.cshtml" />
+    <Content Include="Views\CallCenter\CallCenterResumenSalaVista.cshtml" />
+    <Content Include="Views\CallCenter\CallCenterSoportePlayerTrackingVista.cshtml" />
+    <Content Include="Views\CallCenter\CallCenterVista.cshtml" />
+    <Content Include="Views\CallCenter\ReducirMemoriaVista.cshtml" />
+    <Content Include="Views\CallCenter\TicketEmitidoPorMontoVista.cshtml" />
+    <Content Include="Views\CallCenter\TicketRegistradoVista.cshtml" />
+    <Content Include="Views\CallCenter\VerificarComportamientoMaquinaVista.cshtml" />
+    <Content Include="Views\GestionCambios\GestionCambiosSistemaListadoVista.cshtml" />
+    <Content Include="Views\GestionCambios\GestionCambiosSistemaInsertarVista.cshtml" />
+    <Content Include="Views\GestionCambios\GestionCambiosListadoModuloVista.cshtml" />
+    <Content Include="Views\GestionCambios\GestionCambiosNuevoModuloVista.cshtml" />
+    <Content Include="Views\GestionCambios\GestionCambiosEditarModuloVista.cshtml" />
+    <Content Include="Views\GestionCambios\GestionCambiosSistemaEditarVista.cshtml" />
+    <Content Include="Views\GestionCambios\GestionCambiosComiteCambiosPersonalListadoVista.cshtml" />
+    <Content Include="Views\GestionCambios\GestionCambiosSolicitudCambioVista.cshtml" />
+    <Content Include="Views\GestionCambios\GestionCambiosNuevoSolicitudCambioVista.cshtml" />
+    <Content Include="Views\GestionCambios\GestionCambiosHistorialSolicitudModal.cshtml" />
+    <Content Include="Views\GestionCambios\GestionCambioLineaTiempoHistorialSolicitudVista.cshtml" />
+    <Content Include="Views\GestionCambios\GestionCambiosEditarSolicitudCambioVista.cshtml" />
+    <Content Include="Views\Progresivo\ProgresivoListadoMaquina.cshtml" />
+    <Content Include="Views\Progresivo\ProgresivoRegistrarMaquina.cshtml" />
+    <Content Include="Views\Progresivo\ProgresivoEditarMaquina.cshtml" />
+    <Content Include="Views\ConfiguracionSeguridad\ConfiguracionSeguridadVista.cshtml" />
+    <Content Include="Views\CallCenterCajaBoveda\CallCenterCajaBovedaVista.cshtml" />
+    <Content Include="Views\CallCenterCajaBoveda\CallCenterResumenSalaBovedaVista.cshtml" />
+    <Content Include="Views\CallCenterCajaBoveda\CallCenterModificarResumenSalaBovedaVista.cshtml" />
+    <Content Include="Views\Tecnico\TecnicoListarVista.cshtml" />
+    <Content Include="Views\Tecnico\TecnicoInsertarVista.cshtml" />
+    <Content Include="Views\Tecnico\TecnicoEditarVista.cshtml" />
+    <Content Include="Views\UsuarioEncriptacion\UsuarioEncriptacionListarVista.cshtml" />
+    <Content Include="Views\UsuarioEncriptacion\UsuarioEncriptacionInsertarVista.cshtml" />
+    <Content Include="Views\UsuarioEncriptacion\UsuarioEncriptacionEditarVista.cshtml" />
+    <Content Include="Views\Dispositivo\DispositivoListadoVista.cshtml" />
+    <Content Include="Views\Dispositivo\DispositivoInsertarVista.cshtml" />
+    <Content Include="Views\Dispositivo\DispositivoEditarVista.cshtml" />
+    <Content Include="Views\ProyectadoProgresivo\ProyectadoProgresivoListarVista.cshtml" />
+    <Content Include="Views\Atm\UtilitarioAtmVista.cshtml" />
+    <Content Include="Views\Transferencias\TransferenciaFormularioVista.cshtml" />
+    <Content Include="Views\Transferencias\TransferenciaReporteVista.cshtml" />
+    <Content Include="Views\Transferencias\ClienteVista.cshtml" />
+    <Content Include="Views\Transferencias\DepositoReporteVista.cshtml" />
+    <Content Include="Views\TransferenciasAT\FormularioRegistroVista.cshtml" />
+    <Content Include="Views\TransferenciasAT\ReporteFormularioRegistroVista.cshtml" />
+    <Content Include="Views\AsistenciaCliente\RegistroAsistencia.cshtml" />
+    <Content Include="Views\AsistenciaCliente\RegistroCliente.cshtml" />
+    <Content Include="Views\AsistenciaCliente\ListadoCliente.cshtml" />
+    <Content Include="Views\AsistenciaCliente\EditarCliente.cshtml" />
+    <Content Include="Views\AsistenciaCliente\ReporteAsistenciaSala.cshtml" />
+    <Content Include="Views\AsistenciaCliente\RegistroAsistenciaHora.cshtml" />
+    <Content Include="Views\AsistenciaCliente\ListadoTipoCliente.cshtml" />
+    <Content Include="Views\AsistenciaCliente\RegistroTipoCliente.cshtml" />
+    <Content Include="Views\AsistenciaCliente\EditarTipoCliente.cshtml" />
+    <Content Include="Views\AsistenciaCliente\ListadoTipoFrecuencia.cshtml" />
+    <Content Include="Views\AsistenciaCliente\RegistroTipoFrecuencia.cshtml" />
+    <Content Include="Views\AsistenciaCliente\EditarTipoFrecuencia.cshtml" />
+    <Content Include="Views\Ocurrencias\ListadoCorreo.cshtml" />
+    <Content Include="Views\Ocurrencias\EditarCorreo.cshtml" />
+    <Content Include="Views\Ocurrencias\RegistroCorreo.cshtml" />
+    <Content Include="Views\Ocurrencias\ListadoTipoOcurrencia.cshtml" />
+    <Content Include="Views\Ocurrencias\RegistroTipoOcurrencia.cshtml" />
+    <Content Include="Views\Ocurrencias\EditarTipoOcurrencia.cshtml" />
+    <Content Include="Views\Ocurrencias\RegistroOcurrencia.cshtml" />
+    <Content Include="Views\Ocurrencias\ReporteOcurrencia.cshtml" />
+    <Content Include="Views\Ocurrencias\PdfOcurrencia.cshtml" />
+    <Content Include="Views\Ocurrencias\PdfOcurrenciaMultiple.cshtml" />
+    <Content Include="Views\Bonificaciones\FormularioRegistroVista.cshtml" />
+    <Content Include="Views\Bonificaciones\ReporteFormularioRegistroVista.cshtml" />
+    <Content Include="Views\AsistenciaCliente\SincronizarExcelClientes.cshtml" />
+    <Content Include="Views\AsistenciaEmpleado\ReporteAsistencia.cshtml" />
+    <Content Include="Views\AsistenciaEmpleado\ReporteVisita.cshtml" />
+    <Content Include="Views\AsistenciaEmpleado\Turnos.cshtml" />
+    <Content Include="Views\AsistenciaEmpleado\EnvioAsistencia.cshtml" />
+    <Content Include="Views\Campania\ListadoCampania.cshtml" />
+    <Content Include="Views\AlertaBilleteros\ReporteAlertaBilleterosVista.cshtml" />
+    <Content Include="Views\AlertaBilleteros\ConfiguracionAlertaCargoVista.cshtml" />
+    <Content Include="Views\Reclamaciones\ReclamacionesListaVista.cshtml" />
+    <Content Include="Views\Reclamaciones\ReclamacionesRegistroVista.cshtml" />
+    <Content Include="Views\Sala\SalaInsertarVista.cshtml" />
+    <Content Include="Views\Empresa\EmpresaVista.cshtml" />
+    <Content Include="Views\Empresa\EmpresaInsertarVista.cshtml" />
+    <Content Include="Views\Empresa\EmpresaModificarVista.cshtml" />
+    <Content Include="Views\Reclamaciones\ReclamacionesInicioVista.cshtml" />
+    <Content Include="Views\Reclamaciones\ReclamacionesNuevoVista.cshtml" />
+    <Content Include="Views\Shared\_Reclamaciones.cshtml" />
+    <Content Include="Views\Reclamaciones\ReclamacionesRegistroPDFVista.cshtml" />
+    <Content Include="Views\Reclamaciones\ReclamacionesRespuestaVista.cshtml" />
+    <Content Include="Views\Reclamaciones\REclamacionesRespuestaPDFVista.cshtml" />
+    <Content Include="Views\Reclamaciones\ReclamacionesRespuestaPDFVistaMultiple.cshtml" />
+    <Content Include="Views\Reclamaciones\ReclamacionesCargoPDF.cshtml" />
+    <Content Include="Content\credentials.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Campania\ListadoImpresora.cshtml" />
+    <Content Include="Views\Campania\ImpresoraInsertarVista.cshtml" />
+    <Content Include="Views\Campania\ImpresoraModificarVista.cshtml" />
+    <Content Include="Views\Campania\ImpresoraUsuarioVista.cshtml" />
+    <Content Include="Views\Campania\VisorEstadoMaquinas.cshtml" />
+    <Content Include="Views\Campania\ListadoMaquinasRestringidas.cshtml" />
+    <Content Include="Views\Campania\ReporteCampaniaPromocionClienteVista.cshtml" />
+    <Content Include="Views\Campania\ReporteCampaniaSorteoClienteVista.cshtml" />
+    <Content Include="Views\AsistenciaCliente\ReporteListaClienteVista.cshtml" />
+    <Content Include="Views\Campania\ReporteCampaniaClienteVista.cshtml" />
+    <Content Include="Views\LogAlertaBilleteros\LogsOnlineVista.cshtml" />
+    <Content Include="Views\AsistenciaCliente\EmpadronamientoFormulario.cshtml" />
+    <Content Include="Views\AsistenciaCliente\ReporteEmpadronamiento.cshtml" />
+    <Content Include="Views\Campania\ClienteConsultaJuego.cshtml" />
+    <Content Include="Views\Shared\_ConsultaJuego.cshtml" />
+    <Content Include="Views\FichaSintomatologica\FichaVista.cshtml" />
+    <Content Include="Views\FichaSintomatologica\FichaPDFVista.cshtml" />
+    <Content Include="Views\FichaSintomatologica\FichaReporteVista.cshtml" />
+    <Content Include="Views\Shared\_FichaSintomatologica.cshtml" />
+    <Content Include="Views\AsistenciaCliente\EditarTipoJuego.cshtml" />
+    <Content Include="Views\AsistenciaCliente\ListadoTipoJuego.cshtml" />
+    <Content Include="Views\AsistenciaCliente\RegistroTipoJuego.cshtml" />
+    <Content Include="Views\FichaSintomatologica\FichaMensaje.cshtml" />
+    <Content Include="Views\FichaSintomatologica\FichaPDFVistaMultiple.cshtml" />
+    <Content Include="Views\ExcelenciaOperativa\FichaVistaJOP.cshtml" />
+    <Content Include="Views\ExcelenciaOperativa\FichaMensaje.cshtml" />
+    <Content Include="Views\ExcelenciaOperativa\FichaVistaGU.cshtml" />
+    <Content Include="Views\ExcelenciaOperativa\FichaReporteVista.cshtml" />
+    <Content Include="Views\ExcelenciaOperativa\FichaPDFVista.cshtml" />
+    <Content Include="Views\ExcelenciaOperativa\FichaPDFVistaMultiple.cshtml" />
+    <Content Include="Views\CallCenter\TicketBolsaVista.cshtml" />
+    <Content Include="Views\ControlAcceso\ListadoCargoPolitico.cshtml" />
+    <Content Include="Views\ControlAcceso\ListadoCargoEntidad.cshtml" />
+    <Content Include="Views\ControlAcceso\ListadoEntidadPublica.cshtml" />
+    <Content Include="Views\ControlAcceso\ListadoLudopata.cshtml" />
+    <Content Include="Views\ControlAcceso\ListadoPersonaEntidadPublica.cshtml" />
+    <Content Include="Views\ControlAcceso\ListadoPolitico.cshtml" />
+    <Content Include="Views\ControlAcceso\ListadoPersonaProhibidoIngreso.cshtml" />
+    <Content Include="Views\ControlAcceso\ListadoBanda.cshtml" />
+    <Content Include="Views\ControlAcceso\Busqueda.cshtml" />
+    <Content Include="Views\ControlAcceso\ListadoCodigo.cshtml" />
+    <Content Include="Views\ControlAcceso\ListadoAuditoria.cshtml" />
+    <Content Include="Views\ControlAcceso\ListadoCodigoPersona.cshtml" />
+    <Content Include="Views\Reclamaciones\ReclamacionesDesistimientoVista.cshtml" />
+    <Content Include="Views\ControlAcceso\ReporteLudopataCliente.cshtml" />
+    <Content Include="Views\Super\ControladoresPermisos.cshtml" />
+    <Content Include="Views\Super\Login.cshtml" />
+    <Content Include="Views\Super\PanelPrincipal.cshtml" />
+    <Content Include="Views\Super\Permisos.cshtml" />
+    <Content Include="Views\Shared\_Super.cshtml" />
+    <Content Include="Views\Usuario\CambiarContraseniaVista.cshtml" />
+    <Content Include="Views\Super\ContraseniaUsuarios.cshtml" />
+    <Content Include="Views\ExcelenciaOperativa\FichaMensajeNoFound.cshtml" />
+    <Content Include="Views\MantenimientoBD\Backup.cshtml" />
+    <Content Include="Views\ControlAcceso\ListadoLogApiReniec.cshtml" />
+    <Content Include="Views\Reportes\TITOCajas.cshtml" />
+    <Content Include="Views\Progresivo\ProgresivoMensaje.cshtml" />
+    <Content Include="Views\Reportes\TITOPromocionales.cshtml" />
+    <Content Include="Views\SeguridadProgresivo\ListaPeticionesToken.cshtml" />
+    <Content Include="Views\Shared\MensajeCodigo.cshtml" />
+    <Content Include="Views\MaquinasInoperativas\ListadoPieza.cshtml" />
+    <Content Include="Views\MaquinasInoperativas\ListadoProblema.cshtml" />
+    <Content Include="Views\MaquinasInoperativas\ListadoRepuesto.cshtml" />
+    <Content Include="Views\MaquinasInoperativas\ListadoCategoriaPieza.cshtml" />
+    <Content Include="Views\MaquinasInoperativas\ListadoCategoriaProblema.cshtml" />
+    <Content Include="Views\MaquinasInoperativas\ListadoCategoriaRepuesto.cshtml" />
+    <Content Include="Views\MaquinasInoperativas\ListadoAlmacen.cshtml" />
+    <Content Include="Views\MaquinasInoperativas\UsuarioAlmacenVista.cshtml" />
+    <Content Include="Views\MaquinasInoperativas\ListadoPiezaRepuestoAlmacen.cshtml" />
+    <Content Include="Views\ExcelenciaOperativa\VistaReporteNominal.cshtml" />
+    <Content Include="Views\ExcelenciaOperativa\VistaReporteNominalPuntuacion.cshtml" />
+    <Content Include="Views\Sala\SalaCamposProgresivoVista.cshtml" />
+    <Content Include="Views\Sala\SalaEchoPingVista.cshtml" />
+    <Content Include="Views\ControlAcceso\ListadoRobaStackersBilletero.cshtml" />
+    <Content Include="Views\MaquinasInoperativas\ListadoMaquinaInoperativa.cshtml" />
+    <Content Include="Views\MaquinasInoperativas\MaquinaInoperativaInsertarVista.cshtml" />
+    <Content Include="Views\MaquinasInoperativas\MaquinaInoperativaEditarVista.cshtml" />
+    <Content Include="Views\Disco\ListadoDiscos.cshtml" />
+    <Content Include="Views\Contacto\ContactoListadoVista.cshtml" />
+    <Content Include="Views\Contacto\ContactoInsertarVista.cshtml" />
+    <Content Include="Views\Contacto\ContactoActualizarVista.cshtml" />
+    <Content Include="Views\Mensajeria\Index.cshtml" />
+    <Content Include="Views\Disco\ConfiguracionAlertaDisco.cshtml" />
+    <Content Include="Views\Campania\AuditoriaTitoPromoVista.cshtml" />
+    <Content Include="Views\Imei\ImeiControlVista.cshtml" />
+    <Content Include="Views\Equipo\EquipoControl.cshtml" />
+    <Content Include="Views\Zona\ZonaVista.cshtml" />
+    <Content Include="Views\Contadores\ContadoresNegativos.cshtml" />
+    <Content Include="Views\Contadores\ConfiguracionAlertaContadorNegativo.cshtml" />
+    <Content Include="Views\MensajeriaCliente\IndexOld.cshtml" />
+    <Content Include="Views\MensajeriaCliente\ActualizarContactoClienteVista.cshtml" />
+    <Content Include="Views\MaquinasInoperativas\MaquinaInoperativaAtencionVista.cshtml" />
+    <Content Include="Views\MaquinasInoperativas\ListadoTraspasoRepuestoAlmacen.cshtml" />
+    <Content Include="Views\MaquinasInoperativas\ListadoDetalleAtencionMaquinaInoperativa.cshtml" />
+    <Content Include="Views\MaquinasInoperativas\ListadoMaquinaInoperativaAtendida.cshtml" />
+    <Content Include="Views\MaquinasInoperativas\ListadoMaquinaInoperativaAtencion.cshtml" />
+    <Content Include="Views\Progresivo\MantenimientoProgresivoVista.cshtml" />
+    <Content Include="Views\AsistenciaCliente\RegistroEmpadronamiento.cshtml" />
+    <Content Include="Views\Progresivo\ReporteProgresivoVista.cshtml" />
+    <Content Include="Views\MaquinasInoperativas\MaquinaInoperativaDetalleVista.cshtml" />
+    <Content Include="Views\Progresivo\ReporteControlProgresivos.cshtml" />
+    <Content Include="Views\Shared\_LayoutSesionesSala.cshtml" />
+    <Content Include="Views\Campania\SesionClienteExterno.cshtml" />
+    <Content Include="Views\EstadoServicios\EstadoServiciosVista.cshtml" />
+    <Content Include="Views\MaquinasInoperativas\ListadoMaquinaInoperativaCreado.cshtml" />
+    <Content Include="Views\MaquinasInoperativas\MaquinaInoperativaAtenderVista.cshtml" />
+    <Content Include="Views\MaquinasInoperativas\ListadoMaquinaInoperativaAtendidaOperativa.cshtml" />
+    <Content Include="Views\MaquinasInoperativas\ListadoMaquinaInoperativaAtendidaInoperativa.cshtml" />
+    <Content Include="Views\MaquinasInoperativas\ListadoMaquinaInoperativaAtendidaInoperativaSolicitud.cshtml" />
+    <Content Include="Views\MaquinasInoperativas\MaquinaInoperativaAtenderSolicitudVista.cshtml" />
+    <Content Include="Views\MaquinasInoperativas\MaquinaInoperativaAprobarSolicitudVista.cshtml" />
+    <Content Include="Views\AlertaProgresivo\ReporteAlertasProgresivo.cshtml" />
+    <Content Include="Views\AlertaProgresivo\ConfiguracionAlertaProgresivoCargo.cshtml" />
+    <Content Include="Views\AlertaProgresivo\ReporteAlertaEmail.cshtml" />
+    <Content Include="Views\MaquinasInoperativas\MaquinaInoperativaAtenderRepuestosAgregadosVista.cshtml" />
+    <Content Include="Views\MaquinasInoperativas\MaquinaInoperativaHistoricoVista.cshtml" />
+    <Content Include="Views\Compilado\Index.cshtml" />
+    <Content Include="Views\Incidencias\Index.cshtml" />
+    <Content Include="Views\Revisiones\Index.cshtml" />
+    <Content Include="Views\LogAlertaBilleteros\LogsReporteNominal.cshtml" />
+    <Content Include="Views\MaquinasInoperativas\ListadoSalaCorreos.cshtml" />
+    <Content Include="Views\Reclamaciones\ConfiguracionReclamacionesVista.cshtml" />
+    <Content Include="Views\Settings\AppSettings.cshtml" />
+    <Content Include="Views\Progresivo\ProgresivoListadoMarcaModelo.cshtml" />
+    <Content Include="Views\Disco\ListadoEspacioDiscoBDs.cshtml" />
+    <Content Include="Views\Reportes\ERP\ConteoClientes.cshtml" />
+    <Content Include="Views\Reportes\AperturaCaja\AperturaCajas.cshtml" />
+    <Content Include="Views\Instancia\InstanciaListadoVista.cshtml" />
+    <Content Include="Views\Instancia\InstanciaInsertarVista.cshtml" />
+    <Content Include="Views\Instancia\InstanciaActualizarVista.cshtml" />
+    <Content Include="Views\Progresivo\ConsolidadoControlProgresivos.cshtml" />
+    <Content Include="Views\EquivalenciaSede\EquivalenciaSedeListadoVista.cshtml" />
+    <Content Include="Views\EquivalenciaSede\EquivalenciaSedeInsertarVista.cshtml" />
+    <Content Include="Views\EquivalenciaSede\EquivalenciaSedeActualizarVista.cshtml" />
+    <Content Include="Views\EquivalenciaEmpresa\EquivalenciaEmpresaListadoVista.cshtml" />
+    <Content Include="Views\EquivalenciaEmpresa\EquivalenciaEmpresaInsertarVista.cshtml" />
+    <Content Include="Views\EquivalenciaEmpresa\EquivalenciaEmpresaActualizarVista.cshtml" />
+    <Content Include="Views\MensajeriaCliente\Index.cshtml" />
+    <Content Include="Views\MaquinasInoperativasV2\RegistrarMaquinaInoperativa.cshtml" />
+    <Content Include="Views\MaquinasInoperativasV2\ListadoMaquinasInoperativasCreadas.cshtml" />
+    <Content Include="Views\MaquinasInoperativasV2\AtenderMaquinaInoperativaCreada.cshtml" />
+    <Content Include="Views\MaquinasInoperativasV2\AtenderMaquinaInoperativaSinResolver.cshtml" />
+    <Content Include="Views\MaquinasInoperativasV2\ListadoMaquinaInoperativaSinResolver.cshtml" />
+    <Content Include="Views\MaquinasInoperativasV2\ListadoMaquinaInoperativaHistorico.cshtml" />
+    <Content Include="Views\MaquinasInoperativasV2\DetalleHistoricoMaquinaInoperativa.cshtml" />
+    <Content Include="Views\MaquinasInoperativasV2\ConfigurarCorreosMaquinaInoperativa.cshtml" />
+    <Content Include="Views\MaquinasInoperativas\ReporteCategoriaProblemas.cshtml" />
+    <Content Include="Views\Disco\ListadoEspacioDiscoBDsAzure.cshtml" />
+    <Content Include="Views\MaquinasCentralizadas\ReporteMaquinasCentralizadasVista.cshtml" />
+    <Content Include="Views\ERP\StatusSincronizadorVista.cshtml" />
+    <Content Include="Views\Credito\CreditoListadoVista.cshtml" />
+    <Content Include="Views\Credito\CreditoDetalleVista.cshtml" />
+    <Content Include="Views\ReporteSunat\Index.cshtml" />
+    <Content Include="Views\ControlAcceso\ListaRegistrosMenorDeEdad.cshtml" />
+    <Content Include="Views\Sala\ConfiguracionCorreosSala.cshtml" />
+    <Content Include="Views\SalaMaestra\SalaMaestraListadoVista.cshtml" />
+    <Content Include="Views\SalaMaestra\SalaMaestraInsertarVista.cshtml" />
+    <Content Include="Views\SalaMaestra\SalaMaestraActualizarVista.cshtml" />
+    <Content Include="Views\Sunat\Eventos.cshtml" />
+    <Content Include="Views\Sunat\Contadores.cshtml" />
+    <Content Include="Views\EventosSignificativos\EventosSignificativos.cshtml" />
+    <Content Include="Views\Cortesias\Configuracion\Configuracion.cshtml" />
+    <Content Include="Views\Cortesias\Combos.cshtml" />
+    <Content Include="Views\Cortesias\Bar\Index.cshtml" />
+    <Content Include="Views\Cortesias\IslaBar.cshtml" />
+    <Content Include="Views\Cortesias\MaquinaAnfitriona.cshtml" />
+    <Content Include="Views\Cortesias\Bar\AddEdit.cshtml" />
+    <Content Include="Views\Cortesias\Marca\AddEdit.cshtml" />
+    <Content Include="Views\Cortesias\Marca\Index.cshtml" />
+    <Content Include="Views\Cortesias\Tipo\AddEdit.cshtml" />
+    <Content Include="Views\Cortesias\Tipo\Index.cshtml" />
+    <Content Include="Views\Cortesias\SubTipo\AddEdit.cshtml" />
+    <Content Include="Views\Cortesias\SubTipo\Index.cshtml" />
+    <Content Include="Views\Cortesias\Producto\AddEdit.cshtml" />
+    <Content Include="Views\Cortesias\Producto\Index.cshtml" />
+    <Content Include="Views\Cortesias\Reportes\Productos.cshtml" />
+    <Content Include="Views\Cortesias\ProductoSala\ProductoSala.cshtml" />
+    <Content Include="Views\Cortesias\ProductoSala\ProductoSalaById.cshtml" />
+    <Content Include="Views\Cortesias\Reportes\Pedidos.cshtml" />
+    <Content Include="Views\Cortesias\AnfitrionaBar.cshtml" />
+    <Content Include="Views\EntradaSalidaSala\BienMaterial.cshtml" />
+    <Content Include="Views\MaquinaEstados\EstadoMaquina.cshtml" />
+    <Content Include="Views\Bot\Area\AddEdit.cshtml" />
+    <Content Include="Views\Bot\Area\Index.cshtml" />
+    <Content Include="Views\Bot\Cargo\AddEdit.cshtml" />
+    <Content Include="Views\Bot\Cargo\Index.cshtml" />
+    <Content Include="Views\Bot\Contacto\AddEdit.cshtml" />
+    <Content Include="Views\Bot\Contacto\Index.cshtml" />
+    <Content Include="Views\GLPI\CrearTicket.cshtml" />
+    <Content Include="Views\GLPI\Tickets.cshtml" />
+    <Content Include="Views\SatisfaccionCliente\Reportes\Respuestas.cshtml" />
+    <Content Include="Views\EntradaSalidaSala\AccionesIncidentesCajasTemporizadas.cshtml" />
+    <Content Include="Views\EntradaSalidaSala\ReporteConsolidado.cshtml" />
+    <Content Include="Views\EntradaSalidaSala\RecaudacionPersonal.cshtml" />
+    <Content Include="Views\EntradaSalidaSala\IngresoSalidaGU.cshtml" />
+    <Content Include="Views\EntradaSalidaSala\AperturaCierreSala.cshtml" />
+    <Content Include="Views\Cortesias\Anfitrionas.cshtml" />
+    <Content Include="Views\GLPI\AsignarTicket.cshtml" />
+    <Content Include="Views\GLPI\TicketsAsignados.cshtml" />
+    <Content Include="Views\GLPI\Reportes.cshtml" />
+    <Content Include="Views\GLPI\Email\CrearTicket.cshtml" />
+    <Content Include="Views\GLPI\Email\EditarTicket.cshtml" />
+    <Content Include="Views\GLPI\Email\AsignarTicket.cshtml" />
+    <Content Include="Views\GLPI\Email\AgregarSeguimientoTicket.cshtml" />
+    <Content Include="Views\GLPI\Email\EditarAsignacionTicket.cshtml" />
+    <Content Include="Views\GLPI\Email\CierreTicket.cshtml" />
+    <Content Include="Views\GLPI\Email\ConfirmaCierreTicket.cshtml" />
+    <Content Include="Views\EntradaSalidaSala\EntesReguladores.cshtml" />
+    <Content Include="Views\EntradaSalidaSala\ESS_Dashboard.cshtml" />
+    <Content Include="Views\EntradaSalidaSala\RecojoRemesas.cshtml" />
+    <Content Include="Views\Cortesias\Anfitrionas.cshtml" />
+    <Content Include="Views\EntradaSalidaSala\LogOcurrencia.cshtml" />
+    <Content Include="Views\Cortesias\Anfitrionas.cshtml" />
+    <Content Include="Views\SatisfaccionCliente\Preguntas\Preguntas.cshtml" />
+    <Content Include="Views\SatisfaccionCliente\Configuracion\Configuracion.cshtml" />
+    <Content Include="Views\SatisfaccionCliente\Preguntas\PreguntasAddEdit.cshtml" />
+    <Content Include="Views\Notificaciones\Sistema\Sistema.cshtml" />
+    <Content Include="Views\Notificaciones\Sistema\SistemaAddEdit.cshtml" />
+    <Content Include="Views\Notificaciones\CredencialWhatsApp\CredencialWhatsApp.cshtml" />
+    <Content Include="Views\Notificaciones\CredencialWhatsApp\CredencialWhatsAppAddEdit.cshtml" />
+    <Content Include="Views\Notificaciones\CredencialCorreo\CredencialCorreo.cshtml" />
+    <Content Include="Views\Notificaciones\CredencialCorreo\CredencialCorreoAddEdit.cshtml" />
+    <Content Include="Views\AsistenciaCliente\EnvioNotificacion.cshtml" />
+    <Content Include="Views\TransaccionTarjetaCliente\Transacciones.cshtml" />
+    <Content Include="Views\MaquinasInoperativasV2\ListadoMaquinaInoperativaHistoricoKPI.cshtml" />
+    <Content Include="Views\ProgresivoRuleta\Configuracion\Index.cshtml" />
+    <Content Include="Views\ProgresivoRuleta\Configuracion\Actualizar.cshtml" />
+    <Content Include="Views\ProgresivoRuleta\Configuracion\Insertar.cshtml" />
+    <Content Include="Views\ProgresivoRuleta\GanadoresPRU.cshtml" />
+    <Content Include="Views\ProgresivoRuleta\AlertasPRU.cshtml" />
+    <Content Include="Views\ProgresivoTerceros\Sala.cshtml" />
+    <Content Include="Views\ProgresivoTerceros\Pozos.cshtml" />
+    <Content Include="Views\ProgresivoTerceros\AsignarMaquinas.cshtml" />
+    <Content Include="Views\ClienteSatisfaccion\Encuesta\NPS.cshtml" />
+    <Content Include="Views\ClienteSatisfaccion\Encuesta\CSAT.cshtml" />
+    <Content Include="Views\ClienteSatisfaccion\Reportes\ReporteEncuesta.cshtml" />
+    <Content Include="Views\ConfigClienteSatisfaccion\_CsatView.cshtml" />
+    <Content Include="Views\ConfigClienteSatisfaccion\_NpsView.cshtml" />
+    <Content Include="Views\ConfigClienteSatisfaccion\_Resumen.cshtml" />
+    <Content Include="Views\ConfigClienteSatisfaccion\_Atributo.cshtml" />
+    <Content Include="Views\ConfigClienteSatisfaccion\_Shows.cshtml" />
+    <Content Include="Views\ConfigClienteSatisfaccion\_Alimentos.cshtml" />
+    <Content Include="Views\ConfigClienteSatisfaccion\_Cortesias.cshtml" />
+    <Content Include="Views\ConfigClienteSatisfaccion\_Caja.cshtml" />
+    <Content Include="Views\ConfigClienteSatisfaccion\_Soporte.cshtml" />
+    <Content Include="Views\ConfigClienteSatisfaccion\_Sorteos.cshtml" />
+    <Content Include="Views\ConfigClienteSatisfaccion\_Horarios.cshtml" />
+    <Content Include="Views\ConfigClienteSatisfaccion\_Ruleta.cshtml" />
+    <Content Include="Views\ConfigClienteSatisfaccion\_Variedad.cshtml" />
+    <Content Include="Views\ConfigClienteSatisfaccion\_GestionNps.cshtml" />
+    <Content Include="Views\ConfigClienteSatisfaccion\_TextAnalytics.cshtml" />
+    <Content Include="Views\ConfigClienteSatisfaccion\_Derby.cshtml" />
+    <Content Include="Views\ConfigClienteSatisfaccion\_GestionCsat.cshtml" />
+    <Content Include="Views\ConfigClienteSatisfaccion\_Promociones.cshtml" />
+    <Content Include="Views\ClienteSatisfaccion\Reportes\PreguntasEncuesta.cshtml" />
+    <Content Include="Views\ClienteSatisfaccion\Reportes\Tablets.cshtml" />
+    <Content Include="Views\ClienteSatisfaccion\Reportes\FLujoPregunta.cshtml" />
+    <Content Include="Views\ClienteSatisfaccion\Reportes\ConfiguracionUsuarioView.cshtml" />
+    <Content Include="Views\Bot\Empleado\AddEdit.cshtml" />
+    <Content Include="Views\Bot\Empleado\Index.cshtml" />
+    <Content Include="Views\Bot\Permiso\Index.cshtml" />
+    <None Include="Web References\WebServiceUtilitario\WSSalaAdmin.disco" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Progresivo\ProgresivoVista.cshtml" />
+    <Content Include="Views\Empleado\EmpleadoRegistroVista.cshtml" />
+    <Content Include="Views\Empleado\EmpleadoNuevoVista.cshtml" />
+    <Content Include="Views\Empleado\EmpleadoListadoVista.cshtml" />
+    <Content Include="Views\Mantenimiento\Cargo\MantenimientoCargoParcialVista.cshtml" />
+    <Content Include="Views\Usuario\UsuarioListadoVista.cshtml" />
+    <Content Include="Views\Usuario\UsuarioInsertarVista.cshtml" />
+    <Content Include="Views\Usuario\UsuarioRegistroVista.cshtml" />
+    <Content Include="Views\Progresivo\ProgresivoRegistroVista.cshtml" />
+    <Content Include="Views\UsuarioSala\UsuarioSalaVista.cshtml" />
+    <Content Include="Views\Seguridad\SeguridadVista.cshtml" />
+    <Content Include="Views\Sala\SalaVista.cshtml" />
+    <Content Include="Views\Sala\SalaModificarVista.cshtml" />
+    <Content Include="Views\Shared\_Login.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\CambioContrasena.cshtml" />
+    <Content Include="Views\Home\RestablecerContrasena.cshtml" />
+    <Content Include="Views\Seguridad\AuditoriaVista.cshtml" />
+    <Content Include="Views\Home\accesonegado.cshtml" />
+    <Content Include="Views\Rol\RolListadoVista.cshtml" />
+    <Content Include="Views\Rol\RolNuevoVista.cshtml" />
+    <Content Include="Views\Rol\RolRegistroVista.cshtml" />
+    <Content Include="Views\Soporte\UtilitarioAdministrativo\UtilitarioAdministrativoVista.cshtml" />
+    <Content Include="Views\Destinatario\DestinatarioListadoVista.cshtml" />
+    <Content Include="Views\Destinatario\DestinatarioInsertarVista.cshtml" />
+    <Content Include="Views\Destinatario\DestinatarioEditarVista.cshtml" />
+    <Content Include="Views\Destinatario\DestinatarioConfiguracionVista.cshtml" />
+    <None Include="Web References\WebServiceUtilitario\WSSalaAdmin.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\" />
+    <Folder Include="Content\assets\nps\" />
+    <Folder Include="Content\DriveServiceCredentials.json\" />
+    <Folder Include="Views\AccionCajaTemporizada\" />
+    <Folder Include="Views\AperturaCierreSala\" />
+    <Folder Include="Views\BienInmueble\" />
+    <Folder Include="Views\BUKEmpleado\" />
+    <Folder Include="Views\CALMenorDeEdad\" />
+    <Folder Include="Views\CampaniaClienteExterno\" />
+    <Folder Include="Views\CierreSala\" />
+    <Folder Include="Views\ContadoresBonusIn\" />
+    <Folder Include="Views\ContadoresNegativos\" />
+    <Folder Include="Views\ContadoresOnline\" />
+    <Folder Include="Views\ControlImei\" />
+    <Folder Include="Views\ControlProgresivo\" />
+    <Folder Include="Views\CredencialCorreo\" />
+    <Folder Include="Views\CredencialWhatsApp\" />
+    <Folder Include="Views\Funciones\" />
+    <Folder Include="Views\GlpiSelects\" />
+    <Folder Include="Views\GlpiTicket\" />
+    <Folder Include="Views\GlpiTipoOperacion\" />
+    <Folder Include="Views\InformacionAsistenciaCliente\" />
+    <Folder Include="Views\LogOcurrencia\" />
+    <Folder Include="Views\Mantenimiento\Historial\" />
+    <Folder Include="Views\MIMaquinaInoperativa\" />
+    <Folder Include="Views\MIPiezaRepuestoAlmacen\" />
+    <Folder Include="Views\MITraspasoRepuestoAlmacen\" />
+    <Folder Include="Views\Modulo\" />
+    <Folder Include="Views\PermisoRol\" />
+    <Folder Include="Views\RecojoRemesas\" />
+    <Folder Include="Views\RegistroProgresivo\" />
+    <Folder Include="Views\Reporte9050\" />
+    <Folder Include="Views\ReporteAsistenciaEmpleado\" />
+    <Folder Include="Views\ReporteConsolidado\" />
+    <Folder Include="Views\ReportesCortesia\" />
+    <Folder Include="Views\ReporteVisita\" />
+    <Folder Include="Views\RolUsuario\" />
+    <Folder Include="Views\RporteSunat\" />
+    <Folder Include="Views\Sistema\" />
+    <Folder Include="Views\SomosCasino\" />
+    <Folder Include="Views\Textos\" />
+    <Folder Include="Views\Turno\" />
+    <Folder Include="Views\Ubigeo\" />
+    <Folder Include="Views\UtilitarioAdministrativo\" />
+    <Folder Include="Views\VisitasSupervisor\" />
+    <Folder Include="Views\WhatsApp\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CapaDatos\CapaDatos.csproj">
+      <Project>{80E4364D-7CB1-47BB-93B9-219489457473}</Project>
+      <Name>CapaDatos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CapaEntidad\CapaEntidad.csproj">
+      <Project>{e90eb5ac-db12-4979-970d-69b1d8a79cf4}</Project>
+      <Name>CapaEntidad</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CapaNegocio\CapaNegocio.csproj">
+      <Project>{5dbba2cd-4eba-4e69-a68a-9423fa54b270}</Project>
+      <Name>CapaNegocio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\S3k.Utilitario\S3k.Utilitario.csproj">
+      <Project>{67D1D4FB-A385-49F6-A4C4-877E15B51993}</Project>
+      <Name>S3k.Utilitario</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://localhost/WebServiceSalaAdmin/WSSalaAdmin.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\WebServiceUtilitario\</RelPath>
+      <UpdateFromURL>http://localhost/WebServiceSalaAdmin/WSSalaAdmin.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>CapaPresentacion_WebServiceUtilitario_WSSalaAdmin</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:56382/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EmguCV.3.1.0.1\build\EmguCV.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EmguCV.3.1.0.1\build\EmguCV.props'))" />
+    <Error Condition="!Exists('..\packages\EmguCV.3.1.0.1\build\EmguCV.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EmguCV.3.1.0.1\build\EmguCV.targets'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EmguCV.3.1.0.1\build\EmguCV.targets" Condition="Exists('..\packages\EmguCV.3.1.0.1\build\EmguCV.targets')" />
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

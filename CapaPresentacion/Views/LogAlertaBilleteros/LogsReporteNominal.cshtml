@@ -1,0 +1,666 @@
+﻿@using S3k.Utilitario;
+
+@{
+    ViewBag.Title = "Logs Reporte Nominal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+}
+
+@section css
+{
+    <link rel="stylesheet" href="~/Content/assets/css/optional/bootstrap-multiselect.min.css" type="text/css" />
+    <style>
+        .highlighted-row {
+            font-weight: bolder !important;
+            color: blue !important;
+        }
+
+        .table-nr {
+            width: 100% !important;
+            position: relative;
+            background-color: #FFFFFF;
+            border-collapse: collapse;
+        }
+
+        .table-nr th, .table-nr td {
+            text-align: center;
+            vertical-align: middle;
+            cursor: default;
+            border: 1px solid #999999;
+        }
+
+        .table-nr .tr-th {
+            height: 30px !important;
+        }
+
+        .table-nr .tr-td {
+            height: 25px !important;
+        }
+
+        .table-nr thead .tr-th {
+            background-color: #05256E;
+            color: #FFFFFF;
+            font-size: 12px;
+        }
+
+        .table-nr thead .tr-th th {
+            padding: 4px 2px;
+        }
+
+        .table-nr tbody .tr-td {
+            background-color: #FFFFFF;
+            font-size: 12px;
+        }
+
+        .table-nr tbody .tr-td td {
+            padding: 2px 2px;
+        }
+
+        .table-nr .text-left {
+            text-align: left;
+        }
+
+        .table-nr .text-right {
+            text-align: right;
+        }
+
+        .table-nr tbody tr:nth-child(even) {
+            background: #EEEEEE;
+        }
+
+        .table-nr tbody tr:nth-child(odd) {
+            background: #FFFFFF;
+        }
+
+        .table-nr .log-on {
+            background-color: #E7FBE5;
+        }
+
+        .table-nr .log-off {
+            background-color: #F4AFAA;
+        }
+
+        .table-nr .log-on .log-action {
+            display: block;
+            cursor: pointer;
+        }
+
+        .disable-select {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .table-reeport {
+            width: 100%;
+            position: relative;
+            background-color: #FFFFFF;
+            border-spacing: 0;
+        }
+
+        .table-reeport thead tr th {
+            color: #FFFFFF;
+            text-transform: uppercase;
+        }
+
+        .table-reeport tbody tr:hover {
+            background-color: #EEEEEE !important;
+        }
+
+        /* multi select */
+        .form-multiselect {
+            border: 1px solid #4a85b7;
+            overflow: hidden;
+            height: 27px !important;
+            line-height: 17px;
+        }
+
+        .form-multiselect .caret {
+            position: absolute;
+            top: 10px;
+            right: 5px;
+        }
+
+        .multiselect-container.dropdown-menu {
+            width: 100%;
+            background: #FFFFFF !important;
+        }
+
+        .multiselect-container .multiselect-item .input-group-addon {
+            position: absolute;
+            left: 5px;
+            top: 8px;
+            z-index: 4;
+            background: transparent;
+            color: #999999;
+            padding: 0;
+            margin: 0;
+            text-shadow: none;
+        }
+
+        .multiselect-container .multiselect-item .multiselect-search {
+            height: 30px;
+            padding: 5px 10px 5px 20px;
+            box-shadow: none !important;
+            border: 1px solid #EEEEEE !important;
+        }
+
+        .multiselect-container .multiselect-item .multiselect-search:focus {
+            border-color: #E1E1E1 !important;
+        }
+
+        .multiselect-container .multiselect-item .btn-default {
+            height: 30px;
+            padding: 2px 4px;
+            color: #484848;
+            background: #EEEEEE;
+            border: 1px solid #EEEEEE;
+            box-shadow: none !important;
+        }
+
+        .multiselect-container .multiselect-item .btn-default:hover {
+            background: #E1E1E1;
+        }
+
+        .multiselect-container > li > a > label {
+            padding: 5px 10px 5px 30px;
+        }
+
+        .multiselect-container > li > a > label > input[type=checkbox] {
+            margin-top: 1px;
+        }
+
+        .multiselect-container.dropdown-menu > .active > a,
+        .multiselect-container.dropdown-menu > .active > a:focus,
+        .multiselect-container.dropdown-menu > .active > a:hover {
+            background-color: #263E78 !important;
+        }
+
+        .multiselect-container.dropdown-menu > .active > a > label.checkbox,
+        .multiselect-container.dropdown-menu > .active > a:focus > label.checkbox,
+        .multiselect-container.dropdown-menu > .active > a:hover > label.checkbox {
+            color: #FFFFFF !important;
+        }
+
+        /* multi select */
+        .chrtanel {
+            width: 100%;
+            position: relative;
+            background: #FFFFFF;
+        }
+
+        .chrtanel-body {
+            position: relative;
+            padding: 10px;
+        }
+
+        .room-dflex {
+            display: flex;
+            align-items: center;
+        }
+
+        .room-dflex .log-room {
+            flex-grow: 1;
+            display: block;
+            line-height: 0;
+            white-space: nowrap;
+        }
+
+        .room-dflex .log-chart-action {
+            cursor: pointer;
+            font-size: 16px;
+            color: #074B88;
+            margin: 1px;
+            display: block;
+            line-height: 0;
+        }
+    </style>
+}
+
+<!-- row -->
+<div class="row">
+    <!-- col -->
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-adjust"></span>
+                                <span class="main-text">
+                                    @ViewBag.Title
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /col -->
+    <!-- col -->
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <!-- row -->
+                    <div class="row">
+                        <!-- col -->
+                        <div class="col-md-4 col-sm-4 col-xs-4 pull-right">
+                            <button type="button" id="button_search" class="btn btn-primary btn-sm col-md-12 col-xs-12">
+                                <span class="fa fa-search"></span>
+                                <span>BUSCAR</span>
+                            </button>
+                        </div>
+                        <!-- /col -->
+                        <!-- col -->
+                        <div class="col-md-4 col-sm-4 col-xs-4 pull-right">
+                            <button type="button" id="button_excel" class="btn btn-success btn-sm col-md-12 col-xs-12">
+                                <span class="fa fa-file-excel-o"></span>
+                                <span>EXCEL</span>
+                            </button>
+                        </div>
+                        <!-- /col -->
+                    </div>
+                    <!-- /row -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /col -->
+</div>
+<!-- /row -->
+<!-- row -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <!-- card -->
+                    <div class="cardMachine">
+                        <!-- row -->
+                        <div class="row">
+                            <!-- col -->
+                            <div class="col-xs-12 col-md-12 col-sm-12">
+                                <!-- row -->
+                                <div class="row" id="formfiltro">
+                                    <!-- col -->
+                                    <div class="col-md-3 col-sm-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Sala</span>
+                                            <select class="form-control input-sm form-multiselect" id="cboSalas" name="cboSalas" multiple="multiple"></select>
+                                        </div>
+                                    </div>
+                                    <!-- /col -->
+                                    <!-- col -->
+                                    <div class="col-md-3 col-sm-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Tipo</span>
+                                            <select class="form-control input-sm form-multiselect" id="cboTipos" name="cboTipos" multiple="multiple">
+                                                <option value="1">Servicio Online</option>
+                                                <option value="2">Eventos</option>
+                                                <option value="3">Alerta Billeteros</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!-- /col -->
+                                    <!-- col -->
+                                    <div class="col-md-3 col-sm-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">DEL</span>
+                                            <input type="text" class="form-control input-sm datepkr_only" id="fromDate" readonly />
+                                            <span class="input-group-addon input-group-icon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <!-- /col -->
+                                    <!-- col -->
+                                    <div class="col-md-3 col-sm-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">AL</span>
+                                            <input type="text" class="form-control input-sm datepkr_only" id="toDate" readonly />
+                                            <span class="input-group-addon input-group-icon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <!-- /col -->
+                                </div>
+                                <!-- /row -->
+                            </div>
+                            <!-- /col -->
+                            <!-- col -->
+                            <div class="col-md-12">
+                                <hr style="margin-top: 0px;" />
+                            </div>
+                            <!-- /col -->
+                            <!-- col -->
+                            <div class="col-md-12">
+                                <div id="report_nominal_wrap"></div>
+                            </div>
+                            <!-- /col -->
+                        </div>
+                        <!-- /row -->
+                    </div>
+                    <!-- /card -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /row -->
+
+@section modal
+{
+    <!-- Modal Room Logs -->
+    <div class="modal fade full-modal" id="modal_room_logs" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">
+                        Reporte Logs Online
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <!-- wrap -->
+                    <div class="table-responsive">
+                        <!-- table -->
+                        <table id="tableRoomLogs" class="table-reeport table-hover"></table>
+                        <!-- /table -->
+                    </div>
+                    <!-- /wrap -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Modal Room Logs -->
+    <!-- Modal Detail Logs -->
+    <div class="modal fade full-modal" id="modal_detail_logs" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" data-border-top="multi">
+                <!-- modal header -->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label">Detalle</h4>
+                </div>
+                <!-- /modal header -->
+                <!-- modal body -->
+                <div class="modal-body">
+                    <div class="w-100" style="margin:unset !important">
+                        <!-- card machine -->
+                        <div class="cardMachine">
+                            <!-- section -->
+                            <div class="sectionCard" style="padding: 10px">
+                                <div>
+                                    <h3>Información</h3>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="input-group form-group">
+                                            <span class="input-group-addon">
+                                                Fecha Registro
+                                            </span>
+                                            <input type="text" id="log_fecha_registro" class="form-control" placeholder="Fecha Registro" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="input-group form-group">
+                                            <span class="input-group-addon">
+                                                Tipo
+                                            </span>
+                                            <input type="text" id="log_tipo" class="form-control" placeholder="Tipo" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /section -->
+                            <!-- wrap -->
+                            <div id="wrapElementSO">
+                                <div class="sectionCard" style="padding: 10px">
+                                    <div>
+                                        <h3>Detalle</h3>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Sala
+                                                </span>
+                                                <input type="text" id="so_sala" class="form-control" placeholder="Sala" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Descripción
+                                                </span>
+                                                <textarea id="so_descripcion" class="form-control" placeholder="Descripción"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Información Adicional
+                                                </span>
+                                                <input type="text" id="so_info_adicional" class="form-control" placeholder="Información Adicional" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /wrap -->
+                            <!-- wrap -->
+                            <div id="wrapElementEV">
+                                <!-- section -->
+                                <div class="sectionCard" style="padding: 10px">
+                                    <div>
+                                        <h3>Detalle</h3>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Cod_Even_OL
+                                                </span>
+                                                <input type="text" id="ev_cod_even_ol" class="form-control" placeholder="Cod_Even_OL" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Sala
+                                                </span>
+                                                <input type="text" id="ev_sala" class="form-control" placeholder="Sala" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Fecha Online
+                                                </span>
+                                                <input type="text" id="ev_fecha_online" class="form-control" placeholder="Fecha Online" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Código Tarjeta
+                                                </span>
+                                                <input type="text" id="ev_codigo_tarjeta" class="form-control" placeholder="Código Tarjeta" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Código Máquina
+                                                </span>
+                                                <input type="text" id="ev_codigo_maquina" class="form-control" placeholder="Código Máquina" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Evento
+                                                </span>
+                                                <input type="text" id="ev_evento" class="form-control" placeholder="Evento" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /section -->
+                                <!-- section -->
+                                <div class="sectionCard" style="padding: 10px">
+                                    <div>
+                                        <h3>Detalle Dispositivos</h3>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-hover" style="margin: 0" id="ev_table_devices">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center">ID Online</th>
+                                                    <th class="text-center">Fecha Cierre</th>
+                                                    <th class="text-center">Máq. Cliente</th>
+                                                    <th class="text-center">Usuario Cierre</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- /section -->
+                            </div>
+                            <!-- /wrap -->
+                            <!-- wrap -->
+                            <div id="wrapElementAB">
+                                <!-- section -->
+                                <div class="sectionCard" style="padding: 10px">
+                                    <div>
+                                        <h3>Detalle</h3>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    AlertaID
+                                                </span>
+                                                <input type="text" id="ab_alerta_id" class="form-control" placeholder="AlertaID" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Sala
+                                                </span>
+                                                <input type="text" id="ab_sala" class="form-control" placeholder="Sala" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Fecha
+                                                </span>
+                                                <input type="text" id="ab_fecha" class="form-control" placeholder="Fecha" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Código Máquina
+                                                </span>
+                                                <input type="text" id="ab_codigo_maquina" class="form-control" placeholder="Código Máquina" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Descripción
+                                                </span>
+                                                <input type="text" id="ab_descripcion_alerta" class="form-control" placeholder="Descripción" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Bill Billetero
+                                                </span>
+                                                <input type="text" id="ab_bill_billetero" class="form-control" placeholder="Bill Billetero" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Bill Parcial
+                                                </span>
+                                                <input type="text" id="ab_bill_parcial" class="form-control" placeholder="Bill Parcial" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /section -->
+                                <!-- section -->
+                                <div class="sectionCard" style="padding: 10px">
+                                    <div>
+                                        <h3>Detalle Dispositivos</h3>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-hover" style="margin: 0" id="ab_table_devices">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center">ID Online</th>
+                                                    <th class="text-center">Fecha Cierre</th>
+                                                    <th class="text-center">Máq. Cliente</th>
+                                                    <th class="text-center">Usuario Cierre</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- /section -->
+                            </div>
+                            <!-- /wrap -->
+                        </div>
+                        <!-- /card machine -->
+                    </div>
+                </div>
+                <!-- modal body -->
+            </div>
+        </div>
+    </div>
+    <!-- /Modal Detail Logs -->
+    <!-- Modal Room Logs -->
+    <div class="modal fade full-modal" id="modal_room_chart_logs" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">
+                        Logs Online
+                    </h4>
+                </div>
+                <div class="modal-body" style="padding:0">
+                    <!-- panel -->
+                    <div class="chrtanel">
+                        <div class="chrtanel-body" id="chart_wrap">
+                            <div id="chart"></div>
+                        </div>
+                    </div>
+                    <!-- /panel -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Modal Room Logs -->
+}
+
+@section js
+{
+    <script type="text/javascript" src="~/Content/assets/js/optional/bootstrap-multiselect.min.js"></script>
+    <script src="~/Content/assets/js/optional/apexcharts/apexcharts.min.js"></script>
+    <script src="~/Content/assets/viewsjs/LogAlertaBilleteros/LogsReporteNominal.js?v=@fecha_archivos"></script>
+}

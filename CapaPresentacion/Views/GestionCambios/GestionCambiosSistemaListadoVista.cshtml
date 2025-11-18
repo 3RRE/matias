@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewBag.Title = "GestionCambiosSistemaListadoVista";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-shield"></span>
+                                <span class="main-text">
+                                    Listado de Sistemas
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+
+                    <div class="row">
+
+                        <div class="col-md-4 col-sm-4 col-xs-6">
+                            <button type="button" id="btnNuevoSistema" class="btn btn-sm btn-success col-md-12 col-xs-12">
+                                <span class="glyphicon glyphicon-book"></span>
+                                Nuevo
+                            </button>
+                        </div>
+                        <div class=" col-md-4 col-sm-4 col-xs-6">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnExcel" class="btn btn-primary btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-file"></span>
+                                        Excel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 tam">
+
+                            <div class="table-responsive">
+                                <table id="tableSistema" class="table table-striped table-bordered table-hover table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th> SistemaId </th>
+
+                                            <th> Descripcion </th>
+
+                                            <th> Version </th>
+
+                                            <th>  FechaRegistro </th>
+
+                                            <th>  FechaModificacion </th>
+
+                                            <th>Accion</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/GestionCambios/GestionCambiosSistemaListadoVista.js"></script>
+}
+

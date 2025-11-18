@@ -1,0 +1,185 @@
+﻿@using CapaEntidad
+@{
+    ViewBag.Title = "Nuevo Correo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    SEG_UsuarioEntidad usuario = (SEG_UsuarioEntidad)Session["usuario"];
+}
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-shield"></span>
+                                <span class="main-text">
+                                    Registro Ocurrencia
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+
+                        @*<div class="col-md-4 col-md-offset-4 col-sm-6 col-xs-6">
+                                <button type="button" class="btn btn-success btn-sm col-md-12 col-sm-12 col-xs-12 btnListar"><span class="glyphicon glyphicon-list-alt"></span> Listado </button>
+                            </div>*@
+
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <button type="button" class="btn btn-primary btn-sm col-md-12 col-sm-12 col-xs-12 btnGuardar "><span class="glyphicon glyphicon-floppy-disk"></span> Guardar </button>
+                        </div>
+                        <div class="col-md-8 col-sm-6 col-xs-6">
+                            <div class="input-group form-group"  style="margin-bottom:0px!important">
+                                <span class="input-group-addon">
+                                    Usuario
+                                </span>
+                                <input type="text" class="form-control input-sm" disabled value="@usuario.UsuarioNombre" placeholder="Usuario">
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="contenedor_registro">
+                                <form id="form_registro_ocurrencia">
+                                    <input type="hidden" id="Id" value="0" name="Id" />
+                                    <fieldset>
+                                        <legend>Ocurrencia:</legend>
+                                        <div class="col-md-3 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Fecha
+                                                </span>
+                                                <input type="text" id="fechaOcurrencia" name="fechaOcurrencia" placeholder="" autocomplete="off" value="" readonly class="form-control input-sm">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Hora
+                                                </span>
+                                                <input type="text" id="horaOcurrencia" name="horaOcurrencia" placeholder="" autocomplete="off" value="" readonly class="form-control input-sm">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-clock-o"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Nombres
+                                                </span>
+                                                <input type="text" class="form-control input-sm UpperCase" id="Nombres" name="Nombres" placeholder="Nombres">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Apel Pat.
+                                                </span>
+                                                <input type="text" class="form-control input-sm UpperCase" id="ApelPat" name="ApelPat" placeholder="Apellido Paterno">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Apel Mat.
+                                                </span>
+                                                <input type="text" class="form-control input-sm UpperCase" id="ApelMat" name="ApelMat" placeholder="Apellido Materno">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Tipo Doc
+                                                </span>
+                                                <select id="cboTipoDocumento" class="form-control input-sm" name="TipoDocId"></select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Nro Doc.
+                                                </span>
+                                                <input type="text" class="form-control input-sm Number" id="NroDoc" name="NroDoc" placeholder="Nro. Documento">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Sala
+                                                </span>
+                                                <select id="cboSala" class="form-control input-sm" name="CodSala"></select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Jefe Sala
+                                                </span>
+                                                <input type="text" class="form-control input-sm UpperCase" id="JefeSala" name="JefeSala" placeholder="Jefe Sala">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Se informó A
+                                                </span>
+                                                <input type="text" class="form-control input-sm UpperCase" id="SeInformoA" name="SeInformoA" placeholder="Se Informó a">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Tipo Ocu.
+                                                </span>
+                                                <select id="cboTipoOcurrencia" class="form-control input-sm" name="TipoOcurrenciaId"></select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    descripción
+                                                </span>
+                                                <textarea class="form-control UpperCase" rows="2" id="Descripcion" name="Descripcion"></textarea>
+                                                @*<input type="text" class="form-control input-sm UpperCase" id="Descripcion" name="Descripcion" placeholder="Descripcion">*@
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section js
+{
+    <script src="~/Content/assets/viewsjs/Ocurrencias/RegistroOcurrencia.js"></script>
+}

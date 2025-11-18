@@ -1,0 +1,1383 @@
+﻿@using S3k.Utilitario;
+@{
+    ViewBag.Title = "Listado Campañas ";
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+}
+@section css
+{
+    <style>
+        /* .modal-body .select2-dropdown {
+            z-index: 19000;
+        }*/
+
+        textarea {
+            resize: vertical; /* Permite la modificación solo en altura */
+        }
+    </style>
+
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-dollar"></span>
+                                <span class="main-text">
+                                    Listado Campañas
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-xs-6 marginbottom" style="margin-bottom: 2px;">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnSalalibre" title="VALIDAR SALA" class="btn btn-danger btn-sm col-md-12 col-xs-12">
+                                        <span class="fa fa-chrome"></span>
+                                        Validar Sala
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-6 col-xs-6 marginbottom" style="margin-bottom: 2px;">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btn_parametrosmodal" title="PARAMETROS SORTEO" class="btn btn-dark btn-sm col-md-12 col-xs-12">
+                                        <span class="fa fa-shield"></span>
+                                        Parametros
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-4 col-xs-4">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnBuscar" title="BUSCAR" class="btn btn-success btn-sm col-md-12 col-xs-12">
+                                        <span class="fa fa-search"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-4">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnExcel" title="EXCEL" class="btn btn-primary btn-sm col-md-12 col-xs-12">
+                                        <span class="fa fa-file-excel-o"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-4">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnNuevo" title="NUEVO" class="btn btn-warning btn-sm col-md-12 col-xs-12">
+                                        <span class="fa fa-plus"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+
+                        <div class="col-xs-12 col-md-12 col-sm-12">
+                            <div class="row" id="formfiltro">
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="input-group ">
+                                                <span class="input-group-addon">
+                                                    Sala
+                                                </span>
+                                                <select class="form-control input-sm codSalaAuditoria" id="cboSala" name="cboSala"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-sm-4">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    DEL
+                                                </span>
+                                                <input type="text" class="form-control input-sm dateOnly_" id="fechaInicio" readonly />
+                                                <span class="input-group-addon input-group-icon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-sm-4">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    AL
+                                                </span>
+                                                <input type="text" class="form-control input-sm dateOnly_" id="fechaFin" readonly />
+                                                <span class="input-group-addon input-group-icon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-2 col-sm-4">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    Estado
+                                                </span>
+                                                <select id="cboEstado_" class="form-control input-sm select" name="estado">
+                                                    <option value="2" selected>Todos</option>
+                                                    <option value="1">Activo</option>
+                                                    <option value="0">Vencido</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <hr style="margin-top: 0px;" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="contenedor_tabla">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section modal
+{
+    <div class="modal fade full-modal" id="full-modal_campania" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label_"> <span id="textCampania">Nueva</span> Campaña</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12" id="divcampaña">
+                            <form class="medium bv-form" role="form" method="post" action="#" id="form_registro_campania">
+                                <input type="hidden" name="id" value="0" id="campaniaid" />
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Sala
+                                            </span>
+                                            <select id="cboSalaReg" class="form-control input-sm select" name="sala_id"></select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Nombre
+                                            </span>
+                                            <input type="text" class="form-control input-sm noKeyPress" id="nombre" value="" name="nombre" placeholder="Nombre">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Descripcion
+                                            </span>
+                                            <textarea class="form-control input-sm " id="descripcion" name="descripcion" placeholder="Descripción"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Fecha Ini.
+                                            </span>
+                                            <input type="text" class="form-control input-sm dateOnly_fechaini " id="fechaini" readonly name="fechaini">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Fecha Fin.
+                                            </span>
+                                            <input type="text" class="form-control input-sm dateOnly_fechafin" id="fechafin" readonly name="fechafin">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Tipo
+                                            </span>
+                                            <select id="cboTipoCampania" class="form-control input-sm select" name="tipo">
+                                                <option value="">--Seleccione--</option>
+                                                <option value="0">Promocion</option>
+                                                <option value="1">Sorteo</option>
+                                                <option value="2">WhatsApp</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Estado
+                                            </span>
+                                            <select id="cboEstado" class="form-control input-sm select" name="estado">
+                                                <option value="">--Seleccione--</option>
+                                                <option value="1">Activo</option>
+                                                <option value="0">InActivo</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 container-fluid" id="form_whatsapp">
+                                    <hr style="margin-top: 10px;margin-bottom:10px;" />
+                                    <h4 style="padding: 10px 15px">Configuración campaña tipo Whatsapp</h4>
+                                    <h6 style="padding: 0 15px">Duración del código</h6>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    Días
+                                                </span>
+                                                <input value="0" placeholder="Días" type="text" class="form-control input-sm " id="duracionCodigoDias" name="duracionCodigoDias" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    Horas
+                                                </span>
+                                                <input value="0" placeholder="Horas" type="text" class="form-control input-sm " id="duracionCodigoHoras" name="duracionCodigoHoras" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="input-group" style="display:flex; flex-direction:row; gap: 5px">
+                                                <input style="width:25px" type="checkbox" class="form-control input-sm " id="codigoSeReactiva" name="codigoSeReactiva " />
+                                                <h6>
+                                                    ¿Código se reactiva despues de expirar?
+                                                </h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="codigoRegeneracionForm">
+                                        <h6 style="padding: 0 15px">Duración del tiempo de regeneración del cupón</h6>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        Días
+                                                    </span>
+                                                    <input value="0" placeholder="Días" type="text" class="form-control input-sm " id="duracionReactivacionCodigoDias" name="duracionReactivacionCodigoDias" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        Horas
+                                                    </span>
+                                                    <input value="0" placeholder="Horas" type="text" class="form-control input-sm " id="duracionReactivacionCodigoHoras" name="duracionReactivacionCodigoHoras" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-sm btn-danger btnGuardar">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <input type="hidden" id="campania_tipo_" />
+    <div class="modal fade full-modal" id="full-modal_tickets" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label">Tickets Registrados</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12" style="margin-top: -14px;line-height: 1.2;" id="">
+                            <h5 style="margin: 2px;text-align: center;">Campaña : <span class="fechasol soliSpan" style="font-size:15px;" id="nombre_campania"></span><button class="btn btn-xs btn-danger pull-right btn_excelticket" data-id="" style="margin-bottom: 10px;"><i class="fa fa-file-excel-o"></i> Excel</button></h5>
+
+                        </div>
+                        <div class="col-md-12 table-responsive">
+                            <table class="table table-condensed table-bordered" style="margin-bottom:0px;">
+                                <thead>
+                                    <tr>
+                                        <th>Fecha Ticket</th>
+                                        <th>Nro</th>
+                                        <th>Monto</th>
+                                        <th>Instancia</th>
+                                        <th>Cliente</th>
+                                        <th>Nro. Doc</th>
+                                        <th>Telefono</th>
+                                        <th>Usuario Reg.</th>
+                                        <th><i class="glyphicon glyphicon-remove"></i></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbodytickets">
+                                    <tr><td colspan="8"><div class="alert alert-danger" style="margin:0px;">No se agregaron tickets</div></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer footer_g">
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal fade full-modal" id="full-modal_validar" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label">Validacion Tickets</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <input type="hidden" class="form-control input-sm " readonly id="compania_id" name="compania_id">
+                        <input type="hidden" class="form-control input-sm " readonly id="nombrecompania_id" name="nombrecompania_id">
+                        <input type="hidden" class="form-control input-sm " readonly id="sala_idcompania_id" name="sala_idcompania_id">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="input-group ">
+                                <span class="input-group-addon">
+                                    Sala
+                                </span>
+                                <input type="text" class="form-control input-sm " readonly id="cboSala_registro" name="cboSala_registro" placeholder="Sala">
+                            </div>
+                        </div>
+                        <div class="lbl_validar_head">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <hr style="margin-top: 0px;margin-bottom:10px;" />
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <div class="text-center">Ingrese el Nro. de Documento para asignar cliente</div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        Nro Doc.
+                                    </span>
+                                    <input type="text" class="form-control input-sm " autocomplete="off" id="NroDocument" name="NroDocument" placeholder="Nro Doc.">
+                                    <span class="input-group-addon input-group-icon btn_buscarvalidar">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="lblvalidar">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <hr style="margin-top: 0px;margin-bottom:10px;" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        Nro. Doc.
+                                    </span>
+                                    <input type="text" class="form-control input-sm " readonly autocomplete="off" id="textdocument" placeholder="Nro Doc.">
+
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        CLIENTE
+                                    </span>
+                                    <input type="text" class="form-control input-sm " readonly autocomplete="off" id="textcliente" placeholder="Apellidos y Nombres">
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <input type="hidden" id="txt_id_cliente_validar" />
+
+
+                        <div class="col-md-12 col-sm-12 lblvalidar">
+                            <div class="form-group">
+                                <label for="NroTicket">Nro Ticket</label>
+                                <input type="text" class="form-control input-sm " autocomplete="off" id="NroTicket" name="NroTicket" placeholder="Nro Ticket">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer footer_g lblvalidar">
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-sm btn-primary btn_limpíar">Limpiar</button>
+                    <button type="button" class="btn btn-sm btn-success btnvalidaticket">Buscar</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal fade full-modal" id="full-modalsalaslibre" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label_">Listado Salas - ¿Permite agregar ticket a campaña sin validar en sala?</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12" id="salalibrediv">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade full-modal" id="full-modal_seleccionarCLienteAccion" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label">Clientes Campaña <span class="nombre_campaña_cliente"></span></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <input type="hidden" name="txt_sala_cliente_campania" id="txt_sala_cliente_campania" />
+                        <input type="hidden" class="form-control input-sm " readonly id="companiacliente_id" name="compania_id">
+                        <input type="hidden" class="form-control input-sm " readonly id="url_progresivo" name="url_progresivo">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group ">
+                                <button type="button" class="btn btn-primary btn-lg btn-block clienteRegistrados">Registrados</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <hr style="margin-top: 0px;margin-bottom:10px;" />
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-primary btn-lg btn-block clienteAgregar">Agregar</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer footer_g">
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal fade full-modal" id="full-modal_clientelistaAgregar" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label">Agregar Cliente Campaña <span class="nombre_campaña_cliente"></span></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+
+                        <div class="col-md-12 col-sm-12">
+                            <div class="input-group ">
+                                <span class="input-group-addon">
+                                    <span class="d-sm-block">Cliente</span>  Buscar
+                                </span>
+                                <input type="text" class="form-control input-sm " style="height: 32px;" id="txt_buscarcliente" name="txt_buscarcliente" placeholder="Nro Documento / Nombres">
+                                <span class="input-group-addon btn btn-success btn_buscarclientecampania"><i class="fa fa-search"></i> <span class="d-sm-block">Buscar</span></span>
+                                <span class="input-group-addon btn btn-danger btn_buscarclienteFormnuevocampania"><i class="fa fa-file"></i> <span class="d-sm-block">Nuevo</span></span>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <hr style="margin-top: 0px;margin-bottom:10px;" />
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 tablaclientesBusquedadiv">
+                            @*<table class="table table-bordered table-hover table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th>Cliente</th>
+                                            <th>Nro Documento</th>
+                                            <th>Telefono</th>
+                                            <th>Fecha Nacimiento</th>
+                                            <th><i class="fa fa-list-alt"></i></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody><tr><td colspan="5"><div class="alert alert-danger">Seleccione Cliente(s) a Campañas</div></td></tr></tbody>
+                                </table>*@
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer footer_g">
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal fade full-modal" id="full-modal_clienteRegistrados" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label"> Clientes Campaña <span class="nombre_campaña_cliente"></span></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row" style="margin-bottom:12px;">
+                        <div class="col-md-12">
+                            @*<button type="button" class="btn btn-primary btn-sm pull-right excelclienteregistrados"><i class="fa fa-file-excel-o"></i> Excel</button>*@
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-warning div_cargando_reg_lista" style="clear:both">
+                                Cargando Data ......
+                            </div>
+
+                            <div class="tablaclientesdiv">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer footer_g">
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <input id="txtSesionId" type="hidden" />
+    <div class="modal fade full-modal" id="full-modal_detallecupones" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" data-border-top="multi">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label"> Detalle Cupones - <span class="nombre_cliente_cupon_detalle"></span></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row" style="margin-bottom:12px">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        Impresora
+                                    </span>
+                                    <select id="cbo_impresora3" style="width:100%" name="impresora_id" class="form-control input-sm"><option value="">-Seleccione</option></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-12 col-xs-12" style="margin-bottom:12px">
+                            <button type="button" class="btn btn-danger btn-sm btn-block" id="btnImprimirTodo"><i class="fa fa-print"></i> Imprimir Todo</button>
+                        </div>
+                        <div class="col-md-3 col-sm-12 col-xs-12">
+                            <button type="button" class="btn btn-primary btn-sm btn-block" id="btnImprimirConsolidado"><i class="fa fa-bluetooth"></i> Imprimir Consolidado</button>
+                        </div>
+                    </div>
+                    @*<div class="row" style="margin-bottom:12px;">
+
+                        </div>*@
+                    <div class="row">
+
+                        <div class="col-md-12 col-sm-12 tabladetallecuponesdiv " style="clear:both">
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer footer_g">
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal fade full-modal" id="full-modal_clienteNuevoCampania" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label_"> <span id="textCampania">Nuevo</span> Cliente</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12" id="divcampaña">
+                            <form class="medium bv-form" role="form" method="post" action="#" id="form_registro_cliente">
+
+                                <input name="SalaId" type="hidden" id="txtsala_idcliente" />
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Nombres
+                                            </span>
+                                            <input type="text" class="form-control input-sm noKeyPress" id="txtNombre" value="" name="Nombre" placeholder="Nombres">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Apellido Paterno
+                                            </span>
+                                            <input type="text" class="form-control input-sm noKeyPress" id="txtApelPat" value="" name="ApelPat" placeholder="Apellido Paterno">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Apellido Materno
+                                            </span>
+                                            <input type="text" class="form-control input-sm noKeyPress" id="txtApelMat" value="" name="ApelMat" placeholder="Apellido Materno">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Nro. Documento
+                                            </span>
+                                            <input type="text" class="form-control input-sm noKeyPress" id="txtNroDoc" value="" name="NroDoc" placeholder="Nro. Documento">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Telefono
+                                            </span>
+                                            <input type="text" class="form-control input-sm  " id="txtCelular1" name="Celular1" placeholder="Telefono">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Fecha Cumpleaños
+                                            </span>
+                                            <input type="text" class="form-control input-sm dateOnly_fechaini " id="txtFechaNacimiento" readonly name="FechaNacimiento">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Correo
+                                            </span>
+                                            <input type="text" class="form-control input-sm  " id="txtemail" name="Mail" placeholder="Correo">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-sm btn-danger btnGuardarclientenuevo">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade full-modal" id="full-modal_parametros" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-labelparametros_"> Parametros Sala Sorteo</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12" id="">
+                            <div class="row">
+                                <form class="medium bv-form" role="form" method="post" action="#" id="form_campania_parametros">
+
+                                    <input name="sala_id" type="hidden" id="txt_tipo_condicion_sala" value="0" />
+                                    <h4 class="col-md-12 text-center" id="div_nombresalaparametros">Sala DAMASCO</h4>
+                                    <div class="col-md-12"><hr style="margin-bottom:6px;margin-top:6px;" /></div>
+                                    <div class="col-md-12 col-sm-12">
+
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    Condicion Juego
+                                                </span>
+                                                <input type="text" class="form-control input-sm text-right" id="txt_tipo_condicion" value="" name="condicion_juego" placeholder="Condicion Juego">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    Condicion Tipo
+                                                </span>
+                                                <select id="cbo_tipo_condicion" class="form-control input-sm select" name="condicion_tipo">
+                                                    <option value="">--Seleccione--</option>
+                                                    <option value="1" selected>Coin Out</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-sm btn-danger btnGuardarcampania_parametros">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade full-modal" id="full-modal_cupones_registrar" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="f"> Generar Cupones</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12" id="">
+                            <div class="row">
+                                <form class="medium bv-form" role="form" method="post" action="#" id="form_campania_cupones">
+
+                                    <input name="ClienteId" type="hidden" id="txt_cliente_seleccionado" value="0" />
+
+                                    <div class="col-md-12 col-sm-12 ">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    Cliente
+                                                </span>
+                                                <input type="text" readonly class="form-control input-sm text-right" id="txt_cliente" value="" name="txt_cliente_nombre" placeholder="Nombre Cliente">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    Slot
+                                                </span>
+                                                <input type="text" class="form-control input-sm text-right" id="txt_slot" value="" name="SlotId" placeholder="Slot">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group MostrarWinCupones">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    Win
+                                                </span>
+                                                <input type="text" class="form-control input-sm text-right" id="txt_win" value="" name="Win" placeholder="Win">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    Impresora
+                                                </span>
+                                                <select id="cbo_impresora" name="impresora_id" class="form-control input-sm"><option value="">-Seleccione</option></select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group btngeneradodiv">
+                                            <button type="button" class="btn btn-sm btn-danger btn-block btnGenerarCupones">Generar</button>
+                                        </div>
+                                        <div class="form-group diresultadocupones">
+                                            <h3 class="text-center bg-color-orange">Resultado</h3>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 resultadocupones">
+                                        <div class="text-center">
+                                            Coin Out = <span class="spncoinout">300</span> <br />
+                                            Cantidad Gernerados = Win/CoinOut = <span class="spncantidad">4</span>
+                                        </div>
+                                        <table class="table table-bordered table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th> Serie Ini</th>
+                                                    <th> Serie Fin</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="ini">432524524524</td>
+                                                    <td class="fin">432524524524</td>
+                                                </tr>
+                                                <tr> <td colspan="2" class="todos" style="white-space: break-spaces;"></td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade full-modal" id="full-modal_cupones_lista" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="o"> Cupones</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12" id="">
+                            <input type="hidden" id="imprimircuponesTodosInput" value="0" />
+                            <div class="row" style="margin-bottom:12px;">
+                                <div class="col-md-8 col-sm-8 col-xs-9">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Impresora
+                                            </span>
+                                            <select id="cbo_impresora2" name="impresora_id" class="form-control input-sm"><option value="">-Seleccione</option></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-3">
+                                    <button type="button" class="btn btn-primary btn-sm col-md-12  imprimircuponesTodos" data-id="0"><i class="fa fa-print"></i> Imprimir</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 ">
+
+                                    <table class="table table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th> ID</th>
+                                                <th> Serie</th>
+                                                <th> Cant. Impr.</th>
+                                                <th class="text-center"><span class="fa fa-print"></span></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbody_listcupones">
+                                            <tr>
+                                                <td colspan="4">
+                                                    <div class="alert alert-danger">Sin Registros</div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade full-modal" id="modal_clienteNuevoCampania_validar" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label_validar"> <span id="textCampania">Nuevo</span> Cliente</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12" id="divcampañavalidar">
+                            <form class="medium bv-form" role="form" method="post" action="#" id="form_registro_clientevalidar">
+                                <input type="hidden" name="SalaId" id="SalaId" value="" />
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Nombres
+                                            </span>
+                                            <input type="text" class="form-control input-sm " id="txtNombrevalidar" value="" name="Nombre" placeholder="Nombres">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Apellido Paterno
+                                            </span>
+                                            <input type="text" class="form-control input-sm " id="txtApelPatvalidar" value="" name="ApelPat" placeholder="Apellido Paterno">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Apellido Materno
+                                            </span>
+                                            <input type="text" class="form-control input-sm " id="txtApelMatvalidar" value="" name="ApelMat" placeholder="Apellido Materno">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Nro. Documento
+                                            </span>
+                                            <input type="text" class="form-control input-sm " id="txtNroDocvalidar" value="" name="NroDoc" placeholder="Nro. Documento">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Telefono
+                                            </span>
+                                            <input type="text" class="form-control input-sm  " id="txtCelular1validar" name="Celular1" placeholder="Telefono">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-sm-12" style="display:none;">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Fecha Cumpleaños
+                                            </span>
+                                            <input type="text" class="form-control input-sm dateOnly_fechaini " id="txtFechaNacimientovalidar" readonly name="FechaNacimiento">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Correo
+                                            </span>
+                                            <input type="text" class="form-control input-sm  " id="txtemailvalidar" name="Mail" placeholder="Correo">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-sm btn-danger btnGuardarclientenuevoValidar">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalCanjearCodigoPromocional" class="modal fade full-modal" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label">Canjear Código Promocional</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <input type="hidden" class="form-control input-sm " readonly id="modalCanjearCodigoPromocional_idCampania" name="modalCanjearCodigoPromocional_idCampania">
+                        <input type="hidden" class="form-control input-sm " readonly id="modalCanjearCodigoPromocional_nombreCampania" name="modalCanjearCodigoPromocional_nombreCampania">
+                        <input type="hidden" class="form-control input-sm " readonly id="modalCanjearCodigoPromocional_codSala" name="modalCanjearCodigoPromocional_codSala">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="input-group ">
+                                <span class="input-group-addon">
+                                    Sala
+                                </span>
+                                <input type="text" class="form-control input-sm " readonly id="modalCanjearCodigoPromocional_nombreSala" name="modalCanjearCodigoPromocional_nombreSala" placeholder="Sala">
+                            </div>
+                            <hr style="margin-top: 0px;margin-bottom:10px;" />
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    Tipo de Documento
+                                </span>
+                                <select class="form-control input-sm codSalaAuditoria" id="modalCanjearCodigoPromocional_cmbTtipoDocumento" name="modalCanjearCodigoPromocional_cmbTtipoDocumento"></select>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    Número de Documento
+                                </span>
+                                <input type="text" class="form-control input-sm " autocomplete="off" id="modalCanjearCodigoPromocional_numeroDocumento" name="modalCanjearCodigoPromocional_numeroDocumento" placeholder="Número de Documento">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    Código Promocional
+                                </span>
+                                <input type="text" class="form-control input-sm " autocomplete="off" id="modalCanjearCodigoPromocional_codigoPromocional" name="modalCanjearCodigoPromocional_codigoPromocional" placeholder="Código Promocional">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer footer_g lblvalidarcod">
+                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-sm btn-success" id="modalCanjearCodigoPromocional_btnCanjearCodigoPromocional">Canjear</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div id="modalMensajeWhatsApp" class="modal fade full-modal" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label">Mensaje por WhatsApp</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <input type="hidden" class="form-control input-sm " readonly id="modalMensajeWhatsApp_idCampania" name="modalMensajeWhatsApp_idCampania">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="input-group ">
+                                <span class="input-group-addon">
+                                    Sala
+                                </span>
+                                <input type="text" class="form-control input-sm " readonly id="modalMensajeWhatsApp_nombreSala" name="modalMensajeWhatsApp_nombreSala" placeholder="Sala">
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <hr style="margin-top: 0px;margin-bottom:10px;" />
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    Mensaje al generar
+                                </span>
+                                <textarea class="form-control input-sm" autocomplete="off" id="modalMensajeWhatsApp_mensajeWhatsApp" name="modalMensajeWhatsApp_mensajeWhatsApp" rows="10" placeholder="Mensaje que se envia por WhatsApp"></textarea>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    Mensaje al reactivar
+                                </span>
+                                <textarea class="form-control input-sm" autocomplete="off" id="modalMensajeWhatsApp_mensajeWhatsAppReactivacion" name="modalMensajeWhatsApp_mensajeWhatsAppReactivacion" rows="10" placeholder="Mensaje que se envia por WhatsApp al reactivar un código promocional"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-sm-12">
+                            <hr style="margin-top: 10px;margin-bottom:10px;" />
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="alert alert-success" style="text-align: left !important;">
+                                        Formato de Texto:
+                                        <table class="table table-bordered " style="font-size:1.2rem; text-align:center !important; background-color: white; color: black;">
+                                            <thead class="text-center">
+                                                <tr class="text-center">
+                                                    <th class="text-center">Formato</th>
+                                                    <th class="text-center">Ejemplo</th>
+                                                    <th class="text-center">Resultado</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Negrita</td>
+                                                    <td>*texto*</td>
+                                                    <td><b>texto</b></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Cursiva</td>
+                                                    <td>_texto_</td>
+                                                    <td><i>texto</i></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Tachado</td>
+                                                    <td>~texto~</td>
+                                                    <td><del>texto</del></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Monoespaciado</td>
+                                                    <td>```texto```</td>
+                                                    <td><span style="font-family: monospace;">texto</span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        Más información <a target="_blank" href="https://faq.whatsapp.com/539178204879377/?cms_platform=web&helpref=platform_switcher&locale=es_LA">aquí</a>.
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="alert alert-success" style="text-align: left !important;">
+                                        Reemplazar en el texto con {*}, segun sea necesario
+                                        <ul>
+                                            <li>{0}: Código Promocional.</li>
+                                            <li>{1}: Nombre de la(s) Sala(s) donde se puede canjear el codigo promocional, según la base de datos.</li>
+                                            <li>{2}: Fecha de Expiración del código promocional con formato (dd/MM/yyyy HH:mm) 24 horas.</li>
+                                            <li>{3}: Solo nombres del cliente.</li>
+                                            <li>{4}: Nombre completo (nombres y apellidos) del cliente.</li>
+                                            <li>{5}: Días que dura el código al ser generado.</li>
+                                            <li>{6}: Horas que dura el código al ser generado</li>
+                                            <li>{7}: Días que dura el código al reactivarlo.</li>
+                                            <li>{8}: Horas que dura el código al reactivarlo</li>
+                                            <li>{9}: Fecha de expiración después de la reactivación del código con formato (dd/MM/yyyy HH:mm) 24 horas.</li>
+                                            <li>{10}: Monto de la recarga (solo para somos casino).</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <hr style="margin-top: 10px;margin-bottom:10px;" />
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    Celular
+                                </span>
+                                <div style="display: flex;">
+                                    <input type="tel" class="form-control input-sm soloNumeros" id="modalMensajeWhatsApp_codigoPaisMensajePrueba" autocomplete="off" maxlength="3" onkeypress="return valideKeyNumber(event)" value="51" style="width: 40px; border-right: unset !important; background-color: #ececec; text-align: center;">
+                                    <input type="tel" class="form-control input-sm soloNumeros" id="modalMensajeWhatsApp_numeroCelularMensajePrueba" autocomplete="off" maxlength="12" onkeypress="return valideKeyNumber(event)" placeholder="Número Celular">
+                                </div>
+                            </div>
+                            <div class="row" style="display: flex; flex-direction: column; flex-wrap: wrap-reverse; padding: 0 15px 0 15px;">
+                                <button type="button" style="max-width:fit-content;" class="btn btn-sm btn-success pull-bottom-left pull-right" id="modalMensajeWhatsApp_btnEnviarMensajePrueba">Enviar Mensaje de Prueba</button>
+                                <p style="font-weight: bold; font-style: italic; margin-top: 10px">
+                                    *Para poder guardar el mensaje primero tiene que enviar un mensaje de prueba para verificar que tenga el formato deseado.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer footer_g lblvalidarcod">
+                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-sm btn-success" id="modalMensajeWhatsApp_btnGuardarMensajeWhatsApp">Guardar</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div id="modalClientesCampania" class="modal fade full-modal" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label">Clientes campaña <span id="modalClientesCampania_nombreCampania"></span> - <span id="modalClientesCampania_nombreSala"></span></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <input type="hidden" class="form-control input-sm " readonly id="modalClientesCampania_idCampania" name="modalClientesCampania_idCampania">
+                        <div class="col-md-12">
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 1em; width:100%">
+                                    <div class="panel panel-default" style="max-width: fit-content; margin:auto; display: flex; gap: 5px; align-items:center;">
+                                        <h2>Leyenda:</h2>
+                                        <span><span class="label label-success">ABC123</span>: Código canjeado</span>
+                                        <div style="height: 15px; width: 1px; background-color:gray"></div>
+                                        <span><span class="label label-danger">ABC123</span>: Código no canjeado</span>
+                                    </div>
+                                    <button class="btn btn-success" id="modalClientesCampania_btnGenerarExcelClientesCampania"><i class="fa fa-file-excel-o">  Excel</i></button>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <table id="modalClientesCampania_tableClientesRegistrados" class="table table-bordered " style="font-size:1.2rem; text-align:center !important; background-color: white; color: black;">
+                                <thead class="text-center">
+                                    <tr class="text-center">
+                                        <th class="text-center">Cliente</th>
+                                        <th class="text-center">Doc. Identidad</th>
+                                        <th class="text-center">Número Celular</th>
+                                        <th class="text-center">Código</th>
+                                        <th class="text-center">Cod. Enviado</th>
+                                        <th class="text-center">F. Generación</th>
+                                        <th class="text-center">F. Canjeo</th>
+                                        <th class="text-center">F. Expiracion</th>
+                                        <th class="text-center">Cod. Regenerado</th>
+                                        <th class="text-center">Procedencia Registro</th>
+                                        <th class="text-center">Monto Recargado</th>
+                                        <th class="text-center">Nacionalidad</th>
+                                        <th class="text-center">F. Nacimiento (edad)</th>
+                                        <th class="text-center">Acción</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer footer_g lblvalidarcod">
+                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div id="modalEditarCelularCliente" class="modal fade full-modal" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label">Editar celular de cliente</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <input type="hidden" class="form-control input-sm " readonly id="modalEditarCelularCliente_idCampaniaCliente" name="modalEditarCelularCliente_idCampania">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="input-group ">
+                                <span class="input-group-addon">
+                                    Cliente
+                                </span>
+                                <input type="text" class="form-control input-sm " readonly id="modalEditarCelularCliente_nombreCliente" placeholder="Cliente">
+                            </div>
+                            <hr style="margin-top: 0px;margin-bottom:10px;" />
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    Código de País
+                                </span>
+                                <input type="text" class="form-control input-sm soloNumeros" autocomplete="off" onkeypress="return valideKeyNumber(event)" id="modalEditarCelularCliente_codigoPais" name="modalEditarCelularCliente_codigoPais" placeholder="Código de País">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    Número de Celular
+                                </span>
+                                <input type="text" class="form-control input-sm soloNumeros" autocomplete="off" onkeypress="return valideKeyNumber(event)" id="modalEditarCelularCliente_numeroCelular" name="modalEditarCelularCliente_numeroCelular" placeholder="Código Promocional">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer footer_g">
+                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-sm btn-success" id="modalEditarCelularCliente_btnActualizarNumeroCelularCliente">Actualizar</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+}
+<!--Seccion Impresion Cupones-->
+<div class="row" style="display:none">
+    <div class="col-md-12">
+        <button class="btn btn-danger btn-block" id="ImprimirCupones">Imprimir Cupones</button>
+    </div>
+</div>
+<div style="display:none">
+    <div id="printArea">
+    </div>
+</div>
+
+<!--Fin Seccion Impresion Cupones-->
+
+@section js
+{
+    <script src="https://cdn.datatables.net/plug-ins/1.10.19/sorting/absolute.js"></script>
+    <script src="~/Content/assets/js/jquery-barcode.min.js"></script>
+    <script src="~/Content/assets/js/print.min.js"></script>
+    <script>
+        let MostrarWinCupones='@Html.Raw(ViewBag.MostrarWinCupones)'
+    </script>
+    <script src="~/Content/assets/viewsjs/Campania/ListadoCampania.js?v=@fecha_archivos"></script>
+}
+
+

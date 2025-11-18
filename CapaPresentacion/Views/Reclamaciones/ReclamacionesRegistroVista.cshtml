@@ -1,0 +1,144 @@
+﻿@{
+    ViewBag.Title = "Reclamaciones";
+    Layout = "~/Views/Shared/_Reclamaciones.cshtml";
+}
+@using System.Activities.Expressions
+@using System.Web.Script.Serialization
+@using System.Web.UI.WebControls
+@{
+    ViewBag.Title = "Libro de Reclamaciones";
+}
+<style>
+    .widget-box {
+        margin: 0px !important;
+    }
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-3 col-xs-3 col-lg-3 text-center">
+                    <img src="~/Content/assets/images/no_image.jpg" class="img-responsive img_logo" style="padding-top: 5px;width: 115px;height:110px;margin: auto;" />
+                </div>
+                <div class="col-md-7 col-xs-7 col-lg-7">
+                    <p>
+                        <h2><b>Hoja de Reclamación</b></h2>
+                    </p>
+                    <div style="line-height: 0.9;">
+                        <p>Fecha : @ViewBag.reclamacion.fecha.ToShortDateString()</p>
+                        <p>Codigo : @ViewBag.reclamacion.codigo</p>
+                        <p><b>@ViewBag.reclamacion.razon_social.ToUpper()</b> - RUC: @ViewBag.rucEmpresa</p>
+                        <p>@ViewBag.reclamacion.local_direccion</p>
+                    </div>
+                </div>
+                <div class="col-md-2 col-xs-2 col-lg-2" style="padding-top: 20px;">
+                    <button class="btn btn-app btn-danger btn-block" id="btnPdf" data-doc="@ViewBag.reclamacion.hash">
+                        <i class="ace-icon glyphicon glyphicon-download bigger-200"></i>
+                        PDF
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-xs-12 bg_white">
+                <input name="id" id="id" value="0" type="hidden" />
+                <div class="widget-box widget-color-dark">
+                    <div class="widget-header">
+                        <h5 class="widget-title bigger lighter"><b>1. IDENTIFICACIÓN DEL CONSUMIDOR RECLAMANTE</b></h5>
+
+                    </div>
+                    <div class="widget-body">
+                        <div class="widget-main">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p><b>Nombre Completo:</b> <span>@ViewBag.reclamacion.nombre.ToUpper()</span></p>
+                                    <p><b>Domicilio:</b> <span>@ViewBag.reclamacion.direccion.ToUpper()</span></p>
+                                    <p><b>DNI/CE:</b> <span>@ViewBag.reclamacion.documento.ToUpper()</span></p>
+                                    <p><b>Telefono:</b> <span>@ViewBag.reclamacion.telefono.ToUpper()</span></p>
+                                    <p><b>E-mail:</b> <span>@ViewBag.reclamacion.correo.ToUpper()</span></p>
+                                    @if (ViewBag.tiposala != 0)
+                                    {
+                                        <p><b>Padre ó Madre:</b> <span>@ViewBag.reclamacion.nombrepadre_madre.ToUpper()</span></p>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget-box widget-color-dark">
+                    <div class="widget-header">
+                        <h5 class="widget-title bigger lighter">
+                            <b>2. IDENTIFICACIÓN DEL BIEN CONTRATADO</b>
+                        </h5>
+                    </div>
+                    <div class="widget-body">
+                        <div class="widget-main">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p><b>Tipo:</b> <span>@ViewBag.reclamacion.tipo.ToUpper()</span></p>
+                                    <p><b>Monto Reclamado:</b> <span>@ViewBag.reclamacion.monto</span></p>
+                                    <p><b>Descripción:</b> <span>@ViewBag.reclamacion.descripcion.ToUpper()</span></p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget-box widget-color-dark">
+                    <div class="widget-header">
+                        <h5 class="widget-title bigger lighter">
+                            <b>3. DETALLE DE LA RECLAMACIÓN</b>
+                        </h5>
+                    </div>
+                    <div class="widget-body">
+                        <div class="widget-main">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p><b>Tipo:</b> <span>@ViewBag.reclamacion.tipo_reclamo.ToUpper()</span></p>
+                                    <p><b>Local:</b> <span>@ViewBag.reclamacion.local_nombre.ToUpper()</span></p>
+                                    <p><b>Referencia:</b> <span>
+    @if (!string.IsNullOrEmpty(@ViewBag.reclamacion.referencia))
+    {
+        @ViewBag.reclamacion.referencia.ToUpper()
+    }
+    else
+    {
+        @ViewBag.reclamacion.referencia
+    }
+</span></p>
+<p><b>Detalle:</b> <span>@ViewBag.reclamacion.detalle.ToUpper()</span></p>
+                                    <p><b>Pedido:</b> <span>@ViewBag.reclamacion.pedido.ToUpper()</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" style="font-size: 14px; margin-top: 15px; margin-left: 14px; margin-right: 14px;">
+                    <small class="text-justify">
+                        <p>
+                            <sup>(1)</sup> RECLAMO: Disconformidad relacionada a los productos o servicios.<br> <sup>(2)</sup> QUEJA: Disconformidad no relacionada a los productos o servicios; o, malestar o descontento respecto a la atención al público.<br> <sup>(3)</sup> E-MAIL: Al brindar mi correo electrónico, autorizo recibir la respuesta a través de este medio.
+                        </p>
+                        <ul style="margin-left:38px;">
+                            <li>
+                                La formulación del reclamo no impide acudir a otras vías de solución de controversias ni es requisito previo
+                                para interponer una denuncia ante INDECOPI.
+                            </li>
+                            <li>
+                                El proveedor debe dar respuesta al reclamo o queja en un plazo no mayor de quince (15) días hábiles, el cual es improrrogable.
+                            </li>
+                        </ul>
+                    </small>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+@section js
+{
+    <script type="text/javascript">
+            logoSala = "@Html.Raw(ViewBag.logoSala)"
+    </script>
+    <script src="~/Content/assets/viewsjs/Reclamaciones/ReclamacionesRegistroVista.js"></script>
+}
+

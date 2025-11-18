@@ -1,0 +1,97 @@
+﻿@{
+    ViewBag.Title = "Registro Usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using System.Activities.Expressions
+@using System.Web.Script.Serialization
+@using System.Web.UI.WebControls
+
+@{
+    String usuario = new JavaScriptSerializer().Serialize(ViewBag.usuario);
+    String seguridad = new JavaScriptSerializer().Serialize(ViewBag.seguridad);
+
+}
+<script type="text/javascript">
+    usuario = (@Html.Raw(usuario));
+    seguridad = (@Html.Raw(seguridad));
+</script>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-shield"></span>
+                                <span class="main-text">
+                                    Registro Usuario
+                                </span>
+                            </h1>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+
+                        <div class="col-md-4 col-md-offset-4 col-sm-6 col-xs-6">
+                            <button type="button" class="btn btn-success btn-sm col-md-12 col-sm-12 col-xs-12 btnListar"><span class="glyphicon glyphicon-list-alt"></span> Listado </button>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <button type="button" class="btn btn-primary btn-sm col-md-12 col-sm-12 col-xs-12 btnGuardar"><span class="glyphicon glyphicon-list-alt"></span> Guardar </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-sm-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="cardMachine" style="margin-bottom:15px;">
+                        <form class="medium" role="form" id="frmRegistroUsuario" method="post" action="#">
+                            <input type="hidden" name="EmpleadoID" id="txtEmpleadoID" class="record" />
+                            <input type="hidden" name="UsuarioID" id="txtUsuarioID" class="record" />
+                            <input type="hidden" name="TipoUsuarioID" id="txtTipoUsuarioID" />
+                            <input type="hidden" name="FailedAttempts" id="txtFailedAttemps" />
+
+                            <div class="form-group">
+                                <label for="txtusuario">Empleado</label>
+                                <label class="form-control input-sm" id="lblNombreEmpleado"></label>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="txtusuario">Usuario</label>
+                                <input type="text" name="UsuarioNombre" class="form-control input-sm" id="txtusuario" placeholder="Usuario">
+                            </div>
+
+                            @*<div class="form-group">
+            <label for="txtContrasena">Contraseña Anterior</label>
+            <input type="password" class="form-control input-sm" readonly id="txtContrasenaAnt" name="UsuarioContraseñaAnt" placeholder="Contraseña Anterior">
+        </div>*@
+                        </form>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>    
+</div>
+
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/Usuario/UsuarioRegistroVista.js"></script>
+}

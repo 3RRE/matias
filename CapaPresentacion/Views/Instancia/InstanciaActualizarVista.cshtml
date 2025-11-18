@@ -1,0 +1,49 @@
+﻿@using CapaEntidad.WhatsApp
+@model WSP_InstanciaUltraMsgEntidad
+@{
+    Layout = null;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-12">
+            <form id="formInstancia" role="form">
+                <input type="hidden" id="IdInstanciaUltraMsg" name="IdInstanciaUltraMsg" value="@Model.IdInstanciaUltraMsg" />
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Sala
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm" name="NombreSala" placeholder="Sala" value="@Model.NombreSala" readonly>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Url Base
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm" id="UrlBase" name="UrlBase" placeholder="UrlBase" value="@Model.UrlBase">
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Instancia
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm" id="Instancia" name="Instancia" placeholder="Instancia" value="@Model.Instancia">
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Token
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm" id="Token" name="Token" placeholder="Token" value="@Model.Token">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="~/Content/assets/viewsjs/WhatsApp/Instancia/ActualizarInstancia.js"></script>

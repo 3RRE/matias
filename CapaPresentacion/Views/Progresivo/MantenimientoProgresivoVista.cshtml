@@ -1,0 +1,221 @@
+﻿@using S3k.Utilitario;
+
+@{
+    ViewBag.Title = "Mantenimiento Progresivo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+}
+
+<style type="text/css">
+    .select2-container .select2-selection--single {
+        height: 27px !important;
+    }
+
+    .select2-container .select2-selection--multiple {
+        min-height: 27px !important;
+        max-height: 27px !important;
+    }
+
+    .select2-container .select2-selection--multiple {
+        overflow-y: scroll;
+    }
+
+
+    .table thead tr {
+        background-color: #0b1f46 !important;
+        height: 35px;
+    }
+
+    .cardMachine {
+        border-radius: 7px !important;
+        background-color: white;
+        padding: 15px 15px;
+    }
+
+    .sectionCard {
+        border: solid #a1a1a1 1px;
+        border-radius: 7px !important;
+        padding: 15px 1px;
+        margin-bottom: 15px;
+    }
+
+    .collapsed {
+        box-shadow: none !important;
+    }
+
+    .block.collapsed .block-heading .block-controls .icon.block-control-collapse {
+        color: black !important;
+    }
+
+    .block {
+        box-shadow: none !important;
+    }
+
+    .zon {
+        background-color: white !important;
+        border-bottom: none !important;
+        background: none !important;
+    }
+
+    .btn-sm-custom {
+        width: 100%;
+        padding: 6px 10px;
+    }
+
+    @@media (min-width: 768px) {
+        .input-group-custom {
+            margin: 0;
+        }
+    }
+</style>
+
+<!-- row -->
+<div class="row">
+    <!-- col -->
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-block-menu"></span>
+                                <span class="main-text">
+                                    @ViewBag.Title
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /col -->
+    <!-- col -->
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <!-- row -->
+                    <div class="row">
+                        <!-- col -->
+                        <div class="col-xs-12 col-sm-8 col-md-8">
+                            <div class="input-group input-group-custom">
+                                <span class="input-group-addon">
+                                    Sala
+                                </span>
+                                <select class="form-control input-sm" id="cboSala" name="cboSala">
+                                    <option value="0">--Seleccione--</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- /col -->
+                        <!-- col -->
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                            <button type="button" id="button_search" class="btn btn-success btn-sm btn-sm-custom">
+                                <span class="glyphicon glyphicon-search"></span>
+                                Buscar
+                            </button>
+                        </div>
+                        <!-- /col -->
+                    </div>
+                    <!-- /row -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /col -->
+</div>
+<!-- /row -->
+<!-- row -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <!-- row -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <table id="tableProgresivos" class="table table-striped table-condensed table-bordered table-hover"></table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /row -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /row -->
+
+@section modal
+{
+    <!-- Modal Progresivo Fecha y Hora -->
+    <div class="modal fade full-modal" id="modal_progresivo_fechahora" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <!-- modal content -->
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label">Elegir fecha y hora para actualizar progresivo</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="block-content-outer">
+                        <div class="block-content-inner">
+                            <!-- row -->
+                            <div class="row">
+                                <!-- col -->
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="input-group form-group date">
+                                        <span class="input-group-addon">
+                                            Fecha
+                                        </span>
+                                        <input type="text" name="progresivo_fecha" id="progresivo_fecha" class="form-control input-sm" />
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- /col -->
+                                <!-- col -->
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="input-group form-group date">
+                                        <span class="input-group-addon">
+                                            Hora
+                                        </span>
+                                        <input type="text" name="progresivo_hora" id="progresivo_hora" class="form-control input-sm" />
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-clock-o"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- /col -->
+                                <!-- col -->
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="iaction-keys">
+                                        <input type="hidden" id="progresivo_url" />
+                                    </div>
+                                </div>
+                                <!-- /col -->
+                            </div>
+                            <!-- /row -->
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-sm btn-success" id="button_update_date">Actualizar</button>
+                </div>
+            </div>
+            <!-- /modal content -->
+        </div>
+    </div>
+    <!-- /Modal Progresivo Fecha y Hora -->
+}
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/Progresivo/Progresivo/MantenimientoProgresivoVista.js?v=@fecha_archivos"></script>
+}

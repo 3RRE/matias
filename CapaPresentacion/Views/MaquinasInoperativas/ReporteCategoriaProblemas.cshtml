@@ -1,0 +1,157 @@
+﻿@using S3k.Utilitario;
+
+@{
+    ViewBag.Title = "Reporte Categoria Problemas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+}
+<style>
+    .sorting, .sorting_disabled, .sorting_asc, .sorting_desc {
+        background-color: #0b1f46 !important;
+        height: 40px;
+    }
+
+    tr {
+        height: 34px;
+    }
+
+    .even {
+        background-color: white !important;
+    }
+</style>
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-atom"></span>
+                                <span class="main-text">
+                                    Reporte Categoria Problemas
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+
+                        <div class="col-md-4 col-sm-4  col-xs-6 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnBuscar" class="btn btn-success btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-file"></span>
+                                        Buscar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-4  col-xs-6 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnExcel" class="btn btn-primary btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-file"></span>
+                                        Excel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 tam">
+
+                            <div class="col-md-12 col-lg-12 col-sm-12">
+                                <div class="input-group form-group">
+                                    <span class="input-group-addon">
+                                        Clasificacion Problemas
+                                    </span>
+                                    <select id="cboClasificacionProblemas" class="form-control input-sm select" name="codClasificacionProblemas">
+                                    </select>
+                                </div>
+                            </div>
+                            @*<div class="col-md-12 col-lg-12 col-sm-12">
+                                    <div class="input-group form-group">
+                                        <span class="input-group-addon">
+                                            Lista Problemas
+                                        </span>
+                                        <select id="cboListaProblemas" class="form-control input-sm select" name="codListaProblemas">
+                                        </select>
+                                    </div>
+                                </div>*@
+
+                            <div class="col-xs-12 col-md-12 col-sm-12">
+
+                                <div class="row" id="formfiltro">
+
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                FECHA DE INICIO
+                                            </span>
+                                            <input type="text" class="form-control input-sm dateOnly_" id="fechaIni" />
+                                            <span class="input-group-addon input-group-icon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                FECHA DE FIN
+                                            </span>
+                                            <input type="text" class="form-control input-sm dateOnly_" id="fechaFin" />
+                                            <span class="input-group-addon input-group-icon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <br />
+                            <div class="">
+
+
+                                <table id="tableReporteCategoriaProblemas" class="table table-striped table-bordered table-hover table-condensed">
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/MaquinasInoperativas/ReporteCategoriaProblemas.js?v=@fecha_archivos"></script>
+}

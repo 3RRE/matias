@@ -1,0 +1,256 @@
+﻿@section css{
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <h1 style="color:black">
+                                <span aria-hidden="true" class="icon icon-bag"></span>
+                                <span class="main-text">
+                                    Mantenimieno de Base de Datos <span id="nombre_bd"></span>
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" id="contenedor_widgets">
+        <div class="col-sm-6 col-md-3">
+            <div class="c-widget c-widget-quick-info c-widget-size-small highlight-color-blue" data-url="pages-profile.html" style="cursor: pointer;">
+                <div class="c-widget-icon">
+                    <span class="icon icon-user"></span>
+                </div>
+                <div class="c-wdiget-content-block">
+                    <div class="c-widget-content-heading">
+                        296
+                    </div>
+                    <div class="c-widget-content-sub">
+                        Customers Online
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="c-widget c-widget-quick-info c-widget-size-small highlight-color-green" data-url="#" style="cursor: pointer;">
+                <div class="c-widget-icon">
+                    <span class="icon icon-dollar"></span>
+                </div>
+                <div class="c-wdiget-content-block">
+                    <div class="c-widget-content-heading">
+                        $2,094
+                    </div>
+                    <div class="c-widget-content-sub">
+                        Today's Sales
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="c-widget c-widget-quick-info c-widget-size-small highlight-color-red" data-url="#" style="cursor: pointer;">
+                <div class="c-widget-icon">
+                    <span class="icon icon-list-circle"></span>
+                </div>
+                <div class="c-wdiget-content-block">
+                    <div class="c-widget-content-heading">
+                        14
+                    </div>
+                    <div class="c-widget-content-sub">
+                        Open Tickets
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="c-widget c-widget-quick-info c-widget-size-small highlight-color-yellow" data-url="#" style="cursor: pointer;">
+                <div class="c-widget-icon">
+                    <span class="icon icon-chat"></span>
+                </div>
+                <div class="c-wdiget-content-block">
+                    <div class="c-widget-content-heading">
+                        32
+                    </div>
+                    <div class="c-widget-content-sub">
+                        Customers Chats
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6 col-sm-6">
+                            <fieldset>
+                                <legend>Seccion Backup</legend>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="input-group form-group">
+                                        <span class="input-group-addon">
+                                            Ubicación
+                                        </span>
+                                        <input type="text" name="RutaBackups" id="RutaBackups" value="@ViewBag.RutaBackups" readonly class="form-control input-sm" placeholder="Ubicacion" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xs-12">
+                                    <a href="" class="btn btn-primary btn-sm btn-block" id="btnGenerarBackup">Generar Backup</a>
+                                </div>
+                            </fieldset>
+                            <fieldset style="display:none" id="fieldset_backup">
+                                <legend>
+                                    Backups Actuales
+                                </legend>
+                                <div class="col-md-12">
+                                    <div class="col-md-12">
+                                        <div class="contenedor_backups"></div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <fieldset>
+                                <legend>Mantenimiento Tablas</legend>
+
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Tabla
+                                                </span>
+                                                <select name="TablaLimpieza" id="cboTablaLimpieza" class="form-control input-sm ">
+                                                    <option value="">Seleccione</option>
+                                                    <option value="CAL_Auditoria" data-columna="fecha">CAL_Auditoria</option>
+                                                    <option value="LogAlertaBilleteros" data-columna="FechaRegistro">LogAlertaBilleteros</option>
+                                                    <option value="SEG_Auditoria" data-columna="fechaRegistro">SEG_Auditoria</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Fecha
+                                                </span>
+                                                <input type="text" class="form-control input-sm dateOnly_" id="FechaLimpieza" readonly name="FechaLimpieza" placeholder="Fecha">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <a href="" id="btnLimpiarInformacion" class="btn btn-danger col-md-12 col-xs-12 btn-block">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                                Borrar Información
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset id="fieldset_info">
+                                <legend>
+                                    Informacion Base de Datos
+                                </legend>
+                                <div class="col-md-12">
+                                    <div class="col-md-12">
+                                        <div class="contenedor_info" id="contenedor_info">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="block block-size-normal">
+                                                        <div class="block-content-outer">
+                                                            <div class="block-content-inner mCustomScrollbar _mCS_3 mCS-autoHide" style="position: relative; overflow: visible;">
+                                                                <div id="mCSB_3" class="mCustomScrollBox mCS-dark mCSB_vertical mCSB_outside" tabindex="0" style="max-height: none;">
+                                                                    <div id="mCSB_3_container" class="mCSB_container" style="position: relative; top: -9px; left: 0px;" dir="ltr">
+                                                                        <div class="sales-value-graph-container" style="margin-top: 15px;">
+                                                                            <div id="sales-value-graph" class="graph graph-size-medium" style="padding: 0px; position: relative;">
+                                                                                <canvas class="flot-base" width="165" height="130" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 165px; height: 130px;"></canvas><canvas class="flot-overlay" width="165" height="130" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 165px; height: 130px;"></canvas>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="sales-value-legend">
+                                                                            <div class="sales-value-legend-item">
+                                                                                <div class="sales-value-legend-color">
+                                                                                    <div class="sales-value-legend-color-box" data-color="#4596f1" style="background-color: rgb(69, 150, 241);"></div>
+                                                                                </div>
+                                                                                <div class="sales-value-legend-number" data-raw-value="80633.01">$80,633.01</div>
+                                                                                <div class="sales-value-legend-text">This Year's Sales</div>
+                                                                            </div>
+                                                                            <div class="sales-value-legend-item">
+                                                                                <div class="sales-value-legend-color">
+                                                                                    <div class="sales-value-legend-color-box" data-color="#f17d45" style="background-color: rgb(241, 125, 69);"></div>
+                                                                                </div>
+                                                                                <div class="sales-value-legend-number" data-raw-value="70395.12">$70,395.12</div>
+                                                                                <div class="sales-value-legend-text">Previous Years' Sales</div>
+                                                                            </div>
+                                                                            <div class="sales-value-legend-item" data-ignore="true">
+                                                                                <div class="sales-value-legend-color">
+                                                                                    <div class="sales-value-legend-color-box" data-color="#FFFFFF"></div>
+                                                                                </div>
+                                                                                <div class="sales-value-legend-number" data-raw-value="151028.13">$15,1028.13</div>
+                                                                                <div class="sales-value-legend-text">Total Sales</div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="sales-value-misc">
+                                                                            <div class="sales-value-misc-intro">
+                                                                                Here Are Your Sales &amp; Averages For This Year:
+                                                                            </div>
+                                                                            <div class="sales-value-misc-figures">
+                                                                                <table class="table">
+                                                                                    <tbody>
+                                                                                        <tr class="sales-value-misc-figures-item">
+                                                                                            <td class="sales-value-misc-figures-item-text">
+                                                                                                Today (Daily Avg.)
+                                                                                            </td>
+                                                                                            <td class="sales-value-misc-figures-item-value">
+                                                                                                $176.00 ($98.24)
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr class="sales-value-misc-figures-item">
+                                                                                            <td class="sales-value-misc-figures-item-text">
+                                                                                                This Week (Weekly Avg.)
+                                                                                            </td>
+                                                                                            <td class="sales-value-misc-figures-item-value">
+                                                                                                $1,742.37 ($681.80)
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr class="sales-value-misc-figures-item">
+                                                                                            <td class="sales-value-misc-figures-item-text">
+                                                                                                This Month (Monthly Avg.)
+                                                                                            </td>
+                                                                                            <td class="sales-value-misc-figures-item-value">
+                                                                                                $8,010.45 ($2,840.84)
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div id="mCSB_3_scrollbar_vertical" class="mCSB_scrollTools mCSB_3_scrollbar mCS-dark mCSB_scrollTools_vertical" style="display: block;"><div class="mCSB_draggerContainer"><div id="mCSB_3_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; display: block; height: 301px; max-height: 300px; top: 10px;"><div class="mCSB_dragger_bar" style="line-height: 30px;"></div></div><div class="mCSB_draggerRail"></div></div></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+@section js
+{
+    <script src="~/Content/assets/js/optional/jquery.easypiechart.min.js"></script>
+    <script src="~/Content/assets/js/optional/jquery.flot.min.js"></script>
+    <script src="~/Content/assets/js/optional/jquery.flot.pie.min.js"></script>
+    <script src="~/Content/assets/viewsjs/MantenimientoBD/Backup.js"></script>
+}

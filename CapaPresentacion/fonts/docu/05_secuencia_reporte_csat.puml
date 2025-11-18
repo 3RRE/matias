@@ -1,0 +1,117 @@
+@startuml Secuencia_03_Generar_Reporte_CSAT
+
+title Secuencia: Generar Reporte CSAT
+
+actor "Administrador" as Admin
+participant "Vista Web" as Vista
+participant "ConfigClienteSatisfaccionController" as Controller
+participant "RespuestaBL" as RespuestaBL
+participant "RespuestaDAL" as RespuestaDAL
+database "BD" as DB
+
+== Solicitud de Reporte ==
+Admin -> Vista: Seleccionar filtros (fechas, sala)
+Vista -> Controller: DataNCSAT(fechaInicio, fechaFin, salaId)
+
+== Normalización de Fechas ==
+Controller -> Controller: Normalizar fechas a días completos
+Controller -> Controller: Calcular periodo anterior (mismo rango)
+
+== Obtener Respuestas CSAT Actuales ==
+Controller -> RespuestaBL: ObtenerListaCSATIRespuestas(fechaInicio, fechaFin, salaId)
+RespuestaBL -> RespuestaDAL: ObtenerListaCSATIRespuestas(fechaInicio, fechaFin, salaId)
+RespuestaDAL -> DB: SELECT respuestas WHERE Indicador='CSAT'
+note right of DB
+    SELECT re.IdSala, re.FechaRespuesta,
+           re.IdTablet, t.Nombre AS NombreTablet,
+           o.Valor
+    FROM RespuestaPregunta rp
+    INNER JOIN Opcion o ON rp.IdOpcion = o.IdOpcion
+    INNER JOIN Pregunta p ON rp.IdPregunta = p.IdPregunta
+    INNER JOIN RespuestaEncuesta re ON rp.IdRespuestaEncuesta = re.IdRespuestaEncuesta
+    WHERE p.Indicador = 'CSAT'
+      AND re.IdSala = @salaId
+      AND CONVERT(date, re.FechaRespuesta) BETWEEN @fechaInicio AND @fechaFin
+end note
+DB --> RespuestaDAL: Lista de respuestas con valores 1-5
+RespuestaDAL --> RespuestaBL: List<CsatRespuesta>
+
+== Obtener Respuestas CSAT Periodo Anterior ==
+Controller -> RespuestaBL: ObtenerListaCSATIRespuestas(fechaInicioAnt, fechaFinAnt, salaId)
+RespuestaBL -> RespuestaDAL: ObtenerListaCSATIRespuestas(fechaInicioAnt, fechaFinAnt, salaId)
+RespuestaDAL -> DB: SELECT respuestas periodo anterior
+DB --> RespuestaDAL: Lista de respuestas anteriores
+RespuestaDAL --> RespuestaBL: List<CsatRespuesta>
+
+== Obtener Serie Diaria ==
+Controller -> RespuestaBL: ObtenerCSATDiario(fechaInicio, fechaFin, salaId)
+RespuestaBL -> RespuestaDAL: ObtenerCSATDiario(fechaInicio, fechaFin, salaId)
+RespuestaDAL -> DB: SELECT agrupado por fecha
+note right of DB
+    Por cada día calcula:
+    - Total respuestas
+    - Cantidad por nivel (1-5)
+    - Porcentajes por nivel
+    - CSAT = % (Satisfecho + Muy Satisfecho)
+    
+    Niveles:
+    1 = Muy Insatisfecho
+    2 = Insatisfecho
+    3 = Neutral
+    4 = Satisfecho
+    5 = Muy Satisfecho
+end note
+DB --> RespuestaDAL: Datos diarios con indicadores
+RespuestaDAL --> RespuestaBL: List<CsatDiarioDTO>
+
+== Obtener Respuestas Únicas ==
+Controller -> RespuestaBL: ObtenerCantidadRespuestasAtributos(salaId, fechaInicio, fechaFin, "CSAT")
+RespuestaBL -> RespuestaDAL: ObtenerCantidadRespuestasAtributos(...)
+RespuestaDAL -> DB: SELECT COUNT(DISTINCT NroDocumento)
+DB --> RespuestaDAL: Cantidad de clientes únicos
+RespuestaDAL --> RespuestaBL: int respuestasUnicas
+
+== Construcción de Payload ==
+Controller -> Controller: Construir objeto de respuesta
+note right of Controller
+    payload = {
+        periodoActual: { fechaInicio, fechaFin },
+        periodoAnterior: { fechaInicio, fechaFin },
+        csat: {
+            dataCsatActual,
+            dataCsatAnterior
+        },
+        respuestasUnicas,
+        csatDiario
+    }
+end note
+
+Controller --> Vista: JSON con todos los datos
+
+== Procesamiento en Frontend ==
+Vista -> Vista: Calcular indicadores del periodo actual
+note right of Vista
+    Desde dataCsatActual calcular:
+    - Total respuestas
+    - Cantidad por nivel
+    - Porcentajes
+    - CSAT = (cant_4 + cant_5) / total * 100
+end note
+
+Vista -> Vista: Calcular indicadores del periodo anterior
+Vista -> Vista: Calcular deltas y tendencias
+
+== Visualización ==
+Vista -> Vista: Renderizar dashboard
+note right of Vista
+    1. Tarjeta principal CSAT con delta
+    2. Tarjetas por nivel de satisfacción
+    3. Gráfico de barras (distribución)
+    4. Gráfico lineal (evolución diaria)
+    5. Tabla de respuestas por tablet
+    6. Comparativa periodo actual vs anterior
+end note
+
+Vista --> Admin: Mostrar dashboard CSAT completo
+
+@enduml

@@ -1,0 +1,61 @@
+﻿@using S3k.Utilitario;
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Login.cshtml";
+}
+@using System.Activities.Expressions
+@using System.Web.Script.Serialization
+@using System.Web.UI.WebControls
+
+@{
+    String remoteService = new JavaScriptSerializer().Serialize(ViewBag.uri);
+
+    String macAddress = ViewBag.firstMac;
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+
+}
+<script type="text/javascript">
+
+    remoteService = (@Html.Raw(remoteService));
+
+</script>
+<div class="row">
+    <div class="col-xs-12">
+        <h3 class="heading">
+            <span aria-hidden="true" class="icon icon-key"></span>
+            <span class="main-text">
+                Acceso Sistema
+            </span>
+        </h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <form role="form" class="login-form" method="post" action="#">
+            <div class="form-group">
+                <label for="usuario">Usuario</label>
+                <input class="form-control input-sm" id="usuario" placeholder="Usuario" type="text" name="usuario">
+            </div>
+            <div class="form-group">
+                <label for="contrasena">Contraseña</label>
+                <input class="form-control input-sm" id="contrasena" placeholder="Contraseña" type="password" name="contrasena">
+            </div>
+            <p style="display:none;" id="OlvidoContrasena"><a href="~/home/RestablecerContrasena">restablecer la contraseña</a></p>
+            <div class="form-group">
+                <div class="">
+                    <button type="button" class="btn btn-success btnIngresar pull-right">Ingresar</button>
+                </div>
+            </div>
+        </form>
+        <div id="linkDescarga" class="row hidden" style="padding: 17px; background-color: #ffeeee ; font-size: 20px">
+            <div class="control-group">
+                Hacer click <a id="linkSetup" href="@ViewBag.LinkService" download="Instalador_IASServiceClient.msi">aquí</a> si la descarga del servicio no inició.
+            </div>
+        </div>
+    </div>
+</div>
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/Home/Login.js?v=@fecha_archivos"></script>
+}

@@ -1,0 +1,283 @@
+﻿@using S3k.Utilitario;
+
+@{
+    ViewBag.Title = "VistaReporteNominalPuntuacion";
+
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+}
+
+@section css
+{
+    <style>
+        .btn-cutab {
+            background-color: #EEEEEE;
+            color: #484848;
+            padding: 3px 9px;
+            font-size: 12px;
+            border: 1px solid #999999;
+            outline: none;
+        }
+
+            .btn-cutab:hover {
+                background-color: #05256E;
+                color: #FFFFFF;
+            }
+
+        .box-cutabs li.active .btn-cutab {
+            background-color: #05256E;
+            color: #FFFFFF;
+        }
+    </style>
+}
+
+<!-- row -->
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-shield"></span>
+                                <span class="main-text">
+                                    Reporte Nominal Puntuación
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <!-- row -->
+                    <div class="row">
+                        <!-- col -->
+                        <div class="col-12 col-xs-6 col-md-6 col-lg-6">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="buttonDownloadExcel" class="btn btn-primary btn-sm col-md-12 col-xs-12">
+                                        <span class="fa fa-file-excel-o"></span>
+                                        Excel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- col -->
+                        <!-- col -->
+                        <div class="col-12 col-xs-6 col-md-6 col-lg-6">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="buttonSearchReport" class="btn btn-success btn-sm col-md-12 col-xs-12">
+                                        <span class="fa fa-search"></span>
+                                        Buscar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- col -->
+                    </div>
+                    <!-- row -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- row -->
+<!-- row -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <!-- row -->
+                    <div class="row">
+                        <!-- col -->
+                        <div class="col-xs-12 col-md-12 col-sm-12">
+                            <!-- row -->
+                            <div class="row">
+                                <!-- col -->
+                                <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+                                    <div class="input-group ">
+                                        <span class="input-group-addon">
+                                            Sala
+                                        </span>
+                                        <select name="room" id="room" class="form-control input-sm">
+                                            <option value="">--Seleccione--</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- col -->
+                                <!-- col -->
+                                <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+                                    <div class="input-group ">
+                                        <span class="input-group-addon">
+                                            Tipo
+                                        </span>
+                                        <select name="type" id="type" class="form-control input-sm">
+                                            <option value="">--Seleccione--</option>
+                                            <option value="1">Jefe Operativo</option>
+                                            <option value="2">Gerente de Unidad</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- col -->
+                                <!-- col -->
+                                <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            Del
+                                        </span>
+                                        <input type="text" name="startDate" id="startDate" class="form-control input-sm datepicker_only" readonly />
+                                        <span class="input-group-addon input-group-icon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- col -->
+                                <!-- col -->
+                                <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            Al
+                                        </span>
+                                        <input type="text" name="endDate" id="endDate" class="form-control input-sm datepicker_only" readonly />
+                                        <span class="input-group-addon input-group-icon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- col -->
+                            </div>
+                            <!-- row -->
+                        </div>
+                        <!-- col -->
+                        <!-- col -->
+                        <div class="col-md-12">
+                            <div class="box-cutabs" id="wrapFichaVersion"></div>
+                            <div class="table_container">
+                                <div class="table-responsive">
+                                    <table id="tableNominalReport" class="table-nr">
+                                        <thead id="theadWrap"></thead>
+                                        <tbody id="tbodyWrap"></tbody>
+                                        <tfoot id="tfootWrap"></tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- col -->
+                    </div>
+                    <!-- row -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- row -->
+@section modal
+{
+    <!-- modal -->
+    <div class="modal fade" id="modalComentarioDetalle" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" id="app-oe-modal">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Observación</h4>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end modal -->
+}
+<style>
+    .open-modal-button {
+        border: none;
+        padding: 5px 10px;
+        background-color: #3d3d3d;
+        color: white;
+    }
+    .not-comment {
+        color: #22319f;
+        text-align: center;
+    }
+    .table-nr {
+        width: 100% !important;
+        position: relative;
+        background-color: #FFFFFF;
+        border-collapse: collapse;
+    }
+
+        .table-nr th, .table-nr td {
+            text-align: center;
+            vertical-align: middle;
+            cursor: default;
+            border: 1px solid #999999;
+        }
+
+        .table-nr .tr-sticky {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        .table-nr thead .tr-th {
+            background-color: #05256E;
+            color: #FFFFFF;
+        }
+
+            .table-nr thead .tr-th th {
+                padding: 8px 5px;
+            }
+
+        .table-nr tbody .tr-th {
+            background-color: #D9D9D9;
+        }
+
+        .table-nr tbody .tr-td {
+            background-color: #FFFFFF;
+        }
+
+        .table-nr tbody .tr-th th {
+            padding: 5px 5px;
+        }
+
+        .table-nr tbody .tr-td td {
+            padding: 2px 5px;
+        }
+
+        .table-nr tfoot .tr-th th {
+            padding: 5px 5px;
+        }
+
+        .table-nr tfoot .tr-td td {
+            padding: 2px 5px;
+        }
+
+        .table-nr tfoot .tr-th .bg-tfoot {
+            background-color: #D9D9D9;
+        }
+
+        .table-nr .text-left {
+            text-align: left;
+        }
+
+        .table-nr .text-right {
+            text-align: right;
+        }
+</style>
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/ExcelenciaOperativa/VistaReporteNominalPuntuacion.js?v=@fecha_archivos"></script>
+}

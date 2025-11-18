@@ -1,0 +1,660 @@
+﻿
+@{
+    ViewBag.Title = "ProyectadoProgresivoListarVista";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-block-menu"></span>
+                                <span class="main-text">
+                                    Simulador - Proyectado Progresivo
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnNuevo" class="btn btn-primary btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-file"></span>
+                                        Nuevo
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnEditar" data-id="0" class="btn btn-success btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-edit"></span>
+                                        Editar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="excel" data-id="0" class="btn btn-warning btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-file"></span>
+                                        Excel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12 col-sm-12" id="formfiltro">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="input-group ">
+                                        <span class="input-group-addon">
+                                            Caso
+                                        </span>
+                                        <select class="form-control input-sm codSalaAuditoria" id="cboCaso" name="IdProyectadoProgresivo"></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <table id="tblEncabezado" class="table table-bordered table-striped" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th colspan="6" style="background-color:#F8CBAD;color:#000" class="text-center">SIMULADOR - PROYECTADO DE PROGRESIVO</th>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <td># MÁQUINAS</td>
+                                    <td><input type="text" id="NroMaquinaEncabezado" class="form-control input-sm text-right" disabled /></td>
+                                    <td>% Retención</td>
+                                    <td><input type="text" id="RetencionEncabezado" class="form-control input-sm text-right" disabled /></td>
+                                    <td>Soles Jugados x Día</td>
+                                    <td><input type="text" id="SolesJugadosEncabezado" class="form-control input-sm text-right" disabled /></td>
+                                </tr>
+                                <tr>
+                                    <td>TOTAL S/ JUG. (Mes)</td>
+                                    <td><input type="text" id="TotalJugMesEncabezado" class="form-control input-sm text-right" disabled /></td>
+                                    <td>Utilidad</td>
+                                    <td><input type="text" id="UtilidadEncabezado" class="form-control input-sm text-right" disabled /></td>
+                                    <td>Promedio S/ Jugad.</td>
+                                    <td><input type="text" id="PromedioSJugadoEncabezado" class="form-control input-sm text-right" disabled /></td>
+                                </tr>
+                                <tr>
+                                    <td>% de Premio</td>
+                                    <td><input type="text" id="PorcentajePremioEncabezado" class="form-control input-sm text-right" disabled /></td>
+                                    <td>Total de Premios</td>
+                                    <td><input type="text" id="TotalPremiosEncabezado" class="form-control input-sm text-right" disabled /></td>
+                                    <td>Media $</td>
+                                    <td><input type="text" id="MediaSEncabezado" class="form-control input-sm text-right" disabled /></td>
+                                </tr>
+                                <tr>
+                                    <td>Tipo de Cambio</td>
+                                    <td><input type="text" id="TipoCambioEncabezado" class="form-control input-sm text-right" disabled /></td>
+                                    <td colspan="4"></td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="col-md-12" style="display:none">
+                            <table class="table table-bordered table-striped" style="width:100%" >
+                                <thead>
+                                    <tr>
+                                        <th colspan="4" style="background-color:#F8CBAD;color:#000" class="text-center">--------</th>
+                                    </tr>
+                                    <tr style="background-color:#fff;color:#000">
+                                        <th>NOMBRE</th>
+                                        <th class="text-center">POZO INFERIOR</th>
+                                        <th class="text-center">POZO MEDIO</th>
+                                        <th class="text-center">POZO SUPERIOR</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Premio Promedio</td>
+                                        <td><input type="number" id="PremioPromedioPozoInferiorParametro" class="form-control input-sm text-center" step="0.01" min="0" max="100" disabled /></td>
+                                        <td><input type="number" id="PremioPromedioMedioParametro" class="form-control input-sm text-center" step="0.01" min="0" max="100" disabled /></td>
+                                        <td><input type="number" id="PremioPromedioSuperiorParametro" class="form-control input-sm text-center" step="0.01" min="0" max="100" disabled /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Soles Jugados por premio</td>
+                                        <td><input type="number" id="SolesJugadosPremioPozoInferiorParametro" class="form-control input-sm text-center" step="0.01" min="0" max="100" disabled /></td>
+                                        <td><input type="number" id="SolesJugadosPremioMedioParametro" class="form-control input-sm text-center" step="0.01" min="0" max="100" disabled /></td>
+                                        <td><input type="number" id="SolesJugadosPremioSuperiorParametro" class="form-control input-sm text-center" step="0.01" min="0" max="100" disabled /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Avance Promedio Pozo</td>
+                                        <td><input type="number" id="AvancePromedioPozoInferiorParametro" class="form-control input-sm text-center" step="0.01" min="0" max="100" disabled /></td>
+                                        <td><input type="number" id="AvancePromedioPozoMedioParametro" class="form-control input-sm text-center" step="0.01" min="0" max="100" disabled /></td>
+                                        <td><input type="number" id="AvancePromedioPozoSuperiorParametro" class="form-control input-sm text-center" step="0.01" min="0" max="100" disabled /></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><input type="number" id="TotalPozoInferior" class="form-control input-sm text-center" step="0.01" min="0" max="100" disabled /></td>
+                                        <td><input type="number" id="TotalPozoMedio" class="form-control input-sm text-center" step="0.01" min="0" max="100" disabled /></td>
+                                        <td><input type="number" id="TotalPozoSuperior" class="form-control input-sm text-center" step="0.01" min="0" max="100" disabled /></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Avance Promedio Pozo Oculto</td>
+                                        <td><input type="number" id="AvancePromedioPozoOcultoInferior" class="form-control input-sm text-center" step="0.01" min="0" max="100" disabled /></td>
+                                        <td><input type="number" id="AvancePromedioPozoOcultoMedio" class="form-control input-sm text-center" step="0.01" min="0" max="100" disabled /></td>
+                                        <td><input type="number" id="AvancePromedioPozoOcultoSuperior" class="form-control input-sm text-center" step="0.01" min="0" max="100" disabled /></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td></td>
+                                        <td><input type="number" id="TotalAvancePromedioPozoOcultoInferior" class="form-control input-sm text-center" step="0.01" min="0" max="100" disabled /></td>
+                                        <td><input type="number" id="TotalAvancePromedioPozoOcultoMedio" class="form-control input-sm text-center" step="0.01" min="0" max="100" disabled /></td>
+                                        <td><input type="number" id="TotalAvancePromedioPozoOcultoSuperior" class="form-control input-sm text-center" step="0.01" min="0" max="100" disabled /></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="col-md-12" style="display:none">
+                            <table class="table table-bordered table-striped" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th colspan="4" style="background-color:#F8CBAD;color:#000" class="text-center">INCR. DE POZO POR DÍA</th>
+                                        <th colspan="2" style="background-color:#F8CBAD;color:#000"></th>
+                                    </tr>
+                                    <tr style="background-color:#fff;color:#000">
+                                        <th></th>
+                                        <th class="text-center">INC. INFERIOR</th>
+                                        <th class="text-center">INC. MEDIO</th>
+                                        <th class="text-center">INC. SUPERIOR</th>
+                                        <th class="text-center">Incr. Por día</th>
+                                        <th class="text-center">Incr. Por Mes</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Inc. Pozo Actual</td>
+                                        <td><input type="number" id="IncPozoActualInferior" class="form-control input-sm text-center" step="0.01" min="0" max="100" disabled /></td>
+                                        <td><input type="number" id="IncPozoActualMedio" class="form-control input-sm text-center" step="0.01" min="0" max="100" disabled /></td>
+                                        <td><input type="number" id="IncPozoActualSuperior" class="form-control input-sm text-center" step="0.01" min="0" max="100" disabled /></td>
+                                        <td><input type="number" id="IncPozoActualDia" class="form-control input-sm text-center" step="0.01" min="0" max="100" disabled /></td>
+                                        <td><input type="number" id="IncPozoActualMes" class="form-control input-sm text-center" step="0.01" min="0" max="100" disabled /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Inc. Pozo Ocu.</td>
+                                        <td><input type="number" id="IncPozoOcultoInferior" class="form-control input-sm text-center" step="0.01" min="0" max="100" disabled /></td>
+                                        <td><input type="number" id="IncPozoOcultoMedio" class="form-control input-sm text-center" step="0.01" min="0" max="100" disabled /></td>
+                                        <td><input type="number" id="IncPozoOcultoSuperior" class="form-control input-sm text-center" step="0.01" min="0" max="100" disabled /></td>
+                                        <td><input type="number" id="IncPozoOcultoDia" class="form-control input-sm text-center" step="0.01" min="0" max="100" disabled /></td>
+                                        <td><input type="number" id="IncPozoOcultoMes" class="form-control input-sm text-center" step="0.01" min="0" max="100" disabled /></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><input type="number" id="TotalIncInferior" class="form-control input-sm text-center" step="0.01" min="0" max="100" disabled /></td>
+                                        <td><input type="number" id="TotalIncMedio" class="form-control input-sm text-center" step="0.01" min="0" max="100" disabled /></td>
+                                        <td><input type="number" id="TotalIncSuperior" class="form-control input-sm text-center" step="0.01" min="0" max="100" disabled /></td>
+                                        <td colspan="2"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                        <div class="col-md-12">
+                                <ul class="nav nav-tabs nav-justified">
+                                    <li class="nav-item active"><a href="#Simulador" data-toggle="tab">SIMULADOR</a></li>
+                                    <li class="nav-item"><a href="#Proyectado" data-toggle="tab">PROYECTADO</a></li>
+                                </ul>
+
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="Simulador">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <table id="tblParametros" class="table table-bordered table-striped" style="width:100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th colspan="4" style="background-color:#F8CBAD;color:#000" class="text-center">PARAMETROS</th>
+                                                        </tr>
+                                                        <tr style="background-color:#fff;color:#000">
+                                                            <th>NOMBRE</th>
+                                                            <th class="text-center">POZO INFERIOR</th>
+                                                            <th class="text-center">POZO MEDIO</th>
+                                                            <th class="text-center">POZO SUPERIOR</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Premio Base</td>
+                                                            <td><input type="text" id="PremioBasePozoInferiorParametro" class="form-control input-sm text-right" style="padding-right:50%;"  disabled /></td>
+                                                            <td><input type="text" id="PremioBasePozoMedioParametro" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="PremioBasePozoSuperiorParametro" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Premio Minimo</td>
+                                                            <td><input type="text" id="PremioMinimoPozoInferiorParametro" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="PremioMinimoPozoMedioParametro" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="PremioMinimoPozoSuperiorParametro" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Premio Maximo</td>
+                                                            <td><input type="text" id="PremioMaximoPozoInferiorParametro" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="PremioMaximoPozoMedioParametro" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="PremioMaximoPozoSuperiorParametro" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Increm. Pozo (%) -- 0.0010 = 0.1%</td>
+                                                            <td><input type="text" id="IncremPozoPozoInferiorParametro" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="IncremPozoPozoMedioParametro" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="IncremPozoPozoSuperiorParametro" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td>Monto Oculto Mínimo</td>
+                                                            <td><input type="text" id="MontoOcultoMinimoPozoInferior" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="MontoOcultoMinimoPozoMedio" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="MontoOcultoMinimoPozoSuperior" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Monto Oculto Máximo</td>
+                                                            <td><input type="text" id="MontoOcultoMaximoPozoInferior" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="MontoOcultoMaximoPozoMedio" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="MontoOcultoMaximoPozoSuperior" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Increm. Pozo Oculto(%)</td>
+                                                            <td><input type="text" id="IncrementoPozoOcultoInferior" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="IncrementoPozoOcultoMedio" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="IncrementoPozoOcultoSuperior" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <table id="tblPremiosPorPozo" class="table table-bordered table-striped" style="width:100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th colspan="6" style="background-color:#F8CBAD;color:#000" class="text-center">PREMIOS POR POZO</th>
+                                                        </tr>
+                                                        <tr style="background-color:#fff;color:#000">
+                                                            <th class="text-center">% Prem. x Pozo</th>
+                                                            <th class="text-center">Total Premios</th>
+                                                            <th class="text-center">Premio Prom.</th>
+                                                            <th class="text-center">premios / día</th>
+                                                            <th class="text-center">premios / mes</th>
+                                                            <th class="text-center">días x premio</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="text-center"><input type="text" id="PorcentajePremioxPozo1" class="form-control input-sm text-center"  disabled /></td>
+                                                            <td class="text-center"><input type="text" id="TotalPremios1" class="form-control input-sm text-center" disabled /></td>
+                                                            <td class="text-center"><input type="text" id="PremioProm1" class="form-control input-sm text-center" disabled /></td>
+                                                            <td class="text-center"><input type="text" id="Premios_Dia1" class="form-control input-sm text-center" disabled /></td>
+                                                            <td class="text-center"><input type="text" id="Premios_Mes1" class="form-control input-sm text-center" disabled /></td>
+                                                            <td class="text-center"><input type="text" id="DiasxPremio1" class="form-control input-sm text-center" disabled /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-center"><input type="text" id="PorcentajePremioxPozo2" class="form-control input-sm text-center" disabled /></td>
+                                                            <td class="text-center"><input type="text" id="TotalPremios2" class="form-control input-sm text-center" disabled /></td>
+                                                            <td class="text-center"><input type="text" id="PremioProm2" class="form-control input-sm text-center" disabled /></td>
+                                                            <td class="text-center"><input type="text" id="Premios_Dia2" class="form-control input-sm text-center" disabled /></td>
+                                                            <td class="text-center"><input type="text" id="Premios_Mes2" class="form-control input-sm text-center" disabled /></td>
+                                                            <td class="text-center"><input type="text" id="DiasxPremio2" class="form-control input-sm text-center" disabled /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-center"><input type="text" id="PorcentajePremioxPozo3" class="form-control input-sm text-center" disabled /></td>
+                                                            <td class="text-center"><input type="text" id="TotalPremios3" class="form-control input-sm text-center" disabled /></td>
+                                                            <td class="text-center"><input type="text" id="PremioProm3" class="form-control input-sm text-center" disabled /></td>
+                                                            <td class="text-center"><input type="text" id="Premios_Dia3" class="form-control input-sm text-center" disabled /></td>
+                                                            <td class="text-center"><input type="text" id="Premios_Mes3" class="form-control input-sm text-center" disabled /></td>
+                                                            <td class="text-center"><input type="text" id="DiasxPremio3" class="form-control input-sm text-center" disabled /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="4"></td>
+                                                            <td>Total Premios</td>
+                                                            <td class="text-center"><input type="text" id="TotalPremios_" class="form-control input-sm text-center" disabled /></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="Proyectado">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <table id="tblProyectado" class="table table-bordered table-striped" style="width:100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th colspan="5" style="background-color:#F8CBAD;color:#000" class="text-center">PROYECTADO</th>
+                                                        </tr>
+                                                        <tr style="background-color:#fff;color:#000">
+                                                            <th>FECHA</th>
+                                                            <th class="text-center" id="FechaCaso"></th>
+                                                            <th class="text-center">PROYECTADO 1</th>
+                                                            <th class="text-center">PROYECTADO 2</th>
+                                                            <th class="text-center">PROYECTADO 3</th>
+                                                        </tr>
+                                                    </thead>
+
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Cantidad de Días</td>
+                                                            <td><input type="text" class="form-control input-sm text-right CantidadDias" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" class="form-control input-sm text-right CantidadDias" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" class="form-control input-sm text-right CantidadDias" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" class="form-control input-sm text-right CantidadDias" style="padding-right:50%;" disabled /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Nro Maquinas</td>
+                                                            <td><input type="text" class="form-control input-sm text-right NroMaquinasHoy" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" class="form-control input-sm text-right NroMaquinas" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" class="form-control input-sm text-right NroMaquinas" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" class="form-control input-sm text-right NroMaquinas" style="padding-right:50%;" disabled /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>TOTAL SOLES JUG. (Mes)</td>
+                                                            <td><input type="text" id="TotalSolesJug" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="TotalSolesJugMesProyectado1" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="TotalSolesJugMesProyectado2" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="TotalSolesJugMesProyectado3" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>% de Premio</td>
+                                                            <td><input type="text" class="form-control input-sm text-right PorcentajePremioProyectado" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" class="form-control input-sm text-right PorcentajePremioProyectado" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" class="form-control input-sm text-right PorcentajePremioProyectado" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" class="form-control input-sm text-right PorcentajePremioProyectado" style="padding-right:50%;" disabled /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>SOLES JUG. POR DÍA</td>
+                                                            <td><input type="text" id="SolesJugPorDia" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="SolesJugPorDiaProyectado1" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="SolesJugPorDiaProyectado2" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="SolesJugPorDiaProyectado3" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>PROMEDIO S/ JUG x MAQ</td>
+                                                            <td><input type="text" id="PromedioSolesJugxMaquina" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="PromedioSolesJugxMaquinaProyectado1" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="PromedioSolesJugxMaquinaProyectado2" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="PromedioSolesJugxMaquinaProyectado3" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>TOTAL PREMIOS</td>
+                                                            <td><input type="text" id="TotalPremios" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="TotalPremiosProyectado1" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="TotalPremiosProyectado2" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="TotalPremiosProyectado3" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>% DE RETORNO</td>
+                                                            <td><input type="text" id="PorcentajeRetorno" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="PorcentajeRetornoProyectado1" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="PorcentajeRetornoProyectado2" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="PorcentajeRetornoProyectado3" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>UTILIDAD (MES)</td>
+                                                            <td><input type="text" id="UtilidadMes" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="UtilidadMesProyectado1" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="UtilidadMesProyectado2" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="UtilidadMesProyectado3" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>MEDIA S/</td>
+                                                            <td><input type="text" id="MediaSoles" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="MediaSolesProyectado1" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="MediaSolesProyectado2" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="MediaSolesProyectado3" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>MEDIA $</td>
+                                                            <td><input type="text" id="MediaDolares" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="MediaDolaresProyectado1" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="MediaDolaresProyectado2" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="MediaDolaresProyectado3" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td>POZO INFERIOR</td>
+                                                            <td># Premios / día</td>
+                                                            <td><input type="text" id="PozoInferiorPremiosDiaProyectado1" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="PozoInferiorPremiosDiaProyectado2" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="PozoInferiorPremiosDiaProyectado3" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td>POZO MEDIO</td>
+                                                            <td># Días / Premio</td>
+                                                            <td><input type="text" id="PozoMedioDiasPremioProyectado1" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="PozoMedioDiasPremioProyectado2" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="PozoMedioDiasPremioProyectado3" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td>POZO SUPERIOR</td>
+                                                            <td># Días / Premio</td>
+                                                            <td><input type="text" id="PozoSuperiorDiasPremioProyectado1" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="PozoSuperiorDiasPremioProyectado2" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                            <td><input type="text" id="PozoSuperiorDiasPremioProyectado3" class="form-control input-sm text-right" style="padding-right:50%;" disabled /></td>
+                                                        </tr>
+
+                                                    </tbody>
+
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section modal
+{
+    <div class="modal fade" id="full-modal" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label">Nuevo Progresivo Proyectado</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <form id="frmNuevo">
+                            <div class="col-md-12">
+                                <label>Descripción</label>
+                                <input type="text" id="Descripcion" name="Descripcion" class="form-control input-sm" />
+                            </div>
+                            <div class="col-md-3">
+                                <label>Nro Maquinas</label>
+                                <input type="number" id="NroMaquina" name="NroMaquina" class="form-control input-sm"/>
+                            </div>
+                            <div class="col-md-3">
+                                <label>TOTAL S/ JUG. (Mes)</label>
+                                <input type="number" id="TotalJugMes" name="TotalJugMes" class="form-control input-sm"/>
+                            </div>
+                            <div class="col-md-3">
+                                <label>Tipo de Cambio</label>
+                                <input type="number" id="TipoCambio" name="TipoCambio" class="form-control input-sm"/>
+                            </div>
+                            <div class="col-md-3">
+                                <label>% Retención</label>
+                                <input type="number" id="Retencion" name="Retencion" class="form-control input-sm"/>
+                            </div>
+                            <div class="col-md-12" style="margin-top: 15px;">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>NOMBRE</th>
+                                        <th class="text-center">POZO INFERIOR</th>
+                                        <th class="text-center">POZO MEDIO</th>
+                                        <th class="text-center">POZO SUPERIOR</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Premio Base</td>
+                                        <td class="text-center"><input type="number" id="PremioBasePozoInferior" name="PremioBasePozoInferior" class="form-control input-sm text-center" step="0.01" min="0" max="100"/></td>
+                                        <td class="text-center"><input type="number" id="PremioBasePozoMedio" name="PremioBasePozoMedio" class="form-control input-sm text-center" step="0.01" min="0" max="100"/></td>
+                                        <td class="text-center"><input type="number" id="PremioBasePozoSuperior" name="PremioBasePozoSuperior" class="form-control input-sm text-center" step="0.01" min="0" max="100"/></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Premio Minimo</td>
+                                        <td class="text-center"><input type="number" id="PremioMinimoPozoInferior" name="PremioMinimoPozoInferior" class="form-control input-sm text-center" step="0.01" min="0" max="100"/></td>
+                                        <td class="text-center"><input type="number" id="PremioMinimoPozoMedio" name="PremioMinimoPozoMedio" class="form-control input-sm text-center" step="0.01" min="0" max="100"/></td>
+                                        <td class="text-center"><input type="number" id="PremioMinimoPozoSuperior" name="PremioMinimoPozoSuperior" class="form-control input-sm text-center" step="0.01" min="0" max="100"/></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Premio Maximo</td>
+                                        <td><input type="number" id="PremioMaximoPozoInferior" name="PremioMaximoPozoInferior" class="form-control input-sm text-center" step="0.01" min="0" max="100"/></td>
+                                        <td><input type="number" id="PremioMaximoPozoMedio" name="PremioMaximoPozoMedio" class="form-control input-sm text-center" step="0.01" min="0" max="100"/></td>
+                                        <td><input type="number" id="PremioMaximoPozoSuperior" name="PremioMaximoPozoSuperior" class="form-control input-sm text-center" step="0.01" min="0" max="100"/></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Increm. Pozo (%)</td>
+                                        <td><input type="number" id="IncrementoPozoInferior" name="IncrementoPozoInferior" class="form-control input-sm text-center" step="0.01" min="0" max="100"/></td>
+                                        <td><input type="number" id="IncrementoPozoMedio" name="IncrementoPozoMedio" class="form-control input-sm text-center" step="0.01" min="0" max="100"/></td>
+                                        <td><input type="number" id="IncrementoPozoSuperior" name="IncrementoPozoSuperior" class="form-control input-sm text-center" step="0.01" min="0" max="100"/></td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="button" id="btnGuardar" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="full-modal-edit" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label">Editar Progresivo Proyectado</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <form id="Editar">
+                            <input type="hidden" id="IdProyectadoProgresivo" name="IdProyectadoProgresivo" />
+                            <div class="col-md-12">
+                                <label>Descripción</label>
+                                <input type="text" id="DescripcionEditar" name="DescripcionEditar" class="form-control input-sm" />
+                            </div>
+                            <div class="col-md-3">
+                                <label>Nro Maquinas</label>
+                                <input type="number" id="NroMaquinaEditar" name="NroMaquina" class="form-control input-sm" />
+                            </div>
+                            <div class="col-md-3">
+                                <label>TOTAL S/ JUG. (Mes)</label>
+                                <input type="number" id="TotalJugMesEditar" name="TotalJugMes" class="form-control input-sm" />
+                            </div>
+                            <div class="col-md-3">
+                                <label>Tipo de Cambio</label>
+                                <input type="number" id="TipoCambioEditar" name="TipoCambio" class="form-control input-sm" />
+                            </div>
+                            <div class="col-md-3">
+                                <label>% Retención</label>
+                                <input type="number" id="RetencionEditar" name="Retencion" class="form-control input-sm" />
+                            </div>
+                            <div class="col-md-12" style="margin-top:15px;">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>NOMBRE</th>
+                                            <th class="text-center">POZO INFERIOR</th>
+                                            <th class="text-center">POZO MEDIO</th>
+                                            <th class="text-center">POZO SUPERIOR</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Premio Base</td>
+                                            <td class="text-center"><input type="number" id="PremioBasePozoInferiorEditar" name="PremioBasePozoInferior" class="form-control input-sm text-center" step="0.01" min="0"/></td>
+                                            <td class="text-center"><input type="number" id="PremioBasePozoMedioEditar" name="PremioBasePozoMedio" class="form-control input-sm text-center" step="0.01" min="0"/></td>
+                                            <td class="text-center"><input type="number" id="PremioBasePozoSuperiorEditar" name="PremioBasePozoSuperior" class="form-control input-sm text-center" step="0.01" min="0" /></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Premio Minimo</td>
+                                            <td class="text-center"><input type="number" id="PremioMinimoPozoInferiorEditar" name="PremioMinimoPozoInferior" class="form-control input-sm text-center" step="0.01" min="0"/></td>
+                                            <td class="text-center"><input type="number" id="PremioMinimoPozoMedioEditar" name="PremioMinimoPozoMedio" class="form-control input-sm text-center" step="0.01" min="0"/></td>
+                                            <td class="text-center"><input type="number" id="PremioMinimoPozoSuperiorEditar" name="PremioMinimoPozoSuperior" class="form-control input-sm text-center" step="0.01" min="0"/></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Premio Maximo</td>
+                                            <td><input type="number" id="PremioMaximoPozoInferiorEditar" name="PremioMaximoPozoInferior" class="form-control input-sm text-center" step="0.01" min="0" /></td>
+                                            <td><input type="number" id="PremioMaximoPozoMedioEditar" name="PremioMaximoPozoMedio" class="form-control input-sm text-center" step="0.01" min="0" /></td>
+                                            <td><input type="number" id="PremioMaximoPozoSuperiorEditar" name="PremioMaximoPozoSuperior" class="form-control input-sm text-center" step="0.01" min="0"/></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Increm. Pozo (%)</td>
+                                            <td><input type="number" id="IncrementoPozoInferiorEditar" name="IncrementoPozoInferior" class="form-control input-sm text-center" step="0.01" min="0"/></td>
+                                            <td><input type="number" id="IncrementoPozoMedioEditar" name="IncrementoPozoMedio" class="form-control input-sm text-center" step="0.01" min="0"/></td>
+                                            <td><input type="number" id="IncrementoPozoSuperiorEditar" name="IncrementoPozoSuperior" class="form-control input-sm text-center" step="0.01" min="0" /></td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="button" id="btnModificar" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/ProyectadoProgresivo/ProyectadoProgresivoVista.js"></script>
+}
+

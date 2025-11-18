@@ -1,0 +1,143 @@
+﻿
+@{
+    ViewBag.Title = "DepositoReporteVista";
+}
+<style>
+    .sorting, .sorting_disabled, .sorting_asc, .sorting_desc {
+        background-color: #0b1f46 !important;
+        height: 40px;
+    }
+
+    tr {
+        height: 34px;
+    }
+
+    .even {
+        background-color: white !important;
+    }
+</style>
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-dollar"></span>
+                                <span class="main-text">
+                                    Reporte Asistencia por Sala
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+
+                    <div class="row">
+
+                        <div class="col-md-offset-4 col-md-4 col-sm-6 col-xs-6">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnExcel" class="btn btn-primary btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-file"></span>
+                                        Excel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnBuscar" class="btn btn-success btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-book"></span>
+                                        Buscar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="cardMachine" style="margin-bottom:15px;">
+                    <fieldset class="sectionCard" style="padding: 10px 7px; margin-top: 10px;">
+                        <h3 style="margin-bottom:5px;">Complete los campos</h3>
+                        <div class="block-content-inner">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12 col-sm-12">
+
+                                    <div class="row" id="formfiltro">
+                                        <div class="col-md-4 col-sm-12">
+
+                                            <div class="input-group ">
+                                                <span class="input-group-addon">
+                                                    Sala
+                                                </span>
+                                                <select class="form-control input-sm codSalaAuditoria" id="cboSala" name="cboSala"></select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    FECHA DE INICIO
+                                                </span>
+                                                <input type="text" class="form-control input-sm dateOnly_" id="fechaInicio" readonly />
+                                                <span class="input-group-addon input-group-icon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    FECHA DE FIN
+                                                </span>
+                                                <input type="text" class="form-control input-sm dateOnly_" id="fechaFin" readonly />
+                                                <span class="input-group-addon input-group-icon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                            <div class="col-md-12" style="padding:unset;">
+                                <hr style="margin-top:10px;" />
+                                <h4 style="margin-bottom:15px;">Resultado de la búsqueda</h4>
+                                <div class="contenedor_tabla table-responsive">
+
+                                </div>
+                            </div>
+                        </div>
+                </fieldset>
+                    </div>
+                        </div>
+            </div>
+    </div>
+
+</div>
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/AsistenciaCliente/ReporteAsistenciaSala.js"></script>
+}

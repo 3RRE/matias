@@ -1,0 +1,1469 @@
+﻿@using CapaEntidad
+@using S3k.Utilitario;
+@{
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+    int id = 0;
+
+    SEG_UsuarioEntidad usuario = (SEG_UsuarioEntidad)Session["usuario"];
+    //id = usuario.UsuarioID;
+
+    if (usuario == null)
+    {
+        Response.Redirect("~/Home/Login");
+    }
+    else
+    {
+        id = usuario.UsuarioID;
+    }
+
+    string url = $"{Request.Url.Scheme}://{Request.Url.Authority}{Request.ApplicationPath.TrimEnd('/')}";
+}
+
+<!DOCTYPE html>
+<html lang="es" translate="no">
+
+<!-- Mirrored from livedemo.base5builder.com/circloid_2_html/default/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Jun 2018 17:14:39 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Fav and touch icons -->
+
+    <link rel="shortcut icon" href="~/Content/assets/images/required/logo-default.ico">
+
+    <title>Seguridad</title>
+
+    <!-- Required CSS Files -->
+    <link type="text/css" href="~/Content/assets/css/required/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    @*<link href='~/fonts/fonts.googleapis/css2ca8.css?family=Roboto:400,300&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>*@
+    <link type="text/css" href="~/Content/assets/js/required/jquery-ui-1.11.0.custom/jquery-ui.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/js/required/jquery-ui-1.11.0.custom/jquery-ui.structure.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/js/required/jquery-ui-1.11.0.custom/jquery-ui.theme.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/required/mCustomScrollbar/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/required/icheck/all.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/fonts/metrize-icons/styles-metrize-icons.min.css" rel="stylesheet">
+    <link type="text/css" href="~/Content/assets/fonts/font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/fonts/line-awesome-1.3.0/css/line-awesome.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/datatables/css/dataTables.min.css?v=@fecha_archivos" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/datatables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/datatables/css/dataTables.tableTools.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/datatables/css/dataTables.responsive.min.css" rel="stylesheet" />
+    <link href="~/Content/assets/js/optional/jqueryconfirm/jquery-confirm.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/bootstrap-toggle.min.css" rel="stylesheet" />
+    <!-- Optional CSS Files -->
+
+    <link type="text/css" href="~/Content/assets/css/optional/fullcalendar/fullcalendar.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/fullcalendar/circloid-fullcalendar.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/fullcalendar/fullcalendar.print.min.css" rel="stylesheet" media="print" />
+    <link type="text/css" href="~/Content/assets/css/optional/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/select2.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/bootstrapValidator.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/toastr.min.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/optional/jquery-confirm.min.css" rel="stylesheet" />
+
+    <!-- add CSS files here -->
+    <link type="text/css" href="~/Content/menu-square/assets/menu-square.css" rel="stylesheet" />
+
+    <!-- More Required CSS Files -->
+    <link type="text/css" href="~/Content/assets/css/styles-core.min.css?v=@fecha_archivos" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/styles-core-responsive.min.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/print.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/v2_.css?v=@fecha_archivos" rel="stylesheet" />
+    <link href="~/Content/assets/css/floatingbutton.css" rel="stylesheet" />
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="~/Content/assets/js/required/misc/ie10-viewport-bug-workaround.js"></script>
+
+    <!--[if IE 7]>
+    <link type="text/css" href="~/Content/assets/css/required/misc/style-ie7.css" rel="stylesheet">
+    <script type="text/javascript" src="~/Content/assets/fonts/lte-ie7.js"></script>
+    <![endif]-->
+    <!--[if IE 8]>
+    <link type="text/css" href="~/Content/assets/css/required/misc/style-ie8.css" rel="stylesheet">
+    <![endif]-->
+    <!--[if lte IE 8]>
+    <script type="text/javascript" src="~/Content/assets/css/required/misc/excanvas.min.js"></script>
+    <![endif]-->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style>
+        .header-box {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 5px 25px;
+            /* background: #0D0F16;*/
+        }
+
+        .h-brand-box {
+            position: relative;
+        }
+
+        .h-dateclock-box {
+            margin-left: 5px;
+        }
+
+            .h-dateclock-box .h-date-text, .h-dateclock-box .h-clock-text {
+                color: #FFFFFF;
+                font-size: 12px;
+                line-height: 15px;
+            }
+
+        .h-menu-square-box {
+            position: relative;
+        }
+
+            .h-menu-square-box .navbar-toggle {
+                margin: 0;
+                background-color: #12141C;
+                border-color: rgba(255, 255, 255, 0.5);
+                -webkit-transition: all 0.2s;
+                -moz-transition: all 0.2s;
+                -o-transition: all 0.2s;
+                transition: all 0.2s;
+                border-radius: 2px !important;
+            }
+
+                .h-menu-square-box .navbar-toggle:hover {
+                    background-color: #B20000;
+                    border-color: #FFFFFF;
+                }
+
+        .h-brand-box img {
+            width: 130px;
+            height: auto;
+            max-width: 100%;
+        }
+
+        .h-account-box {
+            padding: 0 5px;
+            margin-left: auto;
+        }
+
+            .h-account-box .header-profile {
+                display: block;
+                margin: 0;
+            }
+
+                .h-account-box .header-profile a {
+                    line-height: 15px;
+                }
+
+                    .h-account-box .header-profile a span.main-menu-text {
+                        display: inline-block;
+                        padding: 0;
+                        text-align: right;
+                        margin-right: 5px;
+                        max-width: 125px;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                    }
+
+                    .h-account-box .header-profile a.top i.icon {
+                        line-height: 0;
+                    }
+
+                    .h-account-box .header-profile a.top {
+                        display: flex;
+                        align-items: center;
+                    }
+
+        .h-navbar-toggle-box {
+            display: none !important;
+        }
+
+        .block h1, .block .h1 {
+            display: flex;
+            align-items: center;
+            margin: 2px 0;
+        }
+
+            .block h1 .icon, .block .h1 .icon {
+                margin: 0;
+                margin-right: 5px;
+            }
+
+            .block h1 .main-text, .block .h1 .main-text {
+                font-size: 16px;
+                font-weight: 700;
+                color: #143958;
+            }
+
+        @@media (max-width: 767px) {
+            .header-box {
+                padding: 5px 10px;
+            }
+
+            .h-account-box .main-menu-text {
+                font-size: 12px;
+            }
+
+            .h-dateclock-box {
+                margin-left: 10px;
+            }
+
+                .h-dateclock-box .h-date-text, .h-dateclock-box .h-clock-text {
+                    font-size: 11px;
+                }
+        }
+
+        @@media (max-width: 480px) {
+            .h-account-box .menu-open > ul {
+                top: 48px !important;
+            }
+
+            .block h1 .main-text, .block .h1 .main-text {
+                font-size: 14px;
+            }
+        }
+
+
+        /*//////////////////////////////////boton floating//////////////////////////////////////*/
+
+        .box-abort-request {
+            position: fixed;
+            bottom: 15px;
+            right: -100%;
+            z-index: 999999;
+            visibility: hidden;
+            -webkit-transition: all 0.5s;
+            -moz-transition: all 0.5s;
+            -o-transition: all 0.5s;
+            transition: all 0.5s;
+        }
+
+            .box-abort-request.bar-open {
+                visibility: visible;
+                right: 15px;
+            }
+
+        .btn-abort-request {
+            display: inline-block;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 7px 14px;
+            color: #000000;
+            background-color: #FFFFFF;
+            outline: none;
+            border: 1px solid #FFFFFF;
+            border-radius: 5px !important;
+        }
+
+            .btn-abort-request:hover {
+                background-color: #000;
+                color: #FFF;
+            }
+        /*
+            @@keyframes scroll {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(calc(-350px * 7))}
+            }
+
+
+        .slider2 {
+            background: white;
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, .125);
+            height: 120px;
+            margin: auto;
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            padding: 10px 0;
+        }
+
+            .slider2::before,
+            .slider2::after {
+                background: linear-gradient(to right, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+                content: "";
+                height: 100px;
+                position: absolute;
+                width: 200px;
+                z-index: 2;
+            }
+
+            .slider2::after {
+                right: 0;
+                top: 0;
+                transform: rotateZ(180deg);
+            }
+
+            .slider2::before {
+                left: 0;
+                top: 0;
+            }
+
+            .slide-track {
+                animation: scroll 40s linear infinite;
+                display: flex;
+                width: calc(300px * 14);
+            }
+
+        .slide2 {
+            height: 100px;
+            width: 350px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 1px 1px 10px #d6d6d6;
+            border-radius: 5px !important;
+            margin: 0 20px;
+            padding: 12px 24px;
+        }
+        .descripciond p{
+            margin:unset;
+        }
+        .image-slide-bill {
+            width: 70px;
+            height: 70px;
+            background-color: red;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:10px;
+            border-radius: 5px !important
+
+        }
+        .image-slide-bill img{
+            width:40px;
+            height:40px
+        }
+
+        .image-slide-evt {
+            width: 70px;
+            height: 70px;
+            background-color: blue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            border-radius: 5px !important
+        }
+            .image-slide-evt img {
+                width: 40px;
+                height: 40px
+            }
+
+        .title {
+            font-weight: 700;
+            color: #353535;
+            text-shadow: 0 0 black;
+        }
+        .descr {
+            font-weight: 400;
+            color: #9b9b9b;
+            text-shadow: 0 0 black;
+        }*/
+
+    </style>
+
+    @if (IsSectionDefined("css"))
+    {
+        @RenderSection("css", required: false)
+    }
+</head>
+<body>
+    <input type="hidden" id="BasePath" value="@url/" />
+
+    <input type="hidden" id="SessionTimeout" value="@System.Web.HttpContext.Current.Session.Timeout" />
+    <!-- menu full wrapper -->
+    <div class="menu-full-wrapper">
+        <div class="menu-full-sliders"></div>
+        <div class="menu-full-sliders"></div>
+        <div class="menu-full-sliders"></div>
+        <div class="menu-full-content">
+            <div class="menu-full-blur"></div>
+            <div class="mf-content-wrap ms-flex-column content-scroll">
+                <div class="menu-ms-bg-level"></div>
+                <div class="header-menu-square header-ms-fixed">
+                    <div class="header-ms-wrap">
+                        <div class="header-ms-menu-back" data-menu="1">
+                            <svg fill="#FFFFFF" width="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g data-name="arrow-back"><rect width="24" height="24" transform="rotate(90 12 12)" opacity="0" /><path d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z" /></g></svg>
+                        </div>
+                        <div class="header-ms-brand">
+                            <img class="img-responsive" src="~/Content/assets/images/required/logo-default.png" alt="IAS" />
+                        </div>
+                        <div class="header-ms-menu-close menu--close">
+                            <svg fill="#FFFFFF" width="32" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M764.288 214.592L512 466.88 259.712 214.592a31.936 31.936 0 00-45.12 45.12L466.752 512 214.528 764.224a31.936 31.936 0 1045.12 45.184L512 557.184l252.288 252.288a31.936 31.936 0 0045.12-45.12L557.12 512.064l252.288-252.352a31.936 31.936 0 10-45.12-45.184z" /></svg>
+                        </div>
+                    </div>
+                </div>
+                <!-- content -->
+                <div class="container ms-container msc-mb-auto">
+                    <!-- menus -->
+                    <div class="menu-square--wrap">
+                        <div class="menu-square menu--square">
+                            <!-- header menu -->
+                            <div class="menu-square-header">
+                                <h3 class="ms-header-title">Módulos</h3>
+                            </div>
+                            <!-- header menu -->
+                            <!-- row -->
+                            <div class="row gp-4 ms--items"></div>
+                            <!-- row -->
+                        </div>
+                    </div>
+                    <!-- menus -->
+                    <!-- submenus -->
+                    <div class="submenu-square--wrap"></div>
+                    <!-- submenus -->
+                    <!-- subsubmenus -->
+                    <div class="subsubmenu-square--wrap"></div>
+                    <!-- subsubmenus -->
+                    <!-- no menu -->
+                    <div class="nodata-menu-square nodata-ms--wrap">
+                        <div class="ndms-content">
+                            <svg class="ndms-icon" xmlns="http://www.w3.org/2000/svg" width="225"
+                                 viewBox="0 0 920.75017 740.38145" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <path d="M962.87446,441.80928q0,9.97494-.54,19.81a360.63906,360.63906,0,0,1-11.36,72.57c-.01.01-.01.01,0,.02-.81995,3.14-1.69,6.27-2.61,9.37-.04.15-.08.29-.13.43006q-2.04,6.97494-4.36,13.81994v.01a362.27727,362.27727,0,0,1-343,245.97c-171.23,0-314.68-118.87-352.34-278.6a362.65664,362.65664,0,0,1-9.66-83.4q0-8.37.38-16.65a360.161,360.161,0,0,1,63.25-188.38c.46-.68.93-1.36,1.41-2.03,65.42-93.67,174.04-154.94,296.96-154.94,173.72,0,318.85,122.36,353.91,285.6a.031.031,0,0,1,.01.02q3.39,15.78,5.38,32.04A362.557,362.557,0,0,1,962.87446,441.80928Z"
+                                      transform="translate(-139.62491 -79.80928)" fill="#f2f2f2" />
+                                <path d="M1057.14039,745.43071a96.90134,96.90134,0,0,1-12.51,27.53c-12.48,18.87-30.34,33.3-49.97,44.85-1.36.81-2.74,1.6-4.12,2.38h-13.77l-.48-1.1v-.01l-.55994-1.27-.07006-.15-.03.15-.55,2.38h-6.75989c-.55994-.79-1.11-1.58-1.65-2.38-.79-1.17-1.55005-2.35-2.27-3.55a57.6339,57.6339,0,0,1-3.39991-6.52c-.12011-.25-.22009-.5-.32007-.75l.45-.49-1.86988-8.18,3.75989-.62-4.12-12.71c.15-.47.32006-.94.5-1.41,2.31005-5.85,6.65-10.22,11.8-13.89,5.30005-3.79,11.47-6.83,17.1399-9.99,2.66015-1.49,5.28-3.06,7.83008-4.72v-.01q4.89-3.16506,9.49-6.77a1.42508,1.42508,0,0,0,.15-.11,1.06829,1.06829,0,0,0,.12-.1,140.902,140.902,0,0,0,34.31006-38.93.0098.0098,0,0,0,.01-.01c.29993-.48.57984-.96.85987-1.44995v-.01a136.25522,136.25522,0,0,0,9.41-19.65v-.01c.20007-.5.38-1,.57-1.5q.39.66.75,1.32a.0098.0098,0,0,1,.01.01C1061.55042,705.11071,1062.47046,726.01073,1057.14039,745.43071Z"
+                                      transform="translate(-139.62491 -79.80928)" fill="#f0f0f0" />
+                                <path d="M1051.85035,687.76073a121.36532,121.36532,0,0,1-2.86988,27.54,118.54078,118.54078,0,0,1-3.3601,12.24,121.34541,121.34541,0,0,1-10.12989,22.6c-.23.39-.45007.77-.69006,1.15v.01a102.347,102.347,0,0,1-5.75,8.66,47.72183,47.72183,0,0,1-11.4,11.46,30.08876,30.08876,0,0,1-11.98,4.63c-.80005.15-1.62.26-2.45.36005-3.31005.38995-6.73.54-10.01,1.24a21.84833,21.84833,0,0,0-4.82006,1.55c-5.28,2.45-8.25,7.58-9.55005,13.06-.23.96-.40992,1.93-.54993,2.9-1.09,7.45.11,15.19-.51,22.65-.06995.79-.16,1.59-.2699,2.38h-.74011l-.48-1.1v-.01c.04993-.42.09-.84.13-1.27a96.29456,96.29456,0,0,0,.09008-11.01c-.04-1.65-.07007-3.31-.05-4.97.02-1.33.06995-2.66.16993-3.98v-.01c.07006-.82.15-1.63.26-2.44a31.58574,31.58574,0,0,1,1.82006-7.25,18.15179,18.15179,0,0,1,10.31995-10.68,26.99328,26.99328,0,0,1,4.47009-1.25c3.34986-.64,6.80994-.8,10.17993-1.22.36-.04.72-.09,1.07007-.15.44995-.07.8899-.15,1.32984-.23a28.66623,28.66623,0,0,0,12.16015-5.27,51.9033,51.9033,0,0,0,10.98-11.92005c1.6399-2.35,3.2-4.75,4.64991-7.22a.0098.0098,0,0,1,.01-.01c.07006-.12.14-.23.21-.35l.01-.02a119.57149,119.57149,0,0,0,13.46008-34.17c.09-.44.19006-.88.28992-1.32a120.88781,120.88781,0,0,0,2.67-26.4v-.01c0-.42-.00989-.82995-.0199-1.25-.02-.86,1.30994-1.05,1.32984-.19.01.42.02.84.01,1.26A.0098.0098,0,0,1,1051.85035,687.76073Z"
+                                      transform="translate(-139.62491 -79.80928)" fill="#fff" />
+                                <path d="M1034.22955,751.01965a18.01811,18.01811,0,0,0,22.69431-5.41582c.50869-.69934-.55416-1.52268-1.06353-.8224a16.68437,16.68437,0,0,1-21.12073,4.99469c-.76923-.39533-1.27488.85047-.51005,1.24353Z"
+                                      transform="translate(-139.62491 -79.80928)" fill="#fff" />
+                                <path d="M1006.2088,775.01911a34.72851,34.72851,0,0,1,1.2295-25.27921c.35485-.78953-.88911-1.29862-1.24353-.51a36.12286,36.12286,0,0,0-1.22594,26.3079c.27856.82057,1.517.29747,1.24-.51865Z"
+                                      transform="translate(-139.62491 -79.80928)" fill="#fff" />
+                                <path d="M1048.23681,714.46342a10.19912,10.19912,0,0,1-7.02236-6.65925c-.268-.82369-1.50625-.29968-1.24.51865a11.42894,11.42894,0,0,0,7.75229,7.38413.69463.69463,0,0,0,.87679-.36674.67543.67543,0,0,0-.36675-.87679Z"
+                                      transform="translate(-139.62491 -79.80928)" fill="#fff" />
+                                <path d="M996.17042,754.97075v.01a131.24739,131.24739,0,0,1-2.66993,21.24v.01c-.08007.48-.19006.95-.29,1.42005a184.49564,184.49564,0,0,1-10.1101,31.61q-1.78491,4.32-3.74,8.55c-.35987.8-.73,1.59-1.10987,2.38h-1.4801l-.48-1.1v-.01l-.55994-1.27-.07006-.15-.03.15-.55,2.38H960.7804l-2.77991-2.38-4.05005-3.47,5.65992-6.18.93-1.02.14-.15.45-.49-1.86988-8.18,3.75989-.62-4.12-12.71-1.95-6.01-.49-1.51-2.85009-8.79-8.59986,1.61005-1.40014-4.9a135.98986,135.98986,0,0,0,6.42-18.41c.01-.05.03-.09.04-.13995a141.583,141.583,0,0,0,4.0199-51.96v-.01c-.05994-.56-.12989-1.13-.21-1.68v-.02a133.6311,133.6311,0,0,0-4.31995-21.34c-.14-.53-.29993-1.05-.45007-1.57.46008.2.91.39,1.37011.59l.01.01h.02c.73.32,1.46.66,2.16992,1.02,17.06006,8.29,29.61,23.85,36.74,41.79.02.05.04.09.06.14a96.39369,96.39369,0,0,1,6.57,29.43A114.87063,114.87063,0,0,1,996.17042,754.97075Z"
+                                      transform="translate(-139.62491 -79.80928)" fill="#f0f0f0" />
+                                <path d="M970.22046,820.19072h-1.58007c-.5-.81-1.04-1.6-1.58-2.38q-1.29-1.81494-2.66-3.55c-.79-1-1.58-1.99-2.37-2.98-.81995-1.03-1.63-2.06-2.42-3.12l.93-1.02c.15.2.29993.4.46008.6,2.55994,3.37,5.32984,6.61005,7.69995,10.07C969.23047,818.59075,969.74048,819.38073,970.22046,820.19072Z"
+                                      transform="translate(-139.62491 -79.80928)" fill="#fff" />
+                                <path d="M948.77849,670.81953c.26.33.53.67.78,1.01q2.925,3.795,5.53,7.83a117.98985,117.98985,0,0,1,8.22,14.85c.19.4.38.81.56,1.22a119.26359,119.26359,0,0,1,9.84,35.44c.02.12.03.23.04.35q.49493,4.29.64,8.61a51.78274,51.78274,0,0,1-1.59,16.12c-.2.69-.42,1.37-.66,2.03a27.34469,27.34469,0,0,1-2.25,4.65,27.92323,27.92323,0,0,1-2.14,3.09c-.47.6-.96,1.19-1.48,1.76-.3.33-.61.66-.92.99-.26.25-.51.51-.77.76-2.7,2.62-5.68,5.05-8.12,7.94l.49,1.51c2.35-2.98,5.37994-5.45,8.11-8.05a37.89641,37.89641,0,0,0,4.66-5.28c.18-.26.37-.52.54-.79a26.74859,26.74859,0,0,0,2.38995-4.29c.34-.75.65-1.52.93-2.32a47.89274,47.89274,0,0,0,2.2-16,103.418,103.418,0,0,0-.62-10.39c-.04-.44995-.09-.88995-.15-1.34a121.63824,121.63824,0,0,0-5.52-24.14,122.65985,122.65985,0,0,0-13.76-28.18q-2.475-3.765-5.25-7.35c-.24-.33-.49-.65-.75-.98C949.19853,669.18953,948.24852,670.13954,948.77849,670.81953Z"
+                                      transform="translate(-139.62491 -79.80928)" fill="#fff" />
+                                <path d="M974.53248,731.98591a18.01811,18.01811,0,0,0,14.85943-17.98777.67262.67262,0,0,0-1.34431-.01633A16.68436,16.68436,0,0,1,974.191,730.68593c-.8522.14749-.50587,1.44662.34145,1.3Z"
+                                      transform="translate(-139.62491 -79.80928)" fill="#fff" />
+                                <path d="M966.60881,768.01856a34.72847,34.72847,0,0,1-14.23814-20.92428c-.192-.844-1.49177-.50157-1.3.34145A36.12285,36.12285,0,0,0,965.931,769.17922c.71645.48747,1.39034-.67584.67778-1.16066Z"
+                                      transform="translate(-139.62491 -79.80928)" fill="#fff" />
+                                <path d="M963.70711,694.36446a10.19913,10.19913,0,0,1-9.61629-1.08908c-.70992-.49631-1.38308.66758-.67778,1.16066a11.429,11.429,0,0,0,10.63552,1.22839.69461.69461,0,0,0,.47927-.82071.67545.67545,0,0,0-.82072-.47926Z"
+                                      transform="translate(-139.62491 -79.80928)" fill="#fff" />
+                                <path d="M772.94149,236.78346H140.61813a1.01559,1.01559,0,0,1,0-2.03069H772.94149a1.01559,1.01559,0,0,1,0,2.03069Z"
+                                      transform="translate(-139.62491 -79.80928)" fill="#cacaca" />
+                                <ellipse cx="23.34831" cy="131.59051" rx="10.92534" ry="11.16881" fill="#3f3d56" />
+                                <ellipse cx="61.09038" cy="131.59051" rx="10.92534" ry="11.16881" fill="#3f3d56" />
+                                <ellipse cx="98.83246" cy="131.59051" rx="10.92534" ry="11.16881" fill="#3f3d56" />
+                                <path d="M750.32447,202.99928h-26.81a2.0304,2.0304,0,0,0,0,4.06h26.81a2.0304,2.0304,0,0,0,0-4.06Z"
+                                      transform="translate(-139.62491 -79.80928)" fill="#3f3d56" />
+                                <path d="M750.32447,210.61927h-26.81a2.0304,2.0304,0,0,0,0,4.06h26.81a2.0304,2.0304,0,0,0,0-4.06Z"
+                                      transform="translate(-139.62491 -79.80928)" fill="#3f3d56" />
+                                <path d="M750.32447,218.22926h-26.81a2.0304,2.0304,0,0,0,0,4.06h26.81a2.0304,2.0304,0,0,0,0-4.06Z"
+                                      transform="translate(-139.62491 -79.80928)" fill="#3f3d56" />
+                                <path d="M306.28443,278.15925H277.89448a359.32176,359.32176,0,0,0-33.45,100.05h61.84a14.97405,14.97405,0,0,0,15-15v-70.06A15.00977,15.00977,0,0,0,306.28443,278.15925Z"
+                                      transform="translate(-139.62491 -79.80928)" fill="#ccc"
+                                      style="isolation:isolate" />
+                                <path d="M516.59443,278.15925H387.96449a15.00977,15.00977,0,0,0-15,14.99v70.06a15.01828,15.01828,0,0,0,15,15H516.59443a15.01828,15.01828,0,0,0,15-15v-70.06A15.00977,15.00977,0,0,0,516.59443,278.15925Z"
+                                      transform="translate(-139.62491 -79.80928)" fill="#ccc"
+                                      style="isolation:isolate" />
+                                <path d="M726.90449,278.15925h-128.63a15.00977,15.00977,0,0,0-15,14.99v70.06a15.01828,15.01828,0,0,0,15,15h128.63a15.01832,15.01832,0,0,0,15-15v-70.06A15.00981,15.00981,0,0,0,726.90449,278.15925Z"
+                                      transform="translate(-139.62491 -79.80928)" fill="#ccc"
+                                      style="isolation:isolate" />
+                                <path d="M306.28443,425.15925h-67.03q-.375,8.28-.38,16.65a362.65664,362.65664,0,0,0,9.66,83.4h57.75a15.01828,15.01828,0,0,0,15-15v-70.06A15.00977,15.00977,0,0,0,306.28443,425.15925Z"
+                                      transform="translate(-139.62491 -79.80928)" fill="#ccc"
+                                      style="isolation:isolate" />
+                                <path d="M516.59443,425.15925H387.96449a15.00977,15.00977,0,0,0-15,14.99v70.06a15.01828,15.01828,0,0,0,15,15H516.59443a15.01828,15.01828,0,0,0,15-15v-70.06A15.00977,15.00977,0,0,0,516.59443,425.15925Z"
+                                      transform="translate(-139.62491 -79.80928)" fill="#ccc"
+                                      style="isolation:isolate" />
+                                <path d="M726.90449,425.15925h-128.63a15.00977,15.00977,0,0,0-15,14.99v70.06a15.01828,15.01828,0,0,0,15,15h128.63q.615,0,1.23-.06a14.303,14.303,0,0,0,4.66-1.15,15.0202,15.0202,0,0,0,9.11005-13.65v-70.2A15.00981,15.00981,0,0,0,726.90449,425.15925Z"
+                                      transform="translate(-139.62491 -79.80928)" fill="#ccc"
+                                      style="isolation:isolate" />
+                                <circle cx="169.34425" cy="285.37316" r="29.75918" fill="#6c63ff" />
+                                <path d="M304.9094,380.6707a3.30934,3.30934,0,0,1-2.648-1.32439l-8.11876-10.82519a3.31022,3.31022,0,1,1,5.29649-3.97209l5.31157,7.08155,13.64208-20.46285a3.31036,3.31036,0,1,1,5.50877,3.67251L307.664,379.19652a3.3117,3.3117,0,0,1-2.66252,1.47311C304.97082,380.67017,304.94011,380.6707,304.9094,380.6707Z"
+                                      transform="translate(-139.62491 -79.80928)" fill="#fff" />
+                                <circle cx="386.34425" cy="288.37316" r="29.75918" fill="#6c63ff" />
+                                <path d="M521.9094,383.6707a3.30934,3.30934,0,0,1-2.648-1.32439l-8.11876-10.82519a3.31022,3.31022,0,1,1,5.29649-3.97209l5.31157,7.08155,13.64208-20.46285a3.31036,3.31036,0,0,1,5.50877,3.67251l-16.23752,24.35628a3.3117,3.3117,0,0,1-2.66252,1.47311C521.97082,383.67017,521.94011,383.6707,521.9094,383.6707Z"
+                                      transform="translate(-139.62491 -79.80928)" fill="#fff" />
+                                <path d="M950.93528,528.54445l-9.315-90.16375-2.45863-37.10843,26.07234-4.7144s3.90423,25.5103,7.31974,40.48087c3.37052,14.77276-4.49018,89.52617-4.69845,91.49765a12.68492,12.68492,0,1,1-16.92.00806Z"
+                                      transform="translate(-139.62491 -79.80928)" fill="#a0616a" />
+                                <polygon points="744.583 717.124 731.653 720.08 714.099 671.614 733.182 667.251 744.583 717.124"
+                                         fill="#a0616a" />
+                                <path d="M886.54444,791.95924l-3.3.75-.34.08-15.09-2.46-.44-.06994-6.3,7.52a16.65187,16.65187,0,0,0-12.52,19.94l.02.09.11.44,1.92-.44,39.77-9.1Z"
+                                      transform="translate(-139.62491 -79.80928)" fill="#2f2e41" />
+                                <polygon points="821.665 725.578 808.401 725.578 802.092 674.418 821.667 674.419 821.665 725.578"
+                                         fill="#a0616a" />
+                                <path d="M960.94447,801.05928l-1.16-.47-13-5.29-.42-.17-7.81,5.93a16.64417,16.64417,0,0,0-16.65,16.64v.54l36.61.01h6.16v-17.19Z"
+                                      transform="translate(-139.62491 -79.80928)" fill="#2f2e41" />
+                                <path d="M941.1166,531.57613l11.15583,105.98071s14.851,106.11694,12.062,120.759.69723,16.7338.69723,16.7338l-25.44814-1.81236s.69723-9.06416-3.48624-13.24757-2.09168-16.73381-2.09168-16.73381L884.64008,570.62166l-29.98137,90.64141s18.94048,73.505,18.24326,74.8995,12,32,12,32l-28.40811,9.42052s3.48619-11.15584-1.3945-14.64208-9.06416-.69722-4.88069-6.97242-32.96106-52.36048-32.14422-82.061c.24572-8.93447.54273-18.52067.89967-28.34222,1.8888-51.97284,5.45554-110.53594,11.97835-113.9892C842.80559,525.30093,941.1166,531.57613,941.1166,531.57613Z"
+                                      transform="translate(-139.62491 -79.80928)" fill="#2f2e41" />
+                                <circle cx="748.66002" cy="209.74428" r="27.4387" fill="#a0616a" />
+                                <path d="M979.902,457.16257l-37.2588,9.45768.2588-10.45768-2.82783-3-5.65-29.59721-5.999-76.62693L949.01367,357.858l.02512.01933a55.66237,55.66237,0,0,1,8.928,13.21991c7.76155,15.77859,15.21745,50.5331,19.12034,70.71919a2.20293,2.20293,0,0,0,.74253,1.07,11.41539,11.41539,0,0,1,2.07234,14.27623Z"
+                                      transform="translate(-139.62491 -79.80928)" fill="#3f3d56" />
+                                <path d="M759.725,491.071s51.42772-54.21874,51.9073-55.24066c3.59241-27.28049,13.92471-39.31418,15.47362-38.00777l26.66794,9.23874s-7.93233,25.119-13.303,40.03927c-5.13191,14.25688-64.278,49.07986-65.265,50.79912A12.68491,12.68491,0,1,1,759.725,491.071Z"
+                                      transform="translate(-139.62491 -79.80928)" fill="#a0616a" />
+                                <path d="M866.58449,351.87331s-23.08916-11.31585-32.04437,10.909c-4.90935,12.547-17.46581,42.998-23.72314,61.743a1.40049,1.40049,0,0,1-.17043.33618,15.24092,15.24092,0,0,0-2.59637,8.40919,2.86268,2.86268,0,0,1-.06764.64912s25.37273,4.943,32.91943,18.2428l2.9933-3.24832.53212-2.27586Z"
+                                      transform="translate(-139.62491 -79.80928)" fill="#3f3d56" />
+                                <path d="M950.59948,543.12714c-53.13861,10.97387-123.55809-7.89282-123.55809-7.89282l18.78516-81.42974L839.148,368.587c-.81559-10.42111,5.11995-20.18969,14.35391-23.65126l12.75006-4.7756,10.53881-15.088,30.10339.98771L918.9283,341.9l9.49679,5.03843L949.01366,357.858l.0906.04524v.04524l-6.46109,62.67179-3.89653,37.78781s11.8347,42.49992,9.40608,48.13646c-2.42851,5.62736-.317,2.90881.2719,5.91729.589,3.0086,2.39234,3.19886,2.66413,9.12533C951.36972,527.50455,950.59948,543.12714,950.59948,543.12714Z"
+                                      transform="translate(-139.62491 -79.80928)" fill="#3f3d56" />
+                                <path d="M918.05044,279.78283c-2.16834-2.13913,1.09578-7.80233.4792-10.78526-.70685-3.42-4.4755-3.52009-5.37449-6.89472-.96725-3.63026-4.83512-5.60656-8.41163-6.7571a54.391,54.391,0,0,0-28.34666-1.29833,108.2013,108.2013,0,0,0-12.26345,3.77772c-2.76789.9741-.09867-1.67664-2.86645-.70253a4.34484,4.34484,0,0,0-2.59521,1.72188c-.49756.9408.17345,2.44543,1.22034,2.25484q-5.06841,2.23519-10.13705,4.47041,2.84267,2.97772,5.68533,5.95567c-2.694-.7668-5.5663,2.44533-4.50415,5.03711a5.69338,5.69338,0,0,0,4.35648,3.01589c3.04365.59225.73505,3.4889,3.83535,3.43248s24.71949-6.41153,26.22666-3.70172c1.07322,1.92962.95519,4.48556,2.48758,6.07537,1.9606,2.03393,5.3839,1.29013,7.87944-.03408,2.49544-1.32409,5.02627-3.144,7.83353-2.82651,2.93072.33141,5.14729,5.74728,5.86907,8.60709.72189,2.8598.26592,5.86884-.19347,8.78241-.60331,3.82639-6.64373,7.65267-7.247,11.47895,6.704,1.854,13.89541-4.04486,16.54582-14.30314C918.26559,290.6046,922.67051,284.34107,918.05044,279.78283Z"
+                                      transform="translate(-139.62491 -79.80928)" fill="#2f2e41" />
+                                <circle cx="594.34425" cy="430.37316" r="29.75918" fill="#6c63ff" />
+                                <path d="M729.9094,525.6707a3.30934,3.30934,0,0,1-2.648-1.32439l-8.11876-10.82519a3.31022,3.31022,0,1,1,5.29649-3.97209l5.31157,7.08155,13.64208-20.46285a3.31036,3.31036,0,1,1,5.50877,3.67251l-16.23752,24.35628a3.3117,3.3117,0,0,1-2.66252,1.47311C729.97082,525.67017,729.94011,525.6707,729.9094,525.6707Z"
+                                      transform="translate(-139.62491 -79.80928)" fill="#fff" />
+                                <path d="M1054.57044,819.00072a1.18646,1.18646,0,0,1-1.19006,1.19h-280.29a1.19,1.19,0,0,1,0-2.38h280.29A1.18651,1.18651,0,0,1,1054.57044,819.00072Z"
+                                      transform="translate(-139.62491 -79.80928)" fill="#ccc" />
+                            </svg>
+                            <div class="ndms-title">No hay opciones disponibles</div>
+                        </div>
+                    </div>
+                    <!-- no menu -->
+                    <!-- waves -->
+                    <div class="waves-wrapper waves---wrapper"></div>
+                    <!-- waves -->
+                    <!-- circles -->
+                    <div class="ms-circles-wrapper ms-circles---wrapper"></div>
+                    <!-- circles -->
+                </div>
+                <!-- content -->
+                <!-- yek actions -->
+                <div class="yek-wrap">
+                    <div class="yek-actions">
+                        <!-- item -->
+                        <div class="yek-action">
+                            <div class="yek-action-text">Pulsa</div>
+                            <div class="yek-action-key">
+                                <span class="yekey--value">ESC</span>
+                            </div>
+                            <div class="yek-action-text">para salir del menú</div>
+                        </div>
+                        <!-- item -->
+                        <!-- item -->
+                        <div class="yek-action">
+                            <div class="yek-action-text">Pulsa</div>
+                            <div class="yek-action-key">
+                                <span class="yekey--value">Ctrl + M</span>
+                            </div>
+                            <div class="yek-action-text">para abrir / cerrar menú</div>
+                        </div>
+                        <!-- item -->
+                    </div>
+                </div>
+                <!-- yek actions -->
+            </div>
+        </div>
+    </div>
+    <!-- menu full wrapper -->
+    <div class="container-fluid">
+        <!-- START Header Container -->
+        <div id="header-container">
+            <div class="header-bar navbar navbar-inverse" role="navigation">
+                <!-- NOTE TO READER: Accepts the following class(es) "navbar-fixed-top" class -->
+                <div class="container">
+                    <div class="navbar-header">
+                        <!-- header box -->
+                        <div class="header-box">
+                            <!-- button square -->
+                            <div class="h-menu-square-box">
+                                <div class="menu-square-btn navbar-toggle" style="display:block !important">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </div>
+                            </div>
+                            <!-- button square -->
+                            <!-- START logo -->
+                            <div class="h-brand-box">
+                                <a href="~/Home/DashBoard">
+                                    <img class="default-logo" src="~/Content/assets/images/required/logo-default.png" alt="Logo" />
+                                </a>
+                            </div>
+                            <!-- END logo -->
+                            <!-- date and clock -->
+                            <div class="h-dateclock-box">
+                                <div class="h-date-text">
+                                    Fecha <span id="fechaHoy"></span>
+                                </div>
+                                <div class="h-clock-text">
+                                    Hora <span id="liveclock"></span>
+                                </div>
+                            </div>
+                            <!-- date and clock -->
+                            <!-- START Mobile Menu Toggle -->
+                            <div class="h-navbar-toggle-box">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+                            <!-- END Mobile Menu Toggle -->
+                            <!-- START Header Info Container -->
+                            <div class="h-account-box">
+                                <!-- START Header User Profile -->
+                                <input type="hidden" id="txtNombreUsuarioLogeado" value="@usuario.UsuarioNombre" />
+                                <div class="header-profile">
+                                    <!-- NOTE TO READER: Accepts the following class(es) "animate" class -->
+                                    <ul class="header-profile-menu">
+                                        <li>
+                                            <a href="#" class="top">
+
+                                                <span class="main-menu-text" id="spnUsuarioAcc">
+                                                    @usuario.UsuarioNombre
+                                                    @*@{
+                                                            if (usuario == null)
+                                                            {
+                                                                Response.Redirect("~/Home/Login");
+                                                            }
+                                                            else
+                                                            {
+                                                                @usuario.UsuarioNombre
+                                                                ;
+                                                            }
+                                                        }*@
+                                                </span>
+                                                <i class="icon icon-arrow-down-bold-round icon-size-small"></i>
+                                            </a>
+                                            <ul>
+                                                <li>
+                                                    <a href="~/Home/Salir" class="btn_salirLogin">
+                                                        <span aria-hidden="true" class="icon icon-arrow-curve-right"></span>
+                                                        <span class="main-text">Salir</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- END Header User Profile -->
+                            </div>
+                            <!-- END Header Info Container -->
+                        </div>
+                        <!-- header box -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END Header Container -->
+        <!-- START Body Container -->
+        <div id="body-container">
+            <!-- START Left Column -->
+            <div id="left-column" style="display: none !important">
+                <!-- NOTE TO READER: Accepts the following class(es) "menu-icon-only", "fixed" class -->
+                <div id="mainnav">
+                    <ul class="mainnav" id="moduloPrincipal" style="display: none !important">
+                        <!-- NOTE TO READER: Accepts the following class(es) "animate" class -->
+                        <li class="selected ocult">
+                            <a href="~/Home/DashBoard" class="top">
+                                <span class="main-menu-icon">
+                                    <span aria-hidden="true" class="icon icon-grid-big"></span>
+                                </span>
+                                <span class="main-menu-text">Inicio</span>
+                            </a>
+                        </li>
+
+                        <li class="cabecera ocult" data-menu1="ATM" data-titulo="ATM">
+                            <a href="#" class="top">
+                                <span class="main-menu-icon">
+                                    <span aria-hidden="true" class="icon icon-dollar"></span>
+                                </span>
+                                <span class="main-menu-text">ATM</span>
+                            </a>
+                            <ul>
+                                <li class="ATM ocult" data-menu1="UtilitarioATM" data-titulo="UtilitarioATM">
+                                    <a href="~/Atm/UtilitarioAtmVista" class="top"><span class="main-menu-text">Utilitario ATM</span></a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="cabecera ocult" data-menu1="Progresivo" data-titulo="Progresivo">
+                            <a href="#" class="top">
+                                <span class="main-menu-icon">
+                                    <span aria-hidden="true" class="icon icon-dollar"></span>
+                                </span>
+                                <span class="main-menu-text">Progresivo</span>
+                            </a>
+                            <ul>
+                                <li class="Progresivo ocult" data-menu1="ProgresivoVista" data-titulo="Progresivo">
+                                    <a href="~/Progresivo/ProgresivoVista" class="top"><span class="main-menu-text">Progresivo</span></a>
+                                </li>
+                                <li class="Progresivo ocult" data-menu1="RegistroProgresivoVista" data-titulo="Registro Progresivo">
+                                    <a href="~/Progresivo/ProgresivoRegistroVista" class="top"><span class="main-menu-text">Registro Progresivo</span></a>
+                                </li>
+                                <li class="Progresivo ocult" data-menu1="ListadoMaquina" data-titulo="Listado Maquina">
+                                    <a href="~/Progresivo/ProgresivoListadoMaquina" class="top"><span class="main-menu-text">Lista de Maquinas</span></a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="cabecera ocult" data-menu1="ControlAcceso" data-titulo="ControlAcceso">
+                            <a href="#" class="top">
+                                <span class="main-menu-icon">
+                                    <span aria-hidden="true" class="icon icon-officine"></span>
+                                </span>
+                                <span class="main-menu-text">Control Acceso</span>
+                            </a>
+                            <ul>
+                                <li class="ControlAcceso ocult" data-menu1="Busqueda" data-titulo="Busqueda">
+                                    <a href="~/Busqueda/Busqueda" class="top"><span class="main-menu-text">Busqueda</span></a>
+                                </li>
+                                <li class="ControlAcceso ocult" data-menu1="ListadoAuditoria" data-titulo="Auditoria">
+                                    <a href="~/CALAuditoria/ListadoAuditoria" class="top"><span class="main-menu-text">Auditoria</span></a>
+                                </li>
+                                <li class="ControlAcceso ocult" data-menu1="ListadoLudopata" data-titulo="Control Ludopatas">
+                                    <a href="~/Ludopata/ListadoLudopata" class="top"><span class="main-menu-text">Control Ludopatas</span></a>
+                                </li>
+                                <li class="ControlAcceso ocult" data-menu1="ListadoPersonaProhibidoIngreso" data-titulo="Control Pers. Prohibida Ing.">
+                                    <a href="~/PersonaProhibidoIngreso/ListadoPersonaProhibidoIngreso" class="top"><span class="main-menu-text">Control Pers. Prohibida Ing.</span></a>
+                                </li>
+                                <li class="ControlAcceso ocult" data-menu1="ListadoPolitico" data-titulo="Control Politicos">
+                                    <a href="~/Politico/ListadoPolitico" class="top"><span class="main-menu-text">Control Politicos</span></a>
+                                </li>
+                                <li class="ControlAcceso ocult" data-menu1="ListadoPersonaEntidadPublica" data-titulo="Control Pers. Entidad Publica">
+                                    <a href="~/PersonaEntidadPublica/ListadoPersonaEntidadPublica" class="top"><span class="main-menu-text">Control Pers. Entidad Publica</span></a>
+                                </li>
+                                <li class="ControlAcceso ocult" data-menu1="MantenimientosSubmenu" data-titulo="Mantenimientos">
+                                    <a href="#" class="top">
+
+                                        <span class="main-menu-text">Mantenimientos</span>
+                                    </a>
+                                    <ul>
+                                        <li class="MantenimientosSubmenu ocult" data-menu1="ListadoCargoPolitico" data-titulo="Cargo politico">
+                                            <a href="~/CargoPolitico/ListadoCargoPolitico" class="top"><span class="main-menu-text">Cargo politico</span></a>
+                                        </li>
+                                        <li class="MantenimientosSubmenu ocult" data-menu1="ListadoCargoEntidad" data-titulo="Cargo Entidad">
+                                            <a href="~/CargoEntidad/ListadoCargoEntidad" class="top"><span class="main-menu-text">Cargo Entidad</span></a>
+                                        </li>
+                                        <li class="MantenimientosSubmenu ocult" data-menu1="ListadoEntidadPublica" data-titulo="Entidad Publica">
+                                            <a href="~/EntidadPublica/ListadoEntidadPublica" class="top"><span class="main-menu-text">Entidad Publica</span></a>
+                                        </li>
+                                        <li class="MantenimientosSubmenu ocult" data-menu1="ListadoBanda" data-titulo="Banda">
+                                            <a href="~/Banda/ListadoBanda" class="top"><span class="main-menu-text">Banda</span></a>
+                                        </li>
+                                        <li class="MantenimientosSubmenu ocult" data-menu1="ListadoCodigo" data-titulo="Codigo">
+                                            <a href="~/Codigo/ListadoCodigo" class="top"><span class="main-menu-text">Codigo</span></a>
+                                        </li>
+                                        <li class="MantenimientosSubmenu ocult" data-menu1="ListadoCodigoPersona" data-titulo="CodigoPersona">
+                                            <a href="~/CodigoPersona/ListadoCodigoPersona" class="top"><span class="main-menu-text">Codigo Persona</span></a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li class="cabecera ocult" data-menu1="Soporte" data-titulo="Soporte">
+                            <a href="#" class="top">
+                                <span class="main-menu-icon">
+                                    <span aria-hidden="true" class="icon icon-officine"></span>
+                                </span>
+                                <span class="main-menu-text">Soporte</span>
+                            </a>
+                            <ul>
+                                <li class="Soporte ocult" data-menu1="UtilitarioAdministrativoVista" data-titulo="Utilitario Administrativo">
+                                    <a href="~/UtilitarioAdministrativo/UtilitarioAdministrativoVista" class="top"><span class="main-menu-text">Utilitario Administrativo</span></a>
+                                </li>
+                                <li class="Soporte ocult" data-menu1="VerificarComportamientoMaquinaVista" data-titulo="Verificar Comportamiento de Máquina">
+                                    <a href="~/CallCenter/VerificarComportamientoMaquinaVista" class="top"><span class="main-menu-text">Verificar Comportamiento de Máquina</span></a>
+                                </li>
+                                <li class="Soporte ocult" data-menu1="TicketEmitidoPorMontoVista" data-titulo="Tickets Emitidos por Monto">
+                                    <a href="~/CallCenter/TicketEmitidoPorMontoVista" class="top"><span class="main-menu-text">Tickets Emitidos por Monto</span></a>
+                                </li>
+                                <li class="Soporte ocult" data-menu1="TicketRegistradoVista" data-titulo="Tickets Registrados">
+                                    <a href="~/CallCenter/TicketRegistradoVista" class="top"><span class="main-menu-text">Tickets Registrados</span></a>
+                                </li>
+                                <li class="Soporte ocult" data-menu1="TicketBolsaVista" data-titulo="Tickets Bolsa">
+                                    <a href="~/CallCenter/TicketBolsaVista" class="top"><span class="main-menu-text">Tickets Bolsa</span></a>
+                                </li>
+                                <li class="Soporte ocult" data-menu1="CallCenterConsultaTicketRegistradoXpuntoVenta" data-titulo="Tickets Registrado por Punto Venta">
+                                    <a href="~/CallCenter/CallCenterConsultaTicketRegistradoXpuntoVenta" class="top">
+                                        <span class="main-menu-text">
+                                            Consulta Ticket por Punto de Venta
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="Soporte ocult" data-menu1="CallCenterVista" data-titulo="Ticket Movimiento Auxiliar">
+                                    <a href="~/CallCenter/CallCenterVista" class="top"><span class="main-menu-text">Ticket Movimiento Auxiliar</span></a>
+                                </li>
+
+                                <li class="Soporte ocult" data-menu1="CajaBovedaSubmenu" data-titulo="Caja Boveda">
+                                    <a href="#" class="top">
+
+                                        <span class="main-menu-text">Caja Boveda</span>
+                                    </a>
+                                    <ul>
+                                        <li class="CajaBovedaSubmenu ocult" data-menu1="CallCenterCajaBoveda" data-titulo="Modificar Caja">
+                                            <a href="~/CallCenterCajaBoveda/CallCenterCajaBovedaVista" class="top"><span class="main-menu-text">Modificar Caja</span></a>
+                                        </li>
+                                        <li class="CajaBovedaSubmenu ocult" data-menu1="CallCenterResumem" data-titulo="Caja Boveda Resumem">
+                                            <a href="~/CallCenterCajaBoveda/CallCenterResumenSalaBovedaVista" class="top"><span class="main-menu-text">Caja Boveda Resumem</span></a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+
+
+                                <li class="Soporte ocult" data-menu1="CallCenterObtenerCajas" data-titulo="Modificar Caja">
+                                    <a href="~/CallCenter/CallCenterObtenerCajas" class="top"><span class="main-menu-text">Modificar Caja</span></a>
+                                </li>
+                                <li class="Soporte ocult" data-menu1="CallCenterReducirMemoriaVista" data-titulo="Reducir Memoria ">
+                                    <a href="~/CallCenter/CallCenterReducirMemoriaVista" class="top"><span class="main-menu-text">Reducir Memoria</span></a>
+                                </li>
+                                @*<li class="Soporte ocult" data-menu1="CallCenterModificarTickets" data-titulo="Modificar Tickets ">
+                                        <a href="~/CallCenter/CallCenterModificarTickets" class="top"><span class="main-menu-text">Modificar Ticket</span></a>
+                                    </li>*@
+                                <li class="Soporte ocult" data-menu1="CallCenterResumenSalaVista" data-titulo="Modificar Resumen Sala ">
+                                    <a href="~/CallCenter/CallCenterResumenSalaVista" class="top"><span class="main-menu-text">Modificar Resumen Sala</span></a>
+                                </li>
+
+                                <li class="Soporte ocult" data-menu1="CallCenterBloquearDesbloquearUsuario" data-titulo="Bloquear/Desbloquear Usuario ">
+                                    <a href="~/CallCenter/CallCenterBloquearDesbloquearUsuario" class="top"><span class="main-menu-text">Bloquear-Desbloquear Usuarios</span></a>
+                                </li>
+
+                                <li class="Soporte ocult" data-menu1="CallCenterSoportePlayerTrackingVista" data-titulo="Player Tracking ">
+                                    <a href="~/CallCenter/CallCenterSoportePlayerTrackingVista" class="top"><span class="main-menu-text">Player Tracking</span></a>
+                                </li>
+
+                                <li class="Soporte ocult" data-menu1="CallCenterResumenSalaVista" data-titulo="Modificar Resumen Sala Boveda ">
+                                    <a href="~/CallCenterCajaBoveda/CallCenterResumenSalaBovedaVista" class="top"><span class="main-menu-text">Modificar Resumen Sala Boveda</span></a>
+                                </li>
+
+
+
+                            </ul>
+                        </li>
+                        <li class="cabecera ocult" data-menu1="GestionCambios" data-titulo="GestionCambios">
+                            <a href="#" class="top">
+                                <span class="main-menu-icon">
+                                    <span aria-hidden="true" class="icon icon-officine"></span>
+                                </span>
+                                <span class="main-menu-text">Gestion de Cambios</span>
+                            </a>
+                            <ul>
+                                <li class="GestionCambios ocult" data-menu1="GestionCambiosSolicitudCambioVista" data-titulo="Gestion de Cambios">
+                                    <a href="~/GestionCambios/GestionCambiosSolicitudCambioVista" class="top"><span class="main-menu-text">Solicitud de Cambio</span></a>
+                                </li>
+                                <li class="GestionCambios ocult" data-menu1="GestionCambiosComiteCambiosPersonalListadoVista" data-titulo="Comite de Cambios">
+                                    <a href="~/GestionCambios/GestionCambiosComiteCambiosPersonalListadoVista" class="top"><span class="main-menu-text">Comite de Cambios</span></a>
+                                </li>
+                                <li class="GestionCambios ocult" data-menu1="GestionCambiosSistemaListadoVista" data-titulo="Sistemas">
+                                    <a href="~/GestionCambios/GestionCambiosSistemaListadoVista" class="top"><span class="main-menu-text">Sistemas</span></a>
+                                </li>
+                                <li class="GestionCambios ocult" data-menu1="GestionCambiosListadoModuloVista" data-titulo="Modulos">
+                                    <a href="~/GestionCambios/GestionCambiosListadoModuloVista" class="top"><span class="main-menu-text">Modulos</span></a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="cabecera ocult" data-menu1="ProyectadoProgresivo" data-titulo="ProyectadoProgresivo">
+                            <a href="#" class="top">
+                                <span class="main-menu-icon">
+                                    <span aria-hidden="true" class="icon icon-officine"></span>
+                                </span>
+                                <span class="main-menu-text">Proyectado Progresivo</span>
+                            </a>
+                            <ul>
+                                <li class="ProyectadoProgresivo ocult" data-menu1="ProyectoadoProgresivoListarVista" data-titulo="Proyectado Progresivo">
+                                    <a href="~/ProyectadoProgresivo/ProyectadoProgresivoListarVista" class="top"><span class="main-menu-text">Proyectado Progresivo</span></a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="cabecera ocult" data-menu1="MovimientosSala" data-titulo="Movimientos Sala">
+                            <a href="#" class="top">
+                                <span class="main-menu-icon">
+                                    <span aria-hidden="true" class="icon icon-dollar"></span>
+                                </span>
+                                <span class="main-menu-text">Movimientos Sala</span>
+                            </a>
+                            <ul>
+                                <li class="MovimientosSala ocult" data-menu1="TransferenciaFormulario" data-titulo="Transferencia">
+                                    <a href="~/Transferencias/Formulario" class="top"><span class="main-menu-text">Transferencias</span></a>
+                                </li>
+                                <li class="MovimientosSala ocult" data-menu1="TransferenciaCliente" data-titulo="Clientes">
+                                    <a href="~/Transferencias/Cliente" class="top"><span class="main-menu-text">Clientes </span></a>
+                                </li>
+                                <li class="MovimientosSala ocult" data-menu1="DepositoReporte" data-titulo="Reporte Depositos">
+                                    <a href="~/Transferencias/ReporteDepositos" class="top"><span class="main-menu-text">Reporte Depósitos</span></a>
+                                </li>
+                                <li class="MovimientosSala ocult" data-menu1="TransferenciaReporte" data-titulo="Reporte Transferencia">
+                                    <a href="~/Transferencias/Reporte" class="top"><span class="main-menu-text">Reporte Transferencias</span></a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="cabecera ocult" data-menu1="TransferenciaAT" data-titulo="Transferencias AT">
+                            <a href="" class="top">
+                                <span class="main-menu-icon">
+                                    <span aria-hidden="true" class="icon icon-dollar"></span>
+                                </span>
+                                <span class="main-menu-text">Transferencias AT</span>
+                            </a>
+                            <ul>
+                                <li class="TransferenciaAT ocult" data-menu1="FormularioRegistro" data-titulo="Formulario Registro">
+                                    <a href="~/TransferenciaAT/FormularioRegistro" class="top"><span class="main-menu-text">Formulario Registro</span></a>
+                                </li>
+                                <li class="TransferenciaAT ocult" data-menu1="ReporteRegistro" data-titulo="Reporte Registro">
+                                    <a href="~/TransferenciaAT/ReporteFormularioRegistro" class="top"><span class="main-menu-text">Reporte Registro </span></a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="cabecera ocult" data-menu1="Bonificaciones" data-titulo="Bonificaciones">
+                            <a href="" class="top">
+                                <span class="main-menu-icon">
+                                    <span aria-hidden="true" class="icon icon-dollar"></span>
+                                </span>
+                                <span class="main-menu-text">Bonificaciones</span>
+                            </a>
+                            <ul>
+                                <li class="Bonificaciones ocult" data-menu1="FormularioRegistro" data-titulo="Formulario Registro">
+                                    <a href="~/Bonificaciones/FormularioRegistro" class="top"><span class="main-menu-text">Formulario Registro</span></a>
+                                </li>
+                                <li class="Bonificaciones ocult" data-menu1="ReporteRegistro" data-titulo="Reporte Registro">
+                                    <a href="~/Bonificaciones/ReporteFormularioRegistro" class="top"><span class="main-menu-text">Reporte Registro </span></a>
+                                </li>
+                            </ul>
+                        </li>
+
+
+                        <li class="cabecera ocult" data-menu1="AsistenciaEmpleado" data-titulo="Asistencia Empleado">
+                            <a href="" class="top">
+                                <span class="main-menu-icon">
+                                    <span aria-hidden="true" class="icon icon-dollar"></span>
+                                </span>
+                                <span class="main-menu-text">Asistencia Empleado</span>
+                            </a>
+                            <ul>
+                                <li class="AsistenciaEmpleado ocult" data-menu1="ReporteAsistencia" data-titulo="Reporte Asistencia">
+                                    <a href="~/ReporteAsistenciaEmpleado/ReporteAsistencia" class="top"><span class="main-menu-text">Reporte Asistencia</span></a>
+                                </li>
+                                <li class="AsistenciaEmpleado ocult" data-menu1="ReporteVisita" data-titulo="Reporte Visita">
+                                    <a href="~/ReporteVisita/ReporteVisita" class="top"><span class="main-menu-text">Reporte Visita </span></a>
+                                </li>
+                            </ul>
+                        </li>
+
+
+                        <li class="cabecera ocult" data-menu1="FichaSintomatologica" data-titulo="Ficha Salud">
+                            <a href="" class="top">
+                                <span class="main-menu-icon">
+                                    <span aria-hidden="true" class="icon icon-dollar"></span>
+                                </span>
+                                <span class="main-menu-text">Ficha Salud</span>
+                            </a>
+                            <ul>
+                                <li class="FichaSintomatologica ocult" data-menu1="FichaVista" data-titulo="Ficha">
+                                    <a href="~/FichaSintomatologica/FichaVista" class="top"><span class="main-menu-text">Ficha</span></a>
+                                </li>
+                                <li class="FichaSintomatologica ocult" data-menu1="ReporteFicha" data-titulo="Reporte Ficha">
+                                    <a href="~/FichaSintomatologica/FichaReporteVista" class="top"><span class="main-menu-text">Reporte Ficha</span></a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="cabecera ocult" data-menu1="ExcelenciaOperativa" data-titulo="Excelencia Operativa">
+                            <a href="" class="top">
+                                <span class="main-menu-icon">
+                                    <span aria-hidden="true" class="icon icon-dollar"></span>
+                                </span>
+                                <span class="main-menu-text">Excelencia Operativa</span>
+                            </a>
+                            <ul>
+                                <li class="ExcelenciaOperativa ocult" data-menu1="FichaVistaJOP" data-titulo="Ficha Jefe Operativo">
+                                    <a href="~/ExcelenciaOperativa/FichaVistaJOP" class="top"><span class="main-menu-text">Ficha Jefe Operativo</span></a>
+                                </li>
+                                <li class="ExcelenciaOperativa ocult" data-menu1="FichaVistaGU" data-titulo="Ficha Gerente de Unidad">
+                                    <a href="~/ExcelenciaOperativa/FichaVistaGU" class="top"><span class="main-menu-text">Ficha Gerente de Unidad</span></a>
+                                </li>
+                                <li class="ExcelenciaOperativa ocult" data-menu1="ReporteFichaEO" data-titulo="Reporte Ficha Excelencia Operativa">
+                                    <a href="~/ExcelenciaOperativa/FichaReporteVista" class="top"><span class="main-menu-text">Reporte Ficha</span></a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="cabecera ocult" data-menu1="AsistenciaCliente" data-titulo="Asistencia Cliente SISCLIE">
+                            <a href="" class="top">
+                                <span class="main-menu-icon">
+                                    <span aria-hidden="true" class="icon icon-dollar"></span>
+                                </span>
+                                <span class="main-menu-text">Asistencia Cliente</span>
+                            </a>
+                            <ul>
+                                <li class="AsistenciaCliente ocult" data-menu1="RegistroAsistencia" data-titulo="Registro Asistencia">
+                                    <a href="~/AsistenciaCliente/RegistroAsistencia" class="top"><span class="main-menu-text">Registro Asistencia</span></a>
+                                </li>
+                                <li class="AsistenciaCliente ocult" data-menu1="ListadoCliente" data-titulo="Listado Cliente">
+                                    <a href="~/AsistenciaCliente/ListadoCliente" class="top"><span class="main-menu-text">Clientes</span></a>
+                                </li>
+                                @*<li class="AsistenciaCliente ocult" data-menu1="FormularioRegistro" data-titulo="Empadronamiento Cliente">
+                                        <a href="~/ClienteEmpadronamiento/FormularioRegistro" class="top"><span class="main-menu-text">Empadronamiento</span></a>
+                                    </li>*@
+                                <li class="AsistenciaCliente ocult" data-menu1="SincronizarExcelClientes" data-titulo="Sincronizar Excel Clientes">
+                                    <a href="~/AsistenciaCliente/SincronizarExcelClientes" class="top"><span class="main-menu-text">Sincronizar Excel Clientes</span></a>
+                                </li>
+                                <li class="AsistenciaCliente ocult" data-menu1="ReporteListaCliente" data-titulo="Reporte Lista Cliente">
+                                    <a href="~/AsistenciaCliente/ReporteListaCliente" class="top"><span class="main-menu-text">Reporte Lista Cliente</span></a>
+                                </li>
+                                <li class="AsistenciaCliente ocult" data-menu1="ReporteAsistenciaSala" data-titulo="Reporte Asistencia Sala">
+                                    <a href="~/AsistenciaCliente/ReporteAsistenciaSala" class="top"><span class="main-menu-text">Reporte Asistencia por Sala</span></a>
+                                </li>
+                                <li class="AsistenciaCliente ocult" data-menu1="ReporteEmpadronamiento" data-titulo="Reporte Empadronamiento Cliente">
+                                    <a href="~/ClienteEmpadronamiento/ReporteEmpadronamiento" class="top"><span class="main-menu-text">Reporte Empadronamiento</span></a>
+                                </li>
+                                <li class="AsistenciaCliente ocult" data-menu1="ListadoTipoCliente" data-titulo="Listado Tipo de Cliente">
+                                    <a href="~/AsistenciaCliente/ListadoTipoCliente" class="top"><span class="main-menu-text">Tipo Cliente</span></a>
+                                </li>
+                                <li class="AsistenciaCliente ocult" data-menu1="ListadoTipoJuego" data-titulo="Listado Tipo de Juego">
+                                    <a href="~/AsistenciaCliente/ListadoTipoJuego" class="top"><span class="main-menu-text">Tipo Juego</span></a>
+                                </li>
+                                <li class="AsistenciaCliente ocult" data-menu1="ListadoTipoFrecuencia" data-titulo="Listado Tipo de Frecuencia">
+                                    <a href="~/AsistenciaCliente/ListadoTipoFrecuencia" class="top"><span class="main-menu-text">Tipo Frecuencia</span></a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="cabecera ocult" data-menu1="Campania" data-titulo="Listado de Campañas">
+                            <a href="#" class="top">
+                                <span class="main-menu-icon">
+                                    <span aria-hidden="true" class="icon icon-atom"></span>
+                                </span>
+                                <span class="main-menu-text">Campañas</span>
+                            </a>
+                            <ul>
+                                <li class="Campania ocult" data-menu1="listaCampania" data-titulo="Listado de Campañas">
+                                    <a href="~/Campania/ListadoCampañas" class="top"><span class="main-menu-text">Lista Campañas</span></a>
+                                </li>
+                                <li class="Campania ocult" data-menu1="listaImpresora" data-titulo="Lista Impresoras">
+                                    <a href="~/CampaniaImpresora/ListadoImpresoras" class="top"><span class="main-menu-text">Lista Impresoras</span></a>
+                                </li>
+                                <li class="Campania ocult" data-menu1="asignarImpresora" data-titulo="Asignar Usuario Impresoras">
+                                    <a href="~/CampaniaImpresora/AsignarImpresoras" class="top"><span class="main-menu-text">Asignar Impresoras</span></a>
+                                </li>
+                                <li class="Campania ocult" data-menu1="visorEstadoMaquinas" data-titulo="Estado Maquinas">
+                                    <a href="~/CampaniaVisorEstadoMaquinas/VisorEstadoMaquinas" class="top"><span class="main-menu-text">Estado Maquinas</span></a>
+                                </li>
+                                <li class="Campania ocult" data-menu1="RestriccionMaquinas" data-titulo="Maquinas Restringidas">
+                                    <a href="~/CampaniaMaquinaRestringida/ListadoMaquinasRestringidas" class="top"><span class="main-menu-text">Maquinas Restringidas</span></a>
+                                </li>
+                                <li class="Campania ocult" data-menu1="ReportePromociones" data-titulo="Reporte Campania Promociones">
+                                    <a href="~/CampaniaReporte/ReporteCampaniaPromocionCliente" class="top"><span class="main-menu-text">Reporte Promociones</span></a>
+                                </li>
+                                <li class="Campania ocult" data-menu1="ReporteSorteo" data-titulo="Reporte Campania Sorteos">
+                                    <a href="~/CampaniaReporte/ReporteCampaniaSorteoCliente" class="top"><span class="main-menu-text">Reporte Sorteos</span></a>
+                                </li>
+                                <li class="Campania ocult" data-menu1="ReporteClientes" data-titulo="Reporte Campania Clientes">
+                                    <a href="~/CampaniaReporte/ReporteCampaniaCliente" class="top"><span class="main-menu-text">Reporte Clientes</span></a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="cabecera ocult" data-menu1="Alertabill" data-titulo="Alerta Billeteros">
+                            <a href="#" class="top">
+                                <span class="main-menu-icon">
+                                    <span aria-hidden="true" class="icon icon-alarm-clock"></span>
+                                </span>
+                                <span class="main-menu-text">Alertas Billeteros</span>
+                            </a>
+                            <ul>
+                                <li class="Alertabill ocult" data-menu1="ConfiguracionAlertaCargo" data-titulo="Configurar Alerta a Cargo">
+                                    <a href="~/AlertaBilleteros/ConfiguracionAlertaCargoVista" class="top"><span class="main-menu-text">Configurar Alerta a Cargo</span></a>
+                                </li>
+                                <li class="Alertabill ocult" data-menu1="ReporteAlertas" data-titulo="Reporte Alertas">
+                                    <a href="~/AlertaBilleteros/ReporteAlertaBilleterosVista" class="top"><span class="main-menu-text">Reporte Alertas</span></a>
+                                </li>
+                                <li class="Alertabill ocult" data-menu1="ReporteLogsOnline" data-titulo="ReporteLogsOnline">
+                                    <a href="~/LogAlertaBilleteros/LogsOnlineVista" class="top"><span class="main-menu-text">Reporte Logs Online</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="cabecera ocult" data-menu1="Reclamaciones" data-titulo="Reclamaciones">
+                            <a href="~/Reclamacion/ReclamacionListarVista" class="top">
+                                <span class="main-menu-icon">
+                                    <span aria-hidden="true" class="icon icon-exclamation"></span>
+                                </span>
+                                <span class="main-menu-text">Reclamaciones</span>
+                            </a>
+                        </li>
+                        <li class="cabecera ocult" data-menu1="ModuloOcurrenciasSala" data-titulo="Modulo Ocurrencias Sala">
+                            <a href="" class="top">
+                                <span class="main-menu-icon">
+                                    <span aria-hidden="true" class="icon icon-dollar"></span>
+                                </span>
+                                <span class="main-menu-text">Ocurrencias</span>
+                            </a>
+                            <ul>
+                                <li class="ModuloOcurrenciasSala ocult" data-menu1="ListadoCorreo" data-titulo="Listado Correos">
+                                    <a href="~/Ocurrencias/ListadoCorreo" class="top"><span class="main-menu-text">Correos</span></a>
+                                </li>
+                                <li class="ModuloOcurrenciasSala ocult" data-menu1="ListadoTipoOcurrencia" data-titulo="Listado TipoOcurrencia">
+                                    <a href="~/Ocurrencias/ListadoTipoOcurrencia" class="top"><span class="main-menu-text">Tipo Ocurrencia</span></a>
+                                </li>
+                                <li class="ModuloOcurrenciasSala ocult" data-menu1="RegistroOcurrencia" data-titulo="Registro Ocurrencia">
+                                    <a href="~/Ocurrencias/RegistroOcurrencia" class="top"><span class="main-menu-text">Registro Ocurrencia</span></a>
+                                </li>
+                                <li class="ModuloOcurrenciasSala ocult" data-menu1="ReporteOcurrencia" data-titulo="Reporte Ocurrencia">
+                                    <a href="~/Ocurrencias/ReporteOcurrencia" class="top"><span class="main-menu-text">Reporte Ocurrencia</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="cabecera ocult" data-menu1="Seguridad" data-titulo="Seguridad">
+                            <a href="#" class="top">
+                                <span class="main-menu-icon">
+                                    <span aria-hidden="true" class="icon icon-shield"></span>
+                                </span>
+                                <span class="main-menu-text">Seguridad</span>
+                            </a>
+                            <ul>
+                                <li class="Seguridad ocult" data-menu1="EmpresaVista" data-titulo="Empresa">
+                                    <a href="~/Empresa/Empresavista" class="top"><span class="main-menu-text">Empresas</span></a>
+                                </li>
+                                <li class="Seguridad ocult" data-menu1="SalaVista" data-titulo="Sala">
+                                    <a href="~/Sala/Salavista" class="top"><span class="main-menu-text">Salas</span></a>
+                                </li>
+                                <li class="Seguridad ocult" data-menu1="ListadoEmpleado" data-titulo="Empleado">
+                                    <a href="~/Empleado/EmpleadoListadoVista" class="top"><span class="main-menu-text">Empleado</span></a>
+                                </li>
+
+                                <li class="Seguridad ocult" data-menu1="ListadoUsuarioEncriptacion" data-titulo="UsuarioEncriptacion">
+                                    <a href="~/UsuarioEncriptacion/UsuarioEncriptacionListarVista" class="top"><span class="main-menu-text">Usuario Encriptacion</span></a>
+                                </li>
+
+                                <li class="Seguridad ocult" data-menu1="ListadoUsuario" data-titulo="Usuario">
+                                    <a href="~/Usuario/UsuarioListadoVista" class="top"><span class="main-menu-text">Usuario</span></a>
+                                </li>
+                                <li class="Seguridad ocult" data-menu1="UsuarioSalaVista" data-titulo="UsuarioSala">
+                                    <a href="~/UsuarioSala/UsuarioSalaVista" class="top"><span class="main-menu-text">Asignar Sala a Usuario</span></a>
+                                </li>
+                                <li class="Seguridad ocult" data-menu1="ListadoRol" data-titulo="Rol">
+                                    <a href="~/Rol/ListadoRol" class="top"><span class="main-menu-text">Rol</span></a>
+                                </li>
+                                <li class="Seguridad ocult" data-menu1="SeguridadVista" data-titulo="Permisos">
+                                    <a href="~/Seguridad/SeguridadVista" class="top"><span class="main-menu-text">Permisos</span></a>
+                                </li>
+                                <li class="Seguridad ocult" data-menu1="SeguridadAuditoriaVista" data-titulo="Auditoria">
+                                    <a href="~/Seguridad/SeguridadAuditoriaVista" class="top"><span class="main-menu-text">Auditoria</span></a>
+                                </li>
+                                <li class="Seguridad ocult" data-menu1="DestinarioVista" data-titulo="Destinatarios">
+                                    <a href="~/Destinatario/DestinatarioListadoVista" class="top"><span class="main-menu-text">Destinatarios</span></a>
+                                </li>
+                                <li class="Seguridad ocult" data-menu1="ConfiguracionDestinatarioVista" data-titulo="Configuración Destinatarios">
+                                    <a href="~/Destinatario/DestinatarioConfiguracionVista" class="top"><span class="main-menu-text">Configuración Destinatarios</span></a>
+                                </li>
+                                <li class="Seguridad ocult" data-menu1="DispositivoVista" data-titulo="Dispositivos">
+                                    <a href="~/Dispositivo/DispositivoListadoVista" class="top"><span class="main-menu-text">Dispositivos</span></a>
+                                </li>
+                                <li class="Seguridad ocult" data-menu1="ConfiguracionSeguridad" data-titulo="Configuración Seguridad">
+                                    <a href="~/ConfiguracionSeguridad/ConfiguracionSeguridadVista" class="top"><span class="main-menu-text">Configuración Seguridad</span></a>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <!-- END Left Column -->
+            <!-- START Right Column -->
+            @*<div class="slider2">
+                    <div class="slide-track">
+                        <div style="width:300px"></div>
+                    </div>
+                </div>*@
+            <div id="right-column" style="margin: 0 !important">
+                <div class="right-column-content">
+
+                    @RenderBody()
+                </div>
+            </div>
+
+            <!-- START Footer Container -->
+            <div id="footer-container">
+                <div class="footer-content" style="display:flex; justify-content:space-between">
+                    <p>
+                        Usuarios Conectados : <span style="color:#ffa733;font-weight:bold" class="countusaurios">-</span>
+                    </p>
+                    <p>
+                        &copy; <a href="#?ref=Base5Builder">Seguridad</a> was made with <span style="color:#FF0000;">&#10084;</span> and supported by -
+                        <a href="#" target="_blank" style="font-weight:300;color:#ffffff;background:#1d1d1d;padding:0 3px;">Gladcon<span style="color:#ffa733;font-weight:bold">Group</span></a>
+                    </p>
+                    <p>
+                        Conexión : <span style="font-weight: 300; color: #ffffff; background: #1d1d1d; padding: 0 3px;" class="conection_spn">----------------</span>
+                    </p>
+                    @*&copy; <a href="#?ref=Base5Builder">Seguridad</a> was made with <span style="color:#FF0000;">&#10084;</span> and supported by -
+                        <a href="#" target="_blank" style="font-weight:300;color:#ffffff;background:#1d1d1d;padding:0 3px;">Gladcon<span style="color:#ffa733;font-weight:bold">Group</span></a>
+                        <div>Usuarios Conectados : <span style="color:#ffa733;font-weight:bold" class="countusaurios">-</span></div>
+                        <div>Conexión : <span style="font-weight: 300; color: #ffffff; background: #1d1d1d; padding: 0 3px;" class="conection_spn">----------------</span></div>*@
+
+
+                </div>
+            </div>
+            <!-- END Footer Container -->
+
+        </div>
+        <!-- END Right Column -->
+
+    </div>
+    <!-- END Body Container -->
+    </div><!-- /.container -->
+    <!-- Modal small-modal -->
+    <div style="z-index:99999" class="modal fade small-modal" id="small-modal" tabindex="-1" role="dialog" aria-labelledby="small-modal-label" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="small-modal-label">Login</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <form class="login-form" id="loginFomrSesion" method="POST" action="" onsubmit="return false;">
+                                <div class="form-group">
+                                    <label for="usuario">Usuario</label>
+                                    <input autocomplete="off" class="form-control input-sm" id="usuario" placeholder="Usuario" type="text" name="usuario">
+                                </div>
+                                <div class="form-group">
+                                    <label for="contrasena">Contraseña</label>
+                                    <input autocomplete="off" class="form-control input-sm" id="contrasena" placeholder="Contraseña" type="password" name="contrasena">
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btnAccederSesion" class="btn btn-primary">Ingresar</button>
+                </div>
+            </div><!-- /.modal-content -->
+
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- modal token progresivo -->
+    <div style="z-index:999999" class="modal fade" id="modalTokenProgresivo" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color:#FFFFFF;opacity:1">&times;</button>
+                    <h4 class="modal-title" id="small-modal-label">Token Progresivo</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div>
+                                <div class="form-group">
+                                    <select class="form-control input-sm" id="cboRoomsInProgresivo" name="cboRoomsInProgresivo">
+                                        <option value="">--Seleccione una Sala--</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <button type="button" id="buttonRequestTokenProgresivo" class="btn btn-sm btn-block btn-info"><i class="fa fa-exchange" aria-hidden="true"></i> Solicitar</button>
+                                </div>
+                                <hr style="margin-top:10px" />
+                                <div class="form-group">
+                                    <label for="usuario">Token</label>
+                                    <input type="text" name="token_progresivo" id="token_progresivo" class="form-control input-sm" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="text-align: right">
+                    <button type="button" id="buttonViewTokenProgresivo" class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i> Ver</button>
+                    <button type="button" id="buttonValidateTokenProgresivo" class="btn btn-success"><i class="fa fa-check-circle" aria-hidden="true"></i> Validar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal token progresivo -->
+
+    <div class="wrapper hidden">
+        <input type="checkbox" />
+        <div class="fab"></div>
+        <div class="fac">
+            <a href="#" class="pedirtoken" title="Pedir Token ,Acceso Progresivo"><i class="fa fa-suitcase"></i></a>
+            <a href="#" class="vertoken"><i class="fa fa-file-archive-o" title="Ver Token Generado"></i></a>
+        </div>
+    </div>
+
+    <div id="box_abort_request" class="box-abort-request">
+        <button type="button" class="btn-abort-request abort__request">Cancelar Petición</button>
+    </div>
+
+    @RenderSection("modal", required: false)
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- Required JS Files -->
+    <script src="~/Content/assets/js/required/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/required/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/required/jquery-ui-1.11.0.custom/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/required/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/required/jquery.easing.1.3-min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/required/misc/jquery.mousewheel-3.0.6.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/required/jquery.mCustomScrollbar.min.js"></script>
+
+    <script type="text/javascript" src="~/Content/assets/js/required/misc/retina.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/required/icheck.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/required/misc/jquery.ui.touch-punch.min.js"></script>
+    <!-- Optional JS Files -->
+
+    <script type="text/javascript" src="~/Content/assets/js/optional/misc/moment.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/fullcalendar/fullcalendar.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/select2.full.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/loadingoverlay/loadingoverlay.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/datatables/js/jquery.dataTables.min.js?v=@fecha_archivos"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/datatables/js/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/datatables/js/dataTables.tableTools.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/datatables/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/bootstrapValidator.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/toastr.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/jquery-confirm.js"></script>
+
+    <script type="text/javascript" src="~/Content/assets/js/required/circloid-functions.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/circloid-functions-optional.js"></script>
+
+    <!-- add JS plugin files here -->
+    <script type="text/javascript" src="~/Content/menu-square/assets/menu-square.js?v=@fecha_archivos"></script>
+
+    <!-- ChartJS -->
+    <script src="~/Content/assets/js/optional/chart.js/4.3.0/chart.min.js"></script>
+    <script src="~/Content/assets/js/optional/chart.js/plugin/chartjs-plugin-datalabels.min.js"></script>
+
+    <!-- REQUIRED: User Editable JS Files -->
+    <script type="text/javascript" src="~/Content/assets/js/script.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/general.js?v=@fecha_archivos"></script>
+
+    <script src="~/Content/assets/js/optional/bootstrap-toggle.min.js"></script>
+    <script src="~/Content/assets/js/datatablesservidor.js"></script>
+    <script src="~/Content/assets/js/botonacciones.js"></script>
+
+    <script src="~/Content/assets/js/reportes/ClasesReporte.js"></script>
+    <script src="~/Content/assets/js/reportes/reporte_botones.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.4.3.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Content/assets/viewsjs/Home/progresivoseguridad.js?v=@fecha_archivos"></script>
+
+    <!-- add js token progresivo -->
+    <script type="text/javascript" src="~/Content/token-progresivo/token-progresivo.js?v=@fecha_archivos"></script>
+
+    <!-- add additional User Editable files here -->
+    @*@RenderSection("modal", required: false)*@
+    @RenderSection("js", required: false)
+
+    @*<script>
+                $(document).ready(function () {
+
+
+                    getDataEvents()
+
+
+
+                    let hubAlertas = $.connection.progresivoHub;
+                    //$.connection.hub.start().done(function () {
+                    //    console.log('Notification hub started');
+                    //    hubAlertas.invoke('ra').done(function (saludo) {
+                    //        console.table(saludo);
+                    //        // Iterar sobre cada objeto en la data
+                    //        renderData(saludo)
+
+                    //    })
+                    //});
+
+
+                    hubAlertas.client.EnviarMensaje = function (data) {
+                        console.log('aaaa nuevo registririll')
+                        console.table(data)
+                        $(".slide-track").empty();
+                        getDataEvents()
+                    }
+
+
+
+
+
+                });
+             const getDataEvents = () => {
+                        $.ajax({
+                            url: basePath + '/AlertaBilleteros/ConsultarSalasUsuario/',
+                            type: 'POST',
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            beforeSend: function (xhr) {
+                            },
+                            success: function (response) {
+                                console.log(response)
+                                if (response.respuesta) {
+                                    renderData(response.data)
+
+                                } else {
+                                    $('.slider2').hide()
+                                }
+                            },
+                            complete: function (resul) {
+                                $.LoadingOverlay("hide");
+                            }
+                        });
+                    }
+                    const renderData = (data) => {
+                        var slideTrack = $('.slide-track');
+
+                        $.each(data, function (index, item) {
+                                // Verificar si la propiedad "descripcion" está presente y no es undefined
+                                if (item.Descripcion && typeof item.Descripcion === 'string') {
+                                    try {
+                                        // Intentar parsear la propiedad "descripcion" que es una cadena JSON
+                                        var descripcionObj = JSON.parse(item.Descripcion);
+
+                                        // Crear un nuevo div con la clase "slide"
+                                        var slideDiv = $('<div>').addClass('slide2 ');
+
+                                        image = $('<div>').addClass('image-slide-bill');
+                                        image2 = $('<div>').addClass('image-slide-evt');
+
+                                        if (item.Tipo == 3) {
+                                             var imagePath = '@Url.Content("~/Content/assets/images/iconss/")' + 'Alarm.svg';
+                                            var imageElement = $('<img>').attr('src', imagePath).attr('alt', 'alarm alert');
+                                            image2.append(imageElement)
+                                            slideDiv.append(image2)
+
+                                        }
+
+                                         else  {
+                                             var imagePath = '@Url.Content("~/Content/assets/images/iconss/")' + 'Schedule.svg';
+                                            var imageElement = $('<img>').attr('src', imagePath).attr('alt', 'alarm alert');
+                                            image.append(imageElement)
+                                            slideDiv.append(image)
+
+                                        }
+
+                                        desp = $('<div>').addClass('descripciond');
+
+                                        salaDes = $('<p style="font-weight: 800;font-size:16px">').text(item.NombreSala).addClass('title')
+
+                                        valueDesp = $('<span>').text(item.Preview).addClass('descr')
+                                        titleDesp = $('<p>').text('Descripción: ').addClass('title')
+                                        titleDesp.append(valueDesp)
+
+                                        valueCod = $('<span>').text(descripcionObj.Cod_Even_OL).addClass('descr')
+                                        titleCod = $('<p>').text('Cod_Even_OL: ').addClass('title')
+
+                                        titleCod.append(valueCod)
+
+                                        desp.append(salaDes)
+                                        desp.append(titleCod)
+                                        desp.append(titleDesp)
+
+
+                                        slideDiv.append(desp)
+
+
+
+                                        //agregarPropiedadAlDiv(slideDiv, descripcionObj, 'Cod_Even_OL');
+                                        //agregarPropiedadAlDiv(slideDiv, descripcionObj, 'Fecha');
+                                        //agregarPropiedadAlDiv(slideDiv, item, 'Preview');
+
+                                        // Agregar el slideDiv al slideTrack
+                                        slideTrack.append(slideDiv);
+                                    } catch (error) {
+                                        console.error('Error al parsear JSON:', error);
+                                    }
+                                } else {
+                                    console.error('La propiedad "descripcion" no está presente o es undefined en el objeto:', item);
+                                }
+                            });
+                    }
+        </script>*@
+</body>
+
+</html>

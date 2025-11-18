@@ -1,0 +1,1188 @@
+﻿
+@{
+    ViewBag.Title = "Reportes";
+}
+@section css{
+    <link href="~/Content/assets/css/cssviews/GPLI/general.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/cssviews/GPLI/crearTicket.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/cssviews/GPLI/asignarTicket.css" rel="stylesheet" />
+}
+
+<style>
+
+    /* Estilos generales para la tabla */
+    /*.ticket-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        margin-top: 20px;
+        font-size: 14px;
+        background-color: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+        .ticket-table th, .ticket-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .ticket-table th {
+            background-color: #2c3e50;
+            color: #fff;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .ticket-table tbody tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .ticket-table tbody tr:hover {
+            background-color: #e9ecef;
+            transition: background-color 0.2s ease;
+        }*/
+
+    /* Estilos para las fases de los tickets */
+    /*.fase-ticket {
+        cursor: pointer;
+        color: #007bff;
+        text-decoration: none;
+        font-weight: 500;
+        padding: 4px 8px;
+        border-radius: 4px;
+        background-color: rgba(0, 123, 255, 0.1);
+        display: inline-block;
+    }
+
+        .fase-ticket:hover {
+            color: #0056b3;
+            background-color: rgba(0, 123, 255, 0.2);
+            transition: all 0.2s ease;
+        }*/
+
+    /* Colores específicos para cada fase */
+    /*.fase-1 {
+        color: #28a745;
+        background-color: rgba(40, 167, 69, 0.1);
+    }*/
+    /* Verde para "Creado" */
+    /*.fase-2 {
+        color: #ffc107;
+        background-color: rgba(255, 193, 7, 0.1);
+    }*/
+    /* Amarillo para "Asignado" */
+    /*.fase-3 {
+        color: #17a2b8;
+        background-color: rgba(23, 162, 184, 0.1);
+    }*/
+    /* Azul claro para "En Proceso" */
+    /*.fase-4 {
+        color: #dc3545;
+        background-color: rgba(220, 53, 69, 0.1);
+    }*/
+    /* Rojo para "Finalizado" */
+    /*.fase-5 {
+        color: #6c757d;
+        background-color: rgba(108, 117, 125, 0.1);
+    }*/
+    /* Gris para "Cerrado" */
+
+    /* Estilos para los filtros */
+    /*.filters {
+        display: flex;
+        gap: 15px;
+        margin: 20px 0;
+        padding: 20px;
+        background-color: #2c3e50;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+        .filters div {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .filters label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .filters select, .filters input[type="date"] {
+            padding: 10px;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            font-size: 14px;
+            background-color: #fff;
+            color: #495057;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+            .filters select:focus, .filters input[type="date"]:focus {
+                border-color: #007bff;
+                box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+                outline: none;
+            }*/
+
+    /* Estilos para el contenedor de la tabla */
+    /*.tab-content {
+        contain: content;
+        overflow-x: auto;
+        margin-top: 20px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }*/
+
+        /* Estilos para el mensaje de "No hay tickets" */
+        /*.tab-content div[style*="place-self:center"] {
+            text-align: center;
+            font-size: 16px;
+            color: #6c757d;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            margin: 20px 0;
+        }*/
+
+    /* Botón de ver detalle (opcional) */
+    /*.btn-primary {
+        background-color: #007bff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        color: #fff;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }*/
+
+    /* Main table styling */
+    .ticket-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    }
+
+        /* Header styling */
+        .ticket-table thead th {
+            background: #215987;
+            font-weight: 600;
+            padding: 16px 12px;
+            text-transform: uppercase;
+            border-bottom: 2px solid #e9ecef;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            color: white;
+        }
+
+            .ticket-table thead th:first-child {
+                border-top-left-radius: 8px;
+            }
+
+            .ticket-table thead th:last-child {
+                border-top-right-radius: 8px;
+            }
+
+        /* Cell styling */
+        .ticket-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e9ecef;
+            /*color: #495057;*/
+            vertical-align: middle;
+        }
+
+        /* Row styling */
+        .ticket-table tbody tr {
+            transition: background-color 0.2s ease;
+        }
+
+            .ticket-table tbody tr:hover {
+                background-color: #f8f9fa;
+            }
+
+            .ticket-table tbody tr:last-child td:first-child {
+                border-bottom-left-radius: 8px;
+            }
+
+            .ticket-table tbody tr:last-child td:last-child {
+                border-bottom-right-radius: 8px;
+            }
+
+    /* Status indicators */
+    .fase-ticket {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 8px !important;
+        font-weight: 600;
+        /*font-size: 0.85rem;*/
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-decoration: none;
+    }
+
+    /* Phase-specific styling */
+    .fase-1 {
+        background-color: #e8f5e9;
+        color: #2e7d32;
+        border: 1px solid #a5d6a7;
+    }
+
+    .fase-2 {
+        background-color: #fff3e0;
+        color: #f57c00;
+        border: 1px solid #ffcc80;
+    }
+
+    .fase-3 {
+        background-color: #e3f2fd;
+        color: #1976d2;
+        border: 1px solid #90caf9;
+    }
+
+    .fase-4 {
+        background-color: #fbe9e7;
+        color: #d32f2f;
+        border: 1px solid #ef9a9a;
+    }
+
+    .fase-5 {
+        background-color: #f5f5f5;
+        color: #616161;
+        border: 1px solid #e0e0e0;
+    }
+
+    /* Hover effects for phase indicators */
+    .fase-ticket:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Pagination styling */
+    .pagination {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin: 20px 0;
+        padding: 0;
+        list-style: none;
+    }
+
+        .pagination li a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 32px;
+            height: 32px;
+            padding: 0 12px;
+            border-radius: 4px;
+            background: #fff;
+            color: #495057;
+            text-decoration: none;
+            border: 1px solid #dee2e6;
+            transition: all 0.2s ease;
+        }
+
+        .pagination li.active a {
+            color: #fff;
+            border-color: #0d6efd;
+        }
+
+        .pagination li:not(.disabled):hover a {
+            background: #e9ecef;
+            border-color: #adb5bd;
+        }
+
+        .pagination li.disabled a {
+            color: #adb5bd;
+            pointer-events: none;
+            background: #f8f9fa;
+        }
+
+    /* Responsive table container */
+    .tab-content {
+        margin: 20px 0;
+        border-radius: 8px;
+        background: #fff;
+    }
+
+    /* Filter section styling */
+    .filters {
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+        .filters select,
+        .filters input {
+            width: 100%;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+        }
+
+            .filters select:focus,
+            .filters input:focus {
+                outline: none;
+                border-color: #0d6efd;
+                box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.25);
+            }
+
+        .filters label {
+            display: block;
+            margin-bottom: 4px;
+            color: #495057;
+            font-weight: 500;
+        }
+
+    .panel-green {
+        border-color: #28a745;
+    }
+
+        .panel-green > .panel-heading {
+            background-color: #28a745;
+            border-color: #28a745;
+            color: white;
+        }
+
+    .panel-yellow {
+        border-color: #ffc107;
+    }
+
+        .panel-yellow > .panel-heading {
+            background-color: #ffc107;
+            border-color: #ffc107;
+            color: white;
+        }
+
+    .panel-red {
+        border-color: #dc3545;
+    }
+
+        .panel-red > .panel-heading {
+            background-color: #dc3545;
+            border-color: #dc3545;
+            color: white;
+        }
+
+    .huge {
+        font-size: 35px;
+        font-weight: bold;
+    }
+
+    .panel-heading .glyphicon {
+        font-size: 25px;
+        padding: 10px;
+    }
+
+    .panel-body {
+        height: auto;
+        padding: 0px !important;
+    }
+
+    .analytics-grid {
+        display: -webkit-box;
+        /*        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));*/
+        gap: 1rem;
+        padding: 1rem;
+        overflow-x: scroll;
+        scrollbar-color: auto;
+    }
+
+    .analytics-card {
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 1rem;
+        transition: all 0.3s ease;
+    }
+
+        .analytics-card:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .analytics-card.high-priority {
+            border-left: 4px solid #dc3545;
+        }
+
+    .sala-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    .metrics-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .metric {
+        text-align: center;
+        padding: 0.5rem;
+        background: #f8f9fa;
+        border-radius: 4px;
+    }
+
+        .metric small {
+            display: block;
+            color: #6c757d;
+        }
+
+        .metric strong {
+            display: block;
+            font-size: 1.2rem;
+            color: #343a40;
+        }
+
+    .progress-section {
+        margin-bottom: 1rem;
+    }
+
+    .progress-item {
+        margin-bottom: 0.5rem;
+    }
+
+    .progress {
+        margin-bottom: 0.5rem;
+        height: auto;
+    }
+
+    .trend-indicator {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 0.5rem;
+        border-top: 1px solid #eee;
+    }
+
+    .trend-positive {
+        color: #28a745;
+    }
+
+    .trend-negative {
+        color: #dc3545;
+    }
+
+    .trend-neutral {
+        color: #ffc107;
+    }
+
+    .badge-success {
+        background-color: #28a745;
+    }
+
+    .badge-warning {
+        background-color: #ffc107;
+    }
+
+    .badge-danger {
+        background-color: #dc3545;
+    }
+
+    [v-cloak] {
+        display: none !important;
+    }
+
+</style>
+
+
+
+<div id="AppGlpiReportes" style="text-shadow:none;">
+
+    <div class="header-glpi-container">
+        <div class="header-glpi-title" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+            <div style="display: flex; align-items: center;">
+
+                <span aria-hidden="true" class="icon las la-map-signs"></span>
+                <h2>Reportes</h2>
+            </div>
+            <div>
+                <button class="btn-primary"
+                        @@click="GetTicketsReportes"
+                        style="margin-left: auto;padding:4px">
+                    <i class="glyphicon glyphicon-search"></i> Buscar
+                </button>
+                @*<button class="btn-excel btn-success"
+                        @@click="GenerarExcelTicketsReportes"
+                        style="margin-left: auto;">
+                    Excel
+                </button>*@
+                <button class="btn-excel btn-success btn-sm" @@click="GenerarExcelTicketsReportes">
+                    <i class="glyphicon glyphicon-list-alt"></i> Excel
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="container-glpi-section" v-cloak>
+        <div class="tabs">
+            <div class="tab"
+                 v-for="tab in tabs"
+                 :key="tab.name"
+                 :class="{ active: activeTab === tab.name }"
+                 @@click="cambiarTab(tab.name)">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     width="20"
+                     height="20"
+                     fill="none"
+                     viewBox="0 0 24 24"
+                     stroke="currentColor"
+                     class="tab-icon">
+                    <path :d="tab.iconPath"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2" />
+                </svg>
+                <span>{{ tab.label }}</span>
+            </div>
+        </div>
+        <div class="tab-content">
+            <template v-if="activeTab === 'ticketssinAsignar' ">
+                <div class="">
+
+                    @*FILTROS*@
+                    <div class="filters" style="display: flex; gap: 5px; margin: 5px; width: 100%; flex-wrap: wrap">
+                        <div style="flex: 1;">
+                            <label for="select_salas">Salas:</label>
+                            <select v-model="filters.sala" id="select_salas" style="display:none">
+                                <option value="todos">Todas las salas</option>
+                                <option v-for="sala in salas"
+                                        :key="sala.CodSala"
+                                        :value="sala.CodSala">
+                                    {{ sala.Nombre }}
+                                </option>
+                            </select>
+                        </div>
+                        <div style="flex: 1;">
+                            <label for="startDate">Fecha Inicio:</label>
+                            <input type="date" v-model="filters.startDate" />
+                        </div>
+                        <div style="flex: 1;">
+                            <label for="endDate">Fecha Fin:</label>
+                            <input style="flex: 1;" type="date" v-model="filters.endDate" />
+                        </div>
+                        <div style="flex: 1;">
+                            <label for="faseTicket">Fase del Ticket:</label>
+                            <select v-model="filters.faseTicket">
+                                <option value="todos">Todos</option>
+                                <option v-for="fase in fasesTicket"
+                                        :key="fase.id"
+                                        :value="fase.id">
+                                    {{ fase.name }}
+                                </option>
+                                @*<option v-for="fase in uniqueFases" :key="fase" :value="fase">{{ getFaseDescription(fase) }}</option>*@
+                            </select>
+                        </div>
+
+                    </div>
+                    @*TICKETS ENLISTADOS*@
+                    <div class="tab-content" style="contain: content; overflow-x: scroll; margin-top: 15px; scrollbar-color: auto;">
+
+                        <table v-if="filteredTickets.length" class="ticket-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Cod.Sala</th>
+                                    <th>Sala</th>
+                                    <th>Fecha Registro</th>
+                                    <th>Numero de Documento</th>
+                                    <th>Solicitante</th>
+                                    <th>Cargo</th>
+                                    <th>Clasificacion del Problema</th>
+                                    <th>Nivel Atención</th>
+                                    <th>Estado</th>
+                                    <th>Descripción</th>
+                                    <th>Fase de Ticket</th>
+                                    @*<th>Ver detalle</th>*@
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="ticket in paginatedTickets" :key="ticket.Id">
+                                    <td>{{ ticket.Id }}</td>
+                                    <td>{{ ticket.Sala.CodSala }}</td>
+                                    <td>{{ ticket.Sala.Nombre }}</td>
+                                    @*<td>{{ formatFecha(ticket.FechaRegistro) }}</td>*@
+                                    <td>{{ ticket.FechaRegistroStr }}</td>
+                                    <td>{{ ticket.UsuarioSolicitante.NumeroDocumento }}</td>
+                                    <td>{{ ticket.UsuarioSolicitante.Nombres }} {{ ticket.UsuarioSolicitante.ApellidoPaterno }} {{ ticket.UsuarioSolicitante.ApellidoMaterno }}</td>
+                                    <td>{{ ticket.UsuarioSolicitante.Cargo }}</td>
+                                    <td>{{ ticket.ClasificacionProblema.Nombre }}</td>
+                                    <td>{{ ticket.NivelAtencion.Nombre }}</td>
+                                    <td>{{ ticket.EstadoActual.Nombre }}</td>
+                                    <td>{{ ticket.Descripcion }}</td>
+                                    @*<td>{{ getFaseDescription(ticket.CodigoFaseTicket) }}</td>*@
+                                    <td>
+                                        <span class="fase-ticket"
+                                              :class="'fase-' + ticket.CodigoFaseTicket"
+                                              @@click="handleFaseClick(ticket)">
+                                            {{ getFaseDescription(ticket.CodigoFaseTicket) }}
+                                        </span>
+                                    </td>
+                                    @*<td>
+                            <button @@click="openModalDetailTicket(ticket.Id,ticket)" class="btn btn-primary" style="flex: 1;">Ver Detalle</button>
+                        </td>*@
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div v-if="filteredTickets.length===0" style="place-self:center">No hay tickets.</div>
+                    </div>
+                    <!-- Paginación de Bootstrap -->
+                    <nav aria-label="Page navigation" v-if="filteredTickets.length > itemsPerPage" style="text-align: center;">
+                        <ul class="pagination">
+                            <li :class="{ disabled: currentPage === 1 }">
+                                <a href="#" @@click.prevent="prevPage" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li v-for="page in totalPages" :key="page" :class="{ active: currentPage === page }">
+                                <a href="#" @@click.prevent="goToPage(page)">{{ page }}</a>
+                            </li>
+                            <li :class="{ disabled: currentPage === totalPages }">
+                                <a href="#" @@click.prevent="nextPage" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <template v-else>
+                    <p>No hay tickets registrados.</p>
+                </template>
+            </template>
+
+            <template v-if="activeTab === 'sinAsignarTickets'">
+                <div class="container-fluid">
+
+                    <!-- KPI Cards Row -->
+                    <div class="row" style="padding-bottom:15px">
+                        <!-- Total Tickets -->
+                        <div class="col-lg-3 col-md-6" style="padding-bottom: 10px;">
+                            <div class="panel panel-primary" style="display: flex;">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <i class="glyphicon glyphicon-list-alt"></i>
+                                        </div>
+                                        <div class="col-xs-12 text-right">
+                                            <div class="huge">{{ totalTickets }}</div>
+                                            <div>Total Tickets</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Porcentaje de Resolución -->
+                        <div class="col-lg-3 col-md-6" style="padding-bottom: 10px;">
+                            <div class="panel panel-green" style="display: flex;">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <i class="glyphicon glyphicon-ok-circle"></i>
+                                        </div>
+                                        <div class="col-xs-12 text-right">
+                                            <div class="huge">{{ porcentajeResolucion }}%</div>
+                                            <div>Tasa de Resolución</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tiempo Promedio de Resolución -->
+                        <div class="col-lg-3 col-md-6" style="padding-bottom: 10px;">
+                            <div class="panel panel-yellow" style="display: flex;">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <i class="glyphicon glyphicon-time"></i>
+                                        </div>
+                                        <div class="col-xs-12 text-right">
+                                            <div class="huge">{{ tiempoPromedioResolucion }}h</div>
+                                            <div>Tiempo Promedio Resolución</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tickets Urgentes -->
+                        <div class="col-lg-3 col-md-6" style="padding-bottom: 10px;">
+                            <div class="panel panel-red" style="display: flex;">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <i class="glyphicon glyphicon-warning-sign"></i>
+                                        </div>
+                                        <div class="col-xs-12 text-right">
+                                            <div class="huge">{{ ticketsUrgentes }}</div>
+                                            <div>Tickets Urgentes</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row mb-4" style="padding-bottom: 15px;">
+                        <div class="col-lg-12">
+                            <div class="panel panel-primary" style="display: flex;flex-direction: column;">
+                                <div class="panel-heading">
+                                    <div class="d-flex justify-content-between align-items-center" style="display: flex;gap: 15px;">
+                                        <h3 class="panel-title">
+                                            <i class="glyphicon glyphicon-dashboard"></i>
+                                            Análisis de Operaciones
+                                        </h3>
+                                        <div class="btn-group">
+                                            <button class="btn btn-default btn-xs" @@click="toggleView" :class="{'active': !showTable}">
+                                                <i class="glyphicon glyphicon-stats"></i> Dashboard
+                                            </button>
+                                            <button class="btn btn-default btn-xs" @@click="toggleView" :class="{'active': showTable}">
+                                                <i class="glyphicon glyphicon-list"></i> Detalle
+                                            </button>
+                                        </div>
+                                        <div style="flex:1;"></div>
+                                        <button class="btn btn-default btn-xs" data-toggle="collapse" data-target="#panelBodyCollapse">
+                                            <i class="glyphicon glyphicon-chevron-down"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div id="panelBodyCollapse" class="panel-collapse collapse in">
+
+                                    <div class="panel-body p-0">
+                                        <div v-if="!showTable" class="analytics-grid">
+                                            <div v-for="(sala, index) in analisisPorSala" :key="index"
+                                                 class="analytics-card"
+                                                 :class="{'high-priority': sala.indicadorAtencion > 80}"
+                                                 @*@@mouseover="showTooltip($event, sala)"
+                                                 @@mouseout="hideTooltip"*@>
+                                                <div class="sala-header">
+                                                    <h4>{{ sala.nombre }}</h4>
+                                                    <span class="badge" :class="getBadgeClass(sala.indicadorAtencion)">
+                                                        {{ sala.indicadorAtencion }}% Eficiencia
+                                                    </span>
+                                                </div>
+                                                <div class="metrics-container">
+                                                    <div class="metric">
+                                                        <small>Tiempo Promedio</small>
+                                                        <strong>{{ sala.tiempoPromedioResolucion }}h</strong>
+                                                    </div>
+                                                    <div class="metric">
+                                                        <small>Tasa Resolución</small>
+                                                        <strong>{{ sala.tasaResolucion }}%</strong>
+                                                    </div>
+                                                    <div class="metric">
+                                                        <small>Tickets Activos</small>
+                                                        <strong>{{ sala.ticketsActivos }}</strong>
+                                                    </div>
+                                                </div>
+                                                <div class="progress-section">
+                                                    <div class="progress-item">
+                                                        <span>Críticos</span>
+                                                        <div class="progress">
+                                                            <div class="progress-bar progress-bar-danger"
+                                                                 :style="{width: sala.porcentajeCriticos + '%'}"
+                                                                 :title="sala.porcentajeCriticos + '% Críticos'">
+                                                                {{ sala.porcentajeCriticos }}%
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="progress-item">
+                                                        <span>En Proceso</span>
+                                                        <div class="progress">
+                                                            <div class="progress-bar progress-bar-warning"
+                                                                 :style="{width: sala.porcentajeEnProceso + '%'}"
+                                                                 :title="sala.porcentajeEnProceso + '% En Proceso'">
+                                                                {{ sala.porcentajeEnProceso }}%
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="progress-item">
+                                                        <span>Resueltos</span>
+                                                        <div class="progress">
+                                                            <div class="progress-bar progress-bar-success"
+                                                                 :style="{width: sala.porcentajeResueltos + '%'}"
+                                                                 :title="sala.porcentajeResueltos + '% Resueltos'">
+                                                                {{ sala.porcentajeResueltos }}%
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="trend-indicator">
+                                                    <small>Tendencia vs Mes Anterior</small>
+                                                    <span :class="getTrendClass(sala.tendencia)">
+                                                        <i :class="getTrendIcon(sala.tendencia)"></i>
+                                                        {{ sala.tendencia }}%
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div v-else class="table-responsive">
+                                            <table class="table table-striped table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Sala</th>
+                                                        <th>Eficiencia</th>
+                                                        <th>Tiempo Promedio</th>
+                                                        @*<th>Tasa Resolución</th>*@
+                                                        <th>Tickets Activos</th>
+                                                        <th>% Críticos</th>
+                                                        <th>% En Proceso</th>
+                                                        <th>% Resueltos</th>
+                                                        <th>Tendencia</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody style="background-color: #f9f9f9">
+                                                    <tr v-for="(sala, index) in analisisPorSala" :key="index">
+                                                        <td>{{ sala.nombre }}</td>
+                                                        <td>
+                                                            <span class="badge" :class="getBadgeClass(sala.indicadorAtencion)">
+                                                                {{ sala.indicadorAtencion }}%
+                                                            </span>
+                                                        </td>
+                                                        <td>{{ sala.tiempoPromedioResolucion }}h</td>
+                                                        @*<td>{{ sala.tasaResolucion }}%</td>*@
+                                                        <td>{{ sala.ticketsActivos }}</td>
+                                                        <td>{{ sala.porcentajeCriticos }}%</td>
+                                                        <td>{{ sala.porcentajeEnProceso }}%</td>
+                                                        <td>{{ sala.porcentajeResueltos }}%</td>
+                                                        <td>
+                                                            <span :class="getTrendClass(sala.tendencia)">
+                                                                <i :class="getTrendIcon(sala.tendencia)"></i>
+                                                                {{ sala.tendencia }}%
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <!-- Charts Row -->
+                    <div class="row">
+                        <!-- Estado Chart -->
+                        <div class="col-lg-4">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title"><i class="glyphicon glyphicon-stats"></i> Estado de Tickets</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <canvas ref="estadoChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Problema Chart -->
+                        <div class="col-lg-4">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title"><i class="glyphicon glyphicon-warning-sign"></i> Clasificación de Problemas</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <canvas ref="problemaChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Zona Chart -->
+                        <div class="col-lg-4">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title"><i class="glyphicon glyphicon-map-marker"></i> Distribución por Sala</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <canvas height="300" ref="zonaChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <template v-else>
+                    <div class="alert alert-info" style="background-color: #989898;">
+                        <i class="glyphicon glyphicon-info-sign"></i> No hay tickets registrados.
+                    </div>
+                </template>
+            </template>
+
+            @*<template v-if="activeTab === 'sinAsignarTickets'">
+                    <div class="container-glpi-section" style="max-width: 1200px; margin: auto;">
+                        <div class="grid-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                            <div>
+                                <h1 style="text-align: center; color: #333;">Dashboard de Tickets</h1>
+                                <div class="ticket-container" style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); text-align: center;">
+                                    <h2 style="color: #555;">Total de Tickets</h2>
+                                    <p style="font-size: 24px; font-weight: bold; color: #007bff; text-align:center;">{{ totalTickets }}</p>
+                                </div>
+                                <div class="ticket-container" style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                                    <h2 style="color: #555;">Tickets por Estado</h2>
+                                    <canvas ref="estadoChart"></canvas>
+                                </div>
+                                <div class="ticket-container" style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                                    <h2 style="color: #555;">Tickets por Tipo de Problema</h2>
+                                    <canvas ref="problemaChart"></canvas>
+                                </div>
+                                <div class="ticket-container" style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                                    <h2 style="color: #555;">Tickets por Zona/Sala</h2>
+                                    <canvas ref="zonaChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <template v-else>
+                        <p>No hay tickets registrados.</p>
+                    </template>
+                </template>*@
+        </div>
+    </div>
+
+    @*********************************DETALLE TICKET *********************************@
+
+    <div v-if="showModalDetalle" class="modal-overlay" v-cloak>
+        <div class="modal-container" :class="{'modal-enter': showModalDetalle, 'modal-leave': !showModalDetalle}">
+            <div style="position:sticky;top:0;background-color:white;z-index:1;padding:15px;">
+                <div class="header-decoration"></div>
+                <div style="display:flex;justify-content:space-between;width:100%; ">
+                    <h2 style="color: white;">Detalle Ticket</h2>
+                    <button @@click="closeModalDetailTicket" class="btn btn-close">x</button>
+                </div>
+
+                <div class="sheet-input" style="margin-top: 20px;">
+                    <div class="sheet-showTop">
+                        <div class="sheet-showTop-header">
+                            <p class="sheet-showTop-title">{{ ticketSelect.ClasificacionProblema.Nombre }}</p>
+                            <p class="sheet-showTop-level" :style="{ color: ticketSelect.NivelAtencion.Color }">
+                                {{ ticketSelect.NivelAtencion.Nombre }}
+                            </p>
+                        </div>
+                        <div class="sheet-showTop-detail" style="justify-self:center">
+                            <p>{{ ticketSelect.Identificador.Nombre }}, {{ ticketSelect.Sala.Nombre }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sheet-input" style="margin-top: 15px;">
+                    <div class="sheet-showText">
+                        <p><strong>Usuario Solicitante:</strong> {{ ticketSelect.UsuarioSolicitante.Nombres }} {{ ticketSelect.UsuarioSolicitante.ApellidoPaterno }} {{ ticketSelect.UsuarioSolicitante.ApellidoMaterno }}</p>
+                        <p><strong>Cargo:</strong> {{ ticketSelect.UsuarioSolicitante.Cargo }}</p>
+                        <p><strong>Numero de Documento:</strong> {{ ticketSelect.UsuarioSolicitante.NumeroDocumento }}</p>
+                        <p><strong>Tipo de Operación:</strong> {{ ticketSelect.TipoOperacion.Nombre }}</p>
+                        <p><strong>Partida:</strong> {{ ticketSelect.SubCategoria.Categoria.Partida.Nombre }}</p>
+                        <p><strong>Categoria:</strong> {{ ticketSelect.SubCategoria.Categoria.Nombre }}</p>
+                        <p><strong>SubCategoria:</strong> {{ ticketSelect.SubCategoria.Nombre }}</p>
+                        <p><strong>Estado Actual:</strong> {{ ticketSelect.EstadoActual.Nombre }}</p>
+                        <p><strong>Identificador:</strong> {{ ticketSelect.Identificador.Nombre }}</p>
+                        <p><strong>Descripcion:</strong> {{ ticketSelect.Descripcion ? ticketSelect.Descripcion : "-"}}</p>
+                        <p>
+                            <strong>Fecha de Registro:</strong>
+                            {{ ticketSelect.FechaRegistroStr }}
+                        </p>
+                    </div>
+                    
+                    <div class="sheet-input" v-if="previewList.length > 0">
+                        <div class="select-container">
+
+                            <div class="" style="display: flex; justify-content: space-between; margin-bottom:5px">
+                                <p><strong>Archivo:</strong></p>
+                                <div class="" v-if="previewList.length > 0">
+                                    <button @@click="openImagePreview(previewList[0].url)" class="btn-viewFile">
+                                        <span class="glyphicon glyphicon-eye-open"></span> Ver
+                                    </button>
+                                </div>
+
+                            </div>
+
+                            <div :class="['file-upload-container', { 'has-files': previewList.length > 0 }]">
+                                @*@@click="triggerFileInput">*@
+                                <div v-if="previewList.length === 0" class="file-upload-placeholder">
+                                    <p>Haz clic aquí para agregar archivos</p>
+                                </div>
+                                <div v-else class="file-preview">
+                                    <div v-for="file in previewList" :key="file.id" :class="['file-item', file.typeClass]">
+                                        <img v-if="file.type === 'image'" :src="file.preview" alt="Preview" />
+                                        <div v-else v-html="file.icon" style="width: 60px; min-width: 60px;"></div>
+                                        <div v-if="file.type !== 'image'">
+                                            <span class="file-name">{{ file.name }}</span>
+                                            <span class="file-size">{{ file.size }}</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                @* <input type="file" ref="fileInput" class="file-input" @@change="previewFiles" style="display:none" accept=".png,.jpg,.jpeg,.pdf,.doc,.docx" />*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*********************************MODAL DETALLE ASIGNACION*********************************@
+    <div v-if="showModalDetailAsignacion" class="modal-overlay" v-cloak>
+        <div class="modal-container" :class="{'modal-enter': showModalDetailAsignacion, 'modal-leave': !showModalDetailAsignacion}">
+            <div style="position:sticky;top:0;background-color:white;z-index:1;padding:15px;">
+                <div class="header-decoration"></div>
+
+                <div style="display:flex;justify-content:space-between;width:100%;">
+                    <h2 style="color: white;">Asignamiento Ticket</h2>
+                    <button @@click="closeModalDetailAsignacion" class="btn btn-close">x</button>
+                </div>
+
+                <div class="sheet-input" style="margin-top: 20px;">
+                    <div class="sheet-showTop">
+                        <div class="sheet-showTop-header">
+                            <p class="sheet-showTop-title">{{ ticketsDetail.ClasificacionProblema.Nombre }}</p>
+                            <p class="sheet-showTop-level" :style="{ color: ticketsDetail.NivelAtencion.Color }">
+                                {{ ticketsDetail.NivelAtencion.Nombre }}
+                            </p>
+                        </div>
+                        <div class="sheet-showTop-detail" style="justify-self:center">
+                            <p>{{ ticketsDetail.Identificador.Nombre }}, {{ ticketsDetail.Sala.Nombre }}</p>
+                        </div>
+                    </div>
+                    <div class="sheet-showTop-detail" style="font-size: 14px; font-weight: 1; justify-content: space-around">
+                        <p><strong style="color: #235ebe">Solicitante: </strong>{{ ticketsDetail.UsuarioSolicitante.Nombres }} {{ ticketsDetail.UsuarioSolicitante.ApellidoPaterno }} {{ ticketsDetail.UsuarioSolicitante.ApellidoMaterno }} - {{ ticketsDetail.UsuarioSolicitante.Cargo }}</p>
+                        <p>
+                            <strong style="color: #235ebe">Fecha de Registro: </strong>
+                            {{ ticketsDetail.FechaRegistroStr }}
+                        </p>
+                    </div>
+                </div>
+
+
+
+                <div class="sheet-input" style="margin-top: 15px;">
+                    <div class="sheet-showText">
+                        <p>
+                            <strong style="color: #235ebe">Fecha de asignación: </strong>
+                            {{ ticketsAsignadosDetail.FechaRegistroStr }}
+                        </p>
+                        <p><strong>Estado:</strong> {{ ticketsAsignadosDetail.EstadoTicket.Nombre}}</p>
+                        <p><strong>Asignado a:</strong> {{ ticketsAsignadosDetail.UsuarioAsignado.Nombres}} {{ ticketsAsignadosDetail.UsuarioAsignado.ApellidoPaterno}} {{ ticketsAsignadosDetail.UsuarioAsignado.ApellidoMaterno}}</p>
+                        <p><strong>Cargo:</strong> {{ ticketsAsignadosDetail.UsuarioAsignado.Cargo}}</p>
+                        <p><strong>Documento:</strong> {{ ticketsAsignadosDetail.UsuarioAsignado.NumeroDocumento}}</p>
+                        <p><strong>Asignado por:</strong> {{ ticketsAsignadosDetail.UsuarioAsigna.Nombres}} {{ ticketsAsignadosDetail.UsuarioAsigna.ApellidoPaterno}} {{ ticketsAsignadosDetail.UsuarioAsigna.ApellidoMaterno}}</p>
+                        <p>
+                            <strong>Fecha Tentativa Termino:</strong>
+                            {{ ticketsAsignadosDetail.FechaTentativaTerminoStr }}
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    @*********************************MODAL SEGUIMIENTO*********************************@
+    <div v-if="showModalSeguimiento" class="modal-overlay" v-cloak>
+        <div class="modal-container" :class="{'modal-enter': showModalSeguimiento, 'modal-leave': !showModalSeguimiento}">
+            <div style="position:sticky;top:0;background-color:white;z-index:1;padding:15px;">
+                <div class="header-decoration"></div>
+
+                <div style="display:flex;justify-content:space-between;width:100%;">
+                    <h2 style="color: white;">Seguimiento Ticket</h2>
+                    <button @@click="closeModalDetailSeguimiento" class="btn btn-close">x</button>
+                </div>
+
+                <div v-if="ticketSelect.Id!=0">
+                    <div class="sheet-input" style="margin-top: 20px;">
+                        <div class="sheet-showTop">
+                            <div class="sheet-showTop-header">
+                                <p class="sheet-showTop-title">{{ ticketSelect.ClasificacionProblema.Nombre }}</p>
+                                <p class="sheet-showTop-level" :style="{ color: ticketSelect.NivelAtencion.Color }">
+                                    {{ ticketSelect.NivelAtencion.Nombre }}
+                                </p>
+                            </div>
+                            <div class="sheet-showTop-detail" style="justify-self:center">
+                                <p>{{ ticketSelect.Identificador.Nombre }}, {{ ticketSelect.Sala.Nombre }}</p>
+                            </div>
+                        </div>
+                        <div class="sheet-showTop-detail" style="font-size: 14px; font-weight: 1; display: inline-flex; justify-content: space-around">
+                            <p><strong>Asignado a:</strong> {{ ticketSelect.Asignacion.UsuarioAsignado.Nombres}} {{ ticketSelect.Asignacion.UsuarioAsignado.ApellidoPaterno}} {{ ticketSelect.Asignacion.UsuarioAsignado.ApellidoMaterno}}</p>
+                            @*<p><strong>Numero Documento:</strong> {{ ticketSelect.Asignacion.UsuarioAsignado.NumeroDocumento}}</p>*@
+                            <p><strong>Cargo:</strong> {{ ticketSelect.Asignacion.UsuarioAsignado.Cargo}}</p>
+                        </div>
+                    </div>
+                    <div class="sheet-input" style="margin-top: 20px;">
+                        <div class="sheet-showText">
+                            <p><strong>Fecha de Registro:</strong> {{ new Date(parseInt(ticketSelect.FechaRegistro.match(/\d+/)[0])).toLocaleString() }}</p>
+                            <p>
+                                <strong>
+                                    Fecha Tentativa Termino:
+                                </strong>
+                                {{ new Date(parseInt(ticketSelect.Asignacion.FechaTentativaTermino.match(/\d+/)[0])).toLocaleString('es-ES', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }) }}
+                            </p>
+                            <p><strong>Descripción del Problema:</strong> {{ ticketSelect.Descripcion }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sheet-input" style="margin-top: 20px; place-items:center">
+
+                    <div v-if="ticketsSeguimientosDetail.length>0">
+                        <div v-for="(ticketsSeguimientosDetail, index) in ticketsSeguimientosDetail"
+                             :key="ticketsSeguimientosDetail.id">
+                            <div class="historial-encabezado" style="display: flex; flex-direction:row; justify-content:space-between">
+                                <span class="" style="font-size: 0.9em; color: #555; font-weight: 500;">
+                                    #{{index+1}}
+                                </span>
+                                <span class="" style="font-size: 0.9em; color: #555;">
+                                    {{ ticketsSeguimientosDetail.FechaRegistroStr }}
+                                </span>
+                            </div>
+                            <div class="sheet-showText">
+                                <p><strong>Usuario:</strong>{{ ticketsSeguimientosDetail.UsuarioRegistra.Nombres }} {{ ticketsSeguimientosDetail.UsuarioRegistra.ApellidoPaterno }} {{ ticketsSeguimientosDetail.UsuarioRegistra.ApellidoMaterno }}</p>
+                            </div>
+                            <div class="sheet-showText">
+                                <p><strong>Estado Ticket:</strong>{{ ticketsSeguimientosDetail.EstadoTicketActual.Nombre }}</p>
+                            </div>
+                            <div class="sheet-showText">
+                                <p><strong>Proceso:</strong>{{ ticketsSeguimientosDetail.ProcesoActual.Nombre }}</p>
+                            </div>
+                            <div class="sheet-showText" style="border-bottom: 1px solid #e0e0e0;">
+                                <p><strong>Descripcion:</strong>{{ ticketsSeguimientosDetail.Descripcion }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p v-if="ticketsSeguimientosDetail.length==0" class="sin-historial">No tiene historial de seguimiento</p>
+            </div>
+        </div>
+    </div>
+</div>
+@section js
+{
+
+    <script src="~/Content/assets/js/optional/vue/vue.min.js"></script>
+    <script src="~/Content/assets/viewsjs/GLPImodulo/reportes.js"></script>
+
+}

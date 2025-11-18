@@ -1,0 +1,148 @@
+﻿
+@{
+    ViewBag.Title = "EmpadronamientoFormulario";
+}
+
+<style>
+    video {
+        width: 192px;
+        height: 192px;
+        background: rgba(0,0,0,0.2);
+        -webkit-transform: scaleX(-1); /* mirror effect while using front cam */
+        transform: scaleX(-1); /* mirror effect while using front cam */
+    }
+
+    #canvas {
+        width: 192px;
+        height: 192px;
+        -webkit-transform: scaleX(-1); /* mirror effect while using front cam */
+        transform: scaleX(-1); /* mirror effect while using front cam */
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-6 col-sm-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-dollar"></span>
+                                <span class="main-text">
+                                    Formulario Registro Empadronamiento
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div>
+                                <form id="form_registro_">
+                                    <div class="col-md-4 col-sm-12">
+                                        <div class="input-group form-group">
+                                            <span class="input-group-addon">
+                                                Tipo Documento
+                                            </span>
+                                            <select id="cboTipoDocumento" class="form-control input-sm select" name="TipoDocumentoId"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8 col-sm-12">
+                                        <div class="input-group form-group">
+                                            <span class="input-group-addon">
+                                                Nro Documento
+                                            </span>
+                                            <input type="text" class="form-control input-sm noKeyPress" id="txtnrodoc" name="NroDoc" placeholder="Nro. Documento">
+                                            <span class="input-group-addon buscar" style="cursor:pointer">
+                                                <i class="fa fa-search"></i>
+                                            </span>
+                                            @*<span class="input-group-addon bg-color-green">
+                    <i class="fa fa-camera"></i>
+                </span>*@
+                                            <span class="input-group-addon bg-color-red limpiar" style="cursor:pointer">
+                                                <i class="fa fa-close"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-md-4 col-sm-12">
+                                        <div class="input-group form-group">
+                                            <span class="input-group-addon">
+                                                Nombre
+                                            </span>
+                                            <input type="text" class="form-control input-sm " id="txt_nombre" value="" name="Nombre" placeholder="Nombre ">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-12">
+                                        <div class="input-group form-group">
+                                            <span class="input-group-addon">
+                                                Apellido Paterno
+                                            </span>
+                                            <input type="text" class="form-control input-sm  " id="txt_apepaterno" name="ApelPat" placeholder=" Apellido Paterno">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-12">
+                                        <div class="input-group form-group">
+                                            <span class="input-group-addon">
+                                                Apellido Materno
+                                            </span>
+                                            <input type="text" class="form-control input-sm" id="txt_materno" name="ApelMat" placeholder="Apellido Materno">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="input-group form-group">
+                                            <span class="input-group-addon">
+                                                Tipo Frec
+                                            </span>
+                                            <select id="cboTipoFrecuencia" class="form-control input-sm select" name="TipoFrecuenciaId"></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="row">
+                                            <div class="col-md-12 col-sm-12">
+                                                <button type="button" id="btnRegistrarAsistencia" class="btn btn-warning col-md-12 col-xs-12 btn-block">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                    Registrar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        
+    </div>
+
+</div>
+
+@section modal
+{
+
+
+}
+@section js
+{
+    <script src="~/Content/assets/viewsjs/AsistenciaCliente/EmpadronamientoFormulario.js"></script>
+
+}

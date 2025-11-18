@@ -1,0 +1,498 @@
+﻿
+@{
+    ViewBag.Title = "Tickets";
+}
+
+
+<style>
+    .contenedor {
+        background-color: white;
+        width: 100%;
+        height: 100%;
+        min-height: 100vh;
+        border-radius: 5px !important;
+        padding: 15px;
+    }
+
+    .btnGlpi {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .sheet-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: flex-end
+    }
+
+    
+
+    .sheet {
+        background-color: white;
+        padding: 25px;
+        max-width: 380px;
+        height: 100%;
+        width: 100%;
+        transform: translateX(100%);
+        transition: transform 0.5s ease;
+        position: fixed;
+        top: 0;
+        box-shadow: #1a2641 1px 20px 5px 1px;
+    }
+
+        .sheet.active {
+            transform: translateX(0);
+        }
+
+    .sheet-input {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .tabs {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+
+    .tab {
+        cursor: pointer;
+        padding: 10px 20px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background-color: #f1f1f1;
+        transition: background-color 0.3s;
+        cursor: pointer;
+    }
+
+        .tab.active {
+            background-color: #007bff;
+            color: white;
+        }
+
+    .tab-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .tab-content {
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #fff;
+    }
+
+    .file-upload-container {
+        width: 100%;
+        min-height: 150px;
+        border: 2px dashed gray;
+        border-radius: 5px;
+        text-align: center;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        transition: border-color 0.3s ease;
+    }
+
+        .file-upload-container.has-files {
+            border: none;
+        }
+
+    .file-upload-placeholder {
+        font-size: 14px;
+        color: gray;
+    }
+
+    .file-preview {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .file-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        border: 1px solid;
+        width: 100px;
+        height: 120px;
+        background-color: white;
+        width: 100%;
+    }
+
+        .file-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .file-item .file-icon {
+            font-size: 60px;
+        }
+
+        .file-item.excel {
+            border-color: green;
+            color: green;
+            border-radius: 5px !important;
+            display: flex;
+            gap: 4px;
+            width: 100%;
+            justify-content: space-around;
+        }
+
+        .file-item.word {
+            border-color: blue;
+            color: blue;
+            border-radius: 5px !important;
+            display: flex;
+            gap: 4px;
+            width: 100%;
+            justify-content: space-around;
+        }
+
+        .file-item.pdf {
+            border-color: red;
+            color: red;
+            border-radius: 5px !important;
+            display: flex;
+            gap: 4px;
+            width: 100%;
+            justify-content: space-around;
+        }
+
+    .file-name {
+        font-size: 12px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .file-size {
+        font-size: 10px;
+        color: gray;
+        text-align: center;
+    }
+
+    .file-input {
+        display: none;
+    }
+
+
+    /* tickets*/
+    .grid-container {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .ticket-container {
+        border: 1px solid;
+        border-radius: 5px !important;
+        padding: 15px;
+        cursor: pointer;
+        transition: all .3s ease;
+        border-color: rgb(219 219 219);
+        box-shadow: 1px 3px 4px #ececec;
+    }
+        .ticket-container:hover {
+            transform: translateY(-10px);
+        }
+
+    /*.nuevo {
+        border-color: rgb(149 189 255);
+        background-color: rgb(233 242 255);
+        border-left: 3px solid rgb(59 130 246);
+        color: rgb(59 130 246);
+    }
+
+    .listo {
+        border-color: rgb(125 237 166);
+        background-color: rgb(245 255 248);
+        border-left: 3px solid rgb(34 197 94);
+        color: rgb(34 197 94);
+    }
+
+    .entregado {
+        border-color: rgb(255 210 72);
+        background-color: rgb(255 254 239);
+        border-left: 3px solid rgb(234 179 8);
+        color: rgb(234 179 8);
+    }*/
+    /*NIVELES*/
+    .nivel-bajo {
+        color: #006400; /* Verde oscuro */
+        background-color: #90EE90; /* Verde claro */
+        padding: 2px 7px !important;
+        border-radius: 25px !important;
+        margin: revert-layer;
+    }
+
+    .nivel-normal {
+        color: #a9a329;
+        background-color: #fffce0;
+        padding: 2px 7px !important;
+        border-radius: 25px !important;
+        margin: revert-layer;
+    }
+
+    .nivel-urgente {
+        color: #8B0000;
+        background-color: #ffe0d4;
+        padding: 2px 7px !important;
+        border-radius: 25px !important;
+        margin: revert-layer;
+    }
+    /*Historial*/
+    .container-historial {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .timeline {
+        position: relative;
+        width: 80%;
+        padding: 20px 0;
+    }
+
+    .timeline-item {
+        position: relative;
+        width: 50%;
+        padding: 10px 20px;
+        box-sizing: border-box;
+    }
+
+        .timeline-item.left {
+            left: 0;
+            text-align: right;
+        }
+
+        .timeline-item.right {
+            left: 50%;
+            text-align: left;
+        }
+
+        .timeline-item .timeline-content {
+            background: #f0f0f0;
+            border-radius: 5px;
+            padding: 15px;
+            display: inline-block;
+            width: 90%;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+            .timeline-item .timeline-content .date {
+                display: block;
+                margin-top: 10px;
+                font-size: 12px;
+                color: #888;
+                text-align: right;
+            }
+    /*MODAL HISTORIAL*/
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        opacity: 0;
+        animation: overlay-fade-in 0.3s forwards;
+    }
+
+    .modal-container {
+        background: white;
+        border-radius: 10px !important;
+        max-width: 900px;
+        width: 100%;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        transform: scale(0.9);
+        max-height: 90vh;
+        overflow: auto;
+    }
+
+    .modal-enter {
+        animation: modal-slide-in 0.3s forwards;
+    }
+
+    .modal-leave {
+        animation: modal-slide-out 0.3s forwards;
+    }
+
+
+    /* Animaciones */
+
+    @@keyframes overlay-fade-in {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @@keyframes modal-slide-in {
+        from {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    @@keyframes modal-slide-out {
+        from {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        to {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+    }
+
+    @@media (min-width: 767px) {
+        .grid-container {
+            grid-template-columns: repeat(2, 1fr); /* 2 columnas en pantallas grandes */
+        }
+    }
+
+    @@media (min-width: 1100px) {
+        .grid-container {
+            grid-template-columns: repeat(3, 1fr); /* 2 columnas en pantallas grandes */
+        }
+    }
+
+    @@media (min-width: 1500px) {
+        .grid-container {
+            grid-template-columns: repeat(4, 1fr); /* 2 columnas en pantallas grandes */
+        }
+    }
+</style>
+
+<div id="AppGlpiVista" style="text-shadow:none;">
+
+    <div class="contenedor">
+       
+        <div class="tickets">
+            <div class="tabs">
+                <div class="tab"
+                     v-for="tab in tabs"
+                     :key="tab.name"
+                     :class="{ active: activeTab === tab.name }"
+                     @@click="activeTab = tab.name">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="20"
+                         height="20"
+                         fill="none"
+                         viewBox="0 0 24 24"
+                         stroke="currentColor"
+                         class="tab-icon">
+                        <path :d="tab.iconPath"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2" />
+                    </svg>
+                    <span>{{ tab.label }}</span>
+                </div>
+            </div>
+
+            <div class="tab-content">
+                <div v-if="activeTab === 'tickets'">
+                    <h3>Tickets</h3>
+                    <p>Contenido de la pestaña Tickets.</p>
+
+                    <div class="grid-container">
+                        <div v-for="(item, index) in tickets" :class="['ticket-container', getStatusClass(item.estado)]" @@click="openModalDetail(item.Id,item)" :key="index">
+                            <div style="display:flex; justify-content:space-between">
+                                <p style="font-size:22px;font-weight:normal;">{{item.ClasificacionProblema.Nombre}}</p>
+                                <p :style="{color:item.NivelAtencion.Color}">
+                                    {{ item.NivelAtencion.Nombre }}
+                                </p>
+                            </div>
+
+                            <p>{{item.Identificador.Nombre}}</p>
+                            <p>{{item.Sala.Nombre}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div v-if="activeTab === 'misTickets'">
+                    <h3>Mis Tickets</h3>
+                    <p>Contenido de la pestaña Mis Tickets.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    @*********************************MODAL HISTORIAL*********************************@
+    <div v-if="showModal" class="modal-overlay">
+        <div class="modal-container" :class="{'modal-enter': showModal, 'modal-leave': !showModal}">
+            <div style="position:sticky;top:0;background-color:white;z-index:1;padding:15px;">
+                <div style="display:flex;justify-content:space-between;width:100%;">
+                    <h2>Modal con Animación</h2>
+                    <button @@click="closeModalDetail" class="btn btn-close">Cerrar</button>
+                </div>
+                <div style="display:flex; justify-content:space-between">
+                    <p style="font-size:22px;font-weight:normal;">{{ticketSelect.ClasificacionProblema.Nombre}}</p>
+                    <p :style="{color:ticketSelect.NivelAtencion.Color}">
+                        {{ ticketSelect.NivelAtencion.Nombre }}
+                    </p>
+                </div>
+                <p>{{ticketSelect.Identificador.Nombre}}</p>
+                <p>{{ticketSelect.Sala.Nombre}}</p>
+            </div>
+            <div v-if="showModal" id="ticket-history" class="container-historial">
+
+                <div class="timeline">
+                    <div v-for="(record, index) in historial"
+                         :key="record.id"
+                         :class="['timeline-item', index % 2 === 0 ? 'left' : 'right']">
+                        <div class="timeline-content">
+                            <h4>{{ record.title }}</h4>
+                            <p>{{ record.description }}</p>
+                            <span class="date">{{ new Date(record.date).toLocaleString() }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section js
+{
+
+    <script src="~/Content/assets/js/optional/vue/vue.min.js"></script>
+    <script src="~/Content/assets/viewsjs/GLPImodulo/tikets.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/bootstrap-multiselect.min.js"></script>
+    <script src="~/Content/assets/js/optional/apexcharts/apexcharts.min.js"></script>
+
+}
+
+

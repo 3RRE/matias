@@ -1,0 +1,10 @@
+{
+  "401": {
+    "title": "No Autorizado",
+    "description": "No tienes autorización para acceder, comunicate con el Administrador."
+  },
+  "403": {
+    "title": "Sin Permisos",
+    "description": "No cuentas con los permisos necesarios para acceder al módulo."
+  }
+}

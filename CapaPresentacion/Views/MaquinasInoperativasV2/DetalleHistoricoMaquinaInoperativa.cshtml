@@ -1,0 +1,1135 @@
+﻿
+@{
+    ViewBag.Title = "MaquinaInoperativaHistoricoVista";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using System.Activities.Expressions
+@using System.Web.Script.Serialization
+@using System.Web.UI.WebControls
+@using S3k.Utilitario;
+
+@{
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+    String maquinaInoperativa = new JavaScriptSerializer().Serialize(ViewBag.maquinaInoperativa);
+    String listaProblemas = new JavaScriptSerializer().Serialize(ViewBag.listaProblemas);
+    String listaProblemasNuevo = new JavaScriptSerializer().Serialize(ViewBag.listaProblemasNuevo);
+    String listaPiezas = new JavaScriptSerializer().Serialize(ViewBag.listaPiezas);
+    String listaRepuestos = new JavaScriptSerializer().Serialize(ViewBag.listaRepuestos);
+    String listaTraspasos = new JavaScriptSerializer().Serialize(ViewBag.listaTraspasos);
+    String listaCompras = new JavaScriptSerializer().Serialize(ViewBag.listaCompras);
+    String listaCorreos = new JavaScriptSerializer().Serialize(ViewBag.listaCorreos);
+    String estadoActual = new JavaScriptSerializer().Serialize(ViewBag.estadoActual);
+}
+<script type="text/javascript">
+    maquinaInoperativa = (@Html.Raw(maquinaInoperativa));
+    listaProblemas = (@Html.Raw(listaProblemas));
+    listaProblemasNuevo = (@Html.Raw(listaProblemasNuevo));
+    listaPiezas = (@Html.Raw(listaPiezas));
+    listaRepuestos = (@Html.Raw(listaRepuestos));
+    listaTraspasos = (@Html.Raw(listaTraspasos));
+    listaCompras = (@Html.Raw(listaCompras));
+    listaCorreos = (@Html.Raw(listaCorreos));
+    estadoActual = (@Html.Raw(estadoActual));
+</script>
+
+
+
+<style>
+
+    /* --- Start progress bar --- */
+    h2 {
+        font-weight: 700;
+        margin-bottom: 40px;
+    }
+
+    #progress-content-section .section-content p {
+        color: black !important;
+    }
+
+    h3 {
+        font-weight: 500;
+    }
+
+    .process-wrapper {
+        margin: auto;
+        max-width: 1080px;
+    }
+
+    body {
+        text-shadow: unset;
+    }
+
+    @@media(max-width:900px) {
+        #progress-bar-container {
+            width: 100%;
+        }
+
+        .step-inner {
+            font-size: 8px !important;
+        }
+
+        .cont-step {
+            padding: 0 3px;
+        }
+
+        .section-content {
+            padding: 25px 10px !important;
+        }
+    }
+
+    #progress-bar-container {
+        position: relative;
+        width: 90%;
+        margin: auto;
+        height: 100px;
+        margin-top: 65px;
+    }
+
+        #progress-bar-container ul {
+            padding: 0;
+            margin: 0;
+            padding-top: 15px;
+            z-index: 9999;
+            position: absolute;
+            width: 100%;
+            margin-top: -40px
+        }
+
+        #progress-bar-container li:before {
+            content: " ";
+            display: block;
+            margin: auto;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: solid 2px #aaa;
+            transition: all ease 0.3s;
+        }
+
+        #progress-bar-container li.active:before, #progress-bar-container li:hover:before {
+            border: solid 2px #fff;
+            background: linear-gradient(to right, #293A52 0%,#fff 100%);
+        }
+
+        #progress-bar-container li {
+            list-style: none;
+            float: left;
+            width: 20%;
+            text-align: center;
+            color: #aaa;
+            text-transform: uppercase;
+            font-size: 11px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all ease 0.2s;
+            vertical-align: bottom;
+            height: 60px;
+            position: relative;
+        }
+
+            #progress-bar-container li .step-inner {
+                position: absolute;
+                width: 100%;
+                bottom: 0;
+                font-size: 14px;
+            }
+
+            #progress-bar-container li.active, #progress-bar-container li:hover {
+                color: #444;
+            }
+
+            #progress-bar-container li:after {
+                content: " ";
+                display: block;
+                width: 6px;
+                height: 6px;
+                background: #777;
+                margin: auto;
+                border: solid 7px #fff;
+                border-radius: 50%;
+                margin-top: 40px;
+                box-shadow: 0 2px 13px -1px rgba(0,0,0,0.3);
+                transition: all ease 0.2s;
+            }
+
+            #progress-bar-container li:hover:after {
+                background: #555;
+            }
+
+            #progress-bar-container li.active:after {
+                background: #207893;
+            }
+
+        #progress-bar-container #line {
+            width: 80%;
+            margin: auto;
+            background: #eee;
+            height: 6px;
+            position: absolute;
+            left: 10%;
+            top: 57px;
+            z-index: 1;
+            border-radius: 50px;
+            transition: all ease 0.9s;
+        }
+
+        #progress-bar-container #line-progress {
+            content: " ";
+            width: 3%;
+            height: 100%;
+            background: #207893;
+            background: linear-gradient(to right, #207893 0%,#2ea3b7 100%);
+            position: absolute;
+            z-index: 2;
+            border-radius: 50px;
+            transition: all ease 0.9s;
+        }
+
+    #progress-content-section {
+        width: 90%;
+        margin: auto;
+        background: #fff;
+        border-radius: 7px !important;
+        border: 1px solid gray;
+    }
+
+        #progress-content-section .section-content {
+            padding: 30px 40px;
+            text-align: center;
+        }
+
+            #progress-content-section .section-content h2 {
+                font-size: 17px;
+                text-transform: uppercase;
+                color: #333;
+                letter-spacing: 1px;
+            }
+
+            #progress-content-section .section-content p {
+                font-size: 16px;
+                line-height: 1.8em;
+                color: #777;
+            }
+
+        #progress-content-section .section-content {
+            display: none;
+            animation: FadeInUp 700ms ease 1;
+            animation-fill-mode: forwards;
+            transform: translateY(15px);
+            opacity: 0;
+        }
+
+            #progress-content-section .section-content.active {
+                display: block;
+            }
+
+    @@keyframes FadeInUp {
+        0% {
+            transform: translateY(15px);
+            opacity: 0;
+        }
+
+        100% {
+            transform: translateY(0px);
+            opacity: 1;
+        }
+    }
+
+    /*CARD*/
+
+    <style type="text/css" >
+    .select2-container .select2-selection--single {
+        height: 27px !important;
+    }
+
+    .select2-container .select2-selection--multiple {
+        min-height: 27px !important;
+        max-height: 27px !important;
+    }
+
+    .select2-container .select2-selection--multiple {
+        overflow-y: scroll;
+    }
+
+    .table thead tr {
+        background-color: #0b1f46 !important;
+        height: 45px;
+    }
+
+    .cardMachine {
+        border-radius: 7px !important;
+        background-color: white;
+        padding: 15px 15px;
+    }
+
+    .sectionCard {
+        border-radius: 7px !important;
+        padding: 15px 1px;
+        margin-bottom: 15px;
+        background-color: #f7f7f7;
+        border: 1px solid #d9d9d9;
+    }
+
+    .collapsed {
+        box-shadow: none !important;
+    }
+
+    .block.collapsed .block-heading .block-controls .icon.block-control-collapse {
+        color: #161616 !important;
+    }
+
+    .block {
+        box-shadow: none !important;
+    }
+
+    .zon {
+        background-color: white !important;
+        border-bottom: none !important;
+        background: none !important;
+    }
+
+    .infomaq {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .maqContain {
+        box-shadow: 0px 1px 5px -1px rgba(128,128,128,0.75);
+        padding: 5px 15px;
+        border-radius: 5px !important;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        background-color: #81b0ff1f;
+        margin-bottom: 7px;
+    }
+
+    .titleMaq {
+        font-weight: bold;
+        color: #05256e;
+        justify-content: center;
+        display: flex;
+    }
+
+    .textMaq {
+        color: #6d6d6d;
+        text-shadow: none !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    .checkbox-rect input[type="checkbox"] {
+        display: none;
+    }
+
+        .checkbox-rect input[type="checkbox"] + label {
+            display: block;
+            position: relative;
+            padding-left: 23px;
+            margin-bottom: 20px;
+            font: 14px/20px "Open Sans", Arial, sans-serif;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+
+        .checkbox-rect input[type="checkbox"]:hover + label:hover {
+            color: rgb(23, 86, 228);
+        }
+
+        .checkbox-rect input[type="checkbox"]:hover + label:before {
+            background: #20385a;
+            box-shadow: inset 0px 0px 0px 2px #f7f2f2;
+        }
+
+        .checkbox-rect input[type="checkbox"] + label:last-child {
+            margin-bottom: 0;
+        }
+
+        .checkbox-rect input[type="checkbox"] + label:before {
+            content: "";
+            display: block;
+            width: 1.4em;
+            height: 1.4em;
+            border: 1px solid #343a3f;
+            border-radius: 0.2em;
+            position: absolute;
+            left: 0;
+            top: 0;
+            -webkit-transition: all 0.2s, background 0.2s ease-in-out;
+            transition: all 0.2s, background 0.2s ease-in-out;
+            background: #f3f3f3;
+        }
+
+        .checkbox-rect input[type="checkbox"]:checked + label:before {
+            width: 1.3em;
+            height: 1.3em;
+            border-radius: 0.2em;
+            border: 2px solid #fff;
+            -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+            background: #50565a;
+            box-shadow: 0 0 0 1px #000;
+        }
+
+    .tableStyles {
+        background-color: white;
+        border-radius: 5px !important;
+        padding: 15px 10px;
+    }
+
+    .dataTables_scrollHeadInner {
+        width: 100% !important;
+    }
+
+    @@media (max-width: 500px) {
+        .cardMachine {
+            padding: 2px;
+        }
+
+        .right-column-content {
+            padding: 8px !important;
+        }
+
+        .input-group-addon {
+            font-size: .7rem;
+        }
+
+        .tituloCard {
+            flex-direction: column;
+        }
+    }
+
+
+    /*COMENTARIOS*/
+    /**
+     * Oscuro: #283035
+     * Azul: #03658c
+     * Detalle: #c7cacb
+     * Fondo: #dee1e3
+     ----------------------------------*/
+    * {
+        margin: 0;
+        padding: 0;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    a {
+        color: #03658c;
+        text-decoration: none;
+    }
+
+    ul {
+        list-style-type: none;
+    }
+
+    body {
+        font-family: 'Roboto', Arial, Helvetica, Sans-serif, Verdana;
+        background: #dee1e3;
+    }
+
+    /** ====================
+     * Lista de Comentarios
+     =======================*/
+    .comments-container {
+        margin: 0 auto 15px;
+        width: 768px;
+    }
+
+        .comments-container h1 {
+            font-size: 24px;
+            color: #283035;
+            font-weight: 400;
+            margin-top: 20px;
+        }
+
+            .comments-container h1 a {
+                font-size: 18px;
+                font-weight: 700;
+            }
+
+    .comments-list {
+        margin-top: 30px;
+        position: relative;
+    }
+
+        /**
+     * Lineas / Detalles
+     -----------------------*/
+        .comments-list:before {
+            content: '';
+            width: 2px;
+            height: 100%;
+            background: #c7cacb;
+            position: absolute;
+            left: 32px;
+            top: 0;
+        }
+
+        .comments-list:after {
+            content: '';
+            position: absolute;
+            background: #c7cacb;
+            bottom: 0;
+            left: 27px;
+            width: 7px;
+            height: 7px;
+            border: 3px solid #dee1e3;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+        }
+
+    .reply-list:before, .reply-list:after {
+        display: none;
+    }
+
+    .reply-list li:before {
+        content: '';
+        width: 60px;
+        height: 2px;
+        background: #c7cacb;
+        position: absolute;
+        top: 25px;
+        left: -55px;
+    }
+
+
+    .comments-list li {
+        margin-bottom: 15px;
+        display: block;
+        position: relative;
+    }
+
+        .comments-list li:after {
+            content: '';
+            display: block;
+            clear: both;
+            height: 0;
+            width: 0;
+        }
+
+    .reply-list {
+        padding-left: 88px;
+        clear: both;
+        margin-top: 15px;
+    }
+    /**
+     * Avatar
+     ---------------------------*/
+    .comments-list .comment-avatar {
+        width: 65px;
+        height: 65px;
+        position: relative;
+        z-index: 99;
+        float: left;
+        border: 3px solid #FFF;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        overflow: hidden;
+    }
+
+        .comments-list .comment-avatar img {
+            width: 100%;
+            height: 100%;
+        }
+
+    .reply-list .comment-avatar {
+        width: 50px;
+        height: 50px;
+    }
+
+    .comment-main-level:after {
+        content: '';
+        width: 0;
+        height: 0;
+        display: block;
+        clear: both;
+    }
+
+    .comment-main-level {
+        display: flex;
+        margin-top: 30px;
+    }
+
+    #usuarios-list li {
+        color: white;
+    }
+
+
+    /* CSS */
+    .button-17 {
+        align-items: center;
+        appearance: none;
+        background-color: #F8FCFE;
+        border-radius: 24px;
+        border-style: none;
+        box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+        box-sizing: border-box;
+        color: #3c4043;
+        cursor: pointer;
+        display: inline-flex;
+        fill: currentcolor;
+        font-family: "Google Sans",Roboto,Arial,sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        height: 48px;
+        justify-content: center;
+        letter-spacing: .25px;
+        line-height: normal;
+        max-width: 99%;
+        overflow: visible;
+        padding: 2px 24px;
+        position: relative;
+        text-align: center;
+        text-transform: none;
+        transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1),opacity 15ms linear 30ms,transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        width: 99%;
+        will-change: transform,opacity;
+        z-index: 0;
+    }
+
+        .button-17:hover {
+            background: #F6F9FE;
+            color: #174ea6;
+        }
+
+        .button-17:active {
+            box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%);
+            outline: none;
+        }
+
+        .button-17:focus {
+            outline: none;
+            border: 2px solid #4285f4;
+        }
+
+        .button-17:not(:disabled) {
+            box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+        }
+
+            .button-17:not(:disabled):hover {
+                box-shadow: rgba(60, 64, 67, .3) 0 2px 3px 0, rgba(60, 64, 67, .15) 0 6px 10px 4px;
+            }
+
+            .button-17:not(:disabled):focus {
+                box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+            }
+
+            .button-17:not(:disabled):active {
+                box-shadow: rgba(60, 64, 67, .3) 0 4px 4px 0, rgba(60, 64, 67, .15) 0 8px 12px 6px;
+            }
+
+        .button-17:disabled {
+            box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+        }
+
+
+    /**
+     * Caja del Comentario
+     ---------------------------*/
+    .comments-list .comment-box {
+        width: 680px;
+        float: right;
+        position: relative;
+        -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+        -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+        box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+    }
+
+        .comments-list .comment-box:before, .comments-list .comment-box:after {
+            content: '';
+            height: 0;
+            width: 0;
+            position: absolute;
+            display: block;
+            border-width: 10px 12px 10px 0;
+            border-style: solid;
+            border-color: transparent #FCFCFC;
+            top: 8px;
+            left: -11px;
+        }
+
+        .comments-list .comment-box:before {
+            border-width: 11px 13px 11px 0;
+            border-color: transparent rgba(0,0,0,0.05);
+            left: -12px;
+        }
+
+    .reply-list .comment-box {
+        width: 610px;
+    }
+
+    .comment-box .comment-head {
+        background: #FCFCFC;
+        padding: 10px 12px;
+        border-bottom: 1px solid #E5E5E5;
+        overflow: hidden;
+        -webkit-border-radius: 4px 4px 0 0;
+        -moz-border-radius: 4px 4px 0 0;
+        border-radius: 4px 4px 0 0;
+        width: 100%;
+    }
+
+        .comment-box .comment-head i {
+            float: right;
+            margin-left: 14px;
+            position: relative;
+            top: 2px;
+            color: #A6A6A6;
+            cursor: pointer;
+            -webkit-transition: color 0.3s ease;
+            -o-transition: color 0.3s ease;
+            transition: color 0.3s ease;
+        }
+
+            .comment-box .comment-head i:hover {
+                color: #03658c;
+            }
+
+    .comment-box .comment-name {
+        color: #283035;
+        font-size: 18px;
+        font-weight: 700;
+        float: left;
+        margin-right: 10px;
+    }
+
+        .comment-box .comment-name a {
+            color: #283035;
+        }
+
+    .comment-box .comment-head span {
+        float: right;
+        margin-left: 14px;
+        position: relative;
+        top: 2px;
+        color: #A6A6A6;
+        cursor: pointer;
+        -webkit-transition: color 0.3s ease;
+        -o-transition: color 0.3s ease;
+        transition: color 0.3s ease;
+    }
+
+    .comment-box .comment-content {
+        float: left;
+        text-align: left;
+        background: #FFF;
+        padding: 12px;
+        font-size: 15px;
+        color: #595959;
+        -webkit-border-radius: 0 0 4px 4px;
+        -moz-border-radius: 0 0 4px 4px;
+        border-radius: 0 0 4px 4px;
+    }
+
+    .comment-box .comment-name.by-author, .comment-box .comment-name.by-author a {
+        color: #03658c;
+    }
+
+        .comment-box .comment-name.by-author:after {
+            content: 'autor';
+            background: #03658c;
+            color: #FFF;
+            font-size: 12px;
+            padding: 3px 5px;
+            font-weight: 700;
+            margin-left: 10px;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+        }
+
+    textarea {
+        width: 100%;
+        resize: none;
+        height: 60px;
+    }
+
+    .comments-textarea {
+        display: flex;
+        position: relative;
+        justify-content: space-between;
+    }
+
+    .usuarios-popup {
+        top: 0;
+        width: 100%;
+        height: 0px;
+        overflow-y: auto;
+        transition: all 0.3s ease;
+    }
+
+    @@keyframes {
+    }
+
+    .usuarios-popup-open {
+        height: 100px;
+    }
+
+    /** =====================
+     * Responsive
+     ========================*/
+    @@media only screen and (max-width: 766px) {
+
+        .comments-list .comment-box {
+            width: 390px;
+        }
+
+        .reply-list .comment-box {
+            width: 320px;
+        }
+    }
+
+    @@media only screen and (max-width: 1000px) {
+        .comments-container {
+            width: 100%;
+        }
+    }
+
+
+    /* CSS */
+    .button-62 {
+        background: linear-gradient(to bottom right, #1d1a54, #2b6aac);
+        border: 0;
+        border-radius: 12px;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: inline-block;
+        font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 2.5;
+        outline: transparent;
+        padding: 0 1rem;
+        text-align: center;
+        text-decoration: none;
+        transition: box-shadow .2s ease-in-out;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        white-space: nowrap;
+    }
+
+        .button-62:not([disabled]):focus {
+            box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+        }
+
+        .button-62:not([disabled]):hover {
+            box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+        }
+
+    .boxComment {
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 15px;
+        padding: 8px;
+        font-family: 'Arial', sans-serif;
+        font-size: 14px;
+        height: 80px;
+        outline: none; /* Quita el contorno predeterminado al hacer clic */
+        overflow-y: auto; /* Agrega desplazamiento vertical si el contenido es demasiado largo */
+    }
+
+        .boxComment:focus {
+            border-color: #3498db; /* Cambia el color del borde al enfocarse */
+        }
+
+
+    /* multi select */
+    .form-multiselect {
+        border: 1px solid #4a85b7;
+        overflow: hidden;
+        height: 27px !important;
+        line-height: 17px;
+    }
+
+        .form-multiselect .caret {
+            position: absolute;
+            top: 10px;
+            right: 5px;
+        }
+
+    .multiselect-container.dropdown-menu {
+        width: 100%;
+        background: #FFFFFF !important;
+    }
+
+    .multiselect-container .multiselect-item .input-group-addon {
+        position: absolute;
+        left: 5px;
+        top: 8px;
+        z-index: 4;
+        background: transparent;
+        color: #999999;
+        padding: 0;
+        margin: 0;
+        text-shadow: none;
+    }
+
+    .multiselect-container .multiselect-item .multiselect-search {
+        height: 30px;
+        padding: 5px 10px 5px 20px;
+        box-shadow: none !important;
+        border: 1px solid #EEEEEE !important;
+    }
+
+        .multiselect-container .multiselect-item .multiselect-search:focus {
+            border-color: #E1E1E1 !important;
+        }
+
+    .multiselect-container .multiselect-item .btn-default {
+        height: 30px;
+        padding: 2px 4px;
+        color: #484848;
+        background: #EEEEEE;
+        border: 1px solid #EEEEEE;
+        box-shadow: none !important;
+    }
+
+        .multiselect-container .multiselect-item .btn-default:hover {
+            background: #E1E1E1;
+        }
+
+    .multiselect-container > li > a > label {
+        /*padding: 5px 10px 5px 30px;*/
+    }
+
+        .multiselect-container > li > a > label > input[type=checkbox] {
+            margin-top: 1px;
+        }
+
+    .multiselect-container.dropdown-menu > .active > a,
+    .multiselect-container.dropdown-menu > .active > a:focus,
+    .multiselect-container.dropdown-menu > .active > a:hover {
+        background-color: #263E78 !important;
+    }
+
+        .multiselect-container.dropdown-menu > .active > a > label.checkbox,
+        .multiselect-container.dropdown-menu > .active > a:focus > label.checkbox,
+        .multiselect-container.dropdown-menu > .active > a:hover > label.checkbox {
+            color: #FFFFFF !important;
+        }
+
+    /* multi select */
+    .chrtanel {
+        width: 100%;
+        position: relative;
+        background: #FFFFFF;
+    }
+
+    .chrtanel-body {
+        position: relative;
+        padding: 10px;
+    }
+
+    .room-dflex {
+        display: flex;
+        align-items: center;
+    }
+
+        .room-dflex .log-room {
+            flex-grow: 1;
+            display: block;
+            line-height: 0;
+            white-space: nowrap;
+        }
+
+        .room-dflex .log-chart-action {
+            cursor: pointer;
+            font-size: 16px;
+            color: #074B88;
+            margin: 1px;
+            display: block;
+            line-height: 0;
+        }
+</style>
+<script src="https://cdn.rawgit.com/WICG/MutationObserver/v2.0.7/dist/mutationobserver.min.js"></script>
+<div class="row">
+
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-shield"></span>
+                                <span class="main-text">
+                                    Historico de Maquina Inoperativa
+                                </span>
+                            </h1>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+
+                        <div class="col-md-4 col-sm-4  col-xs-6 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnExcel" class="btn btn-primary btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-file"></span>
+                                        Excel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-6 pull-right">
+                            <button type="button" class="btn btn-success btn-sm col-md-12 col-sm-12 col-xs-12 btnListar"><span class="glyphicon glyphicon-list-alt"></span> Listado </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner ">
+
+
+                    <fieldset class="sectionCard" style="position:relative">
+                        <div style="position:absolute;top:10px; right:10px;display:flex;gap:10px">
+                            <button style="background-color:#E68523;color:white;padding:5px 30px" type="button" class="btn  btn-sm col-md-12 col-sm-12 col-xs-12 btnCorreos"><span class="glyphicon glyphicon-list-alt" style="margin-right:7px"></span> Reenviar correos </button>
+                            <button style="background-color: royalblue; color: white; padding: 5px 30px" type="button" class="btn  btn-sm col-md-12 col-sm-12 col-xs-12 btnCompra"><span class="glyphicon glyphicon-list-alt" style="margin-right:7px"></span> Agregar orden de compra </button>
+                        </div>
+                        <h2 style="margin:13px 0; padding:0; text-align:center; font-weight:700;margin-top:80px">ESTADO MAQUINA INOPERATIVA</h2>
+
+                        <div class="col-md-12 cont-step">
+                            <div class="row">
+                                <div class=" col-md-12">
+
+                                    <div class="process-wrapper">
+                                        <div id="progress-bar-container">
+                                            @*<ul>
+                                                    <li class="step step01 active"><div class="step-inner">CREADO</div></li>
+                                                    <li class="step step02"><div class="step-inner">ATENDIDA INOPERATIVA</div></li>
+                                                    <li class="step step03"><div class="step-inner">ATENCION REVISADA</div></li>
+                                                    <li class="step step04"><div class="step-inner">SOLICITUDES</div></li>
+                                                    <li class="step step05"><div class="step-inner">ATENDIDA OPERATIVA</div></li>
+                                                </ul>*@
+
+                                            <div id="line">
+                                                <div id="line-progress"></div>
+                                            </div>
+                                        </div>
+
+                                        <div id="progress-content-section">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+@section modal{
+    <div class="modal fade" tabindex="-1" id="modalCorreos" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><span id=""></span>Reenviar correos</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+
+                </div>
+                <div class="modal-body" id="" style="height:65px">
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div class="input-group form-group" style="max-height:20px">
+                            <span class="input-group-addon">Correo</span>
+                            <select class="form-control input-sm form-multiselect" id="cboCorreos" name="cboCorreos" multiple="multiple"></select>
+                        </div>
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn  btn-sm btn-warning btnReenviar"><i class="fa fa-save"></i> Enviar</button>
+                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" tabindex="-1" id="modalOrdenCompra" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><span id=""></span>Agregar orden de compra</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+
+                </div>
+                <div class="modal-body" id="" style="height:65px">
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <input type="text" class="form-control input-sm toUpperCase" id="ordenCompra" name="ordenCompra" placeholder="Numero de orden de compra" data-bv-field="ordenCompra"><i class="form-control-feedback bv-no-label" data-bv-icon-for="ordenCompra" style="display: none;"></i>
+                    </div>
+                </div>
+
+                <div class="modal-body" style="height:65px">
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <input type="date" class="form-control input-sm" id="fechaHoraOrdenCompra" name="fechaHoraOrdenCompra" placeholder="Fecha y hora de orden de compra">
+                    </div>
+                </div>
+
+
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-warning btnAgregarOrden"><i class="fa fa-save"></i> Agregar</button>
+                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+@section js
+{
+    <script src="~/Content/assets/viewsjs/MaquinasInoperativasV2/DetalleMaquinaInoperativaHistorico.js?v=@fecha_archivos"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/bootstrap-multiselect.min.js"></script>
+
+}

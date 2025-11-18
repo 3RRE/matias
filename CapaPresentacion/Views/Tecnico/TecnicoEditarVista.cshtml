@@ -1,0 +1,114 @@
+﻿
+@{
+    ViewBag.Title = "TecnicoEditarVista";
+}
+
+@using System.Activities.Expressions
+@using System.Web.Script.Serialization
+@using System.Web.UI.WebControls
+
+@{
+    String tecnico = new JavaScriptSerializer().Serialize(ViewBag.Tecnico);
+}
+
+<script type="text/javascript">
+    tecnico = (@Html.Raw(tecnico));
+</script>
+
+@section css
+{
+    <style type="text/css">
+        .help-block {
+            display: none !important;
+        }
+    </style>
+}
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-shield"></span>
+                                <span class="main-text">
+                                    Editar Tecnico
+                                </span>
+                            </h1>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+
+                        <div class="col-md-4 col-md-offset-4 col-sm-6 col-xs-6">
+                            <button type="button" class="btn btn-success btn-sm col-md-12 col-sm-12 col-xs-12 btnListar"><span class="glyphicon glyphicon-list-alt"></span> Listado </button>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <button type="button" class="btn btn-primary btn-sm col-md-12 col-sm-12 col-xs-12 btnGuardar "><span class="glyphicon glyphicon-floppy-disk"></span> Guardar </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row auditoriaForm">
+    <div class="col-md-12 col-sm-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <form class="medium" role="form" id="frmNuevo" method="post" action="#">
+                        <div class="row">
+                            <input type="hidden" name="TecnicoId" id="txtTecnicoId"/>
+                            <div class="col-md-4">
+                                <div class="form-group cbo">
+                                    <label for="cboEmpleado">Empleado</label>
+                                    <select class="form-control input-sm " id="cboEmpleado" name="EmpleadoId">
+                                        <option value="">--Seleccione--</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group cbo">
+                                    <label for="cboAreaTech">Area Tech</label>
+                                    <select class="form-control input-sm " id="cboAreaTech" name="AreaTechId">
+                                        <option value="">--Seleccione--</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group cbo">
+                                    <label for="cboNivelTecnico">Nivel Tecnico</label>
+                                    <select class="form-control input-sm " id="cboNivelTecnico" name="NivelTecnicoId">
+                                        <option value="">--Seleccione--</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/Tecnico/TecnicoEditarVista.js"></script>
+}
+

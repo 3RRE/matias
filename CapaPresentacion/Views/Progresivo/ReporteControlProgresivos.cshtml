@@ -1,0 +1,275 @@
+﻿@section css{
+    <style>
+        .select2-container .select2-search--inline {
+            float: none;
+        }
+
+        #contenedorReporte #progresivo-container {
+            padding: 5px 15px;
+            border: 1px solid;
+            border-radius: 5px !important;
+            border-color: gray;
+            margin-bottom: 15px;
+            text-shadow: none;
+        }
+
+        #containerGeneral {
+            background-color: white !important;
+            padding: 15px 15px;
+            border-radius: 5px !important;
+        }
+
+        .sorting, .sorting_disabled, .sorting_asc, .sorting_desc {
+            background-color: #0b1f46 !important;
+            height: 40px;
+        }
+
+        #formfiltro {
+            background-color: white;
+            padding: 15px 35px;
+            margin-bottom: 20px;
+            border-radius: 5px !important;
+        }
+
+        .filtrosProgresivo {
+            padding: 15px 15px;
+            border-radius: 5px !important;
+            border: 1px solid gray;
+        }
+
+        h5 {
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        #imgSearch {
+            animation: animatedSearch 1.5s infinite ease-in-out alternate;
+        }
+
+        @@media (max-width: 500px) {
+            .filtrosProgresivo {
+                padding: 5px 5px;
+            }
+
+            #contenedorReporte #progresivo-container {
+                padding: 5px 5px;
+            }
+
+            #containerGeneral {
+                padding: 5px 5px;
+            }
+        }
+
+        @@keyframes animatedSearch {
+            from {
+                transform: translateY(-15px)
+            }
+
+            to {
+                transform: translateY(0)
+            }
+        }
+    </style>
+
+}
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-block-menu"></span>
+                                <span class="main-text">
+                                    Reporte Control Progresivos - Administrativo
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12  col-xs-12">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnBuscar" class="btn btn-success btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-book"></span>
+                                        Buscar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12  col-xs-12">
+                            <div class="row ">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnExcel" class="btn btn-primary btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-file"></span>
+                                        Excel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        @*<div class="col-md-4 col-sm-12  col-xs-12">
+                            <div class="row ">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnSincronizar" class="btn btn-danger btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-refresh"></span>
+                                        Sincronizar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>*@
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+
+                        <div style="padding: 0 10px; " class="col-md-12">
+                            <div class="col-xs-12 col-md-12 col-sm-12" id="formfiltro">
+                                <div class="row filtrosProgresivo">
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Fecha Inicio
+                                            </span>
+                                            <input type="text" class="form-control input-sm dateOnly_" id="txtFechaInicio" value="" readonly placeholder="Fecha">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="input-group ">
+                                            <span class="input-group-addon">
+                                                FechaFin
+                                            </span>
+                                            <input type="text" class="form-control input-sm dateOnly_" id="txtFechaFin" value="" readonly placeholder="Fecha">
+                                        </div>
+                                    </div>
+                                    @*<div class="col-md-12 col-sm-12">
+                                            <div class="input-group ">
+                                                <span class="input-group-addon">
+                                                    Empresa
+                                                </span>
+                                                <select class="form-control input-sm" id="cboEmpresa" name="cboEmpresa" placeholder="Seleccione Empresa" multiple="multiple">
+                                                </select>
+                                            </div>
+                                        </div>*@
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="input-group ">
+                                            <span class="input-group-addon">
+                                                Sala
+                                            </span>
+                                            <select class="form-control input-sm input-select" id="cboSala" name="cboSala" placeholder="Seleccione Sala" multiple="multiple">
+                                                <option></option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Misteriosos
+                                            </span>
+                                            <select class="form-control input-sm input-select" id="cboProgresivo" name="cboProgresivo" placeholder="Seleccione Misterioso" multiple="multiple">
+                                                <option></option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="containerGeneral">
+                            <div id="overlaySearch" style="display:flex; justify-content:center; align-items: center;padding:30px 0;flex-direction:column;gap:15px;">
+                                <img src="~/Content/assets/images/searchIcon.png" style="width:10%;" id="imgSearch" />
+                                <p>Por favor, realize una búsqueda</p>
+                            </div>
+                            <div id="contenedorReporte">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+@section modal
+{
+    <!-- Modal full-modal -->
+    <div class="modal fade full-modal" id="full-modalSincronizar" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label">Sincronizar</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12  col-xs-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            Fecha
+                                        </span>
+                                        <input type="text" class="form-control input-sm" id="txtFechaSincronizacion" readonly />
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12  col-xs-12">
+                                    <div class="row ">
+                                        <div class="col-md-12 col-sm-12">
+                                            <button type="button" id="btnEjecutarSincronizacion" class="btn btn-warning btn-sm col-md-12 col-xs-12">
+                                                <span class="glyphicon glyphicon-file"></span>
+                                                Ejecutar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- Modal full-modal -->
+}
+@section js
+{
+    <script id="signalrScript" src="~/Scripts/jquery.signalR-2.4.3.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Content/assets/viewsjs/Progresivo/Progresivo/ReporteControlProgresivos.js"></script>
+}

@@ -1,0 +1,228 @@
+﻿@using S3k.Utilitario;
+
+@{
+    ViewBag.Title = "Libro de Reclamaciones";
+    Layout = "~/Views/Shared/_Reclamaciones.cshtml";
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+}
+<style>
+    .select2-container .select2-selection--single {
+        height: 34px;
+    }
+
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        line-height: 32px;
+    }
+
+    .select2-container--default .select2-selection--single {
+        border-radius: 1px;
+    }
+
+    span.validation-invalid-label {
+        border-color: red !important;
+    }
+
+    div.has-error input, div.has-error select, div.has-error textarea {
+        border: 1px solid #D90F0F !important;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-3 text-center">
+                    <img src="~/Content/assets/images/no_image.jpg" class="img-responsive img_logo" style="padding-top: 14px;width: 115px;height:110px;margin: auto;" />
+                </div>
+                <div class="col-md-9">
+                    <p>
+                        <h2 style="font-size: 35px; line-height: 1.618"><b>Hoja de Reclamación</b></h2>
+                    </p>
+                    <div style="line-height: 0.9;">
+                        <p>Fecha : @ViewBag.fecha</p>
+                        <p id="prazonSocial"><b>@ViewBag.nombreEmpresa</b> - RUC: @ViewBag.rucEmpresa</p>
+                        <p id="pdireccion">@ViewBag.direccionEmpresa</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-xs-12 bg_white">
+                <form id="complaintsForm" name="complaintsForm" method="POST" action="">
+                    <input name="id" id="id" value="0" type="hidden" />
+                    <div class="widget-box widget-color-dark">
+                        <div class="widget-header">
+                            <h5 class="widget-title bigger lighter"><b>1. IDENTIFICACIÓN DEL CONSUMIDOR RECLAMANTE</b></h5>
+
+                        </div>
+                        <div class="widget-body">
+                            <div class="widget-main">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="name">Nombre Completo*:</label>
+                                            <input type="text" id="nombre" name="nombre" placeholder="" autocomplete="off" value="" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="direction">Domicilio*:</label>
+                                            <input type="text" id="direccion" name="direccion" placeholder="" autocomplete="off" value="" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="document">DNI/CE*:</label>
+                                            <input type="text" id="documento" name="documento" placeholder="" autocomplete="off" value="" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="phone">Teléfono*:</label>
+                                            <input type="text" id="telefono" name="telefono" placeholder="" autocomplete="off" value="" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="email">E-mail<sup> (3)</sup>:</label>
+                                            <input type="text" id="correo" name="correo" placeholder="" autocomplete="off" value="" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="email2">Confirmar E-mail*:</label>
+                                            <input type="text" id="correo2" name="correo2" placeholder="" autocomplete="off" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                @if (ViewBag.tiposala != 0)
+                                {
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="email">Padre o Madre:</label>
+                                                <input type="text" id="nombrepadre_madre" name="nombrepadre_madre" placeholder="Para el caso de menores de edad" autocomplete="off" value="" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="widget-box widget-color-dark">
+                        <div class="widget-header">
+                            <h5 class="widget-title bigger lighter">
+                                <b>2. IDENTIFICACIÓN DEL BIEN CONTRATADO*</b>
+                            </h5>
+                        </div>
+                        <div class="widget-body">
+                            <div class="widget-main">
+                                <div class="form-group">
+                                    <label class="radio-inline">
+                                        <input type="radio" id="tipo1" name="tipo" value="producto" checked="checked">
+                                        Producto
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" id="tipo2" name="tipo" value="servicio">
+                                        Servicio
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="amount">Monto Reclamado:</label>
+                                    <input type="number" id="monto" name="monto" placeholder="" autocomplete="off" value="" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="description">Descripción:</label>
+                                    <input type="text" id="descripcion" name="descripcion" placeholder="" autocomplete="off" value="" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-box widget-color-dark">
+                        <div class="widget-header">
+                            <h5 class="widget-title bigger lighter">
+                                <b>3. DETALLE DE LA RECLAMACIÓN</b>
+                            </h5>
+                        </div>
+                        <div class="widget-body">
+                            <div class="widget-main">
+                                <div class="form-group">
+                                    <label class="radio-inline">
+                                        <input type="radio" id="tipo_reclamo1" name="tipo_reclamo" value="reclamo" checked="checked">
+                                        Reclamo<sup> (1)</sup>
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" id="tipo_reclamo2" name="tipo_reclamo" value="queja">
+                                        Queja<sup> (2)</sup>
+                                    </label>
+                                </div>
+                                @*<label for="local_type">Lugar donde se realizaron los hechos</label>
+                                    <div class="form-group">
+                                        <label class="radio-inline">
+                                            <input type="radio" id="tipo_local1" name="tipo_local" value="Local de Venta" checked="checked">
+                                            Local de Venta
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" id="tipo_local2" name="tipo_local" value="Página Web">
+                                            Página Web
+                                        </label>
+                                    </div>*@
+                                <div class="form-group">
+                                    <label for="sala_id">Local</label><br>
+                                    <select id="sala_id" name="sala_id" class="form-control">
+                                        <option selected value="@ViewBag.idSala">@ViewBag.nombreSala</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="referencia">
+                                        Referencia: <small>ID Cliente, N° de ticket u otros</small>
+                                    </label>
+                                    <input type="text" id="referencia" name="referencia" autocomplete="off" value="" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="detalle">Detalle*:</label>
+                                    <textarea id="detalle" name="detalle" placeholder="" autocomplete="off" rows="5" cols="100" class="form-control"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pedido">Pedido*:</label>
+                                    <textarea id="pedido" name="pedido" placeholder="" autocomplete="off" rows="5" cols="100" class="form-control"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="font-size: 14px;margin-top: 15px;margin-left: 14px;margin-right: 14px;">
+                        <small class="text-justify">
+                            <p>
+                                <sup>(1)</sup> RECLAMO: Disconformidad relacionada a los productos o servicios.<br> <sup>(2)</sup> QUEJA: Disconformidad no relacionada a los productos o servicios; o, malestar o descontento respecto a la atención al público.<br> <sup>(3)</sup> E-MAIL: Al brindar mi correo electrónico, autorizo recibir la respuesta a través de este medio.
+                            </p>
+                            <ul style="margin-left:38px;">
+                                <li>
+                                    La formulación del reclamo no impide acudir a otras vías de solución de controversias ni es requisito previo
+                                    para interponer una denuncia ante INDECOPI.
+                                </li>
+                                <li>
+                                    El proveedor debe dar respuesta al reclamo o queja en un plazo no mayor de quince (15) días hábiles, el cual es improrrogable.
+                                </li>
+                            </ul>
+                        </small>
+                    </div>
+                    <div class="form-group col-md-3 col-md-offset-9">
+                        <button type="button" id="btnSend" name="btnSend" class="btn btn-danger btn-block">Enviar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section js
+{
+    <script type="text/javascript">
+        logoSala = "@Html.Raw(ViewBag.logoSala)"
+    </script>
+    <script src="~/Content/assets/viewsjs/Reclamaciones/ReclamacionesNuevoVista.js"></script>
+
+}
+

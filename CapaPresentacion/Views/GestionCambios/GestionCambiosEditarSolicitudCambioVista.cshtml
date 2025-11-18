@@ -1,0 +1,180 @@
+﻿
+@{
+    ViewBag.Title = "GestionCambiosEditarSolicitudCambioVista";
+}
+
+@using System.Activities.Expressions
+@using System.Web.Script.Serialization
+@using System.Web.UI.WebControls
+
+@{
+    String solicitud = new JavaScriptSerializer().Serialize(ViewBag.solicitud);
+}
+
+@section css
+{
+    <style type="text/css">
+        .help-block {
+            display: none !important;
+        }
+    </style>
+}
+
+<script type="text/javascript">
+    solicitud = (@Html.Raw(solicitud));
+</script>
+
+<form class="medium" role="form" id="frmEditarSolicitudCambio" method="post" action="#">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="block">
+                <div class="block-content-outer">
+                    <div class="block-content-inner">
+                        <div class="row">
+                            <div class="col-md-12 col-xs-12 col-sm-12">
+                                <h1>
+                                    <span aria-hidden="true" class="icon icon-block-menu"></span>
+
+                                    @if (ViewBag.validar == 1)
+                                    {
+                                        <span class="main-text">Revision de Solicitud</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="main-text">Editar Solicitud de Cambio</span>
+                                    }
+
+                                    
+
+
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="block">
+                <div class="block-content-outer">
+                    <div class="block-content-inner">
+
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12">
+                                        <button type="button" id="btnModificar" class="btn btn-success btn-sm col-md-12 col-xs-12">
+                                            <span class="glyphicon glyphicon-file"></span>
+                                            Modificar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12">
+                                        <button type="button" id="btnListar" class="btn btn-primary btn-sm col-md-12 col-xs-12">
+                                            <span class="glyphicon glyphicon-file"></span>
+                                            Listado
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="block">
+                <div class="block-content-outer">
+                    <div class="block-content-inner">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12 col-sm-12">
+                                <div class="row">
+                                    <input type="hidden" id="txtvalidar" value="@ViewBag.validar" name="Validar" />
+                                    <input type="hidden" name="SolicitudId" id="txtSolicitudId" value="" />
+                                    <div class="col-md-6">
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-group cbo">
+                                                <label>Estado de Solicitud de Cambio</label>
+                                                <select class="form-control input-sm" id="cboEstadoCambio" name="EstadoSolicitudCambioId">
+                                                    <option value="">--Seleccione--</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        @if (ViewBag.validar == 1)
+                                        {
+                                            <div class="col-md-12 col-sm-12">
+                                                <div class="form-group cbo">
+                                                    <label for="txtusuario">Descripción de Cambio</label>
+                                                    <textarea class="form-control" disabled style="resize:none;" rows="4" name="Descripcion" id="txtDescripcion"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12">
+                                                <div class="form-group cbo">
+                                                    <label for="txtusuario">Observación</label>
+                                                    <textarea class="form-control" style="resize:none;" rows="4" name="Observacion" id="txtDescripcion"></textarea>
+                                                </div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="col-md-12 col-sm-12">
+                                                <div class="form-group cbo">
+                                                    <label for="txtusuario">Descripción de Cambio</label>
+                                                    <textarea class="form-control" style="resize:none;" rows="4" name="Descripcion" id="txtDescripcion"></textarea>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+@section modal
+{
+    <!-- Modal full-modal -->
+    <div class="modal fade full-modal modal1" id="full-modal" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label">Detalle Contadores</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12">
+                            <div class="">
+                                <table class="table table-striped table-hover table-condensed" id="tableDetalle"></table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+}
+
+
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/GestionCambios/GestionCambiosEditarSolicitudCambio.js"></script>
+}
+

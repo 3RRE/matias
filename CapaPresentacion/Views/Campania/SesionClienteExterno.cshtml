@@ -1,0 +1,221 @@
+﻿@using S3k.Utilitario;
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutSesionesSala.cshtml";
+}
+@using System.Activities.Expressions
+@using System.Web.Script.Serialization
+@using System.Web.UI.WebControls
+
+@{
+    int CodSala = ViewBag.CodSala;
+    string UrlProgresivo = ViewBag.UrlProgresivo;
+    string NombreSala = ViewBag.NombreSala;
+
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+
+}
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script type="text/javascript">
+
+    var codSala = @Html.Raw(CodSala)
+    var urlProgresivo = '@Html.Raw(UrlProgresivo)'
+    var nombreSala = '@Html.Raw(NombreSala)'
+
+</script>
+<div class="row" style="margin-top:25px;">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 style="justify-content:center">
+                              SORTEOS @NombreSala
+                            </h1>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form class="login-form" action="">
+                                <input type="hidden" id="Nombre" value="" />
+                                <input type="hidden" id="ApelPat" value="" />
+                                <input type="hidden" id="ApelMat" value="" />
+                                <input type="hidden" id="Mail" value="" />
+                                <input type="hidden" id="Id" value="" />
+                                <div class="form-group" style="width:100%;height:100%;">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Tipo Doc.</span>
+                                        <select class="form-control" id="cboTipoDoc">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="NroDoc" placeholder="Ingrese Nro. de Documento" aria-describedby="spanBuscar">
+                                        <span class="input-group-addon" id="spanBuscar"><i class="icon icon-search"></i></span>
+                                    </div>
+                                </div>
+                                <div class="form-group search-success" style="display:none;width:100%;">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="spanBuscar">Nombres</span>
+                                        <input type="text" class="form-control" id="NombreCompleto" readonly placeholder="Ingrese Nro. de Documento">
+                                    </div>
+                                </div>
+                                <div class="form-group search-success" style="display:none;width:100%;height:100%;">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="spanBuscar">Máquina</span>
+                                        <select class="form-control" id="CodMaquina">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group search-success" style="display:none;">
+                                    <div class="">
+                                        <button type="button" class="btn btn-success btn-block pull-left" id="btnGenerarSesion">GENERAR SESIÓN</button>
+                                        @*<button type="button" class="btn btn-info btn-block pull-right" id="btnJugadas">Jugadas</button>*@
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <br />
+                        <br />
+                        <div class="col-md-12 table-responsive">
+                            <div id="contenedorJugadas">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6"></div>
+</div>
+@section modal{
+    <div class="modal fade full-modal" id="modalClienteNuevo" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content" data-border-top="multi">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="full-modal-label_"> <span id="textCampania">Nuevo</span> Cliente</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <form class="medium bv-form" action="" id="form_registro_cliente">
+                            <input type="hidden" name="SalaId" id="SalaId" value="0" />
+                            <div class="col-md-12 col-sm-12">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            Nombres
+                                        </span>
+                                        <input type="text" class="form-control input-sm" id="txtNombre" value="" name="Nombre" placeholder="Nombres">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            Apellido Paterno
+                                        </span>
+                                        <input type="text" class="form-control input-sm" id="txtApelPat" value="" name="ApelPat" placeholder="Apellido Paterno">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            Apellido Materno
+                                        </span>
+                                        <input type="text" class="form-control input-sm" id="txtApelMat" value="" name="ApelMat" placeholder="Apellido Materno">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            Tipo Doc.
+                                        </span>
+                                        <select class="form-control input-sm" id="cboTipoDocumnento" name="TipoDocumentoId" style="width:100%"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            Nro. Documento
+                                        </span>
+                                        <input type="text" class="form-control input-sm" id="txtNroDoc" value="" name="NroDoc" placeholder="Nro. Documento">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            Telefono
+                                        </span>
+                                        <input type="text" class="form-control input-sm  " id="txtCelular" name="Celular" placeholder="Telefono">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            Fecha Nacimiento
+                                        </span>
+                                        <input type="text" class="form-control input-sm dateOnly_" id="txtFechaNacimiento" readonly name="FechaNacimiento">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            Correo
+                                        </span>
+                                        <input type="text" class="form-control input-sm  " id="txtemail" name="Mail" placeholder="Correo">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-sm btn-danger btnGuardarclienteNuevo">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+    }
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/Campania/SorteoClienteExterno.js"></script>
+}

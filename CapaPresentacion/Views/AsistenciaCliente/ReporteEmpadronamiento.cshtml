@@ -1,0 +1,234 @@
+﻿@using S3k.Utilitario;
+
+@{
+    ViewBag.Title = "Reporte Empadronamiento de clientes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+}
+
+@section css
+{
+    <style>
+        .table-custom {
+            width: 100%;
+            position: relative;
+            background-color: #FFFFFF;
+            border-spacing: 0;
+        }
+
+            .table-custom th, .table-custom td {
+                padding: 2px 4px;
+            }
+
+            .table-custom thead th {
+                border: 1px solid rgba(255, 255, 255, 0.25);
+            }
+
+            .table-custom tbody td {
+                border: 1px solid #DDDDDD;
+            }
+
+            .table-custom thead tr th, .table-custom tbody tr td {
+                vertical-align: middle;
+            }
+
+            .table-custom thead tr th {
+                text-align: center;
+            }
+
+            .table-custom thead tr th {
+                color: #FFFFFF;
+            }
+
+            .table-custom thead tr:nth-of-type(1) th {
+                background-color: rgba(20, 57, 88, 0.95);
+            }
+
+            .table-custom thead tr:nth-of-type(2) th {
+                background-color: #143958 !important;
+            }
+
+            .table-custom tbody td {
+                padding: 4px 4px;
+            }
+
+            .table-custom tbody tr:nth-child(even) {
+                background-color: #F2F2F2;
+            }
+
+            .table-custom tbody tr:hover {
+                background-color: #DDDDDD;
+            }
+
+        .btn-ssearch {
+            cursor: pointer;
+        }
+
+            .btn-ssearch:hover {
+                background: #074B88;
+            }
+
+        .hr-line-st {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .text-wrap {
+            white-space: normal;
+        }
+    </style>
+}
+
+<!-- row -->
+<div class="row">
+    <!-- col -->
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div>
+                        <h1>
+                            <span aria-hidden="true" class="icon las la-users"></span>
+                            <span class="main-text">
+                                @ViewBag.Title
+                            </span>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /col -->
+    <!-- col -->
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <!-- row -->
+                    <div class="row">
+                        <!-- col -->
+                        <div class="col-md-offset-4 col-md-4 col-sm-4 col-xs-6">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btn_excel" class="btn btn-primary btn-sm col-md-12 col-xs-12">
+                                        <span class="fa fa-file-excel-o"></span>
+                                        Excel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /col -->
+                        <!-- col -->
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btn_search" class="btn btn-success btn-sm col-md-12 col-xs-12">
+                                        <span class="fa fa-search"></span>
+                                        Buscar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /col -->
+                    </div>
+                    <!-- /row -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /col -->
+</div>
+<!-- /row -->
+<!-- row -->
+<div class="row">
+    <!-- col -->
+    <div class="col-md-12">
+       
+                <div class="block">
+                    <div class="block-content-outer">
+                        <div class="block-content-inner">
+                            <div class="cardMachine" style="margin-bottom:15px;">
+                                <fieldset class="sectionCard" style="padding: 10px 7px; margin-top: 10px;">
+                                    <h3 style="margin-bottom:5px;">Complete los campos</h3>
+                                    <!-- row -->
+                                    <div class="row">
+                                        <div class="col-sm-6 col-md-6 col-lg-4">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        Sala
+                                                    </span>
+                                                    <select class="form-control input-sm" id="sala_id">
+                                                        <option value="">--Seleccione una opción--</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6 col-lg-4">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    DEL
+                                                </span>
+                                                <input type="text" class="form-control input-sm date_only" id="from_date" readonly />
+                                                <span class="input-group-addon input-group-icon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6 col-lg-4">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    AL
+                                                </span>
+                                                <input type="text" class="form-control input-sm date_only" id="to_date" readonly />
+                                                <span class="input-group-addon input-group-icon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /row -->
+                                    <hr class="hr-line-st" />
+                                    <!-- row -->
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="table-responsive">
+                                                <!-- table -->
+                                                <table id="tableEmpadronamientoCliente" class="table-custom">
+                                                    <thead>
+                                                        <tr>
+                                                            <th colspan="9" class="text-uppercase">Empadronamiento de clientes</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>DNI</th>
+                                                            <th>Nombres y Apellidos</th>
+                                                            <th>Zona</th>
+                                                            <th width="140px">Entregó documento de identidad</th>
+                                                            <th>Verificación DNI</th>
+                                                            <th>Apuesta</th>
+                                                            <th width="300px">Observaciones</th>
+                                                            <th>Estatus</th>
+                                                            <th>Hora de salida</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                                <!-- /table -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /row -->
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+        </div>
+        <!-- /col -->
+    </div>
+<!-- /row -->
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/AsistenciaCliente/ReporteEmpadronamiento.js?v=@fecha_archivos"></script>
+}

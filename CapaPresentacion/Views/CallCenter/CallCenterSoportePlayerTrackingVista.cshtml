@@ -1,0 +1,290 @@
+﻿
+@{
+    ViewBag.Title = "CallCenterSoportePlayerTrackingVista";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-block-menu"></span>
+                                <span class="main-text">
+                                    Soporte PlayerTracking
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3  col-xs-12 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnExcel" class="btn btn-primary btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-file"></span>
+                                        Excel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3  col-xs-12 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnBuscar" class="btn btn-success btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-book"></span>
+                                        Buscar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3  col-xs-12 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" class="btn btn-success btn-sm col-md-12 col-xs-12" data-toggle="modal" data-target="#modal-adicionar">
+                                        <span class="glyphicon glyphicon-book"></span>
+                                        Adicionar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3  col-xs-12 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" class="btn btn-success btn-sm col-md-12 col-xs-12" data-toggle="modal" data-target="#modal-restar">
+                                        <span class="glyphicon glyphicon-book"></span>
+                                        Restar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+
+                        <div class="col-xs-12 col-md-12 col-sm-12" id="formfiltro">
+
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="input-group ">
+                                        <span class="input-group-addon">
+                                            Sala
+                                        </span>
+                                        <select class="form-control input-sm codSalaAuditoria" id="cboSala" name="cboSala">
+                                            <option value="">--Seleccione--</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="input-group ">
+                                        <span class="input-group-addon">
+                                            Clientes
+                                        </span>
+                                        <select class="form-control input-sm" id="cboClientes" name="cboClientes">
+                                            <option value="">--Seleccione--</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            FECHA DE INICIO
+                                        </span>
+                                        <input type="text" class="form-control input-sm dateOnly_soporte_ini" id="fechaIni" />
+                                        <span class="input-group-addon input-group-icon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="input-group ">
+                                        <span class="input-group-addon">
+                                            PROMO SORTEOS
+                                        </span>
+                                        <select class="form-control input-sm" id="cboSorteos" name="cboSorteos">
+                                            <option value="">--Seleccione--</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            FECHA DE FIN
+                                        </span>
+                                        <input type="text"  class="form-control input-sm dateOnly_soporte_fin" id="fechaFin" />
+                                        <span class="input-group-addon input-group-icon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            CANTIDAD PTOS CUPON
+                                        </span>
+                                        <input type="text" class="form-control input-sm" id="cantidad_ptos_cupon" />
+                                        <span class="input-group-addon input-group-icon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="col-md-12">
+                            <div class="contenedor_tabla">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section modal
+{
+    <!-- Modal full-modal -->
+    <div class="modal fade full-modal" id="modal-adicionar" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label">Adicionar</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row" id="formadicionar">
+                        <div class="col-md-4 col-sm-4">
+                            <div class="input-group ">
+                                <span class="input-group-addon">
+                                    PROMO SORTEOS
+                                </span>
+                                <select class="form-control input-sm" id="cboPromoSorteo_adicionar" name="cboPromoSorteo_adicionar">
+                                    <option value="">--Seleccione--</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <div class="input-group ">
+                                <span class="input-group-addon">
+                                    CLIENTES
+                                </span>
+                                <select class="form-control input-sm" id="cboClientesAdicionar" name="cboClientesAdicionar">
+                                    <option value="">--Seleccione--</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    Cantidad
+                                </span>
+                                <input type="text" class="form-control input-sm" id="cantidad_adicionar" />
+                                <span class="input-group-addon input-group-icon">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-adicionar">Adicionar</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal fade full-modal" id="modal-restar" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label">Restar</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row" id="">
+                        <div class="col-md-4 col-sm-4">
+                            <div class="input-group ">
+                                <span class="input-group-addon">
+                                    PROMO SORTEOS
+                                </span>
+                                <select class="form-control input-sm" id="cboPromoSorteo_restar" name="cboPromoSorteo_restar">
+                                    <option value="">--Seleccione--</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <div class="input-group ">
+                                <span class="input-group-addon">
+                                    CLIENTES
+                                </span>
+                                <select class="form-control input-sm" id="cboClientes_restar" name="cboClientes_restar">
+                                    <option value="">--Seleccione--</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    Cantidad
+                                </span>
+                                <input type="text" class="form-control input-sm" id="cantidad_restar" />
+                                <span class="input-group-addon input-group-icon">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-restar">Restar</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+}
+
+
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/Soporte/CallCenter/CallCenter/CallCenterSoportePlayerTracking.js"></script>
+}

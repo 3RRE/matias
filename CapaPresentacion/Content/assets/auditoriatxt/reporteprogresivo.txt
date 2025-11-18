@@ -1,0 +1,58 @@
+﻿<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <h3 style="color:blue;font-weight:bolder;text-align:center;">Filtros de Busqueda</h3>
+        <div class="row">
+            <div class="col-md-4 col-sm-12">
+                <div class="input-group ">
+                    <span class="input-group-addon redback">
+                        Sala
+                    </span>
+                    <input type="text" class="form-control input-sm azul" name="salaF" id="txtSalaF" disabled>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <div class="input-group ">
+                    <span class="input-group-addon redback">
+                        Progresivo
+                    </span>
+                    <input type="text" class="form-control input-sm azul" name="progresivoF" id="txtProgresivoF" disabled>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <div class="input-group ">
+                    <span class="input-group-addon redback">
+                        Maquina
+                    </span>
+                    <input type="text" class="form-control input-sm azul" name="maquinaF" id="txtMaquinaF" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-12">
+                <div class="input-group ">
+                    <span class="input-group-addon redback">
+                        Pozos
+                    </span>
+                    <input type="text" class="form-control input-sm azul" name="pozosF" id="txtPozosF" disabled>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <div class="input-group ">
+                    <span class="input-group-addon redback">
+                        Registro A.
+                    </span>
+                    <input type="text" class="form-control input-sm azul" name="registroAF" id="txtRegistroAF" disabled>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <div class="input-group ">
+                    <span class="input-group-addon redback">
+                        Registro D.
+                    </span>
+                    <input type="text" class="form-control input-sm azul" name="registroDF" id="txtRegistroDF" disabled>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,248 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section css
+{
+    <style>
+        .d-flex-end {
+            display: flex !important;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .d-flex {
+            display: flex !important;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .liItemE {
+            border: 1px solid #EEE;
+        }
+
+        .linkItemE .name-company {
+            margin-right: 15px;
+        }
+
+        .linkItemE .totalAlmacenesSalaSpan {
+            display: inline-block;
+            background: #FFFFFF;
+            padding: 2px 4px;
+            margin-left: auto;
+            font-weight: 700;
+            color: #000;
+            font-size: 10px;
+            border-radius: 4px !important;
+        }
+
+            .linkItemE .totalAlmacenesSalaSpan.lie-success {
+                background: #1BA345;
+                color: #FFFFFF;
+            }
+
+        .linkItemE {
+            margin-bottom: 0 !important;
+        }
+
+        @@media (max-width: 480px) {
+            .nav-tabs.tabs-left + .tab-content {
+                margin-left: 0;
+            }
+        }
+
+        .checkbox-box label .toggle {
+            margin-left: 0;
+            margin-right: 0;
+        }
+    </style>
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-mailbox"></span>
+                                <span class="main-text">
+                                    Asignar Almacen a usuario
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="input-group" style="margin-bottom:0px">
+                                <span class="input-group-addon">
+                                    Usuario
+                                </span>
+                                <select class="form-control input-sm" id="cboUsuario" name="usuario">
+                                    <option value="">--Seleccione--</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" style="display:none;">
+    <div class="col-md-12">
+        <div class="block ">
+
+            <div class="block-content-outer" id="contentUsuario">
+                <div class="block-content-inner">
+                    <div class="profile-info">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="profile-info-block">
+                                    <div class="profile-info-title h6">
+                                        <span class="glyphicon glyphicon-user" style="top: 0px;"></span>
+                                        Nombre :  <span id="nombrePersona" class="estilodetalle"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="profile-info-block">
+                                    <div class="profile-info-title h6">
+                                        <span class="glyphicon  glyphicon-tags" style="top: 0px;"></span>
+                                        Tipo :  <span id="tipoPersona" class="estilodetalle"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="profile-info-block">
+                                    <div class="profile-info-title h6">
+                                        <span class="glyphicon glyphicon-phone-alt" style="top: 0px;"></span>
+                                        Telefono :  <span id="telefonoPersona" class="estilodetalle"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="profile-info-block">
+                                    <div class="profile-info-title h6">
+                                        <span class="glyphicon glyphicon-phone" style="top: 0px;"></span>
+                                        Celular :  <span id="celularPersona" class="estilodetalle"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="profile-info-block">
+                                    <div class="profile-info-title h6">
+                                        <span class="glyphicon glyphicon-pushpin" style="top: 0px;"></span>
+                                        Estado :  <span id="estadoPersona" class="estilodetalle"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="profile-info-block">
+                                    <div class="profile-info-title h6">
+                                        <span class="glyphicon glyphicon-envelope" style="top: 0px;"></span>
+                                        Correo :  <span id="correoPersona" class="estilodetalle"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="profile-info-block">
+                                    <div class="profile-info-title h6">
+                                        <span class="glyphicon glyphicon-map-marker" style="top: 0px;"></span>
+                                        Direccion :   <span id="direccionPersona" class="estilodetalle"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block" style="margin-bottom:0">
+            <div class="block-content-outer" style="padding:0 15px;border-color:#EEE">
+                <div class="block-content-inner clearfix">
+                    <div class="d-flex-end text-right">
+                        <div class="checkbox checkbox-box checkbox-grid">
+                            <label>
+                                <input type="checkbox" data-toggle="toggle" />
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="result">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner clearfix">
+                    <div class="row notlabel">
+                        <div class="col-md-12">
+                            <div class="text-center divTotal" style="margin-bottom: 25px; display: none">
+                                <span style="display:inline-block;font-weight:700;color:#000;margin-right:5px;">Almacenes Asignados</span> <span class="badge badge-bordered totalAlmacenesSpan_list">0/0</span>
+                            </div>
+                            <div>
+                                <ul id="tabsSalas" class="nav nav-tabs tabs-left"></ul>
+                                <div class="tab-content" id="tabContentAlmacenes">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center divfaltanTotal" style="margin-top: 25px;display: none">
+                        <span style="display:inline-block;font-weight:700;color:#000;margin-right:5px;">Faltan</span> <span class="badge badge-bordered totalAlmacenesSpanFaltan_list">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- row -->
+<div class="row" id="almacenesGridContent" style="display:none">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner clearfix">
+                    <div class="text-center divTotal" style="margin-bottom: 25px; display: none">
+                        <span style="display:inline-block;font-weight:700;color:#000;margin-right:5px;">Almacenes Asignadas</span> <span class="badge badge-bordered totalAlmacenesSpan">0/0</span>
+                    </div>
+                    <div class="row" id="almacenesGrid" style="padding-left:5px;padding-right:5px"></div>
+                    <div class="text-center divfaltanTotal" style="margin-top: 25px;display: none">
+                        <span style="display:inline-block;font-weight:700;color:#000;margin-right:5px;">Faltan</span> <span class="badge badge-bordered totalAlmacenesSpanFaltan">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- row -->
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/MaquinasInoperativas/UsuarioAlmacen.js"></script>
+}
+
+
+

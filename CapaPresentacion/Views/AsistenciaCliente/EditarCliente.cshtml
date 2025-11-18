@@ -1,0 +1,363 @@
+﻿@{
+    ViewBag.Title = "Editar Cliente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using System.Activities.Expressions
+@using System.Web.Script.Serialization
+@using System.Web.UI.WebControls
+@using S3k.Utilitario;
+
+@{
+    String cliente = new JavaScriptSerializer().Serialize(ViewBag.cliente);
+    String mensaje = new JavaScriptSerializer().Serialize(ViewBag.mensaje);
+    String ubigeo = new JavaScriptSerializer().Serialize(ViewBag.ubigeo);
+    string buscar = new JavaScriptSerializer().Serialize(ViewBag.buscar);
+
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+}
+<script type="text/javascript">
+    cliente = (@Html.Raw(cliente));
+    mensaje = (@Html.Raw(mensaje));
+    ubigeo = (@Html.Raw(ubigeo));
+      buscar = (@Html.Raw(buscar));
+</script>
+
+<style>
+    #form_registro_cliente fieldset {
+        margin-bottom: 10px;
+    }
+
+    #form_registro_cliente legend {
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-shield"></span>
+                                <span class="main-text">
+                                    Edición Clientes SISCLIE
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+
+                        <div class="col-md-4 col-md-offset-4 col-sm-6 col-xs-6">
+                            <button type="button" class="btn btn-success btn-sm col-md-12 col-sm-12 col-xs-12 btnListar"><span class="glyphicon glyphicon-list-alt"></span> Listado </button>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <button type="button" class="btn btn-primary btn-sm col-md-12 col-sm-12 col-xs-12 btnGuardar "><span class="glyphicon glyphicon-floppy-disk"></span> Guardar </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner" style="display: grid; place-items: center;">
+                    <div class="cardMachine" style="margin-bottom:15px;max-width:1250px;">
+                        <div class="row">
+
+                            <div class="col-md-12">
+
+                                <div class="contenedor_registro">
+                                    <!-- form -->
+                                    <form id="form_registro_cliente">
+                                      
+                                                <!-- row -->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <input type="hidden" id="Id" value="0" name="Id" />
+                                                <!-- fieldset -->
+                                                <fieldset class="sectionCard" style="padding: 10px 7px; margin-top: 10px;">
+                                                    <h3 style="margin-bottom:5px;">Datos Personales</h3>
+                                                    <div style="display:none" class="TieneNombreCompleto  col-sm-12">
+                                                        <div class="input-group form-group">
+                                                            <span class="input-group-addon">
+                                                                Nombres y Apellidos
+                                                            </span>
+                                                            <input type="text" class="form-control input-sm UpperCase" id="NombreCompleto" name="NombreCompleto" placeholder="Nombres y Apellidos">
+                                                        </div>
+                                                    </div>
+                                                    <div style="display:none" class="NoTieneNombreCompleto col-xs-12">
+                                                        <div class="input-group form-group">
+                                                            <span class="input-group-addon">
+                                                                Nombres
+                                                            </span>
+                                                            <input type="text" class="form-control input-sm UpperCase" id="Nombre" name="Nombre" placeholder="Nombres">
+                                                        </div>
+                                                    </div>
+                                                    <div style="display:none" class="NoTieneNombreCompleto col-xs-12">
+                                                        <div class="input-group form-group">
+                                                            <span class="input-group-addon">
+                                                                Apel. Pat.
+                                                            </span>
+                                                            <input type="text" class="form-control input-sm UpperCase" id="ApelPat" name="ApelPat" placeholder="Apellido Paterno">
+                                                        </div>
+                                                    </div>
+                                                    <div style="display:none" class="NoTieneNombreCompleto  col-xs-12">
+                                                        <div class="input-group form-group">
+                                                            <span class="input-group-addon">
+                                                                Apel. Mat.
+                                                            </span>
+                                                            <input type="text" class="form-control input-sm UpperCase" id="ApelMat" name="ApelMat" placeholder="Apellido Materno">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xs-12">
+                                                        <div class="input-group form-group">
+                                                            <span class="input-group-addon">
+                                                                Tipo Doc.
+                                                            </span>
+                                                            <select id="cboTipoDocumento" class="form-control mySelect" name="TipoDocumentoId"></select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-12">
+                                                        <div class="input-group form-group">
+                                                            <span class="input-group-addon">
+                                                                Nro Doc.
+                                                            </span>
+                                                            <input type="text" class="form-control input-sm" id="NroDoc" name="NroDoc" placeholder="Nro. Documento">
+                                                        </div>
+                                                    </div>
+                                                    <div class=" col-xs-12">
+                                                        <div class="input-group form-group">
+                                                            <span class="input-group-addon">
+                                                                Fecha Nac.
+                                                            </span>
+                                                            <input type="text" class="form-control input-sm dateOnly_" id="FechaNacimiento" readonly name="FechaNacimiento" placeholder="FechaNacimiento">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class=" col-xs-12">
+                                                        <div class="input-group form-group">
+                                                            <span class="input-group-addon">
+                                                                Género
+                                                            </span>
+                                                            <select id="cboGenero" class="form-control input-sm mySelect" name="Genero">
+                                                                <option value="M">MASCULINO</option>
+                                                                <option value="F">FEMENINO</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <fieldset class="sectionCard" style="padding: 10px 7px; margin-top: 10px;">
+                                                    <h3 style="margin-bottom:5px;">Procedencia</h3>
+                                                    <div class="col-sm-12">
+                                                        <div class="input-group form-group">
+                                                            <span class="input-group-addon">
+                                                                País
+                                                            </span>
+                                                            <select id="cboPais" class="form-control input-sm mySelect" name="PaisId"></select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="input-group form-group">
+
+                                                            <span class="input-group-addon">
+                                                                Departamento
+                                                            </span>
+
+                                                            <select id="cboDepartamento" class="form-control input-sm mySelect" name="DepartamentoId"></select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="input-group form-group">
+                                                            <span class="input-group-addon">
+                                                                Provincia
+                                                            </span>
+                                                            <select id="cboProvincia" class="form-control input-sm mySelect" name="ProvinciaId"></select>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="input-group form-group">
+                                                            <span class="input-group-addon">
+                                                                Distrito
+                                                            </span>
+                                                            <select id="cboDistrito" class="form-control input-sm mySelect" name="UbigeoProcedenciaId"></select>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+
+                                            </div>
+                                        </div>
+
+                                        
+                                        <div class="row">
+                                            <div class="col-md-6">
+
+                                                <fieldset class="sectionCard" style="padding: 10px 7px; margin-top: 10px;">
+                                                    <h3 style="margin-bottom:5px;">Datos de Contacto</h3>
+                                                    <div class=" col-xs-12">
+                                                        <div class="input-group form-group">
+                                                            <span class="input-group-addon">
+                                                                Email
+                                                            </span>
+                                                            @if (buscar == "true")
+                                                            {
+                                                                <input type="hidden" class="form-control input-sm" id="Mail" name="Mail" placeholder="Email">
+                                                                <input type="text" class="form-control input-sm" id="Mail_" name="Mail_" placeholder="Email">
+
+                                                            }
+                                                            else
+                                                            {
+                                                                <input type="text" class="form-control input-sm" id="Mail" name="Mail" placeholder="Email">
+                                                            }
+
+                                                        </div>
+                                                    </div>
+                                                    <div class=" col-xs-12">
+                                                        <div class="input-group form-group">
+                                                            <span class="input-group-addon">
+                                                                Celular 1
+                                                            </span>
+
+                                                            @if (buscar == "true")
+                                                            {
+                                                                <input type="hidden" class="form-control input-sm" id="Celular1" name="Celular1" placeholder="Nro. de Celular 1">
+                                                                <input type="text" class="form-control input-sm" id="Celular1_" name="Celular1_" placeholder="Nro. de Celular 1">
+                                                            }
+                                                            else
+                                                            {
+                                                                <input type="text" class="form-control input-sm" id="Celular1" name="Celular1" placeholder="Nro. de Celular 1">
+                                                            }
+
+
+                                                        </div>
+                                                    </div>
+                                                    <div class=" col-xs-12">
+                                                        <div class="input-group form-group">
+                                                            <span class="input-group-addon">
+                                                                Celular 2
+                                                            </span>
+                                                            <input type="text" class="form-control input-sm" id="Celular2" name="Celular2" placeholder="Nro. de Celular 2">
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+
+                                            </div>
+                                            <div class="col-md-6">
+
+                                                <div class="row">
+
+                                                    <fieldset class="sectionCard" style="padding: 10px 7px; margin-top: 10px;">
+                                                        <h3 style="margin-bottom:5px;">Datos de Sala</h3>
+                                                        <div class="col-xs-12">
+                                                            <div class="input-group form-group">
+                                                                <span class="input-group-addon">
+                                                                    Tipo Cliente
+                                                                </span>
+                                                                <select id="cboTipoCliente" class="form-control input-sm mySelect" name="ClienteSala.TipoClienteId"></select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12">
+                                                            <div class="input-group form-group">
+                                                                <span class="input-group-addon">
+                                                                    Tipo Frec.
+                                                                </span>
+                                                                <select id="cboTipoFrecuencia" class="form-control input-sm mySelect" name="ClienteSala.TipoFrecuenciaId"></select>
+                                                            </div>
+                                                        </div>
+                                                        <div class=" col-xs-12">
+                                                            <div class="input-group form-group">
+                                                                <span class="input-group-addon">
+                                                                    Tipo Juego
+                                                                </span>
+                                                                <select id="cboTipoJuego" class="form-control input-sm mySelect" name="ClienteSala.TipoJuegoId"></select>
+                                                            </div>
+
+                                                        </div>
+                                                    </fieldset>
+
+                                                </div>
+                                                <!-- /row -->
+
+                                            </div>
+                                        </div>
+                                      
+                                   
+                                        <!-- /fieldset -->
+                                        <!-- fieldset -->
+                                        <fieldset class="sectionCard" style="padding: 10px 7px; margin-top: 10px;">
+                                            <h3 style="margin-bottom:5px;">Datos Vacunación</h3>
+                                            <!-- row -->
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="input-group form-group" style="margin-bottom: 0px;">
+                                                        <span class="input-group-addon">
+                                                            Sala
+                                                        </span>
+                                                        <select id="cboSalaVacunacion" class="form-control input-sm mySelect" name="sala_vacunacion"></select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="input-group form-group">
+                                                        <span class="input-group-addon">
+                                                            Nro Dosis
+                                                        </span>
+                                                        <input type="text" class="form-control input-sm" id="nrodosis" name="nro_dosis" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="input-group form-group date">
+                                                        <span class="input-group-addon">
+                                                            F. Ult. Dosis
+                                                        </span>
+                                                        <input type="text" class="form-control date input-sm dateFechaDosis" id="fechadosis" readonly name="fecha_ultima_dosis" placeholder="dd/mm/aaaa">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="input-group form-group date">
+                                                        <span class="input-group-addon">
+                                                            F. Emision DNI
+                                                        </span>
+                                                        <input type="text" class="form-control date input-sm dateFechaEmision" id="fechaemision" readonly name="fecha_emision" placeholder="dd/mm/aaaa">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /row -->
+                                        </fieldset>
+                                        <!-- /fieldset -->
+                                    </form>
+                                    <!-- form -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+@section js
+{
+    <script src="~/Content/assets/viewsjs/AsistenciaCliente/EditarCliente.js?v=@fecha_archivos"></script>
+}

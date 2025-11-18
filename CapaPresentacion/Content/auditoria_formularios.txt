@@ -1,0 +1,2 @@
+﻿     formulario o vista						codigo
+Progresivo/ProgresivoRegistroVista			   1

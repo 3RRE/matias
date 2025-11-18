@@ -1,0 +1,312 @@
+﻿@using CapaEntidad.ExcelenciaOperativa
+@using System.Activities.Expressions
+@using System.Web.Script.Serialization
+@using System.Web.UI.WebControls
+
+@{
+    ViewBag.Title = "Ficha Experiencia Operativa";
+    Layout = "";
+}
+
+@{
+    ViewBag.Title = "PDF";
+    List<EO_FichaExcelenciaOperativaEntidad> listaficha = new List<EO_FichaExcelenciaOperativaEntidad>();
+    bool respuesta = ViewBag.respuesta;
+    if (respuesta)
+    {
+        listaficha = ViewBag.data;
+    }
+    string style = "";
+    int indice = 0;
+}
+<!DOCTYPE html>
+<html lang="es" translate="no">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="~/Content/assets/images/required/logo-default.ico">
+
+    <title>Ficha Experiencia Operativa</title>
+
+    <!-- Required CSS Files -->
+    <link type="text/css" href="~/Content/assets/css/required/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href='~/fonts/fonts.googleapis/css2ca8.css?family=Roboto:400,300&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link type="text/css" href="~/Content/assets/js/required/jquery-ui-1.11.0.custom/jquery-ui.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/js/required/jquery-ui-1.11.0.custom/jquery-ui.structure.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/js/required/jquery-ui-1.11.0.custom/jquery-ui.theme.min.css" rel="stylesheet" />
+
+    <link type="text/css" href="~/Content/assets/css/required/icheck/all.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/fonts/metrize-icons/styles-metrize-icons.css" rel="stylesheet">
+    <link type="text/css" href="~/Content/assets/fonts/font-awesome-4.6.3/css/font-awesome.css" rel="stylesheet" />
+
+
+    <!-- Optional CSS Files -->
+
+    <link type="text/css" href="~/Content/assets/css/optional/fullcalendar/fullcalendar.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/fullcalendar/circloid-fullcalendar.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/fullcalendar/fullcalendar.print.css" rel="stylesheet" media="print" />
+    <link type="text/css" href="~/Content/assets/css/optional/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/select2.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/bootstrapValidator.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/toastr.min.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/optional/jquery-confirm.css" rel="stylesheet" />
+
+    <!-- add CSS files here -->
+    <!-- More Required CSS Files -->
+    <link type="text/css" href="~/Content/assets/css/styles-core.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/styles-core-responsive.css" rel="stylesheet" />
+    <style>
+        fieldset {
+            border: 1px solid #3c3838 !important;
+            border-radius: 4px !important;
+        }
+
+        legend {
+            width: auto !important;
+            margin-bottom: 0px;
+            border-bottom: none !important;
+        }
+
+        input[type=checkbox] {
+        }
+
+        div.form-control {
+            border: 1px solid;
+            height: 28px !important;
+        }
+
+        .tablemodal {
+            font-size: 12px !important;
+        }
+
+            .tablemodal tbody tr th, .tablemodal tbody tr td {
+                border-top: none !important;
+            }
+
+        table td, table th {
+            font-size: 16px !important;
+            color: #000000;
+        }
+
+        label {
+            font-size: 16px !important;
+        }
+
+        div.form-control {
+            font-size: 16px !important;
+        }
+
+        .table-oe-view {
+            width: 100%;
+            position: relative;
+            background-color: #FFFFFF;
+            margin-bottom: -1px;
+            border-bottom: 0px solid #FFFFFF !important;
+        }
+
+        .table-oe-view th, .table-oe-view td {
+            white-space: normal !important;
+        }
+
+            .table-oe-view thead {
+                background-color: #D9D9D9;
+                color: #000000;
+                text-transform: none !important;
+            }
+
+            .table-oe-view th, .table-oe-view td {
+                vertical-align: middle !important;
+            }
+
+            .table-oe-view thead tr th {
+                color: #000000;
+                font-size: 14px;
+                font-weight: 400;
+            }
+
+            .table-oe-view tbody tr td {
+                color: #444444;
+                font-size: 12px;
+                font-weight: 400;
+            }
+
+        .table-tables .oe-category-view:last-child {
+            border-bottom: 1px solid #143958 !important;
+        }
+
+        .table-oe-summary {
+            border-bottom: 1px solid #143958 !important;
+        }
+
+            .table-oe-summary > tfoot > tr > th {
+                border: 1px solid #143958;
+            }
+
+            .table-oe-summary > tfoot > tr > th {
+                font-weight: 700;
+                font-size: 16px;
+            }
+
+        * {
+            page-break-inside: avoid !important;
+        }
+    </style>
+</head>
+<body style="background:#ffffff">
+
+    <div class="container-fluid">
+        <div id="body-container">
+            @if (respuesta && listaficha.Count > 0)
+            {
+                foreach (EO_FichaExcelenciaOperativaEntidad ficha in listaficha)
+                {
+                    string typeName = "";
+
+                    if (ficha.Tipo == 1)
+                    {
+                        typeName = "Jefe Operativo";
+                    }
+
+                    if (ficha.Tipo == 2)
+                    {
+                        typeName = "Gerente de Unidad";
+                    }
+
+                    if (indice != 0)
+                    {
+                        style = "page-break-before: always;";
+                    }
+                    indice++;
+            <div class="w-100" style="@style">
+                <!-- w-100 -->
+                <div class="w-100">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <div style="margin-bottom:10px">
+                                <h4><b>FICHA DIARIA DE EXPERIENCIA OPERATIVA DE SALA - @typeName</b></h4>
+                            </div>
+                            <div>
+                                <b>Fecha : <span>@ficha.Fecha.ToString("dd/MM/yyyy")</span> / Usuario : <span>@ficha.UsuarioNombre</span> / Sala : <span>@ficha.SalaNombre</span></b>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- row -->
+                    <div class="w-100" style="margin-top: 10px">
+                        <!-- items -->
+
+                        @foreach (EO_FichaCategoriaEntidad categoria in ficha.Categorias)
+                        {
+                            <!-- category -->
+
+                            <table class="table table-hover table-bordered table-oe-view">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2" class="text-center">@categoria.Nombre</th>
+                                        <th class="text-center" width="100px">Puntuación</th>
+                                        @if (ficha.Tipo == 2)
+                                        {
+                                        <th class="text-center" width="125px">F. Vencimiento</th>
+                                        }
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{int index = 1;}
+                                    @foreach (EO_FichaItemEntidad item in categoria.Items)
+                                    {
+
+
+                                    <tr>
+
+                                        @if (item.TipoRespuesta == 7)
+                                        {
+                                            if (item.Observacion != "")
+                                            {
+                                                <td class="text-center" width="55px">@index</td>
+
+                                                <td class="text-left" colspan="2">Comentario:  @item.Observacion</td>
+                                            }
+
+                                        } else
+                                        {
+                                            <td class="text-center" width="55px">@index</td>
+
+                                            <td class="text-left">@item.Nombre</td>
+
+                                            <td class="text-center">@item.PuntuacionObtenida</td>
+
+                                        }
+                                        @if (ficha.Tipo == 2)
+                                        {
+                                            string fechaExpiracion = "---";
+                                            if (item.FechaExpiracionActivo == 1)
+                                            {
+                                                DateTime temp;
+                                                string formatFechaExpiracion = String.Format("{0:dd/MM/yyyy}", item.FechaExpiracion);
+                                                if (DateTime.TryParse(formatFechaExpiracion, out temp))
+                                                {
+                                                    fechaExpiracion = formatFechaExpiracion;
+                                                } else
+                                                {
+                                                    fechaExpiracion = "No asignado";
+                                                }
+                                            }
+                                            <td class="text-center">@fechaExpiracion</td>
+                                        }
+                                    </tr>
+                                        index++;
+                                    }
+                                </tbody>
+                            </table>
+
+                            <!-- category -->
+                        }
+
+                        <!-- items -->
+                        <!-- summary -->
+
+                        <table class="table table-hover table-bordered table-oe-view table-oe-summary">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Detalle</th>
+                                    <th class="text-center" width="150px">Puntuación Base</th>
+                                    <th class="text-center" width="150px">Puntuación Obtenida</th>
+                                    <th class="text-center" width="150px">%</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (EO_FichaCategoriaEntidad categoria in ficha.Categorias)
+                                {
+                                    <tr>
+                                        <td class="text-left">@categoria.Nombre</td>
+                                        <td class="text-center">@categoria.PuntuacionBase</td>
+                                        <td class="text-center">@categoria.PuntuacionObtenida</td>
+                                        <td class="text-center">@categoria.Porcentaje.ToString("#0.0%")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th></th>
+                                    <th class="text-center">@ficha.PuntuacionBase</th>
+                                    <th class="text-center">@ficha.PuntuacionObtenida</th>
+                                    <th class="text-center">@ficha.Porcentaje.ToString("#0.0%")</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                        <!-- summary -->
+                    </div>
+                    <!-- row-->
+                </div>
+                <!-- w-100 -->
+            </div>
+                }
+            }
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,301 @@
+﻿@using CapaEntidad
+@using S3k.Utilitario;
+@{
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+    int id = 0;
+
+    string url = $"{Request.Url.Scheme}://{Request.Url.Authority}{Request.ApplicationPath.TrimEnd('/')}";
+}
+<!DOCTYPE html>
+<html lang="es" translate="no">
+
+<!-- Mirrored from livedemo.base5builder.com/circloid_2_html/default/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Jun 2018 17:14:39 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Fav and touch icons -->
+
+    <link rel="shortcut icon" href="~/Content/assets/images/required/logo-default.ico">
+
+    <title>Seguridad</title>
+
+    <!-- Required CSS Files -->
+    <link type="text/css" href="~/Content/assets/css/required/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    @*<link href='~/fonts/fonts.googleapis/css2ca8.css?family=Roboto:400,300&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>*@
+    <link type="text/css" href="~/Content/assets/js/required/jquery-ui-1.11.0.custom/jquery-ui.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/js/required/jquery-ui-1.11.0.custom/jquery-ui.structure.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/js/required/jquery-ui-1.11.0.custom/jquery-ui.theme.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/required/mCustomScrollbar/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/required/icheck/all.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/fonts/metrize-icons/styles-metrize-icons.min.css" rel="stylesheet">
+    <link type="text/css" href="~/Content/assets/fonts/font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/datatables/css/dataTables.min.css?v=@fecha_archivos" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/datatables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/datatables/css/dataTables.tableTools.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/datatables/css/dataTables.responsive.min.css" rel="stylesheet" />
+    <link href="~/Content/assets/js/optional/jqueryconfirm/jquery-confirm.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/bootstrap-toggle.min.css" rel="stylesheet" />
+    <!-- Optional CSS Files -->
+
+    <link type="text/css" href="~/Content/assets/css/optional/fullcalendar/fullcalendar.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/fullcalendar/circloid-fullcalendar.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/fullcalendar/fullcalendar.print.min.css" rel="stylesheet" media="print" />
+    <link type="text/css" href="~/Content/assets/css/optional/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/select2.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/bootstrapValidator.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/toastr.min.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/optional/jquery-confirm.min.css" rel="stylesheet" />
+
+    <!-- add CSS files here -->
+    <!-- More Required CSS Files -->
+    <link type="text/css" href="~/Content/assets/css/styles-core.min.css?v=@fecha_archivos" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/styles-core-responsive.min.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/print.min.css" rel="stylesheet" />
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="~/Content/assets/js/required/misc/ie10-viewport-bug-workaround.js"></script>
+
+    <!--[if IE 7]>
+    <link type="text/css" href="~/Content/assets/css/required/misc/style-ie7.css" rel="stylesheet">
+    <script type="text/javascript" src="~/Content/assets/fonts/lte-ie7.js"></script>
+    <![endif]-->
+    <!--[if IE 8]>
+    <link type="text/css" href="~/Content/assets/css/required/misc/style-ie8.css" rel="stylesheet">
+    <![endif]-->
+    <!--[if lte IE 8]>
+    <script type="text/javascript" src="~/Content/assets/css/required/misc/excanvas.min.js"></script>
+    <![endif]-->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    @if (IsSectionDefined("css"))
+    {
+        @RenderSection("css", required: false)
+    }
+</head>
+<body>
+    <input type="hidden" id="BasePath" value="@url/" />
+    <input type="hidden" id="SessionTimeout" value="@System.Web.HttpContext.Current.Session.Timeout" />
+    <div class="container-fluid">
+        <!-- START Header Container -->
+        <div id="header-container">
+            <div class="header-bar navbar navbar-inverse" role="navigation">
+                <!-- NOTE TO READER: Accepts the following class(es) "navbar-fixed-top" class -->
+                <div class="container">
+                    <div class="navbar-header">
+                        <!-- START logo -->
+                        <div class="logo">
+                            <a href="#">
+                                <img class="default-logo" src="~/Content/assets/images/required/logo-default.png" width="156" height="44" alt="Logo" />
+
+                            </a>
+                        </div>
+
+                        <div style="float: left;line-height: 1;margin-top: 7px;">
+                            <div style="color: white">
+                                Fecha <span id="fechaHoy"></span>
+                            </div>
+                            <div style="color: white">
+                                Hora <span id="liveclock"></span>
+                            </div>
+                        </div>
+
+                        <!-- END logo -->
+                        <!-- START Mobile Menu Toggle -->
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <!-- END Mobile Menu Toggle -->
+                        <!-- START Header Info Container -->
+                        <div class="header-info">
+                            <!-- START Header User Profile -->
+                            <input type="hidden" id="txtNombreUsuarioLogeado" value="Super Usuario" />
+                            <div class="header-profile">
+                                <!-- NOTE TO READER: Accepts the following class(es) "animate" class -->
+                                <ul class="header-profile-menu">
+                                    <li>
+                                        <a href="#" class="top">
+
+                                            <span class="main-menu-text" id="spnUsuarioAcc">Super Usuario
+                                                <i class="icon icon-arrow-down-bold-round icon-size-small"></i>
+                                            </span>
+                                        </a>
+                                        <ul>
+                                            <li>
+                                                <a href="~/Super/Salir">
+                                                    <span aria-hidden="true" class="icon icon-arrow-curve-right"></span>
+                                                    <span class="main-text">Salir</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- END Header User Profile -->
+
+
+                        </div>
+                        <!-- END Header Info Container -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END Header Container -->
+        <!-- START Body Container -->
+        <div id="body-container">
+            <!-- START Left Column -->
+            <div id="left-column" class="">
+                <!-- NOTE TO READER: Accepts the following class(es) "menu-icon-only", "fixed" class -->
+                <div id="mainnav">
+                    <ul class="mainnav" id="moduloPrincipal">
+                        <!-- NOTE TO READER: Accepts the following class(es) "animate" class -->
+                        <li class="selected">
+                            <a href="~/Super/control" class="top">
+                                <span class="main-menu-icon">
+                                    <span aria-hidden="true" class="icon icon-grid-big"></span>
+                                </span>
+                                <span class="main-menu-text">Inicio</span>
+                            </a>
+                        </li>
+                        <li class="menu-item-top">
+                            <a href="~/Super/permisos" class="top">
+                                <span class="main-menu-icon">
+                                    <span aria-hidden="true" class="icon icon-shield"></span>
+                                </span>
+                                <span class="main-menu-text">Seguridad</span>
+                            </a>
+                        </li>
+                        <li class="menu-item-top">
+                            <a href="~/Super/ListadoControladores" class="top">
+                                <span class="main-menu-icon">
+                                    <span aria-hidden="true" class="icon icon-options-settings"></span>
+                                </span>
+                                <span class="main-menu-text">Controladores Permiso</span>
+                            </a>
+                        </li>
+                        <li class="menu-item-top">
+                            <a href="~/Super/ContraseniaUsuarios" class="top">
+                                <span class="main-menu-icon">
+                                    <span aria-hidden="true" class="icon icon-options-settings"></span>
+                                </span>
+                                <span class="main-menu-text">Cambiar Contrasenia</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <!-- END Left Column -->
+            <!-- START Right Column -->
+            <div id="right-column">
+                <div class="right-column-content">
+
+                    @RenderBody()
+                </div>
+
+                <!-- START Footer Container -->
+                <div id="footer-container">
+                    <div class="footer-content">
+                        &copy; <a href="#?ref=Base5Builder">Seguridad</a> was made with <span style="color:#FF0000;">&#10084;</span> and supported by - <a href="../../../base5builder.com/index.html" target="_blank" style="font-weight:300;color:#ffffff;background:#1d1d1d;padding:0 3px;">Base<span style="color:#ffa733;font-weight:bold">5</span>Builder</a>
+                    </div>
+                </div>
+                <!-- END Footer Container -->
+
+            </div>
+            <!-- END Right Column -->
+
+        </div>
+        <!-- END Body Container -->
+    </div><!-- /.container -->
+    <!-- Modal small-modal -->
+    <div style="z-index:99999" class="modal fade small-modal" id="small-modal" tabindex="-1" role="dialog" aria-labelledby="small-modal-label" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="small-modal-label">Login</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <form class="login-form" id="loginFomrSesion" method="POST" action="" onsubmit="return false;">
+                                <div class="form-group">
+                                    <label for="usuario">Usuario</label>
+                                    <input autocomplete="off" class="form-control input-sm" id="usuario" placeholder="Usuario" type="text" name="usuario">
+                                </div>
+                                <div class="form-group">
+                                    <label for="contrasena">Contraseña</label>
+                                    <input autocomplete="off" class="form-control input-sm" id="contrasena" placeholder="Contraseña" type="password" name="contrasena">
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btnAccederSesion" class="btn btn-primary">Ingresar</button>
+                </div>
+            </div><!-- /.modal-content -->
+
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    @RenderSection("modal", required: false)
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- Required JS Files -->
+    <script src="~/Content/assets/js/required/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/required/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/required/jquery-ui-1.11.0.custom/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/required/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/required/jquery.easing.1.3-min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/required/misc/jquery.mousewheel-3.0.6.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/required/jquery.mCustomScrollbar.min.js"></script>
+
+    <script type="text/javascript" src="~/Content/assets/js/required/misc/retina.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/required/icheck.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/required/misc/jquery.ui.touch-punch.min.js"></script>
+    <!-- Optional JS Files -->
+
+    <script type="text/javascript" src="~/Content/assets/js/optional/misc/moment.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/fullcalendar/fullcalendar.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/select2.full.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/loadingoverlay/loadingoverlay.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/datatables/js/jquery.dataTables.min.js?v=@fecha_archivos"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/datatables/js/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/datatables/js/dataTables.tableTools.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/datatables/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/bootstrapValidator.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/toastr.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/jquery-confirm.js"></script>
+
+    <script type="text/javascript" src="~/Content/assets/js/required/circloid-functions.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/circloid-functions-optional.js"></script>
+    <!-- add optional JS plugin files here -->
+    <!-- REQUIRED: User Editable JS Files -->
+    <script type="text/javascript" src="~/Content/assets/js/script.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/general.js"></script>
+
+
+    <script src="~/Content/assets/js/optional/bootstrap-toggle.min.js"></script>
+    <script src="~/Content/assets/js/datatablesservidor.js"></script>
+    <script src="~/Content/assets/js/botonacciones.js"></script>
+
+    <script src="~/Content/assets/js/reportes/ClasesReporte.js"></script>
+    <script src="~/Content/assets/js/reportes/reporte_botones.js"></script>
+    <!-- add additional User Editable files here -->
+
+
+    @RenderSection("js", required: false)
+</body>
+
+</html>

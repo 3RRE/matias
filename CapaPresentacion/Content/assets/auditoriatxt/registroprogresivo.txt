@@ -1,0 +1,322 @@
+﻿<div class="row">
+    <div class="col-md-6 col-sm-12">
+        <h3 style="color:blue;font-weight:bolder;text-align:center;">Data Inicial(Cabecera)</h3>
+        <div class="input-group">
+            <span class="input-group-addon redback">
+                Sala
+            </span>
+            <input type="text" class="form-control input-sm azul" name="salaA" id="txtSalaA" disabled>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon redback">
+                Progresivo
+            </span>
+            <input type="text" class="form-control input-sm azul" name="progresivoA" id="txtProgresivoA" disabled>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon redback">
+                Moneda
+            </span>
+            <input type="text" class="form-control input-sm azul" name="monedaA" id="txtMonedaA" disabled>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon redback">
+                Lugar Pago
+            </span>
+            <input type="text" class="form-control input-sm azul" name="lugarPA" id="txtLugarPA" disabled>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon redback">
+                Duracion Pantalla (Seg)
+            </span>
+            <input type="text" class="form-control input-sm azul" name="duracionPantallaA" id="txtDuracionA" disabled>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon redback">
+                Nro Jugadores
+            </span>
+            <input type="text" class="form-control input-sm azul" name="nroJugadoresA" id="txtNroJugadoresA" disabled>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon redback">
+                Nro Pozos
+            </span>
+            <input type="text" class="form-control input-sm azul" name="nroPozosA" id="txtNroPozosA" disabled>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon redback">
+                Imagen
+            </span>
+            <input type="text" class="form-control input-sm azul" name="imagenA" id="txtImagenA" disabled>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon redback">
+                Estado
+            </span>
+            <input type="text" class="form-control input-sm azul" name="estadoA" id="txtEstadoA" disabled>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon redback">
+                Pozo Oculto
+            </span>
+            <input type="text" class="form-control input-sm azul" name="pozoA" id="txtpozoA" disabled>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon redback">
+                Registrar Historico
+            </span>
+            <input type="text" class="form-control input-sm azul" name="registrarA" id="txtRegistrarA" disabled>
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-12">
+        <h3 style="color:blue;font-weight:bolder;text-align:center;">Data Final(Cabecera)</h3>
+        <div class="input-group">
+            <span class="input-group-addon redback">
+                Sala
+            </span>
+            <input type="text" class="form-control input-sm azul" name="salaF" id="txtSalaF" disabled>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon redback">
+                Progresivo
+            </span>
+            <input type="text" class="form-control input-sm azul" name="progresivoF" id="txtProgresivoF" disabled>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon redback">
+                Moneda
+            </span>
+            <input type="text" class="form-control input-sm azul" name="monedaF" id="txtMonedaF" disabled>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon redback">
+                Lugar Pago
+            </span>
+            <input type="text" class="form-control input-sm azul" name="lugarPF" id="txtLugarPF" disabled>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon redback">
+                Duracion Pantalla (Seg)
+            </span>
+            <input type="text" class="form-control input-sm azul" name="duracionPantallaF" id="txtDuracionF" disabled>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon redback">
+                Nro Jugadores
+            </span>
+            <input type="text" class="form-control input-sm azul" name="nroJugadoresF" id="txtNroJugadoresF" disabled>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon redback">
+                Nro Pozos
+            </span>
+            <input type="text" class="form-control input-sm azul" name="nroPozosF" id="txtNroPozosF" disabled>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon redback">
+                Imagen
+            </span>
+            <input type="text" class="form-control input-sm azul" name="imagenF" id="txtImagenF" disabled>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon redback">
+                Estado
+            </span>
+            <input type="text" class="form-control input-sm azul" name="estadoF" id="txtEstadoF" disabled>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon redback">
+                Pozo Oculto
+            </span>
+            <input type="text" class="form-control input-sm azul" name="pozoF" id="txtpozoF" disabled>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon redback">
+                Registrar Historico
+            </span>
+            <input type="text" class="form-control input-sm azul" name="registrarF" id="txtRegistrarF" disabled>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 col-sm-12">
+        <h3 style="color:blue;font-weight:bolder;text-align:center;">Data Inicial(Pozos)</h3>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th style="width:15%">Pozo Sup. <i class="fa fa-square" id="chkPozoSuperiorA"></i></th>
+                        <th style="width:15%">Pozo Med. <i class="fa fa-check-square" id="chkPozoMedioA"></i></th>
+                        <th style="width:15%">Pozo Inf. <i class="fa fa-square" id="chkPozoInferiorA"></i></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Premio base</td>
+                        <td><input type="text" name="txtPSPremioBase" id="txtPSPremioBaseA" value="" class="form-control input-sm" disabled/></td>
+                        <td><input type="text" name="txtPMPremioBase" id="txtPMPremioBaseA" value="" class="form-control input-sm" disabled/></td>
+                        <td><input type="text" name="txtPIPremioBase" id="txtPIPremioBaseA" value="" class="form-control input-sm" disabled /></td>
+                    </tr>
+                    <tr>
+                        <td>Premio minimo</td>
+                        <td><input type="text" name="txtPSPremioMinimo" id="txtPSPremioMinimoA" value="" class="form-control input-sm" disabled /></td>
+                        <td><input type="text" name="txtPMPremioMinimo" id="txtPMPremioMinimoA" value="" class="form-control input-sm" disabled /></td>
+                        <td><input type="text" name="txtPIPremioMinimo" id="txtPIPremioMinimoA" value="" class="form-control input-sm" disabled/></td>
+                    </tr>
+                    <tr>
+                        <td>Premio maximo</td>
+                        <td><input type="text" name="txtPSPremioMaximo" id="txtPSPremioMaximoA" value="" class="form-control input-sm" disabled/></td>
+                        <td><input type="text" name="txtPMPremioMaximo" id="txtPMPremioMaximoA" value="" class="form-control input-sm" disabled/></td>
+                        <td><input type="text" name="txtPIPremioMaximo" id="txtPIPremioMaximoA" value="" class="form-control input-sm" disabled/></td>
+                    </tr>
+                    <tr>
+                        <td>Inc. pozo (Ej. 0.01 = 1%)</td>
+                        <td><input type="text" name="txtPSIncPozoNormal" id="txtPSIncPozoNormalA" value="" class="form-control input-sm" disabled/></td>
+                        <td><input type="text" name="txtPMIncPozoNormal" id="txtPMIncPozoNormalA" value="" class="form-control input-sm" disabled/></td>
+                        <td><input type="text" name="txtPIIncPozoNormal" id="txtPIIncPozoNormalA" value="" class="form-control input-sm" disabled/></td>
+                    </tr>
+                    <tr>
+                        <td>Restricción de Apuesta (Créditos)</td>
+                        <td><input type="text" name="txtPSRsApuesta" id="txtPSRsApuestaA" value="" class="form-control input-sm" disabled/></td>
+                        <td><input type="text" name="txtPMRsApuesta" id="txtPMRsApuestaA" value="" class="form-control input-sm" disabled/></td>
+                        <td><input type="text" name="txtPIRsApuesta" id="txtPIRsApuestaA" value="" class="form-control input-sm" disabled/></td>
+
+                    </tr>
+                    <tr>
+                        <td>Nro de Jugadores</td>
+                        <td><input type="text" name="txtPSRsJugadores" id="txtPSRsJugadoresA" value="" class="form-control input-sm" disabled/></td>
+                        <td><input type="text" name="txtPMRsJugadores" id="txtPMRsJugadoresA" value="" class="form-control input-sm" disabled/></td>
+                        <td><input type="text" name="txtPIRsJugadores" id="txtPIRsJugadoresA" value="" class="form-control input-sm" disabled/></td>
+                    </tr>
+                    <tr>
+                        <td>Monto oculto minimo</td>
+                        <td><input type="text" name="txtPSMontoOcultoMin" id="txtPSMontoOcultoMinA" value="" class="form-control input-sm" disabled/></td>
+                        <td><input type="text" name="txtPMMontoOcultoMin" id="txtPMMontoOcultoMinA" value="" class="form-control input-sm" disabled/></td>
+                        <td><input type="text" name="txtPIMontoOcultoMin" id="txtPIMontoOcultoMinA" value="" class="form-control input-sm" disabled/></td>
+                    </tr>
+                    <tr>
+                        <td>Monto oculto maximo</td>
+                        <td><input type="text" name="txtPSMontoOcultoMax" id="txtPSMontoOcultoMaxA" value="" class="form-control input-sm" disabled /></td>
+                        <td><input type="text" name="txtPMMontoOcultoMax" id="txtPMMontoOcultoMaxA" value="" class="form-control input-sm" disabled/></td>
+                        <td><input type="text" name="txtPIMontoOcultoMax" id="txtPIMontoOcultoMaxA" value="" class="form-control input-sm" disabled/></td>
+                    </tr>
+                    <tr>
+                        <td>Inc. pozo oculto (Ej. 0.01 = 1%)</td>
+                        <td><input type="text" name="txtPSIncPozoOculto" id="txtPSIncPozoOcultoA" value="" class="form-control input-sm" disabled/></td>
+                        <td><input type="text" name="txtPMIncPozoOculto" id="txtPMIncPozoOcultoA" value="" class="form-control input-sm" disabled/></td>
+                        <td><input type="text" name="txtPIIncPozoOculto" id="txtPIIncPozoOcultoA" value="" class="form-control input-sm" disabled/></td>
+                    </tr>
+                    <tr>
+                        <td>Dificultad</td>
+                        <td>
+                            <input type="text" name="cboPSDificultad" id="cboPSDificultadA" value="" class="form-control input-sm" disabled />
+                        </td>
+                        <td>
+                            <input type="text" name="cboPMDificultad" id="cboPMDificultadA" value="" class="form-control input-sm" disabled />
+                        </td>
+                        <td>
+                            <input type="text" name="cboPIDificultad" id="cboPIDificultadA" value="" class="form-control input-sm" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Pozo actual</td>
+                        <td><input type="text" name="txtPSPozoActual" id="txtPSPozoActualA" value="" class="form-control input-sm" disabled/></td>
+                        <td><input type="text" name="txtPMPozoActual" id="txtPMPozoActualA" value="" class="form-control input-sm" disabled/></td>
+                        <td><input type="text" name="txtPIPozoActual" id="txtPIPozoActualA" value="" class="form-control input-sm" disabled/></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-12">
+        <h3 style="color:blue;font-weight:bolder;text-align:center;">Data Final(Pozos)</h3>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th style="width:15%">Pozo Sup. <i class="fa fa-square" id="chkPozoSuperiorF"></i></th>
+                        <th style="width:15%">Pozo Med. <i class="fa fa-check-square" id="chkPozoMedioF"></i></th>
+                        <th style="width:15%">Pozo Inf. <i class="fa fa-square" id="chkPozoInferiorF"></i></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Premio base</td>
+                        <td><input type="text" name="txtPSPremioBase" id="txtPSPremioBaseF" value="" class="form-control input-sm" disabled /></td>
+                        <td><input type="text" name="txtPMPremioBase" id="txtPMPremioBaseF" value="" class="form-control input-sm" disabled /></td>
+                        <td><input type="text" name="txtPIPremioBase" id="txtPIPremioBaseF" value="" class="form-control input-sm" disabled /></td>
+                    </tr>
+                    <tr>
+                        <td>Premio minimo</td>
+                        <td><input type="text" name="txtPSPremioMinimo" id="txtPSPremioMinimoF" value="" class="form-control input-sm" disabled /></td>
+                        <td><input type="text" name="txtPMPremioMinimo" id="txtPMPremioMinimoF" value="" class="form-control input-sm" disabled /></td>
+                        <td><input type="text" name="txtPIPremioMinimo" id="txtPIPremioMinimoF" value="" class="form-control input-sm" disabled /></td>
+                    </tr>
+                    <tr>
+                        <td>Premio maximo</td>
+                        <td><input type="text" name="txtPSPremioMaximo" id="txtPSPremioMaximoF" value="" class="form-control input-sm" disabled /></td>
+                        <td><input type="text" name="txtPMPremioMaximo" id="txtPMPremioMaximoF" value="" class="form-control input-sm" disabled /></td>
+                        <td><input type="text" name="txtPIPremioMaximo" id="txtPIPremioMaximoF" value="" class="form-control input-sm" disabled /></td>
+                    </tr>
+                    <tr>
+                        <td>Inc. pozo (Ej. 0.01 = 1%)</td>
+                        <td><input type="text" name="txtPSIncPozoNormal" id="txtPSIncPozoNormalF" value="" class="form-control input-sm" disabled /></td>
+                        <td><input type="text" name="txtPMIncPozoNormal" id="txtPMIncPozoNormalF" value="" class="form-control input-sm" disabled /></td>
+                        <td><input type="text" name="txtPIIncPozoNormal" id="txtPIIncPozoNormalF" value="" class="form-control input-sm" disabled /></td>
+                    </tr>
+                    <tr>
+                        <td>Restricción de Apuesta (Créditos)</td>
+                        <td><input type="text" name="txtPSRsApuesta" id="txtPSRsApuestaF" value="" class="form-control input-sm" disabled /></td>
+                        <td><input type="text" name="txtPMRsApuesta" id="txtPMRsApuestaF" value="" class="form-control input-sm" disabled /></td>
+                        <td><input type="text" name="txtPIRsApuesta" id="txtPIRsApuestaF" value="" class="form-control input-sm" disabled /></td>
+
+                    </tr>
+                    <tr>
+                        <td>Nro de Jugadores</td>
+                        <td><input type="text" name="txtPSRsJugadores" id="txtPSRsJugadoresF" value="" class="form-control input-sm" disabled /></td>
+                        <td><input type="text" name="txtPMRsJugadores" id="txtPMRsJugadoresF" value="" class="form-control input-sm" disabled /></td>
+                        <td><input type="text" name="txtPIRsJugadores" id="txtPIRsJugadoresF" value="" class="form-control input-sm" disabled /></td>
+                    </tr>
+                    <tr>
+                        <td>Monto oculto minimo</td>
+                        <td><input type="text" name="txtPSMontoOcultoMin" id="txtPSMontoOcultoMinF" value="" class="form-control input-sm" disabled /></td>
+                        <td><input type="text" name="txtPMMontoOcultoMin" id="txtPMMontoOcultoMinF" value="" class="form-control input-sm" disabled /></td>
+                        <td><input type="text" name="txtPIMontoOcultoMin" id="txtPIMontoOcultoMinF" value="" class="form-control input-sm" disabled /></td>
+                    </tr>
+                    <tr>
+                        <td>Monto oculto maximo</td>
+                        <td><input type="text" name="txtPSMontoOcultoMax" id="txtPSMontoOcultoMaxF" value="" class="form-control input-sm" disabled /></td>
+                        <td><input type="text" name="txtPMMontoOcultoMax" id="txtPMMontoOcultoMaxF" value="" class="form-control input-sm" disabled /></td>
+                        <td><input type="text" name="txtPIMontoOcultoMax" id="txtPIMontoOcultoMaxF" value="" class="form-control input-sm" disabled /></td>
+                    </tr>
+                    <tr>
+                        <td>Inc. pozo oculto (Ej. 0.01 = 1%)</td>
+                        <td><input type="text" name="txtPSIncPozoOculto" id="txtPSIncPozoOcultoF" value="" class="form-control input-sm" disabled /></td>
+                        <td><input type="text" name="txtPMIncPozoOculto" id="txtPMIncPozoOcultoF" value="" class="form-control input-sm" disabled /></td>
+                        <td><input type="text" name="txtPIIncPozoOculto" id="txtPIIncPozoOcultoF" value="" class="form-control input-sm" disabled /></td>
+                    </tr>
+                    <tr>
+                        <td>Dificultad</td>
+                        <td>
+                            <input type="text" name="cboPSDificultad" id="cboPSDificultadF" value="" class="form-control input-sm" disabled />
+                        </td>
+                        <td>
+                            <input type="text" name="cboPMDificultad" id="cboPMDificultadF" value="" class="form-control input-sm" disabled />
+                        </td>
+                        <td>
+                            <input type="text" name="cboPIDificultad" id="cboPIDificultadF" value="" class="form-control input-sm" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Pozo actual</td>
+                        <td><input type="text" name="txtPSPozoActual" id="txtPSPozoActualF" value="" class="form-control input-sm" disabled /></td>
+                        <td><input type="text" name="txtPMPozoActual" id="txtPMPozoActualF" value="" class="form-control input-sm" disabled /></td>
+                        <td><input type="text" name="txtPIPozoActual" id="txtPIPozoActualF" value="" class="form-control input-sm" disabled /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,87 @@
+
+@using S3k.Utilitario
+@model CapaEntidad.Notificaciones.DTO.Mantenedores.SistemaDto
+@{
+    Layout = null;
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+}
+
+<style>
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: 0.4s;
+        border-radius: 34px !important;
+    }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+    input:checked + .slider {
+        background-color: #2196F3;
+    }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+    #Descripcion {
+        resize: vertical;
+    }
+</style>
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs12" id="div">
+        <form class="medium bv-form" role="form" method="post" action="#" id="form_registro">
+            <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+
+            <div class="col-md-12 col-sm-12">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">Nombre</span>
+                        <input type="text" class="form-control input-sm" id="Nombre" name="Nombre" placeholder="Ingrese el nombre" value="@Model.Nombre" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-sm-12">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">Descripción</span>
+                        <textarea class="form-control input-sm" id="Descripcion" name="Descripcion" placeholder="Ingrese la descripción">@Model.Descripcion</textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="~/Content/assets/viewsjs/Notificaciones/Sistema/sistemaGuardar.js?v=@fecha_archivos"></script>

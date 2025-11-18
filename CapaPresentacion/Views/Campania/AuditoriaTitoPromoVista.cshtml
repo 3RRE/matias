@@ -1,0 +1,544 @@
+﻿@using S3k.Utilitario;
+@{
+    ViewBag.Title = "Auditoria Tito Promocionales";
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+}
+
+@section css
+{
+    <style>
+        .table-audipromo {
+            width: 100%;
+            position: relative;
+            background-color: #FFFFFF;
+            border-spacing: 0;
+        }
+
+            .table-audipromo th, .table-audipromo td {
+                padding: 2px 4px;
+            }
+
+            .table-audipromo thead th {
+                border: 1px solid rgba(255, 255, 255, 0.25);
+            }
+
+            .table-audipromo tbody td {
+                border: 1px solid #DDDDDD;
+            }
+
+            .table-audipromo tr th, .table-audipromo tr td {
+                text-align: center;
+            }
+
+            .table-audipromo thead tr th {
+                color: #FFFFFF;
+            }
+
+            .table-audipromo thead tr:nth-of-type(1) th {
+                background-color: rgba(20, 57, 88, 0.95);
+            }
+
+            .table-audipromo thead tr:nth-of-type(2) th {
+                background-color: #143958;
+            }
+
+            .table-audipromo tbody td {
+                padding: 4px 4px;
+            }
+
+            .table-audipromo tbody tr:nth-child(even) {
+                background-color: #F2F2F2;
+            }
+
+            .table-audipromo tbody tr:hover {
+                background-color: #DDDDDD;
+            }
+
+        .table-audipromo-box thead tr:nth-of-type(1) th {
+            background-color: rgba(14, 93, 161, 0.95);
+        }
+
+        .table-audipromo-box thead tr:nth-of-type(2) th {
+            background-color: #0E5DA1;
+        }
+
+        .table-audipromo-ias thead tr:nth-of-type(1) th {
+            background-color: rgba(76, 174, 76, 0.95);
+        }
+
+        .table-audipromo-ias thead tr:nth-of-type(2) th {
+            background-color: #4CAE4C;
+        }
+
+        .table-audipromo-diferencia thead tr:nth-of-type(1) th {
+            background-color: rgba(213, 133, 18, 0.95);
+        }
+
+        .table-audipromo-diferencia thead tr:nth-of-type(2) th {
+            background-color: #D58512;
+        }
+
+        .table-audipromo-noencamp thead tr:nth-of-type(1) th {
+            background-color: rgba(247, 77, 63, 0.95);
+        }
+
+        .table-audipromo-noencamp thead tr:nth-of-type(2) th {
+            background-color: #F74D3F;
+        }
+
+        .icheckbox_bg-white {
+            background-color: #FFFFFF;
+        }
+
+        table.table-audipromo tbody > tr.selected {
+            background-color: #4CAE4C;
+        }
+
+        .button_validate_client {
+            cursor: pointer;
+        }
+
+        .bg-white {
+            background-color: #FFFFFF !important;
+        }
+    </style>
+}
+
+<!-- row -->
+<div class="row">
+    <!-- col -->
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div>
+                        <h1>
+                            <span aria-hidden="true" class="icon las la-user-secret"></span>
+                            <span class="main-text">
+                                Auditoría Titos Promocionales
+                            </span>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /col -->
+    <!-- col -->
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <!-- col -->
+                        <div class="col-md-6">
+                            <button type="button" id="button_atp_excel" class="btn btn-primary btn-sm btn_audipromo_excel" style="width:100%">
+                                <i class="fa fa-file-excel-o"></i>
+                                <span>Excel</span>
+                            </button>
+                        </div>
+                        <!-- /col -->
+                        <!-- col -->
+                        <div class="col-md-6">
+                            <button type="button" id="button_atp_search" class="btn btn-success btn-sm btn_audipromo_search" style="width:100%">
+                                <i class="fa fa-search"></i>
+                                <span>Buscar</span>
+                            </button>
+                        </div>
+                        <!-- /col -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /col -->
+</div>
+<!-- /row -->
+<!-- row -->
+<div class="row">
+    <!-- col -->
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <!-- row -->
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-lg-4">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        Sala
+                                    </span>
+                                    <select class="form-control input-sm" id="cboSalaAudiPromo">
+                                        <option value="">-Seleccione</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-4">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    DEL
+                                </span>
+                                <input type="text" class="form-control input-sm dateOnly_" id="fromDateAudiPromo" readonly />
+                                <span class="input-group-addon input-group-icon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-4">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    AL
+                                </span>
+                                <input type="text" class="form-control input-sm dateOnly_" id="toDateAudiPromo" readonly />
+                                <span class="input-group-addon input-group-icon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /row -->
+                    <!-- row -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <!-- table -->
+                                <table id="tableAuditoriaPromocion" class="table-audipromo">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="2"></th>
+                                            <th colspan="2">Generados en Caja</th>
+                                            <th colspan="2">Enlazados en IAS</th>
+                                            <th colspan="2">Diferencia</th>
+                                            <th></th>
+                                        </tr>
+                                        <tr>
+                                            <th>Item</th>
+                                            <th>Fecha Operación</th>
+                                            <th>Cantidad</th>
+                                            <th>Importe Soles</th>
+                                            <th>Cantidad</th>
+                                            <th>Importe Soles</th>
+                                            <th>Cantidad</th>
+                                            <th>Importe Soles</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                                <!-- /table -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /row -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /col -->
+</div>
+<!-- /row -->
+
+@section modal
+{
+    <!-- Modal ATP Generados en Caja -->
+    <div class="modal fade full-modal" id="modal_atp_generados_caja" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Generados en Caja</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- row -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <!-- table -->
+                                <table id="tableATPGeneradosCaja" class="table-audipromo table-audipromo-box"></table>
+                                <!-- /table -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /row -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Modal ATP Generados en Caja -->
+    <!-- Modal ATP Enlazados en IAS -->
+    <div class="modal fade full-modal" id="modal_atp_enlazados_ias" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Enlazados en IAS</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- row -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <!-- table -->
+                                <table id="tableATPEnlazadosIAS" class="table-audipromo table-audipromo-ias"></table>
+                                <!-- /table -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /row -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Modal ATP Enlazados en IAS -->
+    <!-- Modal ATP Diferencias -->
+    <div class="modal fade full-modal" id="modal_atp_diferencias" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Diferencias</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- row -->
+                    <div class="row">
+                        <div class="col-sm-6 col-md-8 col-lg-8" style="margin-bottom:10px"></div>
+                        <div class="col-sm-6 col-md-4 col-lg-4" style="margin-bottom:10px">
+                            <div>
+                                <button type="button" class="btn btn-success btn-sm btn_enlazar_titos" style="width:100%">
+                                    <i class="fa fa-database"></i>
+                                    <span>Enlazar</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /row -->
+                    <!-- row -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <!-- table -->
+                                <table id="tableATPDiferencias" class="table-audipromo table-audipromo-diferencia"></table>
+                                <!-- /table -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /row -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Modal ATP Diferencias -->
+    <!-- Modal ATP Enlazar Tickets -->
+    <div class="modal fade full-modal" id="modal_atp_enlazar_tickets" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Enlazar Tickets</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- row -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div>Campañas Activas</div>
+                                <select name="atp_campania_id" id="atp_campanias_activas" class="form-control">
+                                    <option value="">Seleccione una opción</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /row -->
+                    <!-- row -->
+                    <div class="row" id="atp_validate_client_view">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div>Ingrese el Nro. de Documento para asignar cliente</div>
+                                <div class="input-group">
+                                    <input type="text" name="documentNumber" id="documentNumber" class="form-control input-sm" autocomplete="off" placeholder="Nro Doc." />
+                                    <span class="input-group-addon input-group-icon button_validate_client">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /row -->
+                    <!-- row -->
+                    <div class="row hide" id="atp_client_view">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div>Número de documento</div>
+                                <div>
+                                    <input type="text" id="atp_document_mumber" class="form-control input-sm bg-white" placeholder="Número de documento" readonly />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div>Cliente</div>
+                                <div>
+                                    <input type="text" id="atp_customer_fullname" class="form-control input-sm bg-white" placeholder="Cliente" readonly />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /row -->
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" id="apt_customer_id" />
+                    <button type="button" class="btn btn-sm btn-primary btn_proceder_enlace hide" id="btn_proceder_enlace">Proceder</button>
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Modal ATP Enlazar Tickets -->
+    <!-- Modal ATP Nuevo Cliente -->
+    <div class="modal fade full-modal" id="modal_atp_nuevo_cliente" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Nuevo Cliente</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- row -->
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <form class="medium bv-form" role="form" method="post" action="#" id="form_registro_clientevalidar">
+                                <input type="hidden" name="SalaId" id="SalaId" value="" />
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Nombres
+                                            </span>
+                                            <input type="text" class="form-control input-sm" id="txtNombrevalidar" value="" name="Nombre" placeholder="Nombres">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Apellido Paterno
+                                            </span>
+                                            <input type="text" class="form-control input-sm" id="txtApelPatvalidar" value="" name="ApelPat" placeholder="Apellido Paterno">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Apellido Materno
+                                            </span>
+                                            <input type="text" class="form-control input-sm" id="txtApelMatvalidar" value="" name="ApelMat" placeholder="Apellido Materno">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Nro. Documento
+                                            </span>
+                                            <input type="text" class="form-control input-sm" id="txtNroDocvalidar" value="" name="NroDoc" placeholder="Nro. Documento">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Telefono
+                                            </span>
+                                            <input type="text" class="form-control input-sm" id="txtCelular1validar" name="Celular1" placeholder="Telefono">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-sm-12" style="display:none;">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Fecha Cumpleaños
+                                            </span>
+                                            <input type="text" class="form-control input-sm dateOnly_ " id="txtFechaNacimientovalidar" readonly name="FechaNacimiento">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Correo
+                                            </span>
+                                            <input type="text" class="form-control input-sm" id="txtemailvalidar" name="txtemailvalidar" placeholder="Correo">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /row -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-sm btn-danger btnGuardarclientenuevoValidar">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Modal ATP Nuevo Cliente -->
+    <!-- Modal ATP No Enlazados Campania -->
+    <div class="modal fade full-modal" id="modal_atp_noenlazados_campania" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">No Enlazados a la Campaña</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- row -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <!-- table -->
+                                <table id="tableATPNoEnlazadosCampania" class="table-audipromo table-audipromo-noencamp"></table>
+                                <!-- /table -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /row -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal ATP No Enlazados Campania -->
+}
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/Campania/AuditoriaTitoPromoVista.js?v=@fecha_archivos"></script>
+}

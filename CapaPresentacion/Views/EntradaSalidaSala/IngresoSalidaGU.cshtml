@@ -1,0 +1,765 @@
+﻿@{
+    ViewBag.Title = "Ingreso y Salida de GU";
+}
+
+
+@section css
+{
+        @* <ul id="ui-id-1" tabindex="0" class="ui-menu ui-widget ui-widget-content ui-autocomplete ui-front" style="display: none;"></ul> *@
+        <style>
+            .ui-autocomplete {
+                position: absolute !important;
+                z-index: 9999 !important;
+                max-width: none !important;
+            }
+
+            #full-modal_bienmaterial .ui-autocomplete {
+                z-index: 9999 !important;
+            }
+
+            .ui-autocomplete {
+                z-index: 9999 !important;
+                position: absolute;
+            }
+
+          /*  #ui-id-1 {
+                top: 497.968px !important;
+                left: 227px !important;
+                z-index: 9999 !important;
+                position: absolute !important;
+                width: 394px !important;
+            }*/
+
+            .block-flex {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .icheckbox_bg-white {
+                background-color: #FFFFFF;
+            }
+
+            .check-attach {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 22px;
+                height: 22px;
+                margin: 0;
+                padding: 0;
+                background-color: #3478FC;
+            }
+
+                .check-attach > i {
+                    font-size: 1.15em;
+                    color: #FFFFFF;
+                }
+            .mt-3 { margin-top:1rem!important; }
+            .mr-3 { margin-right:1rem!important; }
+            .mb-3 { margin-bottom:1rem!important; }
+            .ml-3 { margin-left:1rem!important; }
+            .mx-3 { margin-right:1rem!important;margin-left:1rem!important; }
+            .my-3 { margin-bottom:1rem!important;margin-top:1rem!important; }
+            
+            .highlight-row {
+                background-color: #f0edd8 !important; 
+            }
+            .stld-dropd-custom {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                position: relative;
+            }
+
+            .stld-dropd-custom .cuflex-grow {
+                flex-grow: 1;
+            }
+            .stld-dropd-custom .dropdown-menu {
+            position: absolute;
+            right: 0; 
+            left: auto; 
+}
+
+            .stld-dropd-custom .dropdown-menu > li > a {
+                color: #FFFFFF;
+            }
+
+            .stld-dropd-custom .dropdown-menu > li > a:hover {
+                color: #333333;
+            }
+        </style>
+    }
+
+
+
+    <!-- ENCABEZADO----------------------------------------------------------------------------------------------------->
+
+
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="block">
+                <div class="block-content-outer">
+                    <div class="block-content-inner">
+                        <div class="row">
+                            <div class="col-md-12 col-xs-12 col-sm-12">
+                                <h1>
+                                    <span aria-hidden="true" class="icon las la-map-signs"></span>
+                                    <span class="main-text">
+                                        @ViewBag.Title
+                                    </span>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="block">
+                <div class="block-content-outer">
+                    <div class="block-content-inner">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-12 col-xs-12 pull-right mb-3">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="stld-dropd-custom">
+                                            <button type="button" id="btnExcel" class="btn btn-primary btn-sm cuflex-grow" title="EXCEL">
+                                                <span class="fa fa-file-excel-o"></span> Excel
+                                            </button>
+                                            <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a href="#" id="btnExcel_Plantilla">Descargar plantilla Excel</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" id="btnExcel_Importar">Importar datos de archivo Excel</a>
+                                                    <input type="file" id="fileInput" accept=".xlsx, .xls" style="display: none;">
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-12 col-xs-12 pull-right mb-3">
+                                <button type="button" id="btnNuevo" class="btn btn-warning btn-sm col-md-12 col-xs-12">
+                                    <span class="glyphicon glyphicon-book"></span>
+                                    Nuevo
+                                </button>
+                            </div>
+                            <div class="col-md-4 col-sm-12 col-xs-12 pull-right mb-3">
+                                <button type="button" id="btnBuscar" class="btn btn-success btn-sm btn-block">
+                                    <span class="fa fa-search"></span>
+                                    Buscar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FILTROS---------------------------------------------------------------------------------------------------->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="block">
+                <div class="block-content-outer">
+                    <div class="block-content-inner">
+                        <div class="row" id="formfiltro">
+
+                            <div class="col-md-6 col-sm-12">
+                                <div class="input-group">
+                                    <span class="input-group-addon">Sala</span>
+                                    <select class="form-control input-sm" id="cboSala" name="cboSala"></select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-12">
+                                <div class="input-group">
+                                    <span class="input-group-addon">DEL</span>
+                                    <input type="text" class="form-control input-sm dateOnly_" id="fechaInicio" name="fechaini" readonly />
+                                    <span class="input-group-addon input-group-icon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                                <div class="input-group">
+                                    <span class="input-group-addon">AL</span>
+                                    <input type="text" class="form-control input-sm dateOnly_" id="fechaFin" name="fechafin" readonly />
+                                    <span class="input-group-addon input-group-icon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="block">
+                <div class="block-content-outer">
+                    <div class="block-content-inner">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="contenedor_tabla" class="table-responsive">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section modal{
+
+        <div class="modal fade full-modal modal-v2" id="full-modal_entradasalidagu" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" data-backdrop="static">
+            <div class="modal-dialog modal-lg" style="max-width: 800px;">
+                <div class="modal-content" data-border-top="multi">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" id="full-modal-label_"> <span id="textIngresoSalidaGU">Nuevo</span> Registro</h4>
+                    </div>
+                    <div class="modal-body">
+                        <fieldset>
+                            <legend>Ingreso y Salida de GU</legend>
+                            <form id="IngresoSalidaGUForm">
+                                <input type="hidden" name="IdIngresoSalidaGU" value="0" id="IdIngresoSalidaGU" />
+                                <div class="row">
+
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">Sala</span>
+                                                <select class="form-control input-sm" id="cboSalaIngresoSalidaGU" name="CodSala"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @*<div class="col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">Fecha</span>
+                                                    <input type="date" class="form-control input-sm" id="FechaIngresoSalidaGU" name="Fecha" />
+                                                </div>
+                                            </div>
+                                        </div>*@
+                                <div class="">
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">Hora Ingreso</span>
+                                                <input type="text" class="form-control input-sm" id="HoraIngreso" name="HoraIngreso" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">Hora Salida</span>
+                                                <input type="text" class="form-control input-sm" id="HoraSalida" name="HoraSalida" />
+                                                <span class="input-group-addon input-group-icon" id="eliminarHoraSalida" style="cursor: pointer;">
+                                                    Limpiar
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">Motivo I/S</span>
+                                                <select id="cboMotivo" class="form-control input-sm" name="IdMotivo"></select>
+                                                <span class="input-group-addon input-group-icon" id="agregarMotivo" style="cursor: pointer;">
+                                                    <span class="glyphicon glyphicon-plus"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                    <div class="col-md-12 col-sm-12" id="MotivoOtros" style="display: none;">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">Otros (Motivo)</span>
+                                                <textarea name="DescripcionMotivo" id="DescripcionMotivo" class="form-control input-sm" maxlength="100"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">Descripcion</span>
+                                                <textarea name="Descripcion" id="Descripcion" class="form-control input-sm" maxlength="250"></textarea>
+                                            </div>
+                                            <small id="charCountDescripcion" class="form-text text-muted" style="position: absolute; bottom: 5px; right: 10px; z-index: 10;">0/250</small>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">Observaciones</span>
+                                                <textarea class="form-control input-sm" id="Observaciones" name="Observaciones" placeholder="" maxlength="250"></textarea>
+                                            </div>
+                                            <small id="charCountObservaciones" class="form-text text-muted" style="position: absolute; bottom: 5px; right: 10px; z-index: 10;">0/250</small>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Empleados</legend>
+                            <div class="row"> 
+
+                                <div class="col-md-12" style="margin-bottom: 20px;">
+                                    <div class="row">
+                                        <div class="col-md-6 col-md-offset-3">
+                                            <label for="busqueda">Buscar empleado: (Gerente de Unidad)</label>
+                                            <input type="text" id="busqueda" class="form-control busqueda-autocomplete" placeholder="Ingrese Nro. Documento o Nombres">
+                                            <div id="AutoCompleteContainer" style="position:relative;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                @*<div class="col-md-12 mb-1">
+                                        <a class="btn btn-success btn-sm col-md-6 col-md-offset-3 text-center" id="btnAgregarEmpleadoIngresoSalidaGU">
+                                            Agregar Empleado <span class="glyphicon glyphicon-plus"></span>
+                                        </a>
+                                    </div>*@
+                                <hr>
+                                <div class="col-md-12">
+                                    <div class="table-responsive" id="contenedorTableEmpleadosSeleccionados">
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-sm btn-danger" id="btnGuardarIngresoSalidaGU">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade full-modal modal-v2" id="full-modal_empleadotabla" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog modal-lg" style="max-width: 800px;">
+                <div class="modal-content" data-border-top="multi">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="full-modal-label_">Seleccionar Empleado</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="col-md-4 col-sm-4 col-xs-6 pull-right mb-2">
+                            <button type="button" id="btnNuevoEmpleado" class="btn btn-warning btn-sm col-md-12 col-xs-12 mb-4">
+                                <span class="glyphicon glyphicon-book"></span>
+                                Nuevo Empleado
+                            </button>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="table-responsive" id="contenedorTableEmpleadosIngresoSalidaGU">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade full-modal modal-v2" id="full-modal_categorias" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog modal-lg" style="width: 800px;">
+                <div class="modal-content" data-border-top="multi">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="full-modal-label_">Categorias</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12 col-xs-12">
+                                <div class="table-responsive" id="contenedorListadoCategorias">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12 col-xs-12">
+                                <form id="formCategoria">
+                                    <h1><span id="textoCategoria">Agregar </span>Categoria</h1>
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">Id</span>
+                                                    <input type="text" class="form-control input-sm" id="CategoriaIdCategoria" value="0" readonly />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">Nombre</span>
+                                                    <input type="text" class="form-control input-sm" id="CategoriaNombre" value="" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">Estado</span>
+                                                    <select class="form-control input-sm" id="CategoriaEstado">
+                                                        <option value="1" selected>Activo</option>
+                                                        <option value="0">Inactivo</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <a id="btnGuardarEditarCategoria" class="btn btn-sm btn-danger btn-block">Guardar</a>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <a id="btnCancelarCategoria" class="btn btn-sm btn-primary btn-block">Cancelar</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="modal fade full-modal modal-v2" id="full-modal_motivos" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog modal-lg" style="width: 1000px;">
+                <div class="modal-content" data-border-top="multi">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="full-modal-label_">Motivos</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12 col-xs-12">
+                                <div class="table-responsive" id="contenedorListadoMotivos">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12 col-xs-12">
+                                <form id="formMotivo">
+                                    <h1><span id="textoMotivo">Agregar </span> Motivo</h1>
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">Id</span>
+                                                    <input type="text" class="form-control input-sm" id="MotivoIdMotivo" value="0" readonly />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">Nombre</span>
+                                                    <input type="text" class="form-control input-sm" id="MotivoNombre" value="" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">Estado</span>
+                                                    <select class="form-control input-sm" id="MotivoEstado">
+                                                        <option value="1" selected>Activo</option>
+                                                        <option value="0">Inactivo</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <a id="btnGuardarEditarMotivo" class="btn btn-sm btn-danger btn-block">Guardar</a>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <a id="btnCancelarMotivo" class="btn btn-sm btn-primary btn-block">Cancelar</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade full-modal modal-v2" id="full-modal_nuevoempleado" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog modal-md" style="width: 800px;">
+                <div class="modal-content" data-border-top="multi">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="full-modal-label_">Empleado</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <form id="formNuevoEmpleado">
+                                    <h1><span id="textoNuevoEmpleado">Agregar </span> Empleado</h1>
+                                    <div class="row">
+
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">Tipo Documento</span>
+                                                    <select id="NuevoEmpleadoIdTipoDocumento" class="form-control input-sm"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">Documento Registro</span>
+                                                    <input type="text" class="form-control input-sm" id="NuevoEmpleadoDocumentoRegistro" value="" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">Nombre</span>
+                                                    <input type="text" class="form-control input-sm" id="NuevoEmpleadoNombre" value="" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">Apellido Paterno</span>
+                                                    <input type="text" class="form-control input-sm" id="NuevoEmpleadoApellidoPaterno" value="" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">Apellido Materno</span>
+                                                    <input type="text" class="form-control input-sm" id="NuevoEmpleadoApellidoMaterno" value="" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">Cargo</span>
+                                                    <select id="NuevoEmpleadocbCargo" class="form-control input-sm" name="NuevoEmpleadoIdCargo"></select>
+                                                    <span class="input-group-addon input-group-icon" id="agregarCargo" style="cursor: pointer;">
+                                                        <span class="glyphicon glyphicon-plus"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <a id="btnGuardarNuevoEmpleado" class="btn btn-sm btn-danger btn-block">Guardar</a>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <a id="btnCancelarNuevoEmpleado" class="btn btn-sm btn-primary btn-block">Cancelar</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade full-modal modal-v2" id="full-modal_confirmacion" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog modal-md" style="width: 800px;">
+                <div class="modal-content" data-border-top="multi">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="full-modal-label_">Confirmar Acción</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                                <p id="confirmationMessage" style="font-size: 18px; font-weight: bold;">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-sm btn-danger" id="confirmFinalizar">Confirmar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+         data-backdrop="static"
+        <div class="modal fade full-modal modal-v2" id="full-modal_empleadoeditar" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content" data-border-top="multi">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="full-modal-label_"> <span id="textEmpleadoEditar">Editar</span> Empleado</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12" id="_contenedor_empleados">
+                                <form class="medium bv-form" id="form_registro_Empeladoeditar">
+
+
+                                    <div id="full-modal_empleado">
+                                        <fieldset>
+                                            <legend>Empleado</legend>
+                                            <input type="hidden" name="ContactoID" value="0" id="ContactoIDEmpleado" />
+
+                                            <div class="col-md-4 col-sm-12">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">Nombre</span>
+                                                        <input type="text" class="form-control input-sm" id="NombreEmpleado" name="NombreEmpleado" placeholder="Nombre">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4 col-sm-12">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">Cargo</span>
+                                                        <input type="text" class="form-control input-sm" id="CargoEmpleado" name="CargoEmpleado" placeholder="Cargo">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4 col-sm-12">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">DNI/CE</span>
+                                                        <input type="text" class="form-control input-sm" id="DniEmpleado" name="DniEmpleado" placeholder="DNI/CE">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-sm btn-danger btnGuardarLudopata">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="modal fade full-modal modal-v2" id="full-modal_cargos" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog modal-lg" style="width: 800px;">
+                <div class="modal-content" data-border-top="multi">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="full-modal-label_">Cargos</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12 col-xs-12">
+                                <div class="table-responsive" id="contenedorListadoCargos">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12 col-xs-12">
+                                <form id="formCargo">
+                                    <h1><span id="textoCargo">Agregar </span>Cargo</h1>
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">Id</span>
+                                                    <input type="text" class="form-control input-sm" id="CargoIdCargo" name="CargoIdCargo" value="0" readonly />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">Nombre</span>
+                                                    <input type="text" class="form-control input-sm" id="CargoNombre" name="CargoNombre" value="" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">Estado</span>
+                                                    <select class="form-control input-sm" id="CargoEstado" name="CargoEstado">
+                                                        <option value="1" selected>Activo</option>
+                                                        <option value="0">Inactivo</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <a id="btnGuardarEditarCargo" class="btn btn-sm btn-danger btn-block">Guardar</a>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <a id="btnCancelarCargo" class="btn btn-sm btn-primary btn-block">Cancelar</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    }
+
+
+    @section js
+{
+        <script src="~/Content/assets/viewsjs/EntradaSalidaSala/IngresoSalidaGU.js"></script>
+    }
+
+

@@ -1,0 +1,135 @@
+﻿@{
+    ViewBag.Title = "Sincronizar Cliente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-shield"></span>
+                                <span class="main-text">
+                                    Subida de Excel con Listado de Clientes
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner" style="width:auto !important">
+                    <div class="row">
+                        
+                                @*<div class="">
+                                    <div class="contenedor_registro">
+                                        <div class="row">*@
+
+                                            @*<div class="col-md-12">
+                                <form id="form_sincronizar_cliente">
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    Archivo
+                                                </span>
+                                                <input type="file" class="form-control" id="ExcelClientes" name="ExcelClientes" placeholder="ExcelClientes">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <button type="button" class="btn btn-warning btnSubirExcel btn-block"><span class="glyphicon glyphicon-floppy-disk"></span> Sincronizar </button>
+                                    </div>
+                                </form>
+                            </div>*@
+                                           
+                                            <div class="col-md-12">
+                                                <div class="cardMachine" style="margin-bottom:15px;">
+
+                                                    <fieldset class="sectionCard" style="padding: 10px 7px; margin-top: 10px;">
+
+                                                        <form id="form_sincronizar_clientev2">
+                                                            <h3 style="margin-bottom: 15px; margin-left: 15px;">Datos generales</h3>
+                                                            <div class="col-md-3 col-sm-12">
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <div class="input-group ">
+                                                                            <span class="input-group-addon">
+                                                                                Sala
+                                                                            </span>
+                                                                            <select class="form-control input-sm codSalaAuditoria" id="cboSala" name="cboSala"></select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3 col-sm-12">
+                                                                <div class="form-group">
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon">
+                                                                            Archivo
+                                                                        </span>
+                                                                        <input type="file" class="form-control input-sm" id="ExcelClientesv2" name="ExcelClientesv2" placeholder="ExcelClientes">
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-md-3 col-sm-12">
+                                                                <div class="form-group">
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon">
+                                                                            Orden
+                                                                        </span>
+                                                                        <select class="form-control input-sm" id="cboOrden">
+                                                                            <option value="0">Nombres y Apellidos</option>
+                                                                            <option value="1">Apellidos y Nombres</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-3 col-sm-12">
+
+                                                                <button type="button" class="btn btn-warning input-sm btnSubirExcelv2 btn-block" style="padding-top: 8px;"><span class="glyphicon glyphicon-floppy-disk"></span> Sincronizar</button>
+                                                            </div>
+                                                        </form>
+                                                    </fieldset>
+                                                    <div />
+                                                @*</div>
+                                            </div>
+                               
+
+                              
+                            </div>*@
+                        </div>
+                        <div class="col-md-12" id="contenedorRespuesta">
+                            @*<table id="ExcelListado" class="table table-condensed table-striped table-bordered table-hover datatable-ExcelListado">
+                                <tbody>
+                                    <tr>
+                                        <td colspan="6">
+                                            <div class="alert alert-warning alert-dismissible text-center"><span>Listado de Correos Personales</span></div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section js
+{
+    <script src="~/Content/assets/viewsjs/AsistenciaCliente/SincronizarExcelClientes.js"></script>
+}
+

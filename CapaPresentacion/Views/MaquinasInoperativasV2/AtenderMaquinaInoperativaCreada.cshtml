@@ -1,0 +1,749 @@
+﻿
+@{
+    ViewBag.Title = "AtenderMaquinaInoperativaCreada";
+}
+
+@using System.Activities.Expressions
+@using System.Web.Script.Serialization
+@using System.Web.UI.WebControls
+@using S3k.Utilitario;
+
+@{
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+    String maquinaInoperativa = new JavaScriptSerializer().Serialize(ViewBag.maquinaInoperativa);
+    String listaProblemas = new JavaScriptSerializer().Serialize(ViewBag.listaProblemas);
+    String listaCategoriaProblemas = new JavaScriptSerializer().Serialize(ViewBag.listaCategoriaProblemas);
+    String listaCategoriaRepuesto = new JavaScriptSerializer().Serialize(ViewBag.listaCategoriaRepuesto);
+}
+<script type="text/javascript">
+    maquinaInoperativa = (@Html.Raw(maquinaInoperativa));
+    listaProblemas = (@Html.Raw(listaProblemas));
+    listaCategoriaProblemas = (@Html.Raw(listaCategoriaProblemas));
+    listaCategoriaRepuesto = (@Html.Raw(listaCategoriaRepuesto));
+</script>
+
+@section css
+{
+    <style type="text/css">
+        .select2-container .select2-selection--single {
+            height: 27px !important;
+        }
+
+        .select2-container .select2-selection--multiple {
+            min-height: 27px !important;
+            max-height: 27px !important;
+        }
+
+        .select2-container .select2-selection--multiple {
+            overflow-y: scroll;
+        }
+
+        .table thead tr {
+            background-color: #0b1f46 !important;
+            height: 45px;
+        }
+
+        .cardMachine {
+            border-radius: 7px !important;
+            background-color: white;
+            padding: 15px 15px;
+        }
+
+        .sectionCard {
+            border: solid #a1a1a1 1px;
+            border-radius: 7px !important;
+            padding: 15px 1px;
+            margin-bottom: 15px;
+        }
+
+        .collapsed {
+            box-shadow: none !important;
+        }
+
+        .block.collapsed .block-heading .block-controls .icon.block-control-collapse {
+            color: black !important;
+        }
+
+        .block {
+            box-shadow: none !important;
+        }
+
+        .zon {
+            background-color: white !important;
+            border-bottom: none !important;
+            background: none !important;
+        }
+
+        .infomaq {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .maqContain {
+            box-shadow: 0px 1px 5px -1px rgba(128,128,128,0.75);
+            padding: 5px 15px;
+            border-radius: 5px !important;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            background-color: #81b0ff1f;
+            margin-bottom: 7px;
+        }
+
+        .titleMaq {
+            font-weight: bold;
+            color: #05256e;
+            justify-content: center;
+            display: flex;
+        }
+
+        .textMaq {
+            color: #6d6d6d;
+            text-shadow: none !important;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        .checkbox-rect input[type="checkbox"] {
+            display: none;
+        }
+
+            .checkbox-rect input[type="checkbox"] + label {
+                display: block;
+                position: relative;
+                padding-left: 23px;
+                margin-bottom: 20px;
+                font: 14px/20px "Open Sans", Arial, sans-serif;
+                cursor: pointer;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+            }
+
+            .checkbox-rect input[type="checkbox"]:hover + label:hover {
+                color: rgb(23, 86, 228);
+            }
+
+            .checkbox-rect input[type="checkbox"]:hover + label:before {
+                background: #20385a;
+                box-shadow: inset 0px 0px 0px 2px #f7f2f2;
+            }
+
+            .checkbox-rect input[type="checkbox"] + label:last-child {
+                margin-bottom: 0;
+            }
+
+            .checkbox-rect input[type="checkbox"] + label:before {
+                content: "";
+                display: block;
+                width: 1.4em;
+                height: 1.4em;
+                border: 1px solid #343a3f;
+                border-radius: 0.2em;
+                position: absolute;
+                left: 0;
+                top: 0;
+                -webkit-transition: all 0.2s, background 0.2s ease-in-out;
+                transition: all 0.2s, background 0.2s ease-in-out;
+                background: #f3f3f3;
+            }
+
+            .checkbox-rect input[type="checkbox"]:checked + label:before {
+                width: 1.3em;
+                height: 1.3em;
+                border-radius: 0.2em;
+                border: 2px solid #fff;
+                -webkit-transform: rotate(90deg);
+                transform: rotate(90deg);
+                background: #50565a;
+                box-shadow: 0 0 0 1px #000;
+            }
+
+        .tableStyles {
+            background-color: white;
+            border-radius: 5px !important;
+            padding: 15px 10px;
+        }
+
+        .dataTables_scrollHeadInner {
+            width: 100% !important;
+        }
+
+        @@media (max-width: 500px) {
+            .cardMachine {
+                padding: 2px;
+            }
+
+            .right-column-content {
+                padding: 8px !important;
+            }
+
+            .input-group-addon {
+                font-size: .7rem;
+            }
+
+            .tituloCard {
+                flex-direction: column;
+            }
+        }
+        /* multi select */
+        .form-multiselect {
+            border: 1px solid #4a85b7;
+            overflow: hidden;
+            height: 27px !important;
+            line-height: 17px;
+        }
+
+            .form-multiselect .caret {
+                position: absolute;
+                top: 10px;
+                right: 5px;
+            }
+
+        .multiselect-container.dropdown-menu {
+            width: 100%;
+            background: #FFFFFF !important;
+        }
+
+        .multiselect-container .multiselect-item .input-group-addon {
+            position: absolute;
+            left: 5px;
+            top: 8px;
+            z-index: 4;
+            background: transparent;
+            color: #999999;
+            padding: 0;
+            margin: 0;
+            text-shadow: none;
+        }
+
+        .multiselect-container .multiselect-item .multiselect-search {
+            height: 30px;
+            padding: 5px 10px 5px 20px;
+            box-shadow: none !important;
+            border: 1px solid #EEEEEE !important;
+        }
+
+            .multiselect-container .multiselect-item .multiselect-search:focus {
+                border-color: #E1E1E1 !important;
+            }
+
+        .multiselect-container .multiselect-item .btn-default {
+            height: 30px;
+            padding: 2px 4px;
+            color: #484848;
+            background: #EEEEEE;
+            border: 1px solid #EEEEEE;
+            box-shadow: none !important;
+        }
+
+            .multiselect-container .multiselect-item .btn-default:hover {
+                background: #E1E1E1;
+            }
+
+        .multiselect-container > li > a > label {
+            /*padding: 5px 10px 5px 30px;*/
+        }
+
+            .multiselect-container > li > a > label > input[type=checkbox] {
+                margin-top: 1px;
+            }
+
+        .multiselect-container.dropdown-menu > .active > a,
+        .multiselect-container.dropdown-menu > .active > a:focus,
+        .multiselect-container.dropdown-menu > .active > a:hover {
+            background-color: #263E78 !important;
+        }
+
+            .multiselect-container.dropdown-menu > .active > a > label.checkbox,
+            .multiselect-container.dropdown-menu > .active > a:focus > label.checkbox,
+            .multiselect-container.dropdown-menu > .active > a:hover > label.checkbox {
+                color: #FFFFFF !important;
+            }
+
+        /* multi select */
+        .chrtanel {
+            width: 100%;
+            position: relative;
+            background: #FFFFFF;
+        }
+
+        .chrtanel-body {
+            position: relative;
+            padding: 10px;
+        }
+
+        .room-dflex {
+            display: flex;
+            align-items: center;
+        }
+
+            .room-dflex .log-room {
+                flex-grow: 1;
+                display: block;
+                line-height: 0;
+                white-space: nowrap;
+            }
+
+            .room-dflex .log-chart-action {
+                cursor: pointer;
+                font-size: 16px;
+                color: #074B88;
+                margin: 1px;
+                display: block;
+                line-height: 0;
+            }
+    </style>
+}
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-shield"></span>
+                                <span class="main-text">
+                                    Atender Maquina Inoperativa
+                                </span>
+                            </h1>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+
+                        <div class="col-md-4 col-md-offset-4 col-sm-6 col-xs-6">
+                            <button type="button" class="btn btn-success btn-sm col-md-12 col-sm-12 col-xs-12 btnListar"><span class="glyphicon glyphicon-list-alt"></span> Listado </button>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <button type="button" class="btn btn-primary btn-sm col-md-12 col-sm-12 col-xs-12 btnGuardar "><span class="glyphicon glyphicon-floppy-disk"></span> Atender </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner ">
+                    <form id="frmRegistroMaquinaInoperativa" style="padding:5px 5px;">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-12 ">
+                                <div class="cardMachine" style="margin-bottom:15px;">
+                                    <fieldset class="sectionCard" style="padding: 10px 7px; margin-top: 10px; ">
+                                        <h3 style="margin-bottom:13px;" padding:0;">Sala</h3>
+                                        <div class="col-md-12 col-sm-12" style="padding:0;">
+                                            <div class="input-group form-group ">
+                                                <span class="input-group-addon">
+                                                    Sala
+                                                </span>
+                                                <select id="cboSala" class="form-control input-sm select" name="codSala" disabled>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <fieldset class="sectionCard" style="padding: 10px 7px; margin-top: 10px; ">
+                                        <h3 style="margin-bottom:13px;" padding:0;">Maquina</h3>
+                                        <div class="col-md-12 col-sm-12" style="padding:0;">
+                                            <div class="input-group form-group ">
+                                                <span class="input-group-addon">
+                                                    Maquina
+                                                </span>
+                                                <select id="cboMaquina" class="form-control input-sm select" name="codMaquina" disabled>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <fieldset class="sectionCard" style="padding: 10px 7px; margin-top: 10px; ">
+                                        <h5>Información de la máquina</h5>
+
+                                        <div class="block block-size-normal collapsed" style="margin:0;">
+                                            <div class="block-heading highlight-color-red" style="padding:0 !important;display:flex; justify-content:space-between; align-items:center;">
+                                                <div class="infomaq">
+                                                    <div>
+                                                        <p style="font-weight: bold; color: #05256e;margin-top:15px;">  Modelo</p>
+                                                    </div>
+                                                    <p id="mod"></p>
+                                                </div>
+                                                <div class="block-controls">
+                                                    <span aria-hidden="true" class="icon icon-arrow-down icon-size-medium block-control-collapse"></span>
+                                                </div>
+                                            </div>
+                                            <div class="block-content-outer zon" style="display: none;">
+                                                <div class="">
+                                                    <div class="row">
+                                                        <div class="col-md-12" style="padding:0; ">
+
+                                                            <div class="col-12 col-sm-6 col-md-12 col-lg-12 col-xl-12 maqContain">
+                                                                <div class="infomaq">
+                                                                    <div>
+                                                                        <p class="titleMaq"> <span class="glyphicon glyphicon-resize-horizontal" style="color: #05256e;margin-right:3px;"></span> Linea</p>
+                                                                    </div>
+                                                                    <p id="lin" class="textMaq"></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12 col-sm-6 col-md-12 col-lg-12 col-xl-12 maqContain">
+
+                                                                <div class="infomaq">
+                                                                    <div>
+                                                                        <p class="titleMaq"> <span class="glyphicon glyphicon glyphicon-tower" style="color: #05256e; margin-right: 3px; "></span>Sala</p>
+                                                                    </div>
+                                                                    <p id="sal" class="textMaq"></p>
+                                                                </div>
+
+                                                            </div>
+
+
+                                                            <div class=" col-12 col-sm-6 col-md-12 col-lg-12 col-xl-12 maqContain">
+                                                                <div class="infomaq">
+                                                                    <div>
+                                                                        <p class="titleMaq">  <span class="glyphicon glyphicon glyphicon-user" style="color: #05256e; margin-right: 3px; "></span>Juego</p>
+                                                                    </div>
+                                                                    <p id="jue" class="textMaq"> </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class=" col-12 col-sm-6 col-md-12 col-lg-12 col-xl-12 maqContain">
+
+                                                                <div class="infomaq">
+                                                                    <div>
+                                                                        <p class="titleMaq"> <span class="glyphicon glyphicon glyphicon-th-large" style="color: #05256e; margin-right: 3px; "></span>Numero de serie</p>
+                                                                    </div>
+                                                                    <p id="numse" class="textMaq"></p>
+
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div class=" col-12 col-sm-6 col-md-12 col-lg-12 col-xl-12 maqContain">
+                                                                <div class="infomaq">
+                                                                    <div>
+                                                                        <p class="titleMaq">  <span class="glyphicon glyphicon glyphicon-user" style="color: #05256e; margin-right: 3px; "></span>Propietario</p>
+                                                                    </div>
+                                                                    <p id="pro" class="textMaq"> </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class=" col-12 col-sm-6 col-md-12 col-lg-12 col-xl-12 maqContain">
+
+                                                                <div class="infomaq">
+                                                                    <div>
+                                                                        <p class="titleMaq"> <span class="glyphicon glyphicon glyphicon-th-large" style="color: #05256e; margin-right: 3px; "></span>Ficha</p>
+                                                                    </div>
+                                                                    <p id="fic" class="textMaq"></p>
+
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-12 col-sm-6 col-md-12 col-lg-12 col-xl-12 maqContain">
+                                                                <div class="infomaq">
+                                                                    <div>
+                                                                        <p class="titleMaq"> <span class="glyphicon glyphicon glyphicon-tags" style="color: #05256e; margin-right: 3px; "></span>Marca</p>
+                                                                    </div>
+                                                                    <p id="mar" class="textMaq"> </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12 col-sm-6 col-md-12 col-lg-12 col-xl-12 maqContain">
+                                                                <div class="infomaq">
+                                                                    <div>
+                                                                        <p class="titleMaq"> <span class="glyphicon glyphicon glyphicon-lock" style="color: #05256e; margin-right: 3px; "></span>Token</p>
+                                                                    </div>
+                                                                    <p id="tok" class="textMaq"></p>
+
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <fieldset style="display:none;">
+                                        <h5 style="margin-left:15px;margin-bottom:13px;">Informacion de la maquina</h5>
+
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Linea
+                                                </span>
+                                                <input type="text" class="form-control input-sm toUpperCase" id="Linea" name="Linea" placeholder="Linea" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Nro. Serie
+                                                </span>
+                                                <input type="text" class="form-control input-sm toUpperCase" id="NroSerie" name="NroSerie" placeholder="Nro. Serie" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Juego
+                                                </span>
+                                                <input type="text" class="form-control input-sm toUpperCase" id="Juego" name="Juego" placeholder="Juego" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Sala
+                                                </span>
+                                                <input type="text" class="form-control input-sm toUpperCase" id="Sala" name="Sala" placeholder="Sala" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Modelo
+                                                </span>
+                                                <input type="text" class="form-control input-sm toUpperCase" id="Modelo" name="Modelo" placeholder="Modelo" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Propietario
+                                                </span>
+                                                <input type="text" class="form-control input-sm toUpperCase" id="Propietario" name="Propietario" placeholder="Propietario" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Ficha
+                                                </span>
+                                                <input type="text" class="form-control input-sm toUpperCase" id="Ficha" name="Ficha" placeholder="Ficha" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Marca
+                                                </span>
+                                                <input type="text" class="form-control input-sm toUpperCase" id="Marca" name="Marca" placeholder="Marca" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Token
+                                                </span>
+                                                <input type="text" class="form-control input-sm toUpperCase" id="Token" name="Token" placeholder="Token" disabled>
+                                            </div>
+                                        </div>
+
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="col-md-9 col-sm-12  p-2">
+                                <div class="cardMachine">
+
+                                    <fieldset class="sectionCard">
+                                        <h3 style="margin-left:15px;margin-bottom:13px;">Datos de Estado</h3>
+                                        <div class="col-md-12 ">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Clasificacion Problemas
+                                                </span>
+                                                <select id="cboClasificacionProblemas" class="form-control input-sm select" name="codClasificacionProblemas" disabled>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 ">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Lista Problemas
+                                                </span>
+                                                <select id="cboListaProblemas" class="form-control input-sm select" name="codListaProblemas" disabled>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-lg-6 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Estado
+                                                </span>
+                                                <select id="cboEstado" class="form-control input-sm select" name="estado" disabled>
+                                                    <option value="">--Seleccione--</option>
+                                                    <option value="1">Op. Problemas</option>
+                                                    <option value="2">Inoperativa</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-lg-6 col-sm-12">
+                                            <div class="input-group form-group date">
+                                                <span class="input-group-addon">
+                                                    Fecha Inoperativa
+                                                </span>
+                                                <input type="text" id="fechaInoperativa" name="fechaInoperativa" placeholder="" autocomplete="off" value="" class="form-control input-sm" disabled>
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        @*<div class="col-md-12 col-lg-6 col-sm-12">
+                                                <div class="input-group form-group date">
+                                                    <span class="input-group-addon">
+                                                        Hora Inoperativa
+                                                    </span>
+                                                    <input type="text" id="horaInoperativa" name="horaInoperativa" placeholder="" autocomplete="off" value="" class="form-control input-sm">
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-clock-o"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12 col-lg-6 col-sm-12">
+                                                <div class="input-group form-group date">
+                                                    <span class="input-group-addon">
+                                                        Fecha Envio
+                                                    </span>
+                                                    <input type="text" id="fechaEnvio" name="fechaEnvio" placeholder="" autocomplete="off" value="" class="form-control input-sm">
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 col-lg-6 col-sm-12">
+                                                <div class="input-group form-group date">
+                                                    <span class="input-group-addon">
+                                                        Hora Envio
+                                                    </span>
+                                                    <input type="text" id="horaEnvio" name="horaEnvio" placeholder="" autocomplete="off" value="" class="form-control input-sm">
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-clock-o"></i>
+                                                    </span>
+                                                </div>
+                                            </div>*@
+                                        <div class="col-md-12 col-lg-6 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Prioridad
+                                                </span>
+                                                <select id="cboPrioridad" class="form-control input-sm select" name="prioridad" disabled>
+                                                    <option value="">--Seleccione--</option>
+                                                    <option value="1">Urgente</option>
+                                                    <option value="2">Normal</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 ">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Observaciones
+                                                </span>
+                                                <textarea type="text" class="form-control input-sm toUpperCase" id="Observaciones" name="Observaciones" placeholder="Observaciones" disabled></textarea>
+                                                @*<input type="text" class="form-control input-sm toUpperCase" id="Observaciones" name="Observaciones" placeholder="Observaciones">*@
+                                            </div>
+                                        </div>
+
+
+                                    </fieldset>
+
+                                    <fieldset class="sectionCard">
+                                        <h3 style="margin-left:15px;margin-bottom:13px;">Datos de Atencion</h3>
+                                        <div class="col-md-12 col-lg-6 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Estado Atencion
+                                                </span>
+                                                <select id="cboAtencion" class="form-control input-sm select" name="atencion">
+                                                    <option value="">--Seleccione--</option>
+                                                    <option value="1">Atendida Operativa</option>
+                                                    <option value="2">Atendida Inoperativa</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-lg-6 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    IST
+                                                </span>
+                                                <input type="text" class="form-control input-sm toUpperCase" id="IST" name="IST" placeholder="IST">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 ">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Clasificacion Problemas Real
+                                                </span>
+                                                <select id="cboClasificacionProblemasNuevo" class="form-control input-sm select" name="codClasificacionProblemasNuevo">
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 ">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Lista Problemas Real
+                                                </span>
+                                                <select id="cboListaProblemasNuevo" class="form-control input-sm select" name="codListaProblemasNuevo">
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 ">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Observaciones
+                                                </span>
+                                                <textarea type="text" class="form-control input-sm toUpperCase" id="ObservacionAtencionNuevo" name="ObservacionAtencionNuevo" placeholder="Observaciones"></textarea>
+                                                @*<input type="text" class="form-control input-sm toUpperCase" id="Observaciones" name="Observaciones" placeholder="Observaciones">*@
+                                            </div>
+                                        </div>
+
+
+                                    </fieldset>
+                                    <fieldset class="sectionCard">
+                                        <h3 style="margin-left:15px;margin-bottom:13px;">Destinatarios</h3>
+                                        <div class="col-md-12 col-lg-12 col-sm-12">
+                                            <div class="input-group form-group" style="max-height:20px">
+                                                <span class="input-group-addon">Correo</span>
+                                                <select class="form-control input-sm form-multiselect" id="cboCorreos" name="cboCorreos" multiple="multiple"></select>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/MaquinasInoperativasV2/AtenderMaquinaInoperativa.js?v=@fecha_archivos"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/bootstrap-multiselect.min.js"></script>
+
+}
+

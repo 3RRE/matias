@@ -1,0 +1,89 @@
+﻿@{
+    ViewBag.Title = "Nuevo Usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using System.Activities.Expressions
+@using System.Web.Script.Serialization
+@using System.Web.UI.WebControls
+
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-shield"></span>
+                                <span class="main-text">
+                                    Nuevo Usuario
+                                </span>
+                            </h1>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+
+                        <div class="col-md-4 col-md-offset-4 col-sm-6 col-xs-6">
+                            <button type="button" class="btn btn-success btn-sm col-md-12 col-sm-12 col-xs-12 btnListar"><span class="glyphicon glyphicon-list-alt"></span> Listado </button>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <button type="button" class="btn btn-primary btn-sm col-md-12 col-sm-12 col-xs-12 btnGuardar "><span class="glyphicon glyphicon-floppy-disk"></span> Guardar </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-sm-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+
+                    <div class="cardMachine" style="margin-bottom:15px;">
+                        <form class="medium" role="form" id="frmNuevoUsuario" method="post" action="#">
+                            <input type="hidden" name="TipoUsuarioID" value="2" />
+                            <div class="form-group cbo">
+                                <label for="txtusuario">Empleado</label>
+                                <select class="form-control input-sm" id="cboEmpleadoID" name="EmpleadoID">
+                                    <option value="">--Seleccione--</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtusuario">Usuario</label>
+                                <input type="text" name="UsuarioNombre" class="form-control input-sm" id="txtusuario" placeholder="Usuario" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="txtContrasena">Contraseña</label>
+                                <input type="text" class="form-control input-sm" id="txtContrasena" name="UsuarioContraseña" placeholder="Contraseña" readonly>
+                            </div>
+
+                        </form>
+                    </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    
+</div>
+
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/Usuario/UsuarioInsertarVista.js"></script>
+}

@@ -1,0 +1,251 @@
+﻿@{
+    ViewBag.Title = "ProgresivoView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-block-menu"></span>
+                                <span class="main-text">
+                                    Progresivo
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4  col-xs-6 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnExcel" class="btn btn-primary btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-file"></span>
+                                        Excel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4  col-xs-6 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnBuscar" class="btn btn-success btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-book"></span>
+                                        Buscar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+
+                        <div class="col-xs-12 col-md-12 col-sm-12" id="formfiltro">
+                            <input type="hidden" class="record" name="totalRecords" id="totalRecords" value="0" />
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="input-group ">
+                                        <span class="input-group-addon">
+                                            Sala
+                                        </span>
+                                        <select class="form-control input-sm codSalaAuditoria" id="cboSala" name="cboSala">
+                                            <option value="0">--Seleccione--</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-5 col-sm-5">
+                                    <div class="input-group ">
+                                        <span class="input-group-addon">
+                                            Progresivo
+                                        </span>
+                                        <select class="form-control input-sm" id="cboProgresivo" name="cboProgresivo">
+                                            <option value="">--Seleccione--</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-3">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            Registros A.
+                                        </span>
+                                        <input type="text" class="form-control input-sm" name="RegA" id="RegA" value="10">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="input-group ">
+                                        <span class="input-group-addon">
+                                            Maquina
+                                        </span>
+                                        <input type="text" class="form-control input-sm" name="txtMaquina" id="txtMaquina">
+                                    </div>
+                                </div>
+                                <div class="col-md-5 col-sm-5">
+                                    <div class="input-group ">
+                                        <span class="input-group-addon">
+                                            Pozos
+                                        </span>
+                                        <select class="form-control input-sm" id="cboPozos" name="cboPozos">
+                                            <option value="0">todos</option>
+                                            <option value="1">Superior</option>
+                                            <option value="2">Medio</option>
+                                            <option value="3">Inferior</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-3">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            Registros D.
+                                        </span>
+                                        <input type="text" class="form-control input-sm" name="RegD" id="RegD" value="10">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <hr style="margin-top: 0px;" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="">
+                                <table id="table" class="table table-striped table-condensed table-responsive table-bordered table-hover"></table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section modal
+{
+    <!-- Modal full-modal -->
+    <div class="modal fade full-modal" id="full-modal" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label">Detalle Contadores</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12">
+                            <div class="">
+
+                                <table class="table table-striped table-hover table-condensed" id="tableDetalle"></table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- Modal full-modal -->
+    <div class="modal fade full-modal" id="full-modal-contadores" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label">Contadores</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="block-content-outer">
+                        <div class="block-content-inner">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12 col-sm-12" id="formfiltro">
+                                    <input type="hidden" value="" id="txtFechaHidden" />
+                                    <input type="hidden" value="" id="txtMaquinaHidden" />
+                                    <div class="row">
+                                        <div class="col-md-3 col-sm-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    Fecha Inicio
+                                                </span>
+                                                <input type="text" class="form-control input-sm dateOnly_" id="txtFechaInicio" value="" readonly placeholder="Fecha">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-12">
+                                            <div class="input-group ">
+                                                <span class="input-group-addon">
+                                                    FechaFin
+                                                </span>
+                                                <input type="text" class="form-control input-sm dateOnly_" id="txtFechaFin" value="" readonly placeholder="Fecha">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-12">
+                                            <div class="input-group ">
+                                                <span class="input-group-addon">
+                                                    Máquina
+                                                </span>
+                                                <input type="text" class="form-control input-sm" id="txtCodMaq" value="" readonly placeholder="Maquina">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-12">
+                                            <a href="" class="btn btn-primary btn-block btn-sm" id="btnBuscarContadores">Buscar</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <hr style="margin-top: 0px;" />
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="myDataTable">
+                                        <table class="table table-striped table-hover table-condensed" id="tableContadores"></table>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+}
+
+
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/Progresivo/Progresivo/ProgresivoVista.js"></script>
+}

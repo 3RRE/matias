@@ -1,0 +1,106 @@
+﻿@{
+    string url = $"{Request.Url.Scheme}://{Request.Url.Authority}{Request.ApplicationPath.TrimEnd('/')}";
+}
+
+<!DOCTYPE html>
+<html lang="es" translate="no">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="~/Content/assets/images/required/logo-default.ico">
+
+    <title>Acceso al Sistema</title>
+
+    <!-- Required CSS Files -->
+    <link type="text/css" href="~/Content/assets/css/required/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href='~/fonts/fonts.googleapis/css2ca8.css?family=Roboto:400,300&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link type="text/css" href="~/Content/assets/js/required/jquery-ui-1.11.0.custom/jquery-ui.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/js/required/jquery-ui-1.11.0.custom/jquery-ui.structure.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/js/required/jquery-ui-1.11.0.custom/jquery-ui.theme.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/required/mCustomScrollbar/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/required/icheck/all.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/fonts/metrize-icons/styles-metrize-icons.min.css" rel="stylesheet">
+    <link type="text/css" href="~/Content/assets/fonts/font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/datatables/css/dataTables.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/datatables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/datatables/css/dataTables.tableTools.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/datatables/css/dataTables.responsive.min.css" rel="stylesheet" />
+
+    <!-- Optional CSS Files -->
+
+    <link type="text/css" href="~/Content/assets/css/optional/fullcalendar/fullcalendar.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/fullcalendar/circloid-fullcalendar.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/fullcalendar/fullcalendar.print.min.css" rel="stylesheet" media="print" />
+    <link type="text/css" href="~/Content/assets/css/optional/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/select2.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/bootstrapValidator.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/optional/toastr.min.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/optional/jquery-confirm.min.css" rel="stylesheet" />
+
+    <!-- add CSS files here -->
+    <!-- More Required CSS Files -->
+    <link type="text/css" href="~/Content/assets/css/styles-core.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/styles-core-responsive.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/css/v2_.css" rel="stylesheet" />
+
+</head>
+<body style="background: #0d0d0d  url(@url/Content/assets/images/required/site-bg@2x.png); ">
+    <input type="hidden" id="BasePath" value="@url/" />
+
+    <div class="container-fluid">
+        <div id="body-container">
+            <div class="standalone-page">
+                <div class="standalone-page-logo">
+                    <a href="#">
+                        <img src="~/Content/assets/images/required/logo-default.png" width="156" height="44" alt="Logo" />
+                    </a>
+                </div>
+                <div class="standalone-page-content" data-border-top="multi">
+                    <div class="standalone-page-block" id="blockLogin">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.container -->
+
+
+    <script type="text/javascript" src="~/Content/assets/js/required/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/required/jquery-ui-1.11.0.custom/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/required/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/required/jquery.easing.1.3-min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/required/misc/jquery.mousewheel-3.0.6.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/required/jquery.mCustomScrollbar.min.js"></script>
+
+    <script type="text/javascript" src="~/Content/assets/js/required/misc/retina.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/required/icheck.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/required/misc/jquery.ui.touch-punch.min.js"></script>
+
+    <!-- Optional JS Files -->
+
+    <script type="text/javascript" src="~/Content/assets/js/optional/misc/moment.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/fullcalendar/fullcalendar.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/select2.full.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/loadingoverlay/loadingoverlay.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/datatables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/datatables/js/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/datatables/js/dataTables.tableTools.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/datatables/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/bootstrapValidator.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/toastr.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/jquery-confirm.js"></script>
+
+    <script type="text/javascript" src="~/Content/assets/js/required/circloid-functions.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/circloid-functions-optional.js"></script>
+    <!-- add optional JS plugin files here -->
+    <!-- REQUIRED: User Editable JS Files -->
+    <script type="text/javascript" src="~/Content/assets/js/script.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/general.js"></script>
+
+    @RenderSection("js", required: false)
+</body>
+</html>

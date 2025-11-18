@@ -1,0 +1,1967 @@
+[
+  {
+    "key": "Inicio",
+    "name": "Inicio",
+    "to": "Home/DashBoard",
+    "iconClass": "lab la-dashcube",
+    "iconLink": "Content/menu-square/icons/inicio.png",
+    "status": 1
+  },
+  {
+    "key": "ATM",
+    "name": "ATM",
+    "to": "#",
+    "iconClass": "las la-wallet",
+    "iconLink": "Content/menu-square/icons/atm.png",
+    "status": 0,
+    "submenu": [
+      {
+        "key": "UtilitarioATM",
+        "name": "Utilitario ATM",
+        "to": "Atm/UtilitarioAtmVista",
+        "iconClass": "las la-cash-register",
+        "status": 0
+      }
+    ]
+  },
+  {
+    "key": "Progresivo",
+    "name": "Progresivo",
+    "to": "#",
+    "iconClass": "las la-chart-line",
+    "iconLink": "Content/menu-square/icons/progresivo.png",
+    "status": 0,
+    "submenu": [
+      {
+        "key": "ProgresivoVista",
+        "name": "Progresivo",
+        "to": "Progresivo/ProgresivoVista",
+        "iconClass": "las la-chart-bar",
+        "status": 0
+      },
+      {
+        "key": "RegistroProgresivoVista",
+        "name": "Registro Progresivo",
+        "to": "Progresivo/ProgresivoRegistroVista",
+        "iconClass": "las la-chart-area",
+        "status": 0
+      },
+      {
+        "key": "ListadoMaquina",
+        "name": "Lista de Máquinas",
+        "to": "Progresivo/ProgresivoListadoMaquina",
+        "iconClass": "las la-check-circle",
+        "status": 0
+      },
+      {
+        "key": "ListadoMarcaModelo",
+        "name": "Lista de Marcas Modelos",
+        "to": "Progresivo/ProgresivoListadoMarcaModelo",
+        "iconClass": "las la-th-list",
+        "status": 0
+      },
+      {
+        "key": "MantenimientoProgresivoVista",
+        "name": "Mantenimiento Progresivo",
+        "to": "Progresivo/MantenimientoProgresivoVista",
+        "iconClass": "las la-chart-area",
+        "status": 0
+      },
+      {
+        "key": "ReporteProgresivoVista",
+        "name": "Reporte Progresivo",
+        "to": "Progresivo/ReporteProgresivoVista",
+        "iconClass": "las la-check-circle",
+        "status": 0
+      },
+      {
+        "key": "ReporteControlProgresivo",
+        "name": "Reporte Control Progresivo",
+        "to": "Progresivo/reportecontrolprogresivos",
+        "iconClass": "las la-file-alt",
+        "status": 0
+      },
+      {
+        "key": "ConsolidadoControlProgresivo",
+        "name": "Consolidado Control Progresivo",
+        "to": "Progresivo/consolidadocontrolprogresivos",
+        "iconClass": "las la-check-circle",
+        "status": 0
+      },
+      {
+        "key": "ReporteAlertasProgresivo",
+        "name": "Reporte Alertas Registro Progresivo",
+        "to": "AlertaProgresivo/ReporteAlertasProgresivo",
+        "iconClass": "las la-file-alt",
+        "status": 0
+      },
+      {
+        "key": "ConfiguracionAlertaProgresivoCargo",
+        "name": "Configurar Alerta Progresivo a Cargo",
+        "to": "AlertaProgresivo/ConfiguracionAlertaProgresivoCargo",
+        "iconClass": "las la-sliders-h",
+        "status": 0
+      },
+      {
+        "key": "ProgresivoTerceros",
+        "name": "Progresivo de Terceros",
+        "to": "#",
+        "iconClass": "las la-users-cog",
+        "status": 1,
+        "submenu": [
+          {
+            "key": "PTProgresivos",
+            "name": "Progresivos",
+            "to": "ProgresivoTerceros/Sala",
+            "iconClass": "las la-chart-line",
+            "status": 1
+          },
+          {
+            "key": "PTPozos",
+            "name": "Pozos",
+            "to": "ProgresivoTerceros/Pozos",
+            "iconClass": "las la-coins",
+            "status": 1
+          },
+          {
+            "key": "PTAsignarMaquinas",
+            "name": "Asignar Maquinas",
+            "to": "ProgresivoTerceros/AsignarMaquinas",
+            "iconClass": "las la-tools",
+            "status": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "key": "ControlAcceso",
+    "name": "Control Acceso",
+    "to": "#",
+    "iconClass": "las la-money-check",
+    "iconLink": "Content/menu-square/icons/control-acceso.png",
+    "status": 0,
+    "submenu": [
+      {
+        "key": "Busqueda",
+        "name": "Búsqueda",
+        "to": "CALBusqueda/Busqueda",
+        "iconClass": "las la-search",
+        "status": 0
+      },
+      {
+        "key": "ListadoAuditoria",
+        "name": "Auditoría",
+        "to": "CALAuditoria/ListadoAuditoria",
+        "iconClass": "las la-check-circle",
+        "status": 0
+      },
+      {
+        "key": "ReporteLudopataCliente",
+        "name": "Reporte LudopataCliente",
+        "to": "CALLudopata/ReporteLudopataCliente",
+        "iconClass": "las la-check-circle",
+        "status": 0
+      },
+      {
+        "key": "ListadoLudopata",
+        "name": "Control Ludopatas",
+        "to": "CALLudopata/ListadoLudopata",
+        "iconClass": "las la-walking",
+        "status": 0
+      },
+      {
+        "key": "ListadoPersonaProhibidoIngreso",
+        "name": "Control Pers. Prohibida Ing.",
+        "to": "CALPersonaProhibidoIngreso/ListadoPersonaProhibidoIngreso",
+        "iconClass": "las la-user-alt-slash",
+        "status": 0
+      },
+      {
+        "key": "ListadoRobaStackersBilletero",
+        "name": "Roba Stackers Billetero",
+        "to": "CALRobaStackersBilletero/ListadoRobaStackersBilletero",
+        "iconClass": "las la-list",
+        "status": 0
+      },
+      {
+        "key": "ListadoMenoresDeEdad",
+        "name": "Menores de edad",
+        "to": "CALMenorDeEdad/Index",
+        "iconClass": "las la-list",
+        "status": 0
+      },
+      {
+        "key": "ListadoPolitico",
+        "name": "Control Políticos",
+        "to": "CALPolitico/ListadoPolitico",
+        "iconClass": "las la-male",
+        "status": 0
+      },
+      {
+        "key": "ListadoPersonaEntidadPublica",
+        "name": "Control Pers. Entidad Pública",
+        "to": "CALPersonaEntidadPublica/ListadoPersonaEntidadPublica",
+        "iconClass": "las la-person-booth",
+        "status": 0
+      },
+      {
+        "key": "ListadoLogApiReniec",
+        "name": "Log Api Reniec",
+        "to": "CALLogApiReniec/ListadoLogApiReniec",
+        "iconClass": "las la-check-circle",
+        "status": 0
+      },
+      {
+        "key": "MantenimientosSubmenu",
+        "name": "Mantenimientos",
+        "to": "#",
+        "iconClass": "las la-cog",
+        "status": 0,
+        "submenu": [
+          {
+            "key": "ListadoCargoPolitico",
+            "name": "Cargo Político",
+            "to": "CALCargoPolitico/ListadoCargoPolitico",
+            "iconClass": "las la-user-tie",
+            "status": 0
+          },
+          {
+            "key": "ListadoCargoEntidad",
+            "name": "Cargo Entidad",
+            "to": "CALCargoEntidad/ListadoCargoEntidad",
+            "iconClass": "las la-briefcase",
+            "status": 0
+          },
+          {
+            "key": "ListadoEntidadPublica",
+            "name": "Entidad Pública",
+            "to": "CALEntidadPublica/ListadoEntidadPublica",
+            "iconClass": "las la-id-card-alt",
+            "status": 0
+          },
+          {
+            "key": "ListadoBanda",
+            "name": "Banda",
+            "to": "CALBanda/ListadoBanda",
+            "iconClass": "las la-list",
+            "status": 0
+          },
+          {
+            "key": "ListadoCodigo",
+            "name": "Código",
+            "to": "CALCodigo/ListadoCodigo",
+            "iconClass": "las la-barcode",
+            "status": 0
+          },
+          {
+            "key": "ListadoCodigoPersona",
+            "name": "Código Persona",
+            "to": "CALCodigoPersona/ListadoCodigoPersona",
+            "iconClass": "las la-th-list",
+            "status": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "key": "MaquinasInoperativasV2",
+    "name": "Maquinas Inoperativas",
+    "to": "#",
+    "iconClass": "las la-money-check",
+    "iconLink": "Content/menu-square/icons/maquinas-inoperativas.png",
+    "status": 0,
+    "submenu": [
+      {
+        "key": "MantenedoresV2",
+        "name": "Mantenedores Máquina Inoperativa",
+        "iconClass": "la la-chalkboard-teacher",
+        "to": "#",
+        "status": 0,
+        "submenu": [
+          {
+            "key": "ListadoProblemaV2",
+            "name": "Problema",
+            "to": "MIProblema/ListadoProblema",
+            "iconClass": "las la-exclamation-triangle",
+            "status": 0
+          },
+          {
+            "key": "ListadoCategoriaProblemaV2",
+            "name": "Categoria Problema",
+            "to": "MICategoriaProblema/ListadoCategoriaProblema",
+            "iconClass": "las la-stream",
+            "status": 0
+          },
+          {
+            "key": "ListadoRepuestoV2",
+            "name": "Categoria Repuestos",
+            "to": "MICategoriaRepuesto/ListadoCategoriaRepuesto",
+            "iconClass": "las la-stream",
+            "status": 0
+          }
+        ]
+      },
+      {
+        "key": "ProcesosV2",
+        "name": "Procesos Máquina Inoperativa",
+        "iconClass": "las la-microchip",
+        "to": "#",
+        "status": 0,
+        "submenu": [
+          {
+            "key": "RegistrarMaquinaInoperativaV2",
+            "name": "Registrar Maquina Inoperativa",
+            "to": "MaquinasInoperativasV2/MaquinaInoperativaV2",
+            "iconClass": "las la-desktop",
+            "status": 0
+          },
+          {
+            "key": "ListadoMaquinaInoperativaCreadoV2",
+            "name": "Atender Maquina Inoperativa",
+            "to": "MaquinasInoperativasV2/ListaMaquinasInoperativasCreadas",
+            "iconClass": "las la-exclamation",
+            "status": 0
+          },
+          {
+            "key": "ListadoMaquinaInoperativaAtendidaV2",
+            "name": "Reparar Maquina Inoperativa",
+            "to": "MaquinasInoperativasV2/ListaMaquinasInoperativasSinResolver",
+            "iconClass": "las la-exclamation",
+            "status": 0
+          },
+          {
+            "key": "ListadoMaquinaInoperativaV2",
+            "name": "Historico Maquina Inoperativa",
+            "to": "MaquinasInoperativasV2/ListadoMaquinaInoperativa",
+            "iconClass": "las la-desktop",
+            "status": 0
+          },
+          {
+            "key": "ListadoMaquinaInoperativaKPIV2",
+            "name": "Historico Maquina Inoperativa KPI",
+            "to": "MaquinasInoperativasV2/ListadoMaquinaInoperativaHistoricoKPI",
+            "iconClass": "las la-desktop",
+            "status": 0
+          }
+        ]
+      },
+      {
+        "key": "ReporteCategoriaProblemasV2",
+        "name": "Reporte Categoria Problemas",
+        "to": "MIMaquinaInoperativa/ReporteCategoriaProblemas",
+        "iconClass": "las la-paperclip",
+        "status": 0
+      }
+    ]
+  },
+  {
+    "key": "MaquinasInoperativas",
+    "name": "Maquinas Inoperativas",
+    "to": "#",
+    "iconClass": "las la-money-check",
+    "iconLink": "Content/menu-square/icons/maquinas-inoperativas.png",
+    "status": 0,
+    "submenu": [
+
+      {
+        "key": "Mantenedores",
+        "name": "Mantenedores Máquina Inoperativa",
+        "iconClass": "la la-chalkboard-teacher",
+        "to": "#",
+        "status": 0,
+        "submenu": [
+          {
+            "key": "ListadoPieza",
+            "name": "Pieza",
+            "to": "MIPieza/ListadoPieza",
+            "iconClass": "las la-puzzle-piece",
+            "status": 0
+          },
+          {
+            "key": "ListadoProblema",
+            "name": "Problema",
+            "to": "MIProblema/ListadoProblema",
+            "iconClass": "las la-exclamation-triangle",
+            "status": 0
+          },
+          {
+            "key": "ListadoRepuesto",
+            "name": "Repuesto",
+            "to": "MIRepuesto/ListadoRepuesto",
+            "iconClass": "las la-file-invoice-dollar",
+            "status": 0
+          },
+          {
+            "key": "ListadoCategoriaPieza",
+            "name": "Categoria Pieza",
+            "to": "MICategoriaPieza/ListadoCategoriaPieza",
+            "iconClass": "las la-table",
+            "status": 0
+          },
+          {
+            "key": "ListadoCategoriaProblema",
+            "name": "Categoria Problema",
+            "to": "MICategoriaProblema/ListadoCategoriaProblema",
+            "iconClass": "las la-stream",
+            "status": 0
+          },
+          {
+            "key": "ListadoCategoriaRepuesto",
+            "name": "Categoria Repuesto",
+            "to": "MICategoriaRepuesto/ListadoCategoriaRepuesto",
+            "iconClass": "las la-road",
+            "status": 0
+          }
+        ]
+      },
+      {
+        "key": "Almacen",
+        "name": "Administrar almacenes",
+        "iconClass": "la la-store",
+        "to": "#",
+        "status": 0,
+        "submenu": [
+          {
+            "key": "ListadoAlmacen",
+            "name": "Almacen",
+            "to": "MIAlmacen/ListadoAlmacen",
+            "iconClass": "las la-paperclip",
+            "status": 0
+          },
+          {
+            "key": "UsuarioAlmacenVista",
+            "name": "Asignar Usuario Almacen",
+            "to": "MIAlmacen/UsuarioAlmacenVista",
+            "iconClass": "las la-user-cog",
+            "status": 0
+          },
+          {
+            "key": "ListadoPiezaRepuestoAlmacen",
+            "name": "Listado Repuesto por Almacen",
+            "to": "MIPiezaRepuestoAlmacen/ListadoPiezaRepuestoAlmacen",
+            "iconClass": "las la-paperclip",
+            "status": 0
+          }
+        ]
+      },
+      {
+        "key": "ListadoSalaCorreos",
+        "name": "Configurar correos",
+        "to": "MIMaquinaInoperativa/ListadoSalaCorreos",
+        "iconClass": "la la-minus-circle",
+        "status": 0
+      },
+      {
+        "key": "Procesos",
+        "name": "Procesos Máquina Inoperativa",
+        "iconClass": "las la-microchip",
+        "to": "#",
+        "status": 0,
+        "submenu": [
+          {
+            "key": "MaquinaInoperativaInsertarVista",
+            "name": "Registrar Nueva Maquina Inoperativa",
+            "to": "MIMaquinaInoperativa/MaquinaInoperativaInsertarVista",
+            "iconClass": "las la-desktop",
+            "status": 0
+          },
+          {
+            "key": "ListadoMaquinaInoperativaCreado",
+            "name": "Atender Maquina Inoperativa",
+            "to": "MIMaquinaInoperativa/ListadoMaquinaInoperativaCreado",
+            "iconClass": "las la-exclamation",
+            "status": 0
+          },
+          {
+            "key": "ListadoMaquinaInoperativaAtendida",
+            "name": "Revisar Atencion Solicitud Maquina Inoperativa",
+            "to": "MIMaquinaInoperativa/ListadoMaquinaInoperativaAtendidaInoperativa",
+            "iconClass": "las la-exclamation",
+            "status": 0
+          },
+          {
+            "key": "ListadoMaquinaInoperativaSolicitud",
+            "name": "Aprobar Solicitudes",
+            "to": "MIMaquinaInoperativa/ListadoMaquinaInoperativaAtendidaInoperativaSolicitud",
+            "iconClass": "las la-check",
+            "status": 0
+          },
+          {
+            "key": "ListadoMaquinaInoperativaAtendidaOperativa",
+            "name": "Listado Maquinas Inoperativas Atendida Operativa",
+            "to": "MIMaquinaInoperativa/ListadoMaquinaInoperativaAtendidaOperativa",
+            "iconClass": "las la-exchange-alt",
+            "status": 0
+          },
+          {
+            "key": "ListadoMaquinaInoperativa",
+            "name": "Historico Maquina Inoperativa",
+            "to": "MIMaquinaInoperativa/ListadoMaquinaInoperativa",
+            "iconClass": "las la-desktop",
+            "status": 0
+          }
+        ]
+      },
+      {
+        "key": "ReporteCategoriaProblemas",
+        "name": "Reporte Categoria Problemas",
+        "to": "MIMaquinaInoperativa/ReporteCategoriaProblemas",
+        "iconClass": "las la-paperclip",
+        "status": 0
+      }
+
+    ]
+  },
+  {
+    "key": "Soporte",
+    "name": "Soporte",
+    "to": "#",
+    "iconClass": "las la-folder",
+    "iconLink": "Content/menu-square/icons/soporte.png",
+    "status": 0,
+    "submenu": [
+      {
+        "key": "UtilitarioAdministrativoVista",
+        "name": "Utilitario Administrativo",
+        "to": "UtilitarioAdministrativo/UtilitarioAdministrativoVista",
+        "iconClass": "las la-paperclip",
+        "status": 0
+      },
+      {
+        "key": "VerificarComportamientoMaquinaVista",
+        "name": "Verificar Comportamiento de Máquina",
+        "to": "CallCenter/VerificarComportamientoMaquinaVista",
+        "iconClass": "las la-tasks",
+        "status": 0
+      },
+      {
+        "key": "TicketEmitidoPorMontoVista",
+        "name": "Tickets Emitidos por Monto",
+        "to": "CallCenter/TicketEmitidoPorMontoVista",
+        "iconClass": "las la-ticket-alt",
+        "status": 0
+      },
+      {
+        "key": "TicketRegistradoVista",
+        "name": "Tickets Registrados",
+        "to": "CallCenter/TicketRegistradoVista",
+        "iconClass": "las la-ticket-alt",
+        "status": 0
+      },
+      {
+        "key": "TicketBolsaVista",
+        "name": "Tickets Bolsa",
+        "to": "CallCenter/TicketBolsaVista",
+        "iconClass": "las la-ticket-alt",
+        "status": 0
+      },
+      {
+        "key": "CallCenterConsultaTicketRegistradoXpuntoVenta",
+        "name": "Tickets Registrados por Punto Venta",
+        "to": "CallCenter/CallCenterConsultaTicketRegistradoXpuntoVenta",
+        "iconClass": "las la-ticket-alt",
+        "status": 0
+      },
+      {
+        "key": "CallCenterVista",
+        "name": "Ticket Movimiento Auxiliar",
+        "to": "CallCenter/CallCenterVista",
+        "iconClass": "las la-ticket-alt",
+        "status": 0
+      },
+      {
+        "key": "CajaBovedaSubmenu",
+        "name": "Caja Boveda",
+        "to": "#",
+        "iconClass": "las la-box",
+        "status": 0,
+        "submenu": [
+          {
+            "key": "CallCenterCajaBoveda",
+            "name": "Modificar Caja",
+            "to": "CallCenterCajaBoveda/CallCenterCajaBovedaVista",
+            "iconClass": "las la-pen",
+            "status": 0
+          },
+          {
+            "key": "CallCenterResumem",
+            "name": "Caja Boveda Resumem",
+            "to": "CallCenterCajaBoveda/CallCenterResumenSalaBovedaVista",
+            "iconClass": "las la-boxes",
+            "status": 0
+          }
+        ]
+      },
+      {
+        "key": "CallCenterObtenerCajas",
+        "name": "Modificar Caja",
+        "to": "CallCenter/CallCenterObtenerCajas",
+        "iconClass": "las la-pen",
+        "status": 0
+      },
+      {
+        "key": "CallCenterReducirMemoriaVista",
+        "name": "Reducir Memoria",
+        "to": "CallCenter/CallCenterReducirMemoriaVista",
+        "iconClass": "las la-folder-minus",
+        "status": 0
+      },
+      {
+        "key": "CallCenterResumenSalaVista",
+        "name": "Modificar Resumen Sala",
+        "to": "CallCenter/CallCenterResumenSalaVista",
+        "iconClass": "las la-pen-alt",
+        "status": 0
+      },
+      {
+        "key": "CallCenterBloquearDesbloquearUsuario",
+        "name": "Bloquear/Desbloquear Usuarios",
+        "to": "CallCenter/CallCenterBloquearDesbloquearUsuario",
+        "iconClass": "las la-user-lock",
+        "status": 0
+      },
+      {
+        "key": "CallCenterSoportePlayerTrackingVista",
+        "name": "Player Tracking",
+        "to": "CallCenter/CallCenterSoportePlayerTrackingVista",
+        "iconClass": "las la-project-diagram",
+        "status": 0
+      },
+      {
+        "key": "CallCenterResumenSalaBovedaVista",
+        "name": "Modificar Resumen Sala Boveda",
+        "to": "CallCenterCajaBoveda/CallCenterResumenSalaBovedaVista",
+        "iconClass": "las la-pen",
+        "status": 0
+      },
+      {
+        "key": "ReportesTITOCajas",
+        "name": "Reporte Detallado de Tickets en Caja",
+        "to": "Reportes/TITOCajas",
+        "iconClass": "las la-file-alt",
+        "status": 0
+      },
+      {
+        "key": "ReportesTITOPromocionales",
+        "name": "Reportes TITO Promocionales",
+        "to": "Reportes/TITOPromocionales",
+        "iconClass": "las la-file-alt",
+        "status": 0
+      },
+      {
+        "key": "ReportesAperturaCajas",
+        "name": "Reporte Apertura Cajas",
+        "to": "Reportes/AperturaCajas",
+        "iconClass": "las la-file-alt",
+        "status": 0
+      },
+      {
+        "key": "ReporteSunat",
+        "name": "Reporte Sunat",
+        "to": "ReporteSunat/Index",
+        "iconClass": "las la-file-alt",
+        "status": 0
+      }
+
+    ]
+  },
+  {
+    "key": "GestionCambios",
+    "name": "Gestion de Cambios",
+    "to": "#",
+    "iconClass": "las la-wave-square",
+    "iconLink": "Content/menu-square/icons/gestion-cambios.png",
+    "status": 0,
+    "submenu": [
+      {
+        "key": "GestionCambiosSolicitudCambioVista",
+        "name": "Solicitud de Cambios",
+        "to": "GestionCambios/GestionCambiosSolicitudCambioVista",
+        "iconClass": "las la-exchange-alt",
+        "status": 0
+      },
+      {
+        "key": "GestionCambiosComiteCambiosPersonalListadoVista",
+        "name": "Comité de Cambios",
+        "to": "GestionCambios/GestionCambiosComiteCambiosPersonalListadoVista",
+        "iconClass": "las la-network-wired",
+        "status": 0
+      },
+      {
+        "key": "GestionCambiosSistemaListadoVista",
+        "name": "Sistemas",
+        "to": "GestionCambios/GestionCambiosSistemaListadoVista",
+        "iconClass": "lab la-windows",
+        "status": 0
+      },
+      {
+        "key": "GestionCambiosListadoModuloVista",
+        "name": "Módulos",
+        "to": "GestionCambios/GestionCambiosListadoModuloVista",
+        "iconClass": "lab la-modx",
+        "status": 0
+      }
+    ]
+  },
+  {
+    "key": "ProyectadoProgresivo",
+    "name": "Proyectado Progresivo",
+    "to": "#",
+    "iconClass": "las la-chart-bar",
+    "iconLink": "Content/menu-square/icons/proyectado-progresivo.png",
+    "status": 0,
+    "submenu": [
+      {
+        "key": "ProyectoadoProgresivoListarVista",
+        "name": "Proyectado Progresivo",
+        "to": "ProyectadoProgresivo/ProyectadoProgresivoListarVista",
+        "iconClass": "las la-chart-line",
+        "status": 0
+      }
+    ]
+  },
+  {
+    "key": "MovimientosSala",
+    "name": "Movimientos Sala",
+    "to": "#",
+    "iconClass": "las la-layer-group",
+    "iconLink": "Content/menu-square/icons/movimientos-sala.png",
+    "status": 0,
+    "submenu": [
+      {
+        "key": "TransferenciaFormulario",
+        "name": "Transferencias",
+        "to": "Transferencias/Formulario",
+        "iconClass": "las la-chalkboard",
+        "status": 0
+      },
+      {
+        "key": "TransferenciaCliente",
+        "name": "Clientes",
+        "to": "Transferencias/Cliente",
+        "iconClass": "las la-users",
+        "status": 0
+      },
+      {
+        "key": "DepositoReporte",
+        "name": "Reporte Depósitos",
+        "to": "Transferencias/ReporteDepositos",
+        "iconClass": "las la-file-alt",
+        "status": 0
+      },
+      {
+        "key": "TransferenciaReporte",
+        "name": "Reporte Transferencias",
+        "to": "Transferencias/Reporte",
+        "iconClass": "las la-file-invoice",
+        "status": 0
+      }
+    ]
+  },
+  {
+    "key": "TransferenciaAT",
+    "name": "Transferencias AT",
+    "to": "#",
+    "iconClass": "las la-comment-dollar",
+    "iconLink": "Content/menu-square/icons/transferencias-at.png",
+    "status": 0,
+    "submenu": [
+      {
+        "key": "FormularioRegistro",
+        "name": "Formulario Registro",
+        "to": "TransferenciaAT/FormularioRegistro",
+        "iconClass": "las la-pen",
+        "status": 0
+      },
+      {
+        "key": "ReporteRegistro",
+        "name": "Reporte Registro",
+        "to": "TransferenciaAT/ReporteFormularioRegistro",
+        "iconClass": "las la-file-invoice",
+        "status": 0
+      }
+    ]
+  },
+  {
+    "key": "Bonificaciones",
+    "name": "Bonificaciones",
+    "to": "#",
+    "iconClass": "las la-hand-holding-usd",
+    "iconLink": "Content/menu-square/icons/bonificaciones.png",
+    "status": 0,
+    "submenu": [
+      {
+        "key": "FormularioRegistro",
+        "name": "Formulario Registro",
+        "to": "Bonificaciones/FormularioRegistro",
+        "iconClass": "las la-pen",
+        "status": 0
+      },
+      {
+        "key": "ReporteRegistro",
+        "name": "Reporte Registro",
+        "to": "Bonificaciones/ReporteFormularioRegistro",
+        "iconClass": "las la-file-invoice",
+        "status": 0
+      }
+    ]
+  },
+  {
+    "key": "AsistenciaEmpleado",
+    "name": "Asistencia Empleado",
+    "to": "#",
+    "iconClass": "las la-user-clock",
+    "iconLink": "Content/menu-square/icons/asistencia-empleado.png",
+    "status": 0,
+    "submenu": [
+      {
+        "key": "ReporteAsistencia",
+        "name": "Reporte Asistencia",
+        "to": "ReporteAsistenciaEmpleado/ReporteAsistencia",
+        "iconClass": "las la-file-alt",
+        "status": 0
+      },
+      {
+        "key": "ReporteVisita",
+        "name": "Reporte Visita",
+        "to": "ReporteVisita/ReporteVisita",
+        "iconClass": "las la-id-card",
+        "status": 0
+      }
+    ]
+  },
+  {
+    "key": "FichaSintomatologica",
+    "name": "Ficha Salud",
+    "to": "#",
+    "iconClass": "las la-notes-medical",
+    "iconLink": "Content/menu-square/icons/ficha-salud.png",
+    "status": 0,
+    "submenu": [
+      {
+        "key": "FichaVista",
+        "name": "Ficha",
+        "to": "FichaSintomatologica/FichaVista",
+        "iconClass": "las la-file-medical",
+        "status": 0
+      },
+      {
+        "key": "ReporteFicha",
+        "name": "Reporte Ficha",
+        "to": "FichaSintomatologica/FichaReporteVista",
+        "iconClass": "las la-file-alt",
+        "status": 0
+      }
+    ]
+  },
+  {
+    "key": "ExcelenciaOperativa",
+    "name": "Excelencia Operativa",
+    "to": "#",
+    "iconClass": "las la-file-contract",
+    "iconLink": "Content/menu-square/icons/excelencia-operativa.png",
+    "status": 0,
+    "submenu": [
+      {
+        "key": "FichaVistaJOP",
+        "name": "Ficha Jefe Operativo",
+        "to": "ExcelenciaOperativa/FichaVistaJOP",
+        "iconClass": "las la-file-signature",
+        "status": 0
+      },
+      {
+        "key": "FichaVistaGU",
+        "name": "Ficha Gerente de Unidad",
+        "to": "ExcelenciaOperativa/FichaVistaGU",
+        "iconClass": "las la-file-signature",
+        "status": 0
+      },
+      {
+        "key": "ReporteFichaEO",
+        "name": "Reporte Ficha",
+        "to": "ExcelenciaOperativa/FichaReporteVista",
+        "iconClass": "las la-file-alt",
+        "status": 0
+      },
+      {
+        "key": "EOVistaReporteNominal",
+        "name": "Reporte Nominal",
+        "to": "ExcelenciaOperativa/VistaReporteNominal",
+        "iconClass": "las la-file-alt",
+        "status": 0
+      },
+      {
+        "key": "EOVistaReporteNominalPuntuacion",
+        "name": "Reporte Nominal Puntuación",
+        "to": "ExcelenciaOperativa/VistaReporteNominalPuntuacion",
+        "iconClass": "las la-file-alt",
+        "status": 0
+      }
+    ]
+  },
+  {
+    "key": "AsistenciaCliente",
+    "name": "Asistencia Cliente SISCLIE",
+    "to": "#",
+    "iconClass": "las la-user-check",
+    "iconLink": "Content/menu-square/icons/asistencia-cliente.png",
+    "status": 0,
+    "submenu": [
+      {
+        "key": "RegistroAsistencia",
+        "name": "Registro Asistencia",
+        "to": "AsistenciaCliente/RegistroAsistencia",
+        "iconClass": "las la-pen",
+        "status": 0
+      },
+      {
+        "key": "ListadoCliente",
+        "name": "Listado de Clientes",
+        "to": "AsistenciaCliente/ListadoCliente",
+        "iconClass": "las la-list",
+        "status": 0
+      },
+      {
+        "key": "SincronizarExcelClientes",
+        "name": "Sincronizar Excel Clientes",
+        "to": "AsistenciaCliente/SincronizarExcelClientes",
+        "iconClass": "las la-sync",
+        "status": 0
+      },
+      {
+        "key": "ReporteListaCliente",
+        "name": "Reporte Lista Cliente",
+        "to": "AsistenciaCliente/ReporteListaCliente",
+        "iconClass": "las la-file-invoice",
+        "status": 0
+      },
+      {
+        "key": "ReporteAsistenciaSala",
+        "name": "Reporte Asistencia por Sala",
+        "to": "AsistenciaCliente/ReporteAsistenciaSala",
+        "iconClass": "las la-file-alt",
+        "status": 0
+      },
+      {
+        "key": "ListadoTipoCliente",
+        "name": "Listado Tipo de Cliente",
+        "to": "AsistenciaCliente/ListadoTipoCliente",
+        "iconClass": "las la-list-ol",
+        "status": 0
+      },
+      {
+        "key": "ListadoTipoJuego",
+        "name": "Listado Tipo de Juego",
+        "to": "AsistenciaCliente/ListadoTipoJuego",
+        "iconClass": "las la-th-list",
+        "status": 0
+      },
+      {
+        "key": "ListadoTipoFrecuencia",
+        "name": "Listado Tipo de Frecuencia",
+        "to": "AsistenciaCliente/ListadoTipoFrecuencia",
+        "iconClass": "las la-stream",
+        "status": 0
+      },
+      {
+        "key": "RegistroEmpadronamiento",
+        "name": "Registro Empadronamiento",
+        "to": "ClienteEmpadronamiento/RegistroEmpadronamiento",
+        "iconClass": "las la-torah",
+        "status": 0
+      },
+      {
+        "key": "ReporteEmpadronamiento",
+        "name": "Reporte Empadronamiento Cliente",
+        "to": "ClienteEmpadronamiento/ReporteEmpadronamiento",
+        "iconClass": "las la-file-alt",
+        "status": 0
+      },
+      {
+        "key": "envio-notificacion-cliente",
+        "name": "Notificaciones a Clientes",
+        "to": "AsistenciaCliente/EnvioNotificacion",
+        "iconClass": "las la-bell",
+        "status": 0
+      }
+    ]
+  },
+  {
+    "key": "Campania",
+    "name": "Campañas",
+    "to": "#",
+    "iconClass": "las la-briefcase",
+    "iconLink": "Content/menu-square/icons/campanias.png",
+    "status": 0,
+    "submenu": [
+      {
+        "key": "listaCampania",
+        "name": "Listado de Campañas",
+        "to": "Campania/ListadoCampañas",
+        "iconClass": "las la-list",
+        "status": 0
+      },
+      {
+        "key": "listaImpresora",
+        "name": "Lista Impresoras",
+        "to": "CampaniaImpresora/ListadoImpresoras",
+        "iconClass": "las la-list-ul",
+        "status": 0
+      },
+      {
+        "key": "asignarImpresora",
+        "name": "Asignar Impresoras",
+        "to": "CampaniaImpresora/AsignarImpresoras",
+        "iconClass": "las la-pen",
+        "status": 0
+      },
+      {
+        "key": "visorEstadoMaquinas",
+        "name": "Estado Máquinas",
+        "to": "CampaniaVisorEstadoMaquinas/VisorEstadoMaquinas",
+        "iconClass": "las la-spell-check",
+        "status": 0
+      },
+      {
+        "key": "RestriccionMaquinas",
+        "name": "Máquinas Restringidas",
+        "to": "CampaniaMaquinaRestringida/ListadoMaquinasRestringidas",
+        "iconClass": "las la-lock",
+        "status": 0
+      },
+      {
+        "key": "ReportePromociones",
+        "name": "Reporte Promociones",
+        "to": "CampaniaReporte/ReporteCampaniaPromocionCliente",
+        "iconClass": "las la-file-alt",
+        "status": 0
+      },
+      {
+        "key": "ReporteSorteo",
+        "name": "Reporte Sorteos",
+        "to": "CampaniaReporte/ReporteCampaniaSorteoCliente",
+        "iconClass": "las la-file-alt",
+        "status": 0
+      },
+      {
+        "key": "ReporteClientes",
+        "name": "Reporte Clientes",
+        "to": "CampaniaReporte/ReporteCampaniaCliente",
+        "iconClass": "las la-file-alt",
+        "status": 0
+      },
+      {
+        "key": "AuditoriaTitoPromoVista",
+        "name": "Auditoría Titos Promocionales",
+        "to": "Campania/AuditoriaTitoPromoVista",
+        "iconClass": "las la-user-secret",
+        "status": 0
+      }
+    ]
+  },
+  {
+    "key": "Alertabill",
+    "name": "Alertas Billeteros",
+    "to": "#",
+    "iconClass": "las la-bell",
+    "iconLink": "Content/menu-square/icons/alertas-billeteros.png",
+    "status": 0,
+    "submenu": [
+      {
+        "key": "ConfiguracionAlertaCargo",
+        "name": "Configurar Alerta a Cargo",
+        "to": "AlertaBilleteros/ConfiguracionAlertaCargoVista",
+        "iconClass": "las la-sliders-h",
+        "status": 0
+      },
+      {
+        "key": "ReporteAlertas",
+        "name": "Reporte Alertas",
+        "to": "AlertaBilleteros/ReporteAlertaBilleterosVista",
+        "iconClass": "las la-file-alt",
+        "status": 0
+      },
+      {
+        "key": "ReporteLogsOnline",
+        "name": "Reporte Logs Online",
+        "to": "LogAlertaBilleteros/LogsOnlineVista",
+        "iconClass": "las la-file-alt",
+        "status": 0
+      },
+      {
+        "key": "LogsReporteNominal",
+        "name": "Logs Reporte Nominal",
+        "to": "LogAlertaBilleteros/LogsReporteNominal",
+        "iconClass": "las la-file-alt",
+        "status": 0
+      },
+      {
+        "key": "ContadoresNegativos",
+        "name": "Contadores Negativos",
+        "to": "ContadoresNegativos/ContadoresNegativosListado",
+        "iconClass": "las la-minus-circle",
+        "status": 0
+      },
+      {
+        "key": "ContadoresNegativosConfig",
+        "name": "Configuracion Contadores Negativos",
+        "to": "ContadoresNegativos/ConfiguracionAlertaContadorNegativo",
+        "iconClass": "las la-minus-circle",
+        "status": 0
+      },
+      {
+        "key": "EstadoServicios",
+        "name": "Estado Servicios",
+        "to": "EstadoServicios/EstadoServiciosVista",
+        "iconClass": "las la-envelope",
+        "status": 0
+      }
+    ]
+  },
+  {
+    "key": "Reclamaciones",
+    "name": "Reclamaciones",
+    "to": "Reclamacion/ReclamacionListarVista",
+    "iconClass": "las la-book-open",
+    "iconLink": "Content/menu-square/icons/reclamaciones.png",
+    "status": 0
+  },
+  {
+    "key": "ModuloOcurrenciasSala",
+    "name": "Ocurrencias",
+    "to": "#",
+    "iconClass": "las la-fire",
+    "iconLink": "Content/menu-square/icons/ocurrencias.png",
+    "status": 0,
+    "submenu": [
+      {
+        "key": "ListadoCorreo",
+        "name": "Correos",
+        "to": "Ocurrencias/ListadoCorreo",
+        "iconClass": "las la-envelope",
+        "status": 0
+      },
+      {
+        "key": "ListadoTipoOcurrencia",
+        "name": "Tipo Ocurrencia",
+        "to": "Ocurrencias/ListadoTipoOcurrencia",
+        "iconClass": "las la-list-ol",
+        "status": 0
+      },
+      {
+        "key": "RegistroOcurrencia",
+        "name": "Registro Ocurrencia",
+        "to": "Ocurrencias/RegistroOcurrencia",
+        "iconClass": "las la-pen",
+        "status": 0
+      },
+      {
+        "key": "ReporteOcurrencia",
+        "name": "Reporte Ocurrencia",
+        "to": "Ocurrencias/ReporteOcurrencia",
+        "iconClass": "las la-file-alt",
+        "status": 0
+      }
+    ]
+  },
+  {
+    "key": "Seguridad",
+    "name": "Seguridad",
+    "to": "#",
+    "iconClass": "las la-shield-alt",
+    "iconLink": "Content/menu-square/icons/seguridad.png",
+    "status": 0,
+    "submenu": [
+      {
+        "key": "EmpresaVista",
+        "name": "Empresas",
+        "to": "Empresa/Empresavista",
+        "iconClass": "las la-table",
+        "status": 0
+      },
+      {
+        "key": "SalaMaestraListadoVista",
+        "name": "Sala Maestra",
+        "to": "SalaMaestra/SalaMaestraListadoVista",
+        "iconClass": "las la-stream",
+        "status": 0
+      },
+      {
+        "key": "SalaVista",
+        "name": "Salas",
+        "to": "Sala/Salavista",
+        "iconClass": "las la-stream",
+        "status": 0
+      },
+      {
+        "key": "ZonaVista",
+        "name": "Zonas",
+        "to": "Zona/ZonaVista",
+        "iconClass": "las la-map-signs",
+        "status": 0
+      },
+      {
+        "key": "SalaCamposProgresivoVista",
+        "name": "Salas Campos Progresivo",
+        "to": "Sala/SalaCamposProgresivoVista",
+        "iconClass": "las la-stream",
+        "status": 0
+      },
+      {
+        "key": "SalaEchoPingVista",
+        "name": "Salas Echo Ping",
+        "to": "Sala/SalaEchoPingVista",
+        "iconClass": "las la-stream",
+        "status": 0
+      },
+      {
+        "key": "ListadoEmpleado",
+        "name": "Empleados",
+        "to": "Empleado/EmpleadoListadoVista",
+        "iconClass": "las la-users",
+        "status": 0
+      },
+      {
+        "key": "ListadoUsuarioEncriptacion",
+        "name": "Usuario Encriptación",
+        "to": "UsuarioEncriptacion/UsuarioEncriptacionListarVista",
+        "iconClass": "las la-key",
+        "status": 0
+      },
+      {
+        "key": "ListadoUsuario",
+        "name": "Usuarios",
+        "to": "Usuario/UsuarioListadoVista",
+        "iconClass": "las la-user-shield",
+        "status": 0
+      },
+      {
+        "key": "UsuarioSalaVista",
+        "name": "Asignar Sala a Usuario",
+        "to": "UsuarioSala/UsuarioSalaVista",
+        "iconClass": "las la-user-cog",
+        "status": 0
+      },
+      {
+        "key": "ListadoRol",
+        "name": "Roles",
+        "to": "Rol/ListadoRol",
+        "iconClass": "las la-user-tag",
+        "status": 0
+      },
+      {
+        "key": "SeguridadVista",
+        "name": "Permisos",
+        "to": "Seguridad/SeguridadVista",
+        "iconClass": "las la-low-vision",
+        "status": 0
+      },
+      {
+        "key": "SeguridadAuditoriaVista",
+        "name": "Auditoria",
+        "to": "Seguridad/SeguridadAuditoriaVista",
+        "iconClass": "las la-road",
+        "status": 0
+      },
+      {
+        "key": "DestinarioVista",
+        "name": "Destinatarios",
+        "to": "Destinatario/DestinatarioListadoVista",
+        "iconClass": "las la-share-alt",
+        "status": 0
+      },
+      {
+        "key": "ConfiguracionDestinatarioVista",
+        "name": "Configuración Destinatarios",
+        "to": "Destinatario/DestinatarioConfiguracionVista",
+        "iconClass": "las la-pencil-alt",
+        "status": 0
+      },
+      {
+        "key": "ConfiguracionReclamacionesVista",
+        "name": "Configuración Reclamaciones",
+        "to": "Reclamacion/ConfiguracionReclamacionesVista",
+        "iconClass": "las la-pencil-alt",
+        "status": 0
+      },
+      {
+        "key": "DispositivoVista",
+        "name": "Dispositivos",
+        "to": "Dispositivo/DispositivoListadoVista",
+        "iconClass": "las la-laptop",
+        "status": 0
+      },
+      {
+        "key": "ConfiguracionSeguridad",
+        "name": "Configuración Seguridad",
+        "to": "ConfiguracionSeguridad/ConfiguracionSeguridadVista",
+        "iconClass": "las la-pen",
+        "status": 0
+      },
+      {
+        "key": "CambiarContrasenia",
+        "name": "Cambiar Contraseña",
+        "to": "Usuario/CambiarContraseniaVista",
+        "iconClass": "las la-pen",
+        "status": 0
+      },
+      {
+        "key": "PeticionesToken",
+        "name": "Peticiones Token",
+        "to": "SeguridadProgresivo/PeticionesToken",
+        "iconClass": "las la-pen",
+        "status": 0
+      },
+      {
+        "key": "ValidacionImei",
+        "name": "Validacion Imei",
+        "to": "ControlImei/ImeiIndex",
+        "iconClass": "las la-pen",
+        "status": 0
+      },
+      {
+        "key": "Discos",
+        "name": "Discos",
+        "to": "#",
+        "iconClass": "las la-hdd",
+        "status": 0,
+        "submenu": [
+          {
+            "key": "Alerta Disco",
+            "name": "Configuracion Alerta Disco",
+            "to": "Disco/ConfiguracionAlertaDisco",
+            "iconClass": "las la-wrench",
+            "status": 0
+          },
+          {
+            "key": "Discos",
+            "name": "Listado Discos",
+            "to": "Disco/ListadoDiscos",
+            "iconClass": "las la-list",
+            "status": 0
+          },
+          {
+            "key": "Logs BDs",
+            "name": "Listado Espacio BDs",
+            "to": "Disco/ListadoEspacioDiscoBDs",
+            "iconClass": "las la-list",
+            "status": 0
+          },
+          {
+            "key": "Logs BDs Azure",
+            "name": "Listado Espacio BDs Azure",
+            "to": "Disco/ListadoEspacioDiscoBDsAzure",
+            "iconClass": "las la-list",
+            "status": 0
+          }
+        ]
+      },
+      {
+        "key": "EquipoEstado",
+        "name": "Estado Equipo",
+        "to": "Equipo/EquipoIndex",
+        "iconClass": "las la-memory",
+        "status": 0
+      },
+      {
+        "key": "AppSettings",
+        "name": "Configuración de la aplicación",
+        "to": "Settings/AppSettings",
+        "iconClass": "las la-cogs",
+        "status": 0
+      },
+      {
+        "key": "EnvioCorreosSalas",
+        "name": "Configuración de correos salas",
+        "to": "Sala/ConfiguracionCorreosSala",
+        "iconClass": "las la-cogs",
+        "status": 0
+      }
+    ]
+  },
+  {
+    "key": "Incidencias",
+    "name": "Incidencias",
+    "to": "Incidencias/Index",
+    "iconClass": "las la-exclamation-triangle",
+    "iconLink": "Content/menu-square/icons/incidencia.png",
+    "status": 0
+
+  },
+  {
+    "key": "Revisiones",
+    "name": "Revisiones",
+    "to": "Revisiones/Index",
+    "iconClass": "las la-exclamation-triangle",
+    "iconLink": "Content/menu-square/icons/qa.svg",
+    "status": 0
+  },
+  {
+    "key": "erpSlotsReporte",
+    "name": "ERP - CI",
+    "to": "#",
+    "iconClass": "las la-chart-bar",
+    "iconLink": "Content/menu-square/icons/reporte_erp.png",
+    "status": 0,
+    "submenu": [
+      {
+        "key": "ConteoClientes",
+        "name": "9050: Conteo de Clientes",
+        "to": "Reporte9050/ConteoClientes",
+        "iconClass": "las la-users",
+        "status": 0
+      },
+      {
+        "key": "MaquinasCentralizadas",
+        "name": "2401: Maestro Maquinas",
+        "to": "MaquinasCentralizadas/MaquinasCentralizadasVista",
+        "iconClass": "las la-file-invoice",
+        "status": 0
+      },
+      {
+        "key": "CierreStatusSincronizador",
+        "name": "Estado Sincronizador Salas",
+        "to": "StatusSincronizador/StatusSincronizadorVista",
+        "iconClass": "las la-file-invoice",
+        "status": 0
+      },
+      {
+        "key": "erpSlotsReporte-tarjetas-clientes",
+        "name": "Reporte de Tarjetas de Clientes",
+        "to": "TtcTransacciones/TransaccionesClientesView",
+        "iconClass": "las la-credit-card",
+        "status": 0
+      }
+    ]
+  },
+  {
+    "key": "cortesias",
+    "name": "Cortesias",
+    "to": "#",
+    "iconClass": "las la-chart-bar",
+    "iconLink": "Content/menu-square/icons/cortesias.png",
+    "status": 0,
+    "submenu": [
+      {
+        "key": "cortesias-mantenedores-maestro",
+        "name": "Mantenedores Maestro",
+        "to": "#",
+        "iconClass": "las la-chart-bar",
+        "status": 0,
+        "submenu": [
+          {
+            "key": "cortesias-marca",
+            "name": "Marcas",
+            "to": "Marcas/Index",
+            "iconClass": "las la-copyright",
+            "status": 0
+          },
+          {
+            "key": "cortesias-tipo",
+            "name": "Tipos",
+            "to": "Tipos/Index",
+            "iconClass": "las la-file-invoice",
+            "status": 0
+          },
+          {
+            "key": "cortesias-sub-tipo",
+            "name": "Sub Tipos",
+            "to": "SubTipos/Index",
+            "iconClass": "las la-file-invoice",
+            "status": 0
+          },
+          {
+            "key": "cortesias-producto",
+            "name": "Productos",
+            "to": "Productos/Index",
+            "iconClass": "las la-wine-glass",
+            "status": 0
+          }
+        ]
+      },
+      {
+        "key": "cortesias-mantenedores-sala",
+        "name": "Mantenedores por sala",
+        "to": "#",
+        "iconClass": "las la-chart-bar",
+        "status": 0,
+        "submenu": [
+          {
+            "key": "productosala",
+            "name": "ProductoSala",
+            "to": "Cortesias/ProductoSala",
+            "iconClass": "las la-file-invoice",
+            "status": 0
+          },
+          {
+            "key": "maquinaanfitriona",
+            "name": "MaquinaAnfitriona",
+            "to": "MaquinaAnfitriona/Index",
+            "iconClass": "las la-file-invoice",
+            "status": 0
+          },
+          {
+            "key": "anfitrionas",
+            "name": "Anfitrionas",
+            "to": "Anfitrionas/Index",
+            "iconClass": "las la-file-invoice",
+            "status": 0
+          },
+          {
+            "key": "configuracion",
+            "name": "Configuracion",
+            "to": "Cortesias/Configuracion",
+            "iconClass": "las la-file-invoice",
+            "status": 0
+          }
+        ]
+      },
+      {
+        "key": "cortesias-reportes",
+        "name": "Reportes",
+        "to": "#",
+        "iconClass": "las la-chart-bar",
+        "status": 0,
+        "submenu": [
+          {
+            "key": "cortesias-reportes-pedidos",
+            "name": "Reporte de Pedidos",
+            "to": "ReportesCortesia/Pedidos",
+            "iconClass": "las la-chart-bar",
+            "status": 0
+          },
+          {
+            "key": "cortesias-reportes-productos",
+            "name": "Reporte de Productos",
+            "to": "ReportesCortesia/Productos",
+            "iconClass": "las la-chart-bar",
+            "status": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "key": "whatsapp",
+    "name": "WhatsApp (beta)",
+    "to": "#",
+    "iconClass": "lab la-whatsapp",
+    "iconLink": "Content/menu-square/icons/whatsapp1.png",
+    "status": 0,
+    "submenu": [
+      {
+        "key": "Instancia",
+        "name": "Instancia",
+        "to": "Instancia/InstanciaListadoVista",
+        "iconClass": "las la-file-invoice",
+        "status": 0
+      },
+      {
+        "key": "Mensajeria",
+        "name": "Mensajeria",
+        "to": "Mensajeria/Index",
+        "iconClass": "las la-sms",
+        "status": 0
+      },
+      {
+        "key": "MensajeriaCliente",
+        "name": "Mensajeria Cliente",
+        "to": "MensajeriaCliente/Index",
+        "iconClass": "las la-sms",
+        "status": 0
+      },
+      {
+        "key": "ContactoVista",
+        "name": "Contactos",
+        "to": "Contacto/ContactoListadoVista",
+        "iconClass": "las la-address-book",
+        "status": 0
+      }
+    ]
+  },
+  {
+    "key": "integracion-buk",
+    "name": "Integración BUK",
+    "to": "#",
+    "iconClass": "lab la-buffer",
+    "iconLink": "Content/menu-square/icons/buk_logo.jpg",
+    "status": 0,
+    "submenu": [
+      {
+        "key": "equivalencia-empresa",
+        "name": "Equivalencia Empresa",
+        "to": "EquivalenciaEmpresa/EquivalenciaEmpresaListadoVista",
+        "iconClass": "las la-industry",
+        "status": 0
+      },
+      {
+        "key": "equivalencia-sede",
+        "name": "Equivalencia Sede",
+        "to": "EquivalenciaSede/EquivalenciaSedeListadoVista",
+        "iconClass": "las la-building",
+        "status": 0
+      },
+      {
+        "key": "creditos-sede",
+        "name": "Créditos | Vales",
+        "to": "Credito/CreditoListadoVista",
+        "iconClass": "las la-ticket-alt",
+        "status": 0
+      }
+    ]
+  },
+  {
+    "key": "EstadoMaquina",
+    "name": "Estado Máquina",
+    "to": "#",
+    "iconClass": "las la-cash-register",
+    "iconLink": "Content/menu-square/icons/vision.png",
+    "status": 0,
+    "submenu": [
+      {
+        "key": "EstadoMaquinaVista",
+        "name": "Estado Máquina",
+        "to": "EstadoMaquina/MaquinaEstadosVista",
+        "iconClass": "las la-cogs",
+        "status": 0
+      },
+      {
+        "key": "ReporteRegistroMaquinaVista",
+        "name": "Reporte Registro Maquina",
+        "to": "EstadoMaquina/ReporteRegistroMaquinaVista",
+        "iconClass": "las la-clipboard",
+        "status": 0
+      }
+    ]
+  },
+  {
+    "key": "EntradaSalidaSala",
+    "name": "Entrada y Salida Sala",
+    "to": "#",
+    "iconClass": "las la-wave-square",
+    "iconLink": "Content/menu-square/icons/salida.png",
+    "status": 0,
+    "submenu": [
+      {
+        "key": "BienesMaterialesVista",
+        "name": "Bienes y Materiales",
+        "to": "BienesMateriales/BienesMaterialesVista",
+        "iconClass": "las la-dolly",
+        "status": 0
+      },
+      {
+        "key": "EntesReguladoresVista",
+        "name": "Entes Reguladores",
+        "to": "EntesReguladores/EntesReguladoresVista",
+        "iconClass": "las la-clone",
+        "status": 0
+      },
+      {
+        "key": "IngresoSalidaGUVista",
+        "name": "Ingresos y Salidas GU",
+        "to": "IngresosSalidasGU/IngresosSalidasGUVista",
+        "iconClass": "las la-walking",
+        "status": 0
+      },
+      {
+        "key": "RecaudacionPersonalVista",
+        "name": "Recaudaciones - Personal Participante",
+        "to": "RecaudacionesPersonalParticipante/RecaudacionesPersonalParticipanteVista",
+        "iconClass": "las la-donate",
+        "status": 0
+      },
+      {
+        "key": "AperturaCierreSalaVista",
+        "name": "Apertura y Cierre de Sala",
+        "to": "AperturaCierreSala/AperturaCierreSalaVista",
+        "iconClass": "las la-door-open",
+        "status": 0
+      },
+      {
+        "key": "AccionesIncidentesCajasTemporizadasVista",
+        "name": "Acciones Incidentes de Cajas Temporizadas",
+        "to": "AccionesIncidentesCajasTemporizadas/AccionesIncidentesCajasTemporizadasVista",
+        "iconClass": "las la-box",
+        "status": 0
+      },
+      {
+        "key": "LogOcurrenciaVista",
+        "name": "Logs de Ocurrencias",
+        "to": "LogsOcurrencias/LogsOcurrenciasVista",
+        "iconClass": "las la-list-ol",
+        "status": 0
+      },
+      {
+        "key": "RecojoRemesasVista",
+        "name": "Recojo de Remesas",
+        "to": "RecojoRemesas/RecojoRemesasVista",
+        "iconClass": "las la-truck",
+        "status": 0
+      },
+      {
+        "key": "ReporteConsolidadoVista",
+        "name": "Reporte Consolidado",
+        "to": "ReporteConsolidado/ReporteConsolidadoVista",
+        "iconClass": "las la-file-excel",
+        "status": 0
+      },
+      {
+        "key": "ESSDashboard",
+        "name": "KPI Dashboard",
+        "to": "ESS_Dashboard/ESSDashboardVista",
+        "iconClass": "las la-chart-line",
+        "status": 0
+      }
+    ]
+  },
+
+  {
+    "key": "GLPI-Infraestructura",
+    "name": "GLPI Infraestuctura",
+    "to": "#",
+    "iconClass": "las la-server",
+    "iconLink": "Content/menu-square/icons/work-tools.png",
+    "status": 0,
+    "submenu": [
+      {
+        "key": "CrearTicketsVista",
+        "name": "Registrar Ticket",
+        "to": "GlpiTicket/CrearTicketsView",
+        "iconClass": "las la-ticket-alt",
+        "status": 0
+      },
+      {
+        "key": "AsignarTicketVista",
+        "name": "Asignar Ticket",
+        "to": "GlpiTicket/AsignarTicketView",
+        "iconClass": "las la-user-check",
+        "status": 0
+      },
+      {
+        "key": "ReportesVista",
+        "name": "Reportes",
+        "to": "GlpiTicket/ReportesView",
+        "iconClass": "las la-chart-bar",
+        "status": 0
+      }
+    ]
+  },
+
+
+  {
+    "key": "sunat",
+    "name": "Migracion",
+    "to": "#",
+    "iconClass": "las la-building",
+    "iconLink": "Content/menu-square/icons/migracion.png",
+    "status": 0,
+    "submenu": [
+      {
+        "key": "eventos-sunat",
+        "name": "Eventos Mincetur",
+        "to": "Sunat/Eventos",
+        "iconClass": "las la-bell",
+        "status": 0
+      },
+      {
+        "key": "contadores-sunat",
+        "name": "Contadores Mincetur",
+        "to": "Sunat/Contadores",
+        "iconClass": "las la-percentage",
+        "status": 0
+      },
+      {
+        "key": "eventos-significativos",
+        "name": "Eventos Significativos",
+        "to": "EventosSignificativos/Index",
+        "iconClass": "las la-percentage",
+        "status": 0
+      }
+    ]
+  },
+  {
+    "key": "bot-whatsapp",
+    "name": "BOT WhatsApp",
+    "to": "#",
+    "iconClass": "lab la-whatsapp",
+    "iconLink": "Content/menu-square/icons/bot-whatsapp.png",
+    "status": 0,
+    "submenu": [
+      {
+        "key": "bot-whatsapp-area",
+        "name": "Areas",
+        "to": "BotAreas/Index",
+        "iconClass": "las la-folder-open",
+        "status": 0
+      },
+      {
+        "key": "bot-whatsapp-cargo",
+        "name": "Cargos",
+        "to": "BotCargos/Index",
+        "iconClass": "las la-file-alt",
+        "status": 0
+      },
+      {
+        "key": "bot-whatsapp-contacto",
+        "name": "Contactos",
+        "to": "BotContactos/Index",
+        "iconClass": "las la-address-card",
+        "status": 0
+      },
+      {
+        "key": "bot-whatsapp-empleado",
+        "name": "Empleados",
+        "to": "BotEmpleados/Index",
+        "iconClass": "las la-users",
+        "status": 0
+      },
+      {
+        "key": "bot-whatsapp-empleado",
+        "name": "Permisos",
+        "to": "BotPermisos/Index",
+        "iconClass": "las la-lock",
+        "status": 0
+      }
+    ]
+  },
+  {
+    "key": "satisfaccion-cliente",
+    "name": "Satisfacción Cliente",
+    "to": "#",
+    "iconClass": "las la-vote-yea",
+    "iconLink": "Content/menu-square/icons/satisfaccion-cliente.png",
+    "status": 0,
+    "submenu": [
+      {
+        "key": "satisfaccion-cliente-preguntas",
+        "name": "Preguntas",
+        "to": "EscPreguntas/PreguntasView",
+        "iconClass": "las la-question-circle",
+        "status": 0
+      },
+      {
+        "key": "satisfaccion-cliente-reporte",
+        "name": "Reporte",
+        "to": "EscReportes/RespuestasView",
+        "iconClass": "las la-chart-bar",
+        "status": 0
+      },
+      {
+        "key": "satisfaccion-cliente-configuracion",
+        "name": "Configuracion",
+        "to": "EscConfiguraciones/ConfiguracionView",
+        "iconClass": "las la-cog",
+        "status": 0
+      }
+    ]
+  },
+  {
+    "key": "notificaciones-gladcon",
+    "name": "Notificaciones Gladcon",
+    "to": "#",
+    "iconClass": "las la-vote-yea",
+    "iconLink": "Content/menu-square/icons/notificaciones-gladcon.png",
+    "status": 0,
+    "submenu": [
+      {
+        "key": "notificaciones-gladcon-sistema",
+        "name": "Sistemas",
+        "to": "Sistema/SistemaView",
+        "iconClass": "las la-cog",
+        "status": 0
+      },
+      {
+        "key": "notificaciones-gladcon-credencial-whatsapp",
+        "name": "Credenciales WhatsApp",
+        "to": "CredencialWhatsApp/CredencialWhatsAppView",
+        "iconClass": "lab la-whatsapp",
+        "status": 0
+      },
+      {
+        "key": "notificaciones-gladcon-credencial-correo",
+        "name": "Credenciales Correo",
+        "to": "CredencialCorreo/CredencialCorreoView",
+        "iconClass": "las la-mail-bulk",
+        "status": 0
+      }
+    ]
+  },
+  {
+    "key": "reporte-alertas-progresivo",
+    "name": "Ruleta Progresivo",
+    "to": "#",
+    "iconClass": "las la-vote-yea",
+    "iconLink": "Content/menu-square/icons/reporte-alerta-progresivo.png",
+    "status": 0,
+    "submenu": [
+      {
+        "key": "reporte-alertas-progresivo-configuracion",
+        "name": "Configuración",
+        "to": "PruConfiguraciones/ProgresivoRuletaConfiguracionListadoVista",
+        "iconClass": "las la-cog",
+        "status": 0
+      },
+      {
+        "key": "ProgresivoRuleta_GanadoresPRU",
+        "name": "Ganadores",
+        "to": "ProgresivoRuleta/GanadoresPRU",
+        "iconClass": "las la-list-ol",
+        "status": 0
+      },
+      {
+        "key": "ProgresivoRuleta_AlertasPRU",
+        "name": "Alertas",
+        "to": "ProgresivoRuleta/AlertasPRU",
+        "iconClass": "las la-list-ol",
+        "status": 0
+      }
+    ]
+  },
+  {
+    "key": "satisfaccion-clientev2",
+    "name": "Satisfacción Cliente",
+    "to": "#",
+    "iconClass": "las la-vote-yea",
+    "iconLink": "Content/menu-square/icons/satisfaccion-cliente.png",
+    "status": 0,
+    "submenu": [
+      {
+        "key": "satisfaccion-cliente-preguntasv2",
+        "name": "Preguntas",
+        "to": "ConfigClienteSatisfaccion/PreguntasView",
+        "iconClass": "las la-question-circle",
+        "status": 0
+      },
+      {
+        "key": "satisfaccion-cliente-reportev2",
+        "name": "Reporte",
+        "to": "ConfigClienteSatisfaccion/ReportesView",
+        "iconClass": "las la-chart-bar",
+        "status": 0
+      },
+      {
+        "key": "satisfaccion-cliente-configuracionv2",
+        "name": "Tablets",
+        "to": "ConfigClienteSatisfaccion/TabletsView",
+        "iconClass": "las la-cog",
+        "status": 0
+      },
+      {
+        "key": "satisfaccion-cliente-flujo",
+        "name": "Flujo Pregunta",
+        "to": "ConfigClienteSatisfaccion/FlujoView",
+        "iconClass": "las la-cog",
+        "status": 0
+      },
+      {
+        "key": "satisfaccion-cliente-configuracion-usuario",
+        "name": "Configuración",
+        "to": "ConfigClienteSatisfaccion/ConfiguracionUsuarioView",
+        "iconClass": "las la-cog",
+        "status": 0
+      }
+    ]
+  }
+]

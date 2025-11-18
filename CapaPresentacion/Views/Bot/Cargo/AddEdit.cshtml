@@ -1,0 +1,39 @@
+﻿@using S3k.Utilitario
+@using CapaEntidad.BOT.Entities
+@model BOT_CargoEntidad
+@{
+    Layout = null;
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+    bool isEdit = Model.Existe();
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12" id="div">
+        @if(isEdit) {
+            <input type="hidden" id="IdArea" name="IdArea" value="@Model.IdArea" />
+        }
+        <form id="form_registro" role="form">
+            <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+            <div class="col-md-12 col-sm-12">
+                <div class="input-group form-group">
+                    <span class="input-group-addon">
+                        Área
+                    </span>
+                    <select class="form-control input-sm" id="cboArea" name="IdArea"></select>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            Nombre
+                        </span>
+                        <input type="text" class="form-control input-sm" id="Nombre" value="@Model.Nombre" name="Nombre" placeholder="Nombre del Cargo">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="~/Content/assets/viewsjs/Bot/Cargo/cargoGuardar.js?v=@fecha_archivos"></script>

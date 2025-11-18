@@ -1,0 +1,40 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-12">
+            <form id="formContacto" role="form">
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Nombre:
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm" id="Nombre" name="Nombre" placeholder="Nombre del Contacto">
+                    </div>
+                </div>
+
+                <div class="col-md-5 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Código País: +
+                        </span>
+                        <input type="text" value="51" autocomplete="off" onkeypress="return valideKeyNumber(event)" class="form-control input-sm soloNumeros" id="CodigoPais" name="CodigoPais" placeholder="Solo numeros (51)">
+                    </div>
+                </div>
+
+                <div class="col-md-7 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Número:
+                        </span>
+                        <input type="text" autocomplete="off" onkeypress="return valideKeyNumber(event)" class="form-control input-sm soloNumeros" id="Numero" name="Numero" placeholder="Número del Contacto">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="~/Content/assets/viewsjs/WhatsApp/Contacto/InsertarContacto.js"></script>

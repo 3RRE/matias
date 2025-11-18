@@ -1,0 +1,40 @@
+﻿@using S3k.Utilitario
+@using CapaEntidad.Cortesias
+@model CRT_Marca
+@{
+    Layout = null;
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12" id="div">
+        <form class="medium bv-form" role="form" method="post" action="#" id="form_registro">
+            <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+            <div class="col-md-12 col-sm-12">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            Nombre
+                        </span>
+                        <input type="text" class="form-control input-sm" id="Nombre" value="@Model.Nombre" name="Nombre" placeholder="Nombre de la Marca">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            Estado
+                        </span>
+                        <select id="cboEstado" class="form-control input-sm select" name="Estado">
+                            <option value="true" @(Model.Estado ? "selected" : "")>Activo</option>
+                            <option value="false" @(Model.Estado ? "" : "selected")>Inactivo</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="~/Content/assets/viewsjs/Cortesias/Marca/marcaGuardar.js?v=@fecha_archivos"></script>

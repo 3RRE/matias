@@ -1,0 +1,184 @@
+﻿
+@{
+    ViewBag.Title = "UtilitarioAtmVista";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-block-menu"></span>
+                                <span class="main-text">
+                                    Cambio De Fecha En La Apertura
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+
+                    <div class="row">
+                        @*<div class="col-md-4 col-sm-4  col-xs-12 pull-right">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12">
+                                        <button type="button" id="btnExcel" class="btn btn-primary btn-sm col-md-12 col-xs-12">
+                                            <span class="glyphicon glyphicon-file"></span>
+                                            Excel
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12">
+                                        <button type="button" id="btnNuevo" class="btn btn-success btn-sm col-md-12 col-xs-12">
+                                            <span class="glyphicon glyphicon-file"></span>
+                                            Nuevo
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>*@
+                        <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnBuscar" class="btn btn-success btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-book"></span>
+                                        Buscar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+
+                        <div class="col-xs-12 col-md-12 col-sm-12" id="formfiltro">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="input-group ">
+                                        <span class="input-group-addon">
+                                            Sala
+                                        </span>
+                                        <select class="form-control input-sm" id="cboSala" name="cboSala">
+                                            <option value="">--Seleccione--</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            ATM
+                                        </span>
+                                        <select class="form-control input-sm" id="cboAtm" name="cboAtm">
+                                            <option value="">--Seleccione--</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            FECHA DE APERTURA
+                                        </span>
+                                        <input type="text" class="form-control input-sm dateOnly" id="fechaApertura" />
+                                        <span class="input-group-addon input-group-icon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                                @*<div class="col-md-3 col-sm-3">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            Turno
+                                        </span>
+                                        <select class="form-control input-sm" id="turno" name="turno">
+                                            <option value="">--Seleccione--</option>
+                                            <option value="1">Turno 1</option>
+                                            <option value="2">Turno 2</option>
+                                            <option value="3">Turno 3</option>
+                                        </select>
+                                    </div>
+                                </div>*@
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <hr style="margin-top: 0px;" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="contenedor_tabla">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section modal
+{
+    <div class="modal fade small-modal" id="modalEditarApertura" tabindex="-1" role="dialog" aria-labelledby="small-modal-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Editar Apertura</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <input type="hidden" id="txtBovedaIdNueva" name="bovedaId">
+                            <input type="hidden" id="txtTurno" name="turno">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    FECHA DE APERTURA
+                                </span>
+                                <input type="text" class="form-control input-sm dateOnly" id="fechaEditarApertura" />
+                                <span class="input-group-addon input-group-icon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="button" id="btnAplicar" name="Aplicar">Aplicar</button>
+                    <button class="btn btn-default" type="button" id="Cancelar" name="Cancelar" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div><!-- /.modal-content -->
+
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+}
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/Atm/UtilitarioAtm.js"></script>
+}

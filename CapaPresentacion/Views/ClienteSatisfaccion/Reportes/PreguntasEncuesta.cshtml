@@ -1,0 +1,234 @@
+﻿@{
+    ViewBag.Title = "PreguntasEncuesta";
+}
+
+<style>
+    .cardPregunta {
+        border: 1px solid #c1c1c1;
+        border-radius: 6px;
+        padding: 15px;
+        margin-bottom: 12px;
+        background: #fff;
+    }
+
+        .cardPregunta h5 {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .cardPregunta ul {
+            padding-left: 18px;
+            margin-top: 10px;
+        }
+
+        .cardPregunta li {
+            margin-bottom: 5px;
+        }
+
+    .nav-tabs {
+        margin-bottom: unset !important;
+    }
+
+        .nav-tabs > li > a {
+            color: #333 !important;
+            font-weight: 500 !important;
+            padding: 10px 15px !important;
+            background-color: #f9f9f9 !important;
+            transition: all 0.3s ease !important;
+        }
+
+            .nav-tabs > li > a:hover,
+            .nav-tabs > li > a:focus {
+                background-color: #cce5ff !important;
+                color: #007bff !important;
+            }
+
+        .nav-tabs > li.active > a {
+            background-color: #007bff !important;
+            color: #fff !important;
+            border: none !important;
+        }
+
+    .cardPregunta {
+        margin-bottom: 15px;
+        border-radius: 6px;
+        transition: box-shadow 0.2s ease;
+    }
+
+        .cardPregunta:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+    .opciones-list li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+        .opciones-list li:last-child {
+            border-bottom: none;
+        }
+    #opcionPregunta{
+        color:black;
+        text-shadow:none;
+    }
+    #opcionPregunta:hover {
+        color: dodgerblue !important
+    }
+</style>
+
+<div class="col-md-12" style="padding:10px 0 !important">
+    <div class="block">
+        <div class="block-content-outer">
+            <div class="block-content-inner">
+                <div class="row">
+                    <div class="col-md-12 col-xs-12 col-sm-12">
+                        <h1>
+                            <span aria-hidden="true" class="icon icon-block-menu"></span>
+                            <span class="main-text">
+                               Preguntas configuración
+                            </span>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="uiContainer">
+    <!-- NAVIGATION -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li><a href="#tab-csat" role="tab" data-toggle="tab">CSAT</a></li>
+        <li><a href="#tab-nps" role="tab" data-toggle="tab">NPS</a></li>
+        <li><a href="#tab-normales" role="tab" data-toggle="tab">Preguntas</a></li>
+        <li><a href="#tab-atributo" role="tab" data-toggle="tab">Atributos</a></li>
+    </ul>
+
+    <div class="tab-content" style="margin-top:20px;">
+        <div class="tab-pane active" id="tab-csat">
+            <div class="cardMachine" style=" padding-bottom: 80px; ">
+                <button class="btn btn-info" id="btnEditarCSAT" style=" float: right; margin: 10px 0">Editar CSAT</button>
+                <div id="listCSAT"></div>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="tab-nps">
+            <div class="cardMachine" style=" padding-bottom: 80px; ">
+                <button class="btn btn-info" id="btnEditarNPS"  style=" float: right; margin: 10px 0">Editar NPS</button>
+                <div id="listNPS"></div>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="tab-normales">
+            <div class="cardMachine" style=" padding-bottom: 80px; ">
+                <button class="btn btn-success" id="btnCrearNormal"  style=" float: right; margin: 10px 0">+ Agregar Pregunta </button>
+                <div id="listNormales"></div>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="tab-atributo">
+            <div class="cardMachine" style=" padding-bottom: 80px; ">
+                <button class="btn btn-success" id="btnCrearAtributo"  style=" float: right; margin: 10px 0">+ Agregar Atributo</button>
+                <div id="listAtributo"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section modal
+{
+
+    <!-- 📌 Modal Crear/Editar Pregunta -->
+    <div class="modal fade" id="modalPregunta" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="formPregunta">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="tituloModalPregunta">Nueva Pregunta</h4>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="idPregunta" />
+                        <div class="form-group">
+                            <label>Texto</label>
+                            <input type="text" id="textoPregunta" class="form-control" required autocomplete="off"/>
+                        </div>
+                        <div class="form-group" id="campoIndicador" style="display:none;">
+                            <label>Indicador (solo atributos)</label>
+                            <input type="text" id="indicadorPregunta" class="form-control"  autocomplete="off"/>
+                        </div>
+                        <div class="form-group" id="campoMulti">
+                            <label><input type="checkbox" id="multiPregunta" /> Es múltiple</label>
+                        </div>
+                        <div class="form-group" id="campoFechas" style="display:none;">
+                            <label>Fecha de Vigencia</label>
+                            <div class="row">
+                                <!-- Fecha inicio -->
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">FECHA DE INICIO</span>
+                                        <input type="text" id="startDate" class="form-control dateOnly_" placeholder="Desde" autocomplete="off"/>
+                                        <span class="input-group-addon input-group-icon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <!-- Fecha fin -->
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">FECHA DE FIN</span>
+                                        <input type="text" id="endDate" class="form-control dateOnly_" placeholder="Hasta" autocomplete="off"/>
+                                        <span class="input-group-addon input-group-icon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 📌 Modal Crear/Editar Opción -->
+    <div class="modal fade" id="modalOpcion" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="formOpcion">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="tituloModalOpcion">Nueva Opción</h4>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="idOpcion" />
+                        <input type="hidden" id="idPreguntaOpcion" />
+                        <div class="form-group">
+                            <label>Texto</label>
+                            <input type="text" id="textoOpcion" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label><input type="checkbox" id="tieneComentarioOpcion" /> Requiere comentario</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+}
+
+@section js{
+    <script src="~/Content/assets/viewsjs/ClienteSatisfaccion/preguntasConfig.js"></script>
+}

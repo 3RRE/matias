@@ -1,0 +1,374 @@
+﻿@using S3k.Utilitario;
+@{
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-dollar"></span>
+                                <span class="main-text">
+                                    Reporte Log Online
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4  col-xs-4 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnBuscar" class="btn btn-primary btn-sm col-md-12 col-xs-12">
+                                        <span class="fa fa-search"></span>
+                                        BUSCAR
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-4 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnExcel" title="EXCEL" class="btn btn-success btn-sm col-md-12 col-xs-12">
+                                        <span class="fa fa-file-excel-o"></span> EXCEL
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="cardMachine" style="margin-bottom:15px;">
+                        <div class="row">
+
+                            <div class="col-xs-12 col-md-12 col-sm-12">
+                                <div class="row" id="formfiltro">
+                                    <div class="col-md-3 col-sm-12">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="input-group ">
+                                                    <span class="input-group-addon">
+                                                        Sala
+                                                    </span>
+                                                    <select class="form-control input-sm" id="cboSala" name="cboSala"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-12">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="input-group ">
+                                                    <span class="input-group-addon">
+                                                        Tipo
+                                                    </span>
+                                                    <select class="form-control input-sm" id="cboTipo" name="cboTipo">
+                                                        <option value="0" selected>Todos</option>
+                                                        <option value="1">Servicio Online</option>
+                                                        <option value="2">Eventos</option>
+                                                        <option value="3">Alerta Billeteros</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-12">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        DEL
+                                                    </span>
+                                                    <input type="text" class="form-control input-sm dateOnly_" id="fechaInicio" readonly />
+                                                    <span class="input-group-addon input-group-icon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-12">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        AL
+                                                    </span>
+                                                    <input type="text" class="form-control input-sm dateOnly_" id="fechaFin" readonly />
+                                                    <span class="input-group-addon input-group-icon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <hr style="margin-top: 0px;" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="contenedor_tabla">
+                                </div>
+                            </div>
+                        </div>
+</div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+</div>
+@section modal{
+    <div class="modal fade full-modal" id="full-modal-DetalleLogs" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label"> Detalle</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row" style="margin:unset !important">
+                        <div class="cardMachine" style="margin-bottom:15px;">
+                            <fieldset class="sectionCard" style="padding: 10px 7px; margin-top: 10px;">
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <h3>Información</h3>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Fecha Registro
+                                                </span>
+                                                <input type="text" class="form-control" id="FechaRegistro" placeholder="Fecha Registro">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Tipo
+                                                </span>
+                                                <input type="text" class="form-control" id="Tipo" placeholder="Tipo">
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </fieldset>
+                        <div id="divEventosTecnologias">
+                            <div class="row">
+
+                                <div class="col-md-12">
+                                    <fieldset class="sectionCard" style="padding: 10px 7px; margin-top: 10px;">
+                                        <h3>Detalle</h3>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Cod_Even_OL
+                                                </span>
+                                                <input type="text" class="form-control" id="Cod_Even_OL" placeholder="Cod_Even_OL">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Fecha Online
+                                                </span>
+                                                <input type="text" class="form-control" id="Fecha" placeholder="Fecha">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Codigo Tarjeta
+                                                </span>
+                                                <input type="text" class="form-control" id="CodTarjeta" placeholder="CodTarjeta">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Codigo Maquina
+                                                </span>
+                                                <input type="text" class="form-control" id="CodMaquina" placeholder="CodMaquina">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Evento
+                                                </span>
+                                                <input type="text" class="form-control" id="Evento" placeholder="Evento">
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <fieldset class="sectionCard" style="padding: 10px 7px; margin-top: 10px;">
+                                        <h3>Detalle Dispositivos</h3>
+                                        <table class="table table-responsive table-bordered table-hover" id="contenedor_tablaDetalleEventos">
+                                            <thead>
+                                                <tr>
+                                                    <th> IdOnline</th>
+                                                    <th> Fecha Cierre</th>
+                                                    <th> Maq. Cliente</th>
+                                                    <th> Usuario Cierre</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="divEventosOnline">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <fieldset class="sectionCard" style="padding: 10px 7px; margin-top: 10px;">
+                                        <h3>Detalle</h3>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Descripción
+                                                </span>
+                                                <textarea id="Descripcion" class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                        @*<div class="col-md-8 col-sm-12">
+                <div class="input-group form-group">
+                    <span class="input-group-addon">
+                        Descripcion
+                    </span>
+                    <input type="text" class="form-control" id="Descripcion" placeholder="Descripcion">
+                </div>
+            </div>*@
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Información Adicional
+                                                </span>
+                                                <input type="text" class="form-control" id="InfoAdicional" placeholder="InfoAdicional">
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="divAlertaBilleteros">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <fieldset class="sectionCard" style="padding: 10px 7px; margin-top: 10px;">
+                                        <h3>Detalle</h3>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    AlertaID
+                                                </span>
+                                                <input type="text" class="form-control" id="AlertaID" placeholder="AlertaID">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Sala
+                                                </span>
+                                                <input type="text" class="form-control" id="SalaAlerta" placeholder="Sala">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Fecha
+                                                </span>
+                                                <input type="text" class="form-control" id="FechaAlerta" placeholder="Fecha">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Codigo Maquina
+                                                </span>
+                                                <input type="text" class="form-control" id="CodMaquinaAlerta" placeholder="CodMaquina">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Descripcion
+                                                </span>
+                                                <input type="text" class="form-control" id="DescripcionAlerta" placeholder="Descripción">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Bill Billetero
+                                                </span>
+                                                <input type="text" class="form-control" id="BillBilleteroAlerta" placeholder="Bill Billetero">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">
+                                                    Bill Parcial
+                                                </span>
+                                                <input type="text" class="form-control" id="BillParcialAlerta" placeholder="Bill Parcial">
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <fieldset class="sectionCard" style="padding: 10px 7px; margin-top: 10px;">
+                                        <h3>Detalle Dispositivos</h3>
+                                        <table class="table table-responsive table-bordered table-hover" id="contenedor_tablaDetalleAlertas">
+                                            <thead>
+                                                <tr>
+                                                    <th> IdOnline</th>
+                                                    <th> Fecha Cierre</th>
+                                                    <th> Maq. Cliente</th>
+                                                    <th> Usuario Cierre</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer footer_g" style="background-color:white">
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+}
+@section js
+{
+    <script src="~/Content/assets/viewsjs/LogAlertaBilleteros/LogAlertaBilleteros.js?v=@fecha_archivos"></script>
+}

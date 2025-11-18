@@ -1,0 +1,385 @@
+﻿@using S3k.Utilitario;
+@{
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+}
+@{
+    ViewBag.Title = "ProgresivoListadoMarcaModelo";
+}
+@{
+    ViewBag.Title = "listado Maquina Inoperativa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .DTFC_LeftWrapper {
+    }
+
+    .sorting, .sorting_disabled, .sorting_asc, .sorting_desc {
+        background-color: #0b1f46 !important;
+        height: 40px;
+    }
+
+    tr {
+        height: 34px;
+    }
+
+    .even {
+        background-color: white !important;
+    }
+
+    label {
+        width: max-content;
+    }
+
+    #checkboxContainer {
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+        overflow-y: hidden;
+        height: 50px;
+        gap: 15px;
+        padding: 0 30px 0 30px;
+        margin-bottom: 15px;
+    }
+
+        #checkboxContainer::-webkit-scrollbar {
+            height: 0px;
+        }
+
+        #checkboxContainer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 50px;
+            background-image: linear-gradient(to right, rgba(0,0,0,0.4), rgba(0,0,0,0));
+        }
+
+        #checkboxContainer::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 50px;
+            background-image: linear-gradient(to left, rgba(0,0,0,0.4), rgba(0,0,0,0));
+        }
+
+        #checkboxContainer::before {
+            left: 0;
+        }
+
+        #checkboxContainer::after {
+            right: 0;
+        }
+
+
+    .arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 35px;
+        color: #0b1f46;
+        cursor: pointer;
+        padding: 0 11px 0 11px;
+        z-index: 200;
+    }
+
+        .arrow:hover {
+        }
+
+    .left {
+        left: 0;
+    }
+
+    .right {
+        right: 0;
+    }
+
+    .checkbox-rect input[type="checkbox"] {
+        display: none;
+    }
+
+        .checkbox-rect input[type="checkbox"] label {
+            font-size: 1em;
+        }
+
+        .checkbox-rect input[type="checkbox"] + label {
+            display: block;
+            position: relative;
+            padding-left: 23px;
+            margin-bottom: 20px;
+            font: 11px/18px "Open Sans", Arial, sans-serif;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+
+        .checkbox-rect input[type="checkbox"]:hover + label:hover {
+            color: rgb(23, 86, 228);
+        }
+
+        .checkbox-rect input[type="checkbox"]:hover + label:before {
+            background: #143958;
+            box-shadow: inset 0px 0px 0px 2px #f7f2f2;
+        }
+
+        .checkbox-rect input[type="checkbox"] + label:last-child {
+            margin-bottom: 0;
+        }
+
+        .checkbox-rect input[type="checkbox"] + label:before {
+            content: "";
+            display: block;
+            width: 1.4em;
+            height: 1.4em;
+            border: 1px solid #343a3f;
+            border-radius: 0.2em;
+            position: absolute;
+            left: 0;
+            top: 0;
+            -webkit-transition: all 0.2s, background 0.2s ease-in-out;
+            transition: all 0.2s, background 0.2s ease-in-out;
+            background: #f3f3f3;
+        }
+
+        .checkbox-rect input[type="checkbox"]:checked + label:before {
+            width: 1.3em;
+            height: 1.3em;
+            border-radius: 0.2em;
+            border: 2px solid #fff;
+            -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+            background: #143958;
+            box-shadow: 0 0 0 1px #000;
+        }
+
+    .dataTables_scrollHeadInner {
+    }
+
+    @@media (max-width: 600px) {
+        .DTFC_LeftWrapper {
+            display: none;
+        }
+    }
+</style>
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-atom"></span>
+                                <span class="main-text">
+                                    Historico Maquina Inoperativa
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+
+                        <div class="col-md-4 col-sm-4  col-xs-6 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnBuscar" class="btn btn-success btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-file"></span>
+                                        Buscar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-4  col-xs-6 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnExcel" class="btn btn-primary btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-file"></span>
+                                        Excel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 tam">
+                            <!--<div style="position:relative">
+                            <div-->
+                            @*style="display: flex;justify-content:flex-end; grid-column-gap:15px ;margin-bottom:4px"*@
+                            <!--id="checkboxContainer" id="filtrosTable">
+
+                            <div class="item">
+                                <div class="checkbox-rect">
+                                    <input type="checkbox" id="tec" class="checkboxRect">
+                                    <label for="tec">Técnico</label>
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                <div class="checkbox-rect">
+                                    <input type="checkbox" id="fmod" class="checkboxRect">
+                                    <label for="fmod">Fecha Modificación</label>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="checkbox-rect">
+                                    <input type="checkbox" id="espro" class="checkboxRect">
+                                    <label for="espro">EstadoProceso</label>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="checkbox-rect">
+                                    <input type="checkbox" id="envSa" class="checkboxRect">
+                                    <label for="envSa">Envio Sala</label>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="checkbox-rect">
+                                    <input type="checkbox" id="fere" class="checkboxRect">
+                                    <label for="fere">Fecha recepcion central</label>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="checkbox-rect">
+                                    <input type="checkbox" id="feencen" class="checkboxRect">
+                                    <label for="feencen">Fecha envio central</label>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="checkbox-rect">
+                                    <input type="checkbox" id="obsaten" class="checkboxRect">
+                                    <label for="obsaten">Observación atención</label>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="checkbox-rect">
+                                    <input type="checkbox" id="fRecepcionSala" class="checkboxRect">
+                                    <label for="fRecepcionSala">Fecha recepcion sala</label>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="checkbox-rect">
+                                    <input type="checkbox" id="fOperativaSala" class="checkboxRect">
+                                    <label for="fOperativaSala">Fecha operativa sala</label>
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                <div class="checkbox-rect">
+                                    <input type="checkbox" id="obsOperatividadSala" class="checkboxRect">
+                                    <label for="obsOperatividadSala">Obs. operatividad sala</label>
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                <div class="checkbox-rect">
+                                    <input type="checkbox" id="fRegistro" class="checkboxRect">
+                                    <label for="fRegistro">Fecha registro</label>
+                                </div>
+                            </div>-->
+                            @*<div class="item">
+                                    <div class="checkbox-rect">
+                                        <input type="checkbox" id="fModficacion" class="checkboxRect">
+                                        <label for="fModficacion">Fecha modificación</label>
+                                    </div>
+                                </div>*@
+                            <!--<div class="item">
+                                        <div class="checkbox-rect">
+                                            <input type="checkbox" id="usuarrio" class="checkboxRect">
+                                            <label for="usuarrio">Usuario</label>
+                                        </div>
+                                    </div>
+                                    <div class="arrow left" id="leftArrow">&#10094;</div>
+                                    <div class="arrow right" id="rightArrow">&#10095;</div>
+                                </div>
+
+                            </div>-->
+
+                            <div class="col-xs-12 col-md-12 col-sm-12">
+
+                                <div class="row" id="formfiltro">
+
+                                    <div class="col-md-4 col-sm-4">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                FECHA DE INICIO
+                                            </span>
+                                            <input type="text" class="form-control input-sm dateOnly_" id="fechaIni" />
+                                            <span class="input-group-addon input-group-icon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 col-sm-4">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                FECHA DE FIN
+                                            </span>
+                                            <input type="text" class="form-control input-sm dateOnly_" id="fechaFin" />
+                                            <span class="input-group-addon input-group-icon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 col-sm-4">
+                                        <div class="input-group ">
+                                            <span class="input-group-addon">
+                                                Estado
+                                            </span>
+                                            <select id="cboFiltroEstado" class="form-control input-sm" name="filtroEstado">
+                                                <option value="0">TODOS</option>
+                                                <option value="1">CREADO</option>
+                                                <option value="2">ATENDIDA OPERATIVA</option>
+                                                <option value="3">ATENDIDA INOPERATIVA</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <br />
+                            <div class="">
+
+
+                                <table id="tableMaquinaInoperativa" class="table table-striped table-bordered table-hover table-condensed">
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/MaquinasInoperativasV2/ListadoMaquinaInoperativaHistorico.js?v=@fecha_archivos"></script>
+
+}

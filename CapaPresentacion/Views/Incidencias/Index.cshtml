@@ -1,0 +1,391 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<style>
+    
+    .enter {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 500ms;
+    }
+    .enter p{
+        overflow:hidden
+    }
+    .out {
+        grid-template-rows: 1fr;
+    }
+
+    .icon-a {
+        transition: all .6s ease;
+    }
+    .icon-animated {
+        transform: rotate(45deg);
+    }
+    .acordion {
+        padding-left: 15px;
+        border-radius: 10px 10px 0 0 !important;
+        border-left: 5px #1f3d81 solid;
+        background-color: #e3eafa;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding-top: 10px;
+    }
+    .acordion-content {
+        border-radius: 0 0 10px 10px !important;
+        background-color: #e3eafa;
+        border-left: 5px #1f3d81 solid;
+        padding-left: 50px;
+        padding-right: 10px;
+    }
+
+
+    .cardMachine {
+        text-shadow: none;
+    }
+
+    a:focus, a:hover {
+        color: #4a4a4a !important;
+        text-shadow: none !important;
+    }
+
+    a {
+        color: #5e5e5e;
+    }
+
+    .panel-default > .panel-heading {
+        border: 1px solid #383838;
+        border-radius: 5px !important;
+        margin-bottom: 10px !important;
+    }
+
+    .panel {
+        background-color: #fceeee
+    }
+</style>
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-block-menu"></span>
+                                <span class="main-text">
+                                    Incidencias
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnSistema" class="btn btn-success btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-file"></span>
+                                        Agregar sistema
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnIncidencia" class="btn btn-primary btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-book"></span>
+                                        Agregar incidencia
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+
+
+
+
+@section modal{
+    <div class="modal fade" tabindex="-1" id="modalFormularioIncidencia" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><span id=""></span> Agregar nueva incidencia</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+
+                </div>
+                <div class="modal-body" id="">
+                    <div class="row">
+                        <form class="" id="formIncidencia">
+                            <input type="hidden" name="emd_id" id="emd_id" value="" />
+                            <input type="hidden" name="emp_id" id="emp_idd" value="" />
+                            <div class="col-md-12 col-xs-12">
+                                <div class="input-group ">
+                                    <span class="input-group-addon">
+                                        Sistema
+                                    </span>
+                                    <select class="form-control input-sm " id="cboSistemaModal" name="cboSistemaModal">
+                                        <option value="">--Seleccione--</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-xs-12">
+                                <div class="input-group form-group has-feedback">
+                                    <span class="input-group-addon">
+                                        Nombre
+                                    </span>
+                                    <input type="text" class="form-control input-sm toUpperCase" id="Nombre" name="Nombre" placeholder="Nombre" data-bv-field="Nombre"><i class="form-control-feedback bv-no-label" data-bv-icon-for="Nombre" style="display: none;"></i>
+                                    <small class="help-block" data-bv-validator="notEmpty" data-bv-for="Nombre" data-bv-result="NOT_VALIDATED" style="display: none;"> </small>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-xs-12">
+                                <div class="input-group form-group has-feedback">
+                                    <span class="input-group-addon">
+                                        Descripcion
+                                    </span>
+                                    <textarea type="text" class="form-control input-sm toUpperCase" id="Descripcion" name="Descripcion" placeholder="Descripcion " data-bv-field="Descripcion"></textarea><i class="form-control-feedback bv-no-label" data-bv-icon-for="Descripcion" style="display: none;"></i>
+
+                                    <small class="help-block" data-bv-validator="notEmpty" data-bv-for="Tecnico" data-bv-result="NOT_VALIDATED" style="display: none;"> </small>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-flash-border-danger btnGuardarIncidencia"><i class="fa fa-save"></i> Guardar</button>
+                    <button type="button" class="btn btn-flash-border-dark" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal fade" tabindex="-1" id="modalFormularioSistema" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><span id=""></span> Agregar sistema</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+
+                </div>
+                <div class="modal-body" id="">
+                    <div class="row">
+                        <form class="" id="formSistema">
+                            <div class="col-md-12 col-xs-12">
+                                <div class="input-group form-group has-feedback">
+                                    <span class="input-group-addon">
+                                        Nombre
+                                    </span>
+                                    <input type="text" class="form-control input-sm toUpperCase" id="NombreSistema" name="NombreSistema" placeholder="Nombre del Sistema" data-bv-field="NombreSistema"><i class="form-control-feedback bv-no-label" data-bv-icon-for="NombreSistema" style="display: none;"></i>
+                                    <small class="help-block" data-bv-validator="notEmpty" data-bv-for="NombreSistema" data-bv-result="NOT_VALIDATED" style="display: none;"> </small>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-xs-12">
+                                <div class="input-group form-group has-feedback">
+                                    <span class="input-group-addon">
+                                        Descripción
+                                    </span>
+                                    <textarea type="text" class="form-control input-sm toUpperCase" id="DescripcionSistema" name="DescripcionSistema" placeholder="Descripcion del Sistema " data-bv-field="DescripcionSistema"></textarea><i class="form-control-feedback bv-no-label" data-bv-icon-for="DescripcionSistema" style="display: none;"></i>
+
+                                    <small class="help-block" data-bv-validator="notEmpty" data-bv-for="DescripcionSistema" data-bv-result="NOT_VALIDATED" style="display: none;"> </small>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-flash-border-danger btnGuardarSistema"><i class="fa fa-save"></i> Guardar</button>
+                    <button type="button" class="btn btn-flash-border-dark" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal fade" tabindex="-1" id="modalFormularioSolucion" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><span id=""></span> Agregar solución</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+
+                </div>
+                <div class="modal-body" id="">
+                    <div class="row">
+                        <form class="" id="formSolucion">
+                            <div class="col-md-12 col-xs-12">
+                                <div class="input-group form-group has-feedback">
+                                    <span class="input-group-addon">
+                                        Solución
+                                    </span>
+                                    <input type="text" class="form-control input-sm toUpperCase" id="TituloSolucion" name="TituloSolucion" placeholder="Nombre de la solución" data-bv-field="TituloSolucion"><i class="form-control-feedback bv-no-label" data-bv-icon-for="TituloSolucion" style="display: none;"></i>
+                                    <small class="help-block" data-bv-validator="notEmpty" data-bv-for="Tecnico" data-bv-result="NOT_VALIDATED" style="display: none;"> </small>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-xs-12">
+                                <div class="input-group form-group has-feedback">
+                                    <span class="input-group-addon">
+                                        Descripcion
+                                    </span>
+                                    <textarea type="text" class="form-control input-sm toUpperCase" id="DescripcionSolucion" name="DescripcionSolucion" placeholder="Descripcion de Solucion" data-bv-field="DescripcionSolucion"></textarea><i class="form-control-feedback bv-no-label" data-bv-icon-for="DescripcionSolucion" style="display: none;"></i>
+                                    <small class="help-block" data-bv-validator="notEmpty" data-bv-for="Tecnico" data-bv-result="NOT_VALIDATED" style="display: none;"> </small>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-flash-border-danger btnGuardarSolucion"><i class="fa fa-save"></i> Guardar</button>
+                    <button type="button" class="btn btn-flash-border-dark" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+<div class="row" id="AppIncidente" >
+
+
+    <div class="row">
+       
+        <div class="col-xs-12 col-md-12 col-sm-12" id="formfiltro">
+            <div class="block">
+                <div class="block-content-outer">
+                    <div class="block-content-inner">
+                        <div class="cardMachine" style="margin-bottom:15px;">
+                            <div class="row">
+                                <div class="col-12 col-sm-6">
+                                    <div class="input-group ">
+                                        <span class="input-group-addon">
+                                            Sistemas
+                                        </span>
+                                        <select class="form-control input-sm " id="cboSistemas" name="cboSistemas">
+                                            <option value="">--Seleccione--</option>
+                                            <option v-for="sistema in sistemas" :value="sistema.idSistema" :key="sistema.idSistema" :data-nombre="sistema.nombre">{{ sistema.nombre }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-6">
+                                    <div class="input-group ">
+                                        <span class="input-group-addon">
+                                            Incidencias
+                                        </span>
+                                        <select class="form-control input-sm " id="cboIncidencias" name="cboIncidencias">
+                                            <option value="">--Seleccione--</option>
+                                            <option v-for="incidencia in incidencias" :key="incidencia.idIncidencia" :value="incidencia.idIncidencia" :data-nombre="incidencia.titulo">{{ incidencia.titulo }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="cardMachine">
+                            <div v-show="imagenBusqueda" style="display:flex; align-items:center; gap:20px;flex-direction:column">
+                                <img src="~/Content/assets/images/required/searchImg.svg" alt="IAS" style="height:300px" />
+                                <p> Seleccione un sistema </p>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12" style="display: flex; justify-content:space-between">
+                                    <div style="margin-bottom:20px">
+                                        <h1 style="font-weight:600;text-transform:uppercase">{{sistemaSelect}}</h1>
+                                        <h5  style="font-weight:400;color:gray">{{incidenciaSelect}}</h5>
+                                    </div>
+                                    @*<p v-show="solucionBoton">Agregar solucion</p>*@
+                                    <a v-show="solucionBoton" id="agregarSolucion" style="top:25px; color:#2d3dbd">Agregar nueva solucion +</a>
+                                </div>
+
+                                <div v-for="(card, index) in soluciones" :key="index">
+                                    <div class="col-md-6" style=" margin-bottom:15px">
+                                        <div class="card-header acordion" @@click="toggleDescription(card)">
+                                            <div style="height:35px" class="icon-a" v-bind:class="{'icon-animated':card.isSelected}">
+                                                <img src="~/Content/assets/images/required/cruz.svg" alt="IAS" style="height:100%" />
+                                            </div>
+                                            <p style="margin:unset; font-size:20px; font-weight:500">{{card.nombre}}</p>
+                                        </div>
+                                        <div class="acordion-content" v-bind:class="{'enter':true, 'out':card.isSelected}">
+                                            <p>{{ card.descripcion }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div v-show="incidenciaVacia" style="display:flex;justify-content:center">
+
+
+
+                                <div v-if="soluciones.length === 0" style="display:flex; align-items:center; gap:20px;flex-direction:column">
+                                    <img src="~/Content/assets/images/required/noFound.svg" alt="not-found-search" style="height:300px" />
+                                    <p> No se encontro registro de posibles soluciones</p>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+               
+
+
+
+            </div>
+
+
+
+
+
+            @section js
+{
+
+                <script src="~/Content/assets/js/optional/vue/vue.min.js"></script>
+                <script src="~/Content/assets/viewsjs/Incidencias/SistemaIncidencia.js"></script>
+            }
+
+
+
+

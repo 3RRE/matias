@@ -1,0 +1,409 @@
+﻿
+@{
+    ViewBag.Title = "FichaReporteVista";
+}
+<style>
+    fieldset {
+        border: 1px solid #3c3838 !important;
+        border-radius: 4px !important;
+    }
+
+    legend {
+        width: auto !important;
+        margin-bottom: 0px;
+        border-bottom: none !important;
+    }
+
+    input[type=checkbox] {
+        height: 25px !important;
+    }
+
+    div.form-control {
+        border: 1px solid;
+        height: 28px !important;
+    }
+
+    .tablemodal {
+        font-size: 12px !important;
+    }
+
+        .tablemodal tbody tr th, .tablemodal tbody tr td {
+            border-top: none !important;
+        }
+
+  
+
+</style>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-shield"></span>
+                                <span class="main-text">
+                                    Listado Fichas Condiciones de Salud
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnExcel" class="btn btn-primary btn-sm col-md-12 col-xs-12">
+                                        <span class="fa fa-file-excel-o"></span>
+                                        Excel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnDescargaMultiple" class="btn btn-primary btn-sm col-md-12 col-xs-12">
+                                        <span class="fa fa-file-pdf-o"></span>
+                                        Fisico
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnBuscar" class="btn btn-success btn-sm col-md-12 col-xs-12">
+                                        <span class="fa fa-search"></span>
+                                        Buscar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+
+                        <div class="col-xs-12 col-md-12 col-sm-12">
+                            <div class="row" id="formfiltro">
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="input-group ">
+                                        <span class="input-group-addon">
+                                            Sala
+                                        </span>
+                                        <select class="form-control input-sm codSalaAuditoria" id="cboSala" name="cboSala"></select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            DEL
+                                        </span>
+                                        <input type="text" class="form-control input-sm dateOnly_" id="fechaInicio" name="fechaini" readonly />
+                                        <span class="input-group-addon input-group-icon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            AL
+                                        </span>
+                                        <input type="text" class="form-control input-sm dateOnly_" id="fechaFin" name="fechafin" readonly />
+                                        <span class="input-group-addon input-group-icon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <hr style="margin-top: 0px;" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="contenedor_tabla">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section modal
+{
+    <div class="modal fade full-modal " id="full-modalDetalleFicha" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-md modalficha">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label_">Registro Ficha Salud</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-3 text-center">
+                                        <img src="~/Content/assets/images/no_image.jpg" class="img-responsive img_logo" style="padding-top: 14px;width: 115px;height:110px;margin: auto;" />
+                                    </div>
+                                    <div class="col-md-7">
+                                        <p>
+                                            <h2 style="font-size: 26px; line-height: 1.1"><b>FICHA DIARIA DE CONDICIONES DE SALUD</b></h2>
+                                        </p>
+                                        <div style="line-height: 0.9;">
+                                            <p>Fecha :  <span id="spnFecha"></span></p>
+                                            <p id="prazonSocial"><b> <span id="tspnRazonSocial"></span></b> - RUC:  <span id="tspnRUC"></span></p>
+                                            <p id="pdireccion"> <span id="tspnDireccionEmpresa"></span></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-xs-2 col-lg-2" style="padding-top: 20px;">
+                                        <button class="btn btn-app btn-danger btn-block" id="btnPdf" data-doc="">
+                                            <i class="ace-icon glyphicon glyphicon-download bigger-200"></i>
+                                            PDF
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 14px;">
+
+                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <fieldset style="margin: 8px; border: 1px solid silver; padding: 8px; border-radius: 4px; min-height: 353px; padding-top: 1px;">
+                                        <legend style="padding: 2px; ">
+                                            <b>Datos colaborador(a)</b>
+                                        </legend>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="name">Empresa</label>
+                                                    <div class="form-control " id="spnEmpresa"></div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="name">Ruc</label>
+                                                    <div class="form-control" id="spnRuc"></div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="name">Nombres</label>
+                                                    <div class="form-control " id="spnNombre"></div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="name">Apellido Paterno</label>
+                                                    <div class="form-control" id="spnApellidoPaterno"></div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="name">Apellido Materno</label>
+                                                    <div class="form-control" id="spnApellidoMaterno"></div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="document">DNI/CE*:</label>
+                                                    <div class="form-control" id="spnDOI"></div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="name">Celular:</label>
+                                                    <div class="form-control" id="spnCelular"></div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="name">Dirección:</label>
+                                                    <div class="form-control" id="spnDireccion"></div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="name">Area de trabajo:</label>
+                                                    <div class="form-control" id="spnArea"></div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <fieldset style="margin: 8px; border: 1px solid silver; padding: 8px; border-radius: 4px;">
+                                        <legend style="padding: 2px; ">
+                                            <b>Condiciones de Salud</b>
+                                        </legend>
+                                        <table class="table table-hover tablemodal" style="margin-bottom:2px">
+                                            <tr>
+                                                <th width="80%"></th>
+                                                <th style="width:57px" class="text-center">INGRESO</th>
+                                                <th style="width:57px" class="text-center">SALIDA</th>
+                                            </tr>
+                                            <tr>
+                                                <td>Control Temperatura (°C)</td>
+                                                <td style="padding:0px">
+                                                    <div class="form-group" style="margin-bottom:0px;padding-left:2px;padding-right:2px">
+                                                        <div style="min-width:80px;text-align:center" class="form-control" id="spnTemperaturaIngreso"></div>
+
+                                                    </div>
+                                                </td>
+                                                <td style="padding:0px">
+                                                    <div class="form-group" style="margin-bottom:0px;padding-left:2px;padding-right:2px">
+                                                        <div style="min-width: 80px; text-align: center" class="form-control" id="spnTemperaturaSalida"></div>
+
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="3" style="padding-top: 12px;"><b>Signos de alarma por COVID-19</b></th>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-left:15px">Tos o dolor de garganta</td>
+                                                <td>
+                                                    <input type="checkbox" id="signo1Ingreso" name="Signo1Ingreso" placeholder="" value="true" disabled class="form-control">
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" id="signo1Salida" name="signo1Salida" placeholder="" value="true" disabled class="form-control">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-left:15px">Malestar general</td>
+                                                <td>
+                                                    <input type="checkbox" id="signo2Ingreso" name="Signo2Ingreso" placeholder="" value="true" disabled class="form-control">
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" id="signo2Salida" name="signo2Salida" placeholder="" value="true" disabled class="form-control">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-left:15px">Fiebre</td>
+                                                <td>
+                                                    <input type="checkbox" id="signo3Ingreso" name="signo3Ingreso" placeholder="" value="true" disabled class="form-control">
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" id="signo3Salida" name="signo3Salida" placeholder="" value="true" disabled class="form-control">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-left:15px">Cefalea</td>
+                                                <td>
+                                                    <input type="checkbox" id="signo4Ingreso" name="signo4Ingreso" placeholder="" value="true" disabled class="form-control">
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" id="signo4Salida" name="signo4Salida" placeholder="" value="true" disabled class="form-control">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-left:15px">Dificultad para respirar</td>
+                                                <td>
+                                                    <input type="checkbox" id="signo5Ingreso" name="signo5Ingreso" placeholder="" value="true" disabled class="form-control">
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" id="signo5Salida" name="signo5Salida" placeholder="" value="true" disabled class="form-control">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-left:15px">Congestión nasal</td>
+                                                <td>
+                                                    <input type="checkbox" id="signo6Ingreso" name="signo6Ingreso" placeholder="" value="true" disabled class="form-control">
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" id="signo6Salida" name="signo6Salida" placeholder="" value="true" disabled class="form-control">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-9 col-sm-8 col-xs-12" style="margin-bottom:26px;padding-left:26px">
+
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" id="terminos" onclick="return false;" disabled name="terminos" placeholder="" autocomplete="off" style="zoom: 2;float: left;margin-right:5px">
+                                        <label class="form-check-label checking_" for="terminos">
+                                            <small class="text-justify" style="font-size:11px">
+                                                <b>Acepto que todos los datos expresados en esta ficha constituyen Declaración Jurada de mi parte.</b>
+                                            </small>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group" style="padding-right:5px;padding-left:5px">
+                                        <img  id="canvas" class="" style="border: 1px solid silver;border-top: 1px solid silver;border-bottom: 1px solid silver;width: 98%" />
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+
+    @section js
+{
+        <script src="~/Content/assets/viewsjs/FichaSintomatologica/ReporteFichaVista.js"></script>
+    }

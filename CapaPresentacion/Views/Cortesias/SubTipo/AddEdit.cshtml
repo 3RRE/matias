@@ -1,0 +1,63 @@
+﻿@using S3k.Utilitario
+@using CapaEntidad.Cortesias
+@model CRT_SubTipo
+@{
+    Layout = null;
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+    bool isEdit = Model.Existe();
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12" id="div">
+        @if(isEdit) {
+            <input type="hidden" id="IdTipo" name="IdTipo" value="@Model.IdTipo" />
+        }
+    <form class="medium bv-form" role="form" method="post" action="#" id="form_registro" enctype="multipart/form-data">
+        <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+        <input type="hidden" id="ImagenUrl" name="ImagenUrl" value="@Model.ImagenUrl" />
+        <div class="col-md-12 col-sm-12">
+            <div class="input-group form-group">
+                <span class="input-group-addon">
+                    Tipo
+                </span>
+                <select class="form-control input-sm" id="cboTipo" name="IdTipo"></select>
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-12">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        Nombre
+                    </span>
+                    <input type="text" class="form-control input-sm" id="Nombre" value="@Model.Nombre" name="Nombre" placeholder="Nombre del Sub Tipo de Producto">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-12">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        Imagen
+                    </span>
+                    <input type="file" class="form-control input-sm" id="imageFile" name="imageFile" accept="image/*">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-12">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        Estado
+                    </span>
+                    <select id="cboEstado" class="form-control input-sm select" name="Estado">
+                        <option value="true" @(Model.Estado ? "selected" : "")>Activo</option>
+                        <option value="false" @(Model.Estado ? "" : "selected")>Inactivo</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </form>
+    </div>
+</div>
+
+<script src="~/Content/assets/viewsjs/Cortesias/SubTipo/subTipoGuardar.js?v=@fecha_archivos"></script>

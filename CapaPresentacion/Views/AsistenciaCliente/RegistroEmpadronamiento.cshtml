@@ -1,0 +1,297 @@
+﻿@using S3k.Utilitario;
+
+@{
+    ViewBag.Title = "Registro Empadronamiento Cliente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+}
+
+@section css
+{
+    <style>
+        .table-custom {
+            width: 100%;
+            position: relative;
+            background-color: #FFFFFF;
+            border-spacing: 0;
+        }
+        
+        .table-custom th, .table-custom td {
+            padding: 2px 4px;
+        }
+        
+        .table-custom thead th {
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+        
+        .table-custom tbody td {
+            border: 1px solid #DDDDDD;
+        }
+        
+        .table-custom thead tr th, .table-custom tbody tr td {
+            vertical-align: middle;
+        }
+
+        .table-custom thead tr th {
+            text-align: center;
+        }
+
+        .table-custom thead tr th {
+            color: #FFFFFF;
+        }
+        
+        .table-custom thead tr:nth-of-type(1) th {
+            background-color: rgba(20, 57, 88, 0.95);
+        }
+        
+        .table-custom thead tr:nth-of-type(2) th {
+            background-color: #143958;
+        }
+        
+        .table-custom tbody td {
+            padding: 4px 4px;
+        }
+        
+        .table-custom tbody tr:nth-child(even) {
+            background-color: #F2F2F2;
+        }
+        
+        .table-custom tbody tr:hover {
+            background-color: #DDDDDD;
+        }
+
+        .btn-ssearch {
+            cursor: pointer;
+        }
+        
+        .btn-ssearch:hover {
+            background: #074B88;
+        }
+
+        @@media (min-width: 768px) {
+            .input-group-custom {
+                margin: 0;
+            }
+        }
+
+        .text-wrap {
+            white-space: normal;
+        }
+    </style>
+}
+
+<!-- row -->
+<div class="row">
+    <!-- col -->
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div>
+                        <h1>
+                            <span aria-hidden="true" class="icon las la-user"></span>
+                            <span class="main-text">
+                                @ViewBag.Title
+                            </span>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /col -->
+</div>
+<!-- /row -->
+<!-- row -->
+<div class="row">
+    <!-- col -->
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <!-- row -->
+                    <div class="row">
+                        <!-- col -->
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="form-group input-group input-group-custom">
+                                <span class="input-group-addon">
+                                    Búsqueda
+                                </span>
+                                <input type="text" id="document_number" class="form-control" placeholder="Número de documento" />
+                            </div>
+                        </div>
+                        <!-- /col -->
+                        <!-- col -->
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <button type="button" id="btn_buscar_empadronamiento" class="btn btn-success btn-block" style="padding:8px 16px">
+                                <span class="glyphicon glyphicon-search"></span>
+                                Buscar
+                            </button>
+                        </div>
+                        <!-- /col -->
+                    </div>
+                    <!-- /row -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /col -->
+</div>
+<!-- /row -->
+<!-- row -->
+<div class="row hide" id="boxTableEMC">
+    <!-- col -->
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <!-- row -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <!-- table -->
+                                <table id="tableEmpadronamientoCliente" class="table-custom">
+                                    <thead>
+                                        <tr>
+                                            <th>DNI</th>
+                                            <th>Nombres y Apellidos</th>
+                                            <th>Zona</th>
+                                            <th width="140px">Entregó documento de identidad</th>
+                                            <th>Verificación DNI</th>
+                                            <th>Apuesta</th>
+                                            <th width="300px">Observaciones</th>
+                                            <th>Estatus</th>
+                                            <th>Hora de salida</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                                <!-- /table -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /row -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /col -->
+</div>
+<!-- /row -->
+
+@section modal
+{
+    <!-- modal guardar empadronamiento -->
+    <div class="modal fade full-modal" id="modal_guardar_empadronamiento" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Empadronamiento</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- row -->
+                    <div class="row">
+                        <form id="form_empadronamiento_cliente" onsubmit="return false">
+                            <!-- col-->
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group input-group">
+                                    <span class="input-group-addon">
+                                        DNI
+                                    </span>
+                                    <input type="text" name="customer_dni" id="customer_dni" class="form-control input-sm" placeholder="Número de documento" readonly />
+                                </div>
+                            </div>
+                            <!-- /col-->
+                            <!-- col-->
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group input-group">
+                                    <span class="input-group-addon">
+                                        Cliente
+                                    </span>
+                                    <input type="text" name="customer_fullname" id="customer_fullname" class="form-control input-sm" placeholder="Nombre" readonly />
+                                </div>
+                            </div>
+                            <!-- /col-->
+                            <!-- col-->
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group input-group">
+                                    <span class="input-group-addon">
+                                        Sala
+                                    </span>
+                                    <select name="sala_id" id="sala_id" class="form-control input-sm">
+                                        <option value="">--Seleccione una opción--</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- /col-->
+                            <!-- col-->
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group input-group">
+                                    <span class="input-group-addon">
+                                        Zona
+                                    </span>
+                                    <select name="zona_id" id="zona_id" class="form-control input-sm">
+                                        <option value="">--Seleccione una opción--</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- /col-->
+                            <!-- col-->
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group input-group">
+                                    <span class="input-group-addon">
+                                        Entregó DNI
+                                    </span>
+                                    <select name="emc_entrego_dni" id="emc_entrego_dni" class="form-control input-sm">
+                                        <option value="">--Seleccione una opción--</option>
+                                        <option value="1">SI</option>
+                                        <option value="0">NO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- /col-->
+                            <!-- col-->
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group input-group">
+                                    <span class="input-group-addon">
+                                        Apuesta (S/.)
+                                    </span>
+                                    <input type="text" name="emc_apuesta" id="emc_apuesta" class="form-control input-sm" placeholder="Apuesta" />
+                                </div>
+                            </div>
+                            <!-- /col-->
+                            <!-- col-->
+                            <div class="col-md-12 col-sm-12">
+                                <div class="form-group input-group">
+                                    <span class="input-group-addon">
+                                        Observación
+                                    </span>
+                                    <textarea name="emc_observacion" id="emc_observacion" class="form-control input-sm"></textarea>
+                                </div>
+                            </div>
+                            <!-- /col-->
+                        </form>
+                        <!-- col -->
+                        <div class="col-md-12 col-sm-12">
+                            <input type="hidden" id="customer_id" />
+                            <input type="hidden" id="from_reniec" />
+                            <button type="button" id="btn_guardar_empadronamiento" class="btn btn-success btn-block">
+                                <span class="fa fa-save"></span>
+                                Guardar
+                            </button>
+                        </div>
+                        <!-- /col -->
+                    </div>
+                    <!-- /row -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /modal guardar empadronamiento -->
+}
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/AsistenciaCliente/RegistroEmpadronamiento.js?v=@fecha_archivos"></script>
+}

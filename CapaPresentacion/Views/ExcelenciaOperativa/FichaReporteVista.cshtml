@@ -1,0 +1,520 @@
+﻿@using S3k.Utilitario;
+@{
+    ViewBag.Title = "FichaReporteVista";
+
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+}
+<style>
+    fieldset {
+        border: 1px solid #3c3838 !important;
+        border-radius: 4px !important;
+    }
+
+    legend {
+        width: auto !important;
+        margin-bottom: 0px;
+        border-bottom: none !important;
+    }
+
+    input[type=checkbox] {
+        height: 25px !important;
+    }
+
+    div.form-control {
+        border: 1px solid;
+        height: 28px !important;
+    }
+
+    .tablemodal {
+        font-size: 12px !important;
+    }
+
+        .tablemodal tbody tr th, .tablemodal tbody tr td {
+            border-top: none !important;
+        }
+
+    .table-oe-view {
+        width: 100%;
+        position: relative;
+        background-color: #FFFFFF;
+        margin-bottom: 0;
+        border-bottom: 0px solid #FFFFFF !important;
+    }
+
+        .table-oe-view th, .table-oe-view td {
+            white-space: normal !important;
+        }
+
+        .table-oe-view thead {
+            background-color: #D9D9D9;
+            color: #000000;
+            text-transform: none !important;
+        }
+
+        .table-oe-view th, .table-oe-view td {
+            vertical-align: middle !important;
+        }
+
+        .table-oe-view thead tr th {
+            color: #FFFFFF;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .table-oe-view tbody tr td {
+            color: #444444;
+            font-size: 12px;
+            font-weight: 400;
+            text-shadow: none;
+        }
+
+    .table-tables .oe-category-view:last-child {
+        border-bottom: 1px solid #143958 !important;
+    }
+
+    .table-oe-summary {
+        border-bottom: 1px solid #143958 !important;
+    }
+
+        .table-oe-summary > tfoot > tr > th {
+            border: 1px solid #143958;
+            border-bottom: 0;
+        }
+
+        .table-oe-summary > tfoot > tr > th {
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+    .border-lw0 {
+        border-left-width: 0 !important;
+    }
+
+    .border-rw0 {
+        border-right-width: 0 !important;
+    }
+
+    .border-tw0 {
+        border-top-width: 0 !important;
+    }
+
+    .border-bw0 {
+        border-bottom-width: 0 !important;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-shield"></span>
+                                <span class="main-text">
+                                    Listado Fichas Excelencia Operativa
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnExcel" class="btn btn-primary btn-sm col-md-12 col-xs-12">
+                                        <span class="fa fa-file-excel-o"></span>
+                                        Excel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row visible-xs">
+                            <div class="col-xs-12">
+                                <div style="margin-bottom:10px"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnDescargaMultiple" class="btn btn-primary btn-sm col-md-12 col-xs-12">
+                                        <span class="fa fa-file-pdf-o"></span>
+                                        Fisico
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row visible-xs">
+                            <div class="col-xs-12">
+                                <div style="margin-bottom:10px"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnBuscar" class="btn btn-success btn-sm col-md-12 col-xs-12">
+                                        <span class="fa fa-search"></span>
+                                        Buscar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+
+                        <div class="col-xs-12 col-md-12 col-sm-12">
+                            <div class="row" id="formfiltro">
+                                <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+                                    <div class="input-group ">
+                                        <span class="input-group-addon">
+                                            Tipo
+                                        </span>
+                                        <select class="form-control input-sm" name="tipo" id="cboTipo">
+                                            <option value="1">Jefe Operativo</option>
+                                            <option value="2">Gerente de Unidad</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            DEL
+                                        </span>
+                                        <input type="text" class="form-control input-sm dateOnly_" id="fechaInicio" name="fechaini" readonly />
+                                        <span class="input-group-addon input-group-icon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            AL
+                                        </span>
+                                        <input type="text" class="form-control input-sm dateOnly_" id="fechaFin" name="fechafin" readonly />
+                                        <span class="input-group-addon input-group-icon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <hr style="margin-top: 0px;" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="contenedor_tabla">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section modal
+{
+    <div class="modal fade full-modal " id="modalDetalleFichaOE" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-md modalficha">
+            <div class="modal-content" data-border-top="multi" id="app-oe-modal">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label_">Registro Ficha Excelencia Operativa</h4>
+                </div>
+                <div class="modal-body" style="padding:0">
+                    <div class="w-100">
+                        <div class="w-100">
+                            <div class="row" style="padding:15px">
+                                <div class="col-md-9">
+                                    <div style="margin-bottom:10px">
+                                        <h4><b>FICHA DIARIA DE EXPERIENCIA OPERATIVA - {{ getTypeFicha() }}</b></h4>
+                                    </div>
+                                    <div>
+                                        <b>Fecha :  <span>{{ moment(oe.Fecha).format("DD/MM/YYYY") }}</span></b>
+                                    </div>
+                                    <div style="margin-bottom:10px">
+                                        <b>Usuario :  <span>{{ oe.UsuarioNombre }}</span></b> / <b>Sala :  <span>{{ oe.SalaNombre }}</span></b>
+                                    </div>
+                                </div>
+                                <div class="col-md-3" style="margin-top:10px;margin-bottom:10px">
+                                    <button class="btn btn-sm btn-app btn-danger btn-block" @@click="downloadPDF()">
+                                        <i class="fa fa-file-pdf-o"></i>
+                                        PDF
+                                    </button>
+                                    <button class="btn btn-sm btn-app btn-info btn-block" @@click="downloadExcel()">
+                                        <i class="fa fa-file-excel-o"></i>
+                                        Excel
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- row -->
+                            <div class="w-100" style="padding:15px;padding-top:0">
+                                <!-- items -->
+                                <div class="table-tables table-responsive">
+                                    <!-- category -->
+                                    <div class="oe-category-view" v-for="(categoria, key) in oe.Categorias" style="margin-bottom:20px;">
+                                        <table class="table table-hover table-bordered table-oe-view">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="2" class="text-center">{{ categoria.Nombre }}</th>
+                                                    <th class="text-center" width="150px">Puntuación</th>
+                                                    <th v-if="oe.Tipo == 2" class="text-center" width="150px">Fecha Vencimiento</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody >
+
+                                                <tr v-for="(item, index) in categoria.Items">
+
+                                                    <td v-if="!item.Observacion && item.TipoRespuesta != 7"  class="text-center" width="55px">{{ index + 1 }}</td>
+                                                    <td v-if="item.Observacion && item.TipoRespuesta != 7" class="text-center" width="55px"><strong>{{ index + 1 }}</strong><sup>*</sup></td>
+                                                    <td class="text-left" v-if="item.TipoRespuesta != 7">{{ item.Nombre }}</td>
+
+                                                    <td v-if="item.TipoRespuesta == 7"  class="text-center" width="55px">{{ index + 1 }}</td>
+                                                    <td class="text-left" v-if="item.TipoRespuesta == 7" colspan="2">Comentario : <br>{{ item.Observacion }}</td>
+
+                                                    <td class="text-center"  v-if="item.TipoRespuesta != 7">{{ item.PuntuacionObtenida }}</td>
+                                                    <td v-if="oe.Tipo == 2" class="text-center">{{ getExpirationDate(item.FechaExpiracion, item.FechaExpiracionActivo) }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- category -->
+                                </div>
+                                <!-- items -->
+                                <!-- summary -->
+                                <div class="table-responsive" style="margin-top: 15px">
+                                    <table class="table table-hover table-bordered table-oe-view table-oe-summary">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">Detalle</th>
+                                                <th class="text-center" width="150px"><span class="hidden-lg">P. base</span><span class="hidden visible-lg">Puntuación base</span></th>
+                                                <th class="text-center" width="150px"><span class="hidden-lg">P. obtenida</span><span class="hidden visible-lg">Puntuación obtenida</span></th>
+                                                <th class="text-center" width="150px">%</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="(categoria, key) in oe.Categorias">
+                                                <td class="text-left">{{ categoria.Nombre }}</td>
+                                                <td class="text-center">{{ categoria.PuntuacionBase }}</td>
+                                                <td class="text-center">{{ categoria.PuntuacionObtenida }}</td>
+                                                <td class="text-center">{{ (categoria.Porcentaje * 100).toFixed(1) }}%</td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th class="border-lw0"></th>
+                                                <th class="text-center border-lw0">{{ oe.PuntuacionBase }}</th>
+                                                <th class="text-center border-lw0">{{ oe.PuntuacionObtenida }}</th>
+                                                <th class="text-center border-lw0">{{ (oe.Porcentaje * 100).toFixed(1) }}%</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <!-- summary -->
+                            </div>
+                            <!-- row -->
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section js
+{
+    <script src="~/Content/assets/js/optional/vue/vue.min.js"></script>
+    <script>
+
+        const eventBus = new Vue()
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            new Vue({
+                el: '#app-oe-modal',
+                data: {
+                    oe: {
+                        FichaId: null,
+                        UsuarioNombre: null,
+                        SalaNombre: null,
+                        Tipo: null,
+                        Fecha: null,
+                        PuntuacionObtenida: null,
+                        PuntuacionBase: null,
+                        Porcentaje: null,
+                        Categorias: []
+                    }
+                },
+                methods: {
+                    showModalDetalleFicha: function (id) {
+                        const dataOE = this.oe;
+
+                        dataOE.FichaId = null;
+                        dataOE.UsuarioNombre = null;
+                        dataOE.SalaNombre = null;
+                        dataOE.Tipo = null;
+                        dataOE.Fecha = null;
+                        dataOE.PuntuacionObtenida = null;
+                        dataOE.PuntuacionBase = null;
+                        dataOE.Porcentaje = null;
+
+                        dataOE.Categorias = [];
+
+                        $.ajax({
+                            type: "POST",
+                            cache: false,
+                            url: basePath + "ExcelenciaOperativa/FichaEOIdObtenerJson",
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            data: JSON.stringify({ id: id }),
+                            beforeSend: function (xhr) {
+                                $.LoadingOverlay("show");
+                            },
+                            success: function (response) {
+                                if (response.respuesta) {
+                                    const dataResponse = response.data
+
+                                    dataOE.FichaId = dataResponse.FichaId;
+                                    dataOE.UsuarioNombre = dataResponse.UsuarioNombre;
+                                    dataOE.SalaNombre = dataResponse.SalaNombre;
+                                    dataOE.Tipo = dataResponse.Tipo;
+                                    dataOE.Fecha = dataResponse.Fecha;
+                                    dataOE.PuntuacionObtenida = dataResponse.PuntuacionObtenida;
+                                    dataOE.PuntuacionBase = dataResponse.PuntuacionBase;
+                                    dataOE.Porcentaje = dataResponse.Porcentaje;
+
+                                    dataResponse.Categorias.map(categoria => {
+                                        dataOE.Categorias.push(categoria)
+                                    })
+
+                                    $("#modalDetalleFichaOE").modal("show");
+                                }
+                                else {
+                                    toast.error(response.mensaje, "Mensaje Servidor")
+                                    $("#modalDetalleFichaOE").modal("hide")
+                                }
+                            },
+                            complete: function (resul) {
+                                $.LoadingOverlay("hide");
+                            }
+                        });
+
+                        this.oe = dataOE
+                    },
+                    downloadPDF: function () {
+                        var doc = this.oe.FichaId;
+                        let a = document.createElement('a');
+                        a.target = '_self';
+                        a.href = basePath + "ExcelenciaOperativa/FichaEORespuestaPDFDescarga?doc=" + doc + "&todo=true";
+                        a.click();
+                    },
+                    downloadExcel: function () {
+                        var fichaId = this.oe.FichaId
+
+                        if (!fichaId) {
+                            toastr.clear()
+                            toastr.warning("Seleccione una ficha")
+
+                            return false
+                        }
+
+                        $.ajax({
+                            type: "POST",
+                            url: `${basePath}ExcelenciaOperativa/DescargarExcel`,
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            data: JSON.stringify({ fichaId: fichaId }),
+                            cache: false,
+                            beforeSend: function () {
+                                $.LoadingOverlay("show")
+                            },
+                            success: function (response) {
+                                if (response.status) {
+                                    var data = response.data
+                                    var file = response.fileName
+                                    var a = document.createElement('a')
+
+                                    a.target = '_self'
+                                    a.href = `data:application/vnd.ms-excel;base64,${data}`
+                                    a.download = file
+                                    a.click()
+                                }
+                                else {
+                                    toastr.clear()
+                                    toastr.error(response.message)
+                                }
+                            },
+                            complete: function () {
+                                $.LoadingOverlay("hide")
+                            }
+                        })
+                    },
+                    getTypeFicha: function () {
+                        var TipoNombre = ''
+
+                        if (this.oe.Tipo == 1) {
+                            TipoNombre = 'Jefe Operativo'
+                        }
+
+                        if (this.oe.Tipo == 2) {
+                            TipoNombre = 'Gerente de Unidad'
+                        }
+
+                        return TipoNombre
+                    },
+                    getExpirationDate: function (FechaExpiracion, FechaExpiracionActivo) {
+                        var fechaExpiracion = '---'
+
+                        if (FechaExpiracionActivo) {
+                            if (moment(FechaExpiracion).isValid()) {
+                                fechaExpiracion = moment(FechaExpiracion).format("DD/MM/YYYY")
+                            } else {
+                                fechaExpiracion = 'No asignado'
+                            }
+                        }
+
+                        return fechaExpiracion
+                    }
+                },
+                created: function () {
+                    eventBus.$on('showModalDetalleFicha', function (id) {
+                        this.showModalDetalleFicha(id)
+                    }.bind(this))
+                }
+            })
+        })
+    </script>
+
+    <script src="~/Content/assets/viewsjs/ExcelenciaOperativa/ReporteFichaVista.js?v=@fecha_archivos"></script>
+}

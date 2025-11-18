@@ -1,0 +1,198 @@
+
+@{
+    ViewBag.Title = "Configuración";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section css{
+    <style>
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+            .switch input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 34px !important;
+        }
+
+            .slider:before {
+                position: absolute;
+                content: "";
+                height: 26px;
+                width: 26px;
+                left: 4px;
+                bottom: 4px;
+                background-color: white;
+                transition: 0.4s;
+                border-radius: 50% !important;
+            }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+            input:checked + .slider:before {
+                transform: translateX(26px);
+            }
+
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 10px !important;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+        }
+
+        .card-header {
+            border-radius: 10px 10px 0 0 !important;
+            background-color: transparent;
+            -webkit-text-stroke-width: thin;
+            padding-left: 20px;
+        }
+
+        .card-title{
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .card-body {
+            padding: 20px;
+            margin-top: -20px;
+            font-size: 15px;
+        }
+            .card-body label {
+                font-size: 14px;
+            }
+
+
+        .form-control{
+            border-radius: 8px !important;
+        }
+
+        .label {
+            font-size: 14px;
+        }
+
+        .textarea {
+            resize: vertical;
+            min-height: 100px;
+            max-height: 150px;
+        }
+        .form-group {
+            margin-bottom: 0;
+        }
+
+        .slider-container {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+    </style>
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-shield"></span>
+                                <span class="main-text">
+                                    @ViewBag.Title
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnGuardar" data-nombre="" class="btn btn-sm btn-success col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-check"></span>
+                                        Guardar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="input-group ">
+                                <span class="input-group-addon">
+                                    Sala
+                                </span>
+                                <select class="form-control input-sm codSala" id="cboSala">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 tam">
+                            <div id="content" class="row">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section modal{
+
+}
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/SatisfaccionCliente/Configuracion/configuracion.js"></script>
+}

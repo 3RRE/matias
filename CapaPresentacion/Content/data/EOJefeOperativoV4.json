@@ -1,0 +1,685 @@
+[
+  {
+    "Codigo": "0101-V4",
+    "Nombre": "Journey Map",
+    "PuntuacionObtenida": 0,
+    "PuntuacionBase": 0,
+    "Porcentaje": 0,
+    "Items": [
+      {
+        "Codigo": "010101-V4",
+        "Nombre": "Fachada, letrero, mampara e iluminación exterior limpios y bien mantenidos",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 5
+      },
+      {
+        "Codigo": "010102-V4",
+        "Nombre": "Recepción: iluminación en buen estado, letreros y afiches correctamente colocados y en un lugar visible, mobiliario limpio y bien mantenido, felpudo limpio y bien colocado",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 5
+      },
+      {
+        "Codigo": "010103-V4",
+        "Nombre": "Prevencionista solicita DNI (sistema de ludopatía)",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 6
+      },
+      {
+        "Codigo": "010104-V4",
+        "Nombre": "Sala: se encuentra limpia y ordenada, hay vasos, platos sucios y papeles en el suelo, colillas de cigarro",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 5
+      },
+      {
+        "Codigo": "010105-V4",
+        "Nombre": "Iluminación de sala está en buen estado, TV publicidad operativos",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 5
+      },
+      {
+        "Codigo": "010106-V4",
+        "Nombre": "Alfombra/Piso se encuentra limpia",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 5
+      },
+      {
+        "Codigo": "010107-V4",
+        "Nombre": "Sillas se encuentran limpias y bien mantenidas",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 5
+      },
+      {
+        "Codigo": "010108-V4",
+        "Nombre": "Temperatura de sala (está entre 24 y 25°C según corresponda) es uniforme y adecuada para la estación",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 5
+      },
+      {
+        "Codigo": "010109-V4",
+        "Nombre": "Letreros de seguridad y señalización se encuentran visibles y en buen estado",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 5
+      },
+      {
+        "Codigo": "010110-V4",
+        "Nombre": "Zonas de evacuación de sala se encuentran libres de mobiliario u otros objetos",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 5
+      },
+      {
+        "Codigo": "010111-V4",
+        "Nombre": "Los requisitos para los clientes con discapacidades están implementados",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 5
+      },
+      {
+        "Codigo": "010112-V4",
+        "Nombre": "Los baños se encuentran limpios, bien aromatizados, abastecidos y chequeados por el jefe de sala",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 5
+      },
+      {
+        "Codigo": "010113-V4",
+        "Nombre": "Los camerinos se encuentran limpios y ordenados",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 5
+      },
+      {
+        "Codigo": "010114-V4",
+        "Nombre": "Máquinas: limpias (sin etiquetas obsoletas), iluminación, teclados y bien mantenidas",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 5
+      },
+      {
+        "Codigo": "010115-V4",
+        "Nombre": "Espacio entre máquinas se encuentra limpio y bien mantenido (separadores)",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 5
+      },
+      {
+        "Codigo": "010116-V4",
+        "Nombre": "Máquinas correctamente alineadas",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 5
+      },
+    
+      {
+        "Codigo": "010118-V4",
+        "Nombre": "Máquinas en mantenimiento y/o reservada con cartel respectivo",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "010119-V4",
+        "Nombre": "Etiqueta listado de máquinas es el actual y está en buen estado",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 5
+      },
+      {
+        "Codigo": "010120-V4",
+        "Nombre": "Personal: Atención de cajeros: Canta las transacciones",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "010121-V4",
+        "Nombre": "Cartel de T/C actualizado y visible",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 5
+      },
+      {
+        "Codigo": "010122-V4",
+        "Nombre": "El perifoneo de los sorteos y promociones es constante y entendible. (mañanas min 2 veces, tardes cada hora)",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 5
+      },
+      {
+        "Codigo": "010123-V4",
+        "Nombre": "El personal de sala se encuentra correctamente presentado y uniformado",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 5
+      },
+      {
+        "Codigo": "010124-V4",
+        "Nombre": "Otros",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 7
+      }
+    ]
+  },
+  {
+    "Codigo": "0102-V4",
+    "Nombre": "Documentación",
+    "PuntuacionObtenida": 0,
+    "PuntuacionBase": 0,
+    "Porcentaje": 0,
+    "Items": [
+      {
+        "Codigo": "010201-V4",
+        "Nombre": "Carnet de sanidad, certificados de higiene y salubridad vigente",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 2
+      },
+      {
+        "Codigo": "010202-V4",
+        "Nombre": "CCTV operativo (grabación 15 días, Calidad, enfoques y audios)",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "010203-V4",
+        "Nombre": "Comunicación de retiro temporal al día (Modelo SUCTR)",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "010204-V4",
+        "Nombre": "Verificación de máquinas conectadas a sistema Online (por lo menos 3 veces al día)",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "010205-V4",
+        "Nombre": "File de procedimientos está actualizado, cargos de conformidad de lectura",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "010206-V4",
+        "Nombre": "Listado del prevencionista ludopatas es el actualizado",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "010207-V4",
+        "Nombre": "Publicación del reglamento de sorteos",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "010208-V4",
+        "Nombre": "Lista de personas no gratas está implementado en periodico mural en área de descanso",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "010209-V4",
+        "Nombre": "Otros",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 7
+      }
+    ]
+  },
+  {
+    "Codigo": "0103-V4",
+    "Nombre": "Limpieza, Seguridad e Instalaciones (Sala)",
+    "PuntuacionObtenida": 0,
+    "PuntuacionBase": 0,
+    "Porcentaje": 0,
+    "Items": [
+      {
+        "Codigo": "010301-V4",
+        "Nombre": "Totems de desinfección abstecidos y bien mantenidos",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 6
+      },
+      {
+        "Codigo": "010302-V4",
+        "Nombre": "Todas las zonas de barra se encuentra limpias y abastecidas, sin servicio sucio sobre los tableros",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 5
+      },
+      {
+        "Codigo": "010303-V4",
+        "Nombre": "Perecibles (salsas, sandwich, etc…) se encuentran correctamente fechados y almacenados",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 5
+      },
+      {
+        "Codigo": "010304-V4",
+        "Nombre": "Equipos de frio se encuentran limpios (exteriores, empaquetaduras, bisagras, rejillas libre de hongos u oxido)",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 5
+      },
+      {
+        "Codigo": "010305-V4",
+        "Nombre": "Instalaciones de barra libre de trapos y líquidos de limpieza",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 5
+      },
+      {
+        "Codigo": "010306-V4",
+        "Nombre": "Productos no perecibles dentro de la fecha de vencimiento",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 5
+      },
+      {
+        "Codigo": "010307-V4",
+        "Nombre": "Cumple con estándard de rotulación de fechado",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 5
+      },
+      {
+        "Codigo": "010308-V4",
+        "Nombre": "Otros",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 7
+      }
+    ]
+  },
+  {
+    "Codigo": "0104-V4",
+    "Nombre": "Fondo de Bóveda, Valorados, y Controles Relevo",
+    "PuntuacionObtenida": 0,
+    "PuntuacionBase": 0,
+    "Porcentaje": 0,
+    "Items": [
+      {
+        "Codigo": "010401-V4",
+        "Nombre": "Cuadre de bóveda, caja chica, fondo de ferretería, MKT y A&B es el correcto",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "010402-V4",
+        "Nombre": "Propina en físico coincide con el formato de control",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "010403-V4",
+        "Nombre": "Distribución de fondo en cajas temporizadas es correcta",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "010404-V4",
+        "Nombre": "Cajas temporizadas de seguridad están correctamente cerradas y activadas",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 6
+      },
+      {
+        "Codigo": "010405-V4",
+        "Nombre": "Alertas de billetero y alerta de ludopatía se encuentra activa en caja, prevencionistas y JS",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 2
+      },
+      {
+        "Codigo": "010406-V4",
+        "Nombre": "Realiza los controles de ingresos y salidas de llaves en los formatos correctos",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "010407-V4",
+        "Nombre": "Registro de relevo de equipos (tablets, radios y celulares)",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 5
+      },
+      {
+        "Codigo": "010408-V4",
+        "Nombre": "Otros",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 7
+      }
+
+    ]
+  },
+  {
+    "Codigo": "0105-V4",
+    "Nombre": "Máquinas",
+    "PuntuacionObtenida": 0,
+    "PuntuacionBase": 0,
+    "Porcentaje": 0,
+    "Items": [
+      {
+        "Codigo": "010501-V4",
+        "Nombre": "Monitores superiores de máquinas operativos",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 5
+      },
+      {
+        "Codigo": "010502-V4",
+        "Nombre": "Externos de máquinas operativos y bien mantenidos",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 5
+      },
+      {
+        "Codigo": "010503-V4",
+        "Nombre": "Toppers y drops limpios y bien mantenidos, alineados",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 5
+      },
+      {
+        "Codigo": "010504-V4",
+        "Nombre": "Progresivos se encuentran operativos y en buen estado (estructura y TV)",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 5
+      },
+      {
+        "Codigo": "010505-V4",
+        "Nombre": "Otros",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 7
+      }
+    ]
+  },
+  {
+    "Codigo": "0106-V4",
+    "Nombre": "Almacenes",
+    "PuntuacionObtenida": 0,
+    "PuntuacionBase": 0,
+    "Porcentaje": 0,
+    "Items": [
+      {
+        "Codigo": "010601-V4",
+        "Nombre": "Productos correctamente almacenados y dentro de fecha de vencimiento, principio PEPS",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 2
+      },
+      {
+        "Codigo": "010602-V4",
+        "Nombre": "Se respeta principios de almacenamiento, orden y distribución (productos pesados bajo cintura livianos en la parte superior)",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "010603-V4",
+        "Nombre": "Existe sobre stock",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 3
+      },
+      {
+        "Codigo": "010604-V4",
+        "Nombre": "Otros",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "FechaExpiracion": "",
+        "FechaExpiracionActivo": 0,
+        "Respuesta": "",
+        "Observacion": "",
+        "TipoRespuesta": 7
+      }
+    ]
+  }
+]

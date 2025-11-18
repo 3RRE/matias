@@ -1,0 +1,887 @@
+﻿[
+    {
+        "Codigo": "0101-V5",
+        "Nombre": "Experiencia del Invitado",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "Porcentaje": 0,
+        "Items": [
+            {
+                "Codigo": "010101-V5",
+                "Nombre": "Prevencionista de recepción: saluda, da la bienvenida al cliente y solicita DNI (Aleatoriamente)",
+                "PuntuacionObtenida": 0,
+                "PuntuacionBase": 0,
+                "FechaExpiracion": "",
+                "FechaExpiracionActivo": 0,
+                "Respuesta": "",
+                "Observacion": "",
+                "TipoRespuesta": 5
+            },
+            {
+                "Codigo": "010102-V5",
+                "Nombre": "Prevencionista de Sala: saluda, está atento a movimientos sospechosos, colabora",
+                "PuntuacionObtenida": 0,
+                "PuntuacionBase": 0,
+                "FechaExpiracion": "",
+                "FechaExpiracionActivo": 0,
+                "Respuesta": "",
+                "Observacion": "",
+                "TipoRespuesta": 5
+            },
+            {
+                "Codigo": "010103-V5",
+                "Nombre": "Anfitriones/operadores: Saluda y da la bienvenida con amabilidad y se presenta. Asiste en juego de máquina",
+                "PuntuacionObtenida": 0,
+                "PuntuacionBase": 0,
+                "FechaExpiracion": "",
+                "FechaExpiracionActivo": 0,
+                "Respuesta": "",
+                "Observacion": "",
+                "TipoRespuesta": 5
+            },
+            {
+                "Codigo": "010104-V5",
+                "Nombre": "Cajeros: Saluda atentamente y su atención es fluida",
+                "PuntuacionObtenida": 0,
+                "PuntuacionBase": 0,
+                "FechaExpiracion": "",
+                "FechaExpiracionActivo": 0,
+                "Respuesta": "",
+                "Observacion": "",
+                "TipoRespuesta": 5
+            },
+            {
+                "Codigo": "010105-V5",
+                "Nombre": "Cajeros: Canta las transacciones y coloca documentos importantes en el acrílico de enfoque HD",
+                "PuntuacionObtenida": 0,
+                "PuntuacionBase": 0,
+                "FechaExpiracion": "",
+                "FechaExpiracionActivo": 0,
+                "Respuesta": "",
+                "Observacion": "",
+                "TipoRespuesta": 5
+            },
+            {
+                "Codigo": "010106-V5",
+                "Nombre": "Personal de Sala: tiene pleno conocimiento de las promociones, A&B y lo ofrece según reglamentación de sala",
+                "PuntuacionObtenida": 0,
+                "PuntuacionBase": 0,
+                "FechaExpiracion": "",
+                "FechaExpiracionActivo": 0,
+                "Respuesta": "",
+                "Observacion": "",
+                "TipoRespuesta": 5
+            },
+            {
+                "Codigo": "010107-V5",
+                "Nombre": "Personal de sala: se encuentra correctamente presentado y uniformado. (Gafete/Pin)",
+                "PuntuacionObtenida": 0,
+                "PuntuacionBase": 0,
+                "FechaExpiracion": "",
+                "FechaExpiracionActivo": 0,
+                "Respuesta": "",
+                "Observacion": "",
+                "TipoRespuesta": 5
+            },
+          {
+            "Codigo": "010108-V5",
+            "Nombre": "Personal de Sala: El perifoneo es constante y entendible. (mañanas min 2 veces, tardes cada hora)",
+            "PuntuacionObtenida": 0,
+            "PuntuacionBase": 0,
+            "FechaExpiracion": "",
+            "FechaExpiracionActivo": 0,
+            "Respuesta": "",
+            "Observacion": "",
+            "TipoRespuesta": 5
+          },
+          {
+            "Codigo": "010109-V5",
+            "Nombre": "Otros",
+            "PuntuacionObtenida": 0,
+            "PuntuacionBase": 0,
+            "FechaExpiracion": "",
+            "FechaExpiracionActivo": 0,
+            "Respuesta": "",
+            "Observacion": "",
+            "TipoRespuesta": 7
+          }
+        ]
+    },
+    {
+        "Codigo": "0102-V5",
+        "Nombre": "Presentación de la Sala",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "Porcentaje": 0,
+        "Items": [
+            {
+                "Codigo": "010201-V5",
+                "Nombre": "Fachada: letrero, mampara e iluminación exterior limpios y bien mantenidos",
+                "PuntuacionObtenida": 0,
+                "PuntuacionBase": 0,
+                "FechaExpiracion": "",
+                "FechaExpiracionActivo": 0,
+                "Respuesta": "",
+                "Observacion": "",
+                "TipoRespuesta": 5
+            },
+            {
+                "Codigo": "010202-V5",
+                "Nombre": "Recepción: iluminación en buen estado, letreros y afiches correctamente colocados y en un lugar visible, mobiliario limpio y bien mantenido, felpudo limpio y bien colocado",
+                "PuntuacionObtenida": 0,
+                "PuntuacionBase": 0,
+                "FechaExpiracion": "",
+                "FechaExpiracionActivo": 0,
+                "Respuesta": "",
+                "Observacion": "",
+                "TipoRespuesta": 5
+            },
+            {
+                "Codigo": "010203-V5",
+                "Nombre": "Baños: se encuentran limpios, equipos abastecidos y operativos, bien aromatizados y chequeados por el jefe de sala",
+                "PuntuacionObtenida": 0,
+                "PuntuacionBase": 0,
+                "FechaExpiracion": "",
+                "FechaExpiracionActivo": 0,
+                "Respuesta": "",
+                "Observacion": "",
+                "TipoRespuesta": 5
+            },
+            {
+                "Codigo": "010204-V5",
+                "Nombre": "Sala: Temperatura de sala (está entre 24 y 25°C según corresponda) es uniforme y adecuada para la estación",
+                "PuntuacionObtenida": 0,
+                "PuntuacionBase": 0,
+                "FechaExpiracion": "",
+                "FechaExpiracionActivo": 0,
+                "Respuesta": "",
+                "Observacion": "",
+                "TipoRespuesta": 5
+            },
+            {
+                "Codigo": "010205-V5",
+                "Nombre": "Sala: se encuentra limpia y ordenada, no hay vasos ni platos sucios y papeles ni colillas de cigarro, alfombra / piso limpio y bien mantenido",
+                "PuntuacionObtenida": 0,
+                "PuntuacionBase": 0,
+                "FechaExpiracion": "",
+                "FechaExpiracionActivo": 0,
+                "Respuesta": "",
+                "Observacion": "",
+                "TipoRespuesta": 5
+            },
+            {
+                "Codigo": "010206-V5",
+                "Nombre": "Sala: Carrito de cotesías sin exceso de menaje sucio, ordenado y limpio (evitar colocar cuchara de azúcar sumergida en agua)",
+                "PuntuacionObtenida": 0,
+                "PuntuacionBase": 0,
+                "FechaExpiracion": "",
+                "FechaExpiracionActivo": 0,
+                "Respuesta": "",
+                "Observacion": "",
+                "TipoRespuesta": 6
+            },
+            {
+                "Codigo": "010207-V5",
+                "Nombre": "Sala: Iluminación de sala está en buen estado",
+                "PuntuacionObtenida": 0,
+                "PuntuacionBase": 0,
+                "FechaExpiracion": "",
+                "FechaExpiracionActivo": 0,
+                "Respuesta": "",
+                "Observacion": "",
+                "TipoRespuesta": 5
+            },
+          {
+            "Codigo": "010208-V5",
+            "Nombre": "Sala: Sillas se encuentran limpias y bien mantenidas",
+            "PuntuacionObtenida": 0,
+            "PuntuacionBase": 0,
+            "FechaExpiracion": "",
+            "FechaExpiracionActivo": 0,
+            "Respuesta": "",
+            "Observacion": "",
+            "TipoRespuesta": 5
+          },
+          {
+            "Codigo": "010209-V5",
+            "Nombre": "Otros",
+            "PuntuacionObtenida": 0,
+            "PuntuacionBase": 0,
+            "FechaExpiracion": "",
+            "FechaExpiracionActivo": 0,
+            "Respuesta": "",
+            "Observacion": "",
+            "TipoRespuesta": 7
+          }
+        ]
+    },
+    {
+        "Codigo": "0103-V5",
+        "Nombre": "Marketing",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "Porcentaje": 0,
+        "Items": [
+            {
+                "Codigo": "010301-V5",
+                "Nombre": "Decoración de sala correctamente implementada y a tiempo",
+                "PuntuacionObtenida": 0,
+                "PuntuacionBase": 0,
+                "FechaExpiracion": "",
+                "FechaExpiracionActivo": 0,
+                "Respuesta": "",
+                "Observacion": "",
+                "TipoRespuesta": 3
+            },
+            {
+                "Codigo": "010302-V5",
+                "Nombre": "Publicidad gráfica de calidad, actualizada y bien implementada",
+                "PuntuacionObtenida": 0,
+                "PuntuacionBase": 0,
+                "FechaExpiracion": "",
+                "FechaExpiracionActivo": 0,
+                "Respuesta": "",
+                "Observacion": "",
+                "TipoRespuesta": 3
+            },
+            {
+                "Codigo": "010303-V5",
+                "Nombre": "Publicidad digital de calidad y actualizada",
+                "PuntuacionObtenida": 0,
+                "PuntuacionBase": 0,
+                "FechaExpiracion": "",
+                "FechaExpiracionActivo": 0,
+                "Respuesta": "",
+                "Observacion": "",
+                "TipoRespuesta": 3
+            },
+            {
+                "Codigo": "010304-V5",
+                "Nombre": "Módulo de impresión de tickets operativo, abastecido y bien mantenido",
+                "PuntuacionObtenida": 0,
+                "PuntuacionBase": 0,
+                "FechaExpiracion": "",
+                "FechaExpiracionActivo": 0,
+                "Respuesta": "",
+                "Observacion": "",
+                "TipoRespuesta": 2
+            },
+          {
+            "Codigo": "010305-V5",
+            "Nombre": "Vitrinas de Club, bien implementadas, limpias, iluminadas, abastecidas y TV's operativas",
+            "PuntuacionObtenida": 0,
+            "PuntuacionBase": 0,
+            "FechaExpiracion": "",
+            "FechaExpiracionActivo": 0,
+            "Respuesta": "",
+            "Observacion": "",
+            "TipoRespuesta": 2
+          },
+          {
+            "Codigo": "010306-V5",
+            "Nombre": "Otros",
+            "PuntuacionObtenida": 0,
+            "PuntuacionBase": 0,
+            "FechaExpiracion": "",
+            "FechaExpiracionActivo": 0,
+            "Respuesta": "",
+            "Observacion": "",
+            "TipoRespuesta": 7
+          }
+        ]
+    },
+    {
+        "Codigo": "0104-V5",
+        "Nombre": "Seguridad e Instalaciones",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "Porcentaje": 0,
+        "Items": [
+            {
+                "Codigo": "010401-V5",
+                "Nombre": "Letreros de seguridad y señalización se encuentran visibles y en buen estado.",
+                "PuntuacionObtenida": 0,
+                "PuntuacionBase": 0,
+                "FechaExpiracion": "",
+                "FechaExpiracionActivo": 0,
+                "Respuesta": "",
+                "Observacion": "",
+                "TipoRespuesta": 3
+            },
+            {
+                "Codigo": "010402-V5",
+                "Nombre": "Zonas de evacuación de sala se encuentran libres de mobiliario u otros objetos.",
+                "PuntuacionObtenida": 0,
+                "PuntuacionBase": 0,
+                "FechaExpiracion": "",
+                "FechaExpiracionActivo": 0,
+                "Respuesta": "",
+                "Observacion": "",
+                "TipoRespuesta": 3
+            },
+            {
+                "Codigo": "010403-V5",
+                "Nombre": "Los requisitos para los clientes con discapacidades están implementados.",
+                "PuntuacionObtenida": 0,
+                "PuntuacionBase": 0,
+                "FechaExpiracion": "",
+                "FechaExpiracionActivo": 0,
+                "Respuesta": "",
+                "Observacion": "",
+                "TipoRespuesta": 2
+            },
+          {
+            "Codigo": "010404-V5",
+            "Nombre": "Los camerinos se encuentran limpios y ordenados",
+            "PuntuacionObtenida": 0,
+            "PuntuacionBase": 0,
+            "FechaExpiracion": "",
+            "FechaExpiracionActivo": 0,
+            "Respuesta": "",
+            "Observacion": "",
+            "TipoRespuesta": 3
+          },
+          {
+            "Codigo": "010404-V5",
+            "Nombre": "Otros",
+            "PuntuacionObtenida": 0,
+            "PuntuacionBase": 0,
+            "FechaExpiracion": "",
+            "FechaExpiracionActivo": 0,
+            "Respuesta": "",
+            "Observacion": "",
+            "TipoRespuesta": 7
+          }
+        ]
+    },
+    {
+        "Codigo": "0105-V5",
+        "Nombre": "Documentación",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "Porcentaje": 0,
+        "Items": [
+            {
+                "Codigo": "010501-V5",
+                "Nombre": "Cartel de T/C actualizado y visible",
+                "PuntuacionObtenida": 0,
+                "PuntuacionBase": 0,
+                "FechaExpiracion": "",
+                "FechaExpiracionActivo": 0,
+                "Respuesta": "",
+                "Observacion": "",
+                "TipoRespuesta": 3
+            },
+            {
+                "Codigo": "010502-V5",
+                "Nombre": "Carnet de sanidad, certificados de higiene y salubridad vigente",
+                "PuntuacionObtenida": 0,
+                "PuntuacionBase": 0,
+                "FechaExpiracion": "",
+                "FechaExpiracionActivo": 0,
+                "Respuesta": "",
+                "Observacion": "",
+                "TipoRespuesta": 2
+            },
+            {
+                "Codigo": "010503-V5",
+                "Nombre": "CCTV operativo (grabación 15 días, Calidad, enfoques y audios).",
+                "PuntuacionObtenida": 0,
+                "PuntuacionBase": 0,
+                "FechaExpiracion": "",
+                "FechaExpiracionActivo": 0,
+                "Respuesta": "",
+                "Observacion": "",
+                "TipoRespuesta": 3
+            },
+            {
+                "Codigo": "010504-V5",
+                "Nombre": "Comunicación de retiro temporal al día (Modelo SUCTR)",
+                "PuntuacionObtenida": 0,
+                "PuntuacionBase": 0,
+                "FechaExpiracion": "",
+                "FechaExpiracionActivo": 0,
+                "Respuesta": "",
+                "Observacion": "",
+                "TipoRespuesta": 3
+            },
+            {
+                "Codigo": "010505-V5",
+                "Nombre": "Verificación de máquinas conectadas a sistema Online (por lo menos 3 veces al día)",
+                "PuntuacionObtenida": 0,
+                "PuntuacionBase": 0,
+                "FechaExpiracion": "",
+                "FechaExpiracionActivo": 0,
+                "Respuesta": "",
+                "Observacion": "",
+                "TipoRespuesta": 3
+            },
+            {
+                "Codigo": "010506-V5",
+                "Nombre": "File de procedimientos está actualizado, cargos de conformidad de lectura",
+                "PuntuacionObtenida": 0,
+                "PuntuacionBase": 0,
+                "FechaExpiracion": "",
+                "FechaExpiracionActivo": 0,
+                "Respuesta": "",
+                "Observacion": "",
+                "TipoRespuesta": 3
+            },
+            {
+                "Codigo": "010507-V5",
+                "Nombre": "Listado de ludópatas del prevencionista es el actualizado ",
+                "PuntuacionObtenida": 0,
+                "PuntuacionBase": 0,
+                "FechaExpiracion": "",
+                "FechaExpiracionActivo": 0,
+                "Respuesta": "",
+                "Observacion": "",
+                "TipoRespuesta": 3
+            },
+            {
+                "Codigo": "010508-V5",
+                "Nombre": "Publicación del reglamento de sorteos",
+                "PuntuacionObtenida": 0,
+                "PuntuacionBase": 0,
+                "FechaExpiracion": "",
+                "FechaExpiracionActivo": 0,
+                "Respuesta": "",
+                "Observacion": "",
+                "TipoRespuesta": 2
+            },
+          {
+            "Codigo": "010509-V5",
+            "Nombre": "Lista de personas no gratas está implementado en periodico mural en área de descanso",
+            "PuntuacionObtenida": 0,
+            "PuntuacionBase": 0,
+            "FechaExpiracion": "",
+            "FechaExpiracionActivo": 0,
+            "Respuesta": "",
+            "Observacion": "",
+            "TipoRespuesta": 3
+          },
+          {
+            "Codigo": "010510-V5",
+            "Nombre": "Otros",
+            "PuntuacionObtenida": 0,
+            "PuntuacionBase": 0,
+            "FechaExpiracion": "",
+            "FechaExpiracionActivo": 0,
+            "Respuesta": "",
+            "Observacion": "",
+            "TipoRespuesta": 7
+          }
+        ]
+    },
+
+    {
+        "Codigo": "0106-V5",
+        "Nombre": "Seguridad A&B",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "Porcentaje": 0,
+        "Items": [
+          {
+            "Codigo": "010601-V5",
+            "Nombre": "Barras: Todas las zonas de barra se encuentran limpias y abastecidas, sin servicio sucio sobre los tableros.",
+            "PuntuacionObtenida": 0,
+            "PuntuacionBase": 0,
+            "FechaExpiracion": "",
+            "FechaExpiracionActivo": 0,
+            "Respuesta": "",
+            "Observacion": "",
+            "TipoRespuesta": 2
+          },
+          {
+            "Codigo": "010602-V5",
+            "Nombre": "Cocina: Perecibles (salsas, sandwich, etc…) se encuentran correctamente fechados y almacenados",
+            "PuntuacionObtenida": 0,
+            "PuntuacionBase": 0,
+            "FechaExpiracion": "",
+            "FechaExpiracionActivo": 0,
+            "Respuesta": "",
+            "Observacion": "",
+            "TipoRespuesta": 2
+          },
+          {
+            "Codigo": "010603-V5",
+            "Nombre": "Cocina: Equipos de frío se encuentran limpios (exteriores, empaquetaduras, bisagras, rejillas libre de hongos u óxido).",
+            "PuntuacionObtenida": 0,
+            "PuntuacionBase": 0,
+            "FechaExpiracion": "",
+            "FechaExpiracionActivo": 0,
+            "Respuesta": "",
+            "Observacion": "",
+            "TipoRespuesta": 2
+          },
+          {
+            "Codigo": "010604-V5",
+            "Nombre": "Cocina: Productos no perecibles dentro de la fecha de vencimiento",
+            "PuntuacionObtenida": 0,
+            "PuntuacionBase": 0,
+            "FechaExpiracion": "",
+            "FechaExpiracionActivo": 0,
+            "Respuesta": "",
+            "Observacion": "",
+            "TipoRespuesta": 2
+          },
+          {
+            "Codigo": "010605-V5",
+            "Nombre": "Cocina: Ductería de gas en buenas condiciones",
+            "PuntuacionObtenida": 0,
+            "PuntuacionBase": 0,
+            "FechaExpiracion": "",
+            "FechaExpiracionActivo": 0,
+            "Respuesta": "",
+            "Observacion": "",
+            "TipoRespuesta": 2
+          },
+          {
+            "Codigo": "010606-V5",
+            "Nombre": "Cocina: Campanas, cocinas, lavaderos, trampa de grasa, repisas y mesas de trabajo limpios y bien mantenidos",
+            "PuntuacionObtenida": 0,
+            "PuntuacionBase": 0,
+            "FechaExpiracion": "",
+            "FechaExpiracionActivo": 0,
+            "Respuesta": "",
+            "Observacion": "",
+            "TipoRespuesta": 6
+          },
+          {
+            "Codigo": "010607-V5",
+            "Nombre": "Cocina: Utensilios de cocina se encuentran limpios y en buenas condiciones",
+            "PuntuacionObtenida": 0,
+            "PuntuacionBase": 0,
+            "FechaExpiracion": "",
+            "FechaExpiracionActivo": 0,
+            "Respuesta": "",
+            "Observacion": "",
+            "TipoRespuesta": 6
+          },
+            {
+                "Codigo": "010608-V5",
+                "Nombre": "Cocina/Bar: Pisos antifatiga correctamente ubicado limpio y bien mantenido",
+                "PuntuacionObtenida": 0,
+                "PuntuacionBase": 0,
+                "FechaExpiracion": "",
+                "FechaExpiracionActivo": 0,
+                "Respuesta": "",
+                "Observacion": "",
+                "TipoRespuesta": 6
+            },
+            {
+                "Codigo": "010609-V5",
+                "Nombre": "Cocina: Personal correctamente uniformado / uso de EPP",
+                "PuntuacionObtenida": 0,
+                "PuntuacionBase": 0,
+                "FechaExpiracion": "",
+                "FechaExpiracionActivo": 0,
+                "Respuesta": "",
+                "Observacion": "",
+                "TipoRespuesta": 6
+            },
+          {
+            "Codigo": "010610-V5",
+            "Nombre": "Contenedores de basura con tapa limpios y bien mantenidos (segregación)",
+            "PuntuacionObtenida": 0,
+            "PuntuacionBase": 0,
+            "FechaExpiracion": "",
+            "FechaExpiracionActivo": 0,
+            "Respuesta": "",
+            "Observacion": "",
+            "TipoRespuesta": 6
+          },
+          {
+            "Codigo": "010611-V5",
+            "Nombre": "Otros",
+            "PuntuacionObtenida": 0,
+            "PuntuacionBase": 0,
+            "FechaExpiracion": "",
+            "FechaExpiracionActivo": 0,
+            "Respuesta": "",
+            "Observacion": "",
+            "TipoRespuesta": 7
+          }
+        ]
+    },
+    {
+        "Codigo": "0107-V5",
+        "Nombre": "Fondo de Bóveda, Valorados, y Controles Relevo",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "Porcentaje": 0,
+        "Items": [
+          {
+            "Codigo": "010701-V5",
+            "Nombre": "Cuadre de bóveda, caja chica, fondo de ferretería, MKT, A&B y descuento de menaje es el correcto",
+            "PuntuacionObtenida": 0,
+            "PuntuacionBase": 0,
+            "FechaExpiracion": "",
+            "FechaExpiracionActivo": 0,
+            "Respuesta": "",
+            "Observacion": "",
+            "TipoRespuesta": 3
+          },
+          {
+            "Codigo": "010702-V5",
+            "Nombre": "Propina en físico coincide con el formato de control",
+            "PuntuacionObtenida": 0,
+            "PuntuacionBase": 0,
+            "FechaExpiracion": "",
+            "FechaExpiracionActivo": 0,
+            "Respuesta": "",
+            "Observacion": "",
+            "TipoRespuesta": 3
+          },
+          {
+            "Codigo": "010703-V5",
+            "Nombre": "Distribución de fondo en cajas temporizadas es correcta",
+            "PuntuacionObtenida": 0,
+            "PuntuacionBase": 0,
+            "FechaExpiracion": "",
+            "FechaExpiracionActivo": 0,
+            "Respuesta": "",
+            "Observacion": "",
+            "TipoRespuesta": 3
+          },
+          {
+            "Codigo": "010704-V5",
+            "Nombre": "Cajas temporizadas de seguridad están correctamente cerradas y activadas",
+            "PuntuacionObtenida": 0,
+            "PuntuacionBase": 0,
+            "FechaExpiracion": "",
+            "FechaExpiracionActivo": 0,
+            "Respuesta": "",
+            "Observacion": "",
+            "TipoRespuesta": 3
+          },
+          {
+            "Codigo": "010705-V5",
+            "Nombre": "Alertas de billetero y alerta de ludopatía se encuentran activas en caja, prevencionistas y JS",
+            "PuntuacionObtenida": 0,
+            "PuntuacionBase": 0,
+            "FechaExpiracion": "",
+            "FechaExpiracionActivo": 0,
+            "Respuesta": "",
+            "Observacion": "",
+            "TipoRespuesta": 3
+          },
+          {
+            "Codigo": "010706-V5",
+            "Nombre": "Realiza los controles de ingresos y salidas de llaves en los formatos correctos",
+            "PuntuacionObtenida": 0,
+            "PuntuacionBase": 0,
+            "FechaExpiracion": "",
+            "FechaExpiracionActivo": 0,
+            "Respuesta": "",
+            "Observacion": "",
+            "TipoRespuesta": 3
+          },
+          {
+            "Codigo": "010707-V5",
+            "Nombre": "Registro de relevo de equipos (tablets, radios y celulares).",
+            "PuntuacionObtenida": 0,
+            "PuntuacionBase": 0,
+            "FechaExpiracion": "",
+            "FechaExpiracionActivo": 0,
+            "Respuesta": "",
+            "Observacion": "",
+            "TipoRespuesta": 3
+          },
+          {
+            "Codigo": "010708-V5",
+            "Nombre": "Otros",
+            "PuntuacionObtenida": 0,
+            "PuntuacionBase": 0,
+            "FechaExpiracion": "",
+            "FechaExpiracionActivo": 0,
+            "Respuesta": "",
+            "Observacion": "",
+            "TipoRespuesta": 7
+          }
+        ]
+    },
+    {
+        "Codigo": "0108-V5",
+        "Nombre": "Máquinas",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "Porcentaje": 0,
+        "Items": [
+            {
+                "Codigo": "010801-V5",
+                "Nombre": "Monitores superiores de máquinas operativos",
+                "PuntuacionObtenida": 0,
+                "PuntuacionBase": 0,
+                "FechaExpiracion": "",
+                "FechaExpiracionActivo": 0,
+                "Respuesta": "",
+                "Observacion": "",
+                "TipoRespuesta": 5
+            },
+            {
+                "Codigo": "010802-V5",
+                "Nombre": "Toppers y drops limpios y bien mantenidos, alineados",
+                "PuntuacionObtenida": 0,
+                "PuntuacionBase": 0,
+                "FechaExpiracion": "",
+                "FechaExpiracionActivo": 0,
+                "Respuesta": "",
+                "Observacion": "",
+                "TipoRespuesta": 5
+            },
+            {
+                "Codigo": "010803-V5",
+                "Nombre": "Progresivos se encuentran operativos y en buen estado (estructura y TV)",
+                "PuntuacionObtenida": 0,
+                "PuntuacionBase": 0,
+                "FechaExpiracion": "",
+                "FechaExpiracionActivo": 0,
+                "Respuesta": "",
+                "Observacion": "",
+                "TipoRespuesta": 5
+            },
+            {
+                "Codigo": "010804-V5",
+                "Nombre": "Máquinas en mantenimiento y/o reservada con cartel respectivo",
+                "PuntuacionObtenida": 0,
+                "PuntuacionBase": 0,
+                "FechaExpiracion": "",
+                "FechaExpiracionActivo": 0,
+                "Respuesta": "",
+                "Observacion": "",
+                "TipoRespuesta": 5
+            },
+            {
+                "Codigo": "010805-V5",
+                "Nombre": "Etiqueta listado de máquinas es el actual y está en buen estado",
+                "PuntuacionObtenida": 0,
+                "PuntuacionBase": 0,
+                "FechaExpiracion": "",
+                "FechaExpiracionActivo": 0,
+                "Respuesta": "",
+                "Observacion": "",
+                "TipoRespuesta": 5
+            },
+          {
+            "Codigo": "010806-V5",
+            "Nombre": "Limpias (sin etiquetas obsoletas), iluminación, teclados y bien mantenidas",
+            "PuntuacionObtenida": 0,
+            "PuntuacionBase": 0,
+            "FechaExpiracion": "",
+            "FechaExpiracionActivo": 0,
+            "Respuesta": "",
+            "Observacion": "",
+            "TipoRespuesta": 3
+          },
+          {
+            "Codigo": "010807-V5",
+            "Nombre": "Espacio entre máquinas se encuentra limpio y bien mantenido (separadores)",
+            "PuntuacionObtenida": 0,
+            "PuntuacionBase": 0,
+            "FechaExpiracion": "",
+            "FechaExpiracionActivo": 0,
+            "Respuesta": "",
+            "Observacion": "",
+            "TipoRespuesta": 3
+          },
+          {
+            "Codigo": "010808-V5",
+            "Nombre": "Máquinas correctamente alineadas",
+            "PuntuacionObtenida": 0,
+            "PuntuacionBase": 0,
+            "FechaExpiracion": "",
+            "FechaExpiracionActivo": 0,
+            "Respuesta": "",
+            "Observacion": "",
+            "TipoRespuesta": 3
+          },
+          {
+            "Codigo": "010809-V5",
+            "Nombre": "Otros",
+            "PuntuacionObtenida": 0,
+            "PuntuacionBase": 0,
+            "FechaExpiracion": "",
+            "FechaExpiracionActivo": 0,
+            "Respuesta": "",
+            "Observacion": "",
+            "TipoRespuesta": 7
+          }
+        ]
+    },
+    {
+        "Codigo": "0109-V5",
+        "Nombre": "Almacenes",
+        "PuntuacionObtenida": 0,
+        "PuntuacionBase": 0,
+        "Porcentaje": 0,
+        "Items": [
+          {
+            "Codigo": "010901-V5",
+            "Nombre": "Almacenes limpios, correctamente distribuidos y señalizados",
+            "PuntuacionObtenida": 0,
+            "PuntuacionBase": 0,
+            "FechaExpiracion": "",
+            "FechaExpiracionActivo": 0,
+            "Respuesta": "",
+            "Observacion": "",
+            "TipoRespuesta": 3
+          },
+          {
+            "Codigo": "010902-V5",
+            "Nombre": "Productos correctamente almacenados y dentro de fecha de vencimiento, principio PEPS",
+            "PuntuacionObtenida": 0,
+            "PuntuacionBase": 0,
+            "FechaExpiracion": "",
+            "FechaExpiracionActivo": 0,
+            "Respuesta": "",
+            "Observacion": "",
+            "TipoRespuesta": 3
+          },
+          {
+            "Codigo": "010903-V5",
+            "Nombre": "Se respeta principios de almacenamiento, orden y distribución (productos pesados bajo cintura, livianos en la parte superior)",
+            "PuntuacionObtenida": 0,
+            "PuntuacionBase": 0,
+            "FechaExpiracion": "",
+            "FechaExpiracionActivo": 0,
+            "Respuesta": "",
+            "Observacion": "",
+            "TipoRespuesta": 3
+          },
+          {
+            "Codigo": "010904-V5",
+            "Nombre": "Productos dentro de la fecha de vencimiento",
+            "PuntuacionObtenida": 0,
+            "PuntuacionBase": 0,
+            "FechaExpiracion": "",
+            "FechaExpiracionActivo": 0,
+            "Respuesta": "",
+            "Observacion": "",
+            "TipoRespuesta": 3
+          },
+          {
+            "Codigo": "010905-V5",
+            "Nombre": "Existe sobre stock",
+            "PuntuacionObtenida": 0,
+            "PuntuacionBase": 0,
+            "FechaExpiracion": "",
+            "FechaExpiracionActivo": 0,
+            "Respuesta": "",
+            "Observacion": "",
+            "TipoRespuesta": 3
+          },
+          {
+            "Codigo": "010906-V5",
+            "Nombre": "Otros",
+            "PuntuacionObtenida": 0,
+            "PuntuacionBase": 0,
+            "FechaExpiracion": "",
+            "FechaExpiracionActivo": 0,
+            "Respuesta": "",
+            "Observacion": "",
+            "TipoRespuesta": 7
+          }
+        ]
+    }
+]

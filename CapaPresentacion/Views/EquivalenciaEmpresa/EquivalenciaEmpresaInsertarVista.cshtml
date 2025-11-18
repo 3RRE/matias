@@ -1,0 +1,38 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-12">
+            <form id="formEquivalenciaEmpresa" role="form">
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Nombre
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm" id="Nombre" name="Nombre" placeholder="Nombre de la Empresa">
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Cod. OFISIS
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm soloNumeros" id="CodEmpresaOfisis" name="CodEmpresaOfisis" placeholder="Código de la empresa en OFISIS" onkeypress="return valideKeyNumber(event)">
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            ID BUK
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm soloNumeros" id="IdEmpresaBuk" name="IdEmpresaBuk" placeholder="ID de la empresa en BUK" onkeypress="return valideKeyNumber(event)">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="~/Content/assets/viewsjs/Buk/EquivalenciaEmpresa/InsertarEquivalenciaEmpresa.js"></script>

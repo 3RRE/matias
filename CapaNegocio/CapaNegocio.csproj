@@ -1,0 +1,350 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5DBBA2CD-4EBA-4E69-A68A-9423FA54B270}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CapaNegocio</RootNamespace>
+    <AssemblyName>CapaNegocio</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EPPlus, Version=5.7.4.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.5.7.4\lib\net45\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\netstandard2.0\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=1.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.1.4.1\lib\net46\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=9.3.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAzure.Storage.9.3.3\lib\net45\Microsoft.WindowsAzure.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.7.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Text.Encodings.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.8.0.0\lib\netstandard2.0\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Administrativo\ADM_DetalleContadoresGameBL.cs" />
+    <Compile Include="Administrativo\ADM_DetalleSalaProgresivoBL.cs" />
+    <Compile Include="Administrativo\ADM_GanadorBL.cs" />
+    <Compile Include="Administrativo\ADM_HistorialMaquinaBL.cs" />
+    <Compile Include="Administrativo\ADM_MaquinaBL.cs" />
+    <Compile Include="Administrativo\ADM_MaquinaSalaProgresivoBL.cs" />
+    <Compile Include="Administrativo\ADM_PozoHistoricoBL.cs" />
+    <Compile Include="Administrativo\ADM_SalaProgresivoBL.cs" />
+    <Compile Include="Administrativo\WS_DetalleContadoresGameWebBL.cs" />
+    <Compile Include="Alertas\ALT_AlertaCargoConfBL.cs" />
+    <Compile Include="Alertas\ALT_AlertaSalaBL.cs" />
+    <Compile Include="AreaTechBL.cs" />
+    <Compile Include="AsistenciaCliente\AST_ClienteSalaBL.cs" />
+    <Compile Include="AsistenciaCliente\AST_TipoJuegoBL.cs" />
+    <Compile Include="BOT\BOT_PermisoBL.cs" />
+    <Compile Include="BOT\BOT_CargoBL.cs" />
+    <Compile Include="BOT\BOT_EmpleadoBL.cs" />
+    <Compile Include="BOT\BOT_ContactoBL.cs" />
+    <Compile Include="BOT\BOT_AreaBL.cs" />
+    <Compile Include="BUK\BUK_CreditoBL.cs" />
+    <Compile Include="BUK\BUK_EmpleadoBL.cs" />
+    <Compile Include="BUK\BUK_EquivalenciaSedeBL.cs" />
+    <Compile Include="BUK\BUK_EquivalenciaEmpresaBL.cs" />
+    <Compile Include="Campaña\CMP_SesionMigracionBL.cs" />
+    <Compile Include="Campaña\CMP_SesionSorteoSalaMigracionBL.cs" />
+    <Compile Include="ClienteSatisfaccion\Configuracion\CSConfiguracionBL.cs" />
+    <Compile Include="ClienteSatisfaccion\Flujo\FlujoBL.cs" />
+    <Compile Include="ClienteSatisfaccion\Opciones\OpcionesBL.cs" />
+    <Compile Include="ClienteSatisfaccion\Preguntas\PreguntasBL.cs" />
+    <Compile Include="ClienteSatisfaccion\Respuesta\RespuestaBL.cs" />
+    <Compile Include="ClienteSatisfaccion\Tablet\TabletBL.cs" />
+    <Compile Include="ContadoresBonusIn\ContadoresBonusInBL.cs" />
+    <Compile Include="ControlAcceso\CAL_HistorialLudopataBL.cs" />
+    <Compile Include="ControlAcceso\CAL_MenorDeEdadBL.cs" />
+    <Compile Include="Cortesias\CRT_AnfitrionaBL.cs" />
+    <Compile Include="Cortesias\CRT_ProductoBL.cs" />
+    <Compile Include="Cortesias\CRT_SubTipoBL.cs" />
+    <Compile Include="Cortesias\CRT_TipoBL.cs" />
+    <Compile Include="Cortesias\CRT_MarcaBL.cs" />
+    <Compile Include="EntradaSalidaSala\EnteReguladorBL.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_AccionCajaTemporizadaBL.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_AperturaCierreSalaBL.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_CargoBL.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_CatalogoBL.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_CategoriaBL.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_DashboardBL.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_DeficienciaBL.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_DispositivoBL.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_EmpleadoBL.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_EmpresaBL.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_EnteReguladorMotivoBL.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_IngresoSalidaGUBL.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_LogOcurrenciaBL.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_MotivoBL.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_RecaudacionPersonalBL.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_VisitasSupervisorBL.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_RecojoRemesas.cs" />
+    <Compile Include="EstadoMaquinas\TEC_EstadoMaquinaBL.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_BienMaterialBL.cs" />
+    <Compile Include="EventosSignificativos\EventosSignificativosBL.cs" />
+    <Compile Include="Excel\ExcelHelper.cs" />
+    <Compile Include="GLPI\GLPI_CierreTicketBL.cs" />
+    <Compile Include="GLPI\GLPI_SeguimientoTicketBL.cs" />
+    <Compile Include="GLPI\GLPI_AsignacionTicketBL.cs" />
+    <Compile Include="GLPI\GLPI_TicketBL.cs" />
+    <Compile Include="GLPI\Helper\GLPI_FileUploadBL.cs" />
+    <Compile Include="GLPI\Mantenedores\GLPI_UsuarioBL.cs" />
+    <Compile Include="GLPI\Mantenedores\GLPI_NivelAtencionBL.cs" />
+    <Compile Include="GLPI\Mantenedores\GLPI_CategoriaBL.cs" />
+    <Compile Include="GLPI\Mantenedores\GLPI_ClasificacionProblemaBL.cs" />
+    <Compile Include="GLPI\Mantenedores\GLPI_EstadoActualBL.cs" />
+    <Compile Include="GLPI\Mantenedores\GLPI_EstadoTicketBL.cs" />
+    <Compile Include="GLPI\Mantenedores\GLPI_ProcesoBL.cs" />
+    <Compile Include="GLPI\Mantenedores\GLPI_IdentificadorBL.cs" />
+    <Compile Include="GLPI\Mantenedores\GLPI_SubCategoriaBL.cs" />
+    <Compile Include="GLPI\Mantenedores\GLPI_PartidaBL.cs" />
+    <Compile Include="GLPI\Mantenedores\GLPI_TipoOperacionBL.cs" />
+    <Compile Include="GLPI\Mantenedores\GLPI_CorreoBL.cs" />
+    <Compile Include="MaquinasInoperativas\MI_ComentarioBL.cs" />
+    <Compile Include="MaquinasInoperativas\MI_CorreoBL.cs" />
+    <Compile Include="Migracion\ContadoresOnlineBL.cs" />
+    <Compile Include="EstadoServiciosBL.cs" />
+    <Compile Include="Incidencias\IncidenciaBL.cs" />
+    <Compile Include="Incidencias\SistemaIncidenciaBL.cs" />
+    <Compile Include="Incidencias\SolucionIncidenciaBL.cs" />
+    <Compile Include="MaquinasInoperativas\MI_SalaCorreosBL.cs" />
+    <Compile Include="Notificaciones\Mantenedores\CredencialCorreoBL.cs" />
+    <Compile Include="Notificaciones\Mantenedores\CredencialWhatsAppBL.cs" />
+    <Compile Include="ProgresivoRuleta\PRU_AlertaBL.cs" />
+    <Compile Include="ProgresivoRuleta\PRU_GanadorBL.cs" />
+    <Compile Include="ProgresivoRuleta\PRU_RuletaBL.cs" />
+    <Compile Include="ProgresivoRuleta\PRU_ConfiguracionBL.cs" />
+    <Compile Include="Progresivo\AlertaProgresivoBL.cs" />
+    <Compile Include="Progresivo\AlertaProgresivoCargoBL.cs" />
+    <Compile Include="Progresivo\RegistroProgresivoBL.cs" />
+    <Compile Include="Queue\Client\AzureQueueClient.cs" />
+    <Compile Include="Reniec\ConsultaPe\ConsultaPeServiceV2.cs" />
+    <Compile Include="SalaMaestraBL.cs" />
+    <Compile Include="Sala\SL_ZonaBL.cs" />
+    <Compile Include="AsistenciaCliente\EMC_EmpadronamientoClienteBL.cs" />
+    <Compile Include="AsistenciaEmpleado\EmpleadoAsistenciaBL.cs" />
+    <Compile Include="AsistenciaEmpleado\EmpleadoDispositivoBL.cs" />
+    <Compile Include="AsistenciaEmpleado\EmpleadoVisitaBL.cs" />
+    <Compile Include="AumentoCreditoMaquinaBL.cs" />
+    <Compile Include="BancoCuentaBL.cs" />
+    <Compile Include="BonificacionesBL.cs" />
+    <Compile Include="CAL_PersonaProhibidoIngresoIncidenciaBL.cs" />
+    <Compile Include="Campaña\CMP_CampañaBL.cs" />
+    <Compile Include="Campaña\CMP_Campaña_ParametrosBL.cs" />
+    <Compile Include="Campaña\CMP_ClienteBL.cs" />
+    <Compile Include="Campaña\CMP_ContadoresOnlineWebCuponesBL.cs" />
+    <Compile Include="Campaña\CMP_CuponesGeneradosBL.cs" />
+    <Compile Include="Campaña\CMP_DetalleCuponesGeneradosBL.cs" />
+    <Compile Include="Campaña\CMP_DetalleCuponesImpresosBL.cs" />
+    <Compile Include="Campaña\CMP_impresoraBL.cs" />
+    <Compile Include="Campaña\CMP_impresora_usuarioBL.cs" />
+    <Compile Include="Campaña\CMP_MaquinaRestringidaBL.cs" />
+    <Compile Include="Campaña\CMP_SalalibreBL.cs" />
+    <Compile Include="Campaña\CMP_SalasesionBL.cs" />
+    <Compile Include="Campaña\CMP_TicketBL.cs" />
+    <Compile Include="ClienteBl.cs" />
+    <Compile Include="ConfiguracionSeguridadBL.cs" />
+    <Compile Include="ContadoresNegativos\AlertaContadoresNegativosBL.cs" />
+    <Compile Include="ContadoresNegativos\ContadoresNegativosBL.cs" />
+    <Compile Include="ContadoresNegativos\ContadorNegativoConfigBL.cs" />
+    <Compile Include="ControlAcceso\CAL_AuditoriaBL.cs" />
+    <Compile Include="ControlAcceso\CAL_BandaBL.cs" />
+    <Compile Include="ControlAcceso\CAL_BusquedaBL.cs" />
+    <Compile Include="ControlAcceso\CAL_CargoEntidadBL.cs" />
+    <Compile Include="ControlAcceso\CAL_CargoPoliticoBL.cs" />
+    <Compile Include="ControlAcceso\CAL_CodigoBL.cs" />
+    <Compile Include="ControlAcceso\CAL_CodigoPersonaBL.cs" />
+    <Compile Include="ControlAcceso\CAL_ContactoBL.cs" />
+    <Compile Include="ControlAcceso\CAL_EntidadPublicaBL.cs" />
+    <Compile Include="ControlAcceso\CAL_LudopataBL.cs" />
+    <Compile Include="ControlAcceso\CAL_PersonaEntidadPublicaBL.cs" />
+    <Compile Include="ControlAcceso\CAL_PoliticoBL.cs" />
+    <Compile Include="ControlAcceso\CAL_PersonaProhibidoIngresoBL.cs" />
+    <Compile Include="ControlAcceso\CAL_RobaStackersBilleteroBL.cs" />
+    <Compile Include="ControlAcceso\CAL_TipoExclusionBL.cs" />
+    <Compile Include="ControlAcceso\CAL_TipoTimadorBL.cs" />
+    <Compile Include="DepositoBL.cs" />
+    <Compile Include="Destinatario_DetalleBL.cs" />
+    <Compile Include="Disco\AlertaDiscoBL.cs" />
+    <Compile Include="Disco\DiscoBL.cs" />
+    <Compile Include="Disco\DiscoCargoConfigBL.cs" />
+    <Compile Include="DispositivoBL.cs" />
+    <Compile Include="EmpresaBL.cs" />
+    <Compile Include="Equipo\EquipoBL.cs" />
+    <Compile Include="EstadoSolicitudCambioBL.cs" />
+    <Compile Include="ExcelenciaOperativa\EO_FichaCategoriaBL.cs" />
+    <Compile Include="ExcelenciaOperativa\EO_FichaExcelenciaOperativaBL.cs" />
+    <Compile Include="ExcelenciaOperativa\EO_FichaItemBL.cs" />
+    <Compile Include="FichaSintomatologicaBL.cs" />
+    <Compile Include="GC_ComiteCambiosBL.cs" />
+    <Compile Include="GC_SistemaBL.cs" />
+    <Compile Include="HistorialSolicitudCambioBL.cs" />
+    <Compile Include="Imei\ControlImeiBL.cs" />
+    <Compile Include="JuegoBL.cs" />
+    <Compile Include="LogAlertaBilleterosBL.cs" />
+    <Compile Include="MantenimientoBD\MantenimientoBDBL.cs" />
+    <Compile Include="MaquinasInoperativas\MI_CategoriaPiezaBL.cs" />
+    <Compile Include="MaquinasInoperativas\MI_CategoriaProblemaBL.cs" />
+    <Compile Include="MaquinasInoperativas\MI_CategoriaRepuestoBL.cs" />
+    <Compile Include="MaquinasInoperativas\MI_AlmacenBL.cs" />
+    <Compile Include="MaquinasInoperativas\MI_MaquinaInoperativaBL.cs" />
+    <Compile Include="MaquinasInoperativas\MI_MaquinaInoperativaPiezasBL.cs" />
+    <Compile Include="MaquinasInoperativas\MI_MaquinaInoperativaProblemasBL.cs" />
+    <Compile Include="MaquinasInoperativas\MI_MaquinaInoperativaRepuestosBL.cs" />
+    <Compile Include="MaquinasInoperativas\MI_PiezaBL.cs" />
+    <Compile Include="MaquinasInoperativas\MI_PiezaRepuestoAlmacenBL.cs" />
+    <Compile Include="MaquinasInoperativas\MI_ProblemaBL.cs" />
+    <Compile Include="MaquinasInoperativas\MI_RepuestoBL.cs" />
+    <Compile Include="MaquinasInoperativas\MI_TraspasoRepuestoAlmacenBL.cs" />
+    <Compile Include="MarcaMaquinaBL.cs" />
+    <Compile Include="ModeloMaquinaBL.cs" />
+    <Compile Include="ModuloBL.cs" />
+    <Compile Include="NivelTecnicoBL.cs" />
+    <Compile Include="Ocurrencias\OCU_CorreoBL.cs" />
+    <Compile Include="Ocurrencias\OCU_CorreoSalaBL.cs" />
+    <Compile Include="Ocurrencias\OCU_OcurrenciaBL.cs" />
+    <Compile Include="Ocurrencias\OCU_TipoOcurrenciaBL.cs" />
+    <Compile Include="Progresivo\ProgresivoBL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DestinatarioBL.cs" />
+    <Compile Include="ProyectadoProgresivoBL.cs" />
+    <Compile Include="Reclamaciones\REC_reclamacionBL.cs" />
+    <Compile Include="API_ReniecKeys.cs" />
+    <Compile Include="SalaBL.cs" />
+    <Compile Include="SatisfaccionCliente\Configuracion\ESC_ConfiguracionBL.cs" />
+    <Compile Include="SatisfaccionCliente\ESC_RespuestaBL.cs" />
+    <Compile Include="SatisfaccionCliente\Mantenedores\ESC_PreguntaBL.cs" />
+    <Compile Include="SeguridadProgresivo\SeguridadProgresivoBL.cs" />
+    <Compile Include="SEG_AUDITORIABL.cs" />
+    <Compile Include="SEG_Configuracion_SeguridadBL.cs" />
+    <Compile Include="SEG_PermisoBL.cs" />
+    <Compile Include="SEG_PermisoMenuBL.cs" />
+    <Compile Include="SEG_PermisoRolBL.cs" />
+    <Compile Include="SEG_RolBL.cs" />
+    <Compile Include="SEG_RolUsuarioBL.cs" />
+    <Compile Include="AsistenciaCliente\AST_AsistenciaClienteSalaBL.cs" />
+    <Compile Include="AsistenciaCliente\AST_ClienteBL.cs" />
+    <Compile Include="AsistenciaCliente\AST_TipoDocumentoBL.cs" />
+    <Compile Include="AsistenciaCliente\AST_TipoFrecuenciaBL.cs" />
+    <Compile Include="AsistenciaCliente\AST_TipoClienteBL.cs" />
+    <Compile Include="Settings\App_SettingsBL.cs" />
+    <Compile Include="Notificaciones\Mantenedores\SistemaBL.cs" />
+    <Compile Include="SolicitudCambioBL.cs" />
+    <Compile Include="SolicitudTicketBL.cs" />
+    <Compile Include="SolicitudTransferenciaBL.cs" />
+    <Compile Include="Sunat\SunatBL.cs" />
+    <Compile Include="TecnicoBL.cs" />
+    <Compile Include="TicketBL.cs" />
+    <Compile Include="TipoCambioBL.cs" />
+    <Compile Include="TipoDOIBL.cs" />
+    <Compile Include="SEG_EmpleadoBL.cs" />
+    <Compile Include="SEG_CargoBL.cs" />
+    <Compile Include="SEG_UsuarioBL.cs" />
+    <Compile Include="TransaccionTarjetaCliente\TTC_TransaccionBL.cs" />
+    <Compile Include="TransferenciaBL.cs" />
+    <Compile Include="UbigeoBL.cs" />
+    <Compile Include="UsuarioEncriptacionBL.cs" />
+    <Compile Include="UsuarioSalaBL.cs" />
+    <Compile Include="Utilitarios\ClasesExcel.cs" />
+    <Compile Include="Utilitarios\Excel.cs" />
+    <Compile Include="Utilitarios\reporte_botones\ClaseReporte.cs" />
+    <Compile Include="Utilitarios\reporte_botones\EstilosReporte.cs" />
+    <Compile Include="Utilitarios\reporte_botones\Excel_botones.cs" />
+    <Compile Include="WhatsApp\WSP_ContactoBL.cs" />
+    <Compile Include="WhatsApp\WSP_InstanciaUltraMsgBL.cs" />
+    <Compile Include="WhatsApp\WSP_MensajeEnviadoBL.cs" />
+    <Compile Include="WhatsApp\WSP_MensajeriaClienteBL.cs" />
+    <Compile Include="WhatsApp\WSP_MensajeriaUltraMsgBL.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CapaDatos\CapaDatos.csproj">
+      <Project>{80e4364d-7cb1-47bb-93b9-219489457473}</Project>
+      <Name>CapaDatos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CapaEntidad\CapaEntidad.csproj">
+      <Project>{e90eb5ac-db12-4979-970d-69b1d8a79cf4}</Project>
+      <Name>CapaEntidad</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\S3k.Utilitario\S3k.Utilitario.csproj">
+      <Project>{67d1d4fb-a385-49f6-a4c4-877e15b51993}</Project>
+      <Name>S3k.Utilitario</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Reniec\ApisPeru\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

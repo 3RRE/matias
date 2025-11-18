@@ -1,0 +1,113 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-12">
+            <form id="formRuletaProgresivoConfiguracion" role="form">
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Sala
+                        </span>
+                        <select class="form-control input-sm" id="cboSalaUser" name="CodSala"></select>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Nombre
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm" id="NombreRuleta" name="NombreRuleta" placeholder="Nombre de la ruleta">
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Cantidad de Máquinas
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm soloNumeros" id="TotalSlots" name="TotalSlots" placeholder="Cantidad de Máquinas">
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Codigos de Máquinas
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm tag-input" id="SlotHexValues" name="CodMaquinas" placeholder="Códigos de las máquinas">
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Posiciones
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm tag-input" id="SlotHexPositions" name="Posiciones" placeholder="Posiciones de las máquinas">
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Mínimo de Máquinas
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm soloNumeros" id="MinSlotsPlaying" name="MinSlotsPlaying" placeholder="Cantidad minima de máquinas">
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Porcentaje
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm soloNumeros" id="CoinInPercent" name="CoinInPercent" placeholder="Porcentaje que tomará el coin in">
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Apuesta Mínima
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm soloNumeros" id="MinBet" name="MinBet" placeholder="Apuesta mínima (centimos)">
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            IP
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm" id="Ip" name="Ip" placeholder="Direccioón IP">
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Status
+                        </span>
+                        <select id="cboStatus" class="form-control input-sm select" name="StatusOk">
+                            <option value="1">Activo</option>
+                            <option value="0">Inactivo</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Hora Inicio
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm only-time" id="HoraInicio" name="HoraInicio" placeholder="Hora Inicio">
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Hora Fin
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm only-time" id="HoraFin" name="HoraFin" placeholder="Hora Fin">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="~/Content/assets/viewsjs/ProgresivoRuleta/Configuracion/insertar.js"></script>

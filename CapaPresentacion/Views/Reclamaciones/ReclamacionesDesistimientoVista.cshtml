@@ -1,0 +1,191 @@
+﻿@{
+    ViewBag.Title = "Reclamaciones";
+    Layout = "~/Views/Shared/_Reclamaciones.cshtml";
+}
+@using System.Activities.Expressions
+@using System.Web.Script.Serialization
+@using System.Web.UI.WebControls
+@{
+    ViewBag.Title = "Libro de Reclamaciones";
+}
+<style>
+    .widget-box {
+        margin: 0px !important;
+    }
+
+    .wrapper {
+        position: relative;
+     /*   width: 400px;
+        height: 200px;*/
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    .signature-pad {
+        position: absolute;
+        left: 0;
+        top: 0;
+      /*  width: 400px;
+        height: 200px;*/
+        background-color: white;
+        border: 1px solid black;
+    }
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-3 col-xs-3 col-lg-3 text-center">
+                    @if (ViewBag.logoSala == "")
+                    {
+                        <img src="~/Content/assets/images/no_image.jpg" class="img-responsive" style="padding-top: 5px;width: 115px;height:110px;margin: auto;" />
+                    }
+                    else
+                    {
+                        <img src="@ViewBag.logoSala" class="img-responsive" style="padding-top: 5px;width: 115px;height:110px;margin: auto;" />
+                    }
+                    @*<img src="~/Content/assets/images/no_image.jpg" class="img-responsive img_logo" style="padding-top: 5px;width: 115px;height:110px;margin: auto;" />*@
+                </div>
+                <div class="col-md-7 col-xs-7 col-lg-7 text-center">
+                    <p>
+                        <h2><b>Hoja de Reclamación</b></h2>|
+                    </p>
+                    <div style="line-height: 0.9; display: flex; flex-direction: column; align-items: center;">
+                        <p>Fecha : @ViewBag.reclamacion.fecha.ToShortDateString()</p>
+                        <p><b>Codigo : @ViewBag.reclamacion.codigo</b></p>
+                        <p><b>@ViewBag.reclamacion.razon_social.ToUpper()</b> - RUC: @ViewBag.rucEmpresa</p>
+                        <p>@ViewBag.reclamacion.local_direccion</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-xs-12 bg_white">
+                <fieldset>
+                    <legend>Informacion del Reclamo</legend>
+                    <div class="widget-box widget-color-dark">
+                      
+                        <div class="widget-body">
+                            <div class="widget-main">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p><b>Nombre Completo:</b> <span>@ViewBag.reclamacion.nombre.ToUpper()</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-box widget-color-dark">
+                        <div class="widget-body">
+                            <div class="widget-main">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p><b>Descripción:</b> <span>@ViewBag.reclamacion.descripcion.ToUpper()</span></p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-box widget-color-dark">
+                        <div class="widget-body">
+                            <div class="widget-main">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p><b>Tipo:</b> <span>@ViewBag.reclamacion.tipo_reclamo.ToUpper()</span></p>
+                                        <p><b>Local:</b> <span>@ViewBag.reclamacion.local_nombre.ToUpper()</span></p>
+                                        <p>
+                                            <b>Referencia:</b> <span>
+                                                @if (!string.IsNullOrEmpty(@ViewBag.reclamacion.referencia))
+                                                {
+                                                    @ViewBag.reclamacion.referencia.ToUpper()
+                                                }
+                                                else
+                                                {
+                                                    @ViewBag.reclamacion.referencia
+                                                }
+                                            </span>
+                                        </p>
+                                        <p><b>Pedido:</b> <span>@ViewBag.reclamacion.pedido.ToUpper()</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Desistimiento</legend>
+                    <div class="widget-box widget-color-dark">
+                        <div class="widget-body">
+                            <div class="widget-main">
+                                <div class="row">
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-3">
+                                        <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center;flex-direction:column;width:100%;height:140px">
+                                            <div class="wrapper" style="width: 100%;height: 100%;">
+                                                <canvas id="signature-pad" class="signature-pad" style="width: 100%;height: 100%;"></canvas>
+                                            </div>
+                                        </div>
+                                      
+                                        <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center;flex-direction:column;padding-top:5px;">
+                                            @if (ViewBag.reclamacion.desistimiento != 1)
+                                            {
+                                                <button class="btn-warning btn" id="btnLimpiarFirma">Limpiar Firma</button>
+                                            }
+                                        </div>
+
+
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center;flex-direction:column;padding-top:25px;">
+                                            <input type="text" name="NroDocumentoDesistimiento" value="" id="NroDocumentoDesistimiento" style="text-align: center; margin-bottom: 5px;" />
+                                            <h4 class="widget-title bigger lighter" style="text-decoration:overline;padding-bottom:5px">
+                                                @if (ViewBag.reclamacion.desistimiento == 1)
+                                                {
+                                                    <b>Nro. de Documento</b>
+                                                }
+                                                else
+                                                {
+                                                    <b>Ingrese su Nro. de Documento</b>
+                                                }
+                                            </h4>
+                                            @if (ViewBag.reclamacion.desistimiento == 1)
+                                            {
+                                                <div class="alert alert-danger" role="alert">ESTA RECLAMACIÓN SE ENCUENTRA DESESTIMADA</div>
+                                            }
+                                            else
+                                            {
+                                                <button class="btn-success btn" id="btnEnviarDesistimiento">Enviar Desistimiento</button>
+                                            }
+                                        </div>
+                                        <br />
+                                    </div>
+                                    <div class="col-md-3"></div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <input name="id" id="id" value="0" type="hidden" />
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+@section js
+{
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+    <script type="text/javascript">
+        logoSala = "@Html.Raw(ViewBag.logoSala)"
+        hashReclamacion = "@Html.Raw(ViewBag.reclamacion.hash)"
+        documentoDesistido = "@Html.Raw(ViewBag.reclamacion.desistimiento)"
+        base64Desistimiento = "@Html.Raw(ViewBag.reclamacion.firma_desistimientobase64)"
+        nroDocumentoDesistimiento = "@Html.Raw(ViewBag.reclamacion.documento)"
+    </script>
+    <script src="~/Content/assets/viewsjs/Reclamaciones/ReclamacionesDesistimientoVista.js"></script>
+}

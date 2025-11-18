@@ -1,0 +1,773 @@
+﻿@model CapaEntidad.Progresivo.AlertaProgresivoEntidad
+
+@{
+    Layout = null;
+
+    var detalleActual = Model.Detalle.Where(x => x.ProActual == true).FirstOrDefault();
+    var detalleAnterior = Model.Detalle.Where(x => x.ProActual == false).FirstOrDefault();
+    var diferentes = (List<CapaPresentacion.Utilitarios.ResultadoEquals>)@ViewData["diferentes"];
+}
+
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+    <title>
+    </title>
+    <!--[if !mso]><!-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--<![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
+        #outlook a {
+            padding: 0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+
+        table,
+        td {
+            border-collapse: collapse;
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+
+        img {
+            border: 0;
+            height: auto;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
+            -ms-interpolation-mode: bicubic;
+        }
+
+        p {
+            display: block;
+            margin: 13px 0;
+        }
+    </style>
+    <!--[if mso]>
+          <noscript>
+          <xml>
+          <o:OfficeDocumentSettings>
+            <o:AllowPNG/>
+            <o:PixelsPerInch>96</o:PixelsPerInch>
+          </o:OfficeDocumentSettings>
+          </xml>
+          </noscript>
+          <![endif]-->
+    <!--[if lte mso 11]>
+          <style type="text/css">
+            .mj-outlook-group-fix { width:100% !important; }
+          </style>
+          <![endif]-->
+    <!--[if !mso]><!-->
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700" rel="stylesheet" type="text/css">
+    <style type="text/css">
+        @@import url(https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700);
+    </style>
+    <!--<![endif]-->
+    <style type="text/css">
+        @@media only screen and (min-width:480px) {
+            .mj-column-per-100 {
+                width: 100% !important;
+                max-width: 100%;
+            }
+        }
+    </style>
+    <style media="screen and (min-width:480px)">
+        .moz-text-html .mj-column-per-100 {
+            width: 100% !important;
+            max-width: 100%;
+        }
+    </style>
+    <style type="text/css">
+    </style>
+    <style type="text/css">
+        tr.tr-indicator {
+            background-color: #FFFFFF;
+        }
+
+            tr.tr-indicator td {
+                padding: 1px 5px;
+            }
+
+            tr.tr-indicator:nth-child(even) {
+                background-color: #FFFFFF;
+            }
+
+            tr.tr-indicator:nth-child(odd) {
+                background-color: #E7E7E7;
+            }
+    </style>
+</head>
+
+<body style="word-spacing:normal;background-color:#143958;">
+    <div style="background-color:#143958;">
+        <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600" bgcolor="#b1b9d1" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+        <div style="background:#b1b9d1;background-color:#b1b9d1;margin:0px auto;max-width:600px;">
+            <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#b1b9d1;background-color:#b1b9d1;width:100%;">
+                <tbody>
+                    <tr>
+                        <td style="direction:ltr;font-size:0px;padding:20px 0;text-align:center;">
+                            <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" width="600px" ><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+                            <div style="margin:0px auto;max-width:600px;">
+                                <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
+                                    <tbody>
+                                        <tr>
+                                            <td style="direction:ltr;font-size:0px;padding:20px 0;padding-bottom:0px;text-align:center;">
+                                                <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:600px;" ><![endif]-->
+                                                <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                                                    <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td align="center" style="font-size:0px;padding:10px 25px;padding-bottom:0px;word-break:break-word;">
+                                                                    <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:center;color:#0E152A;">
+                                                                        <h1 style="margin:0">Alerta Registro Progresivo</h1>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                                                    <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:16px;line-height:1;text-align:left;color:#0E152A;">
+                                                                        <p><strong>Sala:</strong> @Model.SalaNombre</p>
+                                                                        <p><strong>Progresivo:</strong> @Model.ProgresivoNombre</p>
+                                                                        <p><strong>Descripción:</strong> @Model.Descripcion</p>
+                                                                        <p><strong>Fecha:</strong> @Model.FechaRegistro</p>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <!--[if mso | IE]></td></tr></table><![endif]-->
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            @if (detalleActual != null)
+                            {
+                                <!--[if mso | IE]></td></tr></table></td></tr><tr><td class="" width="600px" ><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+                                <div style="margin:0px auto;max-width:600px;">
+                                    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
+                                        <tbody>
+                                            <tr>
+                                                <td style="direction:ltr;font-size:0px;padding:20px 0;padding-top:0px;text-align:center;">
+                                                    <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:600px;" ><![endif]-->
+                                                    <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                                                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                                                        <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:18px;font-weight:700;line-height:1;text-align:left;color:#00226C;">Progresivo Actual</div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="left" style="font-size:0px;padding:10px 25px;padding-top:0px;padding-bottom:0px;word-break:break-word;">
+                                                                        <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:16px;line-height:1;text-align:left;color:#0E152A;">
+
+                                                                            @if (diferentes.Any(x => x.Campo.Equals("Simbolo")))
+                                                                            {
+                                                                                <p><strong>Moneda:</strong> <span style="background-color:#AFF4AA">@detalleActual.Simbolo</span></p>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <p><strong>Moneda:</strong> @detalleActual.Simbolo</p>
+                                                                            }
+
+                                                                            @if (diferentes.Any(x => x.Campo.Equals("DuracionPantalla")))
+                                                                            {
+                                                                                <p><strong>Duración pantalla:</strong> <span style="background-color:#AFF4AA">@detalleActual.DuracionPantalla segundos</span></p>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <p><strong>Duración pantalla:</strong> @detalleActual.DuracionPantalla segundos</p>
+                                                                            }
+
+                                                                            @if (diferentes.Any(x => x.Campo.Equals("NroJugadores")))
+                                                                            {
+                                                                                <p><strong>Número de jugadores:</strong> <span style="background-color:#AFF4AA">@detalleActual.NroJugadores</span></p>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <p><strong>Número de jugadores:</strong> @detalleActual.NroJugadores</p>
+                                                                            }
+
+                                                                            @if (diferentes.Any(x => x.Campo.Equals("NroPozos")))
+                                                                            {
+                                                                                <p><strong>Número de pozos:</strong> <span style="background-color:#AFF4AA">@detalleActual.NroPozos</span></p>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <p><strong>Número de pozos:</strong> @detalleActual.NroPozos</p>
+                                                                            }
+
+                                                                            @if (diferentes.Any(x => x.Campo.Equals("ProgresivoImagenNombre")))
+                                                                            {
+                                                                                <p><strong>Imagen:</strong> <span style="background-color:#AFF4AA">@detalleActual.ProgresivoImagenNombre</span></p>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <p><strong>Imagen:</strong> @detalleActual.ProgresivoImagenNombre</p>
+                                                                            }
+
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                                                        <table cellpadding="0" cellspacing="0" width="100%" border="0" style="color:#000000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;border:1px solid #00226C;">
+                                                                            <tr style="background-color:#00226C;color:#FFFFFF">
+                                                                                <th></th>
+                                                                                @foreach (var pozo in detalleActual.Pozos)
+                                                                                {
+                                                                                    if (pozo.TipoPozo == 1)
+                                                                                    {
+                                                                                        <th align="center">P. Superior</th>
+                                                                                    }
+
+                                                                                    if (pozo.TipoPozo == 2)
+                                                                                    {
+                                                                                        <th align="center">P. Medio</th>
+                                                                                    }
+
+                                                                                    if (pozo.TipoPozo == 3)
+                                                                                    {
+                                                                                        <th align="center">P. Inferior</th>
+                                                                                    }
+                                                                                }
+                                                                            </tr>
+                                                                            <tr class="tr-indicator">
+                                                                                <td>Premio base</td>
+                                                                                @{ int indexP = 1; }
+
+                                                                                @foreach (var pozo in detalleActual.Pozos)
+                                                                                {
+                                                                                    if (diferentes.Any(x => x.Campo.Equals("MontoBase") && x.Pozo == indexP))
+                                                                                    {
+                                                                                        <td align="center" style="background-color:#AFF4AA">@pozo.MontoBase</td>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <td align="center">@pozo.MontoBase</td>
+                                                                                    }
+
+                                                                                    indexP++;
+                                                                                }
+                                                                            </tr>
+                                                                            <tr class="tr-indicator">
+                                                                                <td>Premio mínimo</td>
+                                                                                @{ indexP = 1; }
+
+                                                                                @foreach (var pozo in detalleActual.Pozos)
+                                                                                {
+                                                                                    if (diferentes.Any(x => x.Campo.Equals("MontoMin") && x.Pozo == indexP))
+                                                                                    {
+                                                                                        <td align="center" style="background-color:#AFF4AA">@pozo.MontoMin</td>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <td align="center">@pozo.MontoMin</td>
+                                                                                    }
+
+                                                                                    indexP++;
+                                                                                }
+                                                                            </tr>
+                                                                            <tr class="tr-indicator">
+                                                                                <td>Premio máximo</td>
+                                                                                @{ indexP = 1; }
+
+                                                                                @foreach (var pozo in detalleActual.Pozos)
+                                                                                {
+                                                                                    if (diferentes.Any(x => x.Campo.Equals("MontoMax") && x.Pozo == indexP))
+                                                                                    {
+                                                                                        <td align="center" style="background-color:#AFF4AA">@pozo.MontoMax</td>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <td align="center">@pozo.MontoMax</td>
+                                                                                    }
+
+                                                                                    indexP++;
+                                                                                }
+                                                                            </tr>
+                                                                            <tr class="tr-indicator">
+                                                                                <td>Inc. pozo (Ej. 0.01 = 1%)</td>
+                                                                                @{ indexP = 1; }
+
+                                                                                @foreach (var pozo in detalleActual.Pozos)
+                                                                                {
+                                                                                    if (diferentes.Any(x => x.Campo.Equals("IncPozo1") && x.Pozo == indexP))
+                                                                                    {
+                                                                                        <td align="center" style="background-color:#AFF4AA">@pozo.IncPozo1</td>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <td align="center">@pozo.IncPozo1</td>
+                                                                                    }
+
+                                                                                    indexP++;
+                                                                                }
+                                                                            </tr>
+                                                                            <tr class="tr-indicator">
+                                                                                <td>Restricción de Apuesta (Créditos)</td>
+                                                                                @{ indexP = 1; }
+
+                                                                                @foreach (var pozo in detalleActual.Pozos)
+                                                                                {
+                                                                                    if (diferentes.Any(x => x.Campo.Equals("RsApuesta") && x.Pozo == indexP))
+                                                                                    {
+                                                                                        <td align="center" style="background-color:#AFF4AA">@pozo.RsApuesta</td>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <td align="center">@pozo.RsApuesta</td>
+                                                                                    }
+
+                                                                                    indexP++;
+                                                                                }
+                                                                            </tr>
+                                                                            <tr class="tr-indicator">
+                                                                                <td>Nro de Jugadores</td>
+                                                                                @{ indexP = 1; }
+
+                                                                                @foreach (var pozo in detalleActual.Pozos)
+                                                                                {
+                                                                                    if (diferentes.Any(x => x.Campo.Equals("RsJugadores") && x.Pozo == indexP))
+                                                                                    {
+                                                                                        <td align="center" style="background-color:#AFF4AA">@pozo.RsJugadores</td>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <td align="center">@pozo.RsJugadores</td>
+                                                                                    }
+
+                                                                                    indexP++;
+                                                                                }
+                                                                            </tr>
+                                                                            <tr class="tr-indicator">
+                                                                                <td>Monto oculto mínimo</td>
+                                                                                @{ indexP = 1; }
+
+                                                                                @foreach (var pozo in detalleActual.Pozos)
+                                                                                {
+                                                                                    if (diferentes.Any(x => x.Campo.Equals("MontoOcMin") && x.Pozo == indexP))
+                                                                                    {
+                                                                                        <td align="center" style="background-color:#AFF4AA">@pozo.MontoOcMin</td>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <td align="center">@pozo.MontoOcMin</td>
+                                                                                    }
+
+                                                                                    indexP++;
+                                                                                }
+                                                                            </tr>
+                                                                            <tr class="tr-indicator">
+                                                                                <td>Monto oculto máximo</td>
+                                                                                @{ indexP = 1; }
+
+                                                                                @foreach (var pozo in detalleActual.Pozos)
+                                                                                {
+                                                                                    if (diferentes.Any(x => x.Campo.Equals("MontoOcMax") && x.Pozo == indexP))
+                                                                                    {
+                                                                                        <td align="center" style="background-color:#AFF4AA">@pozo.MontoOcMax</td>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <td align="center">@pozo.MontoOcMax</td>
+                                                                                    }
+
+                                                                                    indexP++;
+                                                                                }
+                                                                            </tr>
+                                                                            <tr class="tr-indicator">
+                                                                                <td>Inc. pozo oculto (Ej. 0.01 = 1%)</td>
+                                                                                @{ indexP = 1; }
+
+                                                                                @foreach (var pozo in detalleActual.Pozos)
+                                                                                {
+                                                                                    if (diferentes.Any(x => x.Campo.Equals("IncOcPozo1") && x.Pozo == indexP))
+                                                                                    {
+                                                                                        <td align="center" style="background-color:#AFF4AA">@pozo.IncOcPozo1</td>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <td align="center">@pozo.IncOcPozo1</td>
+                                                                                    }
+
+                                                                                    indexP++;
+                                                                                }
+                                                                            </tr>
+                                                                            <tr class="tr-indicator">
+                                                                                <td>Dificultad</td>
+                                                                                @{ indexP = 1; }
+
+                                                                                @foreach (var pozo in detalleActual.Pozos)
+                                                                                {
+                                                                                    if (diferentes.Any(x => x.Campo.Equals("Dificultad_desc") && x.Pozo == indexP))
+                                                                                    {
+                                                                                        <td align="center" style="background-color:#AFF4AA">@pozo.Dificultad_desc</td>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <td align="center">@pozo.Dificultad_desc</td>
+                                                                                    }
+
+                                                                                    indexP++;
+                                                                                }
+                                                                            </tr>
+                                                                            <tr class="tr-indicator">
+                                                                                <td>Pozo actual</td>
+                                                                                @{ indexP = 1; }
+
+                                                                                @foreach (var pozo in detalleActual.Pozos)
+                                                                                {
+                                                                                    if (diferentes.Any(x => x.Campo.Equals("Actual") && x.Pozo == indexP))
+                                                                                    {
+                                                                                        <td align="center" style="background-color:#AFF4AA">@pozo.Actual</td>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <td align="center">@pozo.Actual</td>
+                                                                                    }
+
+                                                                                    indexP++;
+                                                                                }
+                                                                            </tr>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <!--[if mso | IE]></td></tr></table><![endif]-->
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            }
+
+                            @if (detalleAnterior != null)
+                            {
+                                <!--[if mso | IE]></td></tr></table></td></tr><tr><td class="" width="600px" ><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+                                <div style="margin:0px auto;max-width:600px;">
+                                    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
+                                        <tbody>
+                                            <tr>
+                                                <td style="direction:ltr;font-size:0px;padding:20px 0;padding-top:0px;text-align:center;">
+                                                    <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:600px;" ><![endif]-->
+                                                    <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                                                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                                                        <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:18px;font-weight:700;line-height:1;text-align:left;color:#D60F10;">Progresivo Anterior</div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="left" style="font-size:0px;padding:10px 25px;padding-top:0px;padding-bottom:0px;word-break:break-word;">
+                                                                        <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:16px;line-height:1;text-align:left;color:#0E152A;">
+
+                                                                            @if (diferentes.Any(x => x.Campo.Equals("Simbolo")))
+                                                                            {
+                                                                                <p><strong>Moneda:</strong> <span style="background-color:#F4AFAA">@detalleAnterior.Simbolo</span></p>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <p><strong>Moneda:</strong> @detalleAnterior.Simbolo</p>
+                                                                            }
+
+                                                                            @if (diferentes.Any(x => x.Campo.Equals("DuracionPantalla")))
+                                                                            {
+                                                                                <p><strong>Duración pantalla:</strong> <span style="background-color:#F4AFAA">@detalleAnterior.DuracionPantalla segundos</span></p>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <p><strong>Duración pantalla:</strong> @detalleAnterior.DuracionPantalla segundos</p>
+                                                                            }
+
+                                                                            @if (diferentes.Any(x => x.Campo.Equals("NroJugadores")))
+                                                                            {
+                                                                                <p><strong>Número de jugadores:</strong> <span style="background-color:#F4AFAA">@detalleAnterior.NroJugadores</span></p>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <p><strong>Número de jugadores:</strong> @detalleAnterior.NroJugadores</p>
+                                                                            }
+
+                                                                            @if (diferentes.Any(x => x.Campo.Equals("NroPozos")))
+                                                                            {
+                                                                                <p><strong>Número de pozos:</strong> <span style="background-color:#F4AFAA">@detalleAnterior.NroPozos</span></p>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <p><strong>Número de pozos:</strong> @detalleAnterior.NroPozos</p>
+                                                                            }
+
+                                                                            @if (diferentes.Any(x => x.Campo.Equals("ProgresivoImagenNombre")))
+                                                                            {
+                                                                                <p><strong>Imagen:</strong> <span style="background-color:#F4AFAA">@detalleAnterior.ProgresivoImagenNombre</span></p>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <p><strong>Imagen:</strong> @detalleAnterior.ProgresivoImagenNombre</p>
+                                                                            }
+
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                                                        <table cellpadding="0" cellspacing="0" width="100%" border="0" style="color:#000000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;border:1px solid #D60F10;">
+                                                                            <tr style="background-color:#D60F10;color:#FFFFFF">
+                                                                                <th></th>
+                                                                                @foreach (var pozo in detalleAnterior.Pozos)
+                                                                                {
+                                                                                    if (pozo.TipoPozo == 1)
+                                                                                    {
+                                                                                        <th align="center">P. Superior</th>
+                                                                                    }
+
+                                                                                    if (pozo.TipoPozo == 2)
+                                                                                    {
+                                                                                        <th align="center">P. Medio</th>
+                                                                                    }
+
+                                                                                    if (pozo.TipoPozo == 3)
+                                                                                    {
+                                                                                        <th align="center">P. Inferior</th>
+                                                                                    }
+                                                                                }
+                                                                            </tr>
+                                                                            <tr class="tr-indicator">
+                                                                                <td>Premio base</td>
+                                                                                @{ int indexP = 1; }
+
+                                                                                @foreach (var pozo in detalleAnterior.Pozos)
+                                                                                {
+                                                                                    if (diferentes.Any(x => x.Campo.Equals("MontoBase") && x.Pozo == indexP))
+                                                                                    {
+                                                                                        <td align="center" style="background-color:#F4AFAA">@pozo.MontoBase</td>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <td align="center">@pozo.MontoBase</td>
+                                                                                    }
+
+                                                                                    indexP++;
+                                                                                }
+                                                                            </tr>
+                                                                            <tr class="tr-indicator">
+                                                                                <td>Premio mínimo</td>
+                                                                                @{ indexP = 1; }
+
+                                                                                @foreach (var pozo in detalleAnterior.Pozos)
+                                                                                {
+                                                                                    if (diferentes.Any(x => x.Campo.Equals("MontoMin") && x.Pozo == indexP))
+                                                                                    {
+                                                                                        <td align="center" style="background-color:#F4AFAA">@pozo.MontoMin</td>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <td align="center">@pozo.MontoMin</td>
+                                                                                    }
+
+                                                                                    indexP++;
+                                                                                }
+                                                                            </tr>
+                                                                            <tr class="tr-indicator">
+                                                                                <td>Premio máximo</td>
+                                                                                @{ indexP = 1; }
+
+                                                                                @foreach (var pozo in detalleAnterior.Pozos)
+                                                                                {
+                                                                                    if (diferentes.Any(x => x.Campo.Equals("MontoMax") && x.Pozo == indexP))
+                                                                                    {
+                                                                                        <td align="center" style="background-color:#F4AFAA">@pozo.MontoMax</td>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <td align="center">@pozo.MontoMax</td>
+                                                                                    }
+
+                                                                                    indexP++;
+                                                                                }
+                                                                            </tr>
+                                                                            <tr class="tr-indicator">
+                                                                                <td>Inc. pozo (Ej. 0.01 = 1%)</td>
+                                                                                @{ indexP = 1; }
+
+                                                                                @foreach (var pozo in detalleAnterior.Pozos)
+                                                                                {
+                                                                                    if (diferentes.Any(x => x.Campo.Equals("IncPozo1") && x.Pozo == indexP))
+                                                                                    {
+                                                                                        <td align="center" style="background-color:#F4AFAA">@pozo.IncPozo1</td>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <td align="center">@pozo.IncPozo1</td>
+                                                                                    }
+
+                                                                                    indexP++;
+                                                                                }
+                                                                            </tr>
+                                                                            <tr class="tr-indicator">
+                                                                                <td>Restricción de Apuesta (Créditos)</td>
+                                                                                @{ indexP = 1; }
+
+                                                                                @foreach (var pozo in detalleAnterior.Pozos)
+                                                                                {
+                                                                                    if (diferentes.Any(x => x.Campo.Equals("RsApuesta") && x.Pozo == indexP))
+                                                                                    {
+                                                                                        <td align="center" style="background-color:#F4AFAA">@pozo.RsApuesta</td>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <td align="center">@pozo.RsApuesta</td>
+                                                                                    }
+
+                                                                                    indexP++;
+                                                                                }
+                                                                            </tr>
+                                                                            <tr class="tr-indicator">
+                                                                                <td>Nro de Jugadores</td>
+                                                                                @{ indexP = 1; }
+
+                                                                                @foreach (var pozo in detalleAnterior.Pozos)
+                                                                                {
+                                                                                    if (diferentes.Any(x => x.Campo.Equals("RsJugadores") && x.Pozo == indexP))
+                                                                                    {
+                                                                                        <td align="center" style="background-color:#F4AFAA">@pozo.RsJugadores</td>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <td align="center">@pozo.RsJugadores</td>
+                                                                                    }
+
+                                                                                    indexP++;
+                                                                                }
+                                                                            </tr>
+                                                                            <tr class="tr-indicator">
+                                                                                <td>Monto oculto mínimo</td>
+                                                                                @{ indexP = 1; }
+
+                                                                                @foreach (var pozo in detalleAnterior.Pozos)
+                                                                                {
+                                                                                    if (diferentes.Any(x => x.Campo.Equals("MontoOcMin") && x.Pozo == indexP))
+                                                                                    {
+                                                                                        <td align="center" style="background-color:#F4AFAA">@pozo.MontoOcMin</td>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <td align="center">@pozo.MontoOcMin</td>
+                                                                                    }
+
+                                                                                    indexP++;
+                                                                                }
+                                                                            </tr>
+                                                                            <tr class="tr-indicator">
+                                                                                <td>Monto oculto máximo</td>
+                                                                                @{ indexP = 1; }
+
+                                                                                @foreach (var pozo in detalleAnterior.Pozos)
+                                                                                {
+                                                                                    if (diferentes.Any(x => x.Campo.Equals("MontoOcMax") && x.Pozo == indexP))
+                                                                                    {
+                                                                                        <td align="center" style="background-color:#F4AFAA">@pozo.MontoOcMax</td>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <td align="center">@pozo.MontoOcMax</td>
+                                                                                    }
+
+                                                                                    indexP++;
+                                                                                }
+                                                                            </tr>
+                                                                            <tr class="tr-indicator">
+                                                                                <td>Inc. pozo oculto (Ej. 0.01 = 1%)</td>
+                                                                                @{ indexP = 1; }
+
+                                                                                @foreach (var pozo in detalleAnterior.Pozos)
+                                                                                {
+                                                                                    if (diferentes.Any(x => x.Campo.Equals("IncOcPozo1") && x.Pozo == indexP))
+                                                                                    {
+                                                                                        <td align="center" style="background-color:#F4AFAA">@pozo.IncOcPozo1</td>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <td align="center">@pozo.IncOcPozo1</td>
+                                                                                    }
+
+                                                                                    indexP++;
+                                                                                }
+                                                                            </tr>
+                                                                            <tr class="tr-indicator">
+                                                                                <td>Dificultad</td>
+                                                                                @{ indexP = 1; }
+
+                                                                                @foreach (var pozo in detalleAnterior.Pozos)
+                                                                                {
+                                                                                    if (diferentes.Any(x => x.Campo.Equals("Dificultad_desc") && x.Pozo == indexP))
+                                                                                    {
+                                                                                        <td align="center" style="background-color:#F4AFAA">@pozo.Dificultad_desc</td>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <td align="center">@pozo.Dificultad_desc</td>
+                                                                                    }
+
+                                                                                    indexP++;
+                                                                                }
+                                                                            </tr>
+                                                                            <tr class="tr-indicator">
+                                                                                <td>Pozo actual</td>
+                                                                                @{ indexP = 1; }
+
+                                                                                @foreach (var pozo in detalleAnterior.Pozos)
+                                                                                {
+                                                                                    if (diferentes.Any(x => x.Campo.Equals("Actual") && x.Pozo == indexP))
+                                                                                    {
+                                                                                        <td align="center" style="background-color:#F4AFAA">@pozo.Actual</td>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <td align="center">@pozo.Actual</td>
+                                                                                    }
+
+                                                                                    indexP++;
+                                                                                }
+                                                                            </tr>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <!--[if mso | IE]></td></tr></table><![endif]-->
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            }
+                            <!--[if mso | IE]></td></tr></table></td></tr></table><![endif]-->
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--[if mso | IE]></td></tr></table><![endif]-->
+    </div>
+</body>
+
+</html>

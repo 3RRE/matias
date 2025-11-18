@@ -1,0 +1,84 @@
+﻿@using S3k.Utilitario
+@using CapaEntidad.BOT.Entities
+@model BOT_ContactoEntidad
+@{
+    Layout = null;
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+    bool isEdit = Model.Existe();
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12" id="div">
+        @if(!isEdit) {
+            <div class="col-sm-12">
+                <div class="input-group form-group">
+                    <span class="input-group-addon">
+                        DNI
+                    </span>
+                    <input type="text" class="form-control input-sm" id="dni" placeholder="Bscar empleado por DNI">
+                    <span class="input-group-addon" style="margin: 0; padding: 0;">
+                        <button class="btn btn-primary btn-sm" id="btnBuscarEmpleado">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        }
+        @if(isEdit) {
+            <input type="hidden" id="IdCargo" name="IdCargo" value="@Model.IdCargo" />
+        }
+        <form id="form_registro" role="form">
+            <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+            <div class="col-md-12 col-sm-12">
+                <div class="input-group form-group">
+                    <span class="input-group-addon">
+                        Cargo
+                    </span>
+                    <select class="form-control input-sm" id="cboCargo" name="IdCargo"></select>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            Nombre
+                        </span>
+                        <input type="text" class="form-control input-sm" id="Nombre" value="@Model.Nombre" name="Nombre" placeholder="Nombre del Contacto">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            Código País
+                        </span>
+                        <input type="text" class="form-control input-sm" id="CodigoPaisCelular" value="@(string.IsNullOrWhiteSpace(Model.CodigoPaisCelular) ? "51" : Model.CodigoPaisCelular)" name="CodigoPaisCelular" placeholder="Solo números (51)">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            Celular
+                        </span>
+                        <input type="text" class="form-control input-sm" id="Celular" value="@Model.Celular" name="Celular" placeholder="Número de celular del contacto">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            Correo
+                        </span>
+                        <input type="text" class="form-control input-sm" id="Correo" value="@Model.Correo" name="Correo" placeholder="Correo Institucional">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="~/Content/assets/viewsjs/Bot/Contacto/contactoGuardar.js?v=@fecha_archivos"></script>

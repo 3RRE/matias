@@ -1,0 +1,119 @@
+﻿@{
+    ViewBag.Title = "Nuevo Dispositivo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section css
+{
+    <style type="text/css">
+        .help-block {
+            display: none !important;
+        }
+    </style>
+}
+    <body oncopy="return false" onpaste="return false">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="block">
+                    <div class="block-content-outer">
+                        <div class="block-content-inner">
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h1>
+                                        <span aria-hidden="true" class="icon icon-shield"></span>
+                                        <span class="main-text">
+                                            Nuevo Dispositivo
+                                        </span>
+                                    </h1>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="block">
+                    <div class="block-content-outer">
+                        <div class="block-content-inner">
+
+                            <div class="row">
+
+                                <div class="col-md-4 col-md-offset-4 col-sm-4  col-xs-12">
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12">
+                                            <button type="button" id="btnListado" class="btn btn-success btn-sm col-md-12 col-xs-12">
+                                                <span class="glyphicon glyphicon-file"></span>
+                                                Listado
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4  col-xs-12">
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12">
+                                            <button type="button" id="btnGuardar" class="btn btn-primary btn-sm col-md-12 col-xs-12">
+                                                <span class="glyphicon glyphicon-file"></span>
+                                                Guardar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <div class="block-content-outer">
+                        <div class="block-content-inner">
+                            <div class="cardMachine" style="margin-bottom:15px;">
+
+                                <div class="row">
+                                    <div class="col-md-12">
+
+                                        <form class="medium bv-form" role="form" id="frmNuevo" method="post" action="#" novalidate="novalidate">
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <label for="txtMac">MAC</label>
+                                                    <input onkeypress="return check(event)" type="text" name="Mac" class="form-control input-sm" id="txtMac" placeholder="MAC">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group cbogroup">
+                                                    <label for="cboEstado">Estado</label>
+                                                    <div class="input-group col-md-12 col-sm-12 col-xs-12">
+                                                        <select class="form-control input-sm" name="EsActivo" id="cboEstado">
+                                                            <option value="">--Seleccione--</option>
+                                                            <option value="1">Activo</option>
+                                                            <option value="0">InActivo</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                </div>
+            </div>
+
+        </div>
+    </body>
+
+
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/Dispositivo/DispositivoInsertarVista.js"></script>
+}

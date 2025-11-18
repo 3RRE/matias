@@ -1,0 +1,368 @@
+﻿
+@{
+    ViewBag.Title = "ReporteEncuesta";
+}
+<style>
+    .main-score-encuesta {
+        font-size: 78px;
+        font-weight: bold;
+        color: #fe910c;
+    }
+
+    .snapshot-bars {
+        margin-top: 20px;
+    }
+
+    .bar-row {
+        display: flex;
+        align-items: center;
+        margin-bottom: 12px;
+    }
+
+    .bar-label {
+        width: 120px;
+        text-align: right;
+        margin-right: 10px;
+        font-size: 14px;
+        color: #555;
+    }
+
+        .bar-label .count {
+            font-weight: bold;
+            display: block;
+            font-size: 22px;
+            color: #333;
+        }
+
+    .bar-container {
+        flex: 1;
+        background: #f0f0f0;
+        border-radius: 3px;
+        margin-right: 10px;
+        overflow: hidden;
+        height: 50px;
+    }
+
+    .bar {
+        line-height: 28px;
+        color: #fff;
+        font-weight: bold;
+        height: 100%;
+        padding-right: 8px;
+        display: grid;
+        place-items: center;
+    }
+
+    .bar-ultra-danger {
+        background: #F55454; /* rojo */
+    }
+
+    .bar-danger {
+        background: #fe910c; /* rojo */
+    }
+
+    .bar-warning {
+        background: #EBC317; /* amarillo */
+        color: #333;
+    }
+
+    .bar-success {
+        background: #93e143; /* verde */
+    }
+
+    .bar-ultra-success {
+        background: #76CD1e; /* verde */
+    }
+
+    .bar-trend {
+        width: 50px;
+        font-weight: bold;
+        font-size: 13px;
+    }
+
+    .nav-tabs {
+        margin-bottom: unset !important;
+    }
+        /* Estilos generales de los tabs */
+        .nav-tabs > li > a {
+            color: #333 !important;
+            font-weight: 500 !important;
+            padding: 10px 15px !important;
+            background-color: #f9f9f9 !important; /* fondo base */
+            transition: all 0.3s ease !important;
+        }
+
+            /* Hover */
+            .nav-tabs > li > a:hover,
+            .nav-tabs > li > a:focus {
+                background-color: #cce5ff !important; /* azul claro */
+                color: #007bff !important;
+            }
+
+        /* Tab activo */
+        .nav-tabs > li.active > a,
+        .nav-tabs > li.active > a:hover,
+        .nav-tabs > li.active > a:focus {
+            background-color: #007bff !important; /* azul principal */
+            color: #fff !important;
+            border: none !important;
+        }
+
+    /* Dropdown dentro de los tabs */
+    .dropdown-menu {
+        /*background: #f9f9f9 !important;*/
+    }
+
+    .nav-tabs .dropdown-menu > li > a {
+        padding: 8px 15px !important;
+        color: #333 !important;
+        background-color: #fff !important;
+        transition: background-color 0.3s ease !important;
+    }
+
+        .nav-tabs .dropdown-menu > li > a:hover {
+            background-color: #007bff !important;
+            color: #fff !important;
+        }
+
+    .content-sub-tabs {
+        background: white !important;
+        padding: 10px !important;
+        display: grid !important;
+        place-items: center !important;
+    }
+
+        .content-sub-tabs .tab-pane {
+            max-width: 75vw !important;
+            width: 100% !important;
+            text-shadow: none !important;
+            border: 1px solid #c1c1c1;
+            padding: 25px;
+        }
+
+
+    .enc_respuestas {
+        font-size: 25px;
+        font-weight: bold;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+        .enc_respuestas p {
+            margin: unset !important;
+        }
+
+    .enc_indicador {
+        display: flex;
+        align-items: start;
+        gap: 15px;
+    }
+
+    @@media (max-width: 1199px) {
+        .bars-container {
+            margin-top: 80px;
+        }
+
+        .bar-label {
+            text-align: left;
+        }
+    }
+</style>
+
+<div class="col-md-12" style="padding:unset;" id="filtros-container">
+    <div class="block">
+        <div class="block-content-outer">
+            <div class="block-content-inner">
+                <div class="row" id="filtros">
+                    <!-- Fecha inicio -->
+                    <div class="col-md-3 col-sm-3">
+                        <div class="input-group">
+                            <span class="input-group-addon">FECHA DE INICIO</span>
+                            <input type="text" id="startDate" class="form-control dateOnly_" placeholder="Desde" />
+                            <span class="input-group-addon input-group-icon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Fecha fin -->
+                    <div class="col-md-3 col-sm-3">
+                        <div class="input-group">
+                            <span class="input-group-addon">FECHA DE FIN</span>
+                            <input type="text" id="endDate" class="form-control dateOnly_" placeholder="Hasta" />
+                            <span class="input-group-addon input-group-icon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Select Sala -->
+                    <div class="col-md-2 col-sm-3">
+                        <div class="input-group">
+                            <span class="input-group-addon">Sala</span>
+                            <select id="cboSala" class="form-control"></select>
+                        </div>
+                    </div>
+
+                    <!-- Botón buscar -->
+                    <div class="col-md-2 col-sm-3">
+                        <button id="applyFilter" class="btn btn-primary btn-block">Buscar</button>
+                    </div>
+                    <div class="col-md-2 col-sm-3">
+                        <button id="btnExcel" class="btn btn-success btn-block">Excel</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="mensajeSinSalas" class="alert alert-warning text-center mt-3" style="display:none;">
+    No tiene salas asignadas
+</div>
+
+<div id="uiContainer">
+
+
+    <!-- NAVIGATION -->
+    <ul class="nav nav-tabs" role="tablist" style="margin:unset;">
+
+        <!-- Indicadores -->
+        <li class="dropdown tab-encuesta">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                Indicadores <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="#tab-csat" role="tab" data-toggle="tab" id="link-tab-csat">CSAT</a></li>
+                <li><a href="#tab-nps" role="tab" data-toggle="tab" id="link-tab-nps">NPS</a></li>
+            </ul>
+        </li>
+
+        <!-- Atributos -->
+        <li class="dropdown tab-encuesta">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                Atributos <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" id="dropdown-atributos">
+
+                @*<li><a href="#tab-atributo" role="tab" data-toggle="tab" id="link-tab-amabilidad" data-indicador="AMABILIDAD">Amabilidad</a></li>
+                    <li><a href="#tab-atributo" role="tab" data-toggle="tab" id="link-tab-soporte" data-indicador="SOPORTE">Soporte</a></li>
+                    <li><a href="#tab-atributo" role="tab" data-toggle="tab" id="link-tab-shows" data-indicador="SHOWS">Shows</a></li>
+                    <li><a href="#tab-atributo" role="tab" data-toggle="tab" id="link-tab-alimentos" data-indicador="ALIMENTOS">Alimentos</a></li>
+                    <li><a href="#tab-atributo" role="tab" data-toggle="tab" id="link-tab-cortesias" data-indicador="CORTESIAS">Cortesías</a></li>
+                    <li><a href="#tab-atributo" role="tab" data-toggle="tab" id="link-tab-promociones" data-indicador="PROMOCIONES">Promociones</a></li>
+                    <li><a href="#tab-atributo" role="tab" data-toggle="tab" id="link-tab-sorteos" data-indicador="SORTEOS">Sorteos</a></li>
+                    <li><a href="#tab-atributo" role="tab" data-toggle="tab" id="link-tab-horarios" data-indicador="HORARIOS">Horarios</a></li>
+                    <li><a href="#tab-atributo" role="tab" data-toggle="tab" id="link-tab-caja" data-indicador="CAJA">Atención Caja</a></li>
+                    <li><a href="#tab-atributo" role="tab" data-toggle="tab" id="link-tab-variedad" data-indicador="VARIEDAD">Variedad</a></li>
+                    <li><a href="#tab-atributo" role="tab" data-toggle="tab" id="link-tab-ruleta" data-indicador="RULETA">Ruleta</a></li>
+                    <li><a href="#tab-atributo" role="tab" data-toggle="tab" id="link-tab-derby" data-indicador="DERBY">Derby</a></li>*@
+            </ul>
+
+        </li>
+
+        <!-- Comentarios -->
+        <li class="dropdown tab-encuesta">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                Comentarios <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+
+                <li><a href="#tab-gestion-npss" id="tab-gestion-nps" role="tab" data-toggle="tab">Gestión NPS</a></li>
+                @*<li><a href="#tab-gestion-csats" role="tab" data-toggle="tab">Gestión CSAT</a></li>*@
+            </ul>
+        </li>
+
+        <!-- Text Analytics -->
+        @*<li>
+                <a href="#tab-text-analytics " role="tab" data-toggle="tab" class="tab-encuesta">Text Analytics</a>
+            </li>*@
+
+        <!-- Nube de Palabras -->
+        @*<li>
+                <a href="#tab-nube" role="tab" data-toggle="tab" class="tab-encuesta">Nube Palabras</a>
+            </li>*@
+
+    </ul>
+
+    <!-- TAB CONTENT -->
+    <div class="row">
+        <div class="col-md-2 " style="margin-top:20px">
+            <div class="block">
+                <div class="block-content-outer">
+                    <div class="block-content-inner">
+                        <div class="cardMachine">
+                            <div id="tablets"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="col-md-10">
+            <div class="tab-content " style="margin-top:20px;">
+
+                <div class="tab-pane active" id="tab-init">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="block">
+                                <div class="block-content-outer">
+                                    <div class="block-content-inner">
+                                        <div class="cardMachine" style="display:grid;place-items:center">
+                                            <img src="~/Content/assets/images/required/searchImg.svg" alt="IAS" style="height:300px" />
+                                            <p>Seleccione una opción</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Indicadores -->
+                <div class="tab-pane " id="tab-csat">
+                    @Html.Partial("_CsatView") <!-- Vista parcial en MVC -->
+                </div>
+                <div class="tab-pane" id="tab-nps">
+                    @Html.Partial("_NpsView")
+                </div>
+
+                @*Atributos*@
+                <div class="tab-pane" id="tab-resumen"> @Html.Partial("_Resumen") </div>
+
+                <div class="tab-pane" id="tab-atributo"> @Html.Partial("_Atributo") </div>
+                @*Comentarios*@
+                <div class="tab-pane" id="tab-gestion-npss"> 
+                 @Html.Partial("_GestionNps") 
+                </div>
+
+                @*Otros*@
+                <div class="tab-pane" id="tab-text-analytics"> @Html.Partial("_TextAnalytics") </div>
+                <div class="tab-pane" id="tab-nube"> @Html.Partial("_TextAnalytics") </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+@section js{
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="~/Content/assets/viewsjs/ClienteSatisfaccion/reporteEncuesta.js"></script>
+    <script src="~/Content/assets/viewsjs/ClienteSatisfaccion/NPS/npsReporte.js"></script>
+    <script src="~/Content/assets/viewsjs/ClienteSatisfaccion/CSAT/csatReporte.js"></script>
+    <script src="~/Content/assets/viewsjs/ClienteSatisfaccion/reporteAtributos.js"></script>
+    <script src="~/Content/assets/viewsjs/ClienteSatisfaccion/comentarios.js"></script>
+
+    @*<script type="text/javascript" src="~/Content/assets/js/optional/bootstrap-multiselect.min.js"></script>*@
+
+}

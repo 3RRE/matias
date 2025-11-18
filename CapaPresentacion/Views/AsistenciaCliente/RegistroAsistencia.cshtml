@@ -1,0 +1,347 @@
+﻿
+@{
+    ViewBag.Title = "Cliente SISCLIE";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-dollar"></span>
+                                <span class="main-text">
+                                    Asistencia Cliente
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="cardMachine" style="margin-bottom:15px;">
+                            <fieldset class="sectionCard" style="padding: 10px 7px; margin-top: 10px;">
+                                <div class="col-xs-12 col-md-12 col-sm-12">
+                                    <div class="row" id="formfiltro">
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    Búsqueda
+                                                </span>
+                                                <input type="text" class="form-control UpperCase" id="coincidencia" placeholder="Ingrese Nro. de Documento ó Apellidos" />
+                                                @*<span class="input-group-addon">
+                                    <input type="checkbox" name="checkSoloDni" id="checkSoloDni" />
+                                    Por DNI
+                                </span>*@
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="row">
+                                                <div class="col-md-12 col-sm-12">
+                                                    <button type="button" id="btnBuscar" class="btn btn-success col-md-12 col-xs-12">
+                                                        <span class="glyphicon glyphicon-search"></span>
+                                                        Buscar
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </fieldset>
+                            </div>
+
+                        </div>
+
+                    </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="row" id="contenedorData" style="display:none">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6 col-sm-6">
+                            <fieldset>
+                                <legend>Datos Cliente</legend>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="input-group ">
+                                        <span class="input-group-addon">
+                                            Cliente
+                                        </span>
+                                        <input type="text" class="form-control input-sm" name="txtNombre" id="txtNombre" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="input-group ">
+                                        <span class="input-group-addon">
+                                            Tipo de Doc.
+                                        </span>
+                                        <input type="text" class="form-control input-sm" name="txtTipoDocumento" id="txtTipoDocumento" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="input-group ">
+                                        <span class="input-group-addon">
+                                            Nro Documento
+                                        </span>
+                                        <input type="text" class="form-control input-sm" name="txtNroDocumento" id="txtNroDocumento" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="input-group ">
+                                        <span class="input-group-addon">
+                                            Email
+                                        </span>
+                                        <input type="text" class="form-control input-sm" name="txtEmail" id="txtEmail" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="input-group ">
+                                        <span class="input-group-addon">
+                                            Celular 1
+                                        </span>
+                                        <input type="text" class="form-control input-sm" name="txtCelular1" id="txtCelular1" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="input-group ">
+                                        <span class="input-group-addon">
+                                            Estado
+                                        </span>
+                                        <input type="text" class="form-control input-sm" name="txtEstado" id="txtEstado" readonly>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <legend>Datos Sala:</legend>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="input-group ">
+                                        <span class="input-group-addon">
+                                            Tipo Cliente
+                                        </span>
+                                        <input type="text" class="form-control input-sm" name="txtTipoCliente" id="txtTipoCliente" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="input-group ">
+                                        <span class="input-group-addon">
+                                            Tipo Frecuencia
+                                        </span>
+                                        <input type="text" class="form-control input-sm" name="txtTipoFrecuencia" id="txtTipoFrecuencia" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="input-group ">
+                                        <span class="input-group-addon">
+                                            Tipo Juego
+                                        </span>
+                                        <input type="text" class="form-control input-sm" name="txtTipoJuego" id="txtTipoJuego" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="input-group ">
+                                        <span class="input-group-addon">
+                                            Apuesta Import. (S/.)
+                                        </span>
+                                        <input type="text" class="form-control input-sm" name="txtApuestaImportante" id="txtApuestaImportante" readonly>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <fieldset>
+                                <legend>Registro Asistencia</legend>
+
+                                <form id="form_registro_asistencia">
+                                    <input type="hidden" name="SalaId" value="0" id="SalaId" />
+                                    <input type="hidden" name="ClienteId" id="ClienteId" value="0" />
+
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="input-group form-group">
+                                            <span class="input-group-addon">
+                                                Apuesta Import. (S/.)
+                                            </span>
+                                            <input type="text" class="form-control input-sm noKeyPress" id="ApuestaImportante" value="0" name="ApuestaImportante" placeholder="Apuesta Importante">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="input-group form-group">
+                                            <span class="input-group-addon">
+                                                Fecha
+                                            </span>
+                                            <input type="text" class="form-control input-sm dateOnly_ noKeyPress" id="FechaRegistro" readonly name="FechaRegistro" placeholder="Fecha">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="input-group form-group">
+                                            <span class="input-group-addon">
+                                                Cod. Máquina
+                                            </span>
+                                            <input type="text" class="form-control input-sm noKeyPress" id="CodMaquina" name="CodMaquina" placeholder="Codigo Máquina">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="input-group form-group">
+                                            <span class="input-group-addon">
+                                                Tipo Cliente
+                                            </span>
+                                            <select id="cboTipoCliente" class="form-control input-sm select" name="TipoClienteId"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="input-group form-group">
+                                            <span class="input-group-addon">
+                                                Tipo Frec
+                                            </span>
+                                            <select id="cboTipoFrecuencia" class="form-control input-sm select" name="TipoFrecuenciaId"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="input-group form-group">
+                                            <span class="input-group-addon">
+                                                Tipo Juego
+                                            </span>
+                                            <select id="cboTipoJuego" class="form-control input-sm select" name="TipoJuegoId"></select>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12">
+                                            <button type="button" id="btnRegistrarAsistencia" class="btn btn-warning col-md-12 col-xs-12 btn-block">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                                Registrar Asistencia
+                                            </button>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 hidden">
+                                            <button type="button" id="btnRegistrarEmpadronamiento" class="btn btn-warning col-md-12 col-xs-12 btn-block">
+
+                                                <span class="fa fa-edge"></span>
+                                                Empadronamiento
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                            <br />
+                            <br />
+                            <fieldset class="hidden">
+                                <legend>
+                                    Asistencia los últimos 7 días
+                                </legend>
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-condensed table-bordered table-hover" style="width:100%" id="tableListadoAsistenciaCliente"></table>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section modal
+{
+
+    <div class="modal fade full-modal" id="full-modal_clientes" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label_"> Clientes</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12" id="divListadoClientes">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade full-modal" id="full-modal_empadronamiento" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label_"> Empadronamiento</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <form id="frm_empadronamiento">
+                            <div class="col-md-6 col-sm-12">
+                                <div class="input-group form-group">
+                                    <span class="input-group-addon">
+                                        Entrego DNI
+                                    </span>
+                                    <select name="entrega_dni" id="entrega_dni" class="form-control input-sm ">
+                                        <option value="">Seleccione</option>
+                                        <option value="1">Si</option>
+                                        <option value="0">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="input-group form-group">
+                                    <span class="input-group-addon">
+                                        Fuente
+                                    </span>
+                                    <select name="reniec" id="reniec" class="form-control input-sm ">
+                                        <option value="">Seleccione</option>
+                                        <option value="1">RENIEC</option>
+                                        <option value="0">BD Local</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <div class="input-group form-group">
+                                    <span class="input-group-addon">
+                                        Observacion
+                                    </span>
+                                    <textarea class="form-control input-sm  " id="txt_descripcion" name="txt_descripcion"></textarea>
+
+                                </div>
+                            </div>
+
+                        </form>
+                        <div class="col-md-12 col-sm-12">
+                            <button type="button" id="btnguardarempadronamiento" class="btn btn-danger col-md-12 col-xs-12 btn-block">
+
+                                <span class="fa fa-save"></span>
+                                Guardar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/AsistenciaCliente/RegistroAsistencia.js"></script>
+}

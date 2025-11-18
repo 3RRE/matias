@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Login.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <h3 class="heading">
+            <span aria-hidden="true" class="icon icon-key"></span>
+            <span class="main-text">
+                Acceso Sistema
+            </span>
+        </h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <form role="form" class="login-form" method="post" action="#">
+            <div class="form-group">
+                <label for="usuario">Super Usuario</label>
+                <input class="form-control input-sm" id="usuario" placeholder="Usuario" type="text" name="usuario">
+            </div>
+            <div class="form-group">
+                <label for="contrasena">Super Contraseña</label>
+                <input class="form-control input-sm" id="contrasena" placeholder="Contraseña" type="password" name="contrasena">
+            </div>
+            <div class="form-group">
+                <div>
+                    <button type="button" class="btn btn-success btnIngresar pull-right">Ingresar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/Super/Login.js"></script>
+}
+

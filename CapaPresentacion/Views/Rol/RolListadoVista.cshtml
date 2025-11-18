@@ -1,0 +1,95 @@
+﻿
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-shield"></span>
+                                <span class="main-text">
+                                    Listado Roles
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+
+                    <div class="row">
+
+                        <div class="col-md-4 col-sm-4 col-xs-6 pull-right">
+                            <button type="button" id="btnNuevoRol" class="btn btn-sm btn-success col-md-12 col-xs-12">
+                                <span class="glyphicon glyphicon-book"></span>
+                                Nuevo
+                            </button>
+                        </div>
+                        @*<div class="btn-group col-md-4 col-sm-4 col-xs-6">
+                            <button data-toggle="dropdown" class="btn btn-danger btn-sm col-md-12 col-xs-12 dropdown-toggle" type="button">Acciones <span class="caret"></span></button>
+                            <ul role="menu" class="dropdown-menu" style="margin-left: 14px;">
+                                <li><a href="#" id="excel"><span class="glyphicon glyphicon-list-alt"></span> Excel</a></li>
+                                <li><a href="#" id="pdf"><span class="glyphicon glyphicon-file"></span> PDF</a></li>
+                                <li><a href="#" id="imprimir"><span class="glyphicon glyphicon-print"></span> Imprimir</a></li>
+                            </ul>
+                        </div>*@
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="cardMachine" style="margin-bottom:15px;">
+
+                        <div class="row">
+                            <div class="col-md-12 tam">
+
+                                <div class="table-responsive">
+                                    <table id="tableRol" class="table table-striped table-bordered table-hover table-condensed">
+                                        <thead>
+                                            <tr>
+                                                <th>Nombre</th>
+                                                <th>Descripcion</th>
+                                                <th>Estado</th>
+                                                <th>Accion</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+</div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section js
+{
+<script src="~/Content/assets/viewsjs/Rol/RolListadoVista.js"></script>
+
+}

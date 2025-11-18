@@ -1,0 +1,75 @@
+﻿
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-shield"></span>
+                                <span class="main-text">
+                                    Nuevo Rol
+                                </span>
+                            </h1>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+
+                        <div class="col-md-4 col-md-offset-4 col-sm-6 col-xs-6">
+                            <button type="button" class="btn btn-success btn-sm col-md-12 col-sm-12 col-xs-12 btnListar"><span class="glyphicon glyphicon-list-alt"></span> Listado </button>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <button type="button" class="btn btn-primary btn-sm col-md-12 col-sm-12 col-xs-12 btnGuardar "><span class="glyphicon glyphicon-floppy-disk"></span> Guardar </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-sm-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="cardMachine" style="margin-bottom:15px;">
+
+                        <form class="medium" role="form" id="frmNuevoRol" method="post" action="#">
+                            <div class="form-group">
+                                <label for="txtNombre">Nombre</label>
+                                <input type="text" name="WEB_RolNombre" class="form-control input-sm" id="txtNombre" placeholder="Nombre">
+                            </div>
+                            <div class="form-group">
+                                <label for="txtDescripcion">Descripcion</label>
+                                <input type="text" name="WEB_RolDescripcion" class="form-control input-sm" id="txtDescripcion" placeholder="Descripcion">
+                            </div>
+
+                        </form>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section js
+{
+<script src="~/Content/assets/viewsjs/Rol/RolNuevoVista.js"></script>
+   
+}

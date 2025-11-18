@@ -1,0 +1,146 @@
+﻿
+@{
+    ViewBag.Title = "ConfiguracionSeguridadVista";
+}
+
+<style>
+    .test{
+        background-color:red !important;
+    }
+</style>
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <h1 class="test">
+                                <span aria-hidden="true" class="icon icon-shield"></span>
+                                <span class="main-text">
+                                    Nueva configuración de seguridad
+                                </span>
+                            </h1>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6 col-xs-6 pull-right">
+                            <button type="button" class="btn btn-primary btn-sm col-md-12 col-sm-12 col-xs-12 btnGuardar "><span class="glyphicon glyphicon-floppy-disk"></span> Guardar </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="cardMachine" style="margin-bottom:15px;">
+                        <form class="medium" role="form" id="frmNuevoUsuario" method="post" action="#">
+                            <div class="row" style="margin:unset">
+                                <input type="text" id="codWebConfiguracionSeguridad" value="0" style="display:none;">
+                                <fieldset class="sectionCard" style="padding: 10px 7px; margin-top: 10px;">
+                                    <h3 style="margin-bottom:5px;margin-left:15px;">Links</h3>
+                                    <div class="col-md-6">
+                                        <div class="form-group cbo">
+                                            <label for="txtusuario">Link Interno</label>
+                                            <input type="text" class="form-control input-sm" name="linkInterno" id="linkInterno" value="" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group cbo">
+                                            <label for="txtusuario">Link Externo</label>
+                                            <input type="text" class="form-control input-sm" name="linkExterno" id="linkExterno" value="" />
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset class="sectionCard" style="padding: 10px 7px; margin-top: 10px;">
+                                    <h3 style="margin-bottom: 5px; margin-left: 15px;">Datos generales</h3>
+                                    <div class="col-md-6">
+                                        <div class="form-group cbo">
+                                            <label for="txtusuario">Cantidad Letra Nombre</label>
+                                            <input type="text" class="form-control input-sm cantidad" name="cantidadLetraNombre" id="cantidadLetraNombre" value="" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group cbo">
+                                            <label for="txtusuario">Cantidad Letra Apellido Paterno</label>
+                                            <input type="text" class="form-control input-sm cantidad" name="cantidadLetraApePaterno" id="cantidadLetraApePaterno" value="" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group cbo">
+                                            <label for="txtusuario">Cantidad Letra Apellido Materno</label>
+                                            <input type="text" class="form-control input-sm cantidad" name="cantidadLetraApeMaterno" id="cantidadLetraApeMaterno" value="" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group cbo">
+                                            <label for="txtusuario">Cantidad Letra DNI</label>
+                                            <input type="text" class="form-control input-sm cantidad" name="cantidadLetraDNI" id="cantidadLetraDNI" value="" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group cbo">
+                                            <label for="txtusuario">Orden Nombre</label>
+                                            <input type="text" class="form-control input-sm orden" name="ordenNombre" id="ordenNombre" value="" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group cbo">
+                                            <label for="txtusuario">Orden Apellido Paterno</label>
+                                            <input type="text" class="form-control input-sm orden" name="ordenApePaterno" id="ordenApePaterno" value="" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group cbo">
+                                            <label for="txtusuario">Orden Apellido Materno</label>
+                                            <input type="text" class="form-control input-sm orden" name="ordenApeMaterno" id="ordenApeMaterno" value="" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group cbo">
+                                            <label for="txtusuario">Orden DNI</label>
+                                            <input type="text" class="form-control input-sm orden" name="ordenDNI" id="ordenDNI" value="" />
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <fieldset class="sectionCard" style="padding: 10px 7px; margin-top: 10px;">
+                                    <h3 style="margin-bottom: 5px; margin-left: 15px;">Mensaje</h3>
+                                    <div class="col-md-12">
+                                        <div class="form-group cbo">
+                                            <label for="txtusuario">Mensaje Email</label>
+                                            <textarea cols="80" rows="10" id="cke-editor" name="mensajeEmail"></textarea>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+@section js
+{
+    <script src="https://cdn.ckeditor.com/4.10.0/standard/ckeditor.js"></script>
+    <script src="~/Content/assets/viewsjs/ConfiguracionSeguridad/ConfiguracionSeguridadVista.js"></script>
+}

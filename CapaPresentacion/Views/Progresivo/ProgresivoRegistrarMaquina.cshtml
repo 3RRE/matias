@@ -1,0 +1,176 @@
+﻿@using S3k.Utilitario;
+@{
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+}
+@{
+    ViewBag.Title = "ProgresivoRegistrarMaquina";
+}
+<input type="hidden" id="consultaVpn" value="@Convert.ToString(ViewBag.consultaVpn)" />
+<input type="hidden" id="urlPublica" value="@ViewBag.urlPublica" />
+<input type="hidden" id="urlPrivada" value="@ViewBag.urlPrivada" />
+<form class="medium" role="form" id="frmMaquinaProgresivo" method="post" action="#">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="block">
+                <div class="block-content-outer">
+                    <div class="block-content-inner">
+                        <div class="row">
+                            <div class="col-md-12 col-xs-12 col-sm-12">
+                                <h1>
+                                    <span aria-hidden="true" class="icon icon-block-menu"></span>
+                                    <span class="main-text">
+                                        Nueva Maquina
+                                    </span>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="block">
+                <div class="block-content-outer">
+                    <div class="block-content-inner">
+
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12">
+                                        <button type="button" id="btnGuardar" class="btn btn-success btn-sm col-md-12 col-xs-12">
+                                            <span class="glyphicon glyphicon-book"></span>
+                                            Guardar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12">
+                                        <button type="button" id="btnListar" class="btn btn-primary btn-sm col-md-12 col-xs-12">
+                                            <span class="glyphicon glyphicon-file"></span>
+                                            Listado
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="block">
+                <div class="block-content-outer">
+                    <div class="block-content-inner">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12 col-sm-12">
+                                <div class="row">
+                                    <input type="hidden" id="codProgresivo" name="codProgresivo" value="@ViewBag.id_codProgresivo" />
+                                    <input type="hidden" id="url_sala" name="url_sala" value="@ViewBag.url_sala" />
+
+                                    <div class="col-md-4 col-sm-12">
+                                        <div class="form-group cbo">
+                                            <label>Marca</label>
+                                            <select class="form-control" id="cboMarca" name="MarcaID" style="width:100%;">
+                                                <option value="">--Seleccione--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-12">
+                                        <div class="form-group cbo">
+                                            <label>Modelo</label>
+                                            <select class="form-control" id="cboModelo" name="ModeloID" style="width:100%;">
+                                                <option value="">--Seleccione--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-12">
+                                        <div class="form-group cbo">
+                                            <label>Juego</label>
+                                            <select class="form-control" id="cboJuego" name="cboJuego" style="width:100%;">
+                                                <option value="">--Seleccione--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group cbo">
+                                            <label>Maquina</label>
+                                            <input type="text" name="SlotID" id="txtSlotID" class="form-control input-sm" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group cbo">
+                                            <label>Codigo Alterno</label>
+                                            <input type="text" name="codigo_alterno" id="txtcodigo_alterno" class="form-control input-sm" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group cbo">
+                                            <label>Token</label>
+                                            <input type="number" step="any" name="Toquen" id="txtToquen" class="form-control input-sm" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group cbo">
+                                            <label>Canal</label>
+                                            <input type="text" name="Canal" id="txtCanal" class="form-control input-sm" />
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="Estado" value="1" />
+                                    <input type="hidden" name="nombre_marca" id="nombre_marca" value="" />
+                                    <input type="hidden" name="nombre_modelo" id="nombre_modelo" value="" />
+                                    <input type="hidden" name="Juego" id="nombre_juego" value="" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+@section modal
+{
+    <!-- Modal full-modal -->
+    <div class="modal fade full-modal modal1" id="full-modal" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label">Detalle Contadores</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12">
+                            <div class="">
+                                <table class="table table-striped table-hover table-condensed" id="tableDetalle"></table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+}
+
+
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/Progresivo/Progresivo/ProgresivoNuevaMaquina.js?v=@fecha_archivos"></script>
+}
+

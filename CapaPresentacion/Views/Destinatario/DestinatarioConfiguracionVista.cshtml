@@ -1,0 +1,168 @@
+﻿@{
+    ViewBag.Title = "Configuracion de Destinatarios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-shield"></span>
+                                <span class="main-text">
+                                    Configuracion de Destinatarios
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6" style="display:none;">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+
+                    <div class="row">
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+
+                        <div class="col-sm-6 col-md-3" onclick="mostrarModal('1','Progresivo')">
+                            <div class="c-widget c-widget-quick-info c-widget-size-small highlight-color-blue" style="cursor: pointer;">
+                                <div class="c-widget-icon">
+                                    <span class="glyphicon glyphicon-bell"></span>
+                                </div>
+                                <div class="c-wdiget-content-block">
+                                    <div class="c-widget-content-heading">
+                                        Progresivo
+                                    </div>
+                                    <div class="c-widget-content-sub">
+                                        Cambio Conf.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-3" onclick="mostrarModal('2','Reclamaciones')">
+                            <div class="c-widget c-widget-quick-info c-widget-size-small highlight-color-yellow" style="cursor: pointer;">
+                                <div class="c-widget-icon">
+                                    <span class="glyphicon glyphicon-alert"></span>
+                                </div>
+                                <div class="c-wdiget-content-block">
+                                    <div class="c-widget-content-heading">
+                                        Reclamaciones
+                                    </div>
+                                    <div class="c-widget-content-sub">
+                                        Cambio Conf.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-3" onclick="mostrarModal('3','ControlAcceso')">
+                            <div class="c-widget c-widget-quick-info c-widget-size-small highlight-color-yellow" style="cursor: pointer;">
+                                <div class="c-widget-icon">
+                                    <span class="glyphicon glyphicon-alert"></span>
+                                </div>
+                                <div class="c-wdiget-content-block">
+                                    <div class="c-widget-content-heading">
+                                        Contro Acceso
+                                    </div>
+                                    <div class="c-widget-content-sub">
+                                        Cambio Conf.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-3" onclick="mostrarModal('4','RegistroProgresivo')">
+                            <div class="c-widget c-widget-quick-info c-widget-size-small highlight-color-orange" style="cursor: pointer;">
+                                <div class="c-widget-icon">
+                                    <span class="glyphicon glyphicon-bell"></span>
+                                </div>
+                                <div class="c-wdiget-content-block">
+                                    <div class="c-widget-content-heading">
+                                        Registro Progresivo
+                                    </div>
+                                    <div class="c-widget-content-sub">
+                                        Cambio Conf.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<input type="hidden" name="name" id="txtTipoEmail" />
+@section modal
+{
+    <div class="modal small-modal fade" id="modalEventos" tabindex="-1" role="dialog" aria-labelledby="default-modal-eventos" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="default-modal-eventos">Destinatario</h4>
+                </div>
+                <div class="modal-body solofiltro1 eventos" id="bodyModaleventos">
+                    <div class="row">
+                        <div class="col-md-12 title">
+                            Destinatarios
+                        </div>
+                    </div>
+                    <div class="input-group" style="margin-top: 5px;">
+                        <input type="text" name="" class="form-control buscar input-sm" id="inputEventos" data-body="tbodyEventos">
+                        <span class="input-group-btn">                           
+                            <button class="btn btn-warning btn-sm esconder" type="button" data-body="tbodyEventos">
+                                <span class="glyphicon glyphicon-eye-close"></span>
+                            </button>
+                        </span>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 evento-alto listaTbody" id="divtbodyEventos">
+                            <table class="table table-condensed highlight-color-yellow" style="margin-bottom: 0px;">
+
+                                <tbody id="tbodyEventos"></tbody>
+                            </table>
+                        </div>
+
+                        <div class="col-md-12" style="margin-top: 10px">
+                            <button class="btn btn-warning btn-sm col-md-12" id="btnGuardarDestinatarios" type="button">
+                                <span class="glyphicon glyphicon-book"></span> Guardar y Cerrar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+}
+
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/Destinatario/DestinatarioConfiguracionVista.js"></script>
+}

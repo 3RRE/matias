@@ -1,0 +1,1572 @@
+﻿
+@{
+    ViewBag.Title = "CrearTicket";
+}
+
+
+@section css{
+    <link href="~/Content/assets/css/cssviews/GPLI/crearTicket.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/cssviews/GPLI/general.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/cssviews/GPLI/asignarTicket.css" rel="stylesheet" />
+
+    <link href="~/Content/assets/css/cssviews/GPLI/TicketsAsignados.css" rel="stylesheet" />
+}
+
+
+
+<style>
+    .btn-viewFile {
+        background-color: #00618c;
+        color: white;
+        border: none;
+        border-radius: 8px !important;
+    }
+
+    #imgSearch {
+        animation: animatedSearch 1.5s infinite ease-in-out alternate;
+    }
+
+    @@keyframes animatedSearch {
+        from {
+            transform: translateY(-15px)
+        }
+
+        to {
+            transform: translateY(0)
+        }
+    }
+
+    .contenedor {
+        background-color: white;
+        width: 100%;
+        height: 100%;
+        min-height: 100vh;
+        border-radius: 5px !important;
+        padding: 15px;
+    }
+
+
+    label {
+        font-size: 14px;
+    }
+
+    .select-add-container {
+        display: flex;
+        gap: 2px;
+        border-radius: 8px !important;
+    }
+
+
+
+    .add-icon {
+        width: 25px;
+        width: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #ffa70f;
+        color: white;
+        cursor: pointer;
+        border-radius: 8px !important;
+    }
+
+    /* Animaciones */
+
+    @@keyframes overlay-fade-in {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @@keyframes modal-slide-in {
+        from {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    @@keyframes modal-slide-out {
+        from {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        to {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+    }
+    /* Contenedor principal */
+    .correos-container {
+        display: flex;
+        gap: 5px;
+        flex-wrap: wrap;
+        margin-top: 10px;
+    }
+
+    /* Estilo de cada correo */
+    .correo-item {
+        display: inline-flex;
+        align-items: center;
+        background-color: #cce4ff;
+        color: #004085;
+        padding: 1px 18px;
+        border-radius: 30px !important;
+        position: relative;
+        cursor: default;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    /* Botón de eliminar */
+    .delete-btn {
+        position: absolute;
+        right: -5px;
+        top: -5px;
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        border-radius: 50% !important;
+        height: 20px;
+        font-size: 14px;
+        font-weight: bold;
+        display: none;
+        cursor: pointer;
+    }
+
+    /* Mostrar el botón al hacer hover */
+    .correo-item:hover .delete-btn {
+        display: block;
+    }
+
+    /* Efecto hover en el botón eliminar */
+    .delete-btn:hover {
+        background-color: #bd2130;
+    }
+
+    .autocomplete-list {
+        position: absolute;
+        width: 100%;
+        background: white;
+        border: 1px solid #ccc;
+        border-radius: 8px !important;
+        max-height: 200px;
+        overflow-y: auto;
+        list-style: none;
+        padding: 0;
+        margin-top: 2px; /* Espacio entre el input y la lista */
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        top: 93%;
+        z-index: 1000;
+    }
+
+        /* Estilo para cada opción de la lista */
+        .autocomplete-list li {
+            padding: 5px;
+            cursor: pointer;
+        }
+
+            /* Cambio de color al pasar el mouse */
+            .autocomplete-list li:hover {
+                background: #f0f0f0;
+            }
+
+    /* Contenedor de correos agregados */
+    .correos-container {
+        margin-top: 10px;
+    }
+
+    .custom-select {
+        flex: 1; /* Ocupa el espacio disponible */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: white;
+        font-size: 14px;
+        max-width: calc(100% - 40px); /* Ajusta el ancho para dejar espacio al ícono */
+    }
+    /* Switch personalizado */
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 24px;
+    }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+        border-radius: 24px !important;
+    }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+    input:checked + .slider {
+        background-color: #2ecc71;
+    }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+    /* Estilos para la tabla */
+    .datatable {
+        width: 100%;
+    }
+
+        .datatable th {
+            background: #264f72;
+            padding: 12px !important;
+            color: white;
+        }
+
+        .datatable td {
+            padding-left: 12px !important;
+        }
+
+    .action-buttons {
+        white-space: nowrap;
+    }
+
+        .action-buttons .btn {
+            padding: 6px 10px;
+            margin: 0 2px;
+        }
+
+    .table > thead > tr > th {
+        border-bottom: 2px solid #ddd;
+    }
+
+    .estado-label {
+        margin-left: 8px;
+        font-size: 12px;
+        color: #4a4a4a;
+    }
+
+    .editing-row {
+        background-color: #fff3cd !important;
+        transition: background-color 0.3s ease;
+    }
+
+    /*    css para datatable******************/
+    /* Estilo para el encabezado de la tabla */
+    #tablePartidas thead th {
+        /*background-color: #264f72 !important;*/
+        border: none;
+    }
+
+    .table-responsive {
+        /*overflow: hidden;*/
+    }
+
+    #tablePartidas {
+        /*border-radius: 8px !important;*/
+        overflow: hidden;
+    }
+
+        /* Estilo para las celdas de la tabla */
+        #tablePartidas td, #tablePartidas th {
+            border: 1px solid #ddd; /* Borde de las celdas */
+            /*padding: 8px;*/ /* Espacio interno */
+        }
+
+        /* Estilo para las filas al pasar el mouse */
+        #tablePartidas tbody tr:hover {
+            background-color: #f5f5f5; /* Color de fondo al pasar el mouse */
+        }
+
+    #txtDescripcion {
+        min-height: 100px;
+        resize: vertical;
+    }
+
+    .text-surface-500 {
+        color: #64748b;
+    }
+
+    .font-weight-bold {
+        font-weight: 600;
+        color: #64748b;
+    }
+
+    .font-weight-semibold {
+        font-weight: 400;
+        color: #64748bd6;
+    }
+
+    .font-title {
+        color: #485260;
+        /*font-weight: 800;*/
+    }
+
+    .card-flex {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    /*cambio*/
+
+
+    [v-cloak] {
+        display: none !important;
+    }
+
+    .ticket-view-toggle {
+        display: flex;
+        justify-content: flex-end; /* alinea a la derecha */
+        align-items: center;
+        margin-bottom: 10px;
+        gap: 0.5rem;
+    }
+
+    .toggle-btn {
+        background: transparent;
+        border: none;
+        padding: 0.6rem 0.8rem;
+        font-size: 1.3rem;
+        color: #f5f5f5; /* claro por defecto */
+        border-radius: 8px;
+        transition: all 0.2s ease-in-out;
+        cursor: pointer;
+    }
+
+        .toggle-btn:hover {
+            background: rgba(255, 255, 255, 0.15); /* hover con blanco translúcido */
+            color: #ffffff;
+        }
+
+        .toggle-btn.active {
+            background: #ffffff; /* activo: blanco sólido */
+            color: #0d47a1; /* texto/icono azul oscuro para contraste */
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+
+    .toggle-separator {
+        font-weight: bold;
+        color: rgba(255,255,255,0.6); /* separador gris/blanco translúcido */
+        user-select: none;
+    }
+
+    /* Encabezado de tabla */
+    .table-header {
+        background: #e9eff5;
+        color: #333;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    /* Filas */
+    .table-hover tbody {
+        background-color: #f9fafc;
+    }
+    .table-hover tbody tr:hover {
+        background-color: #f1f7ff; /* azul muy suave */
+    }
+
+    /* Ajuste de celdas en móviles */
+    .table td, .table th {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 180px;
+    }
+
+    /* Que sea más legible en pantallas pequeñas */
+    @@media (max-width: 768px) {
+        .table td, .table th {
+            font-size: 0.85rem;
+            max-width: 120px;
+        }
+    }
+
+    .table {
+        margin-bottom: 10px;
+    }
+
+    .pagination {
+        margin: 1px 0;
+        display: flex;
+        justify-content: center !important;
+    }
+
+    .pagination .page-link {
+        color: #fff; /* texto blanco */
+        background-color: #235ebe; /* azul intermedio */
+        border: 1px solid #1c4a91; /* borde más oscuro */
+    }
+
+    .pagination .page-item.active .page-link {
+        background-color: #1c4a91; /* azul más oscuro para activo */
+        border-color: #173a73;
+    }
+
+    .pagination .page-link:hover {
+        background-color: #173a73; /* hover más oscuro */
+        color: #fff;
+    }
+
+    .pagination .page-item.disabled .page-link {
+        background-color: #2a2a2a; /* gris para deshabilitado */
+        color: #888;
+    }
+
+</style>
+
+<div id="AppGlpiCrearTicket" style="text-shadow:none;">
+    <div class="row" style="width:100%; background-color:white; margin:auto; padding: 20px 10px; border-radius:8px !important; margin-bottom:10px; display:flex; justify-content:space-between; flex-wrap:wrap; align-items:center;">
+        <div class="col-xs-6 col-md-8">
+            <h1 style="font-size:2rem; margin: 0;">
+                <span class="icon icon-alarm-clock" aria-hidden="true"></span>
+                <span class="main-text">Registrar Ticket</span>
+            </h1>
+        </div>
+        <div class="col-xs-6 col-md-4 text-right">
+            <button class="btn btn-nuevo btn-responsive" @@click="toggleSheet">
+                <i class="glyphicon glyphicon-plus"></i> Crear ticket
+            </button>
+        </div>
+    </div>
+
+    <div class="ticket-view-toggle d-flex justify-content-end mb-3">
+        <span class="toggle-separator">Visualización: </span>
+        <button class="toggle-btn"
+                :class="{ active: vistaActual === 'lista' }"
+                @@click="cambiarVista('lista')"
+                title="Vista Lista">
+            <i class="glyphicon glyphicon-th-list"></i>
+        </button>
+        <span class="toggle-separator">|</span>
+        <button class="toggle-btn"
+                :class="{ active: vistaActual === 'grid' }"
+                @@click="cambiarVista('grid')"
+                title="Vista Cuadrícula">
+            <i class="glyphicon glyphicon-th"></i>
+        </button>
+    </div>
+
+    <div v-if="vistaActual === 'grid'" class="row ticket-row">
+
+        <div v-for="(item, index) in ticketsCreados" class="col-lg-3 col-md-4 col-sm-6 col-12 ticket-column" style="padding-bottom:3rem; height:100%">
+            <div class="ticket-card" v-cloak>
+                <div class="ticket-side-bar"></div>
+                <div class="ticket-badge">{{item.FaseTicket}}</div>
+                <div class="ticket-priority" :class="'priority-' + item.NivelAtencion.Nombre.toLowerCase()">{{item.NivelAtencion.Nombre}}</div>
+
+                <div class="ticket-title">
+                    {{item.ClasificacionProblema.Nombre || ' - '}}
+
+                </div>
+
+                <div class="ticket-category">{{ item.Identificador.Nombre || ' - '}}, {{ item.Sala.Nombre}}</div>
+
+                <div class="ticket-status-bar">
+                    <div class="ticket-number">#{{ item.Id }}</div>
+                    <div class="ticket-status"></div>
+                    <div class="ticket-status-grey">{{ item.FechaRegistroStr }}</div>
+                </div>
+
+                <div class="ticket-user-info">
+                    <div class="ticket-user">
+                        <div class="user-avatar">
+                            {{ item.UsuarioSolicitante.Nombres.charAt(0).toUpperCase() }}
+                        </div>
+                        <div class="ticket-user-name">
+                            {{ item.UsuarioSolicitante.Nombres }} {{ item.UsuarioSolicitante.ApellidoPaterno }} {{ item.UsuarioSolicitante.ApellidoMaterno }}<br><small>{{item.UsuarioSolicitante.CorreoTrabajo}}</small>
+                        </div>
+                    </div>
+                    @*<div class="ticket-number">#{{ item.Id }}</div>*@
+                </div>
+                <div class="button-container">
+                    <button @@click="openModalDetail(item.Id, item)" class="custom-btn btn-detalle" title="Ver Detalle">
+                        <i class="glyphicon glyphicon-info-sign text-icon"></i> Ver Detalle
+                    </button>
+
+                    <button v-if="item.CodigoFaseTicket !==1" @@click="openModalDetailSeguimiento(item.Id)" class="custom-btn btn-seguimiento" title="Ver Seguimiento">
+                        <i class="glyphicon glyphicon-eye-open"></i>
+                    </button>
+
+                    <button v-if="item.CodigoFaseTicket == 1" @@click="openDeleteTicket(item.Id, item)" class="custom-btn btn-eliminar" title="Eliminar">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </button>
+
+                    <button v-if="item.CodigoFaseTicket == 1" @@click="openEditForm(item.Id, item)" class="custom-btn btn-editar" title="Editar">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </button>
+
+                    <button v-if="item.CodigoFaseTicket == 4 && item.CodigoFaseTicket !== 5" @@click="openConfirmacionCierreModal(item.Id, item)" class="custom-btn btn-cerrar" title="Cerrar">
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div v-if="vistaActual === 'lista'" class="table-responsive" v-cloak>
+        <table class="table table-hover table-bordered align-middle">
+            <thead class="table-header">
+                <tr>
+                    <th class="text-center" @@click="sortTable('Id')">
+                        #
+                        <span v-if="sortColumn === 'Id'">{{ sortOrder === 'asc' ? '▲' : '▼' }}</span>
+                    </th>
+                    <th class="text-center" @@click="sortTable('FaseTicket')">
+                        Fase
+                        <span v-if="sortColumn === 'FaseTicket'">{{ sortOrder === 'asc' ? '▲' : '▼' }}</span>
+                    </th>
+                    <th class="text-center" >Prioridad</th>
+                    <th class="text-center">Título</th>
+                    <th class="text-center">Categoría</th>
+                    <th class="text-center">Fecha Registro</th>
+                    <th class="text-center">Solicitante</th>
+                    <th class="text-center">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(item, index) in paginatedData" :key="item.Id">
+                    <td class="text-center">{{ item.Id }}</td>
+                    <td class="text-center">{{ item.FaseTicket }}</td>
+                    <td class="ticket-priority-table" :class="'priority-' + item.NivelAtencion.Nombre.toLowerCase()">
+                        {{ item.NivelAtencion.Nombre }}
+                    </td>
+                    <td>{{ item.ClasificacionProblema.Nombre || '-' }}</td>
+                    <td>{{ item.Identificador.Nombre || '-' }}, {{ item.Sala.Nombre }}</td>
+                    <td>{{ item.FechaRegistroStr }}</td>
+                    <td>
+                        <strong>{{ item.UsuarioSolicitante.Nombres }} {{ item.UsuarioSolicitante.ApellidoPaterno }}</strong><br>
+                        <small>{{ item.UsuarioSolicitante.CorreoTrabajo }}</small>
+                    </td>
+                    <td>
+                        <button @@click="openModalDetail(item.Id, item)" class="btn btn-sm btn-primary" title="Ver Detalle">
+                            <i class="glyphicon glyphicon-info-sign"></i>
+                        </button>
+
+                        <button v-if="item.CodigoFaseTicket !== 1" @@click="openModalDetailSeguimiento(item.Id)" class="btn btn-sm btn-info" title="Ver Seguimiento">
+                            <i class="glyphicon glyphicon-eye-open"></i>
+                        </button>
+
+                        <button v-if="item.CodigoFaseTicket == 1" @@click="openDeleteTicket(item.Id, item)" class="btn btn-sm btn-danger" title="Eliminar">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </button>
+
+                        <button v-if="item.CodigoFaseTicket == 1" @@click="openEditForm(item.Id, item)" class="btn btn-sm btn-warning" title="Editar">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </button>
+
+                        <button v-if="item.CodigoFaseTicket == 4 && item.CodigoFaseTicket !== 5" @@click="openConfirmacionCierreModal(item.Id, item)" class="btn btn-sm btn-success" title="Cerrar">
+                            <i class="glyphicon glyphicon-remove"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+         @*✅ Paginación*@ 
+        <div class="d-flex justify-content-center align-items-center mt-3">
+            <nav class="d-flex justify-content-center w-100">
+                <ul class="d-flex justify-content-center pagination pagination-sm mb-0">
+                     @*Botón Anterior*@ 
+                    <li class="page-item" :class="{ disabled: currentPage === 1 }">
+                        <a class="page-link" href="#" @@click.prevent="currentPage > 1 && currentPage--">«</a>
+                    </li>
+
+                     @*Primera página*@ 
+                    <li v-if="pages[0] !== 1" class="page-item">
+                        <a class="page-link" href="#" @@click.prevent="currentPage = 1">1</a>
+                    </li>
+                    <li v-if="pages[0] > 2" class="page-item disabled">
+                        <span class="page-link">...</span>
+                    </li>
+
+                     @*Páginas intermedias*@ 
+                    <li v-for="page in pages" :key="page" class="page-item"
+                        :class="{ active: page === currentPage }">
+                        <a class="page-link" href="#" @@click.prevent="currentPage = page">{{ page }}</a>
+                    </li>
+
+                     @*Última página*@ 
+                    <li v-if="pages[pages.length - 1] < totalPages - 1" class="page-item disabled">
+                        <span class="page-link">...</span>
+                    </li>
+                    <li v-if="pages[pages.length - 1] < totalPages" class="page-item">
+                        <a class="page-link" href="#" @@click.prevent="currentPage = totalPages">{{ totalPages }}</a>
+                    </li>
+
+                     @*Botón Siguiente*@ 
+                    <li class="page-item" :class="{ disabled: currentPage === totalPages }">
+                        <a class="page-link" href="#" @@click.prevent="currentPage < totalPages && currentPage++">»</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        
+    </div>
+
+    @**********************************CREAR NUEVO TICKET@**********************************@
+    <div class="sheet-container" id="formCrearTicket" :class="['sheet', { open: sheet }]">
+        <div class="sheet-content">
+
+            <div class="select-tittle-container">
+                <h4>{{ isEditing ? 'Editar Ticket' : 'Registrar Ticket' }}</h4>
+                <button @@click="toggleSheet">x</button>
+            </div>
+
+            <div class="contenedor-body">
+                <div class="sheet-input">
+                    <div class="select-container">
+                        <label>Sala</label>
+                        <select class="" id="cboSalas" name="cboSalas" :disabled="isEditing"></select>
+                    </div>
+                </div>
+                <div class="sheet-input">
+                    <div class="select-container">
+                        <label>Tipo de operacion</label>
+                        <div class="select-add-container">
+                            <select class="" id="cboTipoOperacion" name="cboTipoOperacion"></select>
+                            <div class="add-icon" @@click="openModalOperation('formCrearTicket')">
+                                <i class="glyphicon glyphicon-plus-sign"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sheet-input">
+                    <div class="select-container">
+                        <label>Nivel de atención</label>
+                        <div class="select-add-container">
+                            <select class="" id="cboNivelAtencion" name="cboNivelAtencion"></select>
+                            <div class="add-icon" @@click="openModalAtentionLevel('formCrearTicket')">
+                                <i class="glyphicon glyphicon-plus-sign"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sheet-input">
+                    <div class="select-container">
+                        <label>Partida</label>
+                        <div class="select-add-container">
+                            <select class="custom-select" id="cboPartida" name="cboPartida"></select>
+                            <div class="add-icon" @@click="openModalPartida('formCrearTicket')">
+                                <i class="glyphicon glyphicon-plus-sign"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="select-container">
+                        <label>Categoria/Rubro</label>
+                        <div class="select-add-container">
+                            <select class="" id="cboCategoria" name="cboCategoria"></select>
+                            <div class="add-icon" @@click="openModalRubro('formCrearTicket')">
+                                <i class="glyphicon glyphicon-plus-sign"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="select-container">
+                        <label>Sub categoría</label>
+                        <div class="select-add-container">
+                            <select class="" id="cboSubCategoria" name="cboSubCategoria"></select>
+                            <div class="add-icon" @@click="openModalSubCategoria('formCrearTicket')">
+                                <i class="glyphicon glyphicon-plus-sign"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sheet-input">
+                    <div class="select-container">
+
+                        <label>Clasificación problema</label>
+                        <div class="select-add-container">
+                            <select class="" id="cboClasificacionProblema" name="cboClasificacionProblema"></select>
+                            <div class="add-icon" @@click="openModalClasProblema('formCrearTicket')">
+                                <i class="glyphicon glyphicon-plus-sign"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sheet-input">
+                    <div class="select-container">
+
+                        <label>Estado</label>
+                        <div class="select-add-container">
+                            <select class="" id="cboEstado" name="cboEstado"></select>
+                            <div class="add-icon" @@click="openModalEstadoActual('formCrearTicket')">
+                                <i class="glyphicon glyphicon-plus-sign"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sheet-input">
+                    <div class="select-container">
+
+                        <label>Identificador</label>
+                        <div class="select-add-container">
+                            <select class="" id="cboIdentificador" name="cboIdentificador"></select>
+                            <div class="add-icon" @@click="openModalIdentificador('formCrearTicket')">
+                                <i class="glyphicon glyphicon-plus-sign"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sheet-input">
+                    <label>Correos</label>
+                    <div class="autocomplete-container" style="display:flex; position:relative">
+                        <input type="text" v-model="nuevoCorreo" id="inputCorreo" @@keydown.enter="agregarCorreos" @@input="filtrarCorreos" autocomplete="off" />
+                        <button class="btn btn-success" style="height:26px !important;padding:revert !important; border-radius: 8px !important;" @@click="agregarCorreos">Agregar</button>
+
+                        <ul v-if="correosFiltrados.length>0" class="autocomplete-list">
+                            <li v-for="(correo, index) in correosFiltrados" :key="index" @@click="seleccionarCorreo(correo)">
+                                {{correo}}
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="correos-container">
+                        <div v-for="(correo, index) in correos"
+                             :key="index"
+                             class="correo-item">
+                            {{ correo}}
+                            <button class="delete-btn" @@click="quitarCorreos(index)">×</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sheet-input">
+                    <div class="select-container">
+                        <div class="" style="display: flex; justify-content: space-between; margin-bottom:5px">
+                            <label>Archivo</label>
+                            <div class="" v-if="isEditing">
+                                <button @@click="openImagePreview(previewList[0].url)" class="btn-viewFile">
+                                    <span class="glyphicon glyphicon-eye-open"></span> Ver
+                                </button>
+                                @*<button @@click="saveTicket(isEditing)">{{ isEditing ? 'EDITAR' : 'REGISTRAR' }}</button>*@
+
+                            </div>
+                        </div>
+                        <div :class="['file-upload-container', { 'has-files': previewList.length > 0 }]" @@click="triggerFileInput">
+                            <div v-if="previewList.length === 0" class="file-upload-placeholder">
+                                <p>Haz clic aquí para agregar archivos</p>
+                            </div>
+                            <div v-else class="file-preview">
+                                <div v-for="file in previewList" :key="file.id" :class="['file-item', file.typeClass]">
+                                    <img v-if="file.type === 'image'" :src="file.preview" alt="Preview" />
+                                    <div v-else v-html="file.icon" style="width: 60px; min-width: 60px;"></div>
+                                    <div v-if="file.type !== 'image'">
+                                        <span class="file-name">{{ file.name }}</span>
+                                        <span class="file-size">{{ file.size }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="file" ref="fileInput" class="file-input" @@change="previewFiles" style="display:none" accept=".png,.jpg,.jpeg,.pdf,.doc,.docx" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sheet-input">
+                    <div class="select-container">
+                        <label>Descripción</label>
+                        <textarea id="txtDescripcion"></textarea>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="registrar-btn">
+                <button @@click="saveTicket(isEditing)"><i class="glyphicon glyphicon-ok"></i> {{ isEditing ? 'EDITAR' : 'REGISTRAR' }}</button>
+            </div>
+        </div>
+    </div>
+
+    @*********************************MODAL HISTORIAL*********************************@
+    <div v-if="showModal" v-cloak class="modal-overlay">
+        <div class="modal-container" :class="{'modal-enter': showModal, 'modal-leave': !showModal}">
+            <div style="position:sticky;top:0;background-color:white;z-index:1;padding:15px;">
+                <div class="header-decoration"></div>
+                <div style="display:flex;justify-content:space-between;width:100%; ">
+                    <h2 style="color: white;">Detalle Ticket</h2>
+                    <button @@click="closeModalDetail" class="btn btn-close">x</button>
+                </div>
+
+                <div class="sheet-input" style="margin-top: 20px;">
+                    <div class="sheet-showTop">
+                        <div class="sheet-showTop-header">
+                            <p class="sheet-showTop-title">#{{ ticketSelect.Id }} - {{ ticketSelect.ClasificacionProblema.Nombre }}</p>
+                            <p class="sheet-showTop-level" :style="{ color: ticketSelect.NivelAtencion.Color }">
+                                {{ ticketSelect.NivelAtencion.Nombre }}
+                            </p>
+                        </div>
+                        <div class="sheet-showTop-detail" style="justify-self:center">
+                            <p>{{ ticketSelect.Identificador.Nombre }}, {{ ticketSelect.Sala.Nombre }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sheet-input" style="margin-top: 15px;">
+                    <div class="sheet-showText">
+                        <p><strong>Usuario Solicitante:</strong> {{ ticketSelect.UsuarioSolicitante.Nombres }} {{ ticketSelect.UsuarioSolicitante.ApellidoPaterno }} {{ ticketSelect.UsuarioSolicitante.ApellidoMaterno }}</p>
+                        <p><strong>Cargo:</strong> {{ ticketSelect.UsuarioSolicitante.Cargo }}</p>
+                        <p><strong>Numero de Documento:</strong> {{ ticketSelect.UsuarioSolicitante.NumeroDocumento }}</p>
+                        <p><strong>Tipo de Operación:</strong> {{ ticketSelect.TipoOperacion.Nombre }}</p>
+                        <p><strong>Partida:</strong> {{ ticketSelect.SubCategoria.Categoria.Partida.Nombre }}</p>
+                        <p><strong>Categoria:</strong> {{ ticketSelect.SubCategoria.Categoria.Nombre }}</p>
+                        <p><strong>SubCategoria:</strong> {{ ticketSelect.SubCategoria.Nombre }}</p>
+                        <p><strong>Estado Actual:</strong> {{ ticketSelect.EstadoActual.Nombre }}</p>
+                        <p><strong>Identificador:</strong> {{ ticketSelect.Identificador.Nombre }}</p>
+                        <p><strong>Descripcion:</strong> {{ ticketSelect.Descripcion ? ticketSelect.Descripcion : "-"}}</p>
+                        <p style="border-bottom: unset">
+                            <strong>Fecha de Registro:</strong>
+                            {{ ticketSelect.FechaRegistroStr }}
+                        </p>
+
+                        <div class="sheet-input" v-if="previewList.length > 0">
+                            <div class="select-container">
+                                <div class="" style="display: flex; justify-content: space-between; margin-bottom:5px">
+                                    <p><strong>Archivo:</strong></p>
+                                    <div class="" v-if="previewList.length > 0">
+                                        <button @@click="openImagePreview(previewList[0].url)" class="btn-viewFile">
+                                            <span class="glyphicon glyphicon-eye-open"></span> Ver
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div :class="['file-upload-container', { 'has-files': previewList.length > 0 }]">
+                                    <div v-if="previewList.length === 0" class="file-upload-placeholder">
+                                        <p>Haz clic aquí para agregar archivos</p>
+                                    </div>
+                                    <div v-else class="file-preview">
+                                        <div v-for="file in previewList" :key="file.id" :class="['file-item', file.typeClass]">
+                                            <img v-if="file.type === 'image'" :src="file.preview" alt="Preview" />
+                                            <div v-else v-html="file.icon" style="width: 60px; min-width: 60px;"></div>
+                                            <div v-if="file.type !== 'image'">
+                                                <span class="file-name">{{ file.name }}</span>
+                                                <span class="file-size">{{ file.size }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @*********************************MODAL ELIMINAR TICKET*********************************@
+
+
+    <div v-if="showDeleteTicket" v-cloak class="modal-overlay">
+        <div class="modal-container" style="max-width: 400px;">
+            <div style="padding: 20px; text-align: center;">
+                <h3>¿Estás seguro de eliminar este ticket?</h3>
+                <div style="display: flex; justify-content: center; gap: 10px; margin-top: 20px;">
+                    <button @@click="confirmDelete" class="btn btn-danger">Si, eliminar</button>
+                    <button @@click="showDeleteTicket = false" class="btn btn-secondary">No, cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*********************************MODAL DETALLE SEGUIMIENTO*********************************@
+
+    <div v-if="showModalDetailSeguimiento" v-cloak class="modal-overlay">
+        <div class="modal-container" :class="{'modal-enter': showModalDetailSeguimiento, 'modal-leave': !showModalDetailSeguimiento}">
+            <div style="position:sticky;top:0;background-color:white;z-index:1;padding:15px;">
+                <div class="header-decoration"></div>
+
+                <div style="display:flex;justify-content:space-between;width:100%;">
+                    <h2 style="color: white;">Seguimiento Ticket</h2>
+                    <button @@click="closeModalDetailSeguimiento" class="btn btn-close">x</button>
+                </div>
+                <div v-if="ticketsDetail.Id!=0">
+                    <div class="sheet-input" style="margin-top: 20px;">
+                        <div class="sheet-showTop">
+                            <div class="sheet-showTop-header">
+                                <p class="sheet-showTop-title"> #{{ ticketsDetail.Id }} - {{ ticketsDetail.ClasificacionProblema.Nombre }}</p>
+                                <p class="sheet-showTop-level" :style="{ color: ticketsDetail.NivelAtencion.Color }">
+                                    {{ ticketsDetail.NivelAtencion.Nombre }}
+                                </p>
+                            </div>
+                            <div class="sheet-showTop-detail" style="justify-self:center">
+                                <p>{{ ticketsDetail.Identificador.Nombre }}, {{ ticketsDetail.Sala.Nombre }}</p>
+                            </div>
+                        </div>
+                        <div class="sheet-showTop-detail" style="font-size: 14px; font-weight: 1; display: inline-flex; justify-content: space-around">
+                            <p><strong>Asignado a:</strong> {{ ticketsAsignadosDetail.UsuarioAsignado.Nombres}} {{ ticketsAsignadosDetail.UsuarioAsignado.ApellidoPaterno}} {{ ticketsAsignadosDetail.UsuarioAsignado.ApellidoMaterno}} - {{ ticketsAsignadosDetail.UsuarioAsignado.NumeroDocumento}}</p>
+                            <p><strong>Cargo:</strong> {{ ticketsAsignadosDetail.UsuarioAsignado.Cargo}}</p>
+                        </div>
+                    </div>
+                    <div class="sheet-input" style="margin-top: 20px;">
+                        <div class="sheet-showText">
+                            <p><strong>Fecha de Registro:</strong>{{ ticketsAsignadosDetail.FechaRegistroStr }}</p>
+                            <p>
+                                <strong>
+                                    Fecha Tentativa Termino:
+                                </strong>
+                                {{ ticketsAsignadosDetail.FechaTentativaTerminoStr }}
+                            </p>
+                            @*<p><strong>Estado Ticket:</strong> {{ ticketsAsignadosDetail.EstadoTicket.Nombre }}</p>*@
+                        </div>
+                    </div>
+                </div>
+                <div class="sheet-input" style="margin-top: 20px; place-items:center">
+
+                    <div v-if="ticketsSeguimientosDetail.length>0">
+                        <div v-for="(ticketsSeguimientosDetail, index) in ticketsSeguimientosDetail"
+                             :key="ticketsSeguimientosDetail.id">
+                            <div class="historial-encabezado" style="display: flex; flex-direction:row; justify-content:space-between">
+                                <span class="" style="font-size: 0.9em; color: #555; font-weight: 500;">
+                                    #{{index+1}}
+                                </span>
+                                <span class="" style="font-size: 0.9em; color: #555;">
+                                    {{ ticketsSeguimientosDetail.FechaRegistroStr }}
+                                </span>
+                            </div>
+                            <div class="sheet-showText">
+                                <p><strong>Usuario:</strong>{{ ticketsSeguimientosDetail.UsuarioRegistra.Nombres }} {{ ticketsSeguimientosDetail.UsuarioRegistra.ApellidoPaterno }} {{ ticketsSeguimientosDetail.UsuarioRegistra.ApellidoMaterno }}</p>
+                            </div>
+                            <div class="sheet-showText">
+                                <p><strong>Estado Ticket:</strong>{{ ticketsSeguimientosDetail.EstadoTicketActual.Nombre }}</p>
+                            </div>
+                            <div class="sheet-showText">
+                                <p><strong>Proceso:</strong>{{ ticketsSeguimientosDetail.ProcesoActual.Nombre }}</p>
+                            </div>
+                            <div class="sheet-showText" style="border-bottom: 1px solid #e0e0e0;">
+                                <p><strong>Descripcion:</strong>{{ ticketsSeguimientosDetail.Descripcion }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p v-if="ticketsSeguimientosDetail.length==0" class="sin-historial">No tiene historial de seguimiento</p>
+            </div>
+        </div>
+    </div>
+
+    @******************************MODAL CIERRE****************************************@
+    <div v-if="showCierreModal" v-cloak id="formCierreTicket" class="modal-overlay">
+        <div class="modal-container" :class="{'modal-enter': showCierreModal, 'modal-leave': !showCierreModal}" style="max-width:650px;">
+            <div style="position:sticky;top:0;background-color:white;z-index:1;padding:15px;">
+                <div class="header-decoration"></div>
+
+
+
+
+                <div style="display:flex;justify-content:space-between;width:100%; ">
+                    <h2 style="color: white;">Detalle Ticket</h2>
+                    <button @@click="closeCierreModal" class="btn btn-close">x</button>
+                </div>
+
+                <div class="sheet-input" style="margin-top: 20px;">
+                    <div class="sheet-showTop">
+                        <div class="sheet-showTop-header">
+                            <p class="sheet-showTop-title">{{ ticketSelect.ClasificacionProblema.Nombre }}</p>
+                            <p class="sheet-showTop-level" :style="{ color: ticketSelect.NivelAtencion.Color }">
+                                {{ ticketSelect.NivelAtencion.Nombre }}
+                            </p>
+                        </div>
+                        <div class="sheet-showTop-detail" style="justify-self:center">
+                            <p>{{ ticketSelect.Identificador.Nombre }}, {{ ticketSelect.Sala.Nombre }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sheet-input" style="margin-top: 15px;">
+                    <div style="display:flex; flex-direction:column;gap:2px;">
+                        <label>Estado Ticket</label>
+                        <select id="cboEstadoTickets" name="cboEstadoTickets"></select>
+                    </div>
+                    <div style="display:flex; flex-direction:column;gap:2px;">
+                        <label>Descripcion</label>
+                        <textarea id="txtDescripcion2" name="txtDescripcion2" style="border-radius: 8px !important"></textarea>
+                    </div>
+                    <div style="margin: 5px; place-self: end;">
+                        <button class="btn btn-success" @@click="cerrarTicket">Guardar Cierre</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @******************************MODAL CONFIRMACION CIERRE****************************************@
+    @*<div v-if="showConfirmacionModal" id="formCierreTicket" class="modal-overlay">
+            <div class="modal-container" :class="{'modal-enter': showConfirmacionModal, 'modal-leave': !showConfirmacionModal}" style="max-width:650px;">
+                <div style="position:sticky;top:0;background-color:white;z-index:1;padding:15px;">
+                    <div class="header-decoration"></div>
+                    <div style="display:flex;justify-content:space-between;width:100%; ">
+                        <h2 style="color: white;">Confirmar Cierre</h2>
+                        <button @@click="closeConfirmacionModal" class="btn btn-close">x</button>
+                    </div>
+                    <div class="sheet-input" style="margin-top: 20px;">
+                        <div class="sheet-showTop">
+                            <div class="sheet-showTop-header">
+                                <p class="sheet-showTop-title">{{ ticketSelect.ClasificacionProblema.Nombre }}</p>
+                                <p class="sheet-showTop-level" :style="{ color: ticketSelect.NivelAtencion.Color }">
+                                    {{ ticketSelect.NivelAtencion.Nombre }}
+                                </p>
+                            </div>
+                            <div class="sheet-showTop-detail" style="justify-self:center">
+                                <p>{{ ticketSelect.Identificador.Nombre }}, {{ ticketSelect.Sala.Nombre }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sheet-input" style="margin-top: 15px;">
+                        <div style="display:flex; flex-direction:column;gap:2px;">
+                            <label>Estado Ticket</label>
+                            <select id="cboEstadoTickets" name="cboEstadoTickets"></select>
+                        </div>
+                        <div style="display:flex; flex-direction:column;gap:2px;">
+                            <label>Descripcion</label>
+                            <textarea id="txtDescripcion2" name="txtDescripcion2" style="border-radius: 8px !important"></textarea>
+                        </div>
+                        <div style="margin: 5px; place-self: end;">
+                            <button class="btn btn-success" @@click="cerrarTicket">Guardar Cierre</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+    <div v-if="showConfirmacionCierreModal" v-cloak class="modal-overlay">
+        <div class="modal-container" style="max-width: 400px;">
+            <div style="padding: 20px; text-align: center;">
+                <h3>¿Estás seguro de confirmar el cierre del ticket "{{ ticketSelect.ClasificacionProblema.Nombre }}"?</h3>
+                <div style="display: flex; justify-content: center; gap: 10px; margin-top: 20px;">
+                    <button @@click="confirmCierre()" class="btn btn-danger">Si, confirmar</button>
+                    <button @@click="showConfirmacionCierreModal = false" class="btn btn-secondary">No, cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*<div v-if="tickets.length > index">
+            <h3>¿Estás seguro de confirmar el cierre del ticket "{{ tickets[index].ClasificacionProblema.Nombre }}"?</h3>
+        </div>*@
+    @*********************************MODAL TIPO OPERACION*********************************@
+    <div v-if="modalOperacion" v-cloak class="modal-overlay">
+        <div class="modal-container">
+            <div style="position:sticky;top:0;background-color:white;z-index:1;padding:15px;">
+                <div class="header-decoration" style="padding: 35px"></div>
+                <div style="display:flex;justify-content:space-between;width:100%;">
+                    <h2 style="color: white;">{{ operacion.isEditingOperacion ? 'Editar Operacion' : 'Agregar Operacion' }}</h2>
+                    <button @@click="closeModalOperation" class="btn btn-close">x</button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <!-- Formulario de ingreso -->
+                <div v-if="!operacion.isEditingOperacion" style="display: flex">
+                    <input class="form-control" placeholder="Ingrese el nombre del Operacion" type="text" v-model="operacion.nuevoOperacionNombre" id="operacionNombre" @@keyup.enter="guardarOperacion" />
+                    <button @@click="guardarOperacion" class="btn btn-success" style="padding: 9px;"><i class="glyphicon glyphicon-ok"></i> Guardar</button>
+                </div>
+                <div v-else style="display: flex">
+                    <input class="form-control" placeholder="Ingrese el nombre del Operacion" type="text" v-model="operacion.EditadoNombre" id="operacionEditNombre" @@keyup.enter="actualizarOperacion" />
+                    <button @@click="actualizarOperacion" class="btn btn-success" style="padding: 9px;"><i class="glyphicon glyphicon-pencil"></i> Actualizar</button>
+                </div>
+
+                <!-- DataTable -->
+                <div class="table-responsive" style="border-radius: 8px !important; margin-top: 10px">
+                    <table class="table table-striped table-hover datatable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th class="text-center">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody style="background: #f9fafb ">
+                            <tr v-for="(item, index) in tipoOperacion" :key="item.Id" :class="{'editing-row': operacion.isEditingOperacion && operacion.EditadoIndex === index}">
+                                <td>{{ item.Id }}</td>
+                                <td>{{ item.Nombre }}</td>
+                                <td class="text-center action-buttons">
+                                    <button @@click="editarOperacion(index)" class="btn btn-warning btn-sm">
+                                        <i class="glyphicon glyphicon-pencil"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*********************************MODAL NIVEL ATENCION*********************************@
+    <div v-if="modalAtencion" v-cloak class="modal-overlay">
+        <div class="modal-container">
+            <div style="position:sticky;top:0;background-color:white;z-index:1;padding:15px;">
+                <div class="header-decoration" style="padding: 35px"></div>
+                <div style="display:flex;justify-content:space-between;width:100%;">
+                    <h2 style="color: white;">{{ nivelatencion.isEditingNivelAtencion ? 'Editar Nivel Atencion' : 'Agregar Nivel Atencion' }}</h2>
+                    <button @@click="closeModalAtentionLevel" class="btn btn-close">x</button>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <!-- Formulario de ingreso -->
+                <div v-if="!nivelatencion.isEditingNivelAtencion" style="display: flex">
+                    <div class="sheet-input">
+                        <label>Nombre</label>
+                        <input class="form-control" placeholder="Ingrese el nombre del nivel atencion" type="text" v-model="nivelatencion.nuevoNivelAtencionNombre" id="nivelatencionNombre" />
+                        <label>Color</label>
+                        <input class="form-control" type="color" v-model="nivelatencion.nuevocolorNivelAtencion" id="colorNivelAtencion" />
+                        <button @@click="guardarNivelAtencion" class="btn btn-success" style="padding: 9px; margin-top: 5px;"><i class="glyphicon glyphicon-ok"></i> Guardar</button>
+                    </div>
+                </div>
+                <div v-else style="display: flex">
+                    <div class="sheet-input">
+                        <label>Nombre</label>
+                        <input class="form-control" placeholder="Ingrese el nombre del nivel atencion" type="text" v-model="nivelatencion.EditadoNombre" id="nivelatencionEditNombre" />
+                        <label>Color</label>
+                        <input class="form-control" type="color" v-model="nivelatencion.EditadoColor" id="nivelatencionEditColor" />
+                        <button @@click="actualizarNivelAtencion" class="btn btn-success" style="padding: 9px; margin-top: 5px;"><i class="glyphicon glyphicon-pencil"></i> Actualizar</button>
+                    </div>
+                </div>
+
+                <!-- DataTable -->
+                <div class="table-responsive" style="border-radius: 8px !important; margin-top: 10px">
+                    <table class="table table-striped table-hover datatable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th class="text-center">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody style="background: #f9fafb ">
+                            <tr v-for="(item, index) in nivelesAtencion" :key="item.Id" :class="{'editing-row': nivelatencion.isEditingNivelAtencion && nivelatencion.EditadoIndex === index}">
+                                <td>{{ item.Id }}</td>
+                                <td>{{ item.Nombre }}</td>
+                                <td class="text-center action-buttons">
+                                    <button @@click="editarNivelAtencion(index)" class="btn btn-warning btn-sm">
+                                        <i class="glyphicon glyphicon-pencil"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @*************************************MODAL PARTIDA************************************@
+    <div v-if="modalPartida" v-cloak class="modal-overlay">
+        <div class="modal-container">
+            <div style="position:sticky;top:0;background-color:white;z-index:1;padding:15px;">
+                <div class="header-decoration" style="padding: 35px"></div>
+                <div style="display:flex;justify-content:space-between;width:100%;">
+                    <h2 style="color: white;">{{ partida.isEditingPartida ? 'Editar Partida' : 'Agregar Partida' }}</h2>
+                    <button @@click="closeModalPartida" class="btn btn-close">x</button>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <!-- Formulario de ingreso -->
+                <div v-if="!partida.isEditingPartida" style="display: flex">
+                    <div class="sheet-input">
+                        <label>Código</label>
+                        <input class="form-control" placeholder="Ingrese el código" type="text" v-model="partida.nuevoPartidaCodigo" id="partidaCodigo" style="margin:3px" />
+                        <label>Nombre</label>
+                        <input class="form-control" placeholder="Ingrese el nombre" type="text" v-model="partida.nuevoPartidaNombre" id="partidaNombre" style="margin:3px" />
+                        <label>Tipo de Gasto</label>
+                        <select style="margin-bottom:10px;" v-model="partida.tipoGasto" id="tipoGasto">
+                            <option value="1">OPEX</option>
+                            <option value="2">CAPEX</option>
+                        </select>
+                        <button @@click="guardarPartida" class="btn btn-success" style="padding: 9px; margin-top: 5px;"><i class="glyphicon glyphicon-ok"></i> Guardar</button>
+                    </div>
+                </div>
+                <div v-else style="display: flex">
+                    <div class="sheet-input">
+                        <div>
+                            <label>Código</label>
+                            <input class="form-control" placeholder="Ingrese el código" type="text" v-model="partida.EditadoCodigo" id="partidaEditCodigo" style="margin:3px" />
+                            <label>Nombre</label>
+                            <input class="form-control" placeholder="Ingrese el nombre" type="text" v-model="partida.EditadoNombre" id="partidaEditNombre" style="margin:3px" />
+                        </div>
+                        <label>Tipo de Gasto</label>
+                        <select style="margin-bottom:10px;" v-model="partida.EdittipoGasto" id="EdittipoGasto">
+                            <option value="1">OPEX</option>
+                            <option value="2">CAPEX</option>
+                        </select>
+                        <button @@click="actualizarPartida" class="btn btn-success" style="padding: 9px; margin-top: 5px;"><i class="glyphicon glyphicon-pencil"></i> Actualizar</button>
+                    </div>
+                </div>
+
+                <!-- DataTable -->
+                @*<div class="table-responsive" style="border-radius: 8px !important; margin-top: 10px">
+                        <table class="table table-striped table-hover datatable">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Codigo</th>
+                                    <th>Nombre</th>
+                                    <th>Tipo Gasto</th>
+                                    <th class="text-center">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody style="background: #f9fafb ">
+                                <tr v-for="(item, index) in partidas" :key="item.Id" :class="{'editing-row': partida.isEditingPartida && partida.EditadoIndex === index}">
+                                    <td>{{ item.Id }}</td>
+                                    <td>{{ item.Codigo }}</td>
+                                    <td :title="item.Nombre">{{ truncarTexto(item.Nombre, 30) }}</td>
+                                    <td>{{ obtenerTipoGasto(item.TipoGasto) }}</td>
+                                    <td class="text-center action-buttons">
+                                        <button @@click="editarPartida(index)" class="btn btn-warning btn-sm">
+                                            <i class="glyphicon glyphicon-pencil"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>*@
+                <div class="table-responsive" style="margin-top: 10px">
+                    <table id="tablePartidas" class="table table-condensed table-bordered table-hover" style="width:100%">
+                    </table>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    @*************************************MODAL RUBRO - CATEGORIA************************************@
+    @*<div v-if="modalRubro" class="modal-overlay" id="formCrearRubroCategoria">
+            <div :class="['modal-container', modalRubro ? 'modal-enter' : 'modal-leave']" style="max-width:350px;">
+                <div style="display: flex; width: 100%; justify-content: space-between; padding: 15px; cursor: pointer;">
+                    <h1>Registrar Rubro</h1>
+                    <i @@click="closeModalRubro" class="glyphicon glyphicon-remove"></i>
+                </div>
+                <div class="sheet-input" style="max-width: 350px; width: 100%; padding: 0px 15px 35px; margin: auto ">
+                    <label>Partida</label>
+                    <select class="" id="cboPartidaModal" name="cboPartidaModal"></select>
+                    <label>Nombre</label>
+                    <input style="margin-bottom:10px;" type="text" id="nombreCategoriaModal" />
+
+                    <button @@click="guardarCategoriaRubro" class="btn btn-primary">Registrar Partida</button>
+                </div>
+            </div>
+        </div>*@
+
+
+    <div v-if="modalRubro" v-cloak class="modal-overlay">
+        <div class="modal-container">
+            <div style="position:sticky;top:0;background-color:white;z-index:1;padding:15px;">
+                <div class="header-decoration" style="padding: 35px"></div>
+                <div style="display:flex;justify-content:space-between;width:100%;">
+                    <h2 style="color: white;">{{ categoria.isEditingCategoria ? 'Editar Categoria' : 'Agregar Categoria' }}</h2>
+                    <button @@click="closeModalRubro" class="btn btn-close">x</button>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <!-- Formulario de ingreso -->
+                <div v-show="!categoria.isEditingCategoria" style="display: flex">
+                    <div class="sheet-input">
+                        <label>Partida</label>
+                        <select class="" id="cboPartidaModal" name="cboPartidaModal"></select>
+                        <label>Nombre</label>
+                        <input class="form-control" placeholder="Ingrese el nombre" type="text" v-model="categoria.nuevoCategoriaNombre" id="categoriaNombre" style="margin:3px" />
+                        <button @@click="guardarCategoria" class="btn btn-success" style="padding: 9px; margin-top: 5px;"><i class="glyphicon glyphicon-ok"></i> Guardar</button>
+                    </div>
+                </div>
+                <div v-show="categoria.isEditingCategoria" style="display: flex">
+                    <div class="sheet-input">
+                        <div>
+                            <label>Partida</label>
+                            <select style="margin-bottom:10px;" v-model="categoria.EdittipoPartida" id="cboPartidaModalEditar" name="cboPartidaModalEditar" :disabled="categoria.isEditingCategoria"></select>
+                            <label>Nombre</label>
+                            <input class="form-control" placeholder="Ingrese el nombre" type="text" v-model="categoria.EditadoNombre" id="categoriaEditNombre" style="margin:3px" />
+                        </div>
+                        <button @@click="actualizarCategoria" class="btn btn-success" style="padding: 9px; margin-top: 5px;"><i class="glyphicon glyphicon-pencil"></i> Actualizar</button>
+                    </div>
+                </div>
+
+                <!-- DataTable -->
+                @*<div class="table-responsive" style="border-radius: 8px !important; margin-top: 10px">
+                        <table class="table table-striped table-hover datatable">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Partida</th>
+                                    <th class="text-center">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody style="background: #f9fafb ">
+                                <tr v-for="(item, index) in categoriaData" :key="item.Id" :class="{'editing-row': categoria.isEditingCategoria && categoria.EditadoIndex === index}">
+                                    <td>{{ item.Id }}</td>
+                                    <td :title="item.Nombre">{{ truncarTexto(item.Nombre, 20) }}</td>
+                                    <td>{{ truncarTexto(item.NombrePartida, 30) }}</td>
+                                    <td class="text-center action-buttons">
+                                        <button @@click="editarCategoria(index)" class="btn btn-warning btn-sm">
+                                            <i class="glyphicon glyphicon-pencil"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>*@
+
+                <div class="table-responsive" style="margin-top: 10px">
+                    @*<div class="table table-striped table-hover datatable" style="border-radius: 8px !important">*@
+                    <table id="tableCategorias" class="table table-condensed table-bordered table-hover" style="width:100%">
+                    </table>
+                    @*</div>*@
+                </div>
+
+            </div>
+        </div>
+    </div>
+    @*************************************MODAL SUB CATEGORIAS************************************@
+    <div v-if="modalSubCategoria" v-cloak class="modal-overlay">
+        <div class="modal-container">
+            <div style="position:sticky;top:0;background-color:white;z-index:1;padding:15px;">
+                <div class="header-decoration" style="padding: 35px"></div>
+                <div style="display:flex;justify-content:space-between;width:100%;">
+                    <h2 style="color: white;">{{ subcategoria.isEditingSubCategoria ? 'Editar Sub Categoria' : 'Agregar Sub Categoria' }}</h2>
+                    <button @@click="closeModalSubCategoria" class="btn btn-close">x</button>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <!-- Formulario de ingreso -->
+                <div v-show="!subcategoria.isEditingSubCategoria" style="display: flex">
+                    <div class="sheet-input">
+                        <label>Categoria</label>
+                        <select class="" id="cboCategoriaModal" name="cboCategoriaModal"></select>
+                        <label>Nombre</label>
+                        <input style="margin-bottom:10px;" type="text" id="nombreSubCategoria" />
+                        <button @@click="guardarSubCategoria" class="btn btn-success" style="padding: 9px; margin-top: 5px;"><i class="glyphicon glyphicon-ok"></i> Guardar</button>
+                    </div>
+                </div>
+                <div v-show="subcategoria.isEditingSubCategoria" style="display: flex">
+                    <div class="sheet-input">
+                        <label>Categoria</label>
+                        <select class="" id="cboCategoriaModalEditar" name="cboCategoriaModalEditar" v-model="subcategoria.EditadoCategoriaId" :disabled="subcategoria.isEditingSubCategoria"></select>
+                        <label>Nombre</label>
+                        <input class="form-control" placeholder="Ingrese el nombre de la subcategoria" type="text" v-model="subcategoria.EditadoNombre" id="subcategoriaEditNombre" />
+                        <button @@click="actualizarSubCategoria" class="btn btn-success" style="padding: 9px; margin-top: 5px;"><i class="glyphicon glyphicon-pencil"></i> Actualizar</button>
+                    </div>
+                </div>
+
+                <!-- DataTable -->
+                @*<div class="table-responsive" style="border-radius: 8px !important; margin-top: 10px">
+                        <table class="table table-striped table-hover datatable">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Categoria</th>
+                                    <th class="text-center">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody style="background: #f9fafb ">
+                                <tr v-for="(item, index) in subCategoria" :key="item.Id" :class="{'editing-row': subcategoria.isEditingSubCategoria && subcategoria.EditadoIndex === index}">
+                                    <td>{{ item.Id }}</td>
+                                    <td>{{ truncarTexto(item.Nombre, 20) }}</td>
+                                    <td>{{ truncarTexto(item.NombreCategoria, 20) }}</td>
+                                    <td class="text-center action-buttons">
+                                        <button @@click="editarSubCategoria(index)" class="btn btn-warning btn-sm">
+                                            <i class="glyphicon glyphicon-pencil"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>*@
+
+                <div class="table-responsive" style="margin-top: 10px">
+                    <table id="tableSubCategorias" class="table table-condensed table-bordered table-hover" style="width:100%">
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*************************************MODAL CLASIFICACION PROBLEMA************************************@
+    <div v-if="modalClasificacionProblema" v-cloak class="modal-overlay">
+        <div class="modal-container">
+            <div style="position:sticky;top:0;background-color:white;z-index:1;padding:15px;">
+                <div class="header-decoration" style="padding: 35px"></div>
+                <div style="display:flex;justify-content:space-between;width:100%;">
+                    <h2 style="color: white;">{{ clasificacion.isEditingClasificacion ? 'Editar Clasificacion' : 'Agregar Clasificacion' }}</h2>
+                    <button @@click="closeModalClasProblema" class="btn btn-close">x</button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <!-- Formulario de ingreso -->
+                <div v-if="!clasificacion.isEditingClasificacion" style="display: flex">
+                    <input class="form-control" placeholder="Ingrese el nombre de la clasificacion" type="text" v-model="clasificacion.nuevoClasificacionNombre" id="clasificacionNombre" @@keyup.enter="guardarClasificacion" />
+                    <button @@click="guardarClasificacion" class="btn btn-success" style="padding: 9px;"><i class="glyphicon glyphicon-ok"></i> Guardar</button>
+                </div>
+                <div v-else style="display: flex">
+                    <input class="form-control" placeholder="Ingrese el nombre de la clasificacion" type="text" v-model="clasificacion.EditadoNombre" id="clasificacionEditNombre" @@keyup.enter="actualizarClasificacion" />
+                    <button @@click="actualizarClasificacion" class="btn btn-success" style="padding: 9px;"><i class="glyphicon glyphicon-pencil"></i> Actualizar</button>
+                </div>
+
+                <!-- DataTable -->
+                <div class="table-responsive" style="border-radius: 8px !important; margin-top: 10px">
+                    <table class="table table-striped table-hover datatable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th class="text-center">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody style="background: #f9fafb ">
+                            <tr v-for="(item, index) in clasificacionProblemas" :key="item.Id" :class="{'editing-row': clasificacion.isEditingClasificacion && clasificacion.EditadoIndex === index}">
+                                <td>{{ item.Id }}</td>
+                                <td>{{ item.Nombre }}</td>
+                                <td class="text-center action-buttons">
+                                    <button @@click="editarClasificacion(index)" class="btn btn-warning btn-sm">
+                                        <i class="glyphicon glyphicon-pencil"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*************************************MODAL ESTADO ACTUAL************************************@
+    <div v-if="modalEstadoActual" v-cloak class="modal-overlay">
+        <div class="modal-container">
+            <div style="position:sticky;top:0;background-color:white;z-index:1;padding:15px;">
+                <div class="header-decoration" style="padding: 35px"></div>
+                <div style="display:flex;justify-content:space-between;width:100%;">
+                    <h2 style="color: white;">{{ estado.isEditingEstado ? 'Editar Estado' : 'Agregar Estado' }}</h2>
+                    <button @@click="closeModalEstadoActual" class="btn btn-close">x</button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <!-- Formulario de ingreso -->
+                <div v-if="!estado.isEditingEstado" style="display: flex">
+                    <input class="form-control" placeholder="Ingrese el nombre de la estado" type="text" v-model="estado.nuevoEstadoNombre" id="estadoNombre" @@keyup.enter="guardarEstado" />
+                    <button @@click="guardarEstado" class="btn btn-success" style="padding: 9px;"><i class="glyphicon glyphicon-ok"></i> Guardar</button>
+                </div>
+                <div v-else style="display: flex">
+                    <input class="form-control" placeholder="Ingrese el nombre de la estado" type="text" v-model="estado.EditadoNombre" id="estadoEditNombre" @@keyup.enter="actualizarEstado" />
+                    <button @@click="actualizarEstado" class="btn btn-success" style="padding: 9px;"><i class="glyphicon glyphicon-pencil"></i> Actualizar</button>
+                </div>
+
+                <!-- DataTable -->
+                <div class="table-responsive" style="border-radius: 8px !important; margin-top: 10px">
+                    <table class="table table-striped table-hover datatable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th class="text-center">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody style="background: #f9fafb ">
+                            <tr v-for="(item, index) in estadosActual" :key="item.Id" :class="{'editing-row': estado.isEditingEstado && estado.EditadoIndex === index}">
+                                <td>{{ item.Id }}</td>
+                                <td>{{ item.Nombre }}</td>
+                                <td class="text-center action-buttons">
+                                    <button @@click="editarEstado(index)" class="btn btn-warning btn-sm">
+                                        <i class="glyphicon glyphicon-pencil"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*************************************MODAL IDENTIFICADOR************************************@
+    <div v-if="modalIdentificador" v-cloak class="modal-overlay">
+        <div class="modal-container">
+            <div style="position:sticky;top:0;background-color:white;z-index:1;padding:15px;">
+                <div class="header-decoration" style="padding: 35px"></div>
+                <div style="display:flex;justify-content:space-between;width:100%;">
+                    <h2 style="color: white;">{{ identificador.isEditingIdentificador ? 'Editar Identificador' : 'Agregar Identificador' }}</h2>
+                    <button @@click="closeModalIdentificador" class="btn btn-close">x</button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <!-- Formulario de ingreso -->
+                <div v-if="!identificador.isEditingIdentificador" style="display: flex">
+                    <input class="form-control" placeholder="Ingrese el nombre de la identificador" type="text" v-model="identificador.nuevoIdentificadorNombre" id="identificadorNombre" @@keyup.enter="guardarIdentificador" />
+                    <button @@click="guardarIdentificador" class="btn btn-success" style="padding: 9px;"><i class="glyphicon glyphicon-ok"></i> Guardar</button>
+                </div>
+                <div v-else style="display: flex">
+                    <input class="form-control" placeholder="Ingrese el nombre de la identificador" type="text" v-model="identificador.EditadoNombre" id="identificadorEditNombre" @@keyup.enter="actualizarIdentificador" />
+                    <button @@click="actualizarIdentificador" class="btn btn-success" style="padding: 9px;"><i class="glyphicon glyphicon-pencil"></i> Actualizar</button>
+                </div>
+
+                <!-- DataTable -->
+                <div class="table-responsive" style="border-radius: 8px !important; margin-top: 10px">
+                    <table class="table table-striped table-hover datatable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th class="text-center">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody style="background: #f9fafb ">
+                            <tr v-for="(item, index) in identificadores" :key="item.Id" :class="{'editing-row': identificador.isEditingIdentificador && identificador.EditadoIndex === index}">
+                                <td>{{ item.Id }}</td>
+                                <td>{{ item.Nombre }}</td>
+                                <td class="text-center action-buttons">
+                                    <button @@click="editarIdentificador(index)" class="btn btn-warning btn-sm">
+                                        <i class="glyphicon glyphicon-pencil"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section js
+{
+
+    <script src="~/Content/assets/js/optional/vue/vue.min.js"></script>
+    <script src="~/Content/assets/viewsjs/GLPImodulo/crearTicket.js"></script>
+
+}
+
+

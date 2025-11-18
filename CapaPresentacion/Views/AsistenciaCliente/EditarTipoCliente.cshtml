@@ -1,0 +1,113 @@
+﻿@{
+    ViewBag.Title = "Editar Tipo Juego";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using System.Activities.Expressions
+@using System.Web.Script.Serialization
+@using System.Web.UI.WebControls
+
+@{
+    String tipoCliente = new JavaScriptSerializer().Serialize(ViewBag.tipoCliente);
+    String mensaje = new JavaScriptSerializer().Serialize(ViewBag.mensaje);
+}
+<script type="text/javascript">
+    tipoCliente = (@Html.Raw(tipoCliente));
+    mensaje = (@Html.Raw(mensaje));
+</script>
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-shield"></span>
+                                <span class="main-text">
+                                    Edición Tipo Cliente
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+
+                        <div class="col-md-4 col-md-offset-4 col-sm-6 col-xs-6">
+                            <button type="button" class="btn btn-success btn-sm col-md-12 col-sm-12 col-xs-12 btnListar"><span class="glyphicon glyphicon-list-alt"></span> Listado </button>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <button type="button" class="btn btn-primary btn-sm col-md-12 col-sm-12 col-xs-12 btnGuardar "><span class="glyphicon glyphicon-floppy-disk"></span> Guardar </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="cardMachine" style="margin-bottom:15px;">
+                        <fieldset class="sectionCard" style="padding: 10px 7px; margin-top: 10px;">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="contenedor_registro">
+                                        <form id="form_registro_tipocliente">
+                                            <input type="hidden" id="Id" value="0" name="Id" />
+                                            <fieldset>
+                                                <legend>Info:</legend>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="input-group form-group">
+                                                        <span class="input-group-addon">
+                                                            Nombre
+                                                        </span>
+                                                        <input type="text" class="form-control input-sm UpperCase" id="Nombre" name="Nombre" placeholder="Nombre">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="input-group form-group">
+                                                        <span class="input-group-addon">
+                                                            Estado
+                                                        </span>
+                                                        <select id="cboEstado" class="form-control input-sm mySelect" name="Estado">
+                                                            <option value="A">ACTIVO</option>
+                                                            <option value="I">INACTIVO</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="input-group form-group">
+                                                        <span class="input-group-addon">
+                                                            Nombre
+                                                        </span>
+                                                        <input type="text" class="form-control input-sm UpperCase" id="Descripcion" name="Descripcion" placeholder="Descripcion">
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+@section js
+{
+    <script src="~/Content/assets/viewsjs/AsistenciaCliente/EditarTipoCliente.js"></script>
+}

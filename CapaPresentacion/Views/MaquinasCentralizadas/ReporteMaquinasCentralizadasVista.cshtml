@@ -1,0 +1,190 @@
+﻿@using S3k.Utilitario;
+
+@{
+    ViewBag.Title = "Reporte Maquinas Centralizadas Vista";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+}
+
+
+<style type="text/css">
+    .select2-container .select2-selection--single {
+        height: 27px !important;
+    }
+
+    .select2-container .select2-selection--multiple {
+        min-height: 27px !important;
+        max-height: 27px !important;
+    }
+
+    .select2-container .select2-selection--multiple {
+        overflow-y: scroll;
+    }
+
+
+    .table thead tr {
+        background-color: #0b1f46 !important;
+        height: 35px;
+    }
+
+    .cardMachine {
+        border-radius: 7px !important;
+        background-color: white;
+        padding: 15px 15px;
+    }
+
+    .sectionCard {
+        border: solid #a1a1a1 1px;
+        border-radius: 7px !important;
+        padding: 15px 1px;
+        margin-bottom: 15px;
+    }
+
+    .collapsed {
+        box-shadow: none !important;
+    }
+
+    .block.collapsed .block-heading .block-controls .icon.block-control-collapse {
+        color: black !important;
+    }
+
+    .block {
+        box-shadow: none !important;
+    }
+
+    .zon {
+        background-color: white !important;
+        border-bottom: none !important;
+        background: none !important;
+    }
+</style>
+
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-block-menu"></span>
+                                <span class="main-text">
+                                    Reporte Maquinas Centralizadas
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+
+                    <div class="row">
+                        <div class="col-sm-6 ">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 ">
+                                    <button type="button" id="btnBuscar" class="btn btn-primary btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                        Buscar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 ">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnExcel" class="btn btn-success btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-file"></span>
+                                        Excel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+
+                        <div class="col-xs-12 col-md-12 col-sm-12" id="formfiltro">
+                            <div class="col-md-4 col-sm-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        FECHA DE INICIO
+                                    </span>
+                                    <input type="text" class="form-control input-sm dateOnly_" id="fechaIni" />
+                                    <span class="input-group-addon input-group-icon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 col-sm-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        FECHA DE FIN
+                                    </span>
+                                    <input type="text" class="form-control input-sm dateOnly_" id="fechaFin" />
+                                    <span class="input-group-addon input-group-icon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-4">
+                                </div>
+                                <div class="col-lg-4 col-sm-4">
+                                    <div class="input-group ">
+                                        <span class="input-group-addon">
+                                            Sala
+                                        </span>
+                                        <select class="form-control input-sm codSalaAuditoria" id="cboSala" name="cboSala">
+                                            <option value="0" data-id="0">--Seleccione--</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <hr style="margin-top: 0px;" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="">
+                                <table id="table" class="table table-striped table-condensed table-responsive table-bordered table-hover"></table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/MaquinasCentralizadas/ReporteMaquinasCentralizadasVista.js?v=@fecha_archivos"></script>
+}

@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "UsuarioEncriptacionListarVista";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-shield"></span>
+                                <span class="main-text">
+                                    Listado de Usuarios Encript/Decript
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-xs-6 pull-right">
+                            <button type="button" id="btnNuevo" class="btn btn-sm btn-success col-md-12 col-xs-12">
+                                <span class="glyphicon glyphicon-book"></span>
+                                Nuevo
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+
+                    <div class="cardMachine" style="margin-bottom:15px;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-responsive contenedor_usuarios_encriptacion">
+                                    <table id="tableEncript" class="table mb-0 table-bordered table-condensed table-hover table-striped"></table>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+
+                    </div>
+                </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/UsuarioEncriptacion/UsuarioEncriptacionListarVista.js"></script>
+}
+

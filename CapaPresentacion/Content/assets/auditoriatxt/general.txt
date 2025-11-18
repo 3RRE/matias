@@ -1,0 +1,16 @@
+﻿<div class="row">
+    <div class="col-md-6 col-sm-12 col-xs-12" id="divdatainicial">
+        <h3 style="color:blue;font-weight:bolder;text-align:center;" id="dataI"></h3>
+        <div class="row" id="divrowIni">
+            
+
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-12 col-xs-12" id="divdatafinal">
+        <h3 style="color:blue;font-weight:bolder;text-align:center;" id="dataF"></h3>
+        <div class="row" id="divrowFin">
+            
+
+        </div>
+    </div>
+</div>

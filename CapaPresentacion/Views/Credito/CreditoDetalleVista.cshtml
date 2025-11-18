@@ -1,0 +1,119 @@
+﻿@using CapaEntidad.BUK
+@model BUK_CreditoEntidad
+@{
+    Layout = null;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-12">
+            <form id="formEquivalenciaEmpresa" role="form">
+                <div class="col-md-6 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Id Crédito BUK
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm" readonly value="@Model.IdCreditoBuk">
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Nro. Documento
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm" readonly value="@Model.NumeroDocumento">
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Cod. Tipo Vale
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm" readonly value="@Model.CodigoTipoVale">
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Cod. Empresa
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm" readonly value="@Model.CodigoEmpresa">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <hr />
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Año
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm" readonly value="@Model.Anio">
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Periodo
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm" readonly value="@Model.Periodo">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <hr />
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Cuota Mensual
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm" readonly value="S/@Model.CuotaMensual">
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Nro. Cuotas
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm" readonly value="@Model.CantidadCoutas">
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Total
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm" readonly value="S/@Model.MontoTotal">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <hr />
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Descripción
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm" readonly value="@Model.DescripcionTipo">
+                    </div>
+                </div>
+                <div class="col-md-5 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Estado
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm" readonly value="@(Model.Estado?"Activo":"Anulado")">
+                    </div>
+                </div>
+                <div class="col-md-7 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Fecha Registro
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm" readonly value="@Model.FechaRegistro.ToString("dd/MM/yyyy HH:mm")">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

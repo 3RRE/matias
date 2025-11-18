@@ -1,0 +1,473 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E90EB5AC-DB12-4979-970D-69B1D8A79CF4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CapaEntidad</RootNamespace>
+    <AssemblyName>CapaEntidad</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EPPlus, Version=5.7.4.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.5.7.4\lib\net45\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=1.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.1.4.1\lib\net46\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.7.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Administrativo\ADM_DetalleContadoresGameEntidad.cs" />
+    <Compile Include="Administrativo\ADM_DetalleSalaProgresivoEntidad.cs" />
+    <Compile Include="Administrativo\ADM_GanadorEntidad.cs" />
+    <Compile Include="Administrativo\ADM_HistorialMaquinaEntidad.cs" />
+    <Compile Include="Administrativo\ADM_MaquinaEntidad.cs" />
+    <Compile Include="Administrativo\ADM_MaquinaSalaProgresivoEntidad.cs" />
+    <Compile Include="Administrativo\ADM_PozoHistoricoEntidad.cs" />
+    <Compile Include="Administrativo\ADM_SalaProgresivoEntidad.cs" />
+    <Compile Include="Administrativo\WS_DetalleContadoresGameWebEntidad.cs" />
+    <Compile Include="Alertas\ALT_AlertaCargoConfEntidad.cs" />
+    <Compile Include="Alertas\ALT_AlertaSalaEntidad.cs" />
+    <Compile Include="Alertas\ContadorCorreoAlertaEntidad.cs" />
+    <Compile Include="Alertas\EVT_EventoDispositivoEntidad.cs" />
+    <Compile Include="Alertas\EVT_EventosOnlineEntidad.cs" />
+    <Compile Include="AreaTechEntidad.cs" />
+    <Compile Include="Asignacion_M_T.cs" />
+    <Compile Include="AsistenciaCliente\AST_ClienteSalaEntidad.cs" />
+    <Compile Include="AsistenciaCliente\AST_TipoJEntidad.cs" />
+    <Compile Include="AsistenciaCliente\AST_TipoJuegoEntidad.cs" />
+    <Compile Include="AsistenciaCliente\AST_TipoNotificacionCliente.cs" />
+    <Compile Include="AsistenciaCliente\ClienteSomosCasino.cs" />
+    <Compile Include="AsistenciaCliente\DataWarehouse\AST_ClienteMigracionDwhEntidad.cs" />
+    <Compile Include="AsistenciaCliente\DataWarehouse\AST_ClienteMigracionDwhFiltro.cs" />
+    <Compile Include="AsistenciaCliente\DataWarehouse\AST_ClienteEstadoMigracion.cs" />
+    <Compile Include="BOT\Entities\BOT_PermisoEntidad.cs" />
+    <Compile Include="BOT\Entities\BOT_CargoEntidad.cs" />
+    <Compile Include="BOT\Entities\BOT_AreaEntidad.cs" />
+    <Compile Include="BOT\Entities\BOT_ContactoEntidad.cs" />
+    <Compile Include="BOT\Entities\BOT_EmpleadoEntidad.cs" />
+    <Compile Include="BOT\Enum\BOT_Acciones.cs" />
+    <Compile Include="BOT\Enum\BOT_OrigenRegistro.cs" />
+    <Compile Include="BUK\BUK_EmpleadoEntidad.cs" />
+    <Compile Include="BUK\BUK_CreditoEntidad.cs" />
+    <Compile Include="BUK\BUK_EquivalenciaEmpresaEntidad.cs" />
+    <Compile Include="BUK\BUK_EquivalenciaSedeEntidad.cs" />
+    <Compile Include="BUK\Response\BUK_EquivalenciaEmpresaResponse.cs" />
+    <Compile Include="BUK\Response\BUK_EquivalenciaSedeResponse.cs" />
+    <Compile Include="Campañas\CMP_JugadasCliente.cs" />
+    <Compile Include="Campañas\CMP_ProcedenciaRegistroEntidad.cs" />
+    <Compile Include="Campañas\CMP_SesionMigracion.cs" />
+    <Compile Include="Campañas\CMP_SesionSorteoSalaMigracion.cs" />
+    <Compile Include="ClienteSala\ClienteSalaEntidad.cs" />
+    <Compile Include="ClienteSatisfaccion\DTO\ComentarioEncuestaDTO.cs" />
+    <Compile Include="ClienteSatisfaccion\DTO\CsatDiarioDTO.cs" />
+    <Compile Include="ClienteSatisfaccion\DTO\CsatMensualDTO.cs" />
+    <Compile Include="ClienteSatisfaccion\DTO\CsatRespuesta.cs" />
+    <Compile Include="ClienteSatisfaccion\DTO\CsatResultadoDTO.cs" />
+    <Compile Include="ClienteSatisfaccion\DTO\IndicadorMensualDTO.cs" />
+    <Compile Include="ClienteSatisfaccion\DTO\IndicadorResultadoDTO.cs" />
+    <Compile Include="ClienteSatisfaccion\DTO\NpsMensualDTO.cs" />
+    <Compile Include="ClienteSatisfaccion\DTO\NpsRespuestaDTO.cs" />
+    <Compile Include="ClienteSatisfaccion\DTO\NpsResultadoDTO.cs" />
+    <Compile Include="ClienteSatisfaccion\DTO\PreguntaFlujoDTO.cs" />
+    <Compile Include="ClienteSatisfaccion\DTO\PreguntaIndicadorDTO.cs" />
+    <Compile Include="ClienteSatisfaccion\DTO\PreguntasCSATDTO.cs" />
+    <Compile Include="ClienteSatisfaccion\DTO\PreguntasDTO.cs" />
+    <Compile Include="ClienteSatisfaccion\DTO\RespuestaIndicadorDTO.cs" />
+    <Compile Include="ClienteSatisfaccion\DTO\RespuestaPlanoDTO.cs" />
+    <Compile Include="ClienteSatisfaccion\Entidad\CSConfiguracionEntidad.cs" />
+    <Compile Include="ClienteSatisfaccion\Entidad\FlujoEntidad.cs" />
+    <Compile Include="ClienteSatisfaccion\Entidad\OpcionEntidad.cs" />
+    <Compile Include="ClienteSatisfaccion\Entidad\PreguntaEntidad.cs" />
+    <Compile Include="ClienteSatisfaccion\Entidad\RespuestaEncuestaEntidad.cs" />
+    <Compile Include="ClienteSatisfaccion\Entidad\RespuestaPreguntaEntidad.cs" />
+    <Compile Include="ClienteSatisfaccion\Entidad\Tablet.cs" />
+    <Compile Include="ClienteVerificacionResponse.cs" />
+    <Compile Include="ContadoresBonusIn\ContadoresBonusInEntidad.cs" />
+    <Compile Include="ControlAcceso\CAL_MenorDeEdadEntidad.cs" />
+    <Compile Include="ControlAcceso\Filtro\CAL_IngresoClienteSalaDwhFiltro.cs" />
+    <Compile Include="ControlAcceso\HistorialLudopata\CAL_HistorialLudopata.cs" />
+    <Compile Include="ControlAcceso\HistorialLudopata\Dto\CAL_HistorialLudopataDto.cs" />
+    <Compile Include="ControlAcceso\HistorialLudopata\Enum\CAL_TipoRegistroHistorialLudopata.cs" />
+    <Compile Include="ControlAcceso\HistorialLudopata\Enum\CAL_TipoMovimientoHistorialLudopata.cs" />
+    <Compile Include="ControlAcceso\Ludopata\Dto\CAL_ContactoLudopataDto.cs" />
+    <Compile Include="ControlAcceso\Ludopata\Dto\CAL_LudopataDto.cs" />
+    <Compile Include="Cortesias\CRT_Anfitriona.cs" />
+    <Compile Include="Cortesias\CRT_AnfitrionaBar.cs" />
+    <Compile Include="Cortesias\CRT_Configuracion.cs" />
+    <Compile Include="Cortesias\CRT_Isla.cs" />
+    <Compile Include="Cortesias\CRT_Maquina.cs" />
+    <Compile Include="Cortesias\CRT_Producto.cs" />
+    <Compile Include="Cortesias\CRT_Tipo.cs" />
+    <Compile Include="Cortesias\CRT_SubTipo.cs" />
+    <Compile Include="Cortesias\CRT_Marca.cs" />
+    <Compile Include="Cortesias\CRT_Bar.cs" />
+    <Compile Include="Cortesias\CRT_Usuario.cs" />
+    <Compile Include="Cortesias\CRT_Zona.cs" />
+    <Compile Include="Cortesias\Reporte\CRT_ReporteFiltro.cs" />
+    <Compile Include="Cortesias\Reporte\CRT_ReportePedido.cs" />
+    <Compile Include="Cortesias\Reporte\CRT_ReporteProducto.cs" />
+    <Compile Include="Cortesias\Reporte\CRT_ReporteProductoChart.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_AccionCajaTemporizadaEntidad.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_AccionCajaTemporizadaEmpleadoEntidad.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_AperturaCierreSalaEntidad.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_BienMaterialEmpleadoEntidad.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_BienMaterialEntidad.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_CargoEntidad.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_CategoriaEntidad.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_DashboardEntidad.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_EmpresaEntidad.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_EnteReguladorEntidad.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_EnteReguladorMotivoEntidad.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_EnteReguladorPersonaEntidadPublicaEntidad.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_EntidadRegularPersonaEntidadPublica.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_IngresoSalidaGUEmpleadoEntidad.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_IngresoSalidaGUEntidad.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_LogOcurrenciaEntidad.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_MotivoEntidad.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_RecaudacionPersonalEntidad.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_VisitasSupervisorEntidad.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_RecojoRemesaEntidad.cs" />
+    <Compile Include="ERP\StatusSincronizadorEntidad.cs" />
+    <Compile Include="EventosSignificativos\EventosSignificativosEntidad.cs" />
+    <Compile Include="Excel\HojaExcelReporteAgrupado.cs" />
+    <Compile Include="Excel\ExportToExcel.cs" />
+    <Compile Include="GLPI\DTO\Global\GLPI_AsignacionDto.cs" />
+    <Compile Include="GLPI\DTO\Global\GLPI_CierreDto.cs" />
+    <Compile Include="GLPI\DTO\Global\GLPI_SeguimientoDto.cs" />
+    <Compile Include="GLPI\DTO\GLPI_CierreTicketDto.cs" />
+    <Compile Include="GLPI\DTO\GLPI_SeguimientoTicketDto.cs" />
+    <Compile Include="GLPI\DTO\GLPI_AsignacionTicketDto.cs" />
+    <Compile Include="GLPI\DTO\GLPI_TicketDto.cs" />
+    <Compile Include="GLPI\DTO\Mantenedores\GLPI_EstadoTicketDto.cs" />
+    <Compile Include="GLPI\DTO\Mantenedores\GLPI_ProcesoDto.cs" />
+    <Compile Include="GLPI\DTO\Mantenedores\GLPI_IdentificadorDto.cs" />
+    <Compile Include="GLPI\DTO\Mantenedores\GLPI_EstadoActualDto.cs" />
+    <Compile Include="GLPI\DTO\Mantenedores\GLPI_SubCategoriaDto.cs" />
+    <Compile Include="GLPI\DTO\Mantenedores\GLPI_NivelAtencionDto.cs" />
+    <Compile Include="GLPI\DTO\Mantenedores\GLPI_CategoriaDto.cs" />
+    <Compile Include="GLPI\DTO\Mantenedores\GLPI_PartidaDto.cs" />
+    <Compile Include="GLPI\DTO\Mantenedores\GLPI_ClasificacionProblemaDto.cs" />
+    <Compile Include="GLPI\DTO\Mantenedores\GLPI_TipoOperacionDto.cs" />
+    <Compile Include="GLPI\DTO\Mantenedores\GLPI_UsuarioDto.cs" />
+    <Compile Include="GLPI\Enum\GLPI_FaseTicket.cs" />
+    <Compile Include="GLPI\Enum\GLPI_TipoGasto.cs" />
+    <Compile Include="GLPI\GLPI_AsignacionTicket.cs" />
+    <Compile Include="GLPI\GLPI_CierreTicket.cs" />
+    <Compile Include="GLPI\GLPI_SeguimientoTicket.cs" />
+    <Compile Include="GLPI\GLPI_Ticket.cs" />
+    <Compile Include="GLPI\Helper\GLPI_FileUpload.cs" />
+    <Compile Include="GLPI\Helper\GLPI_SelectHelper.cs" />
+    <Compile Include="GLPI\Mantenedores\GLPI_Usuario.cs" />
+    <Compile Include="GLPI\Mantenedores\GLPI_EstadoTicket.cs" />
+    <Compile Include="GLPI\GLPI_BaseClass.cs" />
+    <Compile Include="GLPI\Mantenedores\GLPI_Proceso.cs" />
+    <Compile Include="GLPI\Mantenedores\GLPI_Identificador.cs" />
+    <Compile Include="GLPI\Mantenedores\GLPI_EstadoActual.cs" />
+    <Compile Include="GLPI\Mantenedores\GLPI_ClasificacionProblema.cs" />
+    <Compile Include="GLPI\DTO\Mantenedores\GLPI_SalaDto.cs" />
+    <Compile Include="GLPI\Mantenedores\GLPI_SubCategoria.cs" />
+    <Compile Include="GLPI\Mantenedores\GLPI_Categoria.cs" />
+    <Compile Include="GLPI\Mantenedores\GLPI_Partida.cs" />
+    <Compile Include="GLPI\Mantenedores\GLPI_NivelAtencion.cs" />
+    <Compile Include="GLPI\Mantenedores\GLPI_TipoOperacion.cs" />
+    <Compile Include="GLPI\Mantenedores\GLPI_Correo.cs" />
+    <Compile Include="GLPI\Mantenedores\GLPI_BaseClassMantenedor.cs" />
+    <Compile Include="GLPI\Reporte\GLPI_ReporteFiltro.cs" />
+    <Compile Include="MaquinaEstado\TEC_ConsolidadoMaquinaEntidad.cs" />
+    <Compile Include="MaquinaEstado\TEC_EstadoMaquinaEntidad.cs" />
+    <Compile Include="MaquinasCentralizadasEntidad.cs" />
+    <Compile Include="MaquinasInoperativas\MI_ComentarioEntidad.cs" />
+    <Compile Include="MaquinasInoperativas\MI_CorreoEntidad.cs" />
+    <Compile Include="Migracion\ContadoresOnline.cs" />
+    <Compile Include="DetalleContadoresGameEntidad.cs" />
+    <Compile Include="EstadoServiciosEntidad.cs" />
+    <Compile Include="Incidencias\IncidenciaEntidad.cs" />
+    <Compile Include="Incidencias\SistemaIncidenciaEntidad.cs" />
+    <Compile Include="Incidencias\SolucionIncidenciaEntidad.cs" />
+    <Compile Include="MaquinasInoperativas\MI_SalaCorreosEntidad.cs" />
+    <Compile Include="Notificaciones\DTO\Mantenedores\CredencialCorreoDto.cs" />
+    <Compile Include="Notificaciones\DTO\Mantenedores\CredencialWhatsAppDto.cs" />
+    <Compile Include="Notificaciones\DTO\Mantenedores\SistemaDto.cs" />
+    <Compile Include="Notificaciones\Entity\Mantenedores\CredencialCorreo.cs" />
+    <Compile Include="Notificaciones\Entity\Mantenedores\CredencialWhatsApp.cs" />
+    <Compile Include="Notificaciones\Entity\Mantenedores\NotificacionBaseClassMantenedor.cs" />
+    <Compile Include="Notificaciones\Entity\Mantenedores\Sistema.cs" />
+    <Compile Include="ProgresivoOffline\CabeceraOfflineEntidad.cs" />
+    <Compile Include="ProgresivoOffline\DetalleOfflineEntidad.cs" />
+    <Compile Include="ProgresivoOffline\ProgresivoOfflineEntidad.cs" />
+    <Compile Include="ProgresivoRuleta\Config\PRU_AcreditacionGanadorConfig.cs" />
+    <Compile Include="ProgresivoRuleta\Config\Pru_MisteryConfig.cs" />
+    <Compile Include="ProgresivoRuleta\Dto\PRU_AlertaDto.cs" />
+    <Compile Include="ProgresivoRuleta\Dto\PRU_GanadorDto.cs" />
+    <Compile Include="ProgresivoRuleta\Dto\PRU_RuletaDto.cs" />
+    <Compile Include="ProgresivoRuleta\Dto\PRU_SalaDto.cs" />
+    <Compile Include="ProgresivoRuleta\Dto\PRU_ConfiguracionDto.cs" />
+    <Compile Include="ProgresivoRuleta\Entidades\PRU_Ganador.cs" />
+    <Compile Include="ProgresivoRuleta\Entidades\PRU_Alerta.cs" />
+    <Compile Include="ProgresivoRuleta\Entidades\PRU_Configuracion.cs" />
+    <Compile Include="ProgresivoRuleta\Filtro\PRU_Filtro.cs" />
+    <Compile Include="Progresivo\AlertaProgresivoCargoEntidad.cs" />
+    <Compile Include="Progresivo\AlertaProgresivoDetalleEntidad.cs" />
+    <Compile Include="Progresivo\AlertaProgresivoEntidad.cs" />
+    <Compile Include="Progresivo\AlertaProgresivoPozoEntidad.cs" />
+    <Compile Include="Progresivo\ApiOcrLeerImagenPozoResponse.cs" />
+    <Compile Include="Progresivo\RegistroProgresivoEntidad.cs" />
+    <Compile Include="Queue\EmailQueue.cs" />
+    <Compile Include="Queue\WhatsAppQueue.cs" />
+    <Compile Include="Reniec\Request\ConsultaPe\RequestExtranjeroConsultaPe.cs" />
+    <Compile Include="Reniec\Request\ConsultaPe\RequestPersonaConsultaPe.cs" />
+    <Compile Include="Reniec\Response\ApisPeru\ResponseApisPeru.cs" />
+    <Compile Include="Reniec\Response\ConsultaPe\ResponseExtranjeroConsultaPe.cs" />
+    <Compile Include="Reniec\Response\ConsultaPe\ResponsePersonaConsultaPe.cs" />
+    <Compile Include="Reniec\Response\ConsultaPe\ResponseConsultaPeV2.cs" />
+    <Compile Include="Reportes\9050\ContadoresOnlineDto.cs" />
+    <Compile Include="Reportes\9050\ReporteGerenciaCabeceraDto.cs" />
+    <Compile Include="Reportes\9050\ReporteGerenciaDto.cs" />
+    <Compile Include="Reportes\ALEV_ReporteNominalEntidad.cs" />
+    <Compile Include="Reportes\AperturaCaja\AperturarCajaEntidad.cs" />
+    <Compile Include="Reportes\ReporteSunat\ReporteSunatEntidad.cs" />
+    <Compile Include="Response\ResponseCodeToast.cs" />
+    <Compile Include="Response\ResultEntidad.cs" />
+    <Compile Include="SalaMaestraEntidad.cs" />
+    <Compile Include="Sala\SL_ZonaEntidad.cs" />
+    <Compile Include="AsistenciaCliente\EMC_EmpadronamientoClienteEntidad.cs" />
+    <Compile Include="AsistenciaEmpleado\EmpleadoAsistencia.cs" />
+    <Compile Include="AsistenciaEmpleado\EmpleadoDispositivo.cs" />
+    <Compile Include="AsistenciaEmpleado\EmpleadoVisitaDetalleEntidad.cs" />
+    <Compile Include="AsistenciaEmpleado\EmpleadoVisitaEntidad.cs" />
+    <Compile Include="AumentoCreditoMaquinaEntidad.cs" />
+    <Compile Include="BancoCuentaEntidad.cs" />
+    <Compile Include="BonificacionesEntidad.cs" />
+    <Compile Include="Boveda.cs" />
+    <Compile Include="Campañas\CMP_Campania_ParametrosEntidad.cs" />
+    <Compile Include="Campañas\CMP_CampañaEntidad.cs" />
+    <Compile Include="Campañas\CMP_ClienteEntidad.cs" />
+    <Compile Include="Campañas\CMP_ContadoresOnlineWebCuponesEntidad.cs" />
+    <Compile Include="Campañas\CMP_CuponesGeneradosEntidad.cs" />
+    <Compile Include="Campañas\CMP_DetalleCuponesImpresosEntidad.cs" />
+    <Compile Include="Campañas\CMP_DetalleCuponesGeneradosEntidad.cs" />
+    <Compile Include="Campañas\CMP_impresoraEntidad.cs" />
+    <Compile Include="Campañas\CMP_impresora_usuarioEntidad.cs" />
+    <Compile Include="Campañas\CMP_MaquinaRestringidaEntidad.cs" />
+    <Compile Include="Campañas\CMP_SalalibreEntidad.cs" />
+    <Compile Include="Campañas\CMP_SalasesionEntidad.cs" />
+    <Compile Include="Campañas\CMP_SesionCuponesClienteEntidad.cs" />
+    <Compile Include="Campañas\CMP_TicketEntidad.cs" />
+    <Compile Include="CargoEntidad.cs" />
+    <Compile Include="ClientesPtkEntidad.cs" />
+    <Compile Include="ConfiguracionSeguridadEntidad.cs" />
+    <Compile Include="ContadoresNegativos\AlertaContadorNegativoEntidad.cs" />
+    <Compile Include="ContadoresNegativos\ContadoresNegativosEntidad.cs" />
+    <Compile Include="ContadoresNegativos\ContadorNegativoConfigEntidad.cs" />
+    <Compile Include="ControlAcceso\CAL_AuditoriaEntidad.cs" />
+    <Compile Include="ControlAcceso\CAL_BandaEntidad.cs" />
+    <Compile Include="ControlAcceso\CAL_CargoEntidadEntidad.cs" />
+    <Compile Include="ControlAcceso\CAL_CargoPoliticoEntidad.cs" />
+    <Compile Include="ControlAcceso\CAL_CodigoEntidad.cs" />
+    <Compile Include="ControlAcceso\CAL_CodigoPersonaEntidad.cs" />
+    <Compile Include="ControlAcceso\Ludopata\Entidad\CAL_ContactoEntidad.cs" />
+    <Compile Include="ControlAcceso\CAL_EntidadPublicaEntidad.cs" />
+    <Compile Include="ControlAcceso\CAL_LogApiReniecEntidad.cs" />
+    <Compile Include="ControlAcceso\Ludopata\Entidad\CAL_LudopataEntidad.cs" />
+    <Compile Include="ControlAcceso\CAL_PersonaEntidadPublicaEntidad.cs" />
+    <Compile Include="ControlAcceso\CAL_PersonaProhibidoIngresoIncidenciaEntidad.cs" />
+    <Compile Include="ControlAcceso\CAL_PoliticoEntidad.cs" />
+    <Compile Include="ControlAcceso\CAL_PersonaProhibidoIngresoEntidad.cs" />
+    <Compile Include="ControlAcceso\CAL_RobaStackersBilleteroEntidad.cs" />
+    <Compile Include="ControlAcceso\CAL_TipoExclusionEntidad.cs" />
+    <Compile Include="ControlAcceso\CAL_TipoTimadorEntidad.cs" />
+    <Compile Include="DepositoEntidad.cs" />
+    <Compile Include="Disco\AlertaDiscoEntidad.cs" />
+    <Compile Include="Disco\DiscoCargoConfigEntidad.cs" />
+    <Compile Include="Disco\DiscoEntidad.cs" />
+    <Compile Include="DispositivoEntidad.cs" />
+    <Compile Include="Equipo\EquipoEntidad.cs" />
+    <Compile Include="EstadoSolicitudCambioEntidad.cs" />
+    <Compile Include="EVT_DispositivoEntidad.cs" />
+    <Compile Include="ExcelenciaOperativa\EO_FichaCategoriaEntidad.cs" />
+    <Compile Include="ExcelenciaOperativa\EO_FichaExcelenciaOperativaEntidad.cs" />
+    <Compile Include="ExcelenciaOperativa\EO_FichaItemEntidad.cs" />
+    <Compile Include="FichaSintomatologicaEntidad.cs" />
+    <Compile Include="HistorialSolicitudCambioEntidad.cs" />
+    <Compile Include="Imei\ControlImeiEntidad.cs" />
+    <Compile Include="JuegoEntidad.cs" />
+    <Compile Include="LogAlertaBilleterosEntidad.cs" />
+    <Compile Include="MantenimientoBD\BackupInformacionEntidad.cs" />
+    <Compile Include="MantenimientoBD\DatabaseInformacionEntidad.cs" />
+    <Compile Include="MantenimientoBD\TablaInformacionEntidad.cs" />
+    <Compile Include="MaquinaProgresivoEntidad.cs" />
+    <Compile Include="MaquinasInoperativas\MI_CategoriaPiezaEntidad.cs" />
+    <Compile Include="MaquinasInoperativas\MI_CategoriaProblemaEntidad.cs" />
+    <Compile Include="MaquinasInoperativas\MI_CategoriaRepuestoEntidad.cs" />
+    <Compile Include="MaquinasInoperativas\MI_AlmacenEntidad.cs" />
+    <Compile Include="MaquinasInoperativas\MI_MaquinaDetalleEntidad.cs" />
+    <Compile Include="MaquinasInoperativas\MI_MaquinaInoperativaEntidad.cs" />
+    <Compile Include="MaquinasInoperativas\MI_MaquinaInoperativaPiezasEntidad.cs" />
+    <Compile Include="MaquinasInoperativas\MI_MaquinaInoperativaProblemasEntidad.cs" />
+    <Compile Include="MaquinasInoperativas\MI_MaquinaInoperativaRepuestosEntidad.cs" />
+    <Compile Include="MaquinasInoperativas\MI_PiezaEntidad.cs" />
+    <Compile Include="MaquinasInoperativas\MI_PiezaRepuestoAlmacenEntidad.cs" />
+    <Compile Include="MaquinasInoperativas\MI_ProblemaEntidad.cs" />
+    <Compile Include="MaquinasInoperativas\MI_RepuestoEntidad.cs" />
+    <Compile Include="MaquinasInoperativas\MI_TraspasoRepuestoAlmacenEntidad.cs" />
+    <Compile Include="Marca.cs" />
+    <Compile Include="MarcaMaquinaEntidad.cs" />
+    <Compile Include="ModeloMaquinaEntidad.cs" />
+    <Compile Include="ModuloEntidad.cs" />
+    <Compile Include="ComiteCambios.cs" />
+    <Compile Include="NivelTecnicoEntidad.cs" />
+    <Compile Include="Ocurrencias\OCU_CorreoEntidad.cs" />
+    <Compile Include="Ocurrencias\OCU_CorreoSalaEntidad.cs" />
+    <Compile Include="Ocurrencias\OCU_OcurrenciaEntidad.cs" />
+    <Compile Include="Ocurrencias\OCU_TipoOcurrenciaEntidad.cs" />
+    <Compile Include="ProgresivoSeguridad\Signalr_usuarioEntidad.cs" />
+    <Compile Include="PromocionSorteoEntidad.cs" />
+    <Compile Include="ProyectadoProgresivoEntidad.cs" />
+    <Compile Include="Reclamaciones\REC_reclamacionEntidad.cs" />
+    <Compile Include="API_ReniecKeysEntidad.cs" />
+    <Compile Include="Response\ResponseEntidad.cs" />
+    <Compile Include="ResumenSalaBovedaEntidad.cs" />
+    <Compile Include="ResumenSalaEntidad.cs" />
+    <Compile Include="Destinatario_DetalleEntidad.cs" />
+    <Compile Include="Det0001TTOEntidad.cs" />
+    <Compile Include="Det0001TTO_00H.cs" />
+    <Compile Include="Detalle_movaux_por_maquinaEntidad.cs" />
+    <Compile Include="EmpresaEntidad.cs" />
+    <Compile Include="HistorialProgresivoEntidad.cs" />
+    <Compile Include="ProcesosTitoEntidad.cs" />
+    <Compile Include="ProgresivoEntidad.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DestinatarioEntidad.cs" />
+    <Compile Include="SatisfaccionCliente\DTO\Configuracion\ESC_ConfiguracionDto.cs" />
+    <Compile Include="SatisfaccionCliente\DTO\ESC_RespuestaDto.cs" />
+    <Compile Include="SatisfaccionCliente\DTO\Mantenedores\ESC_PreguntaDto.cs" />
+    <Compile Include="SatisfaccionCliente\DTO\Mantenedores\ESC_ClienteDto.cs" />
+    <Compile Include="SatisfaccionCliente\DTO\Mantenedores\ESC_SalaDto.cs" />
+    <Compile Include="SatisfaccionCliente\DTO\Request\ESC_SalaRequest.cs" />
+    <Compile Include="SatisfaccionCliente\DTO\Request\ESC_RespuestaRequest.cs" />
+    <Compile Include="SatisfaccionCliente\DTO\Request\ESC_ClienteRequest.cs" />
+    <Compile Include="SatisfaccionCliente\DTO\Request\ESC_RespuestaClienteRequest.cs" />
+    <Compile Include="SatisfaccionCliente\Entity\Configuracion\ESC_Configuracion.cs" />
+    <Compile Include="SatisfaccionCliente\Entity\ESC_BaseClass.cs" />
+    <Compile Include="SatisfaccionCliente\Entity\ESC_Respuesta.cs" />
+    <Compile Include="SatisfaccionCliente\Entity\Mantenedores\ESC_BaseClassMantenedor.cs" />
+    <Compile Include="SatisfaccionCliente\Entity\Mantenedores\ESC_Pregunta.cs" />
+    <Compile Include="SatisfaccionCliente\Enum\ESC_Puntaje.cs" />
+    <Compile Include="SatisfaccionCliente\Enum\ESC_TipoValidacionEnvioRespuesta.cs" />
+    <Compile Include="SatisfaccionCliente\Reporte\ESC_ReporteFiltro.cs" />
+    <Compile Include="SatisfaccionCliente\Reporte\Esc_ReportePespuestasChart.cs" />
+    <Compile Include="SatisfaccionCliente\Reporte\ESC_ReportePorcentaje.cs" />
+    <Compile Include="SeguimientoPuntoCuponGeneradoEntidad.cs" />
+    <Compile Include="SEG_AUDITORIA.cs" />
+    <Compile Include="SEG_Configuracion_SeguridadEntidad.cs" />
+    <Compile Include="SEG_PermisoEntidad.cs" />
+    <Compile Include="SEG_PermisoMenuEntidad.cs" />
+    <Compile Include="SEG_PermisoRolEntidad.cs" />
+    <Compile Include="SEG_RolEntidad.cs" />
+    <Compile Include="SEG_RolUsuarioEntidad.cs" />
+    <Compile Include="AsistenciaCliente\AST_AsistenciaClienteSalaEntidad.cs" />
+    <Compile Include="AsistenciaCliente\AST_ClienteEntidad.cs" />
+    <Compile Include="AsistenciaCliente\AST_TipoDocumentoEntidad.cs" />
+    <Compile Include="AsistenciaCliente\AST_TipoFrecuenciaEntidad.cs" />
+    <Compile Include="AsistenciaCliente\AST_TipoClienteEntidad.cs" />
+    <Compile Include="Settings\App_SettingsEntidad.cs" />
+    <Compile Include="Sistema.cs" />
+    <Compile Include="SolicitudCambioEntidad.cs" />
+    <Compile Include="Sunat\ContadoresSunatEntidad.cs" />
+    <Compile Include="Sunat\EventosSunatEntidad.cs" />
+    <Compile Include="TecnicoEntidad.cs" />
+    <Compile Include="TicketEntidad.cs" />
+    <Compile Include="TipoCambioEntidad.cs" />
+    <Compile Include="TipoDOIEntidad.cs" />
+    <Compile Include="SEG_CargoEntidad.cs" />
+    <Compile Include="SEG_UsuarioEntidad.cs" />
+    <Compile Include="SEG_EmpleadoEntidad.cs" />
+    <Compile Include="SalaEntidad.cs" />
+    <Compile Include="TITO\Caja.cs" />
+    <Compile Include="TITO\DetalleMovAuxTitoEntidad.cs" />
+    <Compile Include="TITO\Reporte_Detalle_TITO_Caja.cs" />
+    <Compile Include="TransaccionTarjetaCliente\Dto\TTC_CajaDto.cs" />
+    <Compile Include="TransaccionTarjetaCliente\Dto\TTC_Cliente.cs" />
+    <Compile Include="TransaccionTarjetaCliente\Dto\TTC_SalaDto.cs" />
+    <Compile Include="TransaccionTarjetaCliente\Dto\TTC_Tarjeta.cs" />
+    <Compile Include="TransaccionTarjetaCliente\Dto\TTC_TransaccionDto.cs" />
+    <Compile Include="TransaccionTarjetaCliente\Filtro\TTC_TransaccionMoldatFiltro.cs" />
+    <Compile Include="TransaccionTarjetaCliente\Filtro\TTC_TransaccionFiltro.cs" />
+    <Compile Include="TransaccionTarjetaCliente\Entidad\TTC_TransaccionEntidad.cs" />
+    <Compile Include="TransferenciaEntidad.cs" />
+    <Compile Include="UbigeoEntidad.cs" />
+    <Compile Include="UsuarioEncriptacionEntidad.cs" />
+    <Compile Include="Usuarios.cs" />
+    <Compile Include="UsuarioSalaEntidad.cs" />
+    <Compile Include="WEB_Progresivo.cs" />
+    <Compile Include="WhatsApp\WSP_InstanciaUltraMsgEntidad.cs" />
+    <Compile Include="WhatsApp\WSP_MensajeriaClienteEntidad.cs" />
+    <Compile Include="WhatsApp\Response\WSP_Info.cs" />
+    <Compile Include="WhatsApp\Response\WSP_Login.cs" />
+    <Compile Include="WhatsApp\Response\WSP_Me.cs" />
+    <Compile Include="WhatsApp\Response\WSP_MessageSend.cs" />
+    <Compile Include="WhatsApp\Response\WSP_Message.cs" />
+    <Compile Include="WhatsApp\Response\WSP_Wid.cs" />
+    <Compile Include="WhatsApp\WSP_ContactoEntidad.cs" />
+    <Compile Include="WhatsApp\WSP_MensajeEnviadoEntidad.cs" />
+    <Compile Include="WhatsApp\WSP_MensajeMultipleEntidad.cs" />
+    <Compile Include="WhatsApp\WSP_UltraMsgRequest.cs" />
+    <Compile Include="WhatsApp\WSP_UltraMsgResponse.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\CapaPresentacion\Content\menu-square\menu.json">
+      <Link>menu.json</Link>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\S3k.Utilitario\S3k.Utilitario.csproj">
+      <Project>{67d1d4fb-a385-49f6-a4c4-877e15b51993}</Project>
+      <Name>S3k.Utilitario</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

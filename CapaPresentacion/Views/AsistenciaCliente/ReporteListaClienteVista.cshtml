@@ -1,0 +1,356 @@
+﻿
+@{
+    ViewBag.Title = "DepositoReporteVista";
+}
+
+@section css{
+    <style>
+        .sorting, .sorting_disabled, .sorting_asc, .sorting_desc {
+            background-color: #0b1f46 !important;
+            height: 40px;
+        }
+
+        tr {
+            height: 34px;
+        }
+
+        .even {
+            background-color: white !important;
+        }
+        .select {
+            background-color: #1f91f3;
+            color: white;
+        }
+        button {
+            border: none;
+            padding: 5px 10px;
+        }
+
+        .badge-success {
+            color: #fff;
+            background-color: #28a745;
+        }
+
+        .badge-danger {
+            color: #fff;
+            background-color: #dc3545;
+        }
+
+        .badge-ludopata {
+            color: #fff;
+            background-color: #FF8C00;
+        }
+
+        .badge-prohibido {
+            color: #fff;
+            background-color: #DC3545;
+        }
+
+        .badge-roba-stacker {
+            color: #fff;
+            background-color: #6F42C1;
+        }
+
+        input[type=checkbox] {
+            margin: 0 0 0 0;
+            width: 36px !important;
+        }
+
+        .btn-header {
+            width: fit-content;
+        }
+
+        .container-btn-header{
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+}
+<div class="row">
+    <div class="col-md-4">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-dollar"></span>
+                                <span class="main-text">
+                                    Reporte Clientes
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <div class="container-btn-header">
+                                <button type="button" id="btnExcel" class="btn btn-success btn-sm col-md-12 col-xs-12 btn-header">
+                                    <span class="glyphicon glyphicon-file"></span>
+                                    Excel
+                                </button>
+                                <button type="button" id="btnBuscar" class="btn btn-primary btn-sm col-md-12 col-xs-12 btn-header">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                    Buscar
+                                </button>
+                            </div>
+                            <div class="container-btn-header">
+                                <button type="button" id="btnExcelGlobal" class="btn btn-success btn-sm col-md-12 col-xs-12 btn-header">
+                                    <span class="glyphicon glyphicon-file"></span>
+                                    Excel Clientes total
+                                </button>
+                            </div>
+                            <div class="container-btn-header">
+                                <button type="button" id="btnExcelGlobalMes" class="btn btn-success btn-sm col-md-12 col-xs-12 btn-header">
+                                    <span class="glyphicon glyphicon-file"></span>
+                                    Excel Clientes Mes
+                                </button>
+                                <button type="button" id="btnExcelGlobalMesV2" class="btn btn-success btn-sm col-md-12 col-xs-12 btn-header">
+                                    <span class="glyphicon glyphicon-file"></span>
+                                    Excel Clientes Mes V2
+                                </button>
+                            </div>
+                            <div class="container-btn-header">
+                                <button type="button" id="btnExcelGlobalNotificacion" class="btn btn-success btn-sm col-md-12 col-xs-12 btn-header">
+                                    <span class="glyphicon glyphicon-file"></span>
+                                    Excel Clientes Notificacion
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12" id="tabs_reportes">
+        <button id="tab-multi-sala">Varias salas</button>
+        <button id="tab-sala-unica">Reporte por Sala</button>
+        <button id="tab-reporte-por-mes">Reporte por Mes</button>
+        <button id="tab-reporte-notificacion">Reporte de Notificaciones</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="cardMachine" style="margin-bottom:15px;">
+                    <fieldset id="content-tab-multi-sala" class="sectionCard" style="padding: 10px 7px; margin-top: 10px;">
+                        <h3 style="margin-bottom:5px;">Complete los campos</h3>
+                        <div class="block-content-inner">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12 col-sm-12">
+                                    <div class="row" id="formfiltro">
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="input-group ">
+                                                <span class="input-group-addon">
+                                                    Sala
+                                                </span>
+                                                <select class="form-control input-sm codSalaAuditoria" id="cboSala" name="cboSala"></select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    FECHA DE INICIO
+                                                </span>
+                                                <input type="text" class="form-control input-sm dateOnly_" id="fechaInicio" readonly />
+                                                <span class="input-group-addon input-group-icon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    FECHA DE FIN
+                                                </span>
+                                                <input type="text" class="form-control input-sm dateOnly_" id="fechaFin" readonly />
+                                                <span class="input-group-addon input-group-icon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="padding:unset;">
+                                <hr style="margin-top:10px;" />
+                                <h4 style="margin-bottom:15px;">Resultado de la búsqueda</h4>
+                                <div class="contenedor_tabla table-responsive">
+                                    <table id="tableCliente" class="table table-striped table-bordered table-hover table-condensed"></table>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="content-tab-sala-unica" class="sectionCard" style="padding: 10px 7px; margin-top: 10px; max-width: 500px; margin: auto;">
+                        <h3 style="margin-bottom:5px;">Complete los campos</h3>
+                        <div class="block-content-inner">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row" id="formfiltro">
+                                        <div class="col-md-12">
+                                            <div class="input-group ">
+                                                <span class="input-group-addon">
+                                                    Sala
+                                                </span>
+                                                <select class="form-control input-sm codSalaAuditoria" id="cboSalaUnique" name="cboSalaUnique"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="content-tab-reporte-por-mes" class="sectionCard" style="padding: 10px 7px; margin-top: 10px; max-width: 500px; margin: auto;" id="excelClientesMes">
+                        <h3 style="margin-bottom:5px;">Complete los campos</h3>
+                        <div class="block-content-inner">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12 col-sm-12">
+                                    <div class="row" id="formfiltro">
+                                        <div class="col-md-12">
+                                            <div class="input-group ">
+                                                <span class="input-group-addon">
+                                                    Sala
+                                                </span>
+                                                <select class="form-control input-sm codSalaAuditoria" id="cboSalames" name="cboSalames"></select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    FECHA DE INICIO
+                                                </span>
+                                                <input type="text" class="form-control input-sm monthdateOnly_" id="fechaIniciomes" readonly />
+                                                <span class="input-group-addon input-group-icon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    FECHA DE FIN
+                                                </span>
+                                                <input type="text" class="form-control input-sm monthdateOnly_" id="fechaFinmes" readonly />
+                                                <span class="input-group-addon input-group-icon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="content-tab-reporte-notificacion" class="sectionCard" style="padding: 10px 7px; margin-top: 10px; max-width:500px; margin: auto;">
+                        <h3 style="margin-bottom:5px;">Complete los campos</h3>
+                        <div class="block-content-inner">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="input-group ">
+                                                <span class="input-group-addon">
+                                                    Sala
+                                                </span>
+                                                <select class="form-control input-sm" id="cboSalaNotificacion"></select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    Fecha Inicio
+                                                </span>
+                                                <input type="text" class="form-control input-sm dateOnly_" id="fechaInicioNotificacion" readonly />
+                                                <span class="input-group-addon input-group-icon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    Fecha Fin
+                                                </span>
+                                                <input type="text" class="form-control input-sm dateOnly_" id="fechaFinNotificacion" readonly />
+                                                <span class="input-group-addon input-group-icon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="input-group ">
+                                                <span class="input-group-addon">
+                                                    WSP
+                                                </span>
+                                                <select class="form-control input-sm" id="cboEnvioNotificacionWhatsapp">
+                                                    <option value="1">Sí</option>
+                                                    <option value="0">No</option>
+                                                    <option value="-1">Ambos</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="input-group ">
+                                                <span class="input-group-addon">
+                                                    SMS
+                                                </span>
+                                                <select class="form-control input-sm" id="cboEnvioNotificacionSms">
+                                                    <option value="1">Sí</option>
+                                                    <option value="0">No</option>
+                                                    <option value="-1">Ambos</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="input-group ">
+                                                <span class="input-group-addon">
+                                                    Llamada
+                                                </span>
+                                                <select class="form-control input-sm" id="cboLlamadaCelular">
+                                                    <option value="1">Sí</option>
+                                                    <option value="0">No</option>
+                                                    <option value="-1">Ambos</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="input-group ">
+                                                <span class="input-group-addon">
+                                                    Email
+                                                </span>
+                                                <select class="form-control input-sm" id="cboEnvioNotificacionEmail">
+                                                    <option value="1">Sí</option>
+                                                    <option value="0">No</option>
+                                                    <option value="-1">Ambos</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/AsistenciaCliente/ReporteListaClienteVista.js"></script>
+}

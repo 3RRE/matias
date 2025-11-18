@@ -1,0 +1,607 @@
+﻿@model System.Collections.Generic.List<CapaEntidad.Administrativo.ADM_DetalleSalaProgresivoEntidad>
+@{
+    ViewBag.Title = "Pozos";
+
+    var codSala = ViewBag.CodSala as int? ?? 0;
+    var codSalaProgresivo = ViewBag.CodSalaProgresivo as int? ?? 0;
+}
+
+@section css{
+    <style>
+        #containerGeneral {
+            background: #fff;
+            padding: 15px;
+            border-radius: 6px
+        }
+
+        .filters .input-group-addon {
+            min-width: 110px
+        }
+
+        .card {
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            overflow: hidden
+        }
+
+        .card-header {
+            background: #0b1f46;
+            color: #fff;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center
+        }
+
+        .card-body {
+            padding: 15px;
+            background: #fff
+        }
+
+        .table thead th {
+            background: #0b1f46;
+            color: #fff;
+            vertical-align: middle
+        }
+
+        .badge-pill {
+            border-radius: 9999px;
+            padding: .35em .6em
+        }
+
+        .badge-green {
+            background: #16a34a;
+            color: #fff
+        }
+
+        .badge-gray {
+            background: #9ca3af;
+            color: #111827
+        }
+
+        .btn-xs {
+            padding: 2px 8px;
+            font-size: 12px;
+            line-height: 1.5;
+            border-radius: 4px
+        }
+
+        .empty {
+            padding: 20px;
+            color: #6b7280;
+            text-align: center
+        }
+
+        .d-none {
+            display: none !important
+        }
+
+        .is-invalid {
+            border-color: #dc3545 !important
+        }
+
+        .val-msg {
+            display: none;
+            color: #dc3545;
+            font-size: 12px;
+            margin-top: 4px
+        }
+
+        .modal-backdrop {
+            pointer-events: none !important;
+            z-index: 1040 !important;
+            opacity: .35
+        }
+
+        .modal {
+            z-index: 105 !important
+        }
+
+        #mdlPozo .modal-dialog {
+            margin-top: 10px !important
+        }
+    </style>
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <h1 style="margin-top:0;">
+                        <span class="icon icon-block-menu" aria-hidden="true"></span>
+                        <span class="main-text">Pozos</span>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row" style="row-gap:10px;">
+                        <div class="col-md-3 col-sm-6 col-xs-12" style="margin-bottom:8px;">
+                            <button id="btnBuscar" class="btn btn-success btn-sm col-md-12">
+                                <span class="glyphicon glyphicon-search"></span> Buscar
+                            </button>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12" style="margin-bottom:8px;">
+                            <a class="btn btn-default btn-sm col-md-12" href="@Url.Action("Sala","ProgresivoTerceros", new { id = codSala, clase="Terceros" })">
+                                <span class="glyphicon glyphicon-chevron-left"></span> Volver
+                            </a>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12" style="margin-bottom:8px;">
+                            <button type="button" id="btnExcelPozos" class="btn btn-primary btn-sm col-md-12">
+                                <span class="glyphicon glyphicon-file"></span> Excel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row filters">
+    <div class="col-md-12">
+        <div id="containerGeneral">
+            <div class="row" style="row-gap:10px;">
+                <div class="col-md-5">
+                    <div class="input-group">
+                        <span class="input-group-addon">SALA</span>
+                        @Html.DropDownList("SalaId", (SelectList)ViewBag.Salas, "-- Seleccione sala --",
+                          new { @class = "form-control", id = "cboSala", @value = codSala })
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="input-group">
+                        <span class="input-group-addon">PROGRESIVO (TERCEROS)</span>
+                        <select id="cboProg" class="form-control">
+                            <option value="">-- Seleccione --</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" style="margin-top:15px;">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div><strong>Pozo(s)</strong> <span class="badge badge-pill badge-green" id="lblCount">0</span></div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="tblPozos" class="table table-bordered table-hover table-striped table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Nro Pozo</th>
+                                <th>Nombre Pozo</th>
+                                <th>Dificultad</th>
+                                <th>Monto Base</th>
+                                <th>Monto Ini</th>
+                                <th>Monto Fin</th>
+                                <th>Modalidad</th>
+                                <th>Oculto Base</th>
+                                <th>Oculto Ini</th>
+                                <th>Oculto Fin</th>
+                                <th>Incremento</th>
+                                <th>Inc. Oculto</th>
+                                <th>Activo</th>
+                                <th>Estado</th>
+                                <th style="width:95px;">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <div class="empty d-none" id="emptyPozos">No hay registros.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="mdlPozo" role="dialog" aria-labelledby="mdlPozoLabel" data-backdrop="false">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            @using(Html.BeginForm("EditarPozo", "ProgresivoTerceros", FormMethod.Post, new { id = "frmPozo", @class = "form-horizontal", autocomplete = "off" })) {
+                @Html.AntiForgeryToken()
+                @Html.Hidden("CodDetalleSalaProgresivo", "", new { id = "pzId" })
+                @Html.Hidden("codSala", codSala, new { id = "pzSala" })
+                @Html.Hidden("codSalaProgresivo", codSalaProgresivo, new { id = "pzProg" })
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                    <h4 class="modal-title" id="mdlPozoLabel">Editar Pozo</h4>
+                </div>
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="pzNroPozo" class="col-sm-3 control-label">Nro Pozo</label>
+                        <div class="col-sm-3">
+                            <input type="number" min="1" class="form-control" id="pzNroPozo" name="NroPozo" />
+                            <div id="msg_pzNroPozo" class="val-msg">Ingrese un número válido (≥ 1).</div>
+                        </div>
+
+                        <label for="pzNombrePozo" class="col-sm-3 control-label">Nombre Pozo</label>
+                        <div class="col-sm-3">
+                            <input type="text" maxlength="100" class="form-control" id="pzNombrePozo" name="NombrePozo" placeholder="Pozo N" />
+                            <div id="msg_pzNombrePozo" class="val-msg">Nombre inválido.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="pzDificultad">Dificultad</label>
+                        <div class="col-sm-3">
+                            <input type="number" class="form-control" id="pzDificultad" name="Dificultad" />
+                            <div id="msg_pzDificultad" class="val-msg">Número inválido.</div>
+                        </div>
+
+                        <label class="col-sm-3 control-label" for="pzModalidad">Modalidad</label>
+                        <div class="col-sm-3">
+                            <input type="number" class="form-control" id="pzModalidad" name="Modalidad" />
+                            <div id="msg_pzModalidad" class="val-msg">Número inválido.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="pzMontoBase">Monto Base</label>
+                        <div class="col-sm-3">
+                            <input type="number" step="0.001" class="form-control" id="pzMontoBase" name="MontoBase" />
+                            <div id="msg_pzMontoBase" class="val-msg">Número inválido.</div>
+                        </div>
+
+                        <label class="col-sm-3 control-label" for="pzMontoIni">Monto Ini</label>
+                        <div class="col-sm-3">
+                            <input type="number" step="0.001" class="form-control" id="pzMontoIni" name="MontoIni" />
+                            <div id="msg_pzMontoIni" class="val-msg">Número inválido.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="pzMontoFin">Monto Fin</label>
+                        <div class="col-sm-3">
+                            <input type="number" step="0.001" class="form-control" id="pzMontoFin" name="MontoFin" />
+                            <div id="msg_pzMontoFin" class="val-msg">Número inválido.</div>
+                        </div>
+
+                        <label class="col-sm-3 control-label" for="pzIncremento">Incremento</label>
+                        <div class="col-sm-3">
+                            <input type="number" step="0.0001" class="form-control" id="pzIncremento" name="Incremento" />
+                            <div id="msg_pzIncremento" class="val-msg">Número inválido.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="pzOcBase">Oculto Base</label>
+                        <div class="col-sm-3">
+                            <input type="number" step="0.001" class="form-control" id="pzOcBase" name="MontoOcultoBase" />
+                            <div id="msg_pzOcBase" class="val-msg">Número inválido.</div>
+                        </div>
+
+                        <label class="col-sm-3 control-label" for="pzOcIni">Oculto Ini</label>
+                        <div class="col-sm-3">
+                            <input type="number" step="0.001" class="form-control" id="pzOcIni" name="MontoOcultoIni" />
+                            <div id="msg_pzOcIni" class="val-msg">Número inválido.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="pzOcFin">Oculto Fin</label>
+                        <div class="col-sm-3">
+                            <input type="number" step="0.001" class="form-control" id="pzOcFin" name="MontoOcultoFin" />
+                            <div id="msg_pzOcFin" class="val-msg">Número inválido.</div>
+                        </div>
+
+                        <label class="col-sm-3 control-label" for="pzIncOculto">Inc. Oculto</label>
+                        <div class="col-sm-3">
+                            <input type="number" step="0.001" class="form-control" id="pzIncOculto" name="IncrementoPozoOculto" />
+                            <div id="msg_pzIncOculto" class="val-msg">Número inválido.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Estado / Activo</label>
+
+                        <div class="col-sm-3">
+                            <input type="hidden" id="Estado" name="Estado" value="0" />
+                            <div class="checkbox" style="margin-top:5px;">
+                                <label><input type="checkbox" id="pzEstado" checked /> Estado (Habilitado)</label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <input type="hidden" id="Activo" name="Activo" value="false" />
+                            <div class="checkbox" style="margin-top:5px;">
+                                <label><input type="checkbox" id="pzActivo" checked /> Activo</label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="mdlDelPozo" tabindex="-1" role="dialog" aria-labelledby="mdlDelPozoLabel" data-backdrop="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            @using(Html.BeginForm("EliminarPozo", "ProgresivoTerceros", FormMethod.Post, new { id = "frmDelPozo", autocomplete = "off" })) {
+                @Html.AntiForgeryToken()
+                @Html.Hidden("id", "", new { id = "delPozoId" })
+                @Html.Hidden("codSala", codSala, new { id = "delPozoSala" })
+                @Html.Hidden("codSalaProgresivo", codSalaProgresivo, new { id = "delPozoProg" })
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                    <h4 class="modal-title" id="mdlDelPozoLabel">Desactivar pozo</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Este pozo se <strong>desactivará</strong>. ¿Deseas continuar?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-trash"></span> Desactivar
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section js{
+    <script>
+$.ajaxSetup({ cache: false });
+
+(function(){
+  var $ = window.jQuery;
+
+  var cboSala = $('#cboSala'), cboProg = $('#cboProg');
+  var tblBody = $('#tblPozos tbody'), lblCount = $('#lblCount');
+  var dataCache = {};
+  var salaInit = @codSala, progInit = @codSalaProgresivo;
+
+  var msgOk='@(TempData["Ok"]??"")', msgErr='@(TempData["Error"]??"")';
+  if(msgOk) toastr.success(msgOk); if(msgErr) toastr.error(msgErr);
+
+  function showErr($i, id, show, txt){ var $m = $('#'+id); if(show){$i.addClass('is-invalid'); if(txt) $m.text(txt); $m.show();} else {$i.removeClass('is-invalid'); $m.hide();} }
+  function n0(v){ return (v===null||v===undefined||v==='') ? 0 : Number(v); }
+  function fmt3(v){ return n0(v).toFixed(3); }
+  function fmt4(v){ return n0(v).toFixed(4); }
+
+  function loadProgresivos(sala, selected){
+    cboProg.empty().append('<option value="">-- Seleccione --</option>');
+    if(!sala) return;
+
+    $.getJSON('@Url.Action("ProgresivosPorSala")', { codSala: sala }, function(r){
+      if(!r||!r.ok) return;
+      (r.value||[]).forEach(function(x){
+        cboProg.append($('<option/>').val(x.id).text(x.text));
+      });
+
+      if (selected) {
+        cboProg.val(String(selected)).trigger('change');
+      } else {
+        var opts = r.value || [];
+        if (opts.length === 1) {
+          cboProg.val(String(opts[0].id)).trigger('change');
+        }
+      }
+    });
+  }
+
+  function render(rows){
+    tblBody.empty(); dataCache = {};
+    if(!rows || !rows.length){
+      lblCount.text('0');
+      $('#emptyPozos').removeClass('d-none');
+      return;
+    }
+    $('#emptyPozos').addClass('d-none');
+
+    rows.forEach(function(x){
+      dataCache[x.CodDetalleSalaProgresivo] = x;
+      var activo = x.Activo ? "<span class='badge badge-pill badge-green'>Sí</span>" : "<span class='badge badge-pill badge-gray'>No</span>";
+      var estado = (x.Estado===1) ? "Habilitado" : "Deshabilitado";
+
+      var $tr = $('<tr/>');
+      $tr.append($('<td/>').text(x.NroPozo || ''));
+      $tr.append($('<td/>').text(x.NombrePozo || ('Pozo ' + (x.NroPozo||''))));
+      $tr.append($('<td/>').text(n0(x.Dificultad)));
+      $tr.append($('<td/>').text(fmt3(x.MontoBase)));
+      $tr.append($('<td/>').text(fmt3(x.MontoIni)));
+      $tr.append($('<td/>').text(fmt3(x.MontoFin)));
+      $tr.append($('<td/>').text(n0(x.Modalidad)));
+      $tr.append($('<td/>').text(fmt3(x.MontoOcultoBase)));
+      $tr.append($('<td/>').text(fmt3(x.MontoOcultoIni)));
+      $tr.append($('<td/>').text(fmt3(x.MontoOcultoFin)));
+      $tr.append($('<td/>').text(fmt4(x.Incremento)));
+      $tr.append($('<td/>').text(fmt3(x.IncrementoPozoOculto)));
+      $tr.append($('<td/>').html(activo));
+      $tr.append($('<td/>').text(estado));
+      $tr.append(
+        "<td><div class='btn-group btn-group-xs'>" +
+          "<button class='btn btn-warning btn-xs btnEdit' data-id='"+x.CodDetalleSalaProgresivo+"' title='Editar'><span class='glyphicon glyphicon-pencil'></span></button> " +
+          "<button class='btn btn-danger btn-xs btnDel' data-id='"+x.CodDetalleSalaProgresivo+"' title='Desactivar'><span class='glyphicon glyphicon-trash'></span></button>" +
+        "</div></td>"
+      );
+      tblBody.append($tr);
+    });
+    lblCount.text(String(rows.length));
+  }
+
+  function buscar(){
+    var sala = Number(cboSala.val()||0), prog = Number(cboProg.val()||0);
+    if(!sala){ toastr.warning('Seleccione una sala.'); return; }
+    if(!prog){ toastr.warning('Seleccione un progresivo.'); return; }
+
+    $('#pzSala,#delPozoSala').val(sala);
+    $('#pzProg,#delPozoProg').val(prog);
+
+    try {
+      if ($.fn && $.fn.DataTable && $.fn.DataTable.isDataTable('#tblPozos')) {
+        $('#tblPozos').DataTable().clear().destroy();
+      }
+    } catch(_){}
+
+    $.ajax({
+      url: '@Url.Action("PozosPorProgresivo")',
+      type: 'GET',
+      data: { codSalaProgresivo: prog, soloActivos: true, _: Date.now() },
+      cache: false,
+      dataType: 'json'
+    })
+    .done(function(r){
+      if (!r || !r.ok) { toastr.error('No se pudo cargar.'); return; }
+      render(r.value || []);
+      try{
+        if ($.fn && $.fn.DataTable) {
+          $('#tblPozos').DataTable({
+            paging:true, searching:true, info:true, lengthChange:true, pageLength:10,
+            order:[], autoWidth:false,
+            language:{ url:'https://cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json' }
+          });
+        }
+      }catch(_){}
+    })
+    .fail(function(){ toastr.error('Error de red.'); });
+  }
+
+  cboSala.off('change.auto').on('change.auto', function () {
+    var sala = Number(this.value || 0);
+    try {
+      if ($.fn && $.fn.DataTable && $.fn.DataTable.isDataTable('#tblPozos')) {
+        $('#tblPozos').DataTable().clear().destroy();
+      }
+    } catch (_) {}
+    tblBody.empty(); lblCount.text('0'); $('#emptyPozos').removeClass('d-none');
+    loadProgresivos(sala, null);
+  });
+
+  cboProg.off('change.auto').on('change.auto', function(){
+    var sala = Number(cboSala.val()||0), prog = Number(this.value||0);
+    if(sala && prog) buscar();
+  });
+
+  $('#btnBuscar').off('click').on('click', buscar);
+
+  $('#btnExcelPozos').on('click', function(){
+    var sala = Number(cboSala.val()||0), prog = Number(cboProg.val()||0);
+    if(!sala){ toastr.warning('Seleccione una sala.'); return; }
+    if(!prog){ toastr.warning('Seleccione un progresivo.'); return; }
+    var url = '@Url.Action("ExportarExcelPozos","ProgresivoTerceros")'
+              + '?salaId=' + encodeURIComponent(sala)
+              + '&codSalaProgresivo=' + encodeURIComponent(prog);
+    window.location.href = url;
+  });
+
+  $(document).on('click','.btnEdit', function(){
+    var id = $(this).data('id'), v = dataCache[id]; if(!v) return;
+    $('#pzId').val(v.CodDetalleSalaProgresivo);
+    $('#pzNroPozo').val(v.NroPozo||1);
+    $('#pzNombrePozo').val(v.NombrePozo || ('Pozo '+(v.NroPozo||'')));
+    $('#pzDificultad').val(v.Dificultad||0);
+    $('#pzModalidad').val(v.Modalidad||0);
+    $('#pzMontoBase').val(v.MontoBase||0);
+    $('#pzMontoIni').val(v.MontoIni||0);
+    $('#pzMontoFin').val(v.MontoFin||0);
+    $('#pzIncremento').val(v.Incremento||0);
+    $('#pzOcBase').val(v.MontoOcultoBase||0);
+    $('#pzOcIni').val(v.MontoOcultoIni||0);
+    $('#pzOcFin').val(v.MontoOcultoFin||0);
+    $('#pzIncOculto').val(v.IncrementoPozoOculto||0);
+    $('#pzActivo').prop('checked', !!v.Activo);
+    $('#pzEstado').prop('checked', v.Estado === 1);
+    $('.val-msg').hide(); $('.is-invalid').removeClass('is-invalid');
+    $('#mdlPozo').modal('show');
+  });
+
+  $(document).on('click','.btnDel', function(){
+    var id = $(this).data('id');
+    $('#delPozoId').val(id);
+    $('#delPozoSala').val(Number($('#cboSala').val()||0));
+    $('#delPozoProg').val(Number($('#cboProg').val()||0));
+    $('#mdlDelPozo').modal('show');
+  });
+
+  $('#frmPozo').off('submit').on('submit', function(e){
+    e.preventDefault();
+
+    var err=false;
+    function chkInt($i,msg){ var v=$i.val(); if(!/^\d+$/.test(v) || Number(v)<1){ showErr($i,msg,true); err=true; } else showErr($i,msg,false); }
+    function chkDec($i,msg){ var v=$i.val(); if(v!=='' && !/^-?\d+([.,]\d+)?$/.test(String(v))){ showErr($i,msg,true); err=true; } else showErr($i,msg,false); }
+
+    chkInt($('#pzNroPozo'), 'msg_pzNroPozo');
+    ['pzDificultad','pzModalidad','pzMontoBase','pzMontoIni','pzMontoFin','pzIncremento','pzOcBase','pzOcIni','pzOcFin','pzIncOculto']
+      .forEach(function(id){ chkDec($('#'+id), 'msg_'+id); });
+
+    if (err) { toastr.error('Corrige los campos marcados.'); return; }
+
+    $('#Activo').val($('#pzActivo').is(':checked'));
+    $('#Estado').val($('#pzEstado').is(':checked') ? 1 : 0);
+
+    var prog = Number(cboProg.val()||0);
+    var payload = $(this).serialize();
+
+    $.post('@Url.Action("EditarPozoAjax")' + '?codSalaProgresivo=' + encodeURIComponent(prog), payload)
+     .done(function(r){
+       if(r && r.ok){
+         $('#mdlPozo').modal('hide');
+         toastr.success(r.msg || 'Actualizado.');
+         setTimeout(buscar, 100);
+       } else {
+         toastr.error((r && r.msg) || 'No se pudo actualizar.');
+       }
+     })
+     .fail(function(){ toastr.error('Error de red.'); });
+  });
+
+  $('#frmDelPozo').off('submit').on('submit', function(e){
+    e.preventDefault();
+    var url = $(this).attr('action');
+    var payload = $(this).serialize();
+
+    $.post(url, payload)
+      .done(function(r){
+        if (r && typeof r === 'object') {
+          if (r.ok) {
+            toastr.success(r.msg || 'Pozo desactivado.');
+            $('#mdlDelPozo').modal('hide');
+            setTimeout(buscar, 100);
+          } else {
+            toastr.error(r.msg || 'No se pudo desactivar.');
+          }
+        } else {
+          $('#mdlDelPozo').modal('hide');
+          setTimeout(buscar, 100);
+        }
+      })
+      .fail(function(){ toastr.error('Error de red.'); });
+  });
+
+  $(document).on('input change', '#mdlPozo input', function () {
+    var id = this.id.replace('pz','msg_pz'); showErr($(this), id, false);
+  });
+
+  function init(){
+    loadProgresivos(cboSala.val(), progInit);
+  }
+
+  init();
+})();
+
+$('#cboSala').select2({ placeholder:'Seleccione una sala', allowClear:true, width:'100%' });
+$('#cboProg').select2({ placeholder:'Seleccione un progresivo', allowClear:true, minimumResultsForSearch:6, width:'100%' });
+    </script>
+}

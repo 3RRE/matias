@@ -1,0 +1,645 @@
+﻿@model System.Collections.Generic.List<CapaEntidad.Administrativo.ADM_SalaProgresivoEntidad>
+@{
+    ViewBag.Title = "Salas Progresivo por Sala";
+
+    var codSala = ViewBag.CodSala as int? ?? 0;
+    var linktek = ViewBag.Linktek as IEnumerable<CapaEntidad.Administrativo.ADM_SalaProgresivoEntidad> ?? Enumerable.Empty<CapaEntidad.Administrativo.ADM_SalaProgresivoEntidad>();
+    var terceros = ViewBag.Terceros as IEnumerable<CapaEntidad.Administrativo.ADM_SalaProgresivoEntidad> ?? Enumerable.Empty<CapaEntidad.Administrativo.ADM_SalaProgresivoEntidad>();
+}
+
+@section css{
+    <style>
+      
+        .modal-centered {
+            position: relative;
+            top: 10%;
+            transform: translateY(-50%);
+            margin: 0 auto;
+        }
+
+        .modal-header-brand {
+            background: #0b1f46;
+            color: #fff;
+            border-bottom: 0;
+        }
+
+            .modal-header-brand .close {
+                color: #fff;
+                opacity: .9;
+            }
+
+                .modal-header-brand .close:hover {
+                    opacity: 1;
+                }
+
+        .modal-content.shadow-elev {
+            box-shadow: 0 12px 28px rgba(0,0,0,.3);
+        }
+
+        .modal-body .help-text {
+            color: #6b7280;
+            margin-top: 6px;
+            font-size: 12px;
+        }
+
+        .modal-body .m0 {
+            margin: 0;
+        }
+
+        .modal-backdrop {
+            background-color: transparent !important;
+            opacity: 0 !important;
+        }
+
+        #containerGeneral {
+            background: #fff;
+            padding: 15px;
+            border-radius: 6px;
+        }
+
+        .filters .input-group-addon {
+            min-width: 110px;
+        }
+
+        .card {
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .card-header {
+            background: #0b1f46;
+            color: #fff;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-body {
+            padding: 15px;
+            background-color: #fff;
+        }
+
+        .table thead th {
+            background: #0b1f46;
+            color: #fff;
+            vertical-align: middle;
+        }
+
+        .badge-pill {
+            border-radius: 9999px;
+            padding: .35em .6em;
+        }
+
+        .badge-green {
+            background: #16a34a;
+            color: #fff;
+        }
+
+        .badge-gray {
+            background: #9ca3af;
+            color: #111827;
+        }
+
+        .btn-xs {
+            padding: 2px 8px;
+            font-size: 12px;
+            line-height: 1.5;
+            border-radius: 4px;
+        }
+
+        .empty {
+            padding: 20px;
+            color: #6b7280;
+            text-align: center;
+        }
+
+        .d-none {
+            display: none !important;
+        }
+
+        .modal .form-control[disabled], .modal .form-control[readonly] {
+            background-color: #fff !important;
+            opacity: 1 !important;
+        }
+
+        .modal .form-control {
+            pointer-events: auto !important;
+        }
+
+        .modal .input-group .input-group-addon {
+            background-color: #f7f7f7;
+        }
+
+        .modal-backdrop {
+            pointer-events: none !important;
+            z-index: 1040 !important;
+            opacity: .35;
+        }
+
+        .modal {
+            z-index: 1055 !important;
+        }
+
+        #modalRegistrarTercero .modal-dialog, #modalEditarTercero .modal-dialog {
+            margin-top: 100px !important;
+        }
+
+        .is-invalid {
+            border-color: #dc3545 !important;
+        }
+
+        .val-msg {
+            display: none;
+            color: #dc3545;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        #btnConfirmDelete.is-loading {
+            position: relative;
+            padding-right: 34px;
+        }
+
+            #btnConfirmDelete.is-loading:after {
+                content: "";
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                width: 16px;
+                height: 16px;
+                margin-top: -8px;
+                border-radius: 50%;
+                border: 2px solid rgba(255,255,255,.7);
+                border-top-color: transparent;
+                animation: spin .8s linear infinite;
+            }
+
+        @@keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <h1 style="margin-top:0;">
+                                <span aria-hidden="true" class="icon icon-block-menu"></span>
+                                <span class="main-text">Progresivos Terceros</span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12 col-xs-12">
+                            <button type="button" id="btnBuscar" class="btn btn-success btn-sm col-md-12 col-xs-12">
+                                <span class="glyphicon glyphicon-search"></span> Buscar
+                            </button>
+                        </div>
+                        <div class="col-md-4 col-sm-12 col-xs-12">
+                            <button type="button" id="btnExcel" class="btn btn-primary btn-sm col-md-12 col-xs-12">
+                                <span class="glyphicon glyphicon-file"></span> Excel
+                            </button>
+                        </div>
+                        <div class="col-md-4 col-sm-12 col-xs-12">
+                            <button type="button"
+                                    id="btnRegistrarTerceros"
+                                    class="btn btn-primary btn-sm col-md-12 col-xs-12"
+                                    data-toggle="modal"
+                                    data-target="#modalRegistrarTercero"
+                                    style="display:none;">
+                                <span class="glyphicon glyphicon-plus"></span> Registrar Terceros
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row filters">
+    <div class="col-md-12">
+        <div id="containerGeneral">
+            <div class="row" style="row-gap:10px;">
+                <div class="col-md-5">
+                    <div class="input-group">
+                        <span class="input-group-addon">SALA</span>
+                        @Html.DropDownList("SalaId", (SelectList)ViewBag.Salas, "-- Seleccione sala --",
+                          new { @class = "form-control", id = "cboSala", @value = codSala })
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                    <div class="input-group">
+                        <span class="input-group-addon">CLASE PROGRESIVO</span>
+                        @Html.DropDownList(
+                            "ClaseProgresivo",
+                            new SelectList(new[] {
+                                new { Value="Linktek",  Text="Linktek"  },
+                                new { Value="Terceros", Text="Terceros" }
+                            }, "Value", "Text", "Linktek"),
+                            null,
+                            new { @class = "form-control", id = "cboClase" }
+                        )
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" style="margin-top:15px;">
+    <div class="col-md-12">
+
+        <div class="card" id="cardLinktek">
+            <div class="card-header">
+                <div>
+                    <strong>Linktek</strong>
+                    <span class="badge badge-pill badge-green">@linktek.Count()</span>
+                </div>
+            </div>
+            <div class="card-body">
+                @if(linktek.Any()) {
+                    <div class="table-responsive">
+                        <table id="tblLinktek" class="table table-bordered table-hover table-striped table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>CodSalaProgresivo</th>
+                                    <th>CodProgresivo</th>
+                                    <th>Nombre</th>
+                                    <th>Nombre Sala</th>
+                                    <th>Nro Pozos</th>
+                                    <th>Nro Jugadores</th>
+                                    <th>Subida Créditos</th>
+                                    <th>Activo</th>
+                                    <th>Estado</th>
+                                    <th>CodTipoConfigProgresivo</th>
+                                    <th>RazonSocial</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach(var s in linktek) {
+                                    <tr>
+                                        <td>@s.CodSalaProgresivo</td>
+                                        <td>@s.CodProgresivo</td>
+                                        <td>@(string.IsNullOrWhiteSpace(s.Nombre) ? "-" : s.Nombre)</td>
+                                        <td>@(string.IsNullOrWhiteSpace(s.NombreSala) ? "-" : s.NombreSala)</td>
+                                        <td>@s.NroPozos</td>
+                                        <td>@s.NroJugadores</td>
+                                        <td>@s.SubidaCreditos</td>
+                                        <td>@(s.Activo ? Html.Raw("<span class='badge badge-pill badge-green'>Sí</span>") : Html.Raw("<span class='badge badge-pill badge-gray'>No</span>"))</td>
+                                        <td>@(s.Estado == 1 ? "Habilitado" : "Deshabilitado")</td>
+                                        <td>@s.CodTipoConfiguracionProgresivo</td>
+                                        <td>@(string.IsNullOrWhiteSpace(s.RazonSocial) ? "-" : s.RazonSocial)</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                } else { <div class="empty">No hay registros Linktek.</div>}
+            </div>
+        </div>
+
+        <div class="card d-none" id="cardTerceros">
+            <div class="card-header">
+                <div>
+                    <strong>Terceros</strong>
+                    <span class="badge badge-pill badge-gray">@terceros.Count()</span>
+                </div>
+            </div>
+            <div class="card-body">
+                @if(terceros.Any()) {
+                    <div class="table-responsive">
+                        <table id="tblTerceros" class="table table-bordered table-hover table-striped table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>CodSalaProgresivo</th>
+                                    <th>CodProgresivo</th>
+                                    <th>Nombre</th>
+                                    <th>Nombre Sala</th>
+                                    <th>Nro Pozos</th>
+                                    <th>Nro Jugadores</th>
+                                    <th>Subida Créditos</th>
+                                    <th>Activo</th>
+                                    <th>Estado</th>
+                                    <th>CodTipoConfigProgresivo</th>
+                                    <th>RazonSocial</th>
+                                    <th style="width:110px;">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach(var s in terceros) {
+                                    <tr>
+                                        <td>@s.CodSalaProgresivo</td>
+                                        <td>@s.CodProgresivo</td>
+                                        <td>@(string.IsNullOrWhiteSpace(s.Nombre) ? "-" : s.Nombre)</td>
+                                        <td>@(string.IsNullOrWhiteSpace(s.NombreSala) ? "-" : s.NombreSala)</td>
+                                        <td>@s.NroPozos</td>
+                                        <td>@s.NroJugadores</td>
+                                        <td>@s.SubidaCreditos</td>
+                                        <td>@(s.Activo ? Html.Raw("<span class='badge badge-pill badge-green'>Sí</span>") : Html.Raw("<span class='badge badge-pill badge-gray'>No</span>"))</td>
+                                        <td>@(s.Estado == 1 ? "Habilitado" : "Deshabilitado")</td>
+                                        <td>@s.CodTipoConfiguracionProgresivo</td>
+                                        <td>@(string.IsNullOrWhiteSpace(s.RazonSocial) ? "-" : s.RazonSocial)</td>
+                                        <td>
+                                            <div class="btn-group btn-group-xs">
+                                                <button type="button"
+                                                        class="btn btn-warning btn-xs btnEditarTercero"
+                                                        title="Editar"
+                                                        data-id="@s.CodSalaProgresivo">
+                                                    <span class="glyphicon glyphicon-pencil"></span>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-danger btn-xs btnEliminarTercero"
+                                                        title="Eliminar"
+                                                        data-id="@s.CodSalaProgresivo"
+                                                        data-nombre="@s.Nombre">
+                                                    <span class="glyphicon glyphicon-trash"></span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                } else { <div class="empty">No hay registros de Terceros.</div>}
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="modalRegistrarTercero" tabindex="-1" role="dialog" aria-labelledby="modalRegistrarTerceroLabel" data-backdrop="false" data-keyboard="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            @using(Html.BeginForm("Guardar", "ProgresivoTerceros", FormMethod.Post, new { @class = "form-horizontal", autocomplete = "off", id = "frmRegistrar" })) {
+                @Html.AntiForgeryToken()
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="modalRegistrarTerceroLabel">Registrar Progresivo — Terceros</h4>
+                </div>
+                <div class="modal-body">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.Hidden("CodSala", codSala, new { id = "hidCodSala" })
+                    @Html.Hidden("ClaseProgresivo", "Terceros")
+                    @Html.Hidden("RazonSocial", "", new { id = "hidRazonSocial" })
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="rgNombre">Nombre</label>
+                        <div class="col-sm-9">
+                            @Html.TextBox("Nombre", null, new { @class = "form-control", maxlength = 100, id = "rgNombre", placeholder = "Nombre del progresivo" })
+                            <div id="msg_rgNombre" class="val-msg">Campo inválido.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="rgCodProg">CodProgresivo</label>
+                        <div class="col-sm-3">
+                            @Html.TextBox("CodProgresivo", 0, new { type = "number", @class = "form-control", id = "rgCodProg", min = "0" })
+                            <div id="msg_rgCodProg" class="val-msg">Ingrese un número válido (≥ 0).</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="rgNroPozos">Nro Pozos</label>
+                        <div class="col-sm-3">
+                            @Html.TextBox("NroPozos", 0, new { type = "number", @class = "form-control", id = "rgNroPozos", min = "0" })
+                            <div id="msg_rgNroPozos" class="val-msg">Este campo es obligatorio.</div>
+                        </div>
+
+                        <label class="col-sm-3 control-label" for="rgNroJug">Nro Jugadores</label>
+                        <div class="col-sm-3">
+                            @Html.TextBox("NroJugadores", 0, new { type = "number", @class = "form-control", id = "rgNroJug", min = "0" })
+                            <div id="msg_rgNroJug" class="val-msg">Este campo es obligatorio.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="rgSubidaCreditos">Subida Créditos</label>
+                        <div class="col-sm-3">
+                            @Html.TextBox("SubidaCreditos", 0, new { type = "number", @class = "form-control", id = "rgSubidaCreditos", min = "0" })
+                            <div id="msg_rgSubidaCreditos" class="val-msg">Este campo es obligatorio.</div>
+                        </div>
+
+                        <label class="col-sm-3 control-label" for="rgTipoConf">CodTipoConfigProgresivo</label>
+                        <div class="col-sm-3">
+                            @Html.TextBox("CodTipoConfiguracionProgresivo", 0, new { type = "number", @class = "form-control", id = "rgTipoConf", min = "0" })
+                            <div id="msg_rgTipoConf" class="val-msg">Número inválido.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Estado / Activo</label>
+                        <div class="col-sm-3">
+                            <div class="checkbox" style="margin-top:5px;">
+                                <label>
+                                    @Html.CheckBox("EstadoCheck", new { id = "rgChkEstado"})
+                                    Estado (Habilitado)
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="checkbox" style="margin-top:5px;">
+                                <label>
+                                    @Html.CheckBox("Activo", new { id = "rgChkActivo" })
+                                    Activo
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalEditarTercero" tabindex="-1" role="dialog" aria-labelledby="modalEditarTerceroLabel" data-backdrop="false" data-keyboard="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            @using(Html.BeginForm("Editar", "ProgresivoTerceros", FormMethod.Post, new { @class = "form-horizontal", autocomplete = "off", id = "frmEditar" })) {
+                @Html.AntiForgeryToken()
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="modalEditarTerceroLabel">Editar Progresivo — Terceros</h4>
+                </div>
+                <div class="modal-body">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    @Html.Hidden("CodSalaProgresivo", "", new { id = "edCodSalaProgresivo" })
+                    @Html.Hidden("CodSala", codSala, new { id = "edCodSala" })
+                    @Html.Hidden("ClaseProgresivo", "Terceros")
+                    @Html.Hidden("RazonSocial", "", new { id = "edRazonSocial" })
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="edNombre">Nombre</label>
+                        <div class="col-sm-9">
+                            @Html.TextBox("Nombre", null, new { @class = "form-control", id = "edNombre", maxlength = "100", placeholder = "Nombre del progresivo" })
+                            <div id="msg_edNombre" class="val-msg">Campo inválido.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="edCodProg">CodProgresivo</label>
+                        <div class="col-sm-3">
+                            @Html.TextBox("CodProgresivo", 0, new { type = "number", @class = "form-control", id = "edCodProg", min = "0" })
+                            <div id="msg_edCodProg" class="val-msg">Ingrese un número válido (≥ 0).</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="edNroPozos">Nro Pozos</label>
+                        <div class="col-sm-3">
+                            @Html.TextBox("NroPozos", null, new { type = "number", @class = "form-control", id = "edNroPozos", min = "0" })
+                            <div id="msg_edNroPozos" class="val-msg">Ingrese un número.</div>
+                        </div>
+                        <label class="col-sm-3 control-label" for="edNroJug">Nro Jugadores</label>
+                        <div class="col-sm-3">
+                            @Html.TextBox("NroJugadores", null, new { type = "number", @class = "form-control", id = "edNroJug", min = "0" })
+                            <div id="msg_edNroJug" class="val-msg">Ingrese un número.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="edSubidaCreditos">Subida Créditos</label>
+                        <div class="col-sm-3">
+                            @Html.TextBox("SubidaCreditos", null, new { type = "number", @class = "form-control", id = "edSubidaCreditos", min = "0" })
+                            <div id="msg_edSubidaCreditos" class="val-msg">Ingrese un número.</div>
+                        </div>
+                        <label class="col-sm-3 control-label" for="edTipoConf">CodTipoConfigProgresivo</label>
+                        <div class="col-sm-3">
+                            @Html.TextBox("CodTipoConfiguracionProgresivo", null, new { type = "number", @class = "form-control", id = "edTipoConf", min = "0" })
+                            <div id="msg_edTipoConf" class="val-msg">Número inválido.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Estado / Activo</label>
+                        <div class="col-sm-3">
+                            <div class="checkbox" style="margin-top:5px;">
+                                <label>
+                                    @Html.CheckBox("EstadoCheck", false, new {
+                                        id = "edChkEstado"@*, value = "1"*@})
+                                    Estado (Habilitado)
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="checkbox" style="margin-top:5px;">
+                                <label>
+                                    @Html.CheckBox("Activo", true, new { id = "edChkActivo" })
+                                    Activo
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar cambios</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalConfirmDelete" tabindex="-1" role="dialog"
+     aria-labelledby="modalConfirmDeleteLabel" aria-modal="true" data-backdrop="static" data-keyboard="true">
+    <div class="modal-dialog modal-sm modal-centered" role="document">
+        <div class="modal-content shadow-elev">
+            <div class="modal-header modal-header-brand">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="modalConfirmDeleteLabel">
+                    <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+                    Confirmar acción
+                </h4>
+            </div>
+            <div class="modal-body">
+                <p class="m0">¿Desactivar el progresivo <strong id="delNombre"></strong>?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" id="btnConfirmDelete">
+                    <span class="glyphicon glyphicon-trash"></span> Desactivar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@using(Html.BeginForm("Eliminar", "ProgresivoTerceros", FormMethod.Post, new { id = "frmEliminar" })) {
+    @Html.AntiForgeryToken()
+    @Html.Hidden("id", "", new { id = "hidDelId" })
+    @Html.Hidden("codSala", codSala, new { id = "hidDelSala" })
+    @Html.Hidden("clase", "", new { id = "hidDelClase" })
+}
+@section js{
+    <script>
+        window.PT = {
+            codSala: @((ViewBag.CodSala as int?) ?? 0),
+            defaultClase: '@(Request["clase"] ?? "")',
+            baseSalaUrl: '@Url.Content("~/ProgresivoTerceros/Sala/")',
+            exportUrl: '@Url.Action("ExportarExcelProgresivos","ProgresivoTerceros")',
+            msgOk: '@(TempData["Ok"] ?? "")',
+            msgErr: '@(TempData["Error"] ?? "")'
+        };
+    </script>
+
+    <script>
+        (function () {
+            if (!window.jQuery || !jQuery.fn || !jQuery.fn.select2) return;
+            var $sala = jQuery('#cboSala');
+            $sala.select2({
+                theme: 'bootstrap',
+                width: '100%',
+                placeholder: '-- Seleccione sala --',
+                allowClear: true,
+                language: 'es'
+            });
+            if (window.PT && window.PT.codSala) {
+                $sala.val(String(window.PT.codSala)).trigger('change.select2');
+            }
+        })();
+        $('#cboSala').select2({
+            placeholder: 'Seleccione una sala',
+            allowClear: true,
+            minimumResultsForSearch: 6,
+            width: '100%' 
+        });
+        $('#cboClase').select2({
+            placeholder: 'Seleccione una clase progresivo',
+            allowClear: true,
+            minimumResultsForSearch: 6,
+            width: '100%'
+        });
+    </script>
+
+    <script src="~/Content/assets/viewsjs/Progresivo/ProgresivoTerceros/ProgresivoTercerosSala.js"></script>
+}

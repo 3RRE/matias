@@ -1,0 +1,159 @@
+﻿
+@{
+    ViewBag.Title = "Contadores Mincetur";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon las la-percent"></span>
+                                <span class="main-text">
+                                    @ViewBag.Title
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnGenerarExcel" class="btn btn-sm btn-success col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-book"></span>
+                                        Excel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnBuscar" class="btn btn-sm btn-primary col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                        Buscar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-lg-4">
+                            <div class="input-group ">
+                                <span class="input-group-addon">
+                                    Sala
+                                </span>
+                                <select class="form-control input-sm codSala" id="cboSala">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    Desde
+                                </span>
+                                <input type="text" class="form-control input-sm dateOnly_" id="fechaIniContadores" readonly />
+                                <span class="input-group-addon input-group-icon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    Hasta
+                                </span>
+                                <input type="text" class="form-control input-sm dateOnly_" id="fechaFinContadores" readonly />
+                                <span class="input-group-addon input-group-icon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 tam">
+                            <div class="table-responsive">
+                                <table id="tableContadores" class="table table-striped table-bordered table-hover table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th>Cod Sala</th>
+                                            <th>Sala</th>
+                                            <th>Fecha Migracion</th>
+
+                                            <th>Fecha</th>
+                                            <th>Trama</th>
+                                            <th>Cereo</th>
+                                            <th>Id Con Sunat</th>
+                                            <th>Envio</th>
+                                            <th>Id Cereo</th>
+                                            <th>Fecha Envio</th>
+                                            <th>Fecha Proceso</th>
+                                            <th>Motivo</th>
+                                            <th>Id Conf Sunat</th>
+                                            <th>Band Busq</th>
+
+                                            <th>Cabecera</th>
+                                            <th>DGJM</th>
+                                            <th>Cod Maq</th>
+                                            <th>Fecha Trama</th>
+                                            <th>Reserva 1</th>
+                                            <th>Moneda</th>
+                                            <th>Denominacion</th>
+                                            <th>Coin In Final</th>
+                                            <th>Coin Out Final</th>
+                                            <th>Pago Manual Final</th>
+                                            <th>Otro Final</th>
+                                            <th>Tipo Cambio</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/Sunat/Contadores/ListadoContadores.js"></script>
+}

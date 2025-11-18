@@ -1,0 +1,1084 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section css
+{
+    <style>
+        .d-flex-end {
+            display: flex !important;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .d-flex {
+            display: flex !important;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .liItemE {
+            border: 1px solid #EEE;
+        }
+
+        .linkItemE .name-company {
+            margin-right: 15px;
+        }
+
+        .linkItemE .totalSalasEmpresaSpan {
+            display: inline-block;
+            background: #FFFFFF;
+            padding: 2px 4px;
+            margin-left: auto;
+            font-weight: 700;
+            color: #000;
+            font-size: 10px;
+            border-radius: 4px !important;
+        }
+
+            .linkItemE .totalSalasEmpresaSpan.lie-success {
+                background: #1BA345;
+                color: #FFFFFF;
+            }
+
+        .linkItemE {
+            margin-bottom: 0 !important;
+        }
+
+        @@media (max-width: 480px) {
+            .nav-tabs.tabs-left + .tab-content {
+                margin-left: 0;
+            }
+        }
+
+        .checkbox-box label .toggle {
+            margin-left: 0;
+            margin-right: 0;
+        }
+    </style>
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-mailbox"></span>
+                                <span class="main-text">
+                                    Asignar maquinas a anfitriona
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-group" style="margin-bottom:0px">
+                                <span class="input-group-addon">
+                                    Sala
+                                </span>
+                                <select class="form-control input-sm" id="cboSala" name="sala">
+                                    <option value="">--Seleccione--</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group" style="margin-bottom:0px">
+                                <span class="input-group-addon">
+                                    Anfitrionas
+                                </span>
+                                <select class="form-control input-sm" id="cboUsuario" name="usuario">
+                                    <option value="">--Seleccione--</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- row -->
+<!--<div class="row" id="usuarioDatos" style="display:none;">
+    <div class="col-md-12">
+        <div class="block ">
+            <div class="block-content-outer" id="contentUsuario">
+                <div class="block-content-inner">
+                    <div class="profile-info">
+                        <div class="cardMachine" style="margin-bottom:15px;">-->
+<!-- row -->
+<!--<div class="row">
+    <div class="col-md-4">
+        <div class="profile-info-block">
+            <div class="profile-info-title h6">
+                <span class="glyphicon glyphicon-user" style="top: 0px;"></span>
+                Nombre :  <span id="nombrePersona" class="estilodetalle"></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="profile-info-block">
+            <div class="profile-info-title h6">
+                <span class="glyphicon  glyphicon-tags" style="top: 0px;"></span>
+                Tipo :  <span id="tipoPersona" class="estilodetalle"></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="profile-info-block">
+            <div class="profile-info-title h6">
+                <span class="glyphicon glyphicon-phone-alt" style="top: 0px;"></span>
+                Telefono :  <span id="telefonoPersona" class="estilodetalle"></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="profile-info-block">
+            <div class="profile-info-title h6">
+                <span class="glyphicon glyphicon-phone" style="top: 0px;"></span>
+                Celular :  <span id="celularPersona" class="estilodetalle"></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="profile-info-block">
+            <div class="profile-info-title h6">
+                <span class="glyphicon glyphicon-pushpin" style="top: 0px;"></span>
+                Estado :  <span id="estadoPersona" class="estilodetalle"></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="profile-info-block">
+            <div class="profile-info-title h6">
+                <span class="glyphicon glyphicon-envelope" style="top: 0px;"></span>
+                Correo :  <span id="correoPersona" class="estilodetalle"></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="profile-info-block">
+            <div class="profile-info-title h6">
+                <span class="glyphicon glyphicon-map-marker" style="top: 0px;"></span>
+                Direccion :   <span id="direccionPersona" class="estilodetalle"></span>
+            </div>
+        </div>
+    </div>
+</div>-->
+<!-- /row -->
+<!--</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+<!-- /row -->
+
+<div class="row" style="display:none">
+    <div class="col-md-12">
+        <div class="block" style="margin-bottom:0">
+            <div class="block-content-outer" style="padding:0 15px;border-color:#EEE">
+                <div class="block-content-inner clearfix">
+                    <div class="d-flex-end text-right">
+                        <div class="checkbox checkbox-box checkbox-grid">
+                            <label>
+                                <input type="checkbox" data-toggle="toggle" />
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="result" style="display:none">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner clearfix">
+                    <div class="row notlabel">
+                        <div class="col-md-12">
+                            <div class="text-center divTotal" style="margin-bottom: 25px; display: none">
+                                <span style="display:inline-block;font-weight:700;color:#000;margin-right:5px;">Salas Asignadas</span> <span class="badge badge-bordered totalSalasSpan_list">0/0</span>
+                            </div>
+                            <div>
+                                <ul id="tabsEmpresas" class="nav nav-tabs tabs-left"></ul>
+                                <div class="tab-content" id="tabContentSalas">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center divfaltanTotal" style="margin-top: 25px;display: none">
+                        <span style="display:inline-block;font-weight:700;color:#000;margin-right:5px;">Faltan</span> <span class="badge badge-bordered totalSalasSpanFaltan_list">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- row -->
+<div class="row" id="salasGridContent" style="display:none">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner clearfix">
+                    <div class="text-center divTotal" style="margin-bottom: 25px; display: none">
+                        <span style="display:inline-block;font-weight:700;color:#000;margin-right:5px;">Salas Asignadas</span> <span class="badge badge-bordered totalSalasSpan">0/0</span>
+                    </div>
+                    <div class="row" id="salasGrid" style="padding-left:5px;padding-right:5px"></div>
+                    <div class="text-center divfaltanTotal" style="margin-top: 25px;display: none">
+                        <span style="display:inline-block;font-weight:700;color:#000;margin-right:5px;">Faltan</span> <span class="badge badge-bordered totalSalasSpanFaltan">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- row -->
+
+
+<style>
+    .caard-my-3 {
+        margin-top: 3px;
+        margin-bottom: 3px;
+    }
+
+    .caard {
+        width: 100%;
+        position: relative;
+        background-color: #FFFFFF;
+        transition: 0.3s ease-in-out;
+        box-shadow: 0 20px 25px -5px rgb(0 0 0 / 10%), 0 10px 10px -5px rgb(0 0 0 / 4%);
+        border-radius: 8px !important;
+        overflow: hidden;
+    }
+
+    .caard-header {
+        width: 100%;
+        position: relative;
+        padding: 15px 15px;
+        border-bottom: 1px solid #DDDDDD;
+    }
+
+    .caard-header-top {
+        width: 100%;
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+        .caard-header-top .caaht-titlebox {
+            margin-right: auto;
+        }
+
+        .caard-header-top .caaht-countbox {
+            margin-left: auto;
+        }
+
+    .caard-header-title {
+        color: #000000;
+        font-size: 16px;
+        font-weight: 700;
+        margin: 0;
+        line-height: 1.25;
+    }
+
+    .caard-header-subtitle {
+        margin: 0;
+        font-size: 13px;
+        font-weight: 400;
+        color: #0065ED;
+        letter-spacing: 1px;
+        line-height: 1;
+    }
+
+    .caard-header-count {
+        color: #444444;
+        font-size: 13px;
+        font-weight: 400;
+    }
+
+    .caard-header-bottom {
+        width: 100%;
+        position: relative;
+        padding: 5px 0;
+        margin-top: 8px;
+    }
+
+    .caard-footer {
+        width: 100%;
+        position: relative;
+        padding: 10px 15px;
+        text-align: center;
+        background-color: #F5F5F5;
+        border-top: 1px solid #DDDDDD;
+    }
+
+    .caard-footer-total {
+        display: inline-block;
+        text-align: center;
+        color: #242424;
+        font-size: 14px;
+        font-weight: 400;
+    }
+
+    .caard-search-wrap {
+        width: 100%;
+        position: relative;
+    }
+
+    .caard-search {
+        width: 100%;
+        background-color: #F5F5F5;
+        position: relative;
+        color: #000000;
+        font-size: 14px;
+        padding: 7px 28px 7px 14px;
+        border: 1px solid #DDDDDD !important;
+        outline: none !important;
+        border-radius: 5px !important;
+    }
+
+    .caard-search-icon {
+        position: absolute;
+        color: #999999;
+        font-size: 16px;
+        right: 10px;
+        top: calc(50% - 8px);
+    }
+
+    .caard-search:focus {
+        border-color: #1F91EF !important;
+    }
+
+        .caard-search:focus ~ .caard-search-icon {
+            color: #1F91EF;
+        }
+
+    .caard-body {
+        width: 100%;
+        position: relative;
+    }
+
+    .caard-list {
+        width: 100%;
+        position: relative;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+        .caard-list .caard-list-itm {
+            width: 100%;
+            position: relative;
+            display: block;
+        }
+
+        .caard-list .list-itm-wrap {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 15px 15px;
+            border-top: 1px solid #DDDDDD;
+            cursor: pointer;
+        }
+
+        .caard-list .caard-list-itm:last-child {
+            border-bottom: 1px solid #DDDDDD;
+        }
+
+        .caard-list .caard-list-itm:nth-child(odd) {
+            background-color: #F5F5F5;
+        }
+
+        .caard-list .caard-list-itm:nth-child(even) {
+            background-color: #FFFFFF;
+        }
+
+        .caard-list .caard-list-itm .litm-namebox {
+            margin-right: 10px;
+        }
+
+        .caard-list .caard-list-itm .litm-countbox {
+            margin-left: auto;
+            line-height: 0;
+        }
+
+        .caard-list .caard-list-itm .list-itm-name {
+            color: #171717;
+            font-size: 13px;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        .caard-list .caard-list-itm .list-itm-count {
+            color: #171717;
+            font-size: 12px;
+            font-weight: 400;
+            background-color: #FFFFFF;
+            padding: 0px 4px;
+            line-height: 1.5;
+            display: inline-block;
+            border: 1px solid #B9B9B9;
+            white-space: nowrap;
+            overflow: hidden;
+            border-radius: 4px !important;
+        }
+
+            .caard-list .caard-list-itm .list-itm-count.litm-count-success {
+                background-color: #1BA345;
+                color: #FFFFFF;
+                border: 1px solid #EEEEEE;
+            }
+
+            .caard-list .caard-list-itm .list-itm-count.litm-count-warning {
+                background-color: #D4881B;
+                color: #FFFFFF;
+                border: 1px solid #EEEEEE;
+            }
+
+            .caard-list .caard-list-itm .list-itm-count.litm-count-danger {
+                background-color: #D43443;
+                color: #FFFFFF;
+                border: 1px solid #EEEEEE;
+            }
+
+        .caard-list .caard-list-itm:hover, .caard-list .caard-list-itm.active {
+            background-color: #2489C5;
+            border-top-color: rgba(245, 245, 245, 0.5);
+        }
+
+            .caard-list .caard-list-itm:hover .list-itm-name, .caard-list .caard-list-itm.active .list-itm-name {
+                color: #FFFFFF;
+            }
+
+    .caard-content-items {
+        width: 100%;
+        position: relative;
+        padding: 0;
+    }
+
+    .gpanel-group {
+        width: 100%;
+        position: relative;
+    }
+
+    .gpanel {
+        width: 100%;
+        position: relative;
+        background: #F5F5F5;
+        border-bottom: 1px solid #DDDDDD;
+        border-left: 1px solid #DDDDDD;
+        border-right: 1px solid #DDDDDD;
+    }
+
+    .gpanel-header {
+        width: 100%;
+        position: relative;
+        background-color: #FFFFFF;
+        padding: 10px 15px;
+    }
+
+    .gpanel-header-flex {
+        width: 100%;
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    .gphf-selects {
+        margin-right: 10px;
+    }
+
+    .gphf-all-name {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 400;
+        color: #171717;
+        margin-left: 5px;
+    }
+
+    .gphf-actions {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+    }
+
+    .gphf-count {
+        display: inline-block;
+        font-size: 12px;
+        color: #242424;
+        font-weight: 400;
+        line-height: 1.5;
+        padding: 0px 4px;
+        border: 1px solid #B9B9B9;
+        background-color: #FFFFFF;
+        white-space: nowrap;
+        overflow: hidden;
+        border-radius: 4px !important;
+    }
+
+    .gphf-success {
+        background: #1BA345;
+        color: #FFFFFF;
+        border: 1px solid #EEEEEE;
+    }
+
+    .gphf-warning {
+        background: #D4881B;
+        color: #FFFFFF;
+        border: 1px solid #EEEEEE;
+    }
+
+    .gphf-danger {
+        background: #D43443;
+        color: #FFFFFF;
+        border: 1px solid #EEEEEE;
+    }
+
+    .gphf-lg {
+        font-size: 14px;
+    }
+
+    .roomm-items {
+        width: 100%;
+        position: relative;
+        padding: 15px 15px;
+    }
+
+    .roomm-item {
+        width: 100%;
+        position: relative;
+        padding: 15px 15px;
+        background-color: #FFEBCD;
+        border: 1px solid #A9A9A9;
+        border-radius: 4px !important;
+    }
+
+    .roomm-item-name {
+        font-size: 12px;
+        color: #171717;
+        font-weight: 700;
+        margin-left: 5px;
+    }
+
+    .roomm-item-company {
+        display: block;
+        color: #484848;
+        font-weight: 400;
+        font-size: 12px;
+        font-style: italic;
+        margin-top: 4px;
+    }
+
+    .row-m0 {
+        margin: 0;
+    }
+
+    .row-m-5 {
+        margin-left: -5px;
+        margin-right: -5px;
+    }
+
+    .col-p5 {
+        padding: 5px;
+    }
+
+    .col-p10 {
+        padding: 10px;
+    }
+
+    .caaht-actions {
+        display: flex;
+        align-items: center;
+    }
+
+    .caaht-gridd-box, .caaht-count-box {
+        line-height: 0;
+    }
+
+    .caaht-gridd-box {
+        margin-right: 10px;
+    }
+
+    .caaht-btn-gridd {
+        display: inline-block;
+        padding: 0;
+        line-height: 0;
+        background-color: #FFFFFF;
+        color: #545454;
+        outline: none;
+        border: 0;
+    }
+
+        .caaht-btn-gridd:hover {
+            color: #0065ED;
+        }
+
+    .icheckbox-bg-white {
+        background-color: #FFFFFF;
+    }
+
+    .caard-noresult-wrap {
+        width: 100%;
+        position: relative;
+        padding: 45px 15px;
+        text-align: center;
+    }
+
+    .caard-noresult-icon {
+        margin-bottom: 25px;
+    }
+
+    .caard-noresult-text {
+        color: #444444;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+    }
+
+    .mm-0 {
+        margin: 0;
+    }
+
+    .ww-100 {
+        width: 100%;
+    }
+
+    .dd-hidden {
+        display: none;
+    }
+
+    .block-loaderdata {
+        width: 100%;
+        position: relative;
+        padding: 30px 0;
+    }
+
+    .loaderdata {
+        width: 48px;
+        height: 48px;
+        border: 5px solid #FFF;
+        border-bottom-color: #143958;
+        border-radius: 50% !important;
+        display: inline-block;
+        box-sizing: border-box;
+        animation: rotation 1s linear infinite;
+    }
+
+    .loaderdata-text {
+        margin: 0;
+        font-size: 16px;
+        color: #143958;
+    }
+
+    .user-container {
+        max-width: 700px;
+        display: flex;
+        gap: 45px;
+    }
+
+    @@keyframes rotation {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    @@media (max-width:600px) {
+        .user-container {
+            flex-direction: column;
+        }
+    }
+</style>
+<div class="block">
+
+    <div class="block-content-outer" id="salaData">
+        <div class="row">
+            <div class="col-md-12" style="display:flex; justify-content :center; flex-direction:column; align-items:center;gap:20px;">
+                <h1>Seleccione un usuario</h1>
+                <img src="~/Content/assets/images/searchIcon.png" height="150" width="150" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- row -->
+<div class="row" id="AppRoomUser" style="display:none">
+
+    <div class="col-md-12" v-if="loadingData">
+        <div class="block">
+
+            <div class="block-content-outer">
+
+                <div class="block-loaderdata">
+                    <div class="text-center" style="margin-bottom: 15px">
+                        <span class="loaderdata"></span>
+                    </div>
+                    <div class="text-center">
+                        <h4 class="loaderdata-text">Cargando datos</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 dd-hidden" v-bind:class="{ show: !loadingData }">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="col-md-12" style="padding:unset !important">
+                        <div>
+                            <div id="contentUsuario">
+                                <div>
+                                    <div class="profile-info">
+                                        <div class="cardMachine" style="margin-bottom:15px;display: flex; justify-content:center; align-items:center; flex-direction:column">
+                                            @*<h3 class="caard-header-title" style="margin-bottom:15px;">Datos usuario</h3>*@
+                                            <!-- row -->
+                                            <div class="row">
+                                                @*<div class="col-md-4">
+                                                        <div class="profile-info-block">
+                                                            <div class="profile-info-title h6">
+                                                                <span class="glyphicon glyphicon-user" style="top: 0px;"></span>
+                                                                Nombre :  <span id="nombrePersona" class="estilodetalle"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>*@
+                                                @*<div class="col-md-2">
+                                                        <div class="profile-info-block">
+                                                            <div class="profile-info-title h6">
+                                                                <span class="glyphicon  glyphicon-tags" style="top: 0px;"></span>
+                                                                Tipo :  <span id="tipoPersona" class="estilodetalle"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>*@
+                                                @*<div class="col-md-2">
+                                                        <div class="profile-info-block">
+                                                            <div class="profile-info-title h6">
+                                                                <span class="glyphicon glyphicon-phone-alt" style="top: 0px;"></span>
+                                                                Telefono :  <span id="telefonoPersona" class="estilodetalle"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="profile-info-block">
+                                                            <div class="profile-info-title h6">
+                                                                <span class="glyphicon glyphicon-phone" style="top: 0px;"></span>
+                                                                Celular :  <span id="celularPersona" class="estilodetalle"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>*@
+                                                <div class="col-md-2">
+                                                    @*<div class="profile-info-block">
+                                                            <div class="profile-info-title h6">
+                                                                <span class="glyphicon glyphicon-pushpin" style="top: 0px;"></span>
+                                                                Estado :  <span id="estadoPersona" class="estilodetalle"></span>
+                                                            </div>
+                                                        </div>*@
+                                                </div>
+                                                @*<div class="col-md-4">
+                                                        <div class="profile-info-block">
+                                                            <div class="profile-info-title h6">
+                                                                <span class="glyphicon glyphicon-envelope" style="top: 0px;"></span>
+                                                                Correo :  <span id="correoPersona" class="estilodetalle"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="profile-info-block">
+                                                            <div class="profile-info-title h6">
+                                                                <span class="glyphicon glyphicon-map-marker" style="top: 0px;"></span>
+                                                                Direccion :   <span id="direccionPersona" class="estilodetalle"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>*@
+                                            </div>
+                                            <!-- /row -->
+                                            <!-- row -->
+                                            <div class="row" style="text-shadow:none">
+                                                <div class="user-container">
+                                                    <div style="width:auto;display:flex; justify-content:center; flex-direction:column; align-items:center">
+                                                        <img src="~/Content/assets/images/employed.png" height="200" width="200" />
+                                                        <div class="profile-info-block">
+                                                            <div class="profile-info-title h6" style="font-size: 1.5rem; color: #939393; text-align: center">
+                                                                <p>USUARIO</p> <span id="estadoPersona" class="estilodetalle" style="margin-top:10px;"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    @*<div style="display: flex; flex-direction: column; justify-content: space-around;">
+                                                        <div class="profile-info-block">
+                                                            <div class="profile-info-title h6" style="display:flex; flex-direction:column; gap:5px;">
+                                                                <span id="nombrePersona" class="estilodetalle" style="font-size:2.1rem; font-weight:bold"></span>
+                                                                <span id="tipoPersona" class="estilodetalle" style="color: #939393;"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div style="width:100%; height:2px; background-color:black; margin-bottom:18px;"> </div>
+
+
+                                                        <div style="display:flex">
+                                                            <p style="color: #939393; min-width: 80px">Dirección </p>
+                                                            <span id="direccionPersona" class="estilodetalle"></span>
+                                                        </div>
+                                                        <div style="display:flex">
+                                                            <p style="color: #939393; min-width: 80px">Correo</p>
+                                                            <span id="correoPersona" class="estilodetalle"></span>
+                                                        </div>
+                                                        <div style="display:flex">
+                                                            <p style="color: #939393; min-width: 80px">Teléfono </p>
+                                                            <span id="telefonoPersona" class="estilodetalle"></span>
+                                                        </div>
+                                                        <div style="display:flex">
+                                                            <p style="color: #939393; min-width: 80px">Celular </p>
+                                                            <span id="celularPersona" class="estilodetalle"></span>
+                                                        </div>
+                                                    </div>*@
+                                                </div>
+                                            </div>
+                                            <!-- /row -->
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- row -->
+                    <div class="row row-m-5">
+                        <!-- col -->
+                        <div v-if="isViewFull == false" class="col-xs-12 col-sm-12 col-md-4 col-lg-3 caard-my-3 col-p10">
+                            <!-- caard -->
+                            <div class="caard">
+                                <div class="caard-header">
+                                    <div class="caard-header-top">
+                                        <div class="caaht-titlebox">
+                                            <h3 class="caard-header-title">Zonas</h3>
+                                        </div>
+                                        <div class="caaht-countbox">
+                                            <span class="caard-header-count">{{ filteredCompanies.length }}/{{ companies.length }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="caard-header-bottom">
+                                        <div class="roolee-search-wrap">
+                                            <input type="search" v-model="companySearch" class="caard-search" placeholder="Buscar zona" />
+                                            <i class="caard-search-icon fa fa-search"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="caard-body">
+                                    <ul class="caard-list">
+                                        <!-- item -->
+                                        <li v-for="(company, index) in filteredCompanies" @@click="setCompanySelected(company)" v-bind:class="{ active: companySelected == company.code }" class="caard-list-itm">
+                                            <div class="list-itm-wrap">
+                                                <div class="litm-namebox">
+                                                    <h4 class="list-itm-name">{{ company.name }}</h4>
+                                                </div>
+                                                <div class="litm-countbox">
+                                                    <span class="list-itm-count" v-bind:class="checkCompanyRoom(company)">{{ company.roomsCheck }}/{{ company.rooms.length }}</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- /item -->
+                                    </ul>
+                                    <!-- no result -->
+                                    <div v-if="filteredCompanies.length == 0" class="caard-noresult-wrap">
+                                        <div class="caard-noresult-icon">
+                                            <svg width="150px" class="img-responsive" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                                            <path style="fill:#0052B4;" d="M268.361,201.452h-22.971H76.935H53.963H30.993v76.571c0,24.597,15.662,47.653,42.972,63.259
+		                                                    c23.662,13.522,54.629,20.968,87.197,20.968s63.535-7.447,87.197-20.968c27.308-15.605,42.972-38.663,42.972-63.259v-76.571H268.361
+		                                                    z" />
+                                            <path style="fill:#003778;" d="M268.361,201.452h-22.971h-84.228V362.25c32.568,0,63.535-7.447,87.197-20.968
+		                                                    c27.308-15.605,42.972-38.663,42.972-63.259v-76.571H268.361z" />
+                                            <path style="fill:#006DF0;" d="M268.361,124.882h-22.971H76.935H53.963H30.993v76.571c0,24.597,15.662,47.653,42.972,63.26
+		                                                    c23.662,13.52,54.629,20.968,87.197,20.968s63.535-7.447,87.197-20.968c27.308-15.607,42.972-38.663,42.972-63.26v-76.571H268.361z" />
+                                            <path style="fill:#0052B4;" d="M268.361,124.882h-22.971h-84.228v160.798c32.568,0,63.535-7.447,87.197-20.968
+		                                                    c27.308-15.605,42.972-38.662,42.972-63.259v-76.571H268.361z" />
+                                            <path style="fill:#93C7EF;" d="M248.36,61.623c-23.662-13.522-54.629-20.968-87.197-20.968s-63.535,7.447-87.197,20.968
+		                                                    c-27.31,15.605-42.972,38.663-42.972,63.259s15.662,47.653,42.972,63.259c23.662,13.522,54.629,20.968,87.197,20.968
+		                                                    s63.535-7.447,87.197-20.968c27.308-15.604,42.972-38.662,42.972-63.259S275.668,77.228,248.36,61.623z" />
+                                            <path style="fill:#78B9EB;" d="M248.36,61.623c-23.662-13.522-54.629-20.968-87.197-20.968V209.11
+		                                                    c32.568,0,63.535-7.447,87.197-20.968c27.308-15.605,42.972-38.663,42.972-63.26S275.668,77.228,248.36,61.623z" />
+                                            <g>
+                                            <path style="fill:#FF5023;" d="M421.501,151.499H384.31c0-30.761-25.027-55.787-55.787-55.787V58.521
+			                                                    C379.79,58.521,421.501,100.231,421.501,151.499z" />
+                                            <path style="fill:#FF5023;" d="M92.978,455.228C41.71,455.228,0,413.517,0,362.25h37.191c0,30.761,25.026,55.787,55.787,55.787
+			                                                    V455.228z" />
+	                                                    </g>
+                                            <path style="fill:#AED5F3;" d="M512,387.769c0-35.984-24.052-68.756-58.491-79.696l-12.321-3.914l-0.622-12.914
+		                                                    c-2.838-58.897-51.286-105.033-110.297-105.033c-52.634,0-98.204,37.467-108.353,89.086l-2.499,12.71l-12.788,2.062
+		                                                    c-43.762,7.053-76.763,45.77-76.763,90.057c0,50.297,40.922,91.219,91.219,91.219h207.34C474.509,471.344,512,433.852,512,387.769z" />
+                                            <path style="fill:#93C7EF;" d="M453.509,308.072l-12.321-3.914l-0.622-12.914c-2.838-58.897-51.286-105.033-110.297-105.033
+		                                                    c-3.511,0-6.986,0.179-10.423,0.505v284.629h108.58c46.084,0,83.575-37.493,83.575-83.576
+		                                                    C512,351.784,487.948,319.013,453.509,308.072z" />
+                                                    </svg>
+                                        </div>
+                                        <div class="caard-noresult-text">No se encontraron resultados para su búsqueda</div>
+                                    </div>
+                                    <!-- no result -->
+                                </div>
+                            </div>
+                            <!-- /caard -->
+                        </div>
+                        <!-- /col -->
+                        <!-- col -->
+                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9 caard-my-3 col-p10" v-bind:class="{ 'ww-100': isViewFull }">
+                            <!-- caard -->
+                            <div class="caard">
+                                <div class="caard-header">
+                                    <div class="caard-header-top">
+                                        <div class="caaht-titlebox">
+                                            <h3 class="caard-header-title">Maquinas Asignadas</h3>
+                                            <p class="caard-header-subtitle">{{ getCompany ? getCompany.name : '' }}</p>
+                                        </div>
+                                        <div class="caaht-actions">
+                                            <div class="caaht-gridd-box">
+                                                <button type="button" class="caaht-btn-gridd" @@click="refreshData()">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M10 11H7.101l.001-.009a4.956 4.956 0 0 1 .752-1.787 5.054 5.054 0 0 1 2.2-1.811c.302-.128.617-.226.938-.291a5.078 5.078 0 0 1 2.018 0 4.978 4.978 0 0 1 2.525 1.361l1.416-1.412a7.036 7.036 0 0 0-2.224-1.501 6.921 6.921 0 0 0-1.315-.408 7.079 7.079 0 0 0-2.819 0 6.94 6.94 0 0 0-1.316.409 7.04 7.04 0 0 0-3.08 2.534 6.978 6.978 0 0 0-1.054 2.505c-.028.135-.043.273-.063.41H2l4 4 4-4zm4 2h2.899l-.001.008a4.976 4.976 0 0 1-2.103 3.138 4.943 4.943 0 0 1-1.787.752 5.073 5.073 0 0 1-2.017 0 4.956 4.956 0 0 1-1.787-.752 5.072 5.072 0 0 1-.74-.61L7.05 16.95a7.032 7.032 0 0 0 2.225 1.5c.424.18.867.317 1.315.408a7.07 7.07 0 0 0 2.818 0 7.031 7.031 0 0 0 4.395-2.945 6.974 6.974 0 0 0 1.053-2.503c.027-.135.043-.273.063-.41H22l-4-4-4 4z"></path></svg>
+                                                </button>
+                                            </div>
+                                            <div class="caaht-gridd-box mm-0">
+                                                <button v-if="isViewFull == true" type="button" class="caaht-btn-gridd" @@click="changeViewSingle()">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"></path></svg>
+                                                </button>
+                                                <button v-if="isViewFull == false" type="button" class="caaht-btn-gridd" @@click="changeViewFull()">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                                                </button>
+                                            </div>
+                                            <div class="caaht-countbox caaht-count-box hide">
+                                                <span class="caard-header-count gphf-count gphf-lg">0/0</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="caard-header-bottom">
+                                        <div class="caard-search-wrap">
+                                            <input type="search" v-model="roomSearch" class="caard-search" placeholder="Buscar Maquina" />
+                                            <i class="caard-search-icon fa fa-search"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="caard-body">
+                                    <!-- content -->
+                                    <div v-if="filteredRooms.length > 0" class="caard-content-items">
+                                        <!-- header -->
+                                        <div class="gpanel-header-all">
+                                            <div class="gpanel">
+                                                <div class="gpanel-header">
+                                                    <div class="gpanel-header-flex">
+                                                        <div class="gphf-selects">
+                                                            <label>
+                                                                <input type="checkbox" v-icheck data-layer="1" v-bind:checked="isAllChecked" />
+                                                                <span class="gphf-all-name">
+                                                                    Seleccionar todo
+                                                                </span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="gphf-actions">
+                                                            <span class="gphf-count" v-bind:class="checkRoomes()">{{ getRoomesChecks.length }}/{{ filteredRooms.length }}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /header -->
+                                        <!-- body -->
+                                        <div class="roomm-items">
+                                            <!-- row -->
+                                            <div class="row row-m0">
+                                                <!-- col -->
+                                                <div v-for="(room, index) in filteredRooms" class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-p5">
+                                                    <div class="roomm-item room-assign--item">
+                                                        <label>
+                                                            <input type="checkbox" v-icheck data-layer="2" :data-room="room.code" :data-rooname="room.name" v-bind:checked="room.checked" />
+                                                            <span class="roomm-item-name">
+                                                                {{ room.name }}
+                                                            </span>
+                                                        </label>
+                                                        <span class="roomm-item-company">{{ room.detail }}</span>
+                                                    </div>
+                                                </div>
+                                                <!-- /col -->
+                                            </div>
+                                            <!-- /row -->
+                                        </div>
+                                        <!-- /body -->
+                                    </div>
+                                    <!-- /content -->
+                                    <!-- no result -->
+                                    <div v-if="filteredRooms.length == 0" class="caard-noresult-wrap">
+                                        <div class="caard-noresult-icon">
+                                            <svg width="150px" class="img-responsive" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                                            <path style="fill:#0052B4;" d="M268.361,201.452h-22.971H76.935H53.963H30.993v76.571c0,24.597,15.662,47.653,42.972,63.259
+		                                                        c23.662,13.522,54.629,20.968,87.197,20.968s63.535-7.447,87.197-20.968c27.308-15.605,42.972-38.663,42.972-63.259v-76.571H268.361
+		                                                        z" />
+                                            <path style="fill:#003778;" d="M268.361,201.452h-22.971h-84.228V362.25c32.568,0,63.535-7.447,87.197-20.968
+		                                                        c27.308-15.605,42.972-38.663,42.972-63.259v-76.571H268.361z" />
+                                            <path style="fill:#006DF0;" d="M268.361,124.882h-22.971H76.935H53.963H30.993v76.571c0,24.597,15.662,47.653,42.972,63.26
+		                                                        c23.662,13.52,54.629,20.968,87.197,20.968s63.535-7.447,87.197-20.968c27.308-15.607,42.972-38.663,42.972-63.26v-76.571H268.361z" />
+                                            <path style="fill:#0052B4;" d="M268.361,124.882h-22.971h-84.228v160.798c32.568,0,63.535-7.447,87.197-20.968
+		                                                        c27.308-15.605,42.972-38.662,42.972-63.259v-76.571H268.361z" />
+                                            <path style="fill:#93C7EF;" d="M248.36,61.623c-23.662-13.522-54.629-20.968-87.197-20.968s-63.535,7.447-87.197,20.968
+		                                                        c-27.31,15.605-42.972,38.663-42.972,63.259s15.662,47.653,42.972,63.259c23.662,13.522,54.629,20.968,87.197,20.968
+		                                                        s63.535-7.447,87.197-20.968c27.308-15.604,42.972-38.662,42.972-63.259S275.668,77.228,248.36,61.623z" />
+                                            <path style="fill:#78B9EB;" d="M248.36,61.623c-23.662-13.522-54.629-20.968-87.197-20.968V209.11
+		                                                        c32.568,0,63.535-7.447,87.197-20.968c27.308-15.605,42.972-38.663,42.972-63.26S275.668,77.228,248.36,61.623z" />
+                                            <g>
+                                            <path style="fill:#FF5023;" d="M421.501,151.499H384.31c0-30.761-25.027-55.787-55.787-55.787V58.521
+			                                                        C379.79,58.521,421.501,100.231,421.501,151.499z" />
+                                            <path style="fill:#FF5023;" d="M92.978,455.228C41.71,455.228,0,413.517,0,362.25h37.191c0,30.761,25.026,55.787,55.787,55.787
+			                                                        V455.228z" />
+	                                                        </g>
+                                            <path style="fill:#AED5F3;" d="M512,387.769c0-35.984-24.052-68.756-58.491-79.696l-12.321-3.914l-0.622-12.914
+		                                                        c-2.838-58.897-51.286-105.033-110.297-105.033c-52.634,0-98.204,37.467-108.353,89.086l-2.499,12.71l-12.788,2.062
+		                                                        c-43.762,7.053-76.763,45.77-76.763,90.057c0,50.297,40.922,91.219,91.219,91.219h207.34C474.509,471.344,512,433.852,512,387.769z" />
+                                            <path style="fill:#93C7EF;" d="M453.509,308.072l-12.321-3.914l-0.622-12.914c-2.838-58.897-51.286-105.033-110.297-105.033
+		                                                        c-3.511,0-6.986,0.179-10.423,0.505v284.629h108.58c46.084,0,83.575-37.493,83.575-83.576
+		                                                        C512,351.784,487.948,319.013,453.509,308.072z" />
+                                                        </svg>
+                                        </div>
+                                        <div class="caard-noresult-text">No se encontraron resultados para su búsqueda</div>
+                                    </div>
+                                    <!-- no result -->
+                                </div>
+                                <div class="caard-footer">
+                                    <div class="caard-footer-total">
+                                        <span class="gphf-count gphf-lg" v-bind:class="checkRooms()">{{ getRoomsChecks.length }}/{{ rooms.length }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /caard -->
+                        </div>
+                        <!-- /col -->
+                    </div>
+                    <!-- row -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /row -->
+
+@section js
+{
+    <script src="~/Content/assets/js/optional/vue/vue.min.js"></script>
+    <script src="~/Content/assets/viewsjs/Cortesias/MaquinaAnfitriona.js"></script>
+}
+
+
+

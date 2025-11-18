@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetInfoPyshicalSlot">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="codmaquina" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInfoPyshicalSlotResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetInfoPyshicalSlotResult" type="tns:InfoSlot" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="InfoSlot">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="listaTicketIn" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="listaTicketOut" type="tns:ArrayOfString" />
+          <s:element minOccurs="1" maxOccurs="1" name="Coinin" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="CoinOut" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Jackpot" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="CancelCredits" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="HandPay" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="GamesPlayed" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="TrueIn" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="TrueOut" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalDrop" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Bill" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Bill1" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Bill2" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Bill5" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="BILL10" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="BILL20" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="BILL50" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Bill100" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="TicketIn" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="TicketOut" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="EftIn" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="EftOut" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="TicketBonusIn" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="TicketBonusOut" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="tapebw" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="tappw" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="tmpebw" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="tmppw" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetInfoMetersSlot">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="codmaquina" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInfoMetersSlotResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetInfoMetersSlotResult" type="tns:InfoSlot" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetResumenSala">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="fechaIni" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="fechaFin" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetResumenSalaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetResumenSalaResult" type="tns:ArrayOfDineroSlot" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDineroSlot">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DineroSlot" nillable="true" type="tns:DineroSlot" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DineroSlot">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="tot_vent" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="tot_pm" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="tot_mf" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="tot_x_billetero" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="monto_mastercard" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="monto_visa" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="monto_otros" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="montoVentaTickets" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="montoCompraTickets" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="VentaTragamonedas" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="fecha" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAllUtilitario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="fechaIni" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="fechaFin" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllUtilitarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetAllUtilitarioResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetInfoPyshicalSlotSoapIn">
+    <wsdl:part name="parameters" element="tns:GetInfoPyshicalSlot" />
+  </wsdl:message>
+  <wsdl:message name="GetInfoPyshicalSlotSoapOut">
+    <wsdl:part name="parameters" element="tns:GetInfoPyshicalSlotResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetInfoMetersSlotSoapIn">
+    <wsdl:part name="parameters" element="tns:GetInfoMetersSlot" />
+  </wsdl:message>
+  <wsdl:message name="GetInfoMetersSlotSoapOut">
+    <wsdl:part name="parameters" element="tns:GetInfoMetersSlotResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetResumenSalaSoapIn">
+    <wsdl:part name="parameters" element="tns:GetResumenSala" />
+  </wsdl:message>
+  <wsdl:message name="GetResumenSalaSoapOut">
+    <wsdl:part name="parameters" element="tns:GetResumenSalaResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllUtilitarioSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllUtilitario" />
+  </wsdl:message>
+  <wsdl:message name="GetAllUtilitarioSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllUtilitarioResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WSSalaAdminSoap">
+    <wsdl:operation name="GetInfoPyshicalSlot">
+      <wsdl:input message="tns:GetInfoPyshicalSlotSoapIn" />
+      <wsdl:output message="tns:GetInfoPyshicalSlotSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInfoMetersSlot">
+      <wsdl:input message="tns:GetInfoMetersSlotSoapIn" />
+      <wsdl:output message="tns:GetInfoMetersSlotSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetResumenSala">
+      <wsdl:input message="tns:GetResumenSalaSoapIn" />
+      <wsdl:output message="tns:GetResumenSalaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUtilitario">
+      <wsdl:input message="tns:GetAllUtilitarioSoapIn" />
+      <wsdl:output message="tns:GetAllUtilitarioSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSSalaAdminSoap" type="tns:WSSalaAdminSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetInfoPyshicalSlot">
+      <soap:operation soapAction="http://tempuri.org/GetInfoPyshicalSlot" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInfoMetersSlot">
+      <soap:operation soapAction="http://tempuri.org/GetInfoMetersSlot" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetResumenSala">
+      <soap:operation soapAction="http://tempuri.org/GetResumenSala" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUtilitario">
+      <soap:operation soapAction="http://tempuri.org/GetAllUtilitario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSSalaAdminSoap12" type="tns:WSSalaAdminSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetInfoPyshicalSlot">
+      <soap12:operation soapAction="http://tempuri.org/GetInfoPyshicalSlot" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInfoMetersSlot">
+      <soap12:operation soapAction="http://tempuri.org/GetInfoMetersSlot" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetResumenSala">
+      <soap12:operation soapAction="http://tempuri.org/GetResumenSala" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUtilitario">
+      <soap12:operation soapAction="http://tempuri.org/GetAllUtilitario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WSSalaAdmin">
+    <wsdl:port name="WSSalaAdminSoap" binding="tns:WSSalaAdminSoap">
+      <soap:address location="http://localhost/WebServiceSalaAdmin/WSSalaAdmin.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WSSalaAdminSoap12" binding="tns:WSSalaAdminSoap12">
+      <soap12:address location="http://localhost/WebServiceSalaAdmin/WSSalaAdmin.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

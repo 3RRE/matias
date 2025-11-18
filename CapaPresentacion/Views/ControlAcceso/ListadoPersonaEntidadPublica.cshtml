@@ -1,0 +1,194 @@
+﻿@{
+    ViewBag.Title = "listado de Persona Entidad Publica";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-atom"></span>
+                                <span class="main-text">
+                                    Listado de Persona Entidad Publica
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-offset-4 col-md-4 col-sm-4 col-xs-6">
+                            <button type="button" id="btnNuevo" class="btn btn-sm btn-success col-md-12 col-xs-12">
+                                <span class="glyphicon glyphicon-book"></span>
+                                Nuevo
+                            </button>
+                        </div>
+                        <div class="col-md-4 col-sm-4  col-xs-6 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnExcel" class="btn btn-primary btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-file"></span>
+                                        Excel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 tam">
+
+                            <div class="">
+                                <table id="tablePersonaEntidadPublica" class="table table-striped table-bordered table-hover table-condensed">
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section modal{
+
+    <div class="modal fade full-modal" id="full-modal_persona_entidad_publica" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label_"> <span id="textPersonaEntidadPublica">Nueva</span> Persona Entidad Publica</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12" id="divpersonaentidadpublica">
+                            <form class="medium bv-form" role="form" method="post" action="#" id="form_registro_persona_entidad_publica">
+                                <input type="hidden" name="personaEntidadPublicaID" value="0" id="persona_entidad_publica_id" />
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Nombres
+                                            </span>
+                                            <input type="text" class="form-control input-sm noKeyPress" id="nombres" value="" name="nombres" placeholder="Nombres">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Apellidos
+                                            </span>
+                                            <input type="text" class="form-control input-sm noKeyPress" id="apellidos" value="" name="apellidos" placeholder="Apellidos">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Tipo Documento
+                                            </span>
+                                            <select id="cboTipoDocumento" class="form-control input-sm select" name="tipoDOI">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                DOI
+                                            </span>
+                                            <input type="text" class="form-control input-sm noKeyPress" id="dni" value="" name="dni" placeholder="Dni">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Meses
+                                            </span>
+                                            <input type="text" class="form-control input-sm noKeyPress" id="meses" value="" name="meses" placeholder="Meses">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Estado
+                                            </span>
+                                            <select id="cboEstado" class="form-control input-sm select" name="estado">
+                                                <option value="">--Seleccione--</option>
+                                                <option value="1">Activo</option>
+                                                <option value="0">Inactivo</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Cargo Entidad
+                                            </span>
+                                            <select id="cboCargoEntidad" class="form-control input-sm select" name="cargoEntidadID">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Entidad Publica
+                                            </span>
+                                            <select id="cboEntidadPublica" class="form-control input-sm select" name="entidadPublicaID">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-sm btn-danger btnGuardar">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/ControlAcceso/ListadoPersonaEntidadPublica.js"></script>
+}

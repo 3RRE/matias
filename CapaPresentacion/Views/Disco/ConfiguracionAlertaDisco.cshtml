@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewBag.Title = "ConfiguracionAlertaDisco";
+}
+
+<style>
+    .cont-option {
+        height: 85vh;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        margin-bottom: 15px;
+    }
+
+    .nav-tabs > li.active > a {
+        background-color: blanchedalmond !important;
+    }
+
+    @@media(max-width:990px) {
+        .cont-option {
+            height: 30vh;
+        }
+        .cont-config {
+            padding: unset;
+            padding-right: unset !important;
+        }
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-alarm-clock"></span>
+                                <span class="main-text">
+                                    Configuracion Disco Cargo
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="row notlabel">
+                    <div class="col-md-12 ">
+                        <div class="col-md-3 cont-config" style="padding-right:14px">
+                            <div class="cardMachine" style="margin-bottom:15px">
+                                <fieldset class="sectionCard" style="padding: 10px 7px; margin-top: 10px;">
+                                    <h3 style="margin-bottom:20px">Salas</h3>
+
+                                    <div class="  cont-option">
+                                        <ul id="tabSala" class="nav nav-tabs tabs-left  " style="width:100%"></ul>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <div class="col-md-9 cardMachine">
+                            <fieldset class="sectionCard" style="padding: 10px 7px; margin-top: 10px;">
+                                <h3 style="margin-bottom:20px">Cargos</h3>
+
+                                <div class="tab-content " id="tabContentCargo">
+                                </div>
+                            </fieldset>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/Disco/ConfiguracionDisco.js"></script>
+}

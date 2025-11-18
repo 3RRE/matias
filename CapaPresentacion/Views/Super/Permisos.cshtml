@@ -1,0 +1,719 @@
+﻿
+@{
+    ViewBag.Title = "Permisos";
+    Layout = "~/Views/Shared/_Super.cshtml";
+}
+
+@using System.Activities.Expressions
+@using System.Web.Script.Serialization
+@using System.Web.UI.WebControls
+
+@{
+    int rolId = 0;
+}
+
+@{
+    /*
+    if (ViewBag.rolId == null)
+    {
+        Response.Redirect("~/Super/Login");
+    }
+    else
+    {
+        rolId = ViewBag.rolId;
+    }*/
+}
+<script type="text/javascript">
+    rolid =  (@Html.Raw(rolId));
+</script>
+
+@section css{
+
+    <link href="@Url.Content("~/Content/assets/css/optional/timeline/component.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/assets/css/optional/timeline/timeline.css")" rel="stylesheet" type="text/css" />
+    <style>
+        .panel {
+            padding: 0px;
+        }
+
+        #listaRoles {
+            background: white;
+            border: 1px solid black;
+        }
+
+            #listaRoles li {
+                border-bottom: 1px solid black;
+            }
+
+        .icheckbox_square-blue:not(.checked) {
+            background: #FFFFFF;
+            border: 1px solid rgb(85, 85, 85);
+        }
+
+        /* item menu */
+        .item-menu-permission {
+            position: relative;
+        }
+
+        .item-menu-flex {
+            display: flex;
+            align-items: center;
+        }
+
+        .item-menu-permission .msicon {
+            position: absolute;
+            color: #ffffff;
+            background-color: #3594cb;
+            text-align: center;
+            left: 9.5%;
+            top: 0;
+            margin: 0 0 0 -34px;
+            font-size: 50px !important;
+            padding: 0;
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            -moz-border-radius: 50% 50% 50% 50% !important;
+            -webkit-border-radius: 50% 50% 50% 50% !important;
+            border-radius: 50% 50% 50% 50% !important;
+            -webkit-box-shadow: 1px 4px 4px rgb(0 0 0 / 20%) !important;
+            -moz-box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.2) !important;
+            box-shadow: 1px 4px 4px rgb(0 0 0 / 20%) !important;
+            cursor: pointer;
+        }
+
+        .ms-collapse-wrap {
+            width: 100%;
+            position: relative;
+            margin: 0 0 0 15%;
+        }
+
+            .ms-collapse-wrap::after {
+                content: "";
+                position: absolute;
+                height: 0;
+                width: 0;
+                pointer-events: none;
+                border: solid transparent;
+                border-right-color: #3594cb;
+                border-width: 8px;
+                top: 20px;
+                right: 100%;
+            }
+
+            .ms-collapse-wrap::after {
+                border-right-color: inherit;
+            }
+
+        .ms-header-collapse {
+            width: auto;
+            background: #FFFFFF;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            border-bottom: 3px solid #3594cb;
+            border-radius: 10px 10px 0 0 !important;
+        }
+
+        .item-menu-permission .collapse {
+            width: auto;
+        }
+
+        .item-menu-permission .well {
+            margin-bottom: 0;
+        }
+
+            .item-menu-permission .well .table {
+                margin: 0;
+            }
+
+                .item-menu-permission .well .table > tbody > tr > td {
+                    color: #555555;
+                    border-top: 0;
+                    border-bottom: 1px solid #ddd;
+                }
+
+                .item-menu-permission .well .table > tbody > tr:last-child > td {
+                    border-bottom: 0;
+                }
+
+        .ms-hc-title {
+            position: relative;
+            cursor: pointer;
+        }
+
+            .ms-hc-title h3 {
+                margin: 0;
+                color: #0D0F16;
+                font-size: 18px;
+                font-weight: 700;
+                letter-spacing: 0.5px;
+            }
+
+        .ms-hc-checkbox {
+            position: relative;
+            margin-left: auto;
+        }
+
+        @@media (max-width: 991px) {
+            .ms-collapse-wrap {
+                margin: 0 0 0 17%;
+            }
+
+            #menuPermissions::before {
+                left: 10.5%;
+            }
+
+            .ms-hc-title h3 {
+                font-size: 16px;
+            }
+        }
+
+        @@media (max-width: 767px) {
+            #menuPermissions::before {
+                left: auto;
+                right: 28px;
+            }
+
+            .item-menu-permission {
+                margin-bottom: 20px !important;
+            }
+
+                .item-menu-permission .msicon {
+                    display: none;
+                }
+
+            .ms-collapse-wrap {
+                margin: 0 0 0 0;
+            }
+
+                .ms-collapse-wrap::after {
+                    display: none;
+                }
+
+            .ms-hc-title h3 {
+                font-size: 14px;
+                line-height: 1.25;
+            }
+
+            .item-menu-permission .well .table > tbody > tr > td {
+                font-size: 12px;
+            }
+        }
+    </style>
+}
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-shield"></span>
+                                <span class="main-text">
+                                    Seguridad
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+
+                    <div class="row" id="tasks-tabs">
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <a class="btn btn-sm btn-warning col-md-12 col-xs-12" href="#" id="btnPermMenu">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                Asignar Menus
+                            </a>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <a class="btn btn-sm btn-success col-md-12 col-xs-12" href="#" id="btnPermRol">
+                                <span class="glyphicon glyphicon-cog"></span>
+                                Asignar Permiso
+                            </a>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <a class="btn btn-sm btn-primary col-md-12 col-xs-12" href="#" id="btnRolUsu">
+                                <span class="glyphicon glyphicon-list"></span>
+                                Asignar Rol
+                            </a>
+                        </div>
+                        <div class="btn-group col-md-4 col-sm-4 col-xs-6" style="display: none;">
+                            <button data-toggle="dropdown" class="btn btn-danger btn-sm col-md-12 col-xs-12 dropdown-toggle" type="button">Acciones <span class="caret"></span></button>
+                            <ul role="menu" class="dropdown-menu" style="margin-left: 14px;">
+                                <li><a href="#" id="pdf"><span class="glyphicon glyphicon-file"></span> PDF</a></li>
+                                <li><a href="#" id="imprimir"><span class="glyphicon glyphicon-print"></span> Imprimir</a></li>
+                            </ul>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row  permisosq">
+    <div class="col-md-12">
+        <div class="block">
+
+            <div class="block-content-outer">
+                <div class="block-content-inner clearfix">
+                    <ul id="default-tabs" class="nav nav-tabs" style="border-bottom: 1px solid #c6c2c2;">
+                        <li class="active"><a href="#tasks-tabs-menu" data-toggle="tab" id="tabPermMen">Menus </a></li>
+                        <li><a href="#tasks-tabs-task-manager" data-toggle="tab" id="tabPermRol">Permisos </a></li>
+                        <li><a href="#tasks-tabs-personal-tasks" data-toggle="tab" id="tabRolUsu">Roles </a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="tasks-tabs-menu" class="tab-pane active task-manager notlabel">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <div class="col-md-offset-8 col-md-4">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        Rol
+                                                    </span>
+                                                    <select class="form-control input-sm" id="cboRol_" name="cboRol_">
+                                                        <option value="">--Seleccione--</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" id="posicionMenu" />
+                                    <ul class="c_tmtimeline" id="libody" style="margin-top: 6px;display:none!important">
+                                        <li class="alert alert-danger" style="padding: 5px;">Espere mientras Cargan los Modulos</li>
+                                    </ul>
+
+                                    <ul class="c_tmtimeline" id="menuPermissions">
+                                        <li class="alert alert-danger" style="padding: 5px;">Espere mientras Cargan los Modulos</li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tasks-tabs-task-manager" class="tab-pane notlabel">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    @*<p class="alert alert-danger" style="padding: 5px;">Listado de Roles y sus Permisos</p>*@
+
+                                    <div class="mailbox">
+                                        <div class="row">
+                                            <div class="col-md-3 col-lg-2">
+                                                <div class="mailbox-menu">
+                                                    <div class="mailbox-compose-outer">
+                                                        <div class="compose-message">
+
+                                                            <a href="javascript:void(0);" class="btn btn-block" role="button" style="background-color: #143958;color:white;">
+                                                                <span class="glyphicon glyphicon-arrow-down"></span>
+                                                                ROLES
+                                                            </a>
+                                                        </div>
+                                                        <div class="mailbox-mobile-menu-control">
+                                                            <button type="button" class="btn btn-default within-content-navbar-toggle" data-c-target="#listaRoles">
+                                                                <span class="sr-only">Toggle navigation</span>
+                                                                <span class="icon-bar"></span>
+                                                                <span class="icon-bar"></span>
+                                                                <span class="icon-bar"></span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <ul class="nav nav-pills nav-stacked" id="listaRoles"></ul>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-9 col-lg-10" id="tab2Permisos">
+                                                <p class="alert alert-danger" style="padding: 5px;" id="alertapermisos">Seleccione Rol</p>
+                                                <div class="mailbox-container mailbox-email-list" id="contenidopermisos" style="display:none;">
+                                                    <div class="mailbox-controls">
+                                                        <div class="row">
+                                                            <div class="col-md-12" style="text-align: center;text-transform: uppercase;margin-bottom: 20px;color: green;font-weight: bolder;">
+                                                                Rol <span id="nombreRolSpan"></span> -  permisos <span class="badge badge-bordered" id="totalPermisosSpan" style="position: relative;top: -3px;"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class=" email-select-all col-md-4">
+                                                                <label id="lblcheck">
+                                                                    <input type="checkbox" data-todos="2" id="fullall">
+                                                                    <span class="main-text">
+                                                                        SELECCIONAR TODO
+                                                                    </span>
+                                                                </label>
+                                                                <label id="lblesperando" class="alert alert-danger" style="display:none;margin-bottom:0px;margin-top:0px;width:100%;padding:2px">Espere un Momento...</label>
+                                                            </div>
+
+                                                            <div class="email-pager-top col-md-8">
+                                                                <div class="input-group col-sm-12">
+                                                                    <span class="input-group-addon">
+                                                                        Buscar
+                                                                    </span>
+                                                                    <input type="text" class="form-control input-sm inputBuscar" id="mailbox-search-bar" placeholder="Buscar Permiso">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12" id="bodyPermisosRoles">
+
+
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="text-align:center;display:none;color:red;text-transform:uppercase;font-size:18px;;" id="divfaltanTotal">
+                                                        <div class="col-md-12">
+                                                            Faltan <span class="badge badge-bordered" style="position: relative;top: -3px" id="totalPermisosSpanFaltan"></span>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="table-responsive">
+                                        <ul id="tabsRoles" class="nav nav-tabs tabs-left"></ul>
+                                        <div id="divRoles" class="tab-content">
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tasks-tabs-personal-tasks" class="tab-pane">
+                            <div class="row">
+
+                                <div class="col-md-12 tam">
+                                    <p class="alert alert-danger hidden" style="padding: 5px;">Listado de Usuarios y sus Roles Asignados</p>
+
+                                    <table id="tableUsuRol" cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered table-hover table-condensed"></table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/Super/Permisos.js"></script>
+
+    <script>
+
+        function getMenuRoleKey(rol) {
+            if (rol != 0) {
+                rol = $("#cboRol_").val();
+            } else {
+                rol = rolid;
+            }
+
+            var keys = [];
+            var data = { rolId: rol }
+            $.ajax({
+                url: `${basePath}/Seguridad/ListadoMenusRolId`,
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                beforeSend: function () {
+                    $.LoadingOverlay("show")
+                },
+                success: function (response) {
+                    var listado = response.dataResultado;
+                    if (listado.length > 0) {
+                        $.each(listado, function (index, value) {
+                            var key = value.WEB_PMeDataMenu
+                            keys.push(key)
+                        });
+                    }
+                },
+                complete: function () {
+                    getMenuPermissions(keys)
+                    $.LoadingOverlay("hide")
+                }
+            });
+        }
+
+        function getMenuPermissions(keys) {
+            $.ajax({
+                url: `${basePath}/Content/menu-square/menu.json`,
+                type: "GET",
+                contentType: "application/json",
+                beforeSend: function () {
+                    $.LoadingOverlay("show")
+                },
+                success: function (response) {
+                    response.shift()
+                    $("#menuPermissions").html("");
+                    $('#menuPermissions').append(itemMenuPermission(response, keys))
+
+                    $("#menuPermissions").iCheck({
+                        checkboxClass: 'icheckbox_square-blue',
+                        radioClass: 'iradio_square-red',
+                        increaseArea: '2%'
+                    });
+                },
+                complete: function () {
+                    $.LoadingOverlay("hide")
+                }
+            });
+        }
+
+        function itemMenuPermission(response, keys) {
+            var item = ''
+            var items = ''
+
+            response.map(function (menu, index) {
+
+                var checked = keys.includes(menu.key) ? 'checked' : ''
+
+                if (menu.submenu) {
+                    menu.submenu.map(function (submenu) {
+
+                        items += itemSubMenuPermission(menu.key, submenu, 2, keys)
+
+                        if (submenu.submenu) {
+                            submenu.submenu.map(function (subsubmenu) {
+
+                                items += itemSubMenuPermission(submenu.key, subsubmenu, 3, keys)
+
+                            })
+                        }
+                    })
+                }
+
+                var menuColors = ['#EB4747', '#4B7BE5', '#83BD75', '#FFC54D', '#646FD4', '#2FA4FF', '#139487', '#FF9F45', '#B8405E', '#2F3A8F', '#ECB365', '#519259', '#EB1D36', '#1C3879', '#18978F', '#9EB23B', '#2155CD', '#FF8C32', '#00C897', '#B762C1', '#FF5959']
+                var menuColor = menuColors[index]
+
+                item += `
+                        <li class="item-menu-permission item-menu-flex" data-key="${menu.key}" data-parent="parent">
+                            <span class="msicon ${menu.iconClass}" style="background-color:${menuColor}" data-toggle="collapse" data-target="#collapse${menu.key}" aria-expanded="false"></span>
+                            <div class="ms-collapse-wrap" style="border-right-color:${menuColor}">
+                                <div class="ms-header-collapse" style="border-bottom-color:${menuColor}">
+                                    <div class="ms-hc-title" data-toggle="collapse" data-target="#collapse${menu.key}" aria-expanded="false">
+                                        <h3>${menu.name}</h3>
+                                    </div>
+                                    <div class="ms-hc-checkbox">
+                                        <input class="msi-checkbox" name="square-checkbox" type="checkbox" ${checked} value="${menu.key}" data-name="${menu.name}" data-level="1" />
+                                    </div>
+                                </div>
+                                <div class="collapse" id="collapse${menu.key}">
+                                    <div class="item-menu-permission--items" data-key="${menu.key}">
+                                        <div class="well table-responsive">
+                                            <table class="table table-condensed table-hover">
+                                                <tbody>${items}</tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        `
+
+                items = ''
+            })
+
+            return item
+        }
+
+        function itemSubMenuPermission(keyParent, menu, level, keys) {
+
+            var checked = keys.includes(menu.key) ? 'checked' : ''
+
+            var trClass = 'subitem-menu-permission'
+            var iconClasItem = 'glyphicon glyphicon-star'
+            var spanStyleItem = 'color:red !important;background-color:transparent !important'
+
+            if (level == 3) {
+                trClass = 'subsubitem-menu-permission'
+                iconClasItem = 'glyphicon glyphicon-arrow-right'
+                spanStyleItem = 'color:blue !important;background-color:transparent !important;padding-left: 20px;'
+            }
+
+            var item = `
+                    <tr class="${trClass}" data-key="${menu.key}" data-parent="${keyParent}">
+                        <td style="font-weight: bolder;">
+                            <span style="${spanStyleItem}" class="${iconClasItem}"></span> ${menu.name}
+                        </td>
+                        <td>
+                            <label style="float:right">
+                                <input class="msi-checkbox" name="square-checkbox" type="checkbox" ${checked} value="${menu.key}" data-name="${menu.name}" data-level="${level}" />
+                            </label>
+                        </td>
+                    </tr>
+                    `
+
+            return item
+        }
+
+        $(this).off('ifChecked', '#menuPermissions input.msi-checkbox')
+        $(document).on('ifChecked', '#menuPermissions input.msi-checkbox', function (event) {
+            var roleId = $("#cboRol_").val()
+            var menuKey = $(this).val()
+            var menuName = $(this).data("name");
+            var level = $(this).data("level")
+
+            var data = {
+                WEB_RolID: roleId,
+                WEB_PMeDataMenu: menuKey,
+                WEB_PMeNombre: menuName,
+                WEB_PMeEstado: 1
+            }
+
+            var permissions = []
+
+            permissions.push(data)
+
+            if (level == 1) {
+
+                var elements = $(`.item-menu-permission--items[data-key="${menuKey}"] input.msi-checkbox:checkbox:not(:checked)`)
+
+                elements.each(function (index, element) {
+
+                    permissions.push({
+                        WEB_RolID: roleId,
+                        WEB_PMeDataMenu: $(element).val(),
+                        WEB_PMeNombre: $(element).data("name"),
+                        WEB_PMeEstado: 1
+                    })
+
+                    $(element).prop('checked', true).iCheck('update')
+                })
+            }
+
+            if (level == 2) {
+
+                var elements = $(`.subsubitem-menu-permission[data-parent="${menuKey}"] input.msi-checkbox:checkbox:not(:checked)`)
+
+                elements.each(function (index, element) {
+
+                    permissions.push({
+                        WEB_RolID: roleId,
+                        WEB_PMeDataMenu: $(element).val(),
+                        WEB_PMeNombre: $(element).data("name"),
+                        WEB_PMeEstado: 1
+                    })
+
+                    $(element).prop('checked', true).iCheck('update')
+                })
+            }
+
+            // send permissions
+            var url = `${basePath}/Seguridad/AgregarPermisoMenu`
+            sendDataPermissions(url, permissions, 1)
+        })
+
+        $(this).off('ifUnchecked', '#menuPermissions input.msi-checkbox')
+        $(document).on('ifUnchecked', '#menuPermissions input.msi-checkbox', function (event) {
+            var roleId = $("#cboRol_").val()
+            var menuKey = $(this).val()
+            var menuName = $(this).data("name");
+            var level = $(this).data("level")
+
+            var data = {
+                WEB_RolID: roleId,
+                WEB_PMeDataMenu: menuKey,
+                WEB_PMeNombre: menuName,
+                WEB_PMeEstado: 0
+            }
+
+            var permissions = []
+
+            permissions.push(data)
+
+            if (level == 1) {
+
+                var elements = $(`.item-menu-permission--items[data-key="${menuKey}"] input.msi-checkbox:checkbox(:checked)`)
+
+                elements.each(function (index, element) {
+
+                    permissions.push({
+                        WEB_RolID: roleId,
+                        WEB_PMeDataMenu: $(element).val(),
+                        WEB_PMeNombre: $(element).data("name"),
+                        WEB_PMeEstado: 0
+                    })
+
+                    $(element).prop('checked', false).iCheck('update')
+                })
+            }
+
+            if (level == 2) {
+
+                var elements = $(`.subsubitem-menu-permission[data-parent="${menuKey}"] input.msi-checkbox:checkbox(:checked)`)
+
+                elements.each(function (index, element) {
+
+                    permissions.push({
+                        WEB_RolID: roleId,
+                        WEB_PMeDataMenu: $(element).val(),
+                        WEB_PMeNombre: $(element).data("name"),
+                        WEB_PMeEstado: 0
+                    })
+
+                    $(element).prop('checked', false).iCheck('update')
+                })
+            }
+
+            // send permissions
+            var url = `${basePath}/Seguridad/QuitarPermisoMenu`
+            sendDataPermissions(url, permissions, 0)
+        })
+
+        // send data permissions
+        function sendDataPermissions(url, permissions, checked) {
+
+            var totalPermissions = permissions.length
+
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: JSON.stringify(permissions),
+                contentType: "application/json",
+                beforeSend: function () {
+                    $.LoadingOverlay("show")
+                },
+                success: function (response) {
+                    var respuesta = response.respuesta;
+                    if (respuesta === true) {
+                        if (checked == 1) {
+                            var messageText = totalPermissions > 1 ? 'Se Asignaron los Permisos' : 'Se Asigno el Permiso'
+                            toastr.success(messageText, "Mensaje Servidor");
+                        } else if (checked == 0) {
+                            var messageText = totalPermissions > 1 ? 'Se Quitaron los Permisos Asignados' : 'Se Quito el Permiso Asignado'
+                            toastr.warning(messageText, "Mensaje Servidor");
+                        }
+
+                    } else {
+                        toastr.error(response.mensaje, "Mensaje Servidor");
+                    }
+                },
+                complete: function () {
+                    $.LoadingOverlay("hide")
+                },
+                error: function () {
+                    toastr.error("Error Servidor", "Mensaje Servidor");
+                }
+            })
+        }
+    </script>
+}
+

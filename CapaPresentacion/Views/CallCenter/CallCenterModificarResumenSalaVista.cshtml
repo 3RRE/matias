@@ -1,0 +1,398 @@
+﻿
+@{
+    ViewBag.Title = "CallCenterModificarResumenSalaVista";
+}
+
+@section css
+{
+    <style type="text/css">
+        .help-block {
+            display: none !important;
+        }
+    </style>
+}
+
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-shield"></span>
+                                <span class="main-text">
+                                    Modificar Resumen Sala
+                                </span>
+                            </h1>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+
+                        <div class="col-md-4 col-md-offset-4 col-sm-6 col-xs-6">
+                            <button type="button" class="btn btn-success btn-sm col-md-12 col-sm-12 col-xs-12 btnListar"><span class="glyphicon glyphicon-list-alt"></span> Listado </button>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <button type="button" class="btn btn-primary btn-sm col-md-12 col-sm-12 col-xs-12 btnGuardar "><span class="glyphicon glyphicon-floppy-disk"></span> Actualizar </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner ">
+                    <form class="medium" role="form" id="frmRegistroResumenSala" method="post" action="#">
+                        
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <input type="hidden" id="id_resumen" value="@ViewBag.Id" />
+                                <input type="hidden" id="ip_resumen" value="@ViewBag.Ip" />
+                                <div class="col-md-6">
+                                    <div class="form-group cbo">
+                                        <label for="cboCargo">Fecha Operación</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon input-group-icon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                            <input type="text" class="form-control input-sm dateOnly" id="fechaOperacion" name="fechaOperacion" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group cbo">
+                                        <label for="cboCargo">Estado</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon input-group-icon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                            <select class="form-control input-sm" id="estado" name="estado">
+                                                <option value="">--Seleccione--</option>
+                                                <option value="0">--0--</option>
+                                                <option value="1">--1--</option>
+                                                <option value="2">--2--</option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group cbo">
+                                        <label for="cboCargo">Fondo Caja</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon input-group-icon">
+                                                <span>#</span>
+                                            </span>
+                                            <input type="text" class="form-control input-sm" id="fondocaja" name="fondocaja" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group cbo">
+                                        <label for="cboCargo">Salida Otros</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon input-group-icon">
+                                                <span>#</span>
+                                            </span>
+                                            <input type="text" class="form-control input-sm" id="salidaotros" name="salidaotros" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group cbo">
+                                        <label for="cboCargo">Prestamo de otra Sala</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon input-group-icon">
+                                                <span>#</span>
+                                            </span>
+                                            <input type="text" class="form-control input-sm" id="prestamodeotrasala" name="prestamodeotrasala" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group cbo">
+                                        <label for="cboCargo">Devolución a otra Sala</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon input-group-icon">
+                                                <span>#</span>
+                                            </span>
+                                            <input type="text" class="form-control input-sm" id="devolucionaotrasala" name="devolucionaotrasala" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group cbo">
+                                        <label for="cboCargo">Refuerzo de Fondo</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon input-group-icon">
+                                                <span>#</span>
+                                            </span>
+                                            <input type="text" class="form-control input-sm" id="refuerzodefondo" name="refuerzodefondo" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group cbo">
+                                        <label for="cboCargo">Fecha Registro</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon input-group-icon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                            <input type="text" class="form-control input-sm dateOnly" id="fecharegistro" name="fecharegistro" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group cbo">
+                                        <label for="cboCargo">Sorteos</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon input-group-icon">
+                                                <span>#</span>
+                                            </span>
+                                            <input type="text" class="form-control input-sm" id="sorteos" name="sorteos" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group cbo">
+                                        <label for="cboCargo">Monedas Fallas</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon input-group-icon">
+                                                <span>#</span>
+                                            </span>
+                                            <input type="text" class="form-control input-sm" id="monedasfallas" name="monedasfallas" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group cbo">
+                                        <label for="cboCargo">Efectivo Soles</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon input-group-icon">
+                                                <span>S/.</span>
+                                            </span>
+                                            <input type="text" class="form-control input-sm" id="efectivosoles" name="efectivosoles" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group cbo">
+                                        <label for="cboCargo">Efectivo Dolares</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon input-group-icon">
+                                                <span>$/.</span>
+                                            </span>
+                                            <input type="text" class="form-control input-sm" id="efectivodolares" name="efectivodolares" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="col-md-6">
+                                    <div class="form-group cbo">
+                                        <label for="cboCargo">Usuario</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon input-group-icon">
+                                                <span class="glyphicon glyphicon-user"></span>
+                                            </span>
+                                            <input type="text" class="form-control input-sm" id="res_usuario" name="res_usuario" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group cbo">
+                                        <label for="cboCargo">Saldo Inicial</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon input-group-icon">
+                                                <span>#</span>
+                                            </span>
+                                            <input type="text" class="form-control input-sm" id="saldoinicial" name="saldoinicial" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group cbo">
+                                        <label for="cboCargo">Ingresos Otros</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon input-group-icon">
+                                                <span>#</span>
+                                            </span>
+                                            <input type="text" class="form-control input-sm" id="ingresosotros" name="ingresosotros" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group cbo">
+                                        <label for="cboCargo">Prestamo a otra Sala</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon input-group-icon">
+                                                <span>#</span>
+                                            </span>
+                                            <input type="text" class="form-control input-sm" id="prestamoaotrasala" name="prestamoaotrasala" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group cbo">
+                                        <label for="cboCargo">Devolución de otra Sala</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon input-group-icon">
+                                                <span>#</span>
+                                            </span>
+                                            <input type="text" class="form-control input-sm" id="devoluciondeotrasala" name="devoluciondeotrasala" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group cbo">
+                                        <label for="cboCargo">Prestamo a Oficina</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon input-group-icon">
+                                                <span>#</span>
+                                            </span>
+                                            <input type="text" class="form-control input-sm" id="prestamoaoficina" name="prestamoaoficina" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group cbo">
+                                        <label for="cboCargo">Sobrantes</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon input-group-icon">
+                                                <span>#</span>
+                                            </span>
+                                            <input type="text" class="form-control input-sm" id="sobrantes" name="sobrantes" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group cbo">
+                                        <label for="cboCargo">Faltantes</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon input-group-icon">
+                                                <span>#</span>
+                                            </span>
+                                            <input type="text" class="form-control input-sm" id="faltantes" name="faltantes" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group cbo">
+                                        <label for="cboCargo">Visa</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon input-group-icon">
+                                                <span>#</span>
+                                            </span>
+                                            <input type="text" class="form-control input-sm" id="visa" name="visa" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group cbo">
+                                        <label for="cboCargo">Efectivo Final</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon input-group-icon">
+                                                <span>#</span>
+                                            </span>
+                                            <input type="text" class="form-control input-sm" id="efectivofinal" name="efectivofinal" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group cbo">
+                                        <label for="cboCargo">MasterCard</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon input-group-icon">
+                                                <span>#</span>
+                                            </span>
+                                            <input type="text" class="form-control input-sm" id="mastercard" name="mastercard" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group cbo">
+                                        <label for="cboCargo">Otras Tarjetas</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon input-group-icon">
+                                                <span>#</span>
+                                            </span>
+                                            <input type="text" class="form-control input-sm" id="otrastarjetas" name="otrastarjetas" />
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section modal
+{
+    <div class="modal fade full-modal" id="modalGroup" tabindex="-1" role="dialog" aria-labelledby="default-modal-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <input type="hidden" name="hddModal" id="hddmodal" />
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="default-modal-label">Mantenimiento</h4>
+                </div>
+                <div class="modal-body" id="bodyModal">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-warning" id="btnNuevoModal">Nuevo</button>
+                    <button type="button" class="btn btn-primary" id="btnGuardarModal">Guardar</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+}
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/Soporte/CallCenter/CallCenter/CallCenterModificarResumenSala.js"></script>
+}

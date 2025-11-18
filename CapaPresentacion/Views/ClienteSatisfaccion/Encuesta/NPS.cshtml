@@ -1,0 +1,385 @@
+﻿
+@{
+    ViewBag.Title = "NPS";
+    Layout = null;
+    string url = $"{Request.Url.Scheme}://{Request.Url.Authority}{Request.ApplicationPath.TrimEnd('/')}";
+}
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Encuesta NPS</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link type="text/css" href="~/Content/assets/css/required/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/js/required/jquery-ui-1.11.0.custom/jquery-ui.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/js/required/jquery-ui-1.11.0.custom/jquery-ui.structure.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/js/required/jquery-ui-1.11.0.custom/jquery-ui.theme.min.css" rel="stylesheet" />
+    <style>
+        /* Fondo general oscuro y elegante */
+        .pregunta-title {
+            font-size: 25px;
+            color: #ff6a00;
+            text-align: center;
+            margin-bottom: 35px;
+        }
+        body {
+            background: radial-gradient(circle at top, #1a1a1a, #000);
+            font-family: "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            height: 100vh;
+            display: grid;
+        }
+
+        /* Contenedor centrado */
+        .encuesta-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .encuesta-container {
+            width: 100%;
+            max-width: 750px; /* ideal tablet horizontal */
+            background: #fff;
+            padding: 25px 20px;
+            border-radius: 16px;
+            box-shadow: 0 0 40px rgb(255 94 0 / 39%);
+            animation: fadeInScale 0.6s ease;
+        }
+
+        /* Encabezado con logo */
+        .header-casino {
+            margin-bottom: 20px;
+        }
+
+        .logo-casino {
+            width: 90px;
+            margin-bottom: 8px;
+            filter: drop-shadow(0 0 10px rgba(255,215,0,0.7));
+        }
+
+        .header-casino h2 {
+            color: #ff8800;
+            font-weight: bold;
+        }
+
+        .header-casino p {
+            color: #ccc;
+            font-size: 16px;
+        }
+
+        /* Barra de progreso */
+        .progress {
+            height: 28px;
+            background: #f5f5f5;
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 25px;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, #ff0000, #ff8800);
+            font-weight: bold;
+            font-size: 14px;
+            line-height: 28px;
+            transition: width 0.4s ease;
+        }
+
+        /* Preguntas */
+        .pregunta {
+            display: none;
+            animation: slideIn 0.5s ease;
+        }
+
+            .pregunta.active {
+                display: block;
+            }
+
+
+        .animacion-lottie {
+            width: 160px;
+            margin-bottom: 8px;
+            pointer-events: none;
+        }
+
+        .texto-opcion {
+            font-size: 16px;
+            margin-top: 5px;
+        }
+
+        /* Opciones estilo tarjeta */
+        .radio {
+/*            background: #2a2a2a;
+            margin: 10px 0;
+            border-radius: 12px;
+            transition: transform 0.2s ease, background 0.2s ease;*/
+        }
+
+            .radio:hover {
+                transform: scale(1.03);
+                background: #333;
+            }
+
+            .radio input {
+                transform: scale(1.5);
+                margin-right: 12px;
+            }
+
+            .radio label {
+                font-size: 18px;
+                cursor: pointer;
+            }
+
+        /* Input comentario */
+        .comentario {
+            border-radius: 10px;
+            margin-top: 10px;
+            padding: 12px;
+            font-size: 16px;
+        }
+
+        /* Botón siguiente */
+        .btn-siguiente, .btn-iniciar {
+            margin-top: 25px;
+            background: linear-gradient(90deg, #ff0000, #ff8800);
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 14px;
+            width: 100%;
+            color: #fff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            transition: all 0.2s ease;
+        }
+
+            .btn-siguiente:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 14px rgba(0,0,0,0.6);
+            }
+        input[type="radio"] {
+            accent-color: #e60000; /* rojo */
+        }
+        .opcion-animada {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #fff;
+            margin: 12px 0;
+            border-radius: 12px;
+            transition: transform 0.2s ease, background 0.2s ease;
+            border: 3px solid #ececec;
+        }
+
+            .opcion-animada:hover {
+                background: #ffefdb;
+                transform: scale(1.02);
+                border-color: #ffc9a3;
+            }
+
+            .opcion-animada:has(input:checked) {
+                background-color: #ffefdb; /* fondo rojo claro */
+                border: 1px solid #ff6a00;
+            }
+
+        .texto-opcion {
+            font-size: 18px;
+            margin-left: 10px;
+        }
+
+        .iframe-animacion {
+            width: 70px;
+            height: 70px;
+            border: none;
+            pointer-events: none; /* no bloquea click */
+            border-radius: 8px;
+        }
+
+        /* Opciones con animaciones → horizontales */
+        .opciones-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        /* Opciones normales → lista vertical */
+        .opciones-list {
+            display: block;
+        }
+
+        /* Cuadros animados */
+        .opcion-cuadro {
+            width: 140px;
+            height: 160px;
+            background: #fff;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 10px;
+            text-align: center;
+            transition: all 0.2s ease;
+            border: 3px solid #ececec;
+        }
+
+            .opcion-cuadro:hover {
+                background: #ffefdb;
+                transform: scale(1.05);
+                border-color: #ffc9a3;
+            }
+
+            .opcion-cuadro input[type="radio"] {
+                display: none;
+            }
+
+            .opcion-cuadro:has(input:checked) {
+                background-color: #ffefdb; /* fondo rojo claro */
+                border-color: #ff6a00; /* borde rojo */
+            }
+
+            .opcion-cuadro input[type="radio"]:checked ~ .texto-opcion {
+                color: #ff6a00;
+                font-weight: bold;
+            }
+
+
+
+        .texto-opcion {
+            font-size: 16px;
+            margin-top: 5px;
+            color: #434343;
+        }
+
+
+        .pantalla-inicial {
+            margin: 30px auto;
+            padding: 25px;
+            background: #fff;
+            border-radius: 12px;
+            color: #434343;
+        }
+
+            .pantalla-inicial h3 {
+                margin-bottom: 15px;
+            }
+        /* Animaciones */
+        @@keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @@keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive para tablets */
+        @@media (max-width: 768px) {
+            .encuesta-container {
+                padding: 20px 15px;
+            }
+
+            .radio label {
+                font-size: 16px;
+            }
+
+            .btn-siguiente {
+                font-size: 16px;
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body style="
+    background: url('@Url.Content("~/Content/assets/images/fondoEncuesta.jpg")') center center no-repeat;
+    background-size: cover;
+    position: relative;
+">
+    <div style="
+        position: absolute;
+        inset: 0;
+        background-color: rgba(0,0,0,0.5); /* oscurece */
+        z-index: -1;
+    "></div>
+    <input type="hidden" id="BasePath" value="@url/" />
+    <div class="encuesta-wrapper">
+        <div class="encuesta-container">
+            <div class="header-casino text-center">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Casino-logo.svg/512px-Casino-logo.svg.png"
+                     alt="Casino Logo" class="logo-casino">
+                <h2>Encuesta de Satisfacción</h2>
+
+                <p>Tu opinión es muy valiosa para nosotros 🎰</p>
+            </div>
+
+            <!-- Barra de progreso -->
+            <div class="progress">
+                <div id="progressBar" class="progress-bar" role="progressbar" style="width: 0%">
+                    0%
+                </div>
+            </div>
+
+            <!-- 🔹 Pantalla inicial -->
+            <div id="pantalla-inicial" class="pantalla-inicial active">
+                <h3 class="text-center">🎰 Bienvenido a la Encuesta</h3>
+                <p class="text-center">Por favor ingresa tus datos para continuar</p>
+
+                <div class="form-group">
+                    <label for="tipoDocumento">Tipo de documento</label>
+                    <select id="tipoDocumento" class="form-control">
+                        <option value="">-- Selecciona --</option>
+                        <option value="DNI">DNI</option>
+                        <option value="CE">Carnet de Extranjería</option>
+                        <option value="PAS">Pasaporte</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="numeroDocumento">Número de documento</label>
+                    <input type="text" id="numeroDocumento" class="form-control" placeholder="Ingresa tu documento">
+                </div>
+
+                <button type="button" id="btnIniciar" class="btn btn-iniciar btn-block">Comenzar</button>
+            </div>
+
+            <!-- Contenedor de preguntas dinámicas (se llena con JS) -->
+            <form id="formEncuesta"></form>
+        </div>
+    </div>
+
+    <script src="~/Content/assets/js/required/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/required/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/required/jquery-ui-1.11.0.custom/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/required/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/required/jquery.easing.1.3-min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/required/misc/jquery.mousewheel-3.0.6.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/required/jquery.mCustomScrollbar.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/optional/loadingoverlay/loadingoverlay.js"></script>
+    <script type="module" src="https://unpkg.com/%40lottiefiles/dotlottie-wc@0.6.2/dist/dotlottie-wc.js"></script>
+
+    <script src="~/Content/assets/viewsjs/ClienteSatisfaccion/NPS/preguntas.js"></script>
+
+</body>
+</html>

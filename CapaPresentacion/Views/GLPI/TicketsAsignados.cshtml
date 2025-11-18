@@ -1,0 +1,291 @@
+﻿
+@{
+    ViewBag.Title = "TicketsAsignados";
+}
+
+@section css{
+    <link href="~/Content/assets/css/cssviews/GPLI/asignarTicket.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/cssviews/GPLI/ticketsAsignados.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/cssviews/GPLI/general.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/cssviews/GPLI/crearTicket.css" rel="stylesheet" />
+
+}
+
+<style>
+    /* Contenedor principal */
+    .correos-container {
+        display: flex;
+        gap: 5px;
+        flex-wrap: wrap;
+        margin-top: 10px;
+    }
+
+    /* Estilo de cada correo */
+    .correo-item {
+        display: inline-flex;
+        align-items: center;
+        background-color: #cce4ff;
+        color: #004085;
+        padding: 1px 18px;
+        border-radius: 30px !important;
+        position: relative;
+        cursor: default;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    /* Botón de eliminar */
+    .delete-btn {
+        position: absolute;
+        right: -5px;
+        top: -5px;
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        border-radius: 50% !important;
+        height: 20px;
+        font-size: 14px;
+        font-weight: bold;
+        display: none;
+        cursor: pointer;
+    }
+
+    /* Mostrar el botón al hacer hover */
+    .correo-item:hover .delete-btn {
+        display: block;
+    }
+
+    /* Efecto hover en el botón eliminar */
+    .delete-btn:hover {
+        background-color: #bd2130;
+    }
+
+    .autocomplete-list {
+        position: absolute;
+        width: 80%;
+        background: white;
+        border: 1px solid #ccc;
+        border-radius: 8px !important;
+        max-height: 200px;
+        overflow-y: auto;
+        list-style: none;
+        padding: 0;
+        margin-top: 2px; /* Espacio entre el input y la lista */
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        top: 67%;
+        z-index: 1000;
+    }
+
+        /* Estilo para cada opción de la lista */
+        .autocomplete-list li {
+            padding: 5px;
+            cursor: pointer;
+        }
+
+            /* Cambio de color al pasar el mouse */
+            .autocomplete-list li:hover {
+                background: #f0f0f0;
+            }
+
+    /* Contenedor de correos agregados */
+    .correos-container {
+        margin-top: 10px;
+    }
+</style>
+
+<div id="AppGlpiMisTickets" style="text-shadow:none;">
+    <div class="row" style="width:100%; background-color:white; margin:auto; padding: 20px 10px; border-radius:8px !important; margin-bottom:10px;display:flex;justify-content:space-between;">
+        <h1 style="width:100%;">
+            <span aria-hidden="true" class="icon icon-alarm-clock"></span>
+            <span class="main-text">
+                Seguimiento Ticket
+            </span>
+        </h1>
+        @*<button class="btn btn-primary" @@click="toggleSheet">Crear ticket</button>*@
+
+    </div>
+    <div class="container-glpi-section">
+        <div class="grid-container">
+
+            <!-- Verifica si hay datos en ticketsAsignados o ticketsRecibidos -->
+            <template v-if="(ticketsAsignados && ticketsAsignados.length > 0) || (ticketsRecibidos && ticketsRecibidos.length > 0)">
+                <!-- Llama al método renderTickets con la lista correspondiente -->
+                <template v-for="(item, index) in renderTickets(ticketsAsignados.length > 0 ? ticketsAsignados : ticketsRecibidos)">
+                    <div class="row ticket-row">
+                        <div class="grid-container ticket-card">
+                            <div v-for="(item, index) in tickets" :class="['ticket-container', getStatusClass(item.estado)]" @@click="openModalAsignacion(item.Id,item)" :key="index" class="col-lg-3 col-md-4 col-sm-6 col-12 ticket-column" style="padding-bottom:3rem; height:100%">
+                                <div class="sheet-showTop">
+                                    <div class="sheet-showTop-header" style="justify-content: space-between">
+                                        <p class="sheet-showTop-title" style="font-size: 18px;"> #{{ item.Id }} - {{ item.ClasificacionProblema.Nombre }}</p>
+                                        <p class="sheet-showTop-level" :style="{ color: item.NivelAtencion.Color, fontSize: '14px', fontWeight: '600'}">
+                                            {{ item.NivelAtencion.Nombre }}
+                                        </p>
+                                    </div>
+                                    <div class="sheet-showTop-detail" style="font-size: 14px; font-weight: 1; line-height: normal; ">
+                                        <p>{{ item.Identificador.Nombre }}, {{ item.Sala.Nombre }}</p>
+                                        <p><strong style="color: #235ebe">Solicitante: </strong>{{ item.UsuarioSolicitante.Nombres }} {{ item.UsuarioSolicitante.ApellidoPaterno }} {{ item.UsuarioSolicitante.ApellidoMaterno }} - {{ item.UsuarioSolicitante.Cargo }}</p>
+                                        <p>
+                                            <strong style="color: #235ebe">Fecha de Registro: </strong>
+                                            {{ item.FechaRegistroStr }}
+                                        </p>
+                                        <p>
+                                            <strong style="color: #235ebe">Fase Ticket:</strong>
+                                            {{ getFaseDescription(item.CodigoFaseTicket) }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </template>
+            <template v-else>
+                <p>No hay tickets registrados.</p>
+            </template>
+        </div>
+        @*********************************MODAL DETALLE SEGUIMIENTO*********************************@
+        <div v-if="showModalDetail" class="modal-overlay">
+            <div class="modal-container" :class="{'modal-enter': showModalDetail, 'modal-leave': !showModalDetail}">
+                <div style="position:sticky;top:0;background-color:white;z-index:1;padding:15px;">
+                    <div class="header-decoration"></div>
+
+                    <div style="display:flex;justify-content:space-between;width:100%;">
+                        <h2 style="color: white;">Seguimiento Ticket</h2>
+                        <button @@click="closeModalDetail" class="btn btn-close">x</button>
+                    </div>
+
+                    <div class="sheet-input" style="margin-top: 20px;">
+                        <div class="sheet-showTop">
+                            <div class="sheet-showTop-header">
+                                <p class="sheet-showTop-title">{{ ticketSelect.Ticket.ClasificacionProblema.Nombre }}</p>
+                                <p class="sheet-showTop-level" :style="{ color: ticketSelect.Ticket.NivelAtencion.Color }">
+                                    {{ ticketSelect.Ticket.NivelAtencion.Nombre }}
+                                </p>
+                            </div>
+                            <div class="sheet-showTop-detail" style="justify-self:center">
+                                <p>{{ ticketSelect.Ticket.Identificador.Nombre }}, {{ ticketSelect.Ticket.Sala.Nombre }}</p>
+                            </div>
+                        </div>
+                        <div class="sheet-showTop-detail" style="font-size: 14px; font-weight: 1; display: inline-flex; justify-content: space-around">
+                            <p><strong>Asignado a:</strong> {{ ticketSelect.UsuarioAsignado.Nombres}} {{ ticketSelect.UsuarioAsignado.ApellidoPaterno}} {{ ticketSelect.UsuarioAsignado.ApellidoMaterno}}</p>
+                            <p><strong>Cargo:</strong> {{ ticketSelect.UsuarioAsignado.Cargo}}</p>
+                        </div>
+                    </div>
+
+                    <div class="sheet-input" style="margin-top: 20px;">
+                        <div class="sheet-showText">
+                            <p>
+                                <strong>Fecha de Registro:</strong>{{ ticketSelect.Ticket.FechaRegistroStr }} </p>
+                            <p>
+                                <strong>
+                                    Fecha Tentativa Termino:
+                                </strong>
+                                {{ ticketSelect.FechaTentativaTerminoStr }}
+                            </p>
+                            @*<p><strong>Descripción del Problema:</strong> {{ ticketSelect.Descripcion }}</p>*@
+                        </div>
+                    </div>
+                    <div class="sheet-input" style="margin-top: 20px; place-items:center">
+                        <div v-if="historial.length>0">
+                            <div v-for="(record, index) in historial"
+                                 :key="record.id">
+                                <div class="sheet-showText">
+                                    <p><strong>Estado Ticket:</strong>{{ record.EstadoTicketActual.Nombre }}</p>
+                                </div>
+                                <div class="sheet-showText" style="border-bottom: 1px solid #e0e0e0;">
+                                    <p><strong>Descripcion:</strong>{{ record.Descripcion }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p v-if="historial.length==0" class="sin-historial">No tiene historial de seguimiento</p>
+                </div>
+            </div>
+        </div>
+
+        @*********************************MODAL AGREGAR SEGUIMIENTO*********************************@
+
+        <div v-if="showModalSeguimiento" class="modal-overlay">
+            <div class="modal-container" :class="{'modal-enter': showModalSeguimiento, 'modal-leave': !showModalSeguimiento}" style="max-width:550px;">
+                <div style="position:sticky;top:0;background-color:white;z-index:1;padding:15px;">
+                    <div class="header-decoration"></div>
+                    <div style="display:flex;justify-content:space-between;width:100%;">
+                        <h2 style="color: white;">Seguimiento Ticket</h2>
+                        <button @@click="closeModalSeguimiento" class="btn btn-close">x</button>
+                    </div>
+
+                    <div class="sheet-input" style="margin-top: 20px;">
+                        <div class="sheet-showTop">
+                            <div class="sheet-showTop-header">
+                                <p class="sheet-showTop-title">{{ ticketSelect.ClasificacionProblema.Nombre }}</p>
+                                <p class="sheet-showTop-level" :style="{ color: ticketSelect.NivelAtencion.Color }">
+                                    {{ ticketSelect.NivelAtencion.Nombre }}
+                                </p>
+                            </div>
+                            <div class="sheet-showTop-detail" style="justify-self:center">
+                                <p>{{ ticketSelect.Identificador.Nombre }}, {{ ticketSelect.Sala.Nombre }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="sheet-input" style="margin-top: 20px;">
+                        <div class="select-container">
+                            <div style="display: flex; flex-direction: column; gap: 2px;">
+                                <label>Estado Ticket</label>
+                                <select class="select-asignacion" id="cboEstadoTickets" name="cboEstadoTickets"></select>
+                            </div>
+                        </div>
+                        <div class="select-container">
+                            <div style="display:flex; flex-direction:column;gap:2px;">
+                                <label>Proceso</label>
+                                <select class="" id="cboProceso" name="cboProceso"></select>
+                            </div>
+                        </div>
+                        @*<div class="select-container">
+                                <div style="display:flex; flex-direction:column;gap:2px;">
+                                    <label>Correos</label>
+                                    <select class="" id="cboCorreos" name="cboCorreos"></select>
+
+                                </div>
+                            </div>*@
+                        <label>Correos</label>
+                        <div class="autocomplete-container" style="display:flex;">
+                            <input type="text" v-model="nuevoCorreo" id="inputCorreo" @@keydown.enter="agregarCorreos" @@input="filtrarCorreos" />
+                            <button class="btn btn-success" style="height:26px !important;padding:revert !important; border-radius: 8px !important;" @@click="agregarCorreos">Agregar</button>
+
+                            <ul v-if="correosFiltrados.length>0" class="autocomplete-list">
+                                <li v-for="(correo, index) in correosFiltrados" :key="index" @@click="seleccionarCorreo(correo.Texto)">
+                                    {{correo.Texto}}
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="correos-container">
+                            <div v-for="(correo, index) in correos"
+                                 :key="index"
+                                 class="correo-item">
+                                {{ correo }}
+                                <button class="delete-btn" @@click="quitarCorreos(index)">×</button>
+                            </div>
+                        </div>
+                        <div class="select-container">
+                            <div style="display:flex; flex-direction:column;gap:2px;">
+                                <label>Descripcion</label>
+                                <textarea id="txtDescripcion" style="border-radius: 8px !important"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin: 5px; place-self: end;">
+                        <button class="btn btn-success" @@click="agregarSeguimiento(ticketSelect.Id)">Seguimiento</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section js{
+    <script src="~/Content/assets/js/optional/vue/vue.min.js"></script>
+    <script src="~/Content/assets/viewsjs/GLPImodulo/misTickets.js"></script>
+}

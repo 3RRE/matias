@@ -1,0 +1,250 @@
+﻿@using S3k.Utilitario;
+@{
+    ViewBag.Title = "Listado Campañas";
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+}
+
+@section css
+{
+    <style>
+        .stld-dropd-custom {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .stld-dropd-custom .cuflex-grow {
+            flex-grow: 1;
+        }
+
+        .stld-dropd-custom .dropdown-menu > li > a {
+            color: #FFFFFF;
+        }
+
+        .stld-dropd-custom .dropdown-menu > li > a:hover {
+            color: #333333;
+        }
+    </style>
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-dollar"></span>
+                                <span class="main-text">
+                                    Reporte Campañas Tipo Promocion
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4  col-xs-4 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnBuscar" class="btn btn-success btn-sm col-md-12 col-xs-12">
+                                        <span class="fa fa-search"></span>
+                                        BUSCAR
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-4 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="stld-dropd-custom">
+                                        <button type="button" class="btn btn-sm btn-primary cuflex-grow" title="EXCEL">
+                                            <span class="fa fa-file-excel-o"></span> EXCEL
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="#" id="button_excel_1">Excel 1</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" id="button_excel_2">Excel 2</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+
+                        <div class="col-xs-12 col-md-12 col-sm-12">
+                            <div class="row" id="formfiltro">
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="input-group ">
+                                                <span class="input-group-addon">
+                                                    Sala
+                                                </span>
+                                                <select class="form-control input-sm codSalaAuditoria" id="cboSala" name="cboSala"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    DEL
+                                                </span>
+                                                <input type="text" class="form-control input-sm dateOnly_" id="fechaInicio" readonly />
+                                                <span class="input-group-addon input-group-icon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    AL
+                                                </span>
+                                                <input type="text" class="form-control input-sm dateOnly_" id="fechaFin" readonly />
+                                                <span class="input-group-addon input-group-icon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <hr style="margin-top: 0px;" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="contenedor_tabla">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+@section modal{
+    <input type="hidden" id="campania_tipo_" />
+    <div class="modal fade full-modal" id="full-modal_tickets" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label">Tickets Registrados</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12" style="margin-top: -14px;line-height: 1.2;">
+                            <h5 style="margin: 2px;text-align: center;">Campaña : 
+                                <span class="fechasol soliSpan" style="font-size:15px;" id="nombre_campania"></span>
+                                <button type="button" id="button_camptickets_excel" class="btn btn-xs btn-primary pull-right" data-id="0" style="margin-bottom: 10px;">
+                                    <i class="fa fa-file-excel-o"></i>
+                                    <span>Excel</span>
+                                </button>
+                            </h5>
+                        </div>
+                        <div class="col-md-12 table-responsive">
+                            <table class="table table-condensed table-bordered" style="margin-bottom:0px;">
+                                <thead>
+                                    <tr>
+                                        <th>Fecha Ticket</th>
+                                        <th>Nro</th>
+                                        <th>Monto</th>
+                                        <th>Cliente</th>
+                                        <th>Nro. Doc</th>
+                                        <th>Usuario Reg.</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbodytickets">
+                                    <tr><td colspan="7"><div class="alert alert-danger" style="margin:0px;">No se agregaron tickets</div></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer footer_g">
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <div class="modal fade full-modal" id="full-modal_clienteRegistrados" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label"> Clientes Campaña <span class="nombre_campaña_cliente"></span></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row" style="margin-bottom:12px;">
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-danger btn-sm pull-right excelclienteregistrados"><i class="fa fa-file-excel-o"></i> Excel</button>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-12 col-sm-12 tablaclientesdiv " style="clear:both">
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer footer_g">
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+}
+@section js
+{
+    <script src="~/Content/assets/viewsjs/Campania/ReporteCampaniaPromocionCliente.js?v=@fecha_archivos"></script>
+}

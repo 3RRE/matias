@@ -1,0 +1,263 @@
+﻿@{
+    ViewBag.Title = "Modificar Sala";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-shield"></span>
+                                <span class="main-text">
+                                    Registro de Sala
+                                </span>
+                            </h1>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-4 col-sm-6 col-xs-6">
+                            <button type="button" class="btn btn-success btn-sm col-md-12 col-sm-12 col-xs-12 btnListar"><span class="glyphicon glyphicon-list-alt"></span> Listado </button>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <button type="button" class="btn btn-primary btn-sm col-md-12 col-sm-12 col-xs-12 btnGuardar "><span class="glyphicon glyphicon-floppy-disk"></span> Guardar </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner ">
+                    <div class="cardMachine" style="margin-bottom:15px;">
+                        <form id="frmRegistroSala">
+                            <fieldset class="sectionCard" style="padding: 10px 7px; margin-top: 10px;">
+                                <h3 style="margin-bottom:5px;margin-left:10px">Datos de la sala</h3>
+                                <div class="col-md-9" style="padding:unset !important">
+                                    <div class="col-sm-12 ">
+                                        <div class="input-group form-group">
+                                            <span class="input-group-addon">
+                                                Código Sala
+                                            </span>
+                                            <input type="text" class="form-control input-sm soloNumeros" id="CodSala" name="CodSala" placeholder="Código Sala">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="input-group form-group">
+                                            <span class="input-group-addon">
+                                                Sala Maestra
+                                            </span>
+                                            <select id="cboSalaMaestra" class="form-control input-sm mySelect" name="CodSalaMaestra" style="width:100%"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="input-group form-group">
+                                            <span class="input-group-addon">
+                                                Nombre
+                                            </span>
+                                            <input type="text" class="form-control input-sm toUpperCase" id="Nombre" name="Nombre" placeholder="Nombre">
+                                        </div>
+                                    </div>
+                                    <div class=" col-sm-12">
+                                        <div class="input-group form-group">
+                                            <span class="input-group-addon">
+                                                Nombre Corto
+                                            </span>
+                                            <input type="text" class="form-control input-sm toUpperCase" id="NombreCorto" name="NombreCorto" placeholder="Nombre">
+                                        </div>
+                                    </div>
+                                    <div class=" col-sm-12 ">
+                                        <div class="input-group form-group date">
+                                            <span class="input-group-addon">
+                                                Fecha Aniversario
+                                            </span>
+                                            <input type="text" class="form-control input-sm dateOnly_" id="FechaAniversario" readonly name="FechaAniversario" placeholder="Fecha de Aniversario">
+                                        </div>
+                                    </div>
+                                    <div class=" col-sm-12 col-md-6">
+                                        <div class="input-group form-group">
+                                            <span class="input-group-addon">
+                                                Dirección
+                                            </span>
+                                            <input type="text" class="form-control input-sm toUpperCase" id="Direccion" name="Direccion" placeholder="Dirección">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="input-group form-group">
+                                            <span class="input-group-addon">
+                                                Correo
+                                            </span>
+                                            <input type="text" class="form-control input-sm " id="correo" name="correo" placeholder="Correo">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="input-group form-group">
+                                            <span class="input-group-addon">
+                                                Latitud
+                                            </span>
+                                            <input type="text" class="form-control input-sm " id="latitud" name="latitud" placeholder="Latitud">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="input-group form-group">
+                                            <span class="input-group-addon">
+                                                Longitud
+                                            </span>
+                                            <input type="text" class="form-control input-sm " id="longitud" name="longitud" placeholder="Longitud">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="input-group form-group">
+                                            <span class="input-group-addon">
+                                                Tipo
+                                            </span>
+                                            <select id="cboTipo" class="form-control input-sm mySelect" name="tipo">
+                                                <option value="0" selected>SALA</option>
+                                                <option value="1">RESTAURANTE</option>
+                                                <option value="2">HOTEL</option>
+                                                <option value="3">CANAL ONLINE</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="input-group form-group">
+                                            <span class="input-group-addon">
+                                                Empresa
+                                            </span>
+                                            <select id="cboEmpresa" class="form-control input-sm mySelect" name="CodEmpresa" style="width:100%"></select>
+                                        </div>
+                                    </div>
+                                    <div class=" col-sm-12">
+                                        <div class="input-group form-group">
+                                            <span class="input-group-addon">
+                                                Departamento
+                                            </span>
+                                            <select id="cboDepartamento" class="form-control input-sm mySelect" name="DepartamentoId"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="input-group form-group">
+                                            <span class="input-group-addon">
+                                                Provincia
+                                            </span>
+                                            <select id="cboProvincia" class="form-control input-sm mySelect" name="ProvinciaId"></select>
+
+                                        </div>
+                                    </div>
+                                    <div class=" col-sm-12">
+                                        <div class="input-group form-group">
+                                            <span class="input-group-addon">
+                                                Distrito
+                                            </span>
+                                            <select id="cboDistrito" class="form-control input-sm mySelect" name="CodUbigeo"></select>
+                                        </div>
+                                    </div>
+
+                                    <div class=" col-sm-12">
+                                        <div class="input-group form-group">
+                                            <span class="input-group-addon">
+                                                Puerto Signalr
+                                            </span>
+                                            <input type="text" class="form-control input-sm " id="PuertoSignalr" name="PuertoSignalr" placeholder="Puerto Signalr">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3" >
+
+                                    <div class=" col-sm-12">
+                                        <img id="LogoSala" style="width:100%;height:220px;object-fit:cover;" src="~/Content/assets/images/no_image.jpg" alt="RutaArchivoLogo" />
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="input-group form-group date">
+                                            <span class="input-group-addon">
+                                                Logo
+                                            </span>
+                                            <input type="file" class="form-control input-sm" id="RutaArchivoLogo" name="RutaArchivoLogo" placeholder="Logo">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                            <fieldset class="sectionCard" style="padding: 10px 7px; margin-top: 10px;">
+                                <h3 style="margin-bottom:5px;margin-left:10px">Url's</h3>
+                                <div class="col-sm-12"  style="padding:unset !important">
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="input-group form-group date">
+                                            <span class="input-group-addon">
+                                                Ip Pública
+                                            </span>
+                                            <input type="text" class="form-control input-sm " id="IpPublica" name="IpPublica" placeholder="Ip Pública">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="input-group form-group date">
+                                            <span class="input-group-addon">
+                                                Url Progresivo
+                                            </span>
+                                            <input type="text" class="form-control input-sm " id="UrlProgresivo" name="UrlProgresivo" placeholder="UrlProgresivo">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="input-group form-group date">
+                                            <span class="input-group-addon">
+                                                Url Bóveda
+                                            </span>
+                                            <input type="text" class="form-control input-sm " id="UrlBoveda" name="UrlBoveda" placeholder="Url Bóveda">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="input-group form-group date">
+                                            <span class="input-group-addon">
+                                                Url Sala Online
+                                            </span>
+                                            <input class="form-control input-sm " id="UrlSalaOnline" name="UrlSalaOnline" placeholder="Url Sala Online">
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+</div>
+    </div>
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/Sala/SalaInsertar.js"></script>
+    <script>
+        // withToUpperCase
+        function withToUpperCase(element) {
+          const elem = element;
+          const startPos = elem.selectionStart;
+          const endPos = elem.selectionEnd;
+          elem.value = elem.value.toUpperCase();
+          elem.setSelectionRange(startPos, endPos);
+        }
+
+        $(document).on('keyup','.toUpperCase', function (e) {
+            withToUpperCase(this);
+        });
+    </script>
+}
+

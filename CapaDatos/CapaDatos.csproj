@@ -1,0 +1,330 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{80E4364D-7CB1-47BB-93B9-219489457473}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CapaDatos</RootNamespace>
+    <AssemblyName>CapaDatos</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FastMember, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FastMember.1.5.0\lib\net461\FastMember.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Administrativo\ADM_DetalleContadoresGameDAL.cs" />
+    <Compile Include="Administrativo\ADM_DetalleSalaProgresivoDAL.cs" />
+    <Compile Include="Administrativo\ADM_GanadorDAL.cs" />
+    <Compile Include="Administrativo\ADM_HistorialMaquinaDAL.cs" />
+    <Compile Include="Administrativo\ADM_MaquinaDAL.cs" />
+    <Compile Include="Administrativo\ADM_MaquinaSalaProgresivoDAL.cs" />
+    <Compile Include="Administrativo\ADM_PozoHistoricoDAL.cs" />
+    <Compile Include="Administrativo\ADM_SalaProgresivoDAL.cs" />
+    <Compile Include="Administrativo\WS_DetalleContadoresGameWebDAL.cs" />
+    <Compile Include="Alertas\ALT_AlertaCargoConfDAL.cs" />
+    <Compile Include="Alertas\ALT_AlertaSalaDAL.cs" />
+    <Compile Include="AreaTechDAL.cs" />
+    <Compile Include="AsistenciaCliente\AST_ClienteSalaDAL.cs" />
+    <Compile Include="AsistenciaCliente\AST_TipoJDAL.cs" />
+    <Compile Include="AsistenciaCliente\AST_TipoJuegoDAL.cs" />
+    <Compile Include="BOT\BOT_PermisoDAL.cs" />
+    <Compile Include="BOT\BOT_EmpleadoDAL.cs" />
+    <Compile Include="BOT\BOT_ContactoDAL.cs" />
+    <Compile Include="BOT\BOT_CargoDAL.cs" />
+    <Compile Include="BOT\BOT_AreaDAL.cs" />
+    <Compile Include="BUK\BUK_CreditoDAL.cs" />
+    <Compile Include="BUK\BUK_EmpleadoDAL.cs" />
+    <Compile Include="BUK\BUK_EquivalenciaEmpresaDAL.cs" />
+    <Compile Include="BUK\BUK_EquivalenciaSedeDAL.cs" />
+    <Compile Include="Campaña\CMP_SesionMigracionDAL.cs" />
+    <Compile Include="Campaña\CMP_SesionSorteoSalaMigracionDAL.cs" />
+    <Compile Include="ClienteSatisfaccion\Configuracion\CSConfiguracionDAL.cs" />
+    <Compile Include="ClienteSatisfaccion\Flujo\FlujoDAL.cs" />
+    <Compile Include="ClienteSatisfaccion\Opciones\OpcionesDAL.cs" />
+    <Compile Include="ClienteSatisfaccion\Preguntas\PreguntaDAL.cs" />
+    <Compile Include="ClienteSatisfaccion\Respuesta\RespuestaDAL.cs" />
+    <Compile Include="ClienteSatisfaccion\Tablet\TabletDAL.cs" />
+    <Compile Include="ContadoresBonusIn\ContadoresBonusInDAL.cs" />
+    <Compile Include="ControlAcceso\CAL_HistorialLudopataDAL.cs" />
+    <Compile Include="ControlAcceso\CAL_MenorEdadDAL.cs" />
+    <Compile Include="Cortesias\CRT_AnfitrionasDAL.cs" />
+    <Compile Include="Cortesias\CRT_MarcaDAL.cs" />
+    <Compile Include="Cortesias\CRT_ProductoDAL.cs" />
+    <Compile Include="Cortesias\CRT_SubTipoDAL.cs" />
+    <Compile Include="Cortesias\CRT_TipoDAL.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_AccionCajaTemporizadaDAL.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_AperturaCierreSalaDAL.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_BienMaterialDAL.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_CargoExternoDAL.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_CatalogoDAL.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_CategoriaDAL.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_DashboardDAL.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_DeficienciaDAL.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_DispositivoDAL.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_EmpleadoDAL.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_EmpresaExternaDAL.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_EnteReguladorDAL.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_EnteReguladorMotivoDAL.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_IngresoSalidaGUDAL.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_LogOcurrenciaDAL.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_MotivoDAL.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_RecaudacionPersonalDAL.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_RecojoRemesasDAL.cs" />
+    <Compile Include="EntradaSalidaSala\ESS_VisitasSupervisorDAL.cs" />
+    <Compile Include="EventosSignificativos\EventosSignificativosDAL.cs" />
+    <Compile Include="GLPI\GLPI_AsignacionTicketDAL.cs" />
+    <Compile Include="GLPI\GLPI_CierreTicketDAL.cs" />
+    <Compile Include="GLPI\GLPI_SeguimientoTicketDAL.cs" />
+    <Compile Include="GLPI\GLPI_TicketDAL.cs" />
+    <Compile Include="GLPI\Mantenedores\GLPI_UsuarioDAL.cs" />
+    <Compile Include="GLPI\Mantenedores\GLPI_ProcesoDAL.cs" />
+    <Compile Include="GLPI\Mantenedores\GLPI_SubCategoriaDAL.cs" />
+    <Compile Include="GLPI\Mantenedores\GLPI_ClasificacionProblemaDAL.cs" />
+    <Compile Include="GLPI\Mantenedores\GLPI_EstadoActualDAL.cs" />
+    <Compile Include="GLPI\Mantenedores\GLPI_CategoriaDAL.cs" />
+    <Compile Include="GLPI\Mantenedores\GLPI_IdentificadorDAL.cs" />
+    <Compile Include="GLPI\Mantenedores\GLPI_NivelAtencionDAL.cs" />
+    <Compile Include="GLPI\Mantenedores\GLPI_EstadoTicketDAL.cs" />
+    <Compile Include="GLPI\Mantenedores\GLPI_PartidaDAL.cs" />
+    <Compile Include="GLPI\Mantenedores\GLPI_TipoOperacionDAL.cs" />
+    <Compile Include="GLPI\Mantenedores\GLPI_CorreoDAL.cs" />
+    <Compile Include="MaquinaEstados\TEC_EstadoMaquinaDAL.cs" />
+    <Compile Include="MaquinasInoperativas\MI_ComentarioDAL.cs" />
+    <Compile Include="MaquinasInoperativas\MI_CorreoDAL.cs" />
+    <Compile Include="Migracion\ContadoresOnlineDAL.cs" />
+    <Compile Include="EstadoServiciosDAL.cs" />
+    <Compile Include="Incidencias\IncidenciaDAL.cs" />
+    <Compile Include="Incidencias\SistemaIncidenciaDAL.cs" />
+    <Compile Include="Incidencias\SolucionIncidenciaDAL.cs" />
+    <Compile Include="MaquinasInoperativas\MI_SalaCorreosDAL.cs" />
+    <Compile Include="Notificaciones\Mantenedores\CredencialCorreoDAL.cs" />
+    <Compile Include="Notificaciones\Mantenedores\CredencialWhatsAppDAL.cs" />
+    <Compile Include="Notificaciones\Mantenedores\SistemaDAL.cs" />
+    <Compile Include="ProgresivoRuleta\PRU_AlertaDAL.cs" />
+    <Compile Include="ProgresivoRuleta\PRU_ConfiguracionDAL.cs" />
+    <Compile Include="ProgresivoRuleta\PRU_GanadorDAL.cs" />
+    <Compile Include="ProgresivoRuleta\PRU_RuletaDAL.cs" />
+    <Compile Include="Progresivo\AlertaProgresivoCargoDAL.cs" />
+    <Compile Include="Progresivo\AlertaProgresivoDAL.cs" />
+    <Compile Include="Progresivo\RegistroProgresivoDAL.cs" />
+    <Compile Include="SalaMaestraDAL.cs" />
+    <Compile Include="Sala\SL_ZonaDAL.cs" />
+    <Compile Include="AsistenciaEmpleado\AsistenciaEmpleadoDAL.cs" />
+    <Compile Include="AsistenciaCliente\EMC_EmpadronamientoClienteDAL.cs" />
+    <Compile Include="AsistenciaEmpleado\EmpleadoDispositivoDAL.cs" />
+    <Compile Include="AsistenciaEmpleado\EmpleadoVisitaDAL.cs" />
+    <Compile Include="AumentoCreditoMaquinaDAL.cs" />
+    <Compile Include="BancoCuentaDAL.cs" />
+    <Compile Include="BonificacionesDAL.cs" />
+    <Compile Include="Campaña\CMP_Campania_ParametrosDAL.cs" />
+    <Compile Include="Campaña\CMP_CampañaDAL.cs" />
+    <Compile Include="Campaña\CMP_ClienteDAL.cs" />
+    <Compile Include="Campaña\CMP_ContadoresOnlineWebCuponesDAL.cs" />
+    <Compile Include="Campaña\CMP_CuponesGeneradosDAL.cs" />
+    <Compile Include="Campaña\CMP_DetalleCuponesGeneradosDAL.cs" />
+    <Compile Include="Campaña\CMP_DetalleCuponesImpresosDAL.cs" />
+    <Compile Include="Campaña\CMP_impresoraDAL.cs" />
+    <Compile Include="Campaña\CMP_impresora_usuarioDAL.cs" />
+    <Compile Include="Campaña\CMP_MaquinaRestringidaDAL.cs" />
+    <Compile Include="Campaña\CMP_SalalibreDAL.cs" />
+    <Compile Include="Campaña\CMP_SalasesionDAL.cs" />
+    <Compile Include="Campaña\CMP_TicketDAL.cs" />
+    <Compile Include="ClienteDAL.cs" />
+    <Compile Include="ConfiguracionSeguridadDAL.cs" />
+    <Compile Include="ContadoresNegativos\AlertaContadoresNegativosDAL.cs" />
+    <Compile Include="ContadoresNegativos\ContadoresNegativosConfigDAL.cs" />
+    <Compile Include="ContadoresNegativos\ContadoresNegativosDAL.cs" />
+    <Compile Include="ControlAcceso\CAL_AuditoriaDAL.cs" />
+    <Compile Include="ControlAcceso\CAL_BandaDAL.cs" />
+    <Compile Include="ControlAcceso\CAL_BusquedaDAL.cs" />
+    <Compile Include="ControlAcceso\CAL_CargoEntidadDAL.cs" />
+    <Compile Include="ControlAcceso\CAL_CargoPoliticoDAL.cs" />
+    <Compile Include="ControlAcceso\CAL_CodigoDAL.cs" />
+    <Compile Include="ControlAcceso\CAL_CodigoPersonaDAL.cs" />
+    <Compile Include="ControlAcceso\CAL_ContactoDAL.cs" />
+    <Compile Include="ControlAcceso\CAL_EntidadPublicaDAL.cs" />
+    <Compile Include="ControlAcceso\CAL_LudopataDAL.cs" />
+    <Compile Include="ControlAcceso\CAL_PersonaEntidadPublicaDAL.cs" />
+    <Compile Include="ControlAcceso\CAL_PersonaProhibidoIngresoIncidenciaDAL.cs" />
+    <Compile Include="ControlAcceso\CAL_PoliticoDAL.cs" />
+    <Compile Include="ControlAcceso\CAL_PersonaProhibidoIngresoDAL.cs" />
+    <Compile Include="ControlAcceso\CAL_RobaStackersBilleteroDAL.cs" />
+    <Compile Include="ControlAcceso\CAL_TipoExclusionDAL.cs" />
+    <Compile Include="ControlAcceso\CAL_TipoTimadorDAL.cs" />
+    <Compile Include="DepositoDAL.cs" />
+    <Compile Include="Destinatario_DetalleDAL.cs" />
+    <Compile Include="Disco\AlertaDiscoDAL.cs" />
+    <Compile Include="Disco\DiscoCargoConfigDAL.cs" />
+    <Compile Include="Disco\DiscoDAL.cs" />
+    <Compile Include="DispositivoDAL.cs" />
+    <Compile Include="EmpresaDAL.cs" />
+    <Compile Include="Equipo\EquipoDAL.cs" />
+    <Compile Include="EstadoSolicitudCambioDAL.cs" />
+    <Compile Include="ExcelenciaOperativa\EO_FichaCategoriaDAL.cs" />
+    <Compile Include="ExcelenciaOperativa\EO_FichaExcelenciaOperativaDAL.cs" />
+    <Compile Include="ExcelenciaOperativa\EO_FichaItemDAL.cs" />
+    <Compile Include="FichaSintomatologicaDAL.cs" />
+    <Compile Include="GC_ComiteCambiosDAL.cs" />
+    <Compile Include="GC_SistemaDAL.cs" />
+    <Compile Include="HistorialSolicitudCambioDAL.cs" />
+    <Compile Include="Imei\ControlImeiDAL.cs" />
+    <Compile Include="JuegoDAL.cs" />
+    <Compile Include="LogAlertaBilleterosDAL.cs" />
+    <Compile Include="ManenimientoBD\MantenimientoBDDAL.cs" />
+    <Compile Include="MaquinasInoperativas\MI_CategoriaPiezaDAL.cs" />
+    <Compile Include="MaquinasInoperativas\MI_CategoriaProblemaDAL.cs" />
+    <Compile Include="MaquinasInoperativas\MI_CategoriaRepuestoDAL.cs" />
+    <Compile Include="MaquinasInoperativas\MI_AlmacenDAL.cs" />
+    <Compile Include="MaquinasInoperativas\MI_MaquinaInoperativaDAL.cs" />
+    <Compile Include="MaquinasInoperativas\MI_MaquinaInoperativaPiezasDAL.cs" />
+    <Compile Include="MaquinasInoperativas\MI_MaquinaInoperativaProblemasDAL.cs" />
+    <Compile Include="MaquinasInoperativas\MI_MaquinaInoperativaRepuestosDAL.cs" />
+    <Compile Include="MaquinasInoperativas\MI_PiezaDAL.cs" />
+    <Compile Include="MaquinasInoperativas\MI_PiezaRepuestoAlmacenDAL.cs" />
+    <Compile Include="MaquinasInoperativas\MI_ProblemaDAL.cs" />
+    <Compile Include="MaquinasInoperativas\MI_RepuestoDAL.cs" />
+    <Compile Include="MaquinasInoperativas\MI_TraspasoRepuestoAlmacenDAL.cs" />
+    <Compile Include="MarcaMaquinaDAL.cs" />
+    <Compile Include="ModeloMaquinaDAL.cs" />
+    <Compile Include="ModuloDAL.cs" />
+    <Compile Include="NivelTecnicoDAL.cs" />
+    <Compile Include="Ocurrencias\OCU_CorreoDAL.cs" />
+    <Compile Include="Ocurrencias\OCU_CorreoSalaDAL.cs" />
+    <Compile Include="Ocurrencias\OCU_OcurrenciaDAL.cs" />
+    <Compile Include="Ocurrencias\OCU_TipoOcurrenciaDAL.cs" />
+    <Compile Include="ProgresivoSeguridad\Signalr_usuarioDAL.cs" />
+    <Compile Include="Progresivo\ProgresivoDAL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DestinatarioDAL.cs" />
+    <Compile Include="ProyectadoProgresivoDAL.cs" />
+    <Compile Include="Reclamaciones\REC_reclamacionDAL.cs" />
+    <Compile Include="API_ReniecKeysDAL.cs" />
+    <Compile Include="SalaDAL.cs" />
+    <Compile Include="SatisfaccionCliente\Configuracion\ESC_ConfiguracionDAL.cs" />
+    <Compile Include="SatisfaccionCliente\ESC_RespuestaDAL.cs" />
+    <Compile Include="SatisfaccionCliente\Mantenedores\ESC_PreguntaDAL.cs" />
+    <Compile Include="SEG_AuditoriaDAL.cs" />
+    <Compile Include="SEG_Configuracion_SeguridadDAL.cs" />
+    <Compile Include="SEG_PermisoDAL.cs" />
+    <Compile Include="SEG_PermisoMenuDAL.cs" />
+    <Compile Include="SEG_PermisoRolDAL.cs" />
+    <Compile Include="SEG_RolDAL.cs" />
+    <Compile Include="SEG_RolUsuarioDAL.cs" />
+    <Compile Include="AsistenciaCliente\AST_ClienteDAL.cs" />
+    <Compile Include="AsistenciaCliente\AST_TipoDocumentoDAL.cs" />
+    <Compile Include="AsistenciaCliente\AST_TipoFrecuenciaDAL.cs" />
+    <Compile Include="AsistenciaCliente\AST_TipoClienteDAL.cs" />
+    <Compile Include="Settings\App_SettingsDAL.cs" />
+    <Compile Include="SolicitudCambioDAL.cs" />
+    <Compile Include="SolicitudTicketDAL.cs" />
+    <Compile Include="SolicitudTransferenciaDAL.cs" />
+    <Compile Include="Sunat\SunatDAL.cs" />
+    <Compile Include="TecnicoDAL.cs" />
+    <Compile Include="TicketDAL.cs" />
+    <Compile Include="TipoCambioDAL.cs" />
+    <Compile Include="TipoDOIDAL.cs" />
+    <Compile Include="SEG_EmpleadoDAL.cs" />
+    <Compile Include="SEG_CargoDAL.cs" />
+    <Compile Include="SEG_UsuarioDAL.cs" />
+    <Compile Include="TransaccionTarjetaCliente\TTC_TransaccionDAL.cs" />
+    <Compile Include="TransferenciaDAL.cs" />
+    <Compile Include="UbigeoDAL.cs" />
+    <Compile Include="UsuarioEncriptacionDAL.cs" />
+    <Compile Include="UsuarioSalaDAL.cs" />
+    <Compile Include="Utilitarios\ClaseError.cs" />
+    <Compile Include="Utilitarios\Conversiones.cs" />
+    <Compile Include="Utilitarios\DynamicDictionary.cs" />
+    <Compile Include="Utilitarios\ManejoNulls.cs" />
+    <Compile Include="WhatsApp\WSP_ContactoDAL.cs" />
+    <Compile Include="WhatsApp\WSP_InstanciaUltraMsgDAL.cs" />
+    <Compile Include="WhatsApp\WSP_MensajeEnviadoDAL.cs" />
+    <Compile Include="WhatsApp\WSP_MensajeriaClienteDAL.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CapaEntidad\CapaEntidad.csproj">
+      <Project>{E90EB5AC-DB12-4979-970D-69B1D8A79CF4}</Project>
+      <Name>CapaEntidad</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\S3k.Utilitario\S3k.Utilitario.csproj">
+      <Project>{67d1d4fb-a385-49f6-a4c4-877e15b51993}</Project>
+      <Name>S3k.Utilitario</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <Compile Include="AsistenciaCliente\AST_AsistenciaClienteSalaDAL.cs" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

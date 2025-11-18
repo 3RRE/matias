@@ -1,0 +1,387 @@
+﻿@{
+    ViewBag.Title = "listado de Ludopata";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-atom"></span>
+                                <span class="main-text">
+                                    Listado de Ludopata
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-offset-4 col-md-4 col-sm-4 col-xs-6">
+                            <button type="button" id="btnNuevo" class="btn btn-sm btn-success col-md-12 col-xs-12">
+                                <span class="glyphicon glyphicon-book"></span>
+                                Nuevo
+                            </button>
+                        </div>
+                        <div class="col-md-4 col-sm-4  col-xs-6 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnExcel" class="btn btn-primary btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-file"></span>
+                                        Excel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-12 tam">
+
+                            <div class="">
+                                <table id="tableLudopata" class="table table-striped table-bordered table-hover table-condensed"></table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section modal{
+
+    <div class="modal fade full-modal" id="full-modal_ludopata" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label_"> <span id="textLudopata">Nueva</span> Ludopata</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12" id="divludopata">
+                            <form class="medium bv-form" id="form_registro_ludopata">
+                                <div id="divLudo">
+                                    <fieldset>
+                                        <legend>Informacion del Ludópata</legend>
+                                        <input type="hidden" name="LudopataID" value="0" id="LudopataID" />
+                                        <input type="hidden" name="Imagen" value="" id="Imagen" />
+                                        <input type="hidden" name="Foto" value="" id="Foto" />
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        Nombre
+                                                    </span>
+                                                    <input type="text" class="form-control input-sm" id="Nombre" name="Nombre" placeholder="Nombre">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        Apel Pat
+                                                    </span>
+                                                    <input type="text" class="form-control input-sm" id="ApellidoPaterno" name="ApellidoPaterno" placeholder="Apellido Paterno">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        Apel Mat
+                                                    </span>
+                                                    <input type="text" class="form-control input-sm" id="ApellidoMaterno" name="ApellidoMaterno" placeholder="Apellido Materno">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12" style="height: 39px;">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        Tipo Doc
+                                                    </span>
+                                                    <select id="cboTipoDoiID" class="form-control input-sm mySelectLudopata" name="TipoDoiID"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        Nro Doc
+                                                    </span>
+                                                    <input type="text" class="form-control input-sm" id="DNI" value="" name="DNI" placeholder="Nro Documento">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        Telefono
+                                                    </span>
+                                                    <input type="text" class="form-control input-sm" id="Telefono" name="Telefono" placeholder="Telefono">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        Tipo Exclusion
+                                                    </span>
+                                                    <select id="cboTipoExclusion" class="form-control input-sm mySelectLudopata2" name="TipoExclusion">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        Cod Registro
+                                                    </span>
+                                                    <input type="text" class="form-control input-sm" id="CodRegistro" name="CodRegistro" placeholder="Codigo Registro">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        Fecha Inscripcion
+                                                    </span>
+                                                    <input type="text" class="form-control input-sm" id="FechaInscripcion" name="FechaInscripcion" placeholder="FechaInscripcion">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        Foto
+                                                    </span>
+                                                    <input type="file" class="form-control input-sm" id="File" name="File" placeholder="File" accept="image/*">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12" style="height: 39px;">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        Estado
+                                                    </span>
+                                                    <select id="cboEstado" class="form-control input-sm mySelectLudopata2" name="Estado">
+                                                        <option value="">--Seleccione--</option>
+                                                        <option value="1">Activo</option>
+                                                        <option value="0">Inactivo</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12" style="height: 39px;">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        Departamento
+                                                    </span>
+                                                    <select id="cboDepartamento" class="form-control input-sm mySelectLudopata"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12" style="height: 39px;">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        Provincia
+                                                    </span>
+                                                    <select id="cboProvincia" class="form-control input-sm mySelectLudopata"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12" style="height: 39px;">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        Distrito
+                                                    </span>
+                                                    <select id="cboDistrito" class="form-control input-sm mySelectLudopata" name="CodUbigeo"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div id="divContacto" style="display:none">
+                                    <fieldset>
+                                        <legend>Información de la Persona de Contacto</legend>
+                                        <input type="hidden" name="ContactoID" value="0" id="LContactoID" />
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        Nombres
+                                                    </span>
+                                                    <input type="text" class="form-control input-sm" id="LNombreContacto" name="NombreContacto" placeholder="Nombre">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        Apel. Pat.
+                                                    </span>
+                                                    <input type="text" class="form-control input-sm" id="LApellidoPaternoContacto" name="ApellidoPaternoContacto" placeholder="Apellido Paterno">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        Apel. Mat.
+                                                    </span>
+                                                    <input type="text" class="form-control input-sm" id="LApellidoMaternoContacto" name="ApellidoMaternoContacto" placeholder="Apellido Materno">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        Telefono
+                                                    </span>
+                                                    <input type="text" class="form-control input-sm" id="LTelefonoContacto" name="TelefonoContacto" placeholder="Telefono">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        Celular
+                                                    </span>
+                                                    <input type="text" class="form-control input-sm" id="LCelularContacto" name="CelularContacto" placeholder="Celular">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-sm btn-danger btnGuardarLudopata">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade full-modal" id="full-modal_contacto" tabindex="-1" role="dialog" aria-labelledby="full-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content" data-border-top="multi">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="full-modal-label"> <span id="textContacto">Nuevo</span> Contacto</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <form class="medium bv-form" role="form" method="post" action="#" id="form_registro_contacto">
+                                <input type="hidden" name="ContactoID" value="0" id="ContactoID" />
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Nombres
+                                            </span>
+                                            <input type="text" class="form-control input-sm" id="NombreContacto" value="" name="NombreContacto" placeholder="Nombre">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Apel. Pat.
+                                            </span>
+                                            <input type="text" class="form-control input-sm" id="ApellidoPaternoContacto" value="" name="ApellidoPaternoContacto" placeholder="Apellido Paterno">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Apel. Mat.
+                                            </span>
+                                            <input type="text" class="form-control input-sm" id="ApellidoMaternoContacto" value="" name="ApellidoMaternoContacto" placeholder="Apellido Materno">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Telefono
+                                            </span>
+                                            <input type="text" class="form-control input-sm" id="TelefonoContacto" value="" name="TelefonoContacto" placeholder="Telefono">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Celular
+                                            </span>
+                                            <input type="text" class="form-control input-sm" id="CelularContacto" value="" name="CelularContacto" placeholder="Celular">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-sm btn-danger btnGuardarContacto">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/ControlAcceso/ListadoLudopata.js"></script>
+}

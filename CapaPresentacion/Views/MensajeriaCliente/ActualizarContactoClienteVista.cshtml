@@ -1,0 +1,44 @@
+﻿@using CapaEntidad.AsistenciaCliente
+@model AST_ClienteEntidad
+
+@{
+    Layout = null;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-12">
+            <form id="formContacto" role="form">
+                <input type="hidden" id="IdContacto" name="Id" value="@Model.Id" />
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Código País: +
+                        </span>
+                        <input type="text" autocomplete="off" onkeypress="return valideKeyNumber(event)" class="form-control input-sm soloNumeros" id="CodigoPais" name="CodigoPais" placeholder="Solo números (ej. 51)" value="@Model.CodigoPais">
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Número 1:
+                        </span>
+                        <input type="text" autocomplete="off" onkeypress="return valideKeyNumber(event)" class="form-control input-sm soloNumeros" id="Celular1" name="Celular1" placeholder="Número 1" value="@Model.Celular1">
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Número 2:
+                        </span>
+                        <input type="text" autocomplete="off" onkeypress="return valideKeyNumber(event)" class="form-control input-sm soloNumeros" id="Celular2" name="Celular2" placeholder="Número 2" value="@Model.Celular2">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="~/Content/assets/viewsjs/WhatsApp/MensajeriaCliente/ActualizarContactoCliente.js"></script>

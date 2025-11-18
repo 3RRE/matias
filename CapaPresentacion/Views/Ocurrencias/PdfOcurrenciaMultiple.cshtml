@@ -1,0 +1,116 @@
+﻿@using CapaEntidad.Ocurrencias
+@{
+    Layout = null;
+}
+@{
+    List<OCU_OcurrenciaEntidad> listaOcurrencia = new List<OCU_OcurrenciaEntidad>();
+    bool respuesta = ViewBag.respuesta;
+    if (respuesta)
+    {
+        listaOcurrencia = ViewBag.data;
+    }
+    string style = "";
+    int indice = 0;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Fav and touch icons -->
+
+    <link rel="shortcut icon" href="~/Content/assets/images/required/logo-default.ico">
+
+    <title>Ocurrencias CPJ</title>
+
+    <!-- Required CSS Files -->
+    <link type="text/css" href="~/Content/assets/css/required/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/assets/fonts/metrize-icons/styles-metrize-icons.css" rel="stylesheet">
+    <link type="text/css" href="~/Content/assets/fonts/font-awesome-4.6.3/css/font-awesome.css" rel="stylesheet" />
+    <!-- Optional CSS Files -->
+    <!-- More Required CSS Files -->
+</head>
+<body>
+    <div class="container">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <p>
+                                <h2><b>Listado de Ocurrencias</b></h2>
+                            </p>
+                            <div style="line-height: 0.9;">
+                                <p>Fecha Generación : @DateTime.Now </p>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    @{
+                        if (respuesta && listaOcurrencia.Count > 0)
+                        {
+                            foreach (var ocurrencia in listaOcurrencia)
+                            {
+                                if (indice != 0)
+                                {
+                                    style = "page-break-before: always;";
+                                }
+                                indice++;
+                                <div class="row" style="padding-left:50px;@style;">
+                                    <div class="col-md-12 text-center">
+                                        <p>
+                                            <h3><b>Ocurrencia Nro:</b> @indice <b>- Sala :</b> @ocurrencia.Sala.Nombre</h3>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row" >
+                                    <h5><b>1. DATOS DEL CLIENTE</b></h5>
+                                    <div class="row" style="padding-left:25px">
+                                        <div class="col-md-12">
+                                            <p><b>Nombre:</b> <span>@ocurrencia.ApelPat @ocurrencia.ApelMat,@ocurrencia.Nombres </span></p>
+                                            <p><b>Tipo Documento:</b> <span>@ocurrencia.TipoDocumento.DESCRIPCION</span></p>
+                                            <p><b>Nro. Documento:</b> <span>@ocurrencia.NroDoc</span></p>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <h5><b>2. DETALLE DE LA OCURRENCIA</b></h5>
+                                    <div class="row" style="padding-left:25px">
+                                        <div class="col-md-12">
+                                            <p><b>Fecha Ocurrencia:</b> <span>@ocurrencia.Fecha</span></p>
+                                            <p><b>Sala:</b> <span>@ocurrencia.Sala.Nombre</span></p>
+                                            <p><b>Jefe de Sala:</b> <span>@ocurrencia.JefeSala</span></p>
+                                            <p><b>Se Informó A:</b> <span>@ocurrencia.SeInformoA</span></p>
+                                            <p><b>Nro. Documento:</b> <span>@ocurrencia.NroDoc</span></p>
+                                            <p><b>Descripcion:</b> <span>@ocurrencia.Descripcion</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="col-md-12 text-center">
+                                <h2>No se encontró información</h2>
+                            </div>
+                        }
+                    }
+
+
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="footer-content text-center" style="bottom:0">
+                &copy; @DateTime.Now.Year - <span class="blue bolder">Gladcon Group</span> <br />
+                Av. Manuel E. Olguin Nro. 211 Int. 303
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

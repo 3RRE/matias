@@ -1,0 +1,109 @@
+﻿@using CapaEntidad.ProgresivoRuleta.Dto
+@model PRU_ConfiguracionDto
+@{
+    Layout = null;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-12">
+            <form id="formRuletaProgresivoConfiguracion" role="form">
+                <input type="hidden" id="IdRuleta" name="IdRuleta" value="@Model.IdRuleta" />
+                <input type="hidden" id="CodSala" name="CodSala" value="@Model.Sala.CodSala" />
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Nombre
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm" id="NombreRuleta" name="NombreRuleta" placeholder="Nombre de la sede" value="@Model.NombreRuleta">
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Cantidad de Máquinas
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm soloNumeros" id="TotalSlots" name="TotalSlots" placeholder="Cantidad de Máquinas" value="@Model.TotalSlots">
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Codigos de Máquinas
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm tag-input" id="SlotHexValues" name="CodMaquinas" placeholder="Codigos de las máquinas" value="@Model.CodMaquinas">
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Posiciones
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm tag-input" id="SlotHexPositions" name="Posiciones" placeholder="Posiciones de las máquinas" value="@Model.Posiciones">
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Mínimo de Máquinas
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm soloNumeros" id="MinSlotsPlaying" name="MinSlotsPlaying" placeholder="Cantidad minima de máquinas" value="@Model.MinSlotsPlaying">
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Porcentaje
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm soloNumeros" id="CoinInPercent" name="CoinInPercent" placeholder="Porcentaje que tomará el coin in" value="@Model.CoinInPercent">
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Apuesta Mínima
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm soloNumeros" id="MinBet" name="MinBet" placeholder="Apuesta mínima (centimos)" value="@Model.MinBet">
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            IP
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm" id="Ip" name="Ip" placeholder="Direccioón IP" value="@Model.Ip">
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Status
+                        </span>
+                        <select id="cboStatus" class="form-control input-sm select" name="StatusOk">
+                            <option value="1" @(Model.StatusOk ? "selected" : "")>Activo</option>
+                            <option value="0" @(Model.StatusOk ? "" : "selected")>Inactivo</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Hora Inicio
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm only-time" id="HoraInicio" name="HoraInicio" placeholder="Hora Inicio" value="@Model.HoraInicioStr">
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon">
+                            Hora Fin
+                        </span>
+                        <input type="text" autocomplete="off" class="form-control input-sm only-time" id="HoraFin" name="HoraFin" placeholder="Hora Fin" value="@Model.HoraFinStr">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="~/Content/assets/viewsjs/ProgresivoRuleta/Configuracion/actualizar.js"></script>

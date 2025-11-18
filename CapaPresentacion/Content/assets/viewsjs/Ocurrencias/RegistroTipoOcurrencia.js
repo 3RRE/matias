@@ -1,0 +1,109 @@
+﻿$(document).ready(function() {
+    $(document).on('keypress','.UpperCase',function (event) {
+        $input=$(this);
+        setTimeout(function () {
+         $input.val($input.val().toUpperCase());
+        },0);
+    })
+    $(document).on('keypress','.Number',function (event) {
+        var regex = new RegExp("^[0-9]+$");
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (!regex.test(key)) {
+            event.preventDefault();
+            return false;
+        }
+    })
+
+
+    $('.btnListar').on('click', function (e) {
+        console.log("btnListar");
+        window.location.replace(basePath + "Ocurrencias/ListadoTipoOcurrencia");
+    });
+
+    $(document).on('click','.btnGuardar',function(e){
+        e.preventDefault();
+        $("#form_registro_tipoocurrencia").data('bootstrapValidator').resetForm();
+        let validar = $("#form_registro_tipoocurrencia").data('bootstrapValidator').validate();
+        if(validar.isValid()){
+            let dataForm = $("#form_registro_tipoocurrencia").serializeForm();
+            console.log(dataForm);
+            $.ajax({
+                url: basePath + "Ocurrencias/GuardarTipoOcurrenciaJson",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(dataForm),
+                beforeSend: function () {
+                    $.LoadingOverlay("show");
+                },
+                complete: function () {
+                    $.LoadingOverlay("hide");
+                },
+                success: function (response) {
+                    if(response.respuesta){
+                        toastr.success(response.mensaje,"Mensaje Servidor")
+                        let url=basePath + "Ocurrencias/ListadoTipoOcurrencia";
+                        setTimeout(function () {
+                            window.location.href=url;
+                        }, 2000);
+                    }else{
+                        toastr.error(response.mensaje,"Mensaje Servidor")
+                    }
+                },
+                error: function (xmlHttpRequest, textStatus, errorThrow) {
+                }
+            });
+        }
+    })
+})
+$("#form_registro_tipoocurrencia")
+.bootstrapValidator({
+    container: '#messages',
+    excluded: [':disabled', ':hidden', ':not(:visible)'],
+    // feedbackIcons: {
+    //     valid: 'icon icon-check',
+    //     invalid: 'icon icon-cross',
+    //     validating: 'icon icon-refresh'
+    // },
+    fields: {
+        Nombre: {
+            validators: {
+                notEmpty: {
+                    message: ''
+                },  
+            }
+        },
+        Descripcion: {
+            validators: {
+                notEmpty: {
+                    message: ''
+                },  
+            }
+        },
+    }
+})
+.on('success.field.bv', function (e, data) {
+    e.preventDefault();
+    var $parent = data.element.parents('.form-group');
+    // Remove the has-success class
+    $parent.removeClass('has-success');
+    // Hide the success icon
+    $parent.find('.form-control-feedback[data-bv-icon-for="' + data.field + '"]').hide();
+
+
+});
+$.fn.serializeForm = function () {
+
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function () {
+        if (o[this.name]) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+}

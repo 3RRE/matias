@@ -1,0 +1,170 @@
+﻿<div class="row" id="atributoWidget">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <!-- Título -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-adjust"></span>
+                                <span class="main-text">atributo</span>
+                            </h1>
+                        </div>
+                    </div>
+
+                    <!-- Tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#atributo_snapshot" aria-controls="snapshot" role="tab" data-toggle="tab">
+                                Snapshot
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#atributo_tendencia" aria-controls="tendencia" role="tab" data-toggle="tab">
+                                Tendencia
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#atributo_tablas" aria-controls="tablas" role="tab" data-toggle="tab">
+                                Tablas
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- Contenido Tabs -->
+                    <div class="tab-content content-sub-tabs ">
+                        <!-- SNAPSHOT -->
+                        <div role="tabpanel" class="tab-pane active sub-tabs-card" id="atributo_snapshot">
+                            <div class="row snapshot">
+
+                                <div class="col-md-4 text-center">
+                                    <p id="atributo_range_current"></p>
+                                    <div class="enc_indicador">
+                                        <div>
+                                            <h1 id="atributo_value" class="main-score-encuesta">0</h1>
+                                            <p>atributo (Recomendación)</p>
+                                        </div>
+                                        <div class="enc_respuestas">
+                                            <p id="atributo_respuestas"></p>
+                                            <p style="font-size:12px;">Respuestas</p>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div style="width:100%;height:1px;background-color:#808080;margin:10px 0"></div>
+
+                                    <div id="nps_container" style="float:left">
+                                        <p style="margin:0;">
+                                            Periodo anterior:
+                                            <span id="atributo_value_ant"></span>
+                                            <span id="atributo_icon"></span>
+                                            <span id="atributo_diff"></span>
+                                        </p>
+                                        <p id="atributo_range_prev" style="margin:0; font-size:12px; color:gray;"></p>
+                                    </div>
+
+
+                                </div>
+
+
+
+                                <!-- Barras -->
+                                <div class="col-md-8 bars-container">
+                                    <div class="snapshot-bars">
+                                        <!-- Muy Insatisfecho -->
+                                        <div class="bar-row">
+                                            <div class="bar-label">
+                                                <span id="cnt_atr_muyInsatisfecho" class="count">0</span>
+                                                <span>Muy Insatisfecho</span>
+                                            </div>
+                                            <div class="bar-container">
+                                                <div id="bar_atr_muyInsatisfecho" class="bar bar-ultra-danger" style="width: 0%">0%</div>
+                                            </div>
+                                            <div id="trend_atr_muyInsatisfecho" class="bar-trend text-muted">0%</div>
+                                        </div>
+
+                                        <!-- Insatisfecho -->
+                                        <div class="bar-row">
+                                            <div class="bar-label">
+                                                <span id="cnt_atr_insatisfecho" class="count">0</span>
+                                                <span>Insatisfecho</span>
+                                            </div>
+                                            <div class="bar-container">
+                                                <div id="bar_atr_insatisfecho" class="bar bar-danger" style="width: 0%">0%</div>
+                                            </div>
+                                            <div id="trend_atr_insatisfecho" class="bar-trend text-muted">0%</div>
+                                        </div>
+
+                                        <!-- Neutral -->
+                                        <div class="bar-row">
+                                            <div class="bar-label">
+                                                <span id="cnt_atr_neutral" class="count">0</span>
+                                                <span>Neutral</span>
+                                            </div>
+                                            <div class="bar-container">
+                                                <div id="bar_atr_neutral" class="bar bar-warning" style="width: 0%">0%</div>
+                                            </div>
+                                            <div id="trend_atr_neutral" class="bar-trend text-muted">0%</div>
+                                        </div>
+
+                                        <!-- Satisfecho -->
+                                        <div class="bar-row">
+                                            <div class="bar-label">
+                                                <span id="cnt_atr_satisfecho" class="count">0</span>
+                                                <span>Satisfecho</span>
+                                            </div>
+                                            <div class="bar-container">
+                                                <div id="bar_atr_satisfecho" class="bar bar-success" style="width: 0%">0%</div>
+                                            </div>
+                                            <div id="trend_atr_satisfecho" class="bar-trend text-muted">0%</div>
+                                        </div>
+
+                                        <!-- Muy Satisfecho -->
+                                        <div class="bar-row">
+                                            <div class="bar-label">
+                                                <span id="cnt_atr_muySatisfecho" class="count">0</span>
+                                                <span>Muy Satisfecho</span>
+                                            </div>
+                                            <div class="bar-container">
+                                                <div id="bar_atr_muySatisfecho" class="bar bar-ultra-success" style="width: 0%">0%</div>
+                                            </div>
+                                            <div id="trend_atr_muySatisfecho" class="bar-trend text-muted">0%</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TENDENCIA -->
+                        <div role="tabpanel" class="tab-pane" id="atributo_tendencia">
+                            <h4>Tendencia de atributo del personal</h4>
+                            <canvas id="atributo_chartTendencia" height="120"></canvas>
+                        </div>
+
+                        <!-- TABLAS -->
+                        <div role="tabpanel" class="tab-pane" id="atributo_tablas">
+                            <h4>Detalle de Respuestas</h4>
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Fecha</th>
+                                        <th>Muy Insatisfecho</th>
+                                        <th>Insatisfecho</th>
+                                        <th>Neutral</th>
+                                        <th>Satisfecho</th>
+                                        <th>Muy Satisfecho</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="atributo_tabla_body">
+                                    <!-- Aquí se llenarán las filas dinámicamente -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div><!-- /tab-content -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

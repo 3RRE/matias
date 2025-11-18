@@ -1,0 +1,29 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.first = ViewBag.ErrorData[0];
+    ViewBag.second = ViewBag.ErrorData[1];
+    ViewBag.third = ViewBag.ErrorData[2];
+    ViewBag.titleCode = ViewBag.ErrorData[3];
+    ViewBag.descriptionCode = ViewBag.ErrorData[4];
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="page-not-found highlight-color-yellow">
+            <div class="not-found-icons highlight-color-yellow-icon">
+                <span class="icon icon-number-@ViewBag.first icon-size-large"></span>
+                <span class="icon icon-number-@ViewBag.second icon-size-large"></span>
+                <span class="icon icon-number-@ViewBag.third icon-size-large"></span>
+            </div>
+            <div class="not-found-title">
+                @ViewBag.titleCode
+            </div>
+            <div class="not-found-description">
+                <p class="text-center">@ViewBag.descriptionCode</p>
+                <p class="text-center"> <a href="~/">Regresar al DashBoard</a></p>
+            </div>
+
+        </div>
+    </div>
+</div>
