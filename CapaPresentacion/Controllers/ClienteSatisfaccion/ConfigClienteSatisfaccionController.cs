@@ -3,10 +3,12 @@ using CapaEntidad.ClienteSatisfaccion.DTO;
 using CapaEntidad.ClienteSatisfaccion.Entidad;
 using CapaNegocio.ClienteSatisfaccion.Configuracion;
 using CapaNegocio.ClienteSatisfaccion.Flujo;
+using CapaNegocio.ClienteSatisfaccion.JefeSala;
 using CapaNegocio.ClienteSatisfaccion.Opciones;
 using CapaNegocio.ClienteSatisfaccion.Preguntas;
 using CapaNegocio.ClienteSatisfaccion.Respuesta;
 using CapaNegocio.ClienteSatisfaccion.Tablet;
+using ImageResizer.Plugins.Basic;
 using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
@@ -25,6 +27,7 @@ namespace CapaPresentacion.Controllers.ClienteSatisfaccion
         private readonly FlujoBL flujoBL;
         private readonly RespuestaBL respuestaBL;
         private readonly TabletBL tabletBL;
+        private readonly CSJefeSalaBL csJefeSalaBL;
         private CSConfiguracionBL configuracionBL = new CSConfiguracionBL();
         // GET: ConfigClienteSatisfaccion
         public ConfigClienteSatisfaccionController() {
@@ -34,6 +37,7 @@ namespace CapaPresentacion.Controllers.ClienteSatisfaccion
             respuestaBL = new RespuestaBL();
             tabletBL = new TabletBL();
             configuracionBL=new CSConfiguracionBL();
+            csJefeSalaBL = new CSJefeSalaBL();
         }
 
 
@@ -53,6 +57,10 @@ namespace CapaPresentacion.Controllers.ClienteSatisfaccion
         }
         public ActionResult ConfiguracionUsuarioView() {
             return View("~/Views/ClienteSatisfaccion/Reportes/ConfiguracionUsuarioView.cshtml");
+        }
+
+        public ActionResult JefesSalaView() {
+            return View("~/Views/ClienteSatisfaccion/JefeSala.cshtml");
         }
         #endregion
 
@@ -448,12 +456,13 @@ namespace CapaPresentacion.Controllers.ClienteSatisfaccion
                     (ini, fin) = (fin, ini);
 
                 // 2) Calcular periodo anterior con la misma cantidad de días
-                int dias = (fin - ini).Days + 1; // inclusivo
+                int dias = (fin - ini).Days + 1;
                 DateTime iniAnt = ini.AddDays(-dias);
                 DateTime finAnt = fin.AddDays(-dias);
 
                 // 3) Llamadas BL
                 var indicadorActual = respuestaBL.ObtenerListaIndicadorRespuestas( ini, fin,indicador,salaId);
+                var preguntaIndicador = respuestaBL.ObtenerPreguntaIndicador( indicador);
                 var indicadorAnterior = respuestaBL.ObtenerListaIndicadorRespuestas( iniAnt, finAnt, indicador,salaId);
                 var indicadorDiario = respuestaBL.ObtenerIndicadorDiario(ini, fin, indicador) ?? new List<IndicadorDiarioDTO>();
 
@@ -461,6 +470,7 @@ namespace CapaPresentacion.Controllers.ClienteSatisfaccion
                 var payload = new {
                     periodoActual = new { fechaInicio = ini, fechaFin = fin },
                     periodoAnterior = new { fechaInicio = iniAnt, fechaFin = finAnt },
+                    nombrePregunta = preguntaIndicador,
                     indicador = new {
                         indicadorActual,
                         indicadorAnterior,
@@ -546,29 +556,29 @@ namespace CapaPresentacion.Controllers.ClienteSatisfaccion
 
                         // === Título Principal ===
                         ws.Cells[row, 1].Value = "Reporte de Encuestas";
-                        ws.Cells[row, 1, row, 8].Merge = true;
-                        ws.Cells[row, 1, row, 8].Style.Font.Bold = true;
-                        ws.Cells[row, 1, row, 8].Style.Font.Size = 16;
-                        ws.Cells[row, 1, row, 8].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
-                        ws.Cells[row, 1, row, 8].Style.VerticalAlignment = OfficeOpenXml.Style.ExcelVerticalAlignment.Center;
-                        ws.Cells[row, 1, row, 8].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
-                        ws.Cells[row, 1, row, 8].Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.FromArgb(54, 96, 146)); // azul oscuro
-                        ws.Cells[row, 1, row, 8].Style.Font.Color.SetColor(System.Drawing.Color.White);
+                        ws.Cells[row, 1, row, 9].Merge = true;
+                        ws.Cells[row, 1, row, 9].Style.Font.Bold = true;
+                        ws.Cells[row, 1, row, 9].Style.Font.Size = 16;
+                        ws.Cells[row, 1, row, 9].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+                        ws.Cells[row, 1, row, 9].Style.VerticalAlignment = OfficeOpenXml.Style.ExcelVerticalAlignment.Center;
+                        ws.Cells[row, 1, row, 9].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                        ws.Cells[row, 1, row, 9].Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.FromArgb(54, 96, 146)); // azul oscuro
+                        ws.Cells[row, 1, row, 9].Style.Font.Color.SetColor(System.Drawing.Color.White);
 
                         row++;
 
                         // === Rango de Fechas ===
                         ws.Cells[row, 1].Value = $"Sala ID: {salaId}   |   Rango: {fechaInicio:dd/MM/yyyy} al {fechaFin:dd/MM/yyyy}";
-                        ws.Cells[row, 1, row, 8].Merge = true;
-                        ws.Cells[row, 1, row, 8].Style.Font.Italic = true;
-                        ws.Cells[row, 1, row, 8].Style.Font.Size = 12;
-                        ws.Cells[row, 1, row, 8].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
-                        ws.Cells[row, 1, row, 8].Style.VerticalAlignment = OfficeOpenXml.Style.ExcelVerticalAlignment.Center;
+                        ws.Cells[row, 1, row, 9].Merge = true;
+                        ws.Cells[row, 1, row, 9].Style.Font.Italic = true;
+                        ws.Cells[row, 1, row, 9].Style.Font.Size = 12;
+                        ws.Cells[row, 1, row, 9].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+                        ws.Cells[row, 1, row, 9].Style.VerticalAlignment = OfficeOpenXml.Style.ExcelVerticalAlignment.Center;
                         row += 2; // dejar una fila en blanco
 
                         // === Encabezados fijos ===
                         string[] headersFijos = new[] {
-                    "Nro Documento","Nombres","Teléfono","Correo",
+                    "Nro Documento","Fecha","Nombres","Código","Teléfono","Correo",
                     "Id Tablet","Nombre Tablet","Valor NPS","Clasificación NPS"
                 };
 
@@ -602,28 +612,31 @@ namespace CapaPresentacion.Controllers.ClienteSatisfaccion
                             var first = grupo.First();
 
                             ws.Cells[startDataRow, 1].Value = first.NroDocumento;
-                            ws.Cells[startDataRow, 2].Value = first.Nombre;
-                            ws.Cells[startDataRow, 3].Value = first.Celular;
-                            ws.Cells[startDataRow, 4].Value = first.Correo;
-                            ws.Cells[startDataRow, 5].Value = first.IdTablet;
-                            ws.Cells[startDataRow, 6].Value = first.NombreTablet;
+                            ws.Cells[startDataRow, 2].Style.Numberformat.Format = "dd/MM/yyyy HH:mm";
+                            ws.Cells[startDataRow, 2].Value = first.FechaRespuesta;
+                            ws.Cells[startDataRow, 3].Value = first.Nombre;
+                            ws.Cells[startDataRow, 4].Value = first.Codigo;
+                            ws.Cells[startDataRow, 5].Value = first.Celular;
+                            ws.Cells[startDataRow, 6].Value = first.Correo;
+                            ws.Cells[startDataRow, 7].Value = first.IdTablet;
+                            ws.Cells[startDataRow, 8].Value = first.NombreTablet;
 
                             // NPS
                             var nps = grupo.FirstOrDefault(r => r.Indicador == "NPS");
                             int valorNps = nps?.ValorOpcion ?? 0;
-                            ws.Cells[startDataRow, 7].Value = valorNps;
+                            ws.Cells[startDataRow, 9].Value = valorNps;
 
                             string tipoCliente = "";
-                            if(valorNps >= 4)
+                            if(valorNps > 4)
                                 tipoCliente = "Promotor";
-                            else if(valorNps == 3)
+                            else if(valorNps == 3 || valorNps==4)
                                 tipoCliente = "Pasivo";
                             else if(valorNps > 0)
                                 tipoCliente = "Detractor";
-                            ws.Cells[startDataRow, 8].Value = tipoCliente;
+                            ws.Cells[startDataRow, 10].Value = tipoCliente;
 
                             // Respuestas dinámicas
-                            col = 9;
+                            col = 11;
                             foreach(var preg in preguntas) {
                                 var respuestasPregunta = grupo.Where(r => r.IdPregunta == preg.IdPregunta).ToList();
                                 string textoCelda = "";
@@ -719,10 +732,10 @@ namespace CapaPresentacion.Controllers.ClienteSatisfaccion
 
 
         // ============================
-        // 📌 PREGUNTAS
+        // PREGUNTAS
         // ============================
 
-        // 🔹 CREAR PREGUNTA NORMAL
+        //  CREAR PREGUNTA NORMAL
         [HttpPost]
         public ActionResult CrearPreguntaNormal(PreguntaEntidad model) {
             try {
@@ -893,7 +906,7 @@ public ActionResult CrearPreguntaAtributo(PreguntaEntidad model) {
                     e.Clasificacion,
 
                     Comentarios = atributos
-                        .Where(a => a.IdRespuestaEncuesta == e.IdRespuestaEncuesta) // 👈 ahora sí funciona
+                        .Where(a => a.IdRespuestaEncuesta == e.IdRespuestaEncuesta)
                         .Select(a => new {
                             a.IdPregunta,
                             a.Pregunta,
@@ -966,6 +979,146 @@ public ActionResult CrearPreguntaAtributo(PreguntaEntidad model) {
             }
 
             return Json(new { success, displayMessage });
+        }
+
+
+
+
+        [HttpPost]
+        public ActionResult ResumenIndicadores(DateTime fechaInicio, DateTime fechaFin, int salaId) {
+            bool success = false;
+            string displayMessage;
+            //1. Obtener los indicadores con sus preguntas texto
+            //2. Por fechas y salaId TRAER DATA DE LAS RESPUESTAS DE ESA PREGUNTA
+            //3. Por pregunta indicador calcular la cantidad y el porcentaje por cada nivel
+
+            try {
+                DateTime ini = fechaInicio.Date;
+                DateTime fin = fechaFin.Date;
+                if(ini > fin)
+                    (ini, fin) = (fin, ini);
+
+                //1//
+                var indicadores = respuestaBL.ObtenerListaIndicadores();
+                var resumen = new List<object>();
+
+                foreach(var ind in indicadores) {
+
+                    //2//
+                    var respuestas = respuestaBL.ObtenerListaIndicadorRespuestas(fechaInicio, fechaFin,ind.Indicador, salaId);
+
+                    //var total = respuestas.Count();
+                    //var preguntasResumen = new List<object>();
+
+                    ////3//
+                    //int muyInsatisfecho = respuestas.Count(r => r.Valor == 1);
+                    //int insatisfecho = respuestas.Count(r => r.Valor == 2);
+                    //int neutral = respuestas.Count(r => r.Valor == 3);
+                    //int satisfecho = respuestas.Count(r => r.Valor == 4);
+                    //int muySatisfecho = respuestas.Count(r => r.Valor == 5);
+
+                    //double p1 = (muyInsatisfecho * 100.0) / total;
+                    //double p2 = (insatisfecho * 100.0) / total;
+                    //double p3 = (neutral * 100.0) / total;
+                    //double p4 = (satisfecho * 100.0) / total;
+                    //double p5 = (muySatisfecho * 100.0) / total;
+
+                    //preguntasResumen.Add(new {
+                    //    muyInsatisfecho = Math.Round(p1, 2),
+                    //    insatisfecho = Math.Round(p2, 2),
+                    //    neutral = Math.Round(p3, 2),
+                    //    satisfecho = Math.Round(p4, 2),
+                    //    muySatisfecho = Math.Round(p5, 2),
+                    //    pregunta = ind.Pregunta
+                    //});
+
+                    resumen.Add(new {
+                        indicador = ind,
+                        respuestas,
+                        pregunta = ind.Pregunta
+                    });
+
+                }
+
+
+                success = true;
+                displayMessage = "OK";
+                return Json(new { success, displayMessage, data = resumen });
+            } catch(Exception ex) {
+                displayMessage = $"Error: {ex.Message}";
+                return Json(new { success, displayMessage });
+            }
+        }
+        // ======================================================
+        // NOTIFICACIONES WHATSAPP - JEFES DE SALA CONFIGURACION
+        // ======================================================
+
+
+        public ActionResult CrearJefeSala(CSJefeSalaEntidad jefeSala) {
+            bool success = false;
+            string displayMessage = "";
+
+            try {
+                success = csJefeSalaBL.CrearJefeSala(jefeSala) > 0;
+                displayMessage = success
+                    ? "Jefe de sala creado exitosamente."
+                    : "No se pudo crear el jefe de sala.";
+            } catch(Exception ex) {
+                displayMessage = $"Error: {ex.Message}";
+            }
+
+            return Json(new { success, displayMessage });
+        }
+
+        public ActionResult EditarJefeSala(CSJefeSalaEntidad jefeSala) {
+            bool success = false;
+            string displayMessage = "";
+            jefeSala.FechaModificacion = DateTime.Now;
+            try {
+                success = csJefeSalaBL.EditarJefeSala(jefeSala);
+                displayMessage = success
+                    ? "Jefe de sala actualizado correctamente"
+                    : "No se pudo actualizar el jefe de sala";
+            } catch(Exception ex) {
+                displayMessage = $"Error: {ex.Message}";
+            }
+
+            return Json(new { success, displayMessage });
+        }
+
+        public ActionResult EliminarJefeSala(int jefeSala) {
+            bool success = false;
+            string displayMessage = "";
+
+            try {
+                success = csJefeSalaBL.EliminarJefeSala(jefeSala);
+                displayMessage = success
+                    ? "Jefe de sala actualizado correctamente"
+                    : "No se pudo actualizar el jefe de sala";
+            } catch(Exception ex) {
+                displayMessage = $"Error: {ex.Message}";
+            }
+
+            return Json(new { success, displayMessage });
+        }
+
+        public ActionResult ListarJefesSala(int idSala) {
+            bool success = false;
+            var lista = new List<CSJefeSalaEntidad>();
+            string displayMessage = "";
+
+
+            try {
+                lista = csJefeSalaBL.ListarJefesSala(idSala);
+                success = lista.Count > 0;
+                displayMessage = success
+                    ? "Lista de jefes de sala obtenidos correctamente."
+                    : "No se pudo obtener la lista de jefes de sala";
+            } catch(Exception ex) {
+                displayMessage = $"Error: {ex.Message}";
+            }
+
+            return Json(new { success, displayMessage, lista });
         }
 
         #endregion

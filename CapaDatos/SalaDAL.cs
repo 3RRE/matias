@@ -3,7 +3,9 @@ using S3k.Utilitario;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 namespace CapaDatos {
     public class SalaDAL {
@@ -234,12 +236,12 @@ where CodSala = @pCodSala";
   where Sala.estado = 1 and UsuarioSala.UsuarioId=@p0 order by nombre asc
 ";
             try {
-                using (var con = new SqlConnection(_conexion)) {
+                using(var con = new SqlConnection(_conexion)) {
                     con.Open();
                     var query = new SqlCommand(consulta, con);
                     query.Parameters.AddWithValue("@p0", ManejoNulos.ManageNullStr(UsuarioId));
-                    using (var dr = query.ExecuteReader()) {
-                        while (dr.Read()) {
+                    using(var dr = query.ExecuteReader()) {
+                        while(dr.Read()) {
                             var item = new SalaEntidad {
                                 CodSalaMaestra = ManejoNulos.ManageNullInteger(dr["CodSalaMaestra"]),
                                 CodSala = ManejoNulos.ManageNullInteger(dr["CodSala"]),
@@ -255,8 +257,7 @@ where CodSala = @pCodSala";
                 }
 
 
-            }
-            catch (Exception ex) {
+            } catch(Exception ex) {
                 Console.WriteLine(ex.Message);
             } finally {
             }
@@ -407,7 +408,7 @@ where CodSala = @pCodSala";
       ,UrlProgresivo,IpPublica,UrlCuadre,UrlPlayerTracking
       ,NombresAdministrador ,ApellidosAdministrador
       ,DniAdministrador ,FirmaAdministrador ,CodigoEstablecimiento
-      ,CodRegion,UrlBoveda,UrlSalaOnline,longitud,latitud,correo,tipo
+      ,CodRegion,UrlBoveda,UrlSalaOnline,longitud,latitud,correo,tipo,HoraApertura
   FROM Sala";
             try {
                 using(var con = new SqlConnection(_conexion)) {
@@ -453,6 +454,7 @@ where CodSala = @pCodSala";
                                 longitud = ManejoNulos.ManageNullStr(dr["longitud"]),
                                 correo = ManejoNulos.ManageNullStr(dr["correo"]),
                                 tipo = ManejoNulos.ManageNullInteger(dr["tipo"]),
+                                HoraApertura = dr["HoraApertura"] != DBNull.Value ? (TimeSpan)dr["HoraApertura"] : TimeSpan.Zero
                             };
                             lista.Add(item);
                         }
@@ -1297,5 +1299,41 @@ select salaid,nombre,cantidad, codSalaMaestra from @tempResultadoFinal";
             return lista;
         }
         #endregion
+
+
+
+        public bool ActualizarHoraApertura(long codSala, string horaApertura) {
+            bool response = false;
+
+            string query = @"
+            UPDATE dbo.Sala
+            SET
+                HoraApertura = @HoraApertura
+            WHERE
+                CodSala = @CodSala
+            ";
+
+            try {
+                using(SqlConnection connection = new SqlConnection(_conexion)) {
+                    connection.Open();
+
+                    // Convertir string a TimeSpan
+                    TimeSpan timeHoraApertura = TimeSpan.Parse(horaApertura);
+
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    command.Parameters.Add("@HoraApertura", SqlDbType.Time).Value = timeHoraApertura;
+                    command.Parameters.AddWithValue("@CodSala", codSala);
+
+                    command.ExecuteNonQuery();
+
+                    response = true;
+                }
+            } catch(Exception exception) {
+                Trace.WriteLine(exception.Message + " " + GetType().FullName + " " + DateTime.Now.ToLongDateString());
+            }
+
+            return response;
+        }
     }
 }

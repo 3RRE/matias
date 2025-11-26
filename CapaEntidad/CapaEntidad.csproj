@@ -72,6 +72,7 @@
     <Compile Include="Alertas\ContadorCorreoAlertaEntidad.cs" />
     <Compile Include="Alertas\EVT_EventoDispositivoEntidad.cs" />
     <Compile Include="Alertas\EVT_EventosOnlineEntidad.cs" />
+    <Compile Include="AnalisisDataSala\AnalisisSalaDTO.cs" />
     <Compile Include="AreaTechEntidad.cs" />
     <Compile Include="Asignacion_M_T.cs" />
     <Compile Include="AsistenciaCliente\AST_ClienteSalaEntidad.cs" />
@@ -117,6 +118,7 @@
     <Compile Include="ClienteSatisfaccion\DTO\RespuestaIndicadorDTO.cs" />
     <Compile Include="ClienteSatisfaccion\DTO\RespuestaPlanoDTO.cs" />
     <Compile Include="ClienteSatisfaccion\Entidad\CSConfiguracionEntidad.cs" />
+    <Compile Include="ClienteSatisfaccion\Entidad\CSJefeSala.cs" />
     <Compile Include="ClienteSatisfaccion\Entidad\FlujoEntidad.cs" />
     <Compile Include="ClienteSatisfaccion\Entidad\OpcionEntidad.cs" />
     <Compile Include="ClienteSatisfaccion\Entidad\PreguntaEntidad.cs" />
@@ -254,6 +256,7 @@
     <Compile Include="Progresivo\AlertaProgresivoPozoEntidad.cs" />
     <Compile Include="Progresivo\ApiOcrLeerImagenPozoResponse.cs" />
     <Compile Include="Progresivo\RegistroProgresivoEntidad.cs" />
+    <Compile Include="Publicidad\Publicidad.cs" />
     <Compile Include="Queue\EmailQueue.cs" />
     <Compile Include="Queue\WhatsAppQueue.cs" />
     <Compile Include="Reniec\Request\ConsultaPe\RequestExtranjeroConsultaPe.cs" />
@@ -271,6 +274,7 @@
     <Compile Include="Response\ResponseCodeToast.cs" />
     <Compile Include="Response\ResultEntidad.cs" />
     <Compile Include="SalaMaestraEntidad.cs" />
+    <Compile Include="Sala\SL_SalaHoraAperturaEntidad.cs" />
     <Compile Include="Sala\SL_ZonaEntidad.cs" />
     <Compile Include="AsistenciaCliente\EMC_EmpadronamientoClienteEntidad.cs" />
     <Compile Include="AsistenciaEmpleado\EmpleadoAsistencia.cs" />

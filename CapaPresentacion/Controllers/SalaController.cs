@@ -1,6 +1,10 @@
 ﻿using CapaEntidad;
 using CapaNegocio;
+using CapaPresentacion.Utilitarios;
 using Google.Apis.Auth.OAuth2;
+using Google.Apis.Drive.v3;
+using Google.Apis.Services;
+using Newtonsoft.Json;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using System;
@@ -8,80 +12,60 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Sockets;
+using System.Text;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
-using CapaPresentacion.Utilitarios;
-using Google.Apis.Drive.v3;
-using Google.Apis.Services;
-using System.Collections;
-using System.Net.Sockets;
-using System.Threading;
-using Newtonsoft.Json;
-using System.Text;
-using System.Net;
-using System.Windows.Documents;
 
-namespace CapaPresentacion.Controllers
-{
+namespace CapaPresentacion.Controllers {
     [seguridad]
-    public class SalaController : Controller
-    {
+    public class SalaController : Controller {
         private readonly SalaBL _salaBl = new SalaBL();
         private readonly UbigeoBL ubigeoBL = new UbigeoBL();
         private readonly EmpresaBL empresaBL = new EmpresaBL();
         private readonly SalaMaestraBL salaMaestraBL = new SalaMaestraBL();
-        public ActionResult SalaVista()
-        {
+        public ActionResult SalaVista() {
             return View();
         }
         public ActionResult SalaCamposProgresivoVista() {
             return View();
         }
-        public ActionResult SalaInsertarVista()
-        {
+        public ActionResult SalaInsertarVista() {
             return View();
         }
         [HttpPost]
-        public JsonResult ListadoSala()
-        {
+        public JsonResult ListadoSala() {
             var errormensaje = "";
             var lista = new List<SalaEntidad>();
-            try
-            {
-                lista = _salaBl.ListadoSala(); 
-            }
-            catch (Exception exp)
-            {
+            try {
+                lista = _salaBl.ListadoSala();
+            } catch(Exception exp) {
                 errormensaje = exp.Message + ",Llame Administrador";
-            } 
+            }
             return Json(new { data = lista.ToList(), mensaje = errormensaje }, JsonRequestBehavior.AllowGet);
         }
 
         [seguridad(false)]
         [HttpPost]
-        public JsonResult ListadoSalaActivasSinSeguridad()
-        {
+        public JsonResult ListadoSalaActivasSinSeguridad() {
             var errormensaje = "";
             var lista = new List<SalaEntidad>();
-            try
-            {
+            try {
                 lista = _salaBl.ListadoSala();
-            }
-            catch (Exception exp)
-            {
+            } catch(Exception exp) {
                 errormensaje = exp.Message + ",Llame Administrador";
             }
             return Json(new { data = lista.ToList(), mensaje = errormensaje }, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult SalaModificarVista(string id)
-        {
+        public ActionResult SalaModificarVista(string id) {
             int sub = Convert.ToInt32(id);
             var errormensaje = "";
             var sala = new SalaEntidad();
             UbigeoEntidad ubigeo = new UbigeoEntidad();
-            try
-            {
+            try {
                 sala = _salaBl.SalaListaIdJson(sub);
                 sala.Empresa = empresaBL.EmpresaListaIdJson(sala.CodEmpresa);
                 sala.RutaArchivoLogoAnt = sala.RutaArchivoLogo;
@@ -89,9 +73,7 @@ namespace CapaPresentacion.Controllers
 
                 var correos = sala.correo.Split(',').ToList();
                 sala.correo = correos[0];
-            }
-            catch (Exception ex)
-            {
+            } catch(Exception ex) {
                 Console.WriteLine(ex.Message);
                 errormensaje = "Verifique conexion,Llame Administrador";
             }
@@ -102,23 +84,18 @@ namespace CapaPresentacion.Controllers
         }
 
         [HttpPost]
-        public JsonResult SalaModificarJson(SalaEntidad sala)
-        {
+        public JsonResult SalaModificarJson(SalaEntidad sala) {
             var errormensaje = "";
             bool respuestaConsulta = false;
             HttpPostedFileBase file = Request.Files[0];
             GoogleDriveApiHelperV2 helper = new GoogleDriveApiHelperV2();
             int tamanioMaximo = 4194304;
             string extension = "";
-            try
-            {
-                if (file.ContentLength > 0 && file != null)
-                {
-                    if (file.ContentLength <= tamanioMaximo)
-                    {
+            try {
+                if(file.ContentLength > 0 && file != null) {
+                    if(file.ContentLength <= tamanioMaximo) {
                         extension = Path.GetExtension(file.FileName).ToLower();
-                        if (extension == ".jpg" || extension == ".png" || extension == ".jpeg")
-                        {
+                        if(extension == ".jpg" || extension == ".png" || extension == ".jpeg") {
 
                             try {
 
@@ -129,8 +106,7 @@ namespace CapaPresentacion.Controllers
                                 credential = helper.GetCredentials();
 
                                 // Create Drive API service.
-                                var service = new DriveService(new BaseClientService.Initializer()
-                                {
+                                var service = new DriveService(new BaseClientService.Initializer() {
                                     HttpClientInitializer = credential,
                                     ApplicationName = "Sistema IAS",
                                 });
@@ -143,8 +119,7 @@ namespace CapaPresentacion.Controllers
                                 sala.RutaArchivoLogo = fileId;
 
                                 //Eliminar imagen de drive
-                                if (sala.RutaArchivoLogoAnt!=null && sala.RutaArchivoLogoAnt != "")
-                                {
+                                if(sala.RutaArchivoLogoAnt != null && sala.RutaArchivoLogoAnt != "") {
                                     string resp = helper.DeleteFile(service, sala.RutaArchivoLogoAnt);
                                 }
 
@@ -153,15 +128,11 @@ namespace CapaPresentacion.Controllers
                                 errormensaje = "Google Drive token vencido.";
                             }
 
-                        }
-                        else
-                        {
+                        } else {
                             errormensaje = "Solo se permiten archivos .jpg, .png o jpeg.";
                         }
                     }
-                }
-                else
-                {
+                } else {
                     sala.RutaArchivoLogo = sala.RutaArchivoLogoAnt;
                 }
 
@@ -171,12 +142,10 @@ namespace CapaPresentacion.Controllers
                 correos[0] = sala.correo;
                 sala.correo = String.Join(",", correos);
 
-                respuestaConsulta = _salaBl.SalaModificarJson(sala); 
-            }
-            catch (Exception exp)
-            {
+                respuestaConsulta = _salaBl.SalaModificarJson(sala);
+            } catch(Exception exp) {
                 errormensaje = exp.Message + " ,Llame Administrador";
-            } 
+            }
             return Json(new { respuesta = respuestaConsulta, mensaje = errormensaje });
         }
         //[HttpPost]
@@ -197,18 +166,14 @@ namespace CapaPresentacion.Controllers
 
         [seguridad(false)]
         [HttpPost]
-        public ActionResult ListadoSalaPorUsuarioJson()
-        {
+        public ActionResult ListadoSalaPorUsuarioJson() {
             var usuarioId = Convert.ToInt32(Session["UsuarioID"]);
             var errormensaje = "";
             var lista = new List<SalaEntidad>();
-            try
-            {
+            try {
 
                 lista = _salaBl.ListadoSalaPorUsuario(usuarioId);
-            }
-            catch (Exception exp)
-            {
+            } catch(Exception exp) {
                 errormensaje = exp.Message + ", Llame Administrador";
             }
             return Json(new { data = lista.ToList(), mensaje = errormensaje });
@@ -216,25 +181,20 @@ namespace CapaPresentacion.Controllers
 
         [seguridad(false)]
         [HttpPost]
-        public ActionResult ListadoSalaPorUsuarioOfisisJson()
-        {
+        public ActionResult ListadoSalaPorUsuarioOfisisJson() {
             var usuarioId = Convert.ToInt32(Session["UsuarioID"]);
             var errormensaje = "";
             var lista = new List<SalaEntidad>();
-            try
-            {
+            try {
 
                 lista = _salaBl.ListadoSalaPorUsuarioOfisis(usuarioId);
-            }
-            catch (Exception exp)
-            {
+            } catch(Exception exp) {
                 errormensaje = exp.Message + ", Llame Administrador";
             }
             return Json(new { data = lista.ToList(), mensaje = errormensaje });
         }
         [HttpPost]
-        public ActionResult InsertarSalaJson(SalaEntidad sala)
-        {
+        public ActionResult InsertarSalaJson(SalaEntidad sala) {
             string mensaje = "No se pudo insertar el registro";
             bool respuesta = false;
             //int usuarioId = Convert.ToInt32(Session["UsuarioID"]);
@@ -243,18 +203,14 @@ namespace CapaPresentacion.Controllers
             string rutaInsertar = "";
             HttpPostedFileBase file = Request.Files[0];
             GoogleDriveApiHelperV2 helper = new GoogleDriveApiHelperV2();
-            try
-            {
+            try {
                 //
-                if (file.ContentLength > 0 && file != null)
-                {
-                    if (file.ContentLength <= tamanioMaximo)
-                    {
+                if(file.ContentLength > 0 && file != null) {
+                    if(file.ContentLength <= tamanioMaximo) {
                         extension = Path.GetExtension(file.FileName).ToLower();
-                        if (extension == ".jpg" || extension == ".png" || extension == ".jpeg")
-                        {
+                        if(extension == ".jpg" || extension == ".png" || extension == ".jpeg") {
 
-                            
+
                             try {
 
 
@@ -264,8 +220,7 @@ namespace CapaPresentacion.Controllers
                                 credential = helper.GetCredentials();
 
                                 // Create Drive API service.
-                                var service = new DriveService(new BaseClientService.Initializer()
-                                {
+                                var service = new DriveService(new BaseClientService.Initializer() {
                                     HttpClientInitializer = credential,
                                     ApplicationName = "Sistema IAS",
                                 });
@@ -283,15 +238,11 @@ namespace CapaPresentacion.Controllers
                                 sala.RutaArchivoLogo = null;
                                 mensaje = " - Google Drive token vencido.";
                             }
-                        }
-                        else
-                        {
+                        } else {
                             mensaje = "Solo se permiten archivos .jpg, .png o jpeg.";
                         }
                     }
-                }
-                else
-                {
+                } else {
                     //mensaje = "Debe seleccionar Un logo para la Empresa";
                     //return Json(new { respuesta, mensaje });
                     mensaje = "Sala sin logo";
@@ -302,20 +253,17 @@ namespace CapaPresentacion.Controllers
                 sala.Estado = 1;
                 sala.Activo = true;
                 respuesta = _salaBl.InsertarSalaJson(sala);
-                if (respuesta)
-                {
-                    mensaje = "Registro Insertado"+ mensaje;
+                if(respuesta) {
+                    mensaje = "Registro Insertado" + mensaje;
                 }
-            } catch(Exception ex)
-            {
+            } catch(Exception ex) {
                 mensaje += ex.Message;
             }
-            return Json(new { respuesta,mensaje });
+            return Json(new { respuesta, mensaje });
         }
         [seguridad(false)]
         [HttpPost]
-        public ActionResult GetDataSelects(UbigeoEntidad ubigeo)
-        {
+        public ActionResult GetDataSelects(UbigeoEntidad ubigeo) {
             List<UbigeoEntidad> listaUbigeo = new List<UbigeoEntidad>();
             List<EmpresaEntidad> listaEmpresas = new List<EmpresaEntidad>();
             List<SalaMaestraEntidad> listaSalasMaestras = new List<SalaMaestraEntidad>();
@@ -325,40 +273,32 @@ namespace CapaPresentacion.Controllers
             object oRespuesta = new object();
             List<UbigeoEntidad> listaProvincias = new List<UbigeoEntidad>();
             List<UbigeoEntidad> listaDistritos = new List<UbigeoEntidad>();
-            try
-            {
+            try {
 
                 listaUbigeo = ubigeoBL.ListadoDepartamento();
                 listaEmpresas = empresaBL.ListadoEmpresa();
                 listaSalasMaestras = salaMaestraBL.ObtenerTodasLasSalasMaestras();
-                if (ubigeo.CodUbigeo != 0)
-                {
+                if(ubigeo.CodUbigeo != 0) {
                     listaProvincias = ubigeoBL.GetListadoProvincia(ubigeo.DepartamentoId);
                     listaDistritos = ubigeoBL.GetListadoDistrito(ubigeo.ProvinciaId, ubigeo.DepartamentoId);
-                    oRespuesta = new
-                    {
+                    oRespuesta = new {
                         dataUbigeo = listaUbigeo,
                         dataEmpresas = listaEmpresas,
                         dataProvincias = listaProvincias,
                         dataDistritos = listaDistritos,
                         dataSalasMaestras = listaSalasMaestras
                     };
-                }
-                else
-                {
-                    oRespuesta = new
-                    {
+                } else {
+                    oRespuesta = new {
                         dataUbigeo = listaUbigeo,
                         dataEmpresas = listaEmpresas,
                         dataSalasMaestras = listaSalasMaestras
                     };
                 }
-            
+
                 respuesta = true;
                 mensaje = "Listando registros";
-            }
-            catch (Exception ex)
-            {
+            } catch(Exception ex) {
                 mensaje = ex.Message;
             }
             return Json(new { mensaje, respuesta, data = oRespuesta });
@@ -366,19 +306,15 @@ namespace CapaPresentacion.Controllers
         #region Ubigeo
         [seguridad(false)]
         [HttpPost]
-        public ActionResult GetListadoDepartamento()
-        {
+        public ActionResult GetListadoDepartamento() {
             string mensaje = "";
             bool respuesta = false;
             List<UbigeoEntidad> lista = new List<UbigeoEntidad>();
-            try
-            {
+            try {
                 lista = ubigeoBL.ListadoDepartamento();
                 mensaje = "Listando Registros";
                 respuesta = true;
-            }
-            catch (Exception ex)
-            {
+            } catch(Exception ex) {
                 mensaje = ex.Message;
                 respuesta = false;
             }
@@ -386,19 +322,15 @@ namespace CapaPresentacion.Controllers
         }
         [seguridad(false)]
         [HttpPost]
-        public ActionResult GetListadoProvincia(int DepartamentoID)
-        {
+        public ActionResult GetListadoProvincia(int DepartamentoID) {
             string mensaje = "";
             bool respuesta = false;
             List<UbigeoEntidad> lista = new List<UbigeoEntidad>();
-            try
-            {
+            try {
                 lista = ubigeoBL.GetListadoProvincia(DepartamentoID);
                 mensaje = "Listando Registros";
                 respuesta = true;
-            }
-            catch (Exception ex)
-            {
+            } catch(Exception ex) {
                 mensaje = ex.Message;
                 respuesta = false;
             }
@@ -406,19 +338,15 @@ namespace CapaPresentacion.Controllers
         }
         [seguridad(false)]
         [HttpPost]
-        public ActionResult GetListadoDistrito(int ProvinciaID, int DepartamentoID)
-        {
+        public ActionResult GetListadoDistrito(int ProvinciaID, int DepartamentoID) {
             string mensaje = "";
             bool respuesta = false;
             List<UbigeoEntidad> lista = new List<UbigeoEntidad>();
-            try
-            {
+            try {
                 lista = ubigeoBL.GetListadoDistrito(ProvinciaID, DepartamentoID);
                 mensaje = "Listando Registros";
                 respuesta = true;
-            }
-            catch (Exception ex)
-            {
+            } catch(Exception ex) {
                 mensaje = ex.Message;
                 respuesta = false;
             }
@@ -428,40 +356,31 @@ namespace CapaPresentacion.Controllers
         #endregion
         [seguridad(false)]
         [HttpPost]
-        public JsonResult ListadoTodosSala()
-        {
+        public JsonResult ListadoTodosSala() {
             var errormensaje = "";
             var lista = new List<SalaEntidad>();
-            try
-            {
+            try {
                 lista = _salaBl.ListadoTodosSala();
-            }
-            catch (Exception exp)
-            {
+            } catch(Exception exp) {
                 errormensaje = exp.Message + ",Llame Administrador";
             }
             return Json(new { data = lista.ToList(), mensaje = errormensaje }, JsonRequestBehavior.AllowGet);
         }
         [seguridad(false)]
         [HttpPost]
-        public JsonResult SalaModificarEstadoJson(SalaEntidad sala)
-        {
+        public JsonResult SalaModificarEstadoJson(SalaEntidad sala) {
             var errormensaje = "";
             bool respuesta = false;
-            try
-            {
-                respuesta= _salaBl.SalaModificarEstadoJson(sala.CodSala,sala.Estado);
-            }
-            catch (Exception exp)
-            {
+            try {
+                respuesta = _salaBl.SalaModificarEstadoJson(sala.CodSala, sala.Estado);
+            } catch(Exception exp) {
                 errormensaje = exp.Message + ",Llame Administrador";
             }
             return Json(new { respuesta, mensaje = errormensaje }, JsonRequestBehavior.AllowGet);
         }
         [seguridad(false)]
         [HttpPost]
-        public ActionResult ListadoTodosSalaExportarExcel()
-        {
+        public ActionResult ListadoTodosSalaExportarExcel() {
             string mensaje = string.Empty;
             string mensajeConsola = string.Empty;
             bool respuesta = false;
@@ -470,13 +389,11 @@ namespace CapaPresentacion.Controllers
             List<SalaEntidad> lista = new List<SalaEntidad>();
             var nombresala = new List<dynamic>();
             var salasSeleccionadas = String.Empty;
-            try
-            {
+            try {
 
 
                 lista = _salaBl.ListadoTodosSala();
-                if (lista.Count > 0)
-                {
+                if(lista.Count > 0) {
 
                     ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
                     ExcelPackage excel = new ExcelPackage();
@@ -499,8 +416,7 @@ namespace CapaPresentacion.Controllers
                     int recordIndex = 4;
                     int total = lista.Count;
 
-                    foreach (var registro in lista)
-                    {
+                    foreach(var registro in lista) {
                         workSheet.Cells[recordIndex, 2].Value = registro.CodSala;
                         workSheet.Cells[recordIndex, 3].Value = registro.Nombre;
                         workSheet.Cells[recordIndex, 4].Value = registro.NombreCorto;
@@ -551,15 +467,11 @@ namespace CapaPresentacion.Controllers
                     base64String = Convert.ToBase64String(memoryStream.ToArray());
                     mensaje = "Descargando Archivo";
                     respuesta = true;
-                }
-                else
-                {
+                } else {
                     mensaje = "No se encontraron registros";
                 }
 
-            }
-            catch (Exception exp)
-            {
+            } catch(Exception exp) {
                 respuesta = false;
                 mensaje = exp.Message + ", Llame Administrador";
             }
@@ -568,95 +480,70 @@ namespace CapaPresentacion.Controllers
 
         [seguridad(false)]
         [HttpPost]
-        public JsonResult ListadoTodosSalaJsonExterno()
-        {
+        public JsonResult ListadoTodosSalaJsonExterno() {
             bool respuesta = false;
             var errormensaje = "";
             var lista = new List<SalaEntidad>();
-            try
-            {
+            try {
                 lista = _salaBl.ListadoTodosSalaActivosOrderJson();
-                if (lista == null)
-                {
+                if(lista == null) {
                     errormensaje = "No se asigno sala a Usuario";
-                }
-                else
-                {
-                    if (lista.Count > 0)
-                    {
+                } else {
+                    if(lista.Count > 0) {
                         respuesta = true;
-                    }
-                    else
-                    {
+                    } else {
                         errormensaje = "No se asigno sala a Usuario";
                     }
                 }
-            }
-            catch (Exception exp)
-            {
+            } catch(Exception exp) {
                 errormensaje = exp.Message + ",Llame Administrador";
             }
             return Json(new { data = lista.ToList(), respuesta, mensaje = errormensaje }, JsonRequestBehavior.AllowGet);
         }
         [seguridad(false)]
         [HttpPost]
-        public ActionResult ListadoSalaPorUsuarioJsonExterno(int usuario_id)
-        {
+        public ActionResult ListadoSalaPorUsuarioJsonExterno(int usuario_id) {
             bool respuesta = false;
             var errormensaje = "";
             var lista = new List<SalaEntidad>();
-            try
-            {
+            try {
 
                 lista = _salaBl.ListadoSalaPorUsuario(usuario_id);
-                if (lista == null)
-                {
+                if(lista == null) {
                     errormensaje = "No se asigno sala a Usuario";
-                }
-                else
-                {
-                    if (lista.Count > 0)
-                    {
+                } else {
+                    if(lista.Count > 0) {
                         respuesta = true;
-                    }
-                    else
-                    {
+                    } else {
                         errormensaje = "No se asigno sala a Usuario";
                     }
                 }
-                
-            }
-            catch (Exception exp)
-            {
+
+            } catch(Exception exp) {
                 errormensaje = exp.Message + ", Llame Administrador";
             }
-            return Json(new { data = lista.ToList(),respuesta, mensaje = errormensaje });
+            return Json(new { data = lista.ToList(), respuesta, mensaje = errormensaje });
         }
         [seguridad(false)]
         [HttpPost]
-        public ActionResult GetImgPorIdDrive(string RutaArchivoLogo)
-        {
+        public ActionResult GetImgPorIdDrive(string RutaArchivoLogo) {
             GoogleDriveApiHelperV2 helper = new GoogleDriveApiHelperV2();
             bool respuesta = false;
             string mensaje = string.Empty;
             string base64String = string.Empty;
-            try
-            {
+            try {
                 //insertar en drive
                 UserCredential credential;
 
                 credential = helper.GetCredentials();
 
                 // Create Drive API service.
-                var service = new DriveService(new BaseClientService.Initializer()
-                {
+                var service = new DriveService(new BaseClientService.Initializer() {
                     HttpClientInitializer = credential,
                     ApplicationName = "Sistema IAS",
                 });
                 base64String = helper.DownloadFile(service, RutaArchivoLogo);
-            }
-            catch(Exception ex)
-            {
+            } catch(Exception ex) {
                 mensaje = ex.Message;
             }
             return Json(new { mensaje, respuesta, data = base64String });
@@ -789,7 +676,7 @@ namespace CapaPresentacion.Controllers
         public JsonResult ListadoPingIpPrivada(string ipSala) {
 
             //ipSala = "200.60.148.21";
-            ipSala = "http://"+ ipSala.Trim()+":9895";
+            ipSala = "http://" + ipSala.Trim() + ":9895";
             //ipSala = "http://localhost:9895";
 
 
@@ -847,7 +734,7 @@ namespace CapaPresentacion.Controllers
 
 
         [seguridad(false)]
-        public JsonResult ListadoDispositivos(string urlPublica,string urlPrivada, int tipo=1) {
+        public JsonResult ListadoDispositivos(string urlPublica, string urlPrivada, int tipo = 1) {
 
             urlPublica = "http://" + urlPublica.Trim() + ":9895";
             urlPrivada = "http://" + urlPrivada.Trim() + ":9895";
@@ -908,7 +795,7 @@ namespace CapaPresentacion.Controllers
 
 
         [seguridad(false)]
-        public JsonResult ListadoProgresivos(string urlPublica, string urlPrivada, int tipo=2) {
+        public JsonResult ListadoProgresivos(string urlPublica, string urlPrivada, int tipo = 2) {
 
             urlPublica = "http://" + urlPublica.Trim() + ":9895";
             urlPrivada = "http://" + urlPrivada.Trim() + ":9895";
@@ -939,7 +826,7 @@ namespace CapaPresentacion.Controllers
 
                     using(WebClient wc = new WebClient()) {
                         wc.Headers.Add("content-type", "application/json");
-                        response = wc.UploadString(ruta, "POST",parameters);
+                        response = wc.UploadString(ruta, "POST", parameters);
                     }
 
                     var settings = new JsonSerializerSettings {
@@ -985,60 +872,49 @@ namespace CapaPresentacion.Controllers
         }
 
 
-        public ActionResult ConfiguracionCorreosSala()
-        {
+        public ActionResult ConfiguracionCorreosSala() {
             return View("~/Views/Sala/ConfiguracionCorreosSala.cshtml");
         }
 
-        public JsonResult ListadoCorreosSala()
-        {
+        public JsonResult ListadoCorreosSala() {
             string errorMessage = "Lista de los correos de salas obtenidos exitosamente.";
             bool status = true;
             List<CorreoSala> listaCorreos = new List<CorreoSala>();
-            try
-            {
+            try {
                 listaCorreos = _salaBl.ObtenerCorreosSala();
-                if(listaCorreos.Count == 0)
-                {
+                if(listaCorreos.Count == 0) {
                     errorMessage = "No se encontraron registros.";
                 }
 
-            } catch(Exception exp)
-            {
+            } catch(Exception exp) {
                 errorMessage = exp.Message + ",Llame Administrador";
                 status = false;
             }
-            return Json(new { data = listaCorreos.ToList(), message=errorMessage, status }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = listaCorreos.ToList(), message = errorMessage, status }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult ObtenerdetalleCorreoSala(int salaId)
-        {
+        public JsonResult ObtenerdetalleCorreoSala(int salaId) {
             string errorMessage = "Se obtuvo el registro exitosamente.";
             bool status = true;
             CorreoSala correoSala = new CorreoSala();
-            try
-            {
+            try {
                 correoSala = _salaBl.ObtenerDetalleCorreosSala(salaId);
 
-            } catch(Exception exp)
-            {
+            } catch(Exception exp) {
                 errorMessage = exp.Message + ",Llame Administrador";
                 status = false;
             }
             return Json(new { data = correoSala, message = errorMessage, status }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult ActualizarCorreoSala(CorreoSala data)
-        {
+        public JsonResult ActualizarCorreoSala(CorreoSala data) {
             string errorMessage = "Se actualizo correo correctamente.";
             bool status = true;
-            
-            try
-            {
+
+            try {
                 status = _salaBl.ActualizarCorreoSala(data);
 
-            } catch(Exception exp)
-            {
+            } catch(Exception exp) {
                 errorMessage = exp.Message + ",Llame Administrador";
                 status = false;
             }
@@ -1077,5 +953,27 @@ namespace CapaPresentacion.Controllers
             return Json(new { data = lista.ToList(), mensaje = errormensaje });
         }
         #endregion
+
+        [HttpPost]
+        public ActionResult ActualizaHoraApertura(long salaId, string horaApertura) {
+            bool status = false;
+            string message = "No se pudo actualizar la hora de apertura";
+
+            try {
+                bool updated = _salaBl.ActualizarHoraApertura(salaId, horaApertura);
+
+                if(updated) {
+                    status = true;
+                    message = "La hora de apertura se ha actualizado";
+                }
+            } catch(Exception exception) {
+                message = exception.Message;
+            }
+
+            return Json(new {
+                status,
+                message
+            });
+        }
     }
 }

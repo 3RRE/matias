@@ -36,6 +36,7 @@ namespace CapaEntidad.ClienteSatisfaccion.DTO {
         public string NombreTablet { get; set; }
         public int Valor { get; set; }
         public string Indicador { get; set; }
+        public string Pregunta { get; set; }
     }
 
 }

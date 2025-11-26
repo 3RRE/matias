@@ -1,0 +1,152 @@
+﻿@using S3k.Utilitario
+@{
+    ViewBag.Title = "Dashboard de Hit Frequency";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-5 col-sm-5">
+                            <label>Sala:</label>
+                            <select id="selectSala" class="form-control" style="width: 100%;">
+                                <option value="SALA_01">Sala 01 (Ejemplo)</option>
+                                <option value="SALA_02">Sala 02 (Ejemplo)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-5 col-sm-5">
+                            <label>Fecha Operativa:</label>
+                            <div class="input-group date" id="datepickerFecha">
+                                <input type="text" class="form-control" readonly />
+                                <span class="input-group-addon">
+                                    <span class="fa fa-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-2">
+                            <label>&nbsp;</label>
+                            <button id="btnBuscar" class="btn btn-primary btn-block">
+                                <i class="fa fa-search"></i> Buscar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4 col-sm-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner text-center">
+                    <h4 class="text-center">Hit Frequency (%)</h4>
+                    <i class="fa fa-percent fa-3x text-primary" style="margin-bottom: 10px;"></i>
+                    <h2 id="kpiHitFrequency">-- %</h2>
+                    <p class="text-muted">Porcentaje de Hits por Juego.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner text-center">
+                    <h4 class="text-center">Total Juegos</h4>
+                    <i class="fa fa-gamepad fa-3x text-success" style="margin-bottom: 10px;"></i>
+                    <h2 id="kpiTotalJuegos">--</h2>
+                    <p class="text-muted">Total de jugadas de la sala.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner text-center">
+                    <h4 class="text-center">Total Hits</h4>
+                    <i class="fa fa-trophy fa-3x text-warning" style="margin-bottom: 10px;"></i>
+                    <h2 id="kpiTotalHits">--</h2>
+                    <p class="text-muted">Total de premios (hits) de la sala.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <h4>Hit Frequency por Máquina (Top 15)</h4>
+                    <canvas id="chartHfPorMaquina"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner" style="max-height: 450px; overflow-y: auto;">
+                    <h4>Ranking de Máquinas (HF)</h4>
+                    <table id="tableRanking" class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Cod. Máquina</th>
+                                <th><i class="fa fa-gamepad"></i> Juegos</th>
+                                <th><i class="fa fa-trophy"></i> Hits</th>
+                                <th><i class="fa fa-percent"></i> HF%</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <h4>Sustento de Hit Frequency (Log Detallado)</h4>
+                    <p id="logInstruction"><i>(Selecciona una máquina del ranking para ver el sustento)</i></p>
+                    <div id="divLogDetallado" style="max-height: 500px; overflow-y: auto; display: none;">
+                        <table id="tableLogDetallado" class="table table-bordered table-condensed">
+                            <thead>
+                                <tr class="bg-primary">
+                                    <th>Fecha y Hora</th>
+                                    <th>GamesPlayed</th>
+                                    <th>CoinOut</th>
+                                    <th>HandPay</th>
+                                    <th>Jackpot</th>
+                                    <th>CancelCredits</th>
+                                    <th>Conteo Juegos</th>
+                                    <th>Conteo Hits</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                </tbody>
+                        </table>
+                    </div>
+                    <p id="loadingLog" style="display: none;">Cargando...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/AnalisisDataSala/dashboardHitFrecuency.js?v=@fecha_archivos"></script>
+}

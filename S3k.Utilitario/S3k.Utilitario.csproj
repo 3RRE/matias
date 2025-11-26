@@ -105,6 +105,7 @@
   <ItemGroup>
     <Compile Include="ClaseEncriptacion.cs" />
     <Compile Include="clases_epecial\ClaseError.cs" />
+    <Compile Include="Encriptacion\EncriptacionHelper.cs" />
     <Compile Include="Enum\DocumentTypePlayerTracking.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\StringListExtensions.cs" />

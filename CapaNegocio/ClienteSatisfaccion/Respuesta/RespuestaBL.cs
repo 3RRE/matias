@@ -46,7 +46,9 @@ namespace CapaNegocio.ClienteSatisfaccion.Respuesta {
             return respuestaDAL.ObtenerIndicadorDiario(fechaInicio, fechaFin, indicador);
         }
 
-
+        public string ObtenerPreguntaIndicador( string indicador) {
+            return respuestaDAL.ObtenerPreguntaIndicador( indicador );
+        }
 
         public List<CsatRespuesta> ObtenerListaCSATIRespuestas(DateTime fechaInicio, DateTime fechaFin, int salaId) {
             return respuestaDAL.ObtenerListaCSATIRespuestas(fechaInicio, fechaFin, salaId);
@@ -86,6 +88,16 @@ namespace CapaNegocio.ClienteSatisfaccion.Respuesta {
 
         public int ObtenerCantidadRespuestasAtributos(int salaId, DateTime fechaInicio, DateTime fechaFin, string indicador) { 
             return respuestaDAL.ObtenerCantidadRespuestasAtributos(salaId, fechaInicio, fechaFin, indicador);
+
+        }
+
+        public List<PreguntaIndicador> ObtenerListaIndicadores() {
+            return respuestaDAL.ObtenerListaIndicadores();
+
+        }
+
+        public List<SubPreguntaNPS> ObtenerSubPreguntasNps() {
+            return respuestaDAL.ObtenerSubPreguntasNps();
 
         }
 

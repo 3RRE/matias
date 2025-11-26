@@ -51,7 +51,7 @@ function renderDashboard(data) {
     // Totales
     let total = data.length;
     let detractores = data.filter(e => e.Clasificacion === "Detractor").length;
-    let neutrales = data.filter(e => e.Clasificacion === "Neutral").length;
+    let neutrales = data.filter(e => e.Clasificacion === "Pasivo").length;
     let promotores = data.filter(e => e.Clasificacion === "Promotor").length;
 
     $("#totalRespuestas").text(total);

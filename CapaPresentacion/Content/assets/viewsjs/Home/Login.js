@@ -81,48 +81,65 @@ $(document).ready(function () {
 
         }
     }
+    //$('.btnIngresar').on('click', function (e) {
+    //    if (isDesktop) {
+    //        $.ajax({
+    //            async: false,
+    //            url: remoteService + '/api/data/getmacaddress',
+    //            type: 'GET',
+    //            dataType: 'json',
+    //            success: function (data) {
+    //                code = data;
+    //                $('#code').val(code);
+    //                if (compruebaDispositivo() === 1) {
+    //                    ingresar();
+    //                }
+    //                else {
+    //                    toastr["error"]("Punto de Trabajo no registrado", "Aviso");
+    //                }
+    //            },
+    //            error: function (request, message, error) {
+
+    //                // createSimpleAlert("Error:", "Servicio ausente.", "error");
+    //                toastr.options = {
+    //                    "closeButton": false,
+    //                    "debug": false,
+    //                    "newestOnTop": false,
+    //                    "progressBar": true,
+    //                    "positionClass": "toast-top-center",
+    //                    "preventDuplicates": false,
+    //                    "onclick": null,
+    //                    "showDuration": "8000",
+    //                    "hideDuration": "80000",
+    //                    "timeOut": "10000",
+    //                    "extendedTimeOut": "80000",
+    //                    "showEasing": "swing",
+    //                    "hideEasing": "linear",
+    //                    "showMethod": "fadeIn",
+    //                    "hideMethod": "fadeOut"
+    //                };
+    //                toastr["error"]("Servicio ausente, la descarga se iniciara en breve.", "Aviso");
+    //                document.getElementById("linkSetup").click();
+    //                $('#linkDescarga').removeClass('hidden');
+    //            }
+    //        });
+    //    }
+    //    else {
+    //        ingresar();
+    //    }
+    //});
+
     $('.btnIngresar').on('click', function (e) {
         if (isDesktop) {
-            $.ajax({
-                async: false,
-                url: remoteService + '/api/data/getmacaddress',
-                type: 'GET',
-                dataType: 'json',
-                success: function (data) {
-                    code = data;
-                    $('#code').val(code);
-                    if (compruebaDispositivo() === 1) {
-                        ingresar();
-                    }
-                    else {
-                        toastr["error"]("Punto de Trabajo no registrado", "Aviso");
-                    }
-                },
-                error: function (request, message, error) {
-
-                    // createSimpleAlert("Error:", "Servicio ausente.", "error");
-                    toastr.options = {
-                        "closeButton": false,
-                        "debug": false,
-                        "newestOnTop": false,
-                        "progressBar": true,
-                        "positionClass": "toast-top-center",
-                        "preventDuplicates": false,
-                        "onclick": null,
-                        "showDuration": "8000",
-                        "hideDuration": "80000",
-                        "timeOut": "10000",
-                        "extendedTimeOut": "80000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                    };
-                    toastr["error"]("Servicio ausente, la descarga se iniciara en breve.", "Aviso");
-                    document.getElementById("linkSetup").click();
-                    $('#linkDescarga').removeClass('hidden');
-                }
-            });
+            //generate code for hashParametro and set value from url param
+            let parametros = location.search
+            console.log("parametros", parametros)
+            let urlParametros = new URLSearchParams(parametros)
+            let hash = urlParametros.get("hash")
+            console.log("hash", hash)
+            if (compruebaDispositivoV2(hash)) {
+                ingresar();
+            }
         }
         else {
             ingresar();
@@ -150,6 +167,50 @@ $(document).ready(function () {
         });
         return activo;
     }
+
+
+    function compruebaDispositivoV2(hashParametro) {
+        var activo = 0;
+        $.ajax({
+            async: false,
+            url: basePath + '/dispositivo/ComprobarDispositivoJsonV2',
+            data: { hash: hashParametro },
+            type: 'POST',
+            dataType: 'json',
+            success: function (response) {
+                if (response.data === true) {
+                    activo = 1;
+                }
+                else {
+                    activo = 0;
+                    toastr.options = {
+                        "closeButton": false,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "8000",
+                        "hideDuration": "80000",
+                        "timeOut": "10000",
+                        "extendedTimeOut": "80000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    };
+                    toastr["error"](response.mensaje, "Aviso");
+                }
+            },
+            error: function (request, message, error) {
+                console.log({ request, message, error })
+                
+            }
+        });
+        return activo;
+    }
+
     $('#usuario').focus();
     $(".login-form input").keydown(function (e) {
         if (e.keyCode == 13) {

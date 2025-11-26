@@ -3,7 +3,7 @@
     let salaSeleccionada = null;
 
     // =============================
-    // 📌 OBTENER LISTA SALAS
+    //  OBTENER LISTA SALAS
     // =============================
     function obtenerListaSalas() {
         return $.ajax({
@@ -22,7 +22,6 @@
         $select.empty();
 
         if (Array.isArray(data) && data.length) {
-            // 👇 opción vacía para que Select2 muestre el placeholder
             $select.append(`<option></option>`);
 
             data.forEach(s =>
@@ -35,7 +34,6 @@
                 width: "100%"
             });
 
-            // ✅ ahora no se selecciona ninguna por defecto
         } else {
             $("#uiContainer").hide();
             $("#mensajeSinSalas").remove();
@@ -50,7 +48,7 @@
 
 
     // =============================
-    // 📌 CARGAR TABLETS
+    //  CARGAR TABLETS
     // =============================
     function cargarTablets() {
         if (!salaSeleccionada) return;
@@ -78,7 +76,7 @@
     }
 
     // =============================
-    // 📌 RENDER TABLE
+    //  RENDER TABLE
     // =============================
     function renderTablets() {
         $("#tablaTablets").empty();
@@ -105,13 +103,13 @@
         let id = $(this).closest("tr").data("id");
         let url = `${basePath}ClienteSatisfaccion/CSATView?salaid=${salaSeleccionada}&idtablet=${id}`;
 
-        $("#urlTabletTexto").val(url); // input para copiar
-        $("#urlTabletLink").attr("href", url); // link directo
+        $("#urlTabletTexto").val(url); 
+        $("#urlTabletLink").attr("href", url); 
 
         $("#modalUrlTablet").modal("show");
     });
     // =============================
-    // 📌 NUEVA TABLET
+    // NUEVA TABLET
     // =============================
     $("#btnNuevaTablet").click(function () {
         limpiarModal();
@@ -120,7 +118,7 @@
     });
 
     // =============================
-    // 📌 EDITAR TABLET
+    // EDITAR TABLET
     // =============================
     $(document).on("click", ".btnEditarTablet", function () {
         let id = $(this).closest("tr").data("id");
@@ -135,7 +133,7 @@
     });
 
     // =============================
-    // 📌 GUARDAR (CREAR / EDITAR)
+    //  GUARDAR (CREAR / EDITAR)
     // =============================
     $("#formTablet").submit(function (e) {
         e.preventDefault();
@@ -177,7 +175,7 @@
     });
 
     // =============================
-    // 📌 UTILS
+    //  UTILS
     // =============================
     function limpiarModal() {
         $("#idTablet").val("");
@@ -186,7 +184,7 @@
     }
 
     // =============================
-    // 📌 INIT
+    //  INIT
     // =============================
     obtenerListaSalas().then(result => {
         const lista = (result && result.data) ? result.data : [];

@@ -1,12 +1,9 @@
-﻿
-//"use strict";
+﻿//"use strict";
 empleadodatatable = "";
-
 
 function afterTableInitialization(settings, json) { 
     tableAHORA = settings.oInstance.api(); 
 }
-
 
 function ListarSalas() { 
     var url = basePath + "Sala/ListadoTodosSala";
@@ -23,9 +20,8 @@ function ListarSalas() {
             $.LoadingOverlay("hide");
         },
         success: function (response) {
-            //console.log(response.data)
             respuesta = response.data
-            console.log(respuesta)
+            console.log("LISTAR SALAS",respuesta)
             objetodatatable = $("#tableSala").DataTable({
                 "bDestroy": true,
                 "bSort": true,
@@ -111,7 +107,8 @@ function ListarSalas() {
                         data: "CodSala",
                         "bSortable": false,
                         "render": function (o) {
-                            return '<button type="button" class="btn btn-xs btn-warning btnEditar" data-id="' + o + '"><i class="glyphicon glyphicon-pencil"></i></button> ' ;
+                            return '<button type="button" class="btn btn-xs btn-warning btnEditar" data-id="' + o + '" title="Editar"><i class="glyphicon glyphicon-pencil"></i></button> ' +
+                                   '<button type="button" class="btn btn-xs btn-info btnHoraApertura" data-id="' + o + '" title="Actualizar Hora de Apertura"><i class="glyphicon glyphicon-time"></i></button>';
                         }
                     }
                 ],
@@ -119,29 +116,20 @@ function ListarSalas() {
                     $('.btnEditar').tooltip({
                         title: "Editar"
                     });
+                    $('.btnHoraApertura').tooltip({
+                        title: "Actualizar Hora de Apertura"
+                    });
                 },
 
                 "initComplete": function (settings, json) {
 
-                    // $('#btnExcel').off("click").on('click', function () {
-
-                    //     cabecerasnuevas = [];
-                    //     definicioncolumnas = [];
-                    //     var ocultar = [];
-                    //     ocultar.push("Accion");
-                    //     funcionbotonesnuevo({
-                    //         botonobjeto: this, ocultar: ocultar,
-                    //         tablaobj: objetodatatable,
-                    //         cabecerasnuevas: cabecerasnuevas,
-                    //         definicioncolumnas: definicioncolumnas
-                    //     });
-                    //     VistaAuditoria("Sala/SalavistaExcel", "EXCEL", 0, "", 3);
-                    // });
-                    
                 },
             });
             $('.btnEditar').tooltip({
                 title: "Editar"
+            });
+            $('.btnHoraApertura').tooltip({
+                title: "Actualizar Hora de Apertura"
             });
 
         },
@@ -154,7 +142,6 @@ function ListarSalas() {
         }
     });
 };
-
 
 $(document).ready(function (){
 
@@ -300,5 +287,176 @@ $(document).ready(function (){
                 }
             }
         });
+    });
+
+    $(document).on('click', '.btnHoraApertura', function (e) {
+        e.preventDefault();
+        var salaId = $(this).data("id");
+        abrirModalHoraApertura(salaId);
+    });
+});
+
+// Función para abrir modal de hora de apertura
+function abrirModalHoraApertura(salaId) {
+    // Obtener datos de la sala
+    var salaData = objetodatatable.rows().data().toArray().find(row => row.CodSala === salaId);
+    
+    if (!salaData) {
+        toastr.error("No se encontró la sala seleccionada", "Error");
+        return;
+    }
+
+    // Crear el modal dinámicamente si no existe
+    if ($('#modalHoraApertura').length === 0) {
+        var modalHtml = `
+            <div class="modal fade" id="modalHoraApertura" tabindex="-1" role="dialog" aria-labelledby="modalHoraAperturaLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content" data-border-top="multi">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="modalHoraAperturaLabel">
+                                <i class="glyphicon glyphicon-time"></i> Actualizar Hora de Apertura
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            <form id="formHoraApertura">
+                                <input type="hidden" id="hdnCodSala" name="CodSala" />
+                                <input type="hidden" id="hdnHoraApertura24" name="HoraApertura24" />
+                                
+                                <div class="form-group">
+                                    <label for="txtNombreSala">Sala:</label>
+                                    <input type="text" class="form-control input-sm" id="txtNombreSala" readonly />
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="txtHoraApertura">Hora de Apertura:</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control input-sm" id="txtHoraApertura" name="HoraApertura" />
+                                        <span class="input-group-addon input-group-icon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-primary" id="btnGuardarHoraApertura">Guardar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        $('body').append(modalHtml);
+    }
+    
+    // Llenar los datos del formulario
+    $('#hdnCodSala').val(salaData.CodSala);
+    $('#txtNombreSala').val(salaData.Nombre);
+    
+    // Formatear HoraApertura desde el objeto TimeSpan serializado
+    var horaAperturaValue = '';
+    if (salaData.HoraApertura) {
+        // Si es un objeto TimeSpan serializado (tiene propiedades Hours y Minutes)
+        if (typeof salaData.HoraApertura === 'object' && salaData.HoraApertura.Hours !== undefined) {
+            var hours = salaData.HoraApertura.Hours;
+            var minutes = salaData.HoraApertura.Minutes;
+            horaAperturaValue = hours.toString().padStart(2, '0') + ':' + minutes.toString().padStart(2, '0');
+        } 
+        // Si es una cadena en formato HH:mm:ss o HH:mm
+        else if (typeof salaData.HoraApertura === 'string') {
+            var horaStr = salaData.HoraApertura.toString();
+            if (horaStr.indexOf(':') > -1) {
+                var partes = horaStr.split(':');
+                horaAperturaValue = partes[0].padStart(2, '0') + ':' + partes[1].padStart(2, '0');
+            } else {
+                horaAperturaValue = horaStr;
+            }
+        }
+    }
+    
+    // Guardar el valor en formato 24 horas en el campo oculto
+    $('#hdnHoraApertura24').val(horaAperturaValue);
+    
+    // Limpiar el campo antes de configurar el timepicker
+    $('#txtHoraApertura').val('');
+    
+    // Destruir el timepicker si ya existe
+    if ($('#txtHoraApertura').data('DateTimePicker')) {
+        $('#txtHoraApertura').data('DateTimePicker').destroy();
+    }
+    
+    // Configurar el timepicker con formato de 12 horas (AM/PM)
+    $('#txtHoraApertura').datetimepicker({
+        pickDate: false,
+        format: 'hh:mm A',  // Formato 12 horas con AM/PM
+        defaultDate: horaAperturaValue ? moment(horaAperturaValue, 'HH:mm') : moment(),
+        pickTime: true
+    });
+    
+    // Si hay valor, establecerlo
+    if (horaAperturaValue) {
+        $('#txtHoraApertura').data('DateTimePicker').setDate(moment(horaAperturaValue, 'HH:mm'));
+    }
+    
+    // Remover event handlers previos para evitar duplicados
+    $('#txtHoraApertura').off('dp.change');
+    
+    // Evento para actualizar el campo oculto con la hora en formato 24 horas
+    $('#txtHoraApertura').on('dp.change', function(e) {
+        if (e.date) {
+            var hora24 = e.date.format('HH:mm');
+            $('#hdnHoraApertura24').val(hora24);
+        }
+    });
+    
+    // Mostrar el modal
+    $('#modalHoraApertura').modal('show');
+}
+
+// Guardar hora de apertura
+$(document).on('click', '#btnGuardarHoraApertura', function () {
+    var salaId = $('#hdnCodSala').val();
+    var horaApertura12 = $('#txtHoraApertura').val(); // Formato 12 horas para mostrar
+    var horaApertura24 = $('#hdnHoraApertura24').val(); // Formato 24 horas para guardar
+    
+    if (!horaApertura12 || !horaApertura24) {
+        toastr.warning("Debe ingresar una hora de apertura", "Advertencia");
+        return;
+    }
+    
+    $.confirm({
+        title: 'Confirmación',
+        content: '¿Está seguro de actualizar la hora de apertura a ' + horaApertura12 + '?',
+        confirmButton: 'Sí',
+        cancelButton: 'No',
+        confirm: function () {
+            $.ajax({
+                url: basePath + "Sala/ActualizaHoraApertura",
+                type: "POST",
+                data: {
+                    salaId: salaId,
+                    horaApertura: horaApertura24  // Enviar en formato 24 horas
+                },
+                beforeSend: function () {
+                    $.LoadingOverlay("show");
+                },
+                complete: function () {
+                    $.LoadingOverlay("hide");
+                },
+                success: function (response) {
+                    if (response.status) {
+                        toastr.success(response.message, "Mensaje Servidor");
+                        $('#modalHoraApertura').modal('hide');
+                        ListarSalas(); // Recargar la tabla
+                    } else {
+                        toastr.error(response.message, "Mensaje Servidor");
+                    }
+                },
+                error: function () {
+                    toastr.error("Error al actualizar la hora de apertura", "Error");
+                }
+            });
+        }
     });
 });

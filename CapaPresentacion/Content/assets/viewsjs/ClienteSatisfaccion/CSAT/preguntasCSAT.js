@@ -34,7 +34,7 @@ const animacionesMap = {
     "NO": "Content/assets/images/nps/dislike.gif"
 };
 
-// 📌 Variables globales
+//  Variables globales
 let datosUsuario = {}; // datos iniciales de pantalla
 let respuestas = [];   // respuestas de preguntas
 let preguntas = [];
@@ -43,7 +43,11 @@ let flujo = [];
 let nombreEncuestado=""
 
 $(document).ready(function () {
+    basePath = $("#BasePath").val();
 
+    $.getJSON(basePath + "/Content/assets/nps/country.json", function (json) {
+        renderSelectPaises(json);
+    });
     const $button = $("#fullscreen-toggle");
     function enterFullscreen() {
         document.documentElement.requestFullscreen();
@@ -68,7 +72,6 @@ $(document).ready(function () {
         }
     });
 
-    basePath = $("#BasePath").val();
 
     const salaId = $("#salaId").val();
     const idTablet = $("#idTablet").val();
@@ -116,29 +119,80 @@ $(document).ready(function () {
         `);
     });
    
-    // 🔹 Evento: botón comenzar
     $(document).on("click", "#btnIniciar", function () {
         const tipoDoc = $("#tipoDocumento").val();
         const numeroDoc = $("#numeroDocumento").val().trim();
         const celular = $("#celular").val().trim();
         const correo = $("#correo").val().trim();
+        const codigo = $("#cboPais").val();
         const mayorEdad = $("#chkMayorEdad").is(":checked");
 
-        // 🔹 Validaciones
+        // Validación tipo documento
         if (!tipoDoc) {
             toastr.warning("⚠️ Selecciona un tipo de documento", "Validación");
             return;
         }
         if (!numeroDoc) {
-            toastr.warning("⚠️ Ingresa el número de documento", "Validación");
+              
+            toastr.warning(" Ingresa el número de documento", "Validación");
             return;
         }
+
+
+        // ===========================================================
+        //  VALIDACIÓN DEL DOCUMENTO SEGÚN TIPO
+        // ===========================================================
+        let regexDocumento;
+
+        switch (tipoDoc) {
+            case "1": // DNI
+                regexDocumento = /^\d{8}$/;
+                break;
+
+            case "2": // Pasaporte
+                regexDocumento = /^[A-Za-z0-9]{6,12}$/;
+                break;
+
+            case "3": // Carnet de Extranjería
+                regexDocumento = /^(?:\d{8}|[A-Za-z]\d{8})$/;
+                break;
+        }
+
+        if (!regexDocumento.test(numeroDoc)) {
+            toastr.error("⚠️ Ingresa un número de documento válido", "Validación");
+            return;
+        }
+
         if (!mayorEdad) {
             toastr.warning("⚠️ Debes confirmar que eres mayor de edad y aceptar políticas de privacidad", "Validación");
             return;
         }
 
-        // 🔹 Validación de configuración cliente
+        // Validación celular
+        if (celular) {
+            if (!codigo) {
+                toastr.warning("Elija un código telefónico", "Validación");
+                return
+            }  
+            const regexCelular = /^\d{9}$/;
+            if (!regexCelular.test(celular)) {
+                toastr.error("⚠️ Ingresa un número de celular válido", "Validación");
+                return;
+            }
+        }
+
+        // Validación correo
+        if (correo) {
+            const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!regexCorreo.test(correo)) {
+                toastr.error("⚠️ Ingresa un correo válido", "Validación");
+                return;
+            }
+        }
+
+        // ===========================================================
+        // 🚨 VerificarConfiguracionCliente se ejecuta PARA TODOS
+        // ===========================================================
         $.ajax({
             url: basePath + "/ClienteSatisfaccion/VerificarConfiguracionCliente",
             type: "POST",
@@ -148,49 +202,83 @@ $(document).ready(function () {
             },
             success: function (resp) {
                 if (resp && resp.success) {
-                    // ✅ Puede responder → buscar datos del cliente
-                    obtenerDatosCliente(numeroDoc).done(function (respCliente) {
-                        if (respCliente && respCliente.respuesta && respCliente.data && respCliente.data.length > 0) {
-                            const cliente = respCliente.data[0];
 
-                            datosUsuario = {
-                                tipoDocumento: tipoDoc,
-                                numeroDocumento: numeroDoc,
-                                celular: celular,
-                                correo: correo,
-                                nombre: cliente.NombreCompleto || "",
-                                idSala: salaId,
-                                idTablet: idTablet,
-                            };
-                            nombreEncuestado = cliente.Nombre;
+                    // ===========================================================
+                    // 🚨 obtenerDatosCliente SOLO si el documento es DNI
+                    // ===========================================================
+                    if (tipoDoc === "1") {
+                        obtenerDatosCliente(numeroDoc).done(function (respCliente) {
 
-                            $("#pantalla-inicial").hide();
+                            if (respCliente && respCliente.respuesta && respCliente.data && respCliente.data.length > 0 && respCliente.data[0].Nombre != "") {
 
-                            obtenerPreguntasCSAT().done(function (response) {
-                                if (response.success && response.data) {
-                                    preguntas = response.data.Preguntas || [];
-                                    flujo = response.data.Flujo || [];
-                                    inicializarEncuesta(preguntas, flujo);
-                                    $("#formEncuesta").show();
-                                } else {
-                                    $("#formEncuesta").html("<h4 class='text-center text-danger'>❌ No se encontraron preguntas</h4>");
-                                }
-                            });
-                        } else {
-                            toastr.warning("⚠️ No se encontró un cliente con ese documento.", "Validación");
-                        }
-                    });
+                                const cliente = respCliente.data[0];
+
+                                datosUsuario = {
+                                    tipoDocumento: tipoDoc,
+                                    numeroDocumento: numeroDoc,
+                                    celular: celular,
+                                    correo: correo,
+                                    nombre: cliente.NombreCompleto || "",
+                                    idSala: salaId,
+                                    idTablet: idTablet,
+                                    codigo: codigo
+                                };
+                                nombreEncuestado = cliente.Nombre;
+
+                                iniciarEncuesta();
+                            } else {
+                                toastr.error(" No se encontró un cliente con ese DNI.", "Validación");
+                            }
+
+                        });
+
+                    } else {
+                        //  Pasaporte y Carnet → NO se busca datos del cliente
+                        datosUsuario = {
+                            tipoDocumento: tipoDoc,
+                            numeroDocumento: numeroDoc,
+                            celular: celular,
+                            correo: correo,
+                            nombre: "",
+                            idSala: salaId,
+                            idTablet: idTablet,
+                            codigo: codigo
+                        };
+
+                        iniciarEncuesta();
+                    }
+
                 } else {
-                    // 🚫 No puede responder
-                    toastr.warning(resp.displayMessage || "⚠️ No puedes responder la encuesta hoy.", "Validación");
+                    toastr.error(resp.displayMessage || "⚠️ No puedes responder la encuesta hoy.", "Validación");
                 }
             },
             error: function () {
                 toastr.error("❌ Error al verificar la configuración del cliente", "Error");
             }
         });
-
     });
+
+
+    // ===========================================================
+    //  Función para iniciar la encuesta
+    // ===========================================================
+    function iniciarEncuesta() {
+        $("#pantalla-inicial").hide();
+
+        obtenerPreguntasCSAT().done(function (response) {
+            if (response.success && response.data) {
+                preguntas = response.data.Preguntas || [];
+                flujo = response.data.Flujo || [];
+                inicializarEncuesta(preguntas, flujo);
+                $("#formEncuesta").show();
+            } else {
+                $("#formEncuesta").html("<h4 class='text-center text-danger'>❌ No se encontraron preguntas</h4>");
+            }
+        });
+    }
+
+   
+
 
 });
 
@@ -201,7 +289,7 @@ $(document).on("click", ".btn-cancelar", function () {
 $(document).on("click", "#btnConfirmarCancelar", function () {
     $("#modalCancelarEncuesta").modal("hide");
 
-    // 👉 Guardar lo que haya hasta el momento
+    //  Guardar lo que haya hasta el momento
     const encuesta = {
         IdSala: datosUsuario.idSala,
         IdTablet: datosUsuario.idTablet,
@@ -210,6 +298,7 @@ $(document).on("click", "#btnConfirmarCancelar", function () {
         Nombre: datosUsuario.nombre,
         Correo: datosUsuario.correo,
         Celular: datosUsuario.celular,
+        Codigo: datosUsuario.codigo,
         IdTipoEncuesta: 1,
     };
 
@@ -234,7 +323,7 @@ $(document).on("click", "#btnConfirmarCancelar", function () {
     });
 });
 function primeraPalabra(texto) {
-    if (!texto) return ""; // 👈 si es null, undefined o vacío retorna vacío
+    if (!texto) return ""; //  si es null, undefined o vacío retorna vacío
     return texto.trim().split(" ")[0];
 }
 
@@ -377,10 +466,10 @@ function renderPregunta(p, idx) {
 
     html += `</div>`;
 
-    // 🔹 Botón siguiente
+    //  Botón siguiente
     html += `<button type="button" class="btn btn-siguiente btn-block" >Siguiente</button>`;
 
-    // 🔹 A partir de la segunda pregunta agregamos botón cancelar
+    //  A partir de la segunda pregunta agregamos botón cancelar
     if (idx > 0) {
         html += `<button type="button" class="btn btn-link text-danger btn-cancelar" style="position: absolute;top: 0;right: 0;">✖ </button>`;
     }
@@ -396,7 +485,7 @@ function avanzarPregunta(container) {
     const ordenPregunta = container.data("orden");
     const esMulti = container.data("multi") === true || container.data("multi") === "true";
 
-    // 🔹 Selección de opciones
+    //  Selección de opciones
     const seleccionados = container.find("input:checked");
 
     if (seleccionados.length === 0) {
@@ -407,7 +496,7 @@ function avanzarPregunta(container) {
     let valido = true; 
     let respuestasTemp = []; 
 
-    // 🔹 Guardar respuestas
+    //  Guardar respuestas
     seleccionados.each(function () {
         const idOpcion = parseInt($(this).val());
         let comentario = null;
@@ -415,7 +504,7 @@ function avanzarPregunta(container) {
         if ($(this).data("comentario")) {
             comentario = $(this).closest(".opcion-wrap").find(".comentario:visible").val().trim();
             if (comentario === "") {
-                toastr.warning("⚠️ Debes escribir un comentario en la opción seleccionada");
+                toastr.warning(" Debes escribir un comentario en la opción seleccionada");
                 valido = false;
                 return false; // corta el each
             }
@@ -424,10 +513,10 @@ function avanzarPregunta(container) {
         respuestasTemp.push({ idPregunta, idOpcion, comentario });
     });
     if (!valido) {
-        return; // 🔹 detiene toda la función
+        return; //  detiene toda la función
     }
     respuestas.push(...respuestasTemp);
-    // 🔹 Buscar siguiente pregunta en flujo
+    //  Buscar siguiente pregunta en flujo
     let siguienteId = null;
     // El flujo solo aplica a preguntas de opción única
     if (!esMulti && flujo && flujo.length > 0) {
@@ -476,6 +565,7 @@ function avanzarPregunta(container) {
             Nombre: datosUsuario.nombre,
             Correo: datosUsuario.correo,
             Celular: datosUsuario.celular,
+            Codigo: datosUsuario.codigo,
             IdTipoEncuesta: 1,
         };
 
@@ -501,7 +591,7 @@ function obtenerPrimeraPalabra(texto) {
 
 // 👉 Función para lanzar confeti y recargar
 function lanzarConfetiYRecargar() {
-    // 🎆 Confetti por 5 segundos
+    //  Confetti por 5 segundos
     var duration = 5 * 1000;
     var animationEnd = Date.now() + duration;
     var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 9999 };
@@ -524,7 +614,7 @@ function lanzarConfetiYRecargar() {
         }));
     }, 250);
 
-    // 🔄 Refrescar la página después de 10 segundos
+    //  Refrescar la página después de 10 segundos
     setTimeout(() => {
         reiniciarEncuesta()
     }, 10000);
@@ -532,7 +622,6 @@ function lanzarConfetiYRecargar() {
 
 
 function reiniciarEncuesta() {
-    console.log("🔄 Reiniciando encuesta...");
     datosUsuario = {
         IdSala: datosUsuario.IdSala,
         IdTablet: datosUsuario.IdTablet,
@@ -540,7 +629,8 @@ function reiniciarEncuesta() {
         numeroDocumento: null,
         celular: null,
         correo: null,
-        nombre: null
+        nombre: null,
+        codigo:null
     };
     // 🔹 Resetear variables globales
     respuestas = [];
@@ -556,6 +646,7 @@ function reiniciarEncuesta() {
     $("#numeroDocumento").val("");
     $("#celular").val("");
     $("#correo").val("");
+    $("#cboPais").val(null).trigger("change");
     $("#chkMayorEdad").prop("checked", false);
 
     // 🔹 Volver a mostrar pantalla inicial
@@ -572,4 +663,46 @@ function reiniciarEncuesta() {
 
 
 
+
+function renderSelectPaises(data) {
+    const $select = $("#cboPais");
+    $select.empty();
+
+    if (Array.isArray(data) && data.length) {
+
+        $select.append(`<option></option>`);
+
+        data.forEach(p => {
+            $select.append(`
+                <option style="color:black" value="${p.CodigoTelefonico}" data-flag="${p.Bandera}">
+                    ${p.Nombre} (+${p.CodigoTelefonico})
+                </option>
+            `);
+        });
+
+        $select.select2({
+            placeholder: "--Seleccione país--",
+            allowClear: true,
+            width: "100%",
+            templateResult: templatePais,
+            templateSelection: templatePais,
+        });
+
+    } else {
+        toastr.warning("No hay países disponibles.");
+    }
+}
+
+function templatePais(option) {
+    if (!option.id) return option.text;
+
+    const flag = $(option.element).data("flag");
+
+    return $(`
+        <span style="display:flex; align-items:center;">
+            <img src="${flag}" width="25" height="18" style="margin-right:8px; border:1px solid #ddd;" />
+            ${option.text}
+        </span>
+    `);
+}
 

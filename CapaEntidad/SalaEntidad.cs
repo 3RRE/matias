@@ -52,6 +52,8 @@ namespace CapaEntidad {
         public String CodEmpresaOfisis { get; set; }
         public String CodSalaOfisis { get; set; }
         public String CodOfisis { get; set; }
+
+        public TimeSpan HoraApertura { get; set; }
         public SalaEntidad() {
             this.Empresa = new EmpresaEntidad();
         }
@@ -59,9 +61,9 @@ namespace CapaEntidad {
         public int PuertoServicioWebOnline { get; set; }
         public int PuertoWebOnline { get; set; }
         public string CarpetaOnline { get; set; }
-		public bool EsPrincipal { get; set; }
+        public bool EsPrincipal { get; set; }
 
-		public class PingIpPublica {
+        public class PingIpPublica {
             public int CodSalaMaestra { get; set; }
             public int CodSala { get; set; }
             public string Nombre { get; set; }

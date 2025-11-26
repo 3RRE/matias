@@ -1,0 +1,111 @@
+﻿@using S3k.Utilitario
+@{
+    ViewBag.Title = "Insertar Publicidad";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var salas = (List<CapaEntidad.SalaEntidad>)ViewBag.Salas ?? new List<CapaEntidad.SalaEntidad>();
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+}
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-picture"></span>
+                                <span class="main-text">Registro de Publicidad</span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-4 col-sm-6 col-xs-6">
+                            <button type="button" class="btn btn-success btn-sm col-md-12 col-sm-12 col-xs-12 btnListar">
+                                <span class="glyphicon glyphicon-list-alt"></span> Listado
+                            </button>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <button type="button" class="btn btn-primary btn-sm col-md-12 col-sm-12 col-xs-12 btnGuardar ">
+                                <span class="glyphicon glyphicon-floppy-disk"></span> Guardar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner " style="display:flex; justify-content:center">
+                    <div class="cardMachine" style="margin-bottom:15px;max-width:1000px">
+                        <fieldset class="sectionCard" style="padding: 10px 7px; margin-top: 10px;">
+                            <h3 style="margin-bottom:5px;margin-left:10px">Datos de la Publicidad</h3>
+                            <form id="frmRegistroPublicidad">
+                                <fieldset>
+                                    <div class="col-md-6">
+                                        <div class=" col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">Título</span>
+                                                <input type="text" class="form-control input-sm UpperCase" id="Titulo" name="Titulo" placeholder="Título">
+                                            </div>
+                                        </div>
+                                        <div class=" col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">Sala</span>
+                                                <select class="form-control input-sm codSalaAuditoria" id="cboSala" name="CodSala"></select>
+                                            </div>
+                                        </div>
+                                        <div class=" col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">Imagen</span>
+                                                <input type="file" class="form-control input-sm" id="RutaImagen" name="RutaImagen" accept="image/png, image/jpeg, image/gif">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class=" col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">Fecha Inicio</span>
+                                                <input type="date" class="form-control input-sm" id="FechaInicio" name="FechaInicio">
+                                            </div>
+                                        </div>
+                                        <div class=" col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">Fecha Fin</span>
+                                                <input type="date" class="form-control input-sm" id="FechaFin" name="FechaFin">
+                                            </div>
+                                        </div>
+                                        <div class=" col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">Orden</span>
+                                                <input type="text" class="form-control input-sm soloNumeros" id="Orden" name="Orden" value="0">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/Publicaciones/InsertarAviso.js?v=@fecha_archivos"></script>
+}

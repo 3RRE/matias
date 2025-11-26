@@ -123,7 +123,15 @@ function triggerActiveModule() {
     // COMENTARIOS NPS
     if (activeTabId === "tab-gestion-nps") {
         if (typeof ObtenerComentariosNps === "function") {
-            ObtenerComentariosNps(start, end, sala); // 👈 ya usa tablets globales
+            ObtenerComentariosNps(start, end, sala);
+        }
+        return;
+    }
+
+    //RESUMEN
+    if (activeTabId === "link-tab-resumen") {
+        if (typeof ObtenerComentariosNps === "function") {
+            resumenIndicadores(start, end, sala); 
         }
         return;
     }
@@ -136,6 +144,7 @@ function triggerActiveModule() {
     if (indicador && typeof ejecutarFuncion === "function") {
         ejecutarFuncion(indicador.toLowerCase(), start, end, sala, idPregunta);
     }
+
 }
 
 
@@ -245,11 +254,15 @@ function renderTabsAtributos(indicadores) {
     const $menu = $("#dropdown-atributos"); // tu <ul class="dropdown-menu">
     $menu.empty();
 
+    $menu.append(`
+       <li> <a href="#tab-resumen" role="tab" data-toggle="tab" id="link-tab-resumen" data-indicador="RESUMEN">Resumen</a></li>
+    `)
     indicadores.forEach((item, i) => {
         const indicador = (item.Indicador || "").toLowerCase(); // 👈 aseguramos string
         const tabId = `link-tab-${indicador}-${item.IdPregunta}`;
         tabsMap[tabId] = item.Indicador;
 
+       
         $menu.append(`
         <li>
           <a href="#tab-atributo" role="tab" data-toggle="tab"

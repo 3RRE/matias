@@ -262,3 +262,21 @@ __pycache__/
 
 # Folder Uploads
 CapaPresentacion/Uploads/
+
+# Google OAuth Credentials and Tokens - SENSITIVE FILES
+credentials.json
+credentials_secret.json
+credentials_super.json
+client_secret.json
+token.json
+token_secret.json
+DriveServiceCredentials.json
+**/Content/credentials*.json
+**/Content/token*.json
+**/Content/client_secret*.json
+**/Content/DriveServiceCredentials.json/
+
+# Web.config files that may contain sensitive data
+**/Web.config
+**/Web.Debug.config
+**/Web.Release.config

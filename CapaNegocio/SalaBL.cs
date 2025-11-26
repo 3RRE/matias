@@ -2,6 +2,7 @@
 using CapaEntidad;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -133,5 +134,11 @@ namespace CapaNegocio {
             List<SalaEntidad> listaSalas = ListadoSalaPorUsuario(usuarioId);
             return listaSalas.Count > 0 ? listaSalas.Select(x => x.CodSala).ToList() : new List<int> { -1 };
         }
+
+
+        public bool ActualizarHoraApertura(long salaId, string horaApertura) {
+            return _salaDal.ActualizarHoraApertura(salaId, horaApertura);
+        }
+
     }
 }

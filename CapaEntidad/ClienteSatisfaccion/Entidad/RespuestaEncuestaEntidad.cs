@@ -16,6 +16,7 @@ namespace CapaEntidad.ClienteSatisfaccion.Entidad {
         public string Nombre { get; set; }
         public string Correo { get; set; }
         public string Celular { get; set; }
+        public string Codigo { get; set; }
 
 
     }

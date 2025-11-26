@@ -1,0 +1,1930 @@
+[
+  {
+    "CodUbigeo": 1,
+    "PaisId": "AF",
+    "Nombre": "AFGHANISTAN",
+    "CodigoTelefonico": "93",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AF.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 3,
+    "PaisId": "AL",
+    "Nombre": "ALBANIA",
+    "CodigoTelefonico": "355",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AL.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 4,
+    "PaisId": "DZ",
+    "Nombre": "ALGERIA",
+    "CodigoTelefonico": "213",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/DZ.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 5,
+    "PaisId": "AS",
+    "Nombre": "AMERICAN SAMOA",
+    "CodigoTelefonico": "1684",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AS.svg",
+    "Continente": "OC"
+  },
+  {
+    "CodUbigeo": 6,
+    "PaisId": "AD",
+    "Nombre": "ANDORRA",
+    "CodigoTelefonico": "376",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AD.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 7,
+    "PaisId": "AO",
+    "Nombre": "ANGOLA",
+    "CodigoTelefonico": "244",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AO.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 8,
+    "PaisId": "AI",
+    "Nombre": "ANGUILLA",
+    "CodigoTelefonico": "1264",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AI.svg",
+    "Continente": "NA"
+  },
+  {
+    "CodUbigeo": 9,
+    "PaisId": "AQ",
+    "Nombre": "ANTARCTICA",
+    "CodigoTelefonico": "672",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AQ.svg",
+    "Continente": "AN"
+  },
+  {
+    "CodUbigeo": 10,
+    "PaisId": "AG",
+    "Nombre": "ANTIGUA AND BARBUDA",
+    "CodigoTelefonico": "1268",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AG.svg",
+    "Continente": "NA"
+  },
+  {
+    "CodUbigeo": 11,
+    "PaisId": "AR",
+    "Nombre": "ARGENTINA",
+    "CodigoTelefonico": "54",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AR.svg",
+    "Continente": "SA"
+  },
+  {
+    "CodUbigeo": 12,
+    "PaisId": "AM",
+    "Nombre": "ARMENIA",
+    "CodigoTelefonico": "374",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AM.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 13,
+    "PaisId": "AW",
+    "Nombre": "ARUBA",
+    "CodigoTelefonico": "297",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AW.svg",
+    "Continente": "NA"
+  },
+  {
+    "CodUbigeo": 14,
+    "PaisId": "AU",
+    "Nombre": "AUSTRALIA",
+    "CodigoTelefonico": "61",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AU.svg",
+    "Continente": "OC"
+  },
+  {
+    "CodUbigeo": 15,
+    "PaisId": "AT",
+    "Nombre": "AUSTRIA",
+    "CodigoTelefonico": "43",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AT.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 16,
+    "PaisId": "AZ",
+    "Nombre": "AZERBAIJAN",
+    "CodigoTelefonico": "994",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AZ.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 17,
+    "PaisId": "BS",
+    "Nombre": "BAHAMAS",
+    "CodigoTelefonico": "1242",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BS.svg",
+    "Continente": "NA"
+  },
+  {
+    "CodUbigeo": 18,
+    "PaisId": "BH",
+    "Nombre": "BAHRAIN",
+    "CodigoTelefonico": "973",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BH.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 19,
+    "PaisId": "BD",
+    "Nombre": "BANGLADESH",
+    "CodigoTelefonico": "880",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BD.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 20,
+    "PaisId": "BB",
+    "Nombre": "BARBADOS",
+    "CodigoTelefonico": "1246",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BB.svg",
+    "Continente": "NA"
+  },
+  {
+    "CodUbigeo": 21,
+    "PaisId": "BY",
+    "Nombre": "BELARUS",
+    "CodigoTelefonico": "375",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BY.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 22,
+    "PaisId": "BE",
+    "Nombre": "BELGIUM",
+    "CodigoTelefonico": "32",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BE.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 23,
+    "PaisId": "BZ",
+    "Nombre": "BELIZE",
+    "CodigoTelefonico": "501",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BZ.svg",
+    "Continente": "NA"
+  },
+  {
+    "CodUbigeo": 24,
+    "PaisId": "BJ",
+    "Nombre": "BENIN",
+    "CodigoTelefonico": "229",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BJ.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 25,
+    "PaisId": "BM",
+    "Nombre": "BERMUDA",
+    "CodigoTelefonico": "1441",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BM.svg",
+    "Continente": "NA"
+  },
+  {
+    "CodUbigeo": 26,
+    "PaisId": "BT",
+    "Nombre": "BHUTAN",
+    "CodigoTelefonico": "975",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BT.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 27,
+    "PaisId": "BO",
+    "Nombre": "BOLIVIA",
+    "CodigoTelefonico": "591",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BO.svg",
+    "Continente": "SA"
+  },
+  {
+    "CodUbigeo": 28,
+    "PaisId": "BA",
+    "Nombre": "BOSNIA AND HERZEGOVINA",
+    "CodigoTelefonico": "387",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BA.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 29,
+    "PaisId": "BW",
+    "Nombre": "BOTSWANA",
+    "CodigoTelefonico": "267",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BW.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 30,
+    "PaisId": "BV",
+    "Nombre": "BOUVET ISLAND",
+    "CodigoTelefonico": "47",
+    "Bandera": "",
+    "Continente": "AN"
+  },
+  {
+    "CodUbigeo": 31,
+    "PaisId": "BR",
+    "Nombre": "BRAZIL",
+    "CodigoTelefonico": "55",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BR.svg",
+    "Continente": "SA"
+  },
+  {
+    "CodUbigeo": 32,
+    "PaisId": "IO",
+    "Nombre": "BRITISH INDIAN OCEAN TERRITORY",
+    "CodigoTelefonico": "246",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IO.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 33,
+    "PaisId": "BN",
+    "Nombre": "BRUNEI DARUSSALAM",
+    "CodigoTelefonico": "673",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BN.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 34,
+    "PaisId": "BG",
+    "Nombre": "BULGARIA",
+    "CodigoTelefonico": "359",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BG.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 35,
+    "PaisId": "BF",
+    "Nombre": "BURKINA FASO",
+    "CodigoTelefonico": "226",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BF.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 36,
+    "PaisId": "BI",
+    "Nombre": "BURUNDI",
+    "CodigoTelefonico": "257",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BI.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 37,
+    "PaisId": "KH",
+    "Nombre": "CAMBODIA",
+    "CodigoTelefonico": "855",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KH.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 38,
+    "PaisId": "CM",
+    "Nombre": "CAMEROON",
+    "CodigoTelefonico": "237",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CM.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 39,
+    "PaisId": "CA",
+    "Nombre": "CANADA",
+    "CodigoTelefonico": "1",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CA.svg",
+    "Continente": "NA"
+  },
+  {
+    "CodUbigeo": 40,
+    "PaisId": "CV",
+    "Nombre": "CAPE VERDE",
+    "CodigoTelefonico": "238",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CV.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 41,
+    "PaisId": "KY",
+    "Nombre": "CAYMAN ISLANDS",
+    "CodigoTelefonico": " 345",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KY.svg",
+    "Continente": "NA"
+  },
+  {
+    "CodUbigeo": 42,
+    "PaisId": "CF",
+    "Nombre": "CENTRAL AFRICAN REPUBLIC",
+    "CodigoTelefonico": "236",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CF.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 43,
+    "PaisId": "TD",
+    "Nombre": "CHAD",
+    "CodigoTelefonico": "235",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TD.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 44,
+    "PaisId": "CL",
+    "Nombre": "CHILE",
+    "CodigoTelefonico": "56",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CL.svg",
+    "Continente": "SA"
+  },
+  {
+    "CodUbigeo": 45,
+    "PaisId": "CN",
+    "Nombre": "CHINA",
+    "CodigoTelefonico": "86",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CN.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 46,
+    "PaisId": "CX",
+    "Nombre": "CHRISTMAS ISLAND",
+    "CodigoTelefonico": "61",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CX.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 47,
+    "PaisId": "CC",
+    "Nombre": "COCOS (KEELING) ISLANDS",
+    "CodigoTelefonico": "61",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CC.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 48,
+    "PaisId": "CO",
+    "Nombre": "COLOMBIA",
+    "CodigoTelefonico": "57",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CO.svg",
+    "Continente": "SA"
+  },
+  {
+    "CodUbigeo": 49,
+    "PaisId": "KM",
+    "Nombre": "COMOROS",
+    "CodigoTelefonico": "269",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KM.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 50,
+    "PaisId": "CG",
+    "Nombre": "CONGO",
+    "CodigoTelefonico": "242",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CG.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 51,
+    "PaisId": "CK",
+    "Nombre": "COOK ISLANDS",
+    "CodigoTelefonico": "682",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CK.svg",
+    "Continente": "OC"
+  },
+  {
+    "CodUbigeo": 53,
+    "PaisId": "CR",
+    "Nombre": "COSTA RICA",
+    "CodigoTelefonico": "506",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CR.svg",
+    "Continente": "NA"
+  },
+  {
+    "CodUbigeo": 54,
+    "PaisId": "CI",
+    "Nombre": "COTE D'IVOIRE",
+    "CodigoTelefonico": "225",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CI.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 55,
+    "PaisId": "HR",
+    "Nombre": "CROATIA",
+    "CodigoTelefonico": "385",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/HR.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 56,
+    "PaisId": "CU",
+    "Nombre": "CUBA",
+    "CodigoTelefonico": "53",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CU.svg",
+    "Continente": "NA"
+  },
+  {
+    "CodUbigeo": 57,
+    "PaisId": "CY",
+    "Nombre": "CYPRUS",
+    "CodigoTelefonico": "357",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CY.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 58,
+    "PaisId": "CZ",
+    "Nombre": "CZECH REPUBLIC",
+    "CodigoTelefonico": "420",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CZ.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 59,
+    "PaisId": "DK",
+    "Nombre": "DENMARK",
+    "CodigoTelefonico": "45",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/DK.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 60,
+    "PaisId": "DJ",
+    "Nombre": "DJIBOUTI",
+    "CodigoTelefonico": "253",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/DJ.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 61,
+    "PaisId": "DM",
+    "Nombre": "DOMINICA",
+    "CodigoTelefonico": "1767",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/DM.svg",
+    "Continente": "NA"
+  },
+  {
+    "CodUbigeo": 62,
+    "PaisId": "DO",
+    "Nombre": "DOMINICAN REPUBLIC",
+    "CodigoTelefonico": "1849",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/DO.svg",
+    "Continente": "NA"
+  },
+  {
+    "CodUbigeo": 63,
+    "PaisId": "TP",
+    "Nombre": "EAST TIMOR",
+    "CodigoTelefonico": "670",
+    "Bandera": "",
+    "Continente": ""
+  },
+  {
+    "CodUbigeo": 64,
+    "PaisId": "EC",
+    "Nombre": "ECUADOR",
+    "CodigoTelefonico": "593",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/EC.svg",
+    "Continente": "SA"
+  },
+  {
+    "CodUbigeo": 65,
+    "PaisId": "EG",
+    "Nombre": "EGYPT",
+    "CodigoTelefonico": "20",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/EG.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 66,
+    "PaisId": "SV",
+    "Nombre": "EL SALVADOR",
+    "CodigoTelefonico": "503",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SV.svg",
+    "Continente": "NA"
+  },
+  {
+    "CodUbigeo": 67,
+    "PaisId": "GQ",
+    "Nombre": "EQUATORIAL GUINEA",
+    "CodigoTelefonico": "240",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GQ.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 68,
+    "PaisId": "ER",
+    "Nombre": "ERITREA",
+    "CodigoTelefonico": "291",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ER.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 70,
+    "PaisId": "EE",
+    "Nombre": "ESTONIA",
+    "CodigoTelefonico": "372",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/EE.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 71,
+    "PaisId": "ET",
+    "Nombre": "ETHIOPIA",
+    "CodigoTelefonico": "251",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ET.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 72,
+    "PaisId": "FK",
+    "Nombre": "FALKLAND ISLANDS (MALVINAS)",
+    "CodigoTelefonico": "500",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/FK.svg",
+    "Continente": "SA"
+  },
+  {
+    "CodUbigeo": 73,
+    "PaisId": "FO",
+    "Nombre": "FAROE ISLANDS",
+    "CodigoTelefonico": "298",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/FO.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 74,
+    "PaisId": "FJ",
+    "Nombre": "FIJI",
+    "CodigoTelefonico": "679",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/FJ.svg",
+    "Continente": "OC"
+  },
+  {
+    "CodUbigeo": 75,
+    "PaisId": "FI",
+    "Nombre": "FINLAND",
+    "CodigoTelefonico": "358",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/FI.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 76,
+    "PaisId": "FR",
+    "Nombre": "FRANCE",
+    "CodigoTelefonico": "33",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/FR.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 77,
+    "PaisId": "GF",
+    "Nombre": "FRENCH GUIANA",
+    "CodigoTelefonico": "594",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GF.svg",
+    "Continente": "SA"
+  },
+  {
+    "CodUbigeo": 78,
+    "PaisId": "PF",
+    "Nombre": "FRENCH POLYNESIA",
+    "CodigoTelefonico": "689",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PF.svg",
+    "Continente": "OC"
+  },
+  {
+    "CodUbigeo": 79,
+    "PaisId": "TF",
+    "Nombre": "FRENCH SOUTHERN TERRITORIES",
+    "CodigoTelefonico": "262",
+    "Bandera": "",
+    "Continente": "AN"
+  },
+  {
+    "CodUbigeo": 80,
+    "PaisId": "GA",
+    "Nombre": "GABON",
+    "CodigoTelefonico": "241",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GA.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 81,
+    "PaisId": "GM",
+    "Nombre": "GAMBIA",
+    "CodigoTelefonico": "220",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GM.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 83,
+    "PaisId": "GE",
+    "Nombre": "GEORGIA",
+    "CodigoTelefonico": "995",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GE.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 84,
+    "PaisId": "DE",
+    "Nombre": "GERMANY",
+    "CodigoTelefonico": "49",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/DE.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 85,
+    "PaisId": "GH",
+    "Nombre": "GHANA",
+    "CodigoTelefonico": "233",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GH.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 86,
+    "PaisId": "GI",
+    "Nombre": "GIBRALTAR",
+    "CodigoTelefonico": "350",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GI.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 87,
+    "PaisId": "GR",
+    "Nombre": "GREECE",
+    "CodigoTelefonico": "30",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GR.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 88,
+    "PaisId": "GL",
+    "Nombre": "GREENLAND",
+    "CodigoTelefonico": "299",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GL.svg",
+    "Continente": "NA"
+  },
+  {
+    "CodUbigeo": 89,
+    "PaisId": "GD",
+    "Nombre": "GRENADA",
+    "CodigoTelefonico": "1473",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GD.svg",
+    "Continente": "NA"
+  },
+  {
+    "CodUbigeo": 90,
+    "PaisId": "GP",
+    "Nombre": "GUADELOUPE",
+    "CodigoTelefonico": "590",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GP.svg",
+    "Continente": "NA"
+  },
+  {
+    "CodUbigeo": 91,
+    "PaisId": "GU",
+    "Nombre": "GUAM",
+    "CodigoTelefonico": "1671",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GU.svg",
+    "Continente": "OC"
+  },
+  {
+    "CodUbigeo": 92,
+    "PaisId": "GT",
+    "Nombre": "GUATEMALA",
+    "CodigoTelefonico": "502",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GT.svg",
+    "Continente": "NA"
+  },
+  {
+    "CodUbigeo": 93,
+    "PaisId": "GN",
+    "Nombre": "GUINEA",
+    "CodigoTelefonico": "224",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GN.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 94,
+    "PaisId": "GW",
+    "Nombre": "GUINEA-BISSAU",
+    "CodigoTelefonico": "245",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GW.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 95,
+    "PaisId": "GY",
+    "Nombre": "GUYANA",
+    "CodigoTelefonico": "595",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GY.svg",
+    "Continente": "SA"
+  },
+  {
+    "CodUbigeo": 96,
+    "PaisId": "HT",
+    "Nombre": "HAITI",
+    "CodigoTelefonico": "509",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/HT.svg",
+    "Continente": "NA"
+  },
+  {
+    "CodUbigeo": 97,
+    "PaisId": "HM",
+    "Nombre": "HEARD AND MC DONALD ISLANDS",
+    "CodigoTelefonico": "",
+    "Bandera": "",
+    "Continente": "AN"
+  },
+  {
+    "CodUbigeo": 98,
+    "PaisId": "HN",
+    "Nombre": "HONDURAS",
+    "CodigoTelefonico": "504",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/HN.svg",
+    "Continente": "NA"
+  },
+  {
+    "CodUbigeo": 99,
+    "PaisId": "HK",
+    "Nombre": "HONG KONG",
+    "CodigoTelefonico": "852",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/HK.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 100,
+    "PaisId": "HU",
+    "Nombre": "HUNGARY",
+    "CodigoTelefonico": "36",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/HU.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 101,
+    "PaisId": "IS",
+    "Nombre": "ICELAND",
+    "CodigoTelefonico": "354",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IS.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 102,
+    "PaisId": "IN",
+    "Nombre": "INDIA",
+    "CodigoTelefonico": "91",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IN.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 103,
+    "PaisId": "ID",
+    "Nombre": "INDONESIA",
+    "CodigoTelefonico": "62",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ID.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 104,
+    "PaisId": "XZ",
+    "Nombre": "INTERNACIONAL ZONE",
+    "CodigoTelefonico": "",
+    "Bandera": "",
+    "Continente": ""
+  },
+  {
+    "CodUbigeo": 105,
+    "PaisId": "IR",
+    "Nombre": "IRAN (ISLAMIC REPUBLIC OF)",
+    "CodigoTelefonico": "98",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IR.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 106,
+    "PaisId": "IQ",
+    "Nombre": "IRAQ",
+    "CodigoTelefonico": "964",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IQ.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 107,
+    "PaisId": "IE",
+    "Nombre": "IRELAND",
+    "CodigoTelefonico": "353",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IE.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 108,
+    "PaisId": "IL",
+    "Nombre": "ISRAEL",
+    "CodigoTelefonico": "972",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IL.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 109,
+    "PaisId": "IT",
+    "Nombre": "ITALY",
+    "CodigoTelefonico": "39",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IT.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 110,
+    "PaisId": "JM",
+    "Nombre": "JAMAICA",
+    "CodigoTelefonico": "1876",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/JM.svg",
+    "Continente": "NA"
+  },
+  {
+    "CodUbigeo": 111,
+    "PaisId": "JP",
+    "Nombre": "JAPAN",
+    "CodigoTelefonico": "81",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/JP.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 112,
+    "PaisId": "JO",
+    "Nombre": "JORDAN",
+    "CodigoTelefonico": "962",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/JO.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 113,
+    "PaisId": "KZ",
+    "Nombre": "KAZAKHSTAN",
+    "CodigoTelefonico": "77",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KZ.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 114,
+    "PaisId": "KE",
+    "Nombre": "KENYA",
+    "CodigoTelefonico": "254",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KE.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 115,
+    "PaisId": "KI",
+    "Nombre": "KIRIBATI",
+    "CodigoTelefonico": "686",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KI.svg",
+    "Continente": "OC"
+  },
+  {
+    "CodUbigeo": 116,
+    "PaisId": "KP",
+    "Nombre": "KOREA, DEMOCRATIC PEOPLE'S REP. OF",
+    "CodigoTelefonico": "850",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KP.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 117,
+    "PaisId": "KR",
+    "Nombre": "KOREA, REPUBLIC OF",
+    "CodigoTelefonico": "82",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KR.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 118,
+    "PaisId": "KW",
+    "Nombre": "KUWAIT",
+    "CodigoTelefonico": "965",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KW.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 119,
+    "PaisId": "KG",
+    "Nombre": "KYRGYSTAN",
+    "CodigoTelefonico": "996",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KG.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 120,
+    "PaisId": "LA",
+    "Nombre": "LAO PEOPLE'S DEMOCRATIC REPUBLIC",
+    "CodigoTelefonico": "856",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LA.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 121,
+    "PaisId": "LV",
+    "Nombre": "LATVIA",
+    "CodigoTelefonico": "371",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LV.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 122,
+    "PaisId": "LB",
+    "Nombre": "LEBANON",
+    "CodigoTelefonico": "961",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LB.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 123,
+    "PaisId": "LS",
+    "Nombre": "LESOTHO",
+    "CodigoTelefonico": "266",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LS.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 124,
+    "PaisId": "LR",
+    "Nombre": "LIBERIA",
+    "CodigoTelefonico": "231",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LR.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 125,
+    "PaisId": "LY",
+    "Nombre": "LIBYAN ARAB JAMAHIRIYA",
+    "CodigoTelefonico": "218",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LY.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 126,
+    "PaisId": "LI",
+    "Nombre": "LIECHTENSTEIN",
+    "CodigoTelefonico": "423",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LI.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 127,
+    "PaisId": "LT",
+    "Nombre": "LITHUANIA",
+    "CodigoTelefonico": "370",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LT.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 128,
+    "PaisId": "LU",
+    "Nombre": "LUXEMBOURG",
+    "CodigoTelefonico": "352",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LU.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 129,
+    "PaisId": "MO",
+    "Nombre": "MACAU",
+    "CodigoTelefonico": "853",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MO.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 130,
+    "PaisId": "MK",
+    "Nombre": "MACEDONIA F.Y.R.",
+    "CodigoTelefonico": "389",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MK.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 131,
+    "PaisId": "MG",
+    "Nombre": "MADAGASCAR",
+    "CodigoTelefonico": "261",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MG.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 132,
+    "PaisId": "MW",
+    "Nombre": "MALAWI",
+    "CodigoTelefonico": "265",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MW.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 133,
+    "PaisId": "MY",
+    "Nombre": "MALAYSIA",
+    "CodigoTelefonico": "60",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MY.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 134,
+    "PaisId": "MV",
+    "Nombre": "MALDIVES",
+    "CodigoTelefonico": "960",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MV.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 135,
+    "PaisId": "ML",
+    "Nombre": "MALI",
+    "CodigoTelefonico": "223",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ML.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 136,
+    "PaisId": "MT",
+    "Nombre": "MALTA",
+    "CodigoTelefonico": "356",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MT.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 137,
+    "PaisId": "MH",
+    "Nombre": "MARSHALL ISLANDS",
+    "CodigoTelefonico": "692",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MH.svg",
+    "Continente": "OC"
+  },
+  {
+    "CodUbigeo": 138,
+    "PaisId": "MQ",
+    "Nombre": "MARTINIQUE",
+    "CodigoTelefonico": "596",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MQ.svg",
+    "Continente": "NA"
+  },
+  {
+    "CodUbigeo": 139,
+    "PaisId": "MR",
+    "Nombre": "MAURITANIA",
+    "CodigoTelefonico": "222",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MR.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 140,
+    "PaisId": "MU",
+    "Nombre": "MAURITIUS",
+    "CodigoTelefonico": "230",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MU.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 141,
+    "PaisId": "YT",
+    "Nombre": "MAYOTTE",
+    "CodigoTelefonico": "262",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/YT.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 142,
+    "PaisId": "MX",
+    "Nombre": "MEXICO",
+    "CodigoTelefonico": "52",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MX.svg",
+    "Continente": "NA"
+  },
+  {
+    "CodUbigeo": 143,
+    "PaisId": "FM",
+    "Nombre": "MICRONESIA",
+    "CodigoTelefonico": "691",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/FM.svg",
+    "Continente": "OC"
+  },
+  {
+    "CodUbigeo": 144,
+    "PaisId": "MD",
+    "Nombre": "MOLDOVA",
+    "CodigoTelefonico": "373",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MD.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 145,
+    "PaisId": "MC",
+    "Nombre": "MONACO",
+    "CodigoTelefonico": "377",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MC.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 146,
+    "PaisId": "MN",
+    "Nombre": "MONGOLIA",
+    "CodigoTelefonico": "976",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MN.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 147,
+    "PaisId": "MS",
+    "Nombre": "MONTSERRAT",
+    "CodigoTelefonico": "1664",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MS.svg",
+    "Continente": "NA"
+  },
+  {
+    "CodUbigeo": 148,
+    "PaisId": "MA",
+    "Nombre": "MOROCCO",
+    "CodigoTelefonico": "212",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MA.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 149,
+    "PaisId": "MZ",
+    "Nombre": "MOZAMBIQUE",
+    "CodigoTelefonico": "258",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MZ.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 150,
+    "PaisId": "MM",
+    "Nombre": "MYANMAR",
+    "CodigoTelefonico": "95",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MM.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 151,
+    "PaisId": "NA",
+    "Nombre": "NAMIBIA",
+    "CodigoTelefonico": "264",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NA.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 152,
+    "PaisId": "NR",
+    "Nombre": "NAURU",
+    "CodigoTelefonico": "674",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NR.svg",
+    "Continente": "OC"
+  },
+  {
+    "CodUbigeo": 153,
+    "PaisId": "NP",
+    "Nombre": "NEPAL",
+    "CodigoTelefonico": "977",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NP.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 154,
+    "PaisId": "NL",
+    "Nombre": "NETHERLANDS",
+    "CodigoTelefonico": "31",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NL.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 155,
+    "PaisId": "AN",
+    "Nombre": "NETHERLANDS ANTILLES",
+    "CodigoTelefonico": "599",
+    "Bandera": "",
+    "Continente": ""
+  },
+  {
+    "CodUbigeo": 156,
+    "PaisId": "NT",
+    "Nombre": "NEUTRAL ZONE",
+    "CodigoTelefonico": "",
+    "Bandera": "",
+    "Continente": ""
+  },
+  {
+    "CodUbigeo": 157,
+    "PaisId": "NC",
+    "Nombre": "NEW CALEDONIA",
+    "CodigoTelefonico": "687",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NC.svg",
+    "Continente": "OC"
+  },
+  {
+    "CodUbigeo": 158,
+    "PaisId": "NZ",
+    "Nombre": "NEW ZEALAND",
+    "CodigoTelefonico": "64",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NZ.svg",
+    "Continente": "OC"
+  },
+  {
+    "CodUbigeo": 159,
+    "PaisId": "NI",
+    "Nombre": "NICARAGUA",
+    "CodigoTelefonico": "505",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NI.svg",
+    "Continente": "NA"
+  },
+  {
+    "CodUbigeo": 160,
+    "PaisId": "NE",
+    "Nombre": "NIGER",
+    "CodigoTelefonico": "227",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NE.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 161,
+    "PaisId": "NG",
+    "Nombre": "NIGERIA",
+    "CodigoTelefonico": "234",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NG.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 162,
+    "PaisId": "NU",
+    "Nombre": "NIUE",
+    "CodigoTelefonico": "683",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NU.svg",
+    "Continente": "OC"
+  },
+  {
+    "CodUbigeo": 164,
+    "PaisId": "NF",
+    "Nombre": "NORFOLK ISLAND",
+    "CodigoTelefonico": "672",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NF.svg",
+    "Continente": "OC"
+  },
+  {
+    "CodUbigeo": 165,
+    "PaisId": "MP",
+    "Nombre": "NORTHERN MARIANA ISLANDS",
+    "CodigoTelefonico": "1670",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MP.svg",
+    "Continente": "OC"
+  },
+  {
+    "CodUbigeo": 166,
+    "PaisId": "NO",
+    "Nombre": "NORWAY",
+    "CodigoTelefonico": "47",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NO.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 167,
+    "PaisId": "OM",
+    "Nombre": "OMAN",
+    "CodigoTelefonico": "968",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/OM.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 169,
+    "PaisId": "PK",
+    "Nombre": "PAKISTAN",
+    "CodigoTelefonico": "92",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PK.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 170,
+    "PaisId": "PW",
+    "Nombre": "PALAU",
+    "CodigoTelefonico": "680",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PW.svg",
+    "Continente": "OC"
+  },
+  {
+    "CodUbigeo": 171,
+    "PaisId": "PA",
+    "Nombre": "PANAMA",
+    "CodigoTelefonico": "507",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PA.svg",
+    "Continente": "NA"
+  },
+  {
+    "CodUbigeo": 172,
+    "PaisId": "PG",
+    "Nombre": "PAPUA NEW GUINEA",
+    "CodigoTelefonico": "675",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PG.svg",
+    "Continente": "OC"
+  },
+  {
+    "CodUbigeo": 173,
+    "PaisId": "PY",
+    "Nombre": "PARAGUAY",
+    "CodigoTelefonico": "595",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PY.svg",
+    "Continente": "SA"
+  },
+  {
+    "CodUbigeo": 174,
+    "PaisId": "PE",
+    "Nombre": "PERU",
+    "CodigoTelefonico": "51",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PE.svg",
+    "Continente": "SA"
+  },
+  {
+    "CodUbigeo": 175,
+    "PaisId": "PH",
+    "Nombre": "PHILIPPINES",
+    "CodigoTelefonico": "63",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PH.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 176,
+    "PaisId": "PN",
+    "Nombre": "PITCAIRN",
+    "CodigoTelefonico": "872",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PN.svg",
+    "Continente": "OC"
+  },
+  {
+    "CodUbigeo": 177,
+    "PaisId": "PL",
+    "Nombre": "POLAND",
+    "CodigoTelefonico": "48",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PL.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 178,
+    "PaisId": "PT",
+    "Nombre": "PORTUGAL",
+    "CodigoTelefonico": "351",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PT.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 179,
+    "PaisId": "PR",
+    "Nombre": "PUERTO RICO",
+    "CodigoTelefonico": "1939",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PR.svg",
+    "Continente": "NA"
+  },
+  {
+    "CodUbigeo": 180,
+    "PaisId": "QA",
+    "Nombre": "QATAR",
+    "CodigoTelefonico": "974",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/QA.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 181,
+    "PaisId": "RE",
+    "Nombre": "REUNION",
+    "CodigoTelefonico": "262",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/RE.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 182,
+    "PaisId": "RO",
+    "Nombre": "ROMANIA",
+    "CodigoTelefonico": "40",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/RO.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 183,
+    "PaisId": "RU",
+    "Nombre": "RUSSIAN FEDERATION",
+    "CodigoTelefonico": "7",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/RU.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 184,
+    "PaisId": "RW",
+    "Nombre": "RWANDA",
+    "CodigoTelefonico": "250",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/RW.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 185,
+    "PaisId": "SH",
+    "Nombre": "SAINT HELENA",
+    "CodigoTelefonico": "290",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SH.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 186,
+    "PaisId": "KN",
+    "Nombre": "SAINT KITTS AND NEVIS",
+    "CodigoTelefonico": "1869",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KN.svg",
+    "Continente": "NA"
+  },
+  {
+    "CodUbigeo": 187,
+    "PaisId": "LC",
+    "Nombre": "SAINT LUCIA",
+    "CodigoTelefonico": "1758",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LC.svg",
+    "Continente": "NA"
+  },
+  {
+    "CodUbigeo": 188,
+    "PaisId": "PM",
+    "Nombre": "SAINT PIERRE AND MIQUELON",
+    "CodigoTelefonico": "508",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PM.svg",
+    "Continente": "NA"
+  },
+  {
+    "CodUbigeo": 189,
+    "PaisId": "VC",
+    "Nombre": "SAINT VINCENT AND THE GRENADINES",
+    "CodigoTelefonico": "1784",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/VC.svg",
+    "Continente": "NA"
+  },
+  {
+    "CodUbigeo": 190,
+    "PaisId": "WS",
+    "Nombre": "SAMOA",
+    "CodigoTelefonico": "685",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/WS.svg",
+    "Continente": "OC"
+  },
+  {
+    "CodUbigeo": 191,
+    "PaisId": "SM",
+    "Nombre": "SAN MARINO",
+    "CodigoTelefonico": "378",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SM.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 192,
+    "PaisId": "ST",
+    "Nombre": "SAO TOME AND PRINCIPE",
+    "CodigoTelefonico": "239",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ST.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 193,
+    "PaisId": "SA",
+    "Nombre": "SAUDI ARABIA",
+    "CodigoTelefonico": "966",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SA.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 194,
+    "PaisId": "SN",
+    "Nombre": "SENEGAL",
+    "CodigoTelefonico": "221",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SN.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 195,
+    "PaisId": "CS",
+    "Nombre": "SERBIA AND MONTENEGRO",
+    "CodigoTelefonico": "381",
+    "Bandera": "",
+    "Continente": ""
+  },
+  {
+    "CodUbigeo": 196,
+    "PaisId": "SC",
+    "Nombre": "SEYCHELLES",
+    "CodigoTelefonico": "248",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SC.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 197,
+    "PaisId": "SL",
+    "Nombre": "SIERRA LEONE",
+    "CodigoTelefonico": "232",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SL.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 198,
+    "PaisId": "SG",
+    "Nombre": "SINGAPORE",
+    "CodigoTelefonico": "65",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SG.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 199,
+    "PaisId": "SK",
+    "Nombre": "SLOVAKIA",
+    "CodigoTelefonico": "421",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SK.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 200,
+    "PaisId": "SI",
+    "Nombre": "SLOVENIA",
+    "CodigoTelefonico": "386",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SI.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 201,
+    "PaisId": "SB",
+    "Nombre": "SOLOMON ISLANDS",
+    "CodigoTelefonico": "677",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SB.svg",
+    "Continente": "OC"
+  },
+  {
+    "CodUbigeo": 202,
+    "PaisId": "SO",
+    "Nombre": "SOMALIA",
+    "CodigoTelefonico": "252",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SO.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 203,
+    "PaisId": "ZA",
+    "Nombre": "SOUTH AFRICA",
+    "CodigoTelefonico": "27",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ZA.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 204,
+    "PaisId": "GS",
+    "Nombre": "SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS",
+    "CodigoTelefonico": "500",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GS.svg",
+    "Continente": "AN"
+  },
+  {
+    "CodUbigeo": 205,
+    "PaisId": "ES",
+    "Nombre": "SPAIN",
+    "CodigoTelefonico": "34",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ES.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 206,
+    "PaisId": "LK",
+    "Nombre": "SRI LANKA",
+    "CodigoTelefonico": "94",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LK.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 207,
+    "PaisId": "SD",
+    "Nombre": "SUDAN",
+    "CodigoTelefonico": "249",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SD.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 208,
+    "PaisId": "SR",
+    "Nombre": "SURINAME",
+    "CodigoTelefonico": "597",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SR.svg",
+    "Continente": "SA"
+  },
+  {
+    "CodUbigeo": 209,
+    "PaisId": "SJ",
+    "Nombre": "SVALBARD AND JAN MAYEN ISLANDS",
+    "CodigoTelefonico": "47",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SJ.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 210,
+    "PaisId": "SZ",
+    "Nombre": "SWAZILAND",
+    "CodigoTelefonico": "268",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SZ.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 211,
+    "PaisId": "SE",
+    "Nombre": "SWEDEN",
+    "CodigoTelefonico": "46",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SE.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 212,
+    "PaisId": "CH",
+    "Nombre": "SWITZERLAND",
+    "CodigoTelefonico": "41",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CH.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 213,
+    "PaisId": "SY",
+    "Nombre": "SYRIAN ARAB REPUBLIC",
+    "CodigoTelefonico": "963",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SY.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 214,
+    "PaisId": "TW",
+    "Nombre": "TAIWAN",
+    "CodigoTelefonico": "886",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TW.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 215,
+    "PaisId": "TJ",
+    "Nombre": "TAJIKISTAN",
+    "CodigoTelefonico": "992",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TJ.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 216,
+    "PaisId": "TZ",
+    "Nombre": "TANZANIA UNITED REPUBLIC OF",
+    "CodigoTelefonico": "255",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TZ.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 217,
+    "PaisId": "TH",
+    "Nombre": "THAILAND",
+    "CodigoTelefonico": "66",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TH.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 218,
+    "PaisId": "TG",
+    "Nombre": "TOGO",
+    "CodigoTelefonico": "228",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TG.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 219,
+    "PaisId": "TK",
+    "Nombre": "TOKELAU",
+    "CodigoTelefonico": "690",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TK.svg",
+    "Continente": "OC"
+  },
+  {
+    "CodUbigeo": 220,
+    "PaisId": "TO",
+    "Nombre": "TONGA",
+    "CodigoTelefonico": "676",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TO.svg",
+    "Continente": "OC"
+  },
+  {
+    "CodUbigeo": 221,
+    "PaisId": "TT",
+    "Nombre": "TRINIDAD AND TOBAGO",
+    "CodigoTelefonico": "1868",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TT.svg",
+    "Continente": "NA"
+  },
+  {
+    "CodUbigeo": 222,
+    "PaisId": "TN",
+    "Nombre": "TUNISIA",
+    "CodigoTelefonico": "216",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TN.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 223,
+    "PaisId": "TR",
+    "Nombre": "TURKEY",
+    "CodigoTelefonico": "90",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TR.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 224,
+    "PaisId": "TM",
+    "Nombre": "TURKMENISTAN",
+    "CodigoTelefonico": "993",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TM.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 225,
+    "PaisId": "TC",
+    "Nombre": "TURKS AND CAICOS ISLANDS",
+    "CodigoTelefonico": "1649",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TC.svg",
+    "Continente": "NA"
+  },
+  {
+    "CodUbigeo": 226,
+    "PaisId": "TV",
+    "Nombre": "TUVALU",
+    "CodigoTelefonico": "688",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TV.svg",
+    "Continente": "OC"
+  },
+  {
+    "CodUbigeo": 227,
+    "PaisId": "UG",
+    "Nombre": "UGANDA",
+    "CodigoTelefonico": "256",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/UG.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 228,
+    "PaisId": "UA",
+    "Nombre": "UKRAINE",
+    "CodigoTelefonico": "380",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/UA.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 229,
+    "PaisId": "AE",
+    "Nombre": "UNITED ARAB EMIRATES",
+    "CodigoTelefonico": "971",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AE.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 230,
+    "PaisId": "GB",
+    "Nombre": "UNITED KINGDOM",
+    "CodigoTelefonico": "44",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GB.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 231,
+    "PaisId": "US",
+    "Nombre": "UNITED STATES",
+    "CodigoTelefonico": "1",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/US.svg",
+    "Continente": "NA"
+  },
+  {
+    "CodUbigeo": 232,
+    "PaisId": "UM",
+    "Nombre": "UNITED STATES MINOR OUTLYING ISLANDS",
+    "CodigoTelefonico": "",
+    "Bandera": "",
+    "Continente": "OC"
+  },
+  {
+    "CodUbigeo": 233,
+    "PaisId": "UY",
+    "Nombre": "URUGUAY",
+    "CodigoTelefonico": "598",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/UY.svg",
+    "Continente": "SA"
+  },
+  {
+    "CodUbigeo": 234,
+    "PaisId": "UZ",
+    "Nombre": "UZBEKISTAN",
+    "CodigoTelefonico": "998",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/UZ.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 235,
+    "PaisId": "VU",
+    "Nombre": "VANUATU",
+    "CodigoTelefonico": "678",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/VU.svg",
+    "Continente": "OC"
+  },
+  {
+    "CodUbigeo": 236,
+    "PaisId": "VA",
+    "Nombre": "VATICAN CITY STATE (HOLY SEE)",
+    "CodigoTelefonico": "379",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/VA.svg",
+    "Continente": "EU"
+  },
+  {
+    "CodUbigeo": 237,
+    "PaisId": "VE",
+    "Nombre": "VENEZUELA",
+    "CodigoTelefonico": "58",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/VE.svg",
+    "Continente": "SA"
+  },
+  {
+    "CodUbigeo": 238,
+    "PaisId": "VN",
+    "Nombre": "VIET NAM",
+    "CodigoTelefonico": "84",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/VN.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 239,
+    "PaisId": "VG",
+    "Nombre": "VIRGIN ISLANDS (BRITISH)",
+    "CodigoTelefonico": "1284",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/VG.svg",
+    "Continente": "NA"
+  },
+  {
+    "CodUbigeo": 240,
+    "PaisId": "VI",
+    "Nombre": "VIRGIN ISLANDS (U.S.)",
+    "CodigoTelefonico": "1340",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/VI.svg",
+    "Continente": "NA"
+  },
+  {
+    "CodUbigeo": 241,
+    "PaisId": "WF",
+    "Nombre": "WALLIS AND FUTUNA ISLANDS",
+    "CodigoTelefonico": "681",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/WF.svg",
+    "Continente": "OC"
+  },
+  {
+    "CodUbigeo": 242,
+    "PaisId": "EH",
+    "Nombre": "WESTERN SAHARA",
+    "CodigoTelefonico": "212",
+    "Bandera": "",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 243,
+    "PaisId": "YE",
+    "Nombre": "YEMEN",
+    "CodigoTelefonico": "967",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/YE.svg",
+    "Continente": "AS"
+  },
+  {
+    "CodUbigeo": 244,
+    "PaisId": "YU",
+    "Nombre": "YUGOSLAVIA",
+    "CodigoTelefonico": "38",
+    "Bandera": "",
+    "Continente": ""
+  },
+  {
+    "CodUbigeo": 245,
+    "PaisId": "ZR",
+    "Nombre": "ZAIRE",
+    "CodigoTelefonico": "243",
+    "Bandera": "",
+    "Continente": ""
+  },
+  {
+    "CodUbigeo": 246,
+    "PaisId": "ZM",
+    "Nombre": "ZAMBIA",
+    "CodigoTelefonico": "260",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ZM.svg",
+    "Continente": "AF"
+  },
+  {
+    "CodUbigeo": 247,
+    "PaisId": "ZW",
+    "Nombre": "ZIMBABWE",
+    "CodigoTelefonico": "263",
+    "Bandera": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ZW.svg",
+    "Continente": "AF"
+  }
+]

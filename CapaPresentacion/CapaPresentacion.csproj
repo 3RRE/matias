@@ -21,10 +21,14 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44311</IISExpressSSLPort>
-    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
-    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
-    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>
+    </IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>
+    </IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>
+    </IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -427,6 +431,7 @@
     <Compile Include="Context\ADM_SalaProgresivo.cs" />
     <Compile Include="Context\SeguridadPJContext.cs" />
     <Compile Include="Controllers\AlertaBilleteros\AlertaBilleterosController.cs" />
+    <Compile Include="Controllers\AnalisisDataSala\AnalisisDataSalaController.cs" />
     <Compile Include="Controllers\AsistenciaCliente\ClienteEmpadronamientoController.cs" />
     <Compile Include="Controllers\AsistenciaCliente\PermisosClienteController.cs" />
     <Compile Include="Controllers\AsistenciaEmpleado\AsistenciaEmpleadoController.cs" />
@@ -560,6 +565,7 @@
     <Compile Include="Controllers\Progresivo\ProgresivoTerceros\ProgresivoTercerosController.cs" />
     <Compile Include="Controllers\Progresivo\RegistroProgresivoController.cs" />
     <Compile Include="Controllers\ProyectadoProgresivoController.cs" />
+    <Compile Include="Controllers\Publicidad\PublicidadController.cs" />
     <Compile Include="Controllers\RandomString.cs" />
     <Compile Include="Controllers\Reclamaciones\ReclamacionController.cs" />
     <Compile Include="Controllers\Reportes\Reporte9050Controller.cs" />
@@ -664,6 +670,18 @@
     <Compile Include="Utilitarios\ServiceHelper.cs" />
     <Compile Include="Utilitarios\ValidationsHelper.cs" />
     <Compile Include="Validators\SomosCasino\ClienteSomosCasinoValidator.cs" />
+    <None Include="Views\AnalisisDataSala\DashBoardHeatFrecuency.cshtml" />
+    <Content Include="Content\assets\viewsjs\Evento\EventoInsertar.js" />
+    <Content Include="Content\assets\viewsjs\Evento\EventoModificar.js" />
+    <Content Include="Content\assets\viewsjs\Evento\ListadoEvento.js" />
+    <Content Include="Content\assets\viewsjs\Publicaciones\InsertarAviso.js" />
+    <Content Include="Content\assets\viewsjs\Publicaciones\ModificarAviso.js" />
+    <Content Include="Views\Publicidad\PublicidadInsertarVista.cshtml" />
+    <Content Include="Views\Publicidad\PublicidadModificarVista.cshtml" />
+    <Content Include="Views\Evento\EventoVista.cshtml" />
+    <Content Include="Views\Evento\EventoInsertarVista.cshtml" />
+    <Content Include="Views\Evento\EventoModificarVista.cshtml" />
+    <None Include="Views\Publicidad\PublicidadVista.cshtml" />
     <Compile Include="Web References\WebServiceUtilitario\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -984,6 +1002,8 @@
     <Content Include="Content\assets\js\script.js" />
     <Content Include="Content\assets\viewsjs\AlertaBilleteros\ConfiguracionAlertaCargoVista.js" />
     <Content Include="Content\assets\viewsjs\AlertaBilleteros\ReporteAlertaBilleterosVista.js" />
+    <Content Include="Content\assets\viewsjs\AnalisisDataSala\dashboardHitFrecuency.js" />
+    <Content Include="Content\assets\viewsjs\AnalisisDataSala\dashboardTiempoJuego.js" />
     <Content Include="Content\assets\viewsjs\AsistenciaCliente\EditarCliente.js" />
     <Content Include="Content\assets\viewsjs\AsistenciaCliente\EditarTipoCliente.js" />
     <Content Include="Content\assets\viewsjs\AsistenciaCliente\EditarTipoFrecuencia.js" />
@@ -1048,11 +1068,13 @@
     <Content Include="Content\assets\viewsjs\ClienteSatisfaccion\CSAT\csatReporte.js" />
     <Content Include="Content\assets\viewsjs\ClienteSatisfaccion\CSAT\preguntasCSAT.js" />
     <Content Include="Content\assets\viewsjs\ClienteSatisfaccion\flujoPregunta.js" />
+    <Content Include="Content\assets\viewsjs\ClienteSatisfaccion\jefeSala.js" />
     <Content Include="Content\assets\viewsjs\ClienteSatisfaccion\NPS\npsReporte.js" />
     <Content Include="Content\assets\viewsjs\ClienteSatisfaccion\NPS\preguntas.js" />
     <Content Include="Content\assets\viewsjs\ClienteSatisfaccion\preguntasConfig.js" />
     <Content Include="Content\assets\viewsjs\ClienteSatisfaccion\reporteAtributos.js" />
     <Content Include="Content\assets\viewsjs\ClienteSatisfaccion\reporteEncuesta.js" />
+    <Content Include="Content\assets\viewsjs\ClienteSatisfaccion\resumenIndicador.js" />
     <Content Include="Content\assets\viewsjs\ClienteSatisfaccion\tabletConfig.js" />
     <Content Include="Content\assets\viewsjs\Compilado\Index.js" />
     <Content Include="Content\assets\viewsjs\ConfiguracionSeguridad\ConfiguracionSeguridadVista.js" />
@@ -1091,6 +1113,7 @@
     <Content Include="Content\assets\viewsjs\Progresivo\ProgresivoTerceros\ProgresivoTercerosIndex.js" />
     <Content Include="Content\assets\viewsjs\Progresivo\ProgresivoTerceros\ProgresivoTercerosSala.js" />
     <Content Include="Content\assets\viewsjs\Progresivo\ProgresivoTerceros\SalasProgresivoTerceros.js" />
+    <Content Include="Content\assets\viewsjs\Publicaciones\ListadoPublicacion.js" />
     <Content Include="Content\assets\viewsjs\SatisfaccionCliente\Configuracion\configuracion.js" />
     <Content Include="Content\assets\viewsjs\SatisfaccionCliente\Configuracion\configuracionGuardar.js" />
     <Content Include="Content\assets\viewsjs\SatisfaccionCliente\Preguntas\preguntaGuardar.js" />
@@ -1491,15 +1514,7 @@
     <Content Include="Content\ess_excel_plantilla\Plantilla_ESS_RecaudacionPersonalParticipante.xlsx" />
     <Content Include="Content\ess_excel_plantilla\Plantilla_ESS_EntesReguladores.xlsx" />
     <Content Include="Content\ess_excel_plantilla\Plantilla_ESS_RecojoRemesas.xlsx" />
-    <Content Include="fonts\docu\02_diagrama_clases.puml" />
-    <Content Include="fonts\docu\03_secuencia_responder_encuesta.puml" />
-    <Content Include="fonts\docu\04_secuencia_reporte_nps.puml" />
-    <Content Include="fonts\docu\05_secuencia_reporte_csat.puml" />
-    <Content Include="fonts\docu\06_secuencia_reporte_atributos.puml" />
-    <Content Include="fonts\docu\07_secuencia_configurar_pregunta_atributo.puml" />
-    <Content Include="fonts\docu\08_secuencia_configurar_tablets.puml" />
-    <Content Include="fonts\docu\09_secuencia_exportar_excel.puml" />
-    <Content Include="fonts\docu\README.md" />
+    <Content Include="Content\assets\nps\country.json" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -1889,6 +1904,8 @@
     <Content Include="Views\Bot\Empleado\AddEdit.cshtml" />
     <Content Include="Views\Bot\Empleado\Index.cshtml" />
     <Content Include="Views\Bot\Permiso\Index.cshtml" />
+    <Content Include="Views\ClienteSatisfaccion\JefeSala.cshtml" />
+    <Content Include="Views\AnalisisDataSala\DashboardTiempoJuego.cshtml" />
     <None Include="Web References\WebServiceUtilitario\WSSalaAdmin.disco" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -1938,7 +1955,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\" />
-    <Folder Include="Content\assets\nps\" />
     <Folder Include="Content\DriveServiceCredentials.json\" />
     <Folder Include="Views\AccionCajaTemporizada\" />
     <Folder Include="Views\AperturaCierreSala\" />

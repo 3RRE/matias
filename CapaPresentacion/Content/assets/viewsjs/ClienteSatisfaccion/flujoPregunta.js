@@ -4,7 +4,7 @@ var dataPreguntas = []; // aquí va la data del backend
 $(document).ready(function () {
 
     // =============================
-    // 📌 Cargar preguntas desde backend
+    //  Cargar preguntas desde backend
     // =============================
     function cargarPreguntas() {
         $.ajax({
@@ -27,7 +27,7 @@ $(document).ready(function () {
     }
 
     // =============================
-    // 📌 Render preguntas agrupadas por Orden
+    //  Render preguntas agrupadas por Orden
     // =============================
 
     function renderPreguntas(lista) {
@@ -142,7 +142,7 @@ $(document).ready(function () {
 
 
     // =============================
-    // 📌 Init
+    //  Init
     // =============================
     cargarPreguntas();
 });

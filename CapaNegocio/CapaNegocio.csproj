@@ -102,6 +102,7 @@
     <Compile Include="Administrativo\WS_DetalleContadoresGameWebBL.cs" />
     <Compile Include="Alertas\ALT_AlertaCargoConfBL.cs" />
     <Compile Include="Alertas\ALT_AlertaSalaBL.cs" />
+    <Compile Include="AnalisisDataSala\AnalisisDataSalaBL.cs" />
     <Compile Include="AreaTechBL.cs" />
     <Compile Include="AsistenciaCliente\AST_ClienteSalaBL.cs" />
     <Compile Include="AsistenciaCliente\AST_TipoJuegoBL.cs" />
@@ -118,6 +119,7 @@
     <Compile Include="Campaña\CMP_SesionSorteoSalaMigracionBL.cs" />
     <Compile Include="ClienteSatisfaccion\Configuracion\CSConfiguracionBL.cs" />
     <Compile Include="ClienteSatisfaccion\Flujo\FlujoBL.cs" />
+    <Compile Include="ClienteSatisfaccion\JefeSala\CSJefeSalaBL.cs" />
     <Compile Include="ClienteSatisfaccion\Opciones\OpcionesBL.cs" />
     <Compile Include="ClienteSatisfaccion\Preguntas\PreguntasBL.cs" />
     <Compile Include="ClienteSatisfaccion\Respuesta\RespuestaBL.cs" />
@@ -186,6 +188,7 @@
     <Compile Include="Progresivo\AlertaProgresivoBL.cs" />
     <Compile Include="Progresivo\AlertaProgresivoCargoBL.cs" />
     <Compile Include="Progresivo\RegistroProgresivoBL.cs" />
+    <Compile Include="Publicidad\PublicidadBL.cs" />
     <Compile Include="Queue\Client\AzureQueueClient.cs" />
     <Compile Include="Reniec\ConsultaPe\ConsultaPeServiceV2.cs" />
     <Compile Include="SalaMaestraBL.cs" />
@@ -344,6 +347,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="ClienteSatisfaccion\NewFolder1\" />
     <Folder Include="Reniec\ApisPeru\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

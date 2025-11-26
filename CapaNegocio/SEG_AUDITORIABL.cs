@@ -1,5 +1,8 @@
 ﻿using CapaDatos;
 using CapaEntidad;
+using CapaEntidad.GLPI;
+using S3k.Utilitario.Encriptacion;
+using S3k.Utilitario.GLPI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,5 +30,14 @@ namespace CapaNegocio
             return AUDITORIA_DAL.getDataAuditoria(sub);
         }
 
+        public string GetLlaveDinamica() {
+            string llave = EncriptacionHelper.dynamicKey;
+            return llave;
+        }
+
+        public string DesencriptarLlave(string hash) {
+            string llave = EncriptacionHelper.DecryptMachineId(hash);
+            return llave;
+        }
     }
 }

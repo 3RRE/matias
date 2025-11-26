@@ -23,8 +23,9 @@ function ejecutarFuncion(indicadorKey, start, end, sala) {
         success: function (res) {
             if (!res || !res.success) return;
 
-            dataAtributo = res.data; // 👈 Guardar en memoria
-            atributoAplicarFiltro(); // 👈 Filtrar al inicio
+            dataAtributo = res.data;
+            $(".titulo").text(res.data.nombrePregunta);
+            atributoAplicarFiltro();
         },
         error: function (err) {
             console.error("Error en ejecutarFuncion", err);

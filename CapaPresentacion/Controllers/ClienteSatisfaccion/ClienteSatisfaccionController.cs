@@ -14,6 +14,15 @@ using CapaNegocio.ClienteSatisfaccion.Respuesta;
 using CapaNegocio.ClienteSatisfaccion.Tablet;
 using CapaEntidad.ClienteSatisfaccion.DTO;
 using CapaNegocio.ClienteSatisfaccion.Configuracion;
+using CapaNegocio.ClienteSatisfaccion.JefeSala;
+using CapaNegocio.Queue.Client;
+using System.Configuration;
+using CapaEntidad.Queue;
+using CapaEntidad;
+using static QRCoder.PayloadGenerator;
+using System.Threading.Tasks;
+using S3k.Utilitario.Helper;
+using System.Text;
 
 namespace CapaPresentacion.Controllers.ClienteSatisfaccion
 {
@@ -27,6 +36,10 @@ namespace CapaPresentacion.Controllers.ClienteSatisfaccion
         private readonly TabletBL tabletBL;
         private readonly SalaBL salaBl;
         private readonly CSConfiguracionBL confgiBL;
+        private readonly CSJefeSalaBL jefeBL;
+        private readonly AzureQueueClient queueClient;
+        private readonly int QueueIdSistemaSomosCasino;
+        private readonly string QueueWhatsApp;
 
         public ClienteSatisfaccionController() {
             preguntasBL = new PreguntasBL();
@@ -36,6 +49,10 @@ namespace CapaPresentacion.Controllers.ClienteSatisfaccion
             tabletBL = new TabletBL();
             salaBl = new SalaBL();
             confgiBL = new CSConfiguracionBL();
+            jefeBL = new CSJefeSalaBL();
+            queueClient = AzureQueueClient.Instance;
+            QueueIdSistemaSomosCasino = Convert.ToInt32(ConfigurationManager.AppSettings["AzureQueueIdSistemaNps"]);
+            QueueWhatsApp = ConfigurationManager.AppSettings["AzureQueueWhatsAppName"];
         }
 
 
@@ -113,9 +130,36 @@ namespace CapaPresentacion.Controllers.ClienteSatisfaccion
         }
 
 
-        public int GuardarEncuestaConPreguntasNormal(RespuestaEncuestaEntidad encuesta, List<RespuestaPreguntaEntidad> respuestas) {
+        public async Task<JsonResult> GuardarEncuestaConPreguntasNormal(RespuestaEncuestaEntidad encuesta, List<RespuestaPreguntaEntidad> respuestas) {
             int idInsertado = 0;
             try {
+
+                var subPreguntasNPS = respuestaBL.ObtenerSubPreguntasNps();
+
+
+                //var subNpsCoincidente = subPreguntasNPS
+                //.Where(s => s.ValorOpcion < 5)
+                //.FirstOrDefault(s => respuestas.Any(r => r.IdOpcion == s.IdOpcion));
+
+
+                //RespuestaPreguntaEntidad respuestaCoincidente = null;
+
+                //if(subNpsCoincidente != null) {
+                //    respuestaCoincidente = respuestas
+                //        .FirstOrDefault(r =>
+                //            r.IdPregunta == subNpsCoincidente.IdSubPregunta
+                //        );
+                //}
+                var idsSubPreguntas = respuestaBL.ObtenerSubPreguntasNps()
+                .Where(s => s.ValorOpcion < 5)
+                .Select(s => s.IdSubPregunta)
+                .Distinct()
+                .ToList();
+
+               
+               
+                
+
                 encuesta.FechaRespuesta = DateTime.Now;
                 // 1. Guardar la encuesta y recuperar su Id
                 idInsertado = respuestaBL.GuardarRespuestaEncuesta(encuesta);
@@ -125,14 +169,99 @@ namespace CapaPresentacion.Controllers.ClienteSatisfaccion
                     p.IdRespuestaEncuesta = idInsertado;
                     respuestaBL.GuardarRespuestaPregunta(p);
                 }
+
+                var respuestasFiltradas = respuestas
+               .Where(r => idsSubPreguntas.Contains(r.IdPregunta))
+               .ToList();
+
+                var respuestaConComentario = respuestasFiltradas
+               .FirstOrDefault(r => !string.IsNullOrWhiteSpace(r.Comentario));
+               
+                
+                if(respuestaConComentario != null) {
+
+                    var opciones = opcionesBL.ListadoOpciones();
+                    string[] textosOpciones = respuestasFiltradas
+                    .Where(r => r.IdOpcion != respuestaConComentario.IdOpcion) 
+                    .Select(r => {
+                        var opcion = opciones.FirstOrDefault(o => o.IdOpcion == r.IdOpcion);
+                        return opcion?.Texto ?? string.Empty;
+                    })
+                    .Where(t => !string.IsNullOrWhiteSpace(t))
+                    .ToArray();
+                    var jefesSala = jefeBL.ListarJefesSala(encuesta.IdSala);
+                    await EnviarMensaje(jefesSala, respuestaConComentario.Comentario, encuesta, textosOpciones);
+                }
+
+
             } catch(Exception ex) {
                 Console.WriteLine("Error al guardar: " + ex.Message);
                 idInsertado = 0;
             }
+            return Json(new 
+            { success= idInsertado>0 ? true:false, 
+              displayMessage = idInsertado > 0 ? "Se guardaron las preguntas exitosamente":"Error al guardar las preguntas" 
+            });
 
-            return idInsertado;
         }
 
+        private async Task EnviarMensaje(List<CSJefeSalaEntidad> listaJefesSala, string comentario, RespuestaEncuestaEntidad encuesta, string[] textosOpciones ) {
+
+            var sb = new StringBuilder();
+
+            sb.AppendLine("⚠️ *ALERTA DE CALIFICACIÓN NEGATIVA* ⚠️");
+            sb.AppendLine();
+            sb.AppendLine("Hemos recibido una valoración baja en la *Encuesta de Satisfacción del Cliente*. 📝");
+            sb.AppendLine();
+
+            // Datos del cliente
+            sb.AppendLine("👤 *Datos del cliente*");
+
+            if(!string.IsNullOrWhiteSpace(encuesta.Nombre))
+                sb.AppendLine($"• Nombre: {encuesta.Nombre}");
+
+            if(!string.IsNullOrWhiteSpace(encuesta.Celular))
+                sb.AppendLine($"• Celular: (+{encuesta.Codigo}) {encuesta.Celular}");
+
+            if(!string.IsNullOrWhiteSpace(encuesta.Correo))
+                sb.AppendLine($"• Correo: {encuesta.Correo}");
+
+            if(!string.IsNullOrWhiteSpace(encuesta.NroDocumento))
+                sb.AppendLine($"• Documento: {encuesta.NroDocumento}");
+
+            sb.AppendLine();
+            sb.AppendLine("💬 *Comentario del cliente:*");
+            sb.AppendLine(comentario);
+            sb.AppendLine();
+            if(textosOpciones != null && textosOpciones.Length > 0) {
+                sb.AppendLine("🟦 *Otras opciones marcadas:*");
+
+                foreach(var texto in textosOpciones) {
+                    sb.AppendLine($"• {texto}");
+                }
+
+                sb.AppendLine();
+            }
+            sb.AppendLine("🚨 *Favor tener en consideración.*");
+
+            string mensajeFinal = sb.ToString();
+
+
+
+            foreach(var jefe in listaJefesSala) {
+                WhatsAppQueue whatsappQueue = new WhatsAppQueue {
+                    IdSistema = QueueIdSistemaSomosCasino,
+                    Mensaje = new WhatsAppQueueContentRequest {
+                        CodigoPais = jefe.Codigo,
+                        NumeroCelular = jefe.Celular,
+                        Mensaje = mensajeFinal
+                    }
+                };
+
+                await queueClient.SendMessageAsync(QueueWhatsApp, whatsappQueue);
+
+             }
+        }
 
         #endregion
 
@@ -151,7 +280,7 @@ namespace CapaPresentacion.Controllers.ClienteSatisfaccion
                 var flujo = flujoBL.ListadoFlujoEncuesta(1);
                 var rand = new Random();
 
-                // 🔹 Construir todas las preguntas con sus opciones
+                //  Construir todas las preguntas con sus opciones
                 var preguntasDTO = preguntas.Select(p => new PreguntasDTO {
                     IdPregunta = p.IdPregunta,
                     IdTipoEncuesta = p.IdTipoEncuesta,
@@ -173,7 +302,7 @@ namespace CapaPresentacion.Controllers.ClienteSatisfaccion
                         .ToList()
                 }).ToList();
 
-                // 🔹 Dividir preguntas fijas y aleatorias
+                //  Dividir preguntas fijas y aleatorias
                 var preguntasRandom = preguntasDTO
                     .Where(p => p.Random
                              && p.Activo
@@ -184,7 +313,7 @@ namespace CapaPresentacion.Controllers.ClienteSatisfaccion
                     .ToList();
                 var preguntasFijas = preguntasDTO.Where(p => !p.Random).ToList();
 
-                // 🔹 Seleccionar 4 aleatorias del grupo random
+                //  Seleccionar 4 aleatorias del grupo random
                 if(preguntasRandom.Count > 2) {
                     preguntasRandom = preguntasRandom
                         .OrderBy(x => rand.Next())
@@ -192,13 +321,13 @@ namespace CapaPresentacion.Controllers.ClienteSatisfaccion
                         .ToList();
                 }
 
-                // 🔹 Unir y ordenar por Orden
+                //  Unir y ordenar por Orden
                 preguntasDTO = preguntasFijas
                     .Concat(preguntasRandom)
                     .OrderBy(p => p.Orden)
                     .ToList();
 
-                // 🔹 Armar flujo DTO
+                //  Armar flujo DTO
                 var flujoDTO = flujo.Select(f => new FlujoDTO {
                     IdFlujo = f.IdFlujo,
                     IdTipoEncuesta = f.IdTipoEncuesta,
@@ -207,7 +336,7 @@ namespace CapaPresentacion.Controllers.ClienteSatisfaccion
                     IdPreguntaSiguiente = f.IdPreguntaSiguiente
                 }).ToList();
 
-                // 🔹 Asignar a encuesta
+                //  Asignar a encuesta
                 encuesta.Preguntas = preguntasDTO;
                 encuesta.Flujo = flujoDTO;
 

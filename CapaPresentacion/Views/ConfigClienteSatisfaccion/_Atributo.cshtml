@@ -6,16 +6,17 @@
                     <!-- Título -->
                     <div class="row">
                         <div class="col-md-12">
-                            <h1>
+                            <h1 style="margin-bottom:10px;">
                                 <span aria-hidden="true" class="icon icon-adjust"></span>
-                                <span class="main-text">atributo</span>
+                                <span class="main-text">Atributo</span>
                             </h1>
                         </div>
                     </div>
 
-
                     <!-- Contenido Tabs -->
                     <div class="tab-content content-sub-tabs ">
+                        <h1 class="titulo" style="padding:10px 0;"></h1>
+
                         <!-- SNAPSHOT -->
                         <div role="tabpanel" class="tab-pane active sub-tabs-card" id="atributo_snapshot">
                             <div class="row snapshot">
@@ -120,29 +121,28 @@
                             <div>
                                 <select id="filtroTendencia" class="form-control" style="width:200px; margin-bottom:15px;">
                                     <option value="diario">Diario</option>
-                                    <option value="semanal">Semanal</option>
                                     <option value="mensual">Mensual</option>
                                 </select>
 
                                 <div style="display:flex; gap:20px; flex-wrap:wrap">
                                     <div style="flex:1; min-width:400px">
                                         <h5>Respuestas</h5>
-                                        <canvas id="chartIndicadorBar" height="200"></canvas>
+                                        <canvas id="atributo_chartTendencia" width="400" height="200"></canvas>
                                     </div>
-                                    <div style="flex:1; min-width:400px">
+                                    @*<div style="flex:1; min-width:400px">
                                         <h5>Indicador</h5>
                                         <canvas id="chartIndicadorLine" height="200"></canvas>
-                                    </div>
+                                    </div>*@
                                 </div>
                             </div>
                         </div>
 
-                       
 
 
 
-                      
-                        </div>
+
+
+                    </div>
                     </div><!-- /tab-content -->
                 </div>
             </div>

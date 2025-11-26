@@ -11,6 +11,10 @@ using System.Net;
 using S3k.Utilitario.Models;
 using S3k.Utilitario;
 using CapaPresentacion.Filters;
+using S3k.Utilitario.Encriptacion;
+using System.Numerics;
+using System.IO;
+using System.Security.Cryptography;
 
 namespace CapaPresentacion.Controllers
 {
@@ -455,6 +459,36 @@ namespace CapaPresentacion.Controllers
                 status = true,
                 message = "Has sido desconectado"
             }, JsonRequestBehavior.AllowGet);
+        }
+
+        [seguridad(false)]
+        [HttpGet]
+        public ActionResult GetLlaveDinamica() {
+
+            var errormensaje = "";
+            var llave = string.Empty;
+            try {
+                llave = seg_auditoriaBL.GetLlaveDinamica();
+            } catch (Exception exp) {
+                errormensaje = exp.Message + ",Comuniquese con el Administrador";
+            }
+
+            return Json(new { data = llave, mensaje = errormensaje }, JsonRequestBehavior.AllowGet);
+        }
+
+        [seguridad(false)]
+        [HttpPost]
+        public ActionResult DesencriptarLlave(string hash) {
+            var errormensaje = "";
+            var texto = string.Empty;
+            try {
+               
+                texto = seg_auditoriaBL.DesencriptarLlave(hash);
+
+            } catch (Exception exp) {
+                errormensaje = exp.Message + ",Comuniquese con el Administrador";
+            }
+            return Json(new { data = texto, mensaje = errormensaje });
         }
 
         #region ActualizarMétodosBD con métodos en controladores

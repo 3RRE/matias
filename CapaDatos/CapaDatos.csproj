@@ -54,9 +54,16 @@
     <Reference Include="FastMember, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FastMember.1.5.0\lib\net461\FastMember.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft Visual Studio\2022\Professional\MSBuild\Microsoft\Microsoft.NET.Build.Extensions\net461\lib\System.Net.Http.dll</HintPath>
+    </Reference>
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
     </Reference>
@@ -78,6 +85,7 @@
     <Compile Include="Administrativo\WS_DetalleContadoresGameWebDAL.cs" />
     <Compile Include="Alertas\ALT_AlertaCargoConfDAL.cs" />
     <Compile Include="Alertas\ALT_AlertaSalaDAL.cs" />
+    <Compile Include="AnalisisDataSala\AnalisisDataSalaDAL.cs" />
     <Compile Include="AreaTechDAL.cs" />
     <Compile Include="AsistenciaCliente\AST_ClienteSalaDAL.cs" />
     <Compile Include="AsistenciaCliente\AST_TipoJDAL.cs" />
@@ -95,6 +103,7 @@
     <Compile Include="Campaña\CMP_SesionSorteoSalaMigracionDAL.cs" />
     <Compile Include="ClienteSatisfaccion\Configuracion\CSConfiguracionDAL.cs" />
     <Compile Include="ClienteSatisfaccion\Flujo\FlujoDAL.cs" />
+    <Compile Include="ClienteSatisfaccion\JefeSala\CsJefeSalaDAL.cs" />
     <Compile Include="ClienteSatisfaccion\Opciones\OpcionesDAL.cs" />
     <Compile Include="ClienteSatisfaccion\Preguntas\PreguntaDAL.cs" />
     <Compile Include="ClienteSatisfaccion\Respuesta\RespuestaDAL.cs" />
@@ -162,6 +171,7 @@
     <Compile Include="Progresivo\AlertaProgresivoCargoDAL.cs" />
     <Compile Include="Progresivo\AlertaProgresivoDAL.cs" />
     <Compile Include="Progresivo\RegistroProgresivoDAL.cs" />
+    <Compile Include="Publicidad\PublicidadDAL.cs" />
     <Compile Include="SalaMaestraDAL.cs" />
     <Compile Include="Sala\SL_ZonaDAL.cs" />
     <Compile Include="AsistenciaEmpleado\AsistenciaEmpleadoDAL.cs" />

@@ -1,5 +1,4 @@
-﻿using CapaEntidad;
-using CapaEntidad.Sala;
+﻿using CapaEntidad.Sala;
 using S3k.Utilitario;
 using System;
 using System.Collections.Generic;
@@ -7,19 +6,15 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Diagnostics;
 
-namespace CapaDatos.Sala
-{
-    public class SL_ZonaDAL
-    {
+namespace CapaDatos.Sala {
+    public class SL_ZonaDAL {
         private readonly string _conexion = string.Empty;
 
-        public SL_ZonaDAL()
-        {
+        public SL_ZonaDAL() {
             _conexion = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
         }
 
-        public int GuardarZona(SL_ZonaEntidad zona)
-        {
+        public int GuardarZona(SL_ZonaEntidad zona) {
             int insertedId = 0;
 
             string query = @"
@@ -41,10 +36,8 @@ namespace CapaDatos.Sala
             SELECT SCOPE_IDENTITY()
             ";
 
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(_conexion))
-                {
+            try {
+                using(SqlConnection connection = new SqlConnection(_conexion)) {
                     connection.Open();
 
                     SqlCommand commmand = new SqlCommand(query, connection);
@@ -56,17 +49,14 @@ namespace CapaDatos.Sala
 
                     insertedId = Convert.ToInt32(commmand.ExecuteScalar());
                 }
-            }
-            catch (Exception exception)
-            {
+            } catch(Exception exception) {
                 Trace.WriteLine(exception.Message + " " + GetType().FullName + " " + DateTime.Now.ToLongDateString());
             }
 
             return insertedId;
         }
 
-        public bool ActualizarZona(SL_ZonaEntidad zona)
-        {
+        public bool ActualizarZona(SL_ZonaEntidad zona) {
             bool response = false;
 
             string query = @"
@@ -80,10 +70,8 @@ namespace CapaDatos.Sala
                 Id = @w1
             ";
 
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(_conexion))
-                {
+            try {
+                using(SqlConnection connection = new SqlConnection(_conexion)) {
                     connection.Open();
 
                     SqlCommand command = new SqlCommand(query, connection);
@@ -98,17 +86,14 @@ namespace CapaDatos.Sala
 
                     response = true;
                 }
-            }
-            catch (Exception exception)
-            {
+            } catch(Exception exception) {
                 Trace.WriteLine(exception.Message + " " + GetType().FullName + " " + DateTime.Now.ToLongDateString());
             }
 
             return response;
         }
 
-        public bool ActualizarEstadoZona(byte estado, int zonaId)
-        {
+        public bool ActualizarEstadoZona(byte estado, int zonaId) {
             bool response = false;
 
             string query = @"
@@ -119,10 +104,8 @@ namespace CapaDatos.Sala
                 Id = @w1
             ";
 
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(_conexion))
-                {
+            try {
+                using(SqlConnection connection = new SqlConnection(_conexion)) {
                     connection.Open();
 
                     SqlCommand command = new SqlCommand(query, connection);
@@ -134,17 +117,14 @@ namespace CapaDatos.Sala
 
                     response = true;
                 }
-            }
-            catch (Exception exception)
-            {
+            } catch(Exception exception) {
                 Trace.WriteLine(exception.Message + " " + GetType().FullName + " " + DateTime.Now.ToLongDateString());
             }
 
             return response;
         }
 
-        public SL_ZonaEntidad ObtenerZona(int zonaId)
-        {
+        public SL_ZonaEntidad ObtenerZona(int zonaId) {
             SL_ZonaEntidad zona = new SL_ZonaEntidad();
 
             string query = @"
@@ -159,43 +139,35 @@ namespace CapaDatos.Sala
             WHERE Id = @w1
             ";
 
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(_conexion))
-                {
+            try {
+                using(SqlConnection connection = new SqlConnection(_conexion)) {
                     connection.Open();
-                    
+
                     SqlCommand command = new SqlCommand(query, connection);
 
                     command.Parameters.AddWithValue("@w1", zonaId);
 
-                    using (SqlDataReader data = command.ExecuteReader())
-                    {
-                        if (data.HasRows)
-                        {
-                            if (data.Read())
-                            {
+                    using(SqlDataReader data = command.ExecuteReader()) {
+                        if(data.HasRows) {
+                            if(data.Read()) {
                                 zona.Id = ManejoNulos.ManageNullInteger(data["Id"]);
                                 zona.SalaId = ManejoNulos.ManageNullInteger(data["SalaId"]);
                                 zona.Nombre = ManejoNulos.ManageNullStr(data["Nombre"]);
                                 zona.FechaRegistro = ManejoNulos.ManageNullDate(data["FechaRegistro"]);
                                 zona.FechaModificacion = ManejoNulos.ManageNullDate(data["FechaModificacion"]);
-                                zona.Estado = (byte) data["Estado"];
+                                zona.Estado = (byte)data["Estado"];
                             }
                         }
                     }
                 }
-            }
-            catch (Exception exception)
-            {
+            } catch(Exception exception) {
                 Console.WriteLine(exception.Message);
             }
 
             return zona;
         }
 
-        public List<SL_ZonaEntidad> ListarZona(List<int> salaIds)
-        {
+        public List<SL_ZonaEntidad> ListarZona(List<int> salaIds) {
             List<SL_ZonaEntidad> listaZona = new List<SL_ZonaEntidad>();
 
             string query = $@"
@@ -209,31 +181,25 @@ namespace CapaDatos.Sala
                 sala.Nombre AS NombreSala
             FROM dbo.SL_Zona zona
             INNER JOIN dbo.Sala sala ON sala.CodSala = zona.SalaId
-            WHERE zona.SalaId IN ({ string.Join(",", salaIds) })
+            WHERE zona.SalaId IN ({string.Join(",", salaIds)})
             ";
 
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(_conexion))
-                {
+            try {
+                using(SqlConnection connection = new SqlConnection(_conexion)) {
                     connection.Open();
 
                     SqlCommand command = new SqlCommand(query, connection);
 
-                    using (SqlDataReader data = command.ExecuteReader())
-                    {
-                        if (data.HasRows)
-                        {
-                            while (data.Read())
-                            {
-                                SL_ZonaEntidad zona = new SL_ZonaEntidad
-                                {
+                    using(SqlDataReader data = command.ExecuteReader()) {
+                        if(data.HasRows) {
+                            while(data.Read()) {
+                                SL_ZonaEntidad zona = new SL_ZonaEntidad {
                                     Id = ManejoNulos.ManageNullInteger(data["Id"]),
                                     SalaId = ManejoNulos.ManageNullInteger(data["SalaId"]),
                                     Nombre = ManejoNulos.ManageNullStr(data["Nombre"]),
                                     FechaRegistro = ManejoNulos.ManageNullDate(data["FechaRegistro"]),
                                     FechaModificacion = ManejoNulos.ManageNullDate(data["FechaModificacion"]),
-                                    Estado = (byte) data["Estado"],
+                                    Estado = (byte)data["Estado"],
                                     SalaNombre = ManejoNulos.ManageNullStr(data["NombreSala"])
                                 };
 
@@ -243,17 +209,14 @@ namespace CapaDatos.Sala
                     }
 
                 }
-            }
-            catch (Exception exception)
-            {
+            } catch(Exception exception) {
                 Console.WriteLine(exception.Message);
             }
 
             return listaZona;
         }
 
-        public List<SL_ZonaEntidad> ListarZonasPorSala(int salaId)
-        {
+        public List<SL_ZonaEntidad> ListarZonasPorSala(int salaId) {
             List<SL_ZonaEntidad> listaZona = new List<SL_ZonaEntidad>();
 
             string query = $@"
@@ -270,10 +233,8 @@ namespace CapaDatos.Sala
             WHERE zona.SalaId = @w1 AND zona.Estado = @w2
             ";
 
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(_conexion))
-                {
+            try {
+                using(SqlConnection connection = new SqlConnection(_conexion)) {
                     connection.Open();
 
                     SqlCommand command = new SqlCommand(query, connection);
@@ -281,14 +242,10 @@ namespace CapaDatos.Sala
                     command.Parameters.AddWithValue("@w1", salaId);
                     command.Parameters.AddWithValue("@w2", 1);
 
-                    using (SqlDataReader data = command.ExecuteReader())
-                    {
-                        if (data.HasRows)
-                        {
-                            while (data.Read())
-                            {
-                                SL_ZonaEntidad zona = new SL_ZonaEntidad
-                                {
+                    using(SqlDataReader data = command.ExecuteReader()) {
+                        if(data.HasRows) {
+                            while(data.Read()) {
+                                SL_ZonaEntidad zona = new SL_ZonaEntidad {
                                     Id = ManejoNulos.ManageNullInteger(data["Id"]),
                                     SalaId = ManejoNulos.ManageNullInteger(data["SalaId"]),
                                     Nombre = ManejoNulos.ManageNullStr(data["Nombre"]),
@@ -304,9 +261,7 @@ namespace CapaDatos.Sala
                     }
 
                 }
-            }
-            catch (Exception exception)
-            {
+            } catch(Exception exception) {
                 Console.WriteLine(exception.Message);
             }
 

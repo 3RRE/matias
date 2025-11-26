@@ -33,4 +33,16 @@ namespace CapaEntidad.ClienteSatisfaccion.DTO {
     }
 
 
+    public class PreguntaIndicador {
+        public string Pregunta { get; set; }
+        public string Indicador { get; set; }
+    }
+
+    public class SubPreguntaNPS {
+        public int IdPreguntaNps { get; set; }
+        public int IdSubPregunta { get; set; }
+        public int IdOpcion { get; set; }
+        public string TextoOpcion { get; set; }
+        public int ValorOpcion { get; set; }
+    }
 }

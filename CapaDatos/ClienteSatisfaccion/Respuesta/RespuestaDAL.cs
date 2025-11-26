@@ -4,6 +4,7 @@ using S3k.Utilitario;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,9 @@ namespace CapaDatos.ClienteSatisfaccion.Respuesta {
         public int GuardarRespuestaEncuesta(RespuestaEncuestaEntidad respuestaEncuesta) {
             //bool respuesta = false;
             int IdInsertado = 0;
-            string consulta = @"INSERT INTO RespuestaEncuesta (IdSala, IdTablet, NroDocumento, TipoDocumento, FechaRespuesta, IdTipoEncuesta,nombre, correo,celular)
+            string consulta = @"INSERT INTO RespuestaEncuesta (IdSala, IdTablet, NroDocumento, TipoDocumento, FechaRespuesta, IdTipoEncuesta,nombre, correo,celular, codigoPais)
                                 OUTPUT Inserted.IdRespuestaEncuesta
-                                VALUES (@p0, @p1, @p2, @p3, @p4, @p5,@p6,@p7, @p8);";
+                                VALUES (@p0, @p1, @p2, @p3, @p4, @p5,@p6,@p7, @p8,@p9);";
 
             try {
                 using(var con = new SqlConnection(_conexion)) {
@@ -39,6 +40,9 @@ namespace CapaDatos.ClienteSatisfaccion.Respuesta {
                     query.Parameters.AddWithValue("@p6", ManejoNulos.ManageNullStr(respuestaEncuesta.Nombre));
                     query.Parameters.AddWithValue("@p7", ManejoNulos.ManageNullStr(respuestaEncuesta.Correo));
                     query.Parameters.AddWithValue("@p8", ManejoNulos.ManageNullStr(respuestaEncuesta.Celular));
+                    query.Parameters.Add("@p9", SqlDbType.VarChar, 5).Value =
+                    string.IsNullOrEmpty(respuestaEncuesta.Codigo) ? (object)DBNull.Value : respuestaEncuesta.Codigo;
+
                     IdInsertado = Convert.ToInt32(query.ExecuteScalar());
 
                 }
@@ -323,6 +327,31 @@ namespace CapaDatos.ClienteSatisfaccion.Respuesta {
 
             return resultado;
         }
+        public string ObtenerPreguntaIndicador(string indicador) {
+            string resultado = "";
+            string consulta = @" SELECT * FROM Pregunta
+                                where indicador = @indicador";
+            try {
+                using(var con = new SqlConnection(_conexion)) {
+                    con.Open();
+                    using(var cmd = new SqlCommand(consulta, con)) {
+                        cmd.Parameters.AddWithValue("@indicador", indicador);
+                        
+                        using(var reader = cmd.ExecuteReader()) {
+                            if(reader.Read()) {
+                               resultado = reader["texto"].ToString();
+                            }
+                        }
+                    }
+                }
+            } catch(Exception ex) {
+                Console.WriteLine("Error en nombre de la pregunta: " + ex.Message);
+            }
+
+            return resultado;
+
+        }
+
         //LISTA DEL INDICADOR DESEADO DIARIO
         public List<IndicadorRespuesta> ObtenerListaIndicadorRespuestas(string indicador, DateTime fechaInicio, DateTime fechaFin, int salaId) {
             var resultado = new List<IndicadorRespuesta>();
@@ -334,6 +363,7 @@ namespace CapaDatos.ClienteSatisfaccion.Respuesta {
             re.IdTablet,
             t.Nombre AS NombreTablet,
             o.Valor,
+            p.texto AS Pregunta,
             p.Indicador
         FROM RespuestaPregunta rp
         INNER JOIN Opcion o ON rp.IdOpcion = o.IdOpcion
@@ -362,7 +392,8 @@ namespace CapaDatos.ClienteSatisfaccion.Respuesta {
                                     IdTablet = reader.GetInt32(reader.GetOrdinal("IdTablet")),
                                     NombreTablet = reader["NombreTablet"] != DBNull.Value ? reader["NombreTablet"].ToString() : string.Empty,
                                     Valor = Convert.ToInt32(reader["Valor"]),
-                                    Indicador = reader["Indicador"].ToString()
+                                    Indicador = reader["Indicador"].ToString(),
+                                    Pregunta = reader["Pregunta"].ToString()
                                 };
                                 resultado.Add(item);
                             }
@@ -433,7 +464,6 @@ GROUP BY p.Indicador;";
                                 resultado.PctNeutral = dr["PctNeutral"] != DBNull.Value ? Convert.ToDouble(dr["PctNeutral"]) : 0.0;
                                 resultado.PctSatisfecho = dr["PctSatisfecho"] != DBNull.Value ? Convert.ToDouble(dr["PctSatisfecho"]) : 0.0;
                                 resultado.PctMuySatisfecho = dr["PctMuySatisfecho"] != DBNull.Value ? Convert.ToDouble(dr["PctMuySatisfecho"]) : 0.0;
-
                                 resultado.IndicadorValor = dr["IndicadorValor"] != DBNull.Value ? Convert.ToInt32(dr["IndicadorValor"]) : 0;
                             }
                         }
@@ -764,6 +794,7 @@ ORDER BY Fecha;";
             re.Nombre,
             re.Celular,
             re.Correo,
+            re.CodigoPais,
             re.FechaRespuesta,
             re.IdTablet,
             t.Nombre AS NombreTablet,
@@ -813,7 +844,8 @@ ORDER BY Fecha;";
                                     TextoOpcion = dr["TextoOpcion"]?.ToString(),
                                     ValorOpcion = dr["ValorOpcion"] != DBNull.Value ? Convert.ToInt32(dr["ValorOpcion"]) : (int?)null,
                                     TieneComentario = dr["TieneComentario"] != DBNull.Value ? Convert.ToBoolean(dr["TieneComentario"]) : false,
-                                    Comentario = dr["Comentario"]?.ToString()
+                                    Comentario = dr["Comentario"]?.ToString(),
+                                    Codigo = dr["CodigoPais"]?.ToString()
                                 };
 
                                 resultado.Add(item);
@@ -890,8 +922,8 @@ ORDER BY Fecha;";
             o.Valor AS ValorRespuesta,
             CASE 
                 WHEN o.Valor IN (1,2) THEN 'Detractor'
-                WHEN o.Valor = 3 THEN 'Neutral'
-                WHEN o.Valor IN (4,5) THEN 'Promotor'
+                WHEN o.Valor IN (3,4) THEN 'Pasivo'
+                WHEN o.Valor = 5 THEN 'Promotor'
                 ELSE 'No Clasificado'
             END AS Clasificacion
         FROM RespuestaEncuesta re
@@ -983,7 +1015,6 @@ ORDER BY Fecha;";
                                     Comentario = dr["Comentario"]?.ToString()
                                 };
 
-                                // ⚡ Agregamos el IdRespuestaEncuesta para luego mapear
                                 item.GetType().GetProperty("IdRespuestaEncuesta")
                                     ?.SetValue(item, Convert.ToInt32(dr["IdRespuestaEncuesta"]));
 
@@ -1039,6 +1070,95 @@ ORDER BY Fecha;";
         }
 
 
+        public List<PreguntaIndicador> ObtenerListaIndicadores() {
+            var resultado = new List<PreguntaIndicador>();
+
+            string consulta = @"
+              SELECT 
+                 p.IdPregunta,
+                 p.Texto AS Pregunta,
+                 p.Indicador
+             FROM Pregunta p
+             WHERE p.Indicador IS NOT NULL
+              AND p.Indicador NOT IN ('NPS', 'CSAT');";
+
+            try {
+                using(var con = new SqlConnection(_conexion)) {
+                    con.Open();
+
+                    using(var cmd = new SqlCommand(consulta, con)) {
+
+                        using(var dr = cmd.ExecuteReader()) {
+                            while(dr.Read()) {
+                                var item = new PreguntaIndicador {
+                                    Indicador = dr["Indicador"]?.ToString(),
+                                    Pregunta = dr["Pregunta"]?.ToString(),
+                                };
+
+                                item.GetType().GetProperty("IdRespuestaEncuesta")
+                                    ?.SetValue(item, Convert.ToInt32(dr["IdRespuestaEncuesta"]));
+
+                                resultado.Add(item);
+                            }
+                        }
+                    }
+                }
+            } catch(Exception ex) {
+                Console.WriteLine("Error en ObtenerCantidadRespuestasAtributos: " + ex.Message);
+                resultado = new List<PreguntaIndicador>();
+            }
+
+            return resultado;
+        }
+
+
+        public List<SubPreguntaNPS> ObtenerSubPreguntasNps() {
+            var resultado = new List<SubPreguntaNPS>();
+
+            string consulta = @"
+             SELECT 
+                p.IdPregunta AS IdPreguntaNPS,
+                fp.IdPreguntaSiguiente as IdSubPregunta,
+                fp.IdOpcion,
+                o.Texto AS TextoOpcion,
+                o.Valor AS ValorOpcion
+            FROM Pregunta p
+            INNER JOIN FlujoPregunta fp 
+                ON fp.IdPreguntaActual = p.IdPregunta
+            INNER JOIN Opcion o 
+                ON o.IdOpcion = fp.IdOpcion
+            WHERE p.Indicador = 'NPS'";
+
+            try {
+                using(var con = new SqlConnection(_conexion)) {
+                    con.Open();
+
+                    using(var cmd = new SqlCommand(consulta, con)) {
+
+                        using(var dr = cmd.ExecuteReader()) {
+                            while(dr.Read()) {
+                                var item = new SubPreguntaNPS {
+                                    IdPreguntaNps =ManejoNulos.ManageNullInteger(dr["IdPreguntaNps"]),
+                                    IdSubPregunta = ManejoNulos.ManageNullInteger(dr["IdSubPregunta"]),
+                                    IdOpcion = ManejoNulos.ManageNullInteger(dr["IdOpcion"]),
+                                    TextoOpcion = ManejoNulos.ManageNullStr(dr["TextoOpcion"]),
+                                    ValorOpcion = ManejoNulos.ManageNullInteger(dr["ValorOpcion"]),
+                                };
+
+                               
+
+                                resultado.Add(item);
+                            }
+                        }
+                    }
+                }
+            } catch(Exception ex) {
+                Console.WriteLine("Error en obtener subpreguntas nps: " + ex.Message);
+                resultado = new List<SubPreguntaNPS>();
+            }
+
+            return resultado;
+        }
 
 
     }

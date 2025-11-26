@@ -1,0 +1,161 @@
+﻿@using S3k.Utilitario
+@{
+    ViewBag.Title = "Dashboard de Tiempo de Juego";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-5 col-sm-5">
+
+                            <label>Sala:</label>
+                            <select id="selectSala" class="form-control" style="width: 100%;">
+                                <option value="SALA_01">Sala 01 (Ejemplo)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-5
+col-sm-5">
+                            <label>Fecha Operativa:</label>
+                            <div class="input-group date" id="datepickerFecha">
+                                <input type="text" class="form-control" readonly />
+
+                                <span class="input-group-addon">
+                                    <span class="fa fa-calendar"></span>
+                                </span>
+
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-2">
+
+                            <label>&nbsp;</label>
+                            <button id="btnBuscar" class="btn btn-primary btn-block">
+                                <i class="fa fa-search"></i> Buscar
+
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="row-kpi">
+
+    <div class="col-md-6 mb-4 d-flex align-items-stretch">
+        <div class="block h-100 w-100" id="cardPie">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <h4 class="text-center">Utilización de Sala (Dona)</h4>
+                    <div style="position: relative; height: 350px; max-width: 400px; margin: 0 auto;">
+
+                        <canvas id="chartKpiGeneral"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 mb-4 d-flex align-items-stretch">
+        <div class="row w-100" style="margin: 0;">
+            <div class="col-12 d-flex align-items-stretch" style="padding: 0;" id="cardJuego">
+                <div class="block h-100 w-100 mb-4" >
+
+                    <div class="block-content-outer">
+                        <div class="block-content-inner text-center">
+                            <h4 class="text-center">Tiempo Total en Juego</h4>
+                            <i class="fa fa-gamepad fa-3x text-success" style="margin-bottom: 10px;"></i>
+                            <h2 id="kpiTotalJuego">-- hrs</h2>
+                            <p class="text-muted" id="descKpiJuego">Suma de horas de juego de <strong>todas las máquinas</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 d-flex align-items-stretch" style="padding: 0;" id="cardInactivo">
+                <div class="block h-100 w-100" >
+
+                    <div class="block-content-outer">
+                        <div class="block-content-inner text-center">
+                            <h4 class="text-center">Tiempo Total Inactivo</h4>
+                            <i class="fa fa-power-off fa-3x text-danger" style="margin-bottom: 10px;"></i>
+                            <h2 id="kpiTotalInactivo">-- hrs</h2>
+
+                            <p class="text-muted" id="descKpiInactivo">Suma de horas inactivas de <strong>todas las máquinas</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="row" id="row-main-charts">
+    <div class="col-md-8 mb-4 d-flex align-items-stretch">
+        <div class="block h-100">
+            <div class="block-content-outer">
+
+                <div class="block-content-inner">
+                    <h4>Uso de la Sala por Hora (Endpoint 2)</h4>
+                    <canvas id="chartUsoPorHora"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-4 d-flex align-items-stretch">
+
+        <div class="block h-100">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+
+                    <h4>Ranking de Máquinas (Endpoint 3)</h4>
+                    <table id="tableRanking" class="table table-striped table-hover table-bordered w-100">
+                        <thead>
+
+                            <tr>
+                                <th>Cod. Máquina</th>
+                                <th><i class="fa fa-gamepad text-success"></i> T. Juego</th>
+
+                                <th><i class="fa fa-power-off text-danger"></i> T. Inactivo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="row-gantt" style="display: none;">
+    <div class="col-md-12 mb-4">
+        <div class="block">
+            <div class="block-content-outer">
+
+                <div class="block-content-inner">
+                    <h4>Línea de Tiempo de Máquina Específica</h4>
+                    <p id="ganttInstruction"><i>(Selecciona una máquina del ranking para ver el detalle)</i></p>
+
+                    <div style="height: 400px; position: relative;">
+                        <canvas id="chartTimelineGantt"></canvas>
+                    </div>
+
+                    <p id="loadingGantt" style="display: none;">Cargando...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section js
+{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-adapter-moment/1.0.1/chartjs-adapter-moment.min.js"></script>
+    <script src="~/Content/assets/viewsjs/AnalisisDataSala/dashboardTiempoJuego.js?v=@fecha_archivos"></script>
+}

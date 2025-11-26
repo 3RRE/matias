@@ -9,6 +9,7 @@ namespace CapaEntidad.ClienteSatisfaccion.DTO {
         public int IdRespuestaEncuesta { get; set; }
         public string NroDocumento { get; set; }
         public string Nombre { get; set; }
+        public string Codigo { get; set; }
         public string Celular { get; set; }
         public string Correo { get; set; }
         public DateTime FechaRespuesta { get; set; }

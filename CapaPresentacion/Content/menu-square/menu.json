@@ -1612,6 +1612,59 @@
       }
     ]
   },
+
+  {
+    "key": "analisis-data",
+    "name": "Analisis Data",
+    "to": "#",
+    "iconClass": "lab la-buffer",
+    "iconLink": "Content/menu-square/icons/campanias.png",
+    "status": 0,
+    "submenu": [
+      {
+        "key": "tiempo-juego",
+        "name": "Dashboard Tiempo Juego",
+        "to": "AnalisisDataSala/DashBoardTiempoJuego",
+        "iconClass": "las la-industry",
+        "status": 0
+      },
+      {
+        "key": "heat-frecuency",
+        "name": "Heat Frecuency",
+        "to": "AnalisisDataSala/DashBoardHeatFrecuency",
+        "iconClass": "las la-building",
+        "status": 0
+      }
+    ]
+  },
+
+
+  {
+    "key": "Publicidad",
+    "name": "Publicidad",
+    "to": "#",
+    "iconClass": "lab la-buffer",
+    "iconLink": "Content/menu-square/icons/campanias.png",
+    "status": 0,
+    "submenu": [
+      {
+        "key": "publicidad",
+        "name": "Publicidad",
+        "to": "Publicidad/PublicidadVista",
+        "iconClass": "las la-industry",
+        "status": 0
+      },
+      {
+        "key": "eventos",
+        "name": "Eventos",
+        "to": "Publicidad/EventoVista",
+        "iconClass": "las la-building",
+        "status": 0
+      }
+    ]
+  },
+
+
   {
     "key": "EstadoMaquina",
     "name": "Estado Máquina",
@@ -1959,6 +2012,13 @@
         "key": "satisfaccion-cliente-configuracion-usuario",
         "name": "Configuración",
         "to": "ConfigClienteSatisfaccion/ConfiguracionUsuarioView",
+        "iconClass": "las la-cog",
+        "status": 0
+      },
+      {
+        "key": "satisfaccion-cliente-jefes-sala",
+        "name": "JefesSala",
+        "to": "ConfigClienteSatisfaccion/JefesSalaView",
         "iconClass": "las la-cog",
         "status": 0
       }

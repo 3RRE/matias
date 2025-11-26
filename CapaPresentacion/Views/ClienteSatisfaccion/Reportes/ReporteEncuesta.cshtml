@@ -246,7 +246,7 @@
                 Atributos <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" id="dropdown-atributos">
-
+                <li> <a href="#tab-atributo" role="tab" data-toggle="tab" id="link-tab-resumen" data-indicador="RESUMEN">Resumen</a></li>
                 @*<li><a href="#tab-atributo" role="tab" data-toggle="tab" id="link-tab-amabilidad" data-indicador="AMABILIDAD">Amabilidad</a></li>
                     <li><a href="#tab-atributo" role="tab" data-toggle="tab" id="link-tab-soporte" data-indicador="SOPORTE">Soporte</a></li>
                     <li><a href="#tab-atributo" role="tab" data-toggle="tab" id="link-tab-shows" data-indicador="SHOWS">Shows</a></li>
@@ -338,8 +338,8 @@
 
                 <div class="tab-pane" id="tab-atributo"> @Html.Partial("_Atributo") </div>
                 @*Comentarios*@
-                <div class="tab-pane" id="tab-gestion-npss"> 
-                 @Html.Partial("_GestionNps") 
+                <div class="tab-pane" id="tab-gestion-npss">
+                    @Html.Partial("_GestionNps")
                 </div>
 
                 @*Otros*@
@@ -360,8 +360,9 @@
     <script src="~/Content/assets/viewsjs/ClienteSatisfaccion/reporteEncuesta.js"></script>
     <script src="~/Content/assets/viewsjs/ClienteSatisfaccion/NPS/npsReporte.js"></script>
     <script src="~/Content/assets/viewsjs/ClienteSatisfaccion/CSAT/csatReporte.js"></script>
-    <script src="~/Content/assets/viewsjs/ClienteSatisfaccion/reporteAtributos.js"></script>
     <script src="~/Content/assets/viewsjs/ClienteSatisfaccion/comentarios.js"></script>
+    <script src="~/Content/assets/viewsjs/ClienteSatisfaccion/reporteAtributos.js"></script>
+    <script src="~/Content/assets/viewsjs/ClienteSatisfaccion/resumenIndicador.js"></script>
 
     @*<script type="text/javascript" src="~/Content/assets/js/optional/bootstrap-multiselect.min.js"></script>*@
 

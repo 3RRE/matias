@@ -1,5 +1,5 @@
-﻿using CapaEntidad.Response;
-using CapaEntidad;
+﻿using CapaEntidad;
+using CapaEntidad.Response;
 using CapaEntidad.Sunat;
 using CapaNegocio;
 using CapaNegocio.Sunat;
@@ -9,10 +9,9 @@ using S3k.Utilitario.Excel;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using System.Web.Helpers;
-using System.Linq;
 
 namespace CapaPresentacion.Controllers.Migracion {
     [seguridad]
@@ -117,7 +116,7 @@ namespace CapaPresentacion.Controllers.Migracion {
                     message = "Por favor, seleccione una sala"
                 });
             }
-            
+
             try {
                 SalaEntidad sala = _salaBl.ObtenerSalaPorCodigo(salaId);
                 CheckPortHelper checkPortHelper = new CheckPortHelper();
@@ -346,7 +345,7 @@ namespace CapaPresentacion.Controllers.Migracion {
             //cantidadDias = cantidadDias > 0 ? cantidadDias : 10;
             if(diferenciaDias > 5) {
                 return Json(new {
-                    success=false,
+                    success = false,
                     displayMessage = "El rango máximo de consulta es de 5 días"
                 });
             }
@@ -468,7 +467,7 @@ namespace CapaPresentacion.Controllers.Migracion {
                     displayMessage = "El rango máximo de consulta es de 5 días"
                 });
             }
-                List<ContadoresSunatEntidad> contadoresSunat = sunatBL.ObtenerContadoresSunatxFecha(codSala, fechaIni,fechaFin);
+            List<ContadoresSunatEntidad> contadoresSunat = sunatBL.ObtenerContadoresSunatxFecha(codSala, fechaIni, fechaFin);
             success = contadoresSunat.Count > 0;
             if(!success) {
                 displayMessage = $"No se encontraron registros para los contadores mincetur";
@@ -485,7 +484,7 @@ namespace CapaPresentacion.Controllers.Migracion {
             dataTable.Columns.Add("Cereo", typeof(int));
             dataTable.Columns.Add("Id Con Sunat", typeof(int));
             dataTable.Columns.Add("Envio", typeof(int));
-            dataTable.Columns.Add("IdCereo", typeof(int));
+            dataTable.Columns.Add("IdCereo", typeof(string));
             dataTable.Columns.Add("Fecha Envío", typeof(DateTime));
             dataTable.Columns.Add("Fecha Proceso", typeof(DateTime));
             dataTable.Columns.Add("Motivo", typeof(string));

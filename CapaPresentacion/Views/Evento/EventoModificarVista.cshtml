@@ -1,0 +1,136 @@
+﻿@using S3k.Utilitario
+@{
+    ViewBag.Title = "Modificar Evento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string fecha_archivos = ClaseEncriptacion.EncriptarCadenaHASH(Convert.ToString(DateTime.Now));
+
+    var eventoJson = (string)ViewBag.EventoJson;
+}
+
+<script type="text/javascript">
+    var evento = (@Html.Raw(eventoJson));
+</script>
+<div class="row">
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <h1>
+                                <span aria-hidden="true" class="icon icon-shield"></span> <span class="main-text">Modificar Evento</span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-4 col-sm-6 col-xs-6">
+                            <button type="button" class="btn btn-success btn-sm col-md-12 col-sm-12 col-xs-12 btnListar">
+                                <span class="glyphicon glyphicon-list-alt"></span> Listado
+                            </button>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <button type="button" class="btn btn-primary btn-sm col-md-12 col-sm-12 col-xs-12 btnGuardar ">
+                                <span class="glyphicon glyphicon-floppy-disk"></span> Actualizar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="block">
+            <div class="block-content-outer">
+                <div class="block-content-inner " style="display:flex; justify-content:center">
+                    <div class="cardMachine" style="margin-bottom:15px;max-width:1000px">
+                        <fieldset class="sectionCard" style="padding: 10px 7px; margin-top: 10px;">
+                            <h3 style="margin-bottom:5px;margin-left:10px">Datos del Evento</h3>
+
+                            <form id="frmModificarEvento">
+                                <input type="hidden" id="IdEvento" name="IdEvento" />
+                                <input type="hidden" id="RutaArchivoLogoAnt" name="RutaArchivoLogoAnt" />
+
+                                <fieldset>
+                                    <div class="col-md-6">
+                                        <div class=" col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">Título</span>
+                                                <input type="text" class="form-control input-sm UpperCase" id="Titulo" name="Titulo" placeholder="Título del Evento">
+                                            </div>
+                                        </div>
+                                        <div class=" col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">Sala</span>
+                                                <select class="form-control input-sm codSalaAuditoria" id="cboSala" name="CodSala"></select>
+                                            </div>
+                                        </div>
+                                        <div class=" col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">Imagen</span>
+                                                <input type="file" class="form-control input-sm" id="RutaImagen" name="RutaImagen" accept="image/png, image/jpeg, image/gif">
+                                            </div>
+                                            <div class="form-group" style="margin-top: 10px; text-align: center;">
+                                                <label>Imagen Actual:</label>
+                                                <div>
+                                                    <img id="imgActual" src="" alt="Imagen Actual" style="width: 100%; max-width: 300px; height: auto; border: 1px solid #ddd;" />
+                                                </div>
+                                            </div>
+                                            <small>Dejar en blanco para conservar la imagen actual.</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class=" col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">Fecha Evento</span>
+                                                <input type="datetime-local" class="form-control input-sm" id="FechaEvento" name="FechaEvento">
+                                            </div>
+                                        </div>
+                                        <div class=" col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">Descripción</span>
+                                                <textarea class="form-control input-sm UpperCase" id="Descripcion" name="Descripcion" rows="3" placeholder="Descripción (Opcional)"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class=" col-sm-12">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">Estado</span>
+                                                <select id="Estado" class="form-control input-sm" name="Estado">
+                                                    <option value="1">Activo</option>
+                                                    <option value="0">Inactivo</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class=" col-sm-12">
+                                        <div class="input-group form-group">
+                                            <span class="input-group-addon">URL de redirección (abrir en nueva pestaña)</span>
+                                            <input type="text" class="form-control input-sm" id="UrlDireccion" name="UrlDireccion">
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section js
+{
+    <script src="~/Content/assets/viewsjs/Evento/EventoModificar.js?v=@fecha_archivos"></script>
+}
